@@ -91,6 +91,10 @@
 		;
 	}
 	function vm_html_calendrier($jour = 0, $mois = 0, $annee = 0){
+		if(!(($jour>=0 && $jour<=date('t',time()))) && ($mois>=0 && $mois<=12) && (($annee>=2012 && $annee<=date('Y', time())) || $annee===0)){
+			echo 'Erreur';
+			return;
+		}
 		echo'<p>',
 				'<a href="#" class="flechegauche"><img src="../images/fleche_gauche.png" alt="picto fleche gauche"></a>',
 				'F&eacute;vrier&nbsp;2012',
