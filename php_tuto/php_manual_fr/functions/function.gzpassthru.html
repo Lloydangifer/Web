@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Affiche toutes les donn&eacute;es qui restent dans un
+	pointeur gz</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.gzopen.html">gzopen</a>
+		</div>
+		<div class="next">
+			<a href="function.gzputs.html">gzputs</a>
+		</div>
+		<div class="up">
+			<a href="ref.zlib.html">Fonctions Zlib</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.gzpassthru" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">gzpassthru</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">gzpassthru</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title"> Affiche toutes les données qui
+					restent dans un pointeur gz </span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.gzpassthru-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">int</span> <span class="methodname"><strong>gzpassthru</strong></span>
+				( <span class="methodparam"><span class="type">resource</span>
+					<code class="parameter">$zp</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>gzpassthru()</strong></span> lit les
+				données restantes du fichier <em><code class="parameter">zp</code></em>
+				jusqu&#039;à la fin (position <acronym title="End Of File">EOF</acronym>),
+				puis affiche le résultat (décompressé).
+			</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Vous pourriez avoir besoin d&#039;appeler la fonction <span
+						class="function"><a href="function.gzrewind.html"
+						class="function">gzrewind()</a></span> pour réinitialiser le pointeur de
+					fichier au début du fichier si vous avez déjà écrit des données
+					dedans.
+			</blockquote>
+			<div class="tip">
+				<strong class="tip">Astuce</strong>
+				<p class="para">
+					Si vous voulez uniquement afficher le contenu d&#039;un fichier,
+					sans le modifier auparavant ou sans déplacer le pointeur à une
+					position particulière, vous devriez utiliser la fonction <span
+						class="function"><a href="function.readgzfile.html"
+						class="function">readgzfile()</a></span>, ce qui vous évitera
+					d&#039;appeler la fonction <span class="function"><a
+						href="function.gzopen.html" class="function">gzopen()</a></span>.
+				</p>
+			</div>
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.gzpassthru-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">zp</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le pointeur de fichier gz. Il doit être valide et doit pointer
+						vers un fichier ouvert avec succès grâce à la fonction <span
+							class="function"><a href="function.gzopen.html"
+							class="function">gzopen()</a></span>.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.gzpassthru-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Le nombre de caractères décompressés lus depuis <em><code
+						class="parameter">gz</code></em> et affiché ou <strong><code>FALSE</code></strong>
+				si une erreur survient.
+			</p>
+		</div>
+
+		<div class="refsect1 examples"
+			id="refsect1-function.gzpassthru-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-896">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>gzpassthru()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$fp&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">gzopen</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'file.gz'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'r'</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">gzpassthru</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">gzclose</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.gzopen.html">gzopen</a>
+		</div>
+		<div class="next">
+			<a href="function.gzputs.html">gzputs</a>
+		</div>
+		<div class="up">
+			<a href="ref.zlib.html">Fonctions Zlib</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

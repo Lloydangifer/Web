@@ -1,0 +1,3254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Propriétés CSS</title>
+
+<!--
+__________________________________________________________
+
+
+		ATENTION : PAS DE CTRL - MAJ - F DANS ECLIPSE 
+
+_________________________________________________________
+-->
+
+<link rel="stylesheet" href="tech.css">
+
+<style>
+body { font-size: 13px; }
+
+h2 {
+	background: #CCC;
+	border-radius: 12px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+	clear: both;
+	color: #111111;
+	font-size: 1.31em;
+	font-weight: bold;
+	margin: 1em auto 0;
+	padding: 0.2em 1em;
+	position: relative;
+	}
+
+header {
+	background: none repeat scroll 0 0 #DDDDDD;
+	border-radius: 5px;
+	font-weight: bold;
+	margin: 0;
+	padding: 3px;
+	}
+
+section { margin: 0 0 1em 30px; }
+
+/*------------------------------------------------------*/
+/* 		TABLE DES PROPRIETES							*/
+/*------------------------------------------------------*/
+#PRO-table {
+	border: 0 none;
+	border-collapse: separate;
+	border-spacing: 2px;
+	empty-cells: show;
+	font-size: inherit;
+	margin: 1em 0 0 -20px;
+	width: 536px;
+	}
+
+#PRO-table td {
+	border: 0;
+	margin: 0;
+	padding: 1px;
+	}
+
+/*------------------------------------------------------*/
+/* 		BLOCS DE CATEGORIE DES PROPRIETES				*/
+/*------------------------------------------------------*/
+.CAT-text,
+.CAT-position,
+.CAT-anim,
+.CAT-table,
+.CAT-boite,
+.CAT-coul,
+.CAT-flex,
+.CAT-mcol {
+	border-radius: 5px;
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.6) inset;
+	cursor: pointer;
+	font-size: 10px;
+	height: 38px;
+	line-height: 1.2em;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	vertical-align: middle;
+	width: 63px;
+	}
+
+.CAT-text {background-color: #C6BFF2}
+.CAT-position {background-color: #B7EF77}
+.CAT-anim {background-color: #FCBDF6}
+.CAT-table {background-color: #F98686}
+.CAT-boite {background-color: #66FFFF}
+.CAT-coul {background-color: #F90}
+.CAT-flex {background-color: #FC6967}
+.CAT-mcol {background-color: #F24D4D}
+
+.CAT-text:hover,
+.CAT-position:hover,
+.CAT-anim:hover,
+.CAT-table:hover,
+.CAT-boite:hover,
+.CAT-coul:hover,
+.CAT-flex:hover,
+.CAT-mcol:hover {
+	box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.6);
+	font-weight: bold;
+	z-index: 2
+	}
+
+.PROP-plus {
+	background-image: url(../cssimg/prop_plus.png);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	}
+
+.PROP-herite {
+	background-image: url(../cssimg/prop_herite.png);
+	background-repeat: no-repeat;
+	background-position: right top;
+	}
+
+.PROP-plus-herite {
+	background-image: url(../cssimg/prop_herite.png),
+		url(../cssimg/prop_plus.png);
+	background-repeat: no-repeat, no-repeat;
+	background-position: right top, right bottom;
+	}
+
+/*------------------------------------------------------*/
+/* 		TABLE DE LA LEGENDE								*/
+/*------------------------------------------------------*/
+#LGD-table {
+	font-size: 10px;
+	border-collapse: separate;
+	margin: 10px auto 16px auto;
+	border-spacing: 1px;
+	empty-cells: show;
+	border: 0;
+	width: auto
+	}
+
+#LGD-table td:nth-child(odd) {
+	width: 15px;
+	border: 0;
+	margin: 0;
+	padding: 1px;
+	}
+
+#LGD-table td:nth-child(even) {
+	width: 60px;
+	border: 0;
+	margin: 0;
+	padding: 1px;
+	}
+
+#LGD-table .CAT-text,
+#LGD-table .CAT-position,
+#LGD-table .CAT-anim,
+#LGD-table .CAT-boite,
+#LGD-table .CAT-table,
+#LGD-table .CAT-coul,
+#LGD-table .CAT-flex,
+#LGD-table .CAT-mcol {
+	border-radius: 3px;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.6) inset;
+	cursor: default;
+	font-size: 10px;
+	height: 15px;
+	width: 15px
+	}
+
+#TAB-codif {
+	background: #FFFFFF;
+	border: 8px solid #FFFFFF;
+	box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.6);
+	display: none;
+	position: absolute;
+	width: auto;
+	}
+
+#TAB-codif td { padding: 1px; }
+
+.codif-info {
+	background: url("../_core/images/__info16.png") no-repeat right center;
+	cursor: pointer;
+	display: inline-block;
+	height: 16px;
+	margin: 0 0 0 10px;
+	width: 16px
+	}
+
+.codif-info:hover { background-image: url(../_core/images/__info16_h.png); }
+
+.LIEN-mdn,
+.LIEN-w3c { /* liens dans barre nom propriétés dans liste alpha des propriétés */
+	float: right;
+	font-size: 10px;
+	line-height: 20px;
+	margin: 0 0 0 15px;
+	}
+
+.LIEN-spec { /* liens dans barre nom du tag dans liste alpha des éléments */
+	float: right;
+	font-size: 10px;
+	line-height: 20px;
+	margin: 0 0 0 15px
+	}
+	
+.LIEN-top {
+	background: url(../_core/images/__arrow_up24.png) no-repeat;
+	display: block;
+	float: right;
+	height: 24px;
+	margin: -1px 0 0 12px;
+	width: 24px
+	}
+
+.LIEN-top:hover { background: url(../_core/images/__arrow_up24_h.png) no-repeat }
+
+.LIEN-tech { background: none }
+
+a {
+	color: #0000EE;
+	cursor: pointer
+	}
+
+a:active,a:focus { outline: 0 }
+
+a:hover {
+	color: #AA0026;
+	outline: 0
+	}
+
+a:visited { color: #0000EE }
+
+a[href^='http'] {	/* Liens externes au tutoriel */
+	background: url(../_core/images/lien_www_12.png) no-repeat right center;
+	padding-right: 14px
+	}
+a[href^=http]:hover:after {
+  content: '';
+  margin: 0;
+	}
+
+#prop_alphabet a { margin: 0 0.22em }
+
+.alphabet {
+	color: #FF0000;
+	font-size: 1.5em;
+	font-weight: bold;
+	margin-bottom: 0;
+	background: none;
+	box-shadow: none;
+	}
+	
+/*------------------------------------------------------*/
+/*		BLOC INFO SUR UNE PROPRIETE						*/
+/*------------------------------------------------------*/
+#INFO-bloc {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #CCCCCC;
+	box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.6);
+	display: none;
+	font-size: 11px;
+	left: 0;
+	padding: 5px;
+	position: absolute;
+	top: 0;
+	width: 400px;
+	z-index: 10
+	}
+
+#INFO-btn-close {
+	background: url(../_core/images/close.png) no-repeat;
+	float: right;
+	cursor: pointer;
+	width: 16px;
+	height: 16px;
+	margin: 4px 4px 0 16px
+	}
+#INFO-bloc .LIEN-top,
+#INFO-bloc .codif-info {
+	display: none;
+	}
+#INFO-bloc section {margin: 0 0 0 0}
+</style>
+
+<script>
+	"use strict";
+
+	if (!top.FP) {
+		location.replace('../index.html');
+	}
+
+	var FPL = {
+		nomProp : '--',
+		BlocInfo : null,
+		BlocTexteInfo : null,
+		TblCodif : null,
+		TexteCodif : '',
+		W3Chttp : 'http://dev.w3.org/csswg/css3-',
+		W3C : {
+			'align-items': 'flexbox/#align-items-property',
+			'align-self': 'flexbox/#align-self',
+			'align-content': 'flexbox/#align-content-property',
+			'all' : 'cascade/#all-shorthand',
+			'animation' : 'animations/#animation-shorthand-property',
+			'animation-delay' : 'animations/#animation-delay',
+			'animation-direction' : 'animations/#animation-direction',
+			'animation-duration' : 'animations/#animation-duration',
+			'animation-fill-mode' : 'animations/#animation-fill-mode',
+			'animation-iteration-count' : 'animations/#animation-iteration-count',
+			'animation-name' : 'animations/#animation-name',
+			'animation-play-state' : 'animations/#animation-play-state',
+			'animation-timing-function' : 'animations/#animation-timing-function',
+			'backface-visibility' : '3d-transforms/#backface-visibility-property',
+			'background' : 'background/#the-background',
+			'background-attachment' : 'background/#the-background-attachment',
+			'background-clip' : 'background/#the-background-clip',
+			'background-color' : 'background/#the-background-color',
+			'background-image' : 'background/#the-background-image',
+			'background-origin' : 'background/#the-background-origin',
+			'background-position' : 'background/#the-background-position',
+			'background-repeat' : 'background/#the-background-repeat',
+			'background-size' : 'background/#the-background-size',
+			'border' : 'background/#the-border-shorthands',
+			'border-bottom' : 'background/#the-border-shorthands',
+			'border-bottom-color' : 'background/#the-border-color',
+			'border-bottom-left-radius' : 'background/#the-border-radius',
+			'border-bottom-right-radius' : 'background/#the-border-radius',
+			'border-bottom-style' : 'background/#the-border-style',
+			'border-bottom-width' : 'background/#the-border-width',
+			'border-collapse' : 'http://www.w3.org/TR/CSS21/tables.html#propdef-border-collapse',
+			'border-color' : 'background/#the-border-color',
+			'border-image' : 'background/#the-border-image',
+			'border-image-outset' : 'background/#the-border-image-outset',
+			'border-image-repeat' : 'background/#the-border-image-repeat',
+			'border-image-slice' : 'background/#the-border-image-slice',
+			'border-image-source' : 'background/#the-border-image',
+			'border-image-width' : 'background/#the-border-image-width',
+			'border-left' : 'background/#the-border-shorthands',
+			'border-left-color' : 'background/#the-border-color',
+			'border-left-style' : 'background/#the-border-style',
+			'border-left-width' : 'background/#the-border-width',
+			'border-radius' : 'background/#the-border-radius',
+			'border-right' : 'background/#the-border-shorthands',
+			'border-right-color' : 'background/#the-border-color',
+			'border-right-style' : 'background/#the-border-style',
+			'border-right-width' : 'background/#the-border-width',
+			'border-spacing' : 'http://www.w3.org/TR/CSS2/tables.html#separated-borders',
+			'border-style' : 'background/#the-border-style',
+			'border-top' : 'background/#the-border-shorthands',
+			'border-top-color' : 'background/#the-border-color',
+			'border-top-left-radius' : 'background/#the-border-radius',
+			'border-top-right-radius' : 'background/#the-border-radius',
+			'border-top-style' : 'background/#the-border-style',
+			'border-top-width' : 'background/#the-border-width',
+			'border-width' : 'background/#the-border-width',
+			'bottom' : 'positioning/#bottom',
+			'box-decoration-break' : 'background/#the-box-decoration-break',
+			'box-shadow' : 'background/#the-box-shadow',
+			'box-sizing' : 'ui/#box-sizing',
+			'break-before': 'multicol/#break-before',
+			'break-after': 'multicol/#break-after',
+			'break-inside': 'multicol/#break-inside',			
+			'caption-side' : 'http://www.w3.org/TR/CSS21/tables.html#caption-position',
+			'clear' : 'box/#the-clear-property',
+			'clear-after' : 'box/#the-clear-after-property',
+			'clip' : 'positioning/#clip-property',
+			'color' : 'color/#foreground',
+			'column-fill': 'multicol/#cf',
+			'column-span': 'multicol/#column-span',
+			'column-width': 'multicol/#cw',
+			'column-count': 'multicol/#cc',
+			'column-gap': 'multicol/#column-gap',
+			'column-rule': 'multicol/#column-rule',
+			'column-rule-color': 'multicol/#crc',
+			'column-rule-style': 'multicol/#crs',
+			'column-rule-width': 'multicol/#crw',
+			'columns': 'multicol/#columns',
+			'content' : 'http://www.w3.org/TR/CSS21/generate.html#content',
+			'counter-increment' : 'lists/#counter-increment',
+			'counter-reset' : 'lists/#counter-set',
+			'cursor' : 'ui/#cursor',
+			'direction' : 'writing-modes/#direction',
+			'display' : 'box/#display',
+			'empty-cells' : 'http://www.w3.org/TR/CSS21/tables.html#empty-cells',
+			'float' : 'box/#the-float-property',
+			'flex': 'flexbox/#flex-property',
+			'flex-direction': 'flexbox/#flex-direction-property',
+			'flex-wrap': 'flexbox/#flex-wrap-property',
+			'flex-flow': 'flexbox/#flex-flow-property',
+			'flex-grow': 'flexbox/#flex-grow-property',
+			'flex-shrink': 'flexbox/#flex-shrink-property',
+			'flex-basis': 'flexbox/#flex-basis-property',
+			'font' : 'fonts/#font-prop',
+			'font-family' : 'fonts/#font-family-prop',
+			'font-kerning' : 'fonts/#font-kerning-prop',
+			'font-size' : 'fonts/#font-size-prop',
+			'font-size-adjust' : 'fonts/#font-size-adjust-prop',
+			'font-stretch' : 'fonts/#font-stretch-prop',
+			'font-style' : 'fonts/#font-style-prop',
+			'font-synthesis' : 'fonts/#font-synthesis-prop',
+			'font-variant' : 'fonts/#font-rend-desc',
+			'font-variant-caps' : 'fonts/#font-variant-caps-prop',
+			'font-weight' : 'fonts/#font-weight-prop',
+			'hanging-punctuation' : 'text/#hanging-punctuation',
+			'height' : 'box/#the-width-and-height-properties',
+			'hyphens' : 'text/#hyphens',
+			'icon' : 'ui/#icon-property',
+			'image-orientation' : 'images/#the-image-orientation',
+			'image-resolution' : 'images/#the-image-resolution',
+			'justify-content': 'flexbox/#justify-content-property',
+			'left' : 'positioning/#left',
+			'letter-spacing' : 'text/#letter-spacing',
+			'line-break' : 'text/#line-break',
+			'line-height' : 'linebox/#line-height',
+			'list-style' : 'lists/#list-style-property',
+			'list-style-image' : 'lists/#list-style-image',
+			'list-style-position' : 'lists/#list-style-position-property',
+			'list-style-type' : 'lists/#list-style-type',
+			'margin' : 'box/#the-margin-properties',
+			'margin-bottom' : 'box/#the-margin-properties',
+			'margin-left' : 'box/#the-margin-properties',
+			'margin-right' : 'box/#the-margin-properties',
+			'margin-top' : 'box/#the-margin-properties',
+			'max-height' : 'box/#min-max',
+			'max-width' : 'box/#min-max',
+			'min-height' : 'box/#min-max',
+			'min-width' : 'box/#min-max',
+			'object-fit' : 'images/#the-object-fit',
+			'object-position' : 'images/#the-object-position',
+			'opacity' : 'color/#transparency',
+			'order': 'flexbox/#order-property',
+			'outline' : 'ui/#outline',
+			'outline-color' : 'ui/#outline-color',
+			'outline-offset' : 'ui/#outline-offset',
+			'outline-style' : 'ui/#outline-style',
+			'outline-width' : 'ui/#outline-width',
+			'overflow' : 'box/#overflow',
+			'overflow-wrap' : 'text/#overflow-wrap',
+			'overflow-x' : 'box/#overflow',
+			'overflow-y' : 'box/#overflow',
+			'padding' : 'box/#the-padding-properties',
+			'padding-bottom' : 'box/#the-padding-properties',
+			'padding-left' : 'box/#the-padding-properties',
+			'padding-right' : 'box/#the-padding-properties',
+			'padding-top' : 'box/#the-padding-properties',
+			'perspective' : '3d-transforms/#perspective-property',
+			'perspective-origin' : '3d-transforms/#perspective-origin-property',
+			'position' : 'positioning/#position-property',
+			'quotes' : 'http://www.w3.org/TR/CSS21/generate.html#quotes-specify',
+			'resize' : 'ui/#resize',
+			'right' : 'positioning/#right',
+			'table-layout' : 'http://www.w3.org/TR/CSS21/tables.html#width-layout',
+			'tab-size' : 'text/#tab-size',
+			'text-align' : 'text/#text-align',
+			'text-align-last' : 'text/#text-align-last',
+			'text-combine-horizontal' : 'writing-modes/#text-combine-horizontal',
+			'text-decoration' : 'text-decor/#text-decoration-property',
+			'text-decoration-line' : 'text-decor/#text-decoration-line',
+			'text-decoration-skip' : 'text-decor/#text-decoration-skip',
+			'text-decoration-style' : 'text-decor/#text-decoration-style',
+			'text-emphasis' : 'text-decor/#text-emphasis',
+			'text-emphasis-color' : 'text-decor/#text-emphasis',
+			'text-emphasis-position' : 'text-decor/#text-emphasis-position',
+			'text-emphasis-style' : 'text-decor/#text-emphasis-style',
+			'text-indent' : 'text/#text-indent',
+			'text-justify' : 'text/#text-justify',
+			'text-orientation' : 'writing-modes/#text-orientation',
+			'text-overflow' : 'ui/#text-overflow',
+			'text-shadow' : 'http://www.w3.org/TR/css3-text/#text-shadow',
+			'text-transform' : 'text/#text-transform',
+			'text-underline-position' : 'css-text-decor-3/#text-underline-position',
+			'top' : 'positioning/#top',
+			'transform' : 'transforms/#transform-property',
+			'transform-origin' : 'transforms/#transform-origin-property',
+			'transform-style' : 'transforms/#transform-style-property',
+			'transition' : 'transitions/#transition-shorthand-property',
+			'transition-duration' : 'transitions/#transition-duration-property',
+			'transition-property' : 'transitions/#transition-property-property',
+			'transition-timing-function' : 'transitions/#transition-timing-function-property',
+			'unicode-bidi' : 'writing-modes/#unicode-bidi',
+			'vertical-align' : 'http://www.w3.org/TR/CSS2/visudet.html#propdef-vertical-align',
+			'visibility' : 'box/#the-visibility-property',
+			'white-space' : 'text/#white-space',
+			'width' : 'box/#the-width-and-height-properties',
+			'word-break' : 'text/#word-break',
+			'word-spacing' : 'text/#word-spacing',
+			'word-wrap' : 'text/#word-wrap',
+			'writing-mode' : 'writing-modes/#writing-mode',
+			'z-index' : 'positioning/#z-index'
+		},
+
+		initPage : function() {
+			var i, Ns, N2s, NomProp;
+
+			FPL.TblCodif = document.getElementById('TAB-codif');
+
+			// Gestionnaire du click sur la table des propriétés
+			// affichage / masquage de la fenêtre info d'un élément
+			document.getElementById('PRO-table').addEventListener(
+					'click',
+					function(event) {
+						var Target;
+
+						event = event || window.event;
+						Target = event.target || event.srcElement;
+
+						/*
+						if (Target.tagName == 'TD' && Target.id) {
+							top.FP.Voir.showPageTech('css_proprietes',
+									Target.id.substring(2));
+						}
+						*/
+						FPL.showPropInfos(Target);
+					}, false);
+
+			// Gestionnaire du click sur les listes de définitions
+			// affichage / masquage de la table info sur la codif
+			// lien vers spec techniques spécifiques
+			Ns = document.getElementsByClassName('liste-prop');
+			for (i = 0; i < Ns.length; i++) {
+				Ns[i].addEventListener('click', function(event) {
+					var Target, Lien = '', Ancre = '';
+
+					event = event || window.event;
+					Target = event.target || event.srcElement;
+
+					
+					switch (Target.className) {
+					case 'codif-info':
+						// Click sur i pour afficher codification
+						FPL.showTableCodif(Target);
+						return;
+					
+					case 'LIEN-tech':
+						// Clik sur lien technique
+						if (Target.hasAttribute('data-lien')) {
+							Lien = Target.getAttribute('data-lien');
+						} else {
+							Lien = Target.textContent;
+						}
+						if (Target.hasAttribute('data-ancre')) {
+							Ancre = Target.getAttribute('data-ancre');
+						}
+						top.FP.Voir.showPageTech(Lien, Ancre);
+						return;
+						
+					case 'LIEN-tuto':					
+						// Click sur lien tuto
+						if (Target.hasAttribute('data-lien')) {
+							Lien = Target.getAttribute('data-lien');
+						} else {
+							Lien = Target.textContent;
+						}
+						if (Target.hasAttribute('data-ancre')) {
+							Ancre = Target.getAttribute('data-ancre');
+						}
+						top.FP.Voir.showPageTuto(Lien, Ancre);
+						return;
+					}
+				}, false);
+			}
+
+			// Attention : il doit y avoir le même nombre de liens MDN et W3C
+			Ns = document.getElementsByClassName('LIEN-mdn');
+			N2s = document.getElementsByClassName('LIEN-w3c');
+			for (i = 0; i < Ns.length; i++) {
+				//NomProp = Ns[i].nextSibling.id;
+				NomProp = Ns[i].parentNode.parentNode.id;
+				Ns[i].href = 'https://developer.mozilla.org/fr/docs/CSS/'
+						+ NomProp;
+				Ns[i].target = '_blank';
+
+				N2s[i].href = FPL.W3Chttp + FPL.W3C[NomProp];
+				N2s[i].target = '_blank';
+			}
+		},
+
+		//-----------------------------------------------------
+		// Affichage/masquage de la table info sur la codification
+		showTableCodif : function(Target) {
+			var bcInfoW, bcInfoH, Rect, ViewP, ID, Texte;
+
+			if (Target.parentNode.textContent == this.TexteCodif) {
+				FPL.TblCodif.style.display = 'none';
+				FPL.TexteCodif = '';
+				return;
+			}
+
+			this.TexteCodif = Target.parentNode.textContent;
+			this.TblCodif.style.display = 'block';
+
+			// Positionnement		
+			Rect = Target.getBoundingClientRect();
+			ViewP = top.FP.getViewportSize(self);
+
+			bcInfoW = this.TblCodif.scrollWidth;
+			bcInfoH = this.TblCodif.scrollHeight;
+
+			this.TblCodif.style.left = (Rect.left + bcInfoW < ViewP.X - 30) ? Rect.left
+					+ 'px'
+					: (ViewP.W - bcInfoW - 30) + 'px';
+
+			this.TblCodif.style.top = (Rect.bottom + bcInfoH < ViewP.Y) ? Rect.bottom
+					+ ViewP.T + 'px'
+					: (Rect.bottom + ViewP.T - 40 - bcInfoH) + 'px';
+		},
+		
+		//-----------------------------------------------------
+		// Affichage / masquage de la fenêtre info d'une propriété
+		// Target : node cliquée
+		showPropInfos : function(Target) {
+			var Rect, H, ViewP, bcInfoW, bcInfoH, nomPropCliquee, B;
+			
+			if (Target.tagName != 'TD') {
+				return;
+			}
+			
+			if (!Target.id) {
+				return;
+			}
+			
+			nomPropCliquee = Target.id.substring(2);
+
+			// Click sur le tag précédent => cache le bloc info
+			if (this.nomProp == nomPropCliquee) {
+				this.closePropInfo();
+				return;
+			}
+
+			// Click sur un tag => affiche le bloc info
+			this.nomProp = nomPropCliquee;
+
+			if (this.BlocInfo == null) {
+				this.BlocInfo = document.getElementById('INFO-bloc');
+				this.BlocTexteInfo = document.getElementById('bcTexteInfoProp');
+			}
+
+			// Contenu du bloc d'informations
+			B = document.getElementById(this.nomProp);
+			if (!B) {
+				this.nomProp = '';
+				return;
+			}
+
+			this.BlocTexteInfo.innerHTML = B.innerHTML;		
+			this.BlocInfo.style.display = 'block';
+
+			// Positionnement		
+			Rect = Target.getBoundingClientRect();
+			ViewP = top.FP.getViewportSize(self);
+
+			bcInfoW = this.BlocInfo.scrollWidth;
+			bcInfoH = this.BlocInfo.scrollHeight;
+
+			this.BlocInfo.style.left = (Rect.left + bcInfoW < ViewP.X - 30) ? Rect.left
+					+ 'px'
+					: (ViewP.W - bcInfoW - 30) + 'px';
+
+			this.BlocInfo.style.top = (Rect.bottom + bcInfoH < ViewP.Y) ? Rect.bottom
+					+ ViewP.T + 'px'
+					: (Rect.bottom + ViewP.T - bcInfoH) + 'px';
+		},
+
+		//-----------------------------------------------------	
+		// Fermeture de la fenêtre d'info d'une propriété
+		closePropInfo : function() {
+			this.BlocInfo.style.display = 'none';
+			this.nomProp = '';
+		}
+	};
+
+	document.addEventListener('DOMContentLoaded', FPL.initPage, false);
+</script>
+</head>
+<body>
+	<div id="PAGE-tech">
+
+		<h2>Les propriétés de style CSS</h2>
+		<table id="PRO-table">
+			<tbody>
+				<tr>
+					<td class="CAT-position" id="p-bottom">bottom</td>
+					<td class="CAT-position" id="p-clear">clear</td>
+					<td class="CAT-boite PROP-plus" id="p-border">border</td>
+					<td class="CAT-boite" id="p-border-radius">border-<br>radius</td>
+					<td style="padding: 1px 0" class="CAT-coul PROP-plus" id="p-background">back<br> ground</td>
+					<td class="CAT-coul" id="p-box-shadow">box-<br>shadow</td>
+					<td class="CAT-text" id="p-content">content</td>
+					<td class="CAT-text PROP-plus-herite" id="p-font">font</td>
+				</tr>
+				<tr>
+					<td class="CAT-position" id="p-left">left</td>
+					<td class="CAT-position" id="p-float">float</td>
+					<td class="CAT-boite" id="p-box-sizing">box-<br>sizing</td>
+					<td class="CAT-boite" id="p-clip">clip</td>
+					<td class="CAT-coul PROP-herite" id="p-color">color</td>
+					<td class="CAT-coul" id="p-opacity">opacity</td>
+					<td class="CAT-text PROP-herite" id="p-letter-spacing">letter-<br>spacing</td>
+					<td class="CAT-text PROP-herite" id="p-line-height">line-<br>height</td>
+				</tr>
+				<tr>
+					<td class="CAT-position" id="p-position">position</td>
+					<td class="CAT-position" id="p-right">right</td>
+					<td class="CAT-boite PROP-herite" id="p-cursor">cursor</td>
+					<td class="CAT-boite" id="p-display">display</td>
+					<td class="CAT-coul" id="p-text-shadow">text-<br>shadow</td>
+					<td class="CAT-text PROP-herite" id="p-text-align">text-align</td>
+					<td class="CAT-text" id="p-text-decoration">text-<br>decoration</td>
+					<td class="CAT-text PROP-herite" id="p-text-indent">text-<br>indent</td>
+				</tr>
+				<tr>
+					<td class="CAT-position" id="p-z-index">z-index</td>
+					<td class="CAT-position" id="p-top">top</td>
+					<td class="CAT-boite" id="p-height">height</td>					
+					<td class="CAT-boite PROP-plus" id="p-margin">margin</td>
+					<td class="CAT-boite" id="p-max-height">max-<br>height</td>					
+					<td class="CAT-text" id="p-text-overflow">text-<br>overflow</td>					
+					<td class="CAT-text PROP-herite" id="p-white-space">white-<br>space</td>
+					<td class="CAT-text PROP-herite" id="p-word-break">word-<br>break</td>						
+				</tr>
+				<tr><td class="CAT-mcol" id="p-break-after">break-<br>after</td>
+					<td class="CAT-mcol" id="p-break-before">break-<br>before</td>
+					<td class="CAT-boite" id="p-max-width">max-<br>width</td>				
+					<td class="CAT-boite" id="p-min-height">min-<br>height</td>
+					<td class="CAT-boite" id="p-min-width">min-<br>width</td>
+					<td class="CAT-flex" id="p-align-content">align-<br>content</td>
+					<td class="CAT-flex" id="p-align-items">align-<br>items</td>					
+					<td class="CAT-text PROP-herite" id="p-word-spacing">word-<br>spacing</td>					
+				</tr>
+				<tr>
+					<td class="CAT-mcol" id="p-break-inside">break-<br>inside</td>
+					<td class="CAT-mcol" id="p-column-count">column-<br>count</td>
+					<td class="CAT-boite PROP-plus" id="p-outline">outline</td>
+					<td class="CAT-boite" id="p-resize">resize</td>
+					<td class="CAT-boite" id="p-overflow">overflow</td>					
+					<td class="CAT-flex" id="p-align-self">align-<br>self</td>	
+					<td class="CAT-flex" id="p-flex-direction">flex-<br>direction</td>
+					<td class="CAT-anim PROP-plus" id="p-animation">animation</td>						
+				</tr>
+				<tr>
+					<td class="CAT-mcol" id="p-column-fill">column-<br>fill</td>
+					<td class="CAT-mcol" id="p-column-gap">column-<br>gap</td>
+					<td class="CAT-boite PROP-plus" id="p-padding">padding</td>	
+					<td class="CAT-boite" id="p-visibility">visibility</td>
+					<td class="CAT-boite" id="p-width">width</td>									
+					<td class="CAT-flex" id="p-flex-grow">flex-<br>grow</td>					
+					<td class="CAT-flex" id="p-flex-shrink">flex-<br>shrink</td>
+					<td class="CAT-anim" id="p-transform">transform</td>
+				</tr>
+				<tr>
+					<td class="CAT-mcol PROP-plus" id="p-column-rule">column-<br>rule</td>
+					<td class="CAT-mcol" id="p-column-span">column-<br>span</td>					
+					<td class="CAT-table PROP-herite" id="p-border-collapse">border-<br>collapse</td>
+					<td class="CAT-table PROP-herite" id="p-border-spacing">border-<br>spacing</td>
+					<td class="CAT-table PROP-herite" id="p-caption-side">caption-<br>side</td>					
+					<td class="CAT-flex" id="p-flex-basis">flex-<br>basis</td>
+					<td class="CAT-flex" id="p-flex-wrap">flex-<br>wrap</td>
+					<td class="CAT-anim" id="p-transform-origin">transform<br>-origin</td>
+				</tr>
+				<tr>
+					<td class="CAT-mcol" id="p-column-width">column-<br>width</td>
+					<td class="CAT-flex PROP-plus-herite" id="p-list-style">list-style</td>
+										
+					<td class="CAT-table PROP-herite" id="p-empty-cells">empty-<br>cells</td>
+					<td class="CAT-table" id="p-table-layout">table-<br>layout</td>
+					<td class="CAT-table" id="p-vertical-align">vertical-<br>align</td>
+					<td class="CAT-flex" id="p-justify-content">justify-<br>content</td>
+					<td class="CAT-flex" id="p-order">order</td>					
+					<td class="CAT-anim PROP-plus" id="p-transition">transition</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<table id="LGD-table">
+			<tbody>
+				<tr>
+					<td class="CAT-position"></td>
+					<td>Position</td>
+					<td class="CAT-boite"></td>
+					<td>Boîte</td>
+					<td class="CAT-coul"></td>
+					<td>Couleur</td>
+					<td class="CAT-text"></td>
+					<td>Texte</td>
+					<td style="width: 24px">
+						<div class="PROP-plus"
+							style="width: 20px; height: 18px; background-color: #eee; box-shadow: 0 0 2px 0 #000; border-radius: 3px; margin: 0 2px"></div>
+					<td style="width: 120px">propriété raccourcis</td>
+				</tr>
+				<tr>
+					<td class="CAT-anim"></td>
+					<td>Animation</td>
+					<td class="CAT-flex"></td>
+					<td>Flex box</td>
+					<td class="CAT-table"></td>
+					<td>Tableau</td>
+					<td class="CAT-mcol"></td>
+					<td style="width: 100px">Multicolonne</td>
+					<td style="width: 24px">
+						<div class="PROP-herite"
+							style="width: 20px; height: 18px; background-color: #eee; box-shadow: 0 0 2px 0 #000; border-radius: 3px; margin: 0 2px"></div>
+					<td style="width: 120px">propriété héritée</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div id="INFO-bloc">
+			<div id="INFO-btn-close" onClick="FPL.closePropInfo()"></div>
+			<div id="bcTexteInfoProp"></div>
+		</div>
+	
+		<img src="../cssimg/traitement_texte.png" width="470" height="211"
+			border="0" usemap="#traite_texte">
+		<map name="traite_texte">
+			<area shape="rect" coords="54,5,133,21" href="#font-family">
+			<area shape="rect" coords="154,5,223,21" href="#font-size">
+			<area shape="rect" coords="240,5,327,21" href="#font-variant">
+			<area shape="rect" coords="341,5,443,21" href="#text-transform">
+			<area shape="rect" coords="4,120,80,134" href="#font-weight">
+			<area shape="rect" coords="35,143,106,159" href="#font-style">
+			<area shape="rect" coords="26,167,133,183" href="#text-decoration">
+			<area shape="rect" coords="73,191,175,207" href="#letter-spacing">
+			<area shape="rect" coords="197,163,277,180" href="#text-shadow">
+			<area shape="rect" coords="218,120,256,136" href="#color">
+			<area shape="rect" coords="235,142,312,158" href="#background">
+			<area shape="rect" coords="302,120,379,136" href="#text-align">
+			<area shape="rect" coords="384,120,466,136" href="#line-height">
+		</map>
+
+		<h2 id="prop_alphabet">
+			<a href="#alpha_a">A</a>
+			<a href="#alpha_b">B</a>
+			<a href="#alpha_c">C</a>
+			<a href="#alpha_d">D</a>
+			<a href="#alpha_e">E</a>
+			<a href="#alpha_f">F</a>
+			<a href="#alpha_f">H</a>
+			<a href="#alpha_j">J</a>
+			<a href="#alpha_l">L</a>
+			<a href="#alpha_m">M</a>
+			<a href="#alpha_o">O</a>
+			<a href="#alpha_p">P</a>
+			<a href="#alpha_q">Q</a>
+			<a href="#alpha_r">R</a>
+			<a href="#alpha_t">T</a>
+			<a href="#alpha_u">U</a>
+			<a href="#alpha_v">V</a>
+			<a href="#alpha_w">W</a>
+			<a href="#alpha_z">Z</a>
+		</h2>
+
+		<h3 class="alphabet" id="alpha_a">A</h3>
+
+		<div class="liste-prop">
+			<article id="align-content">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>align-content
+				</header>
+				<section>
+					Définit comment les lignes d'une boîte flexible avec plusieurs lignes sont alignés le long de l'axe transversal de la boîte<br>
+					<code>flex-start | flex-end | center | space-between | 
+					space-around | <strong>stretch</strong></code><span class="codif-info"></span>
+					<br>
+					Boîtes flexibles.
+				</section>			
+			</article>
+			<article id="align-items">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>align-items
+				</header>
+				<section>
+					Définit comment les items d'une boîte flexible sont alignés le long de l'axe transversal de la boîte<br>
+					<code>flex-start | flex-end | center | baseline | 
+					<strong>stretch</strong></code><span class="codif-info"></span>
+					<br>
+					Boîtes flexibles.
+				</section>		
+			</article>			
+			<article id="align-self">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>align-self
+				</header>
+				<section>
+					xxxxxxxxxxxxxxxxxx<br>
+					<code><strong>auto</strong> | flex-start | flex-end | center | baseline | stretch</code><span class="codif-info"></span>
+					<br>
+					Items d'une boîte flexible.
+				</section>		
+			</article>				
+		
+			<article id="animation">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>animation
+				</header>
+				<section>
+					Définition d'une animation - raccourci<br>
+					<code>[ <a href="#animation-name">animation-name</a> || <a
+						href="#animation-duration">animation-duration</a> || <a
+						href="#animation-timing-function">animation-timing-function</a> ||
+						<a href="#animation-delay">animation-delay</a> || <a
+						href="#animation-iteration-count">animation-iteration-count</a> ||
+						<a href="#animation-direction">animation-direction</a> || <a
+						href="#animation-fill-mode">animation-fill-mode</a> ]
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="animation-delay">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>animation-delay
+				</header>
+				<section>
+					Délai avant le début de l'animation<br>
+					<code>&lt;<a class="LIEN-tech" data-lien="longeur"
+						data-ancre="duree">durée</a>&gt; [ , &lt;<a class="LIEN-tech"
+						data-lien="longeur" data-ancre="duree">durée</a>&gt; ]+
+					</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 0
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="animation-direction">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>animation-direction
+				</header>
+				<section>
+					Sens de l'animation<br>
+					<code><strong>normal</strong> | reverse | alternate |
+						alternate-reverse [ , normal | reverse | alternate |
+						alternate-reverse ]+</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="animation-duration">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>animation-duration
+				</header>
+				<section>
+					Durée de l'animation<br>
+					<code>&lt;<a class="LIEN-tech" data-lien="longeur"
+						data-ancre="duree">durée</a>&gt; [ , &lt;<a class="LIEN-tech"
+						data-lien="longeur" data-ancre="duree">durée</a>&gt; ]+
+					</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 0
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="animation-fill-mode">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>animation-fill-mode
+				</header>
+				<section>
+					Aspect initial et final de l'élément<br>
+					<code><strong>none</strong> | forwards | backwards | both [
+						, ... ]+</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="animation-iteration-count">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>animation-iteration-count
+				</header>
+				<section>
+					nombre de répétitions de l'animation<br>
+					<code>infinite | &lt;nombre&gt; [ , infinite |
+						&lt;nombre&gt; ]</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 1
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="animation-name">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>animation-name
+				</header>
+				<section>
+					nom de l'animation<br>
+					<code><strong>none</strong> | &lt;nom&gt; [ , none |
+						&lt;nom&gt; ]+</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="animation-playstate">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>animation-playstate
+				</header>
+				<section>
+					Etat de l'animation<br>
+					<code><strong>running</strong> | paused [ , running | paused
+						]+</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="animation-timing-function">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>animation-timing-function
+				</header>
+				<section>
+					vitesse de transition<br>
+					<code><strong>ease</strong> | linear | ease-in | ease-out |
+						ease-in-out | step-start | stepend | steps(nombre[ , start | end
+						]) | cubic-bezier(x1,y1,x2,y2) [ , ... ]+</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+		</div>
+
+		<h3 class="alphabet" id="alpha_b">B</h3>
+
+		<div class="liste-prop">
+			<article id="background">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>background
+				</header>
+				<section>
+					Arrière plan d'un bloc - raccourci<br>
+					<code>[ <a href="#background-image">background-image</a> ||
+						<a href="#background-position">background-position</a> [ / <a
+						href="#background-size">background-size</a> ]? || <a
+						href="#background-repeat">background-repeat</a> || <a
+						href="#background-attachment">background-attachment</a> || <a
+						href="#background-origin">background-origin</a> || <a
+						href="#background-color">background-color</a> ]+ | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="background-attachment">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>background-attachment
+				</header>
+				<section>
+					Défilement de l'arrière plan<br>
+					<code><strong>[ scroll</strong> | fixed | local ]+ | inherit</code><span
+						class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="background-clip">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>background-clip
+				</header>
+				<section>
+					Arrière-plan sous la bordure ou non<br>
+					<code>border-box | padding-box | content-box</code><span
+						class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="background-color">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>background-color
+				</header>
+				<section>
+					Couleur de l'arrière plan<br>
+					<code>&lt;<a class="LIEN-tech">couleur</a>&gt; | <strong>transparent</strong>
+						| inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="background-image">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>background-image
+				</header>
+				<section>
+					Image de fond<br>
+					<code><strong>[ none</strong> | url()[ , url() ]* | inherit</code><span
+						class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="background-origin">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>background-origin
+				</header>
+				<section>
+					Origine pour la position de l'arrière plan<br>
+					<code><strong>padding-box</strong> | border-box |
+						content-box</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="background-position">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>background-position
+				</header>
+				<section>
+					Position de l'arrière plan<br>
+					<code>[ [ &lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt; ]{1,2} | [ [ top | center | bottom ] || [ left
+						| center | right ] ]+ | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 0 0
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="background-repeat">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>background-repeat
+				</header>
+				<section>
+					Répétition de l'arrière plan<br>
+					<code><strong>[ repeat</strong> | repeat-x | repeat-y |
+						no-repeat ]+ | inherit</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="background-size">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>background-size
+				</header>
+				<section>
+					Dimension de l'arrière plan<br>
+					<code><strong>auto</strong> | &lt;<a class="LIEN-tech">longueur</a>&gt;{1,2}
+						| &lt;pourcentage&gt;{1,2} | contain | cover</code><span
+						class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="border">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>border
+				</header>
+				<section>
+					Bordures d'un bloc - raccourci<br>
+					<code>[ <a href="#border-width">border-width</a> || <a
+						href="#border-style">border-style</a> || &lt;<a class="LIEN-tech">couleur</a>&gt;
+						] | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="border-bottom">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a> border-bottom
+				</header>
+				<section>
+					Bordure en bas - raccourci<br>
+					<code>[ <a href="#border-top-width">border-top-width</a> ||
+						<a href="#border-style">border-style</a> || &lt;<a
+						class="LIEN-tech">couleur</a>&gt; ] | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="border-bottom-color">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a> border-bottom-color
+				</header>
+				<section>
+					Couleur de la bordure en bas<br>
+					<code>&lt;<a class="LIEN-tech">couleur</a>&gt; | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="border-bottom-image">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a> border-bottom-image
+				</header>
+				<section>
+					Image de la bordure en bas<br>
+					<code><strong>none</strong> | url() &lt;pourcentage&gt; [
+						&lt;stretch | repeat | round&gt; ]</code><span class="codif-info"></span>
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+			<article id="border-bottom-left-radius">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>border-bottom-left-radius
+				</header>
+				<section>
+					Arrondi coin inférieur gauche<br>
+					<code>none | &lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt;
+					</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 0
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+			<article id="border-bottom-right-radius">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>border-bottom-right-radius
+				</header>
+				<section>
+					Arrondi coin inférieur droit<br>
+					<code>none | &lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt;
+					</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 0
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+			<article id="border-bottom-style">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a> border-bottom-style
+				</header>
+				<section>
+					Style de la bordure en bas<br>
+					<code><strong>none</strong> | dot-dash | dot-dot-dash | wave
+						| hidden | solid | dotted | dashed | double | groove | ridge |
+						inset | outset | inherit</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="border-bottom-width">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a> border-bottom-width
+				</header>
+				<section>
+					Epaisseur de la bordure en bas<br>
+					<code>thin | medium | thick | &lt;<a class="LIEN-tech">longueur</a>&gt;
+						| inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="border-collapse">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>border-collapse
+				</header>
+				<section>
+					Fusion des bordures<br>
+					<code>collapse | <strong>separate</strong> | inherit</code><span
+						class="codif-info"></span>
+					<br>
+					Eléments avec <code>display: table</code> ou <code>display:
+						inline-table</code>.
+					<br>
+					Héritée.
+				</section>
+			</article>
+			<article id="border-color">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>border-color
+				</header>
+				<section>
+					Couleur des bordures - raccourci<br>
+					<code>&lt;<a class="LIEN-tech">couleur</a>&gt;{1,4} | <strong>transparent</strong>
+						| inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="border-image">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>border-image
+				</header>
+				<section>
+					Bordure avec une image - raccourci<br>
+					<code><strong>none</strong> | url() &lt;pourcentage&gt;{1,4}
+						[ &lt;stretch | repeat | round&gt; ]</code><span class="codif-info"></span>
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+			<article id="border-left">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a> border-left
+				</header>
+				<section>
+					Bordure gauche- raccourci<br>
+					<code>[ <a href="#border-top-width">border-top-width</a> ||
+						<a href="#border-style">border-style</a> || &lt;<a
+						class="LIEN-tech">couleur</a>&gt; ] | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="border-left-color">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a> border-left-color
+				</header>
+				<section>
+					Couleur de la bordure gauche<br>
+					<code>&lt;<a class="LIEN-tech">couleur</a>&gt; | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="border-left-image">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a> border-left-image
+				</header>
+				<section>
+					Image de la bordure gauche<br>
+					<code><strong>none</strong> | url() &lt;pourcentage&gt; [
+						&lt;stretch | repeat | round&gt; ]</code><span class="codif-info"></span>
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+			<article id="border-left-style">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a> border-left-style
+				</header>
+				<section>
+					Style de la bordure gauche<br>
+					<code><strong>none</strong> | dot-dash | dot-dot-dash | wave
+						| hidden | solid | dotted | dashed | double | groove | ridge |
+						inset | outset | inherit</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="border-left-width">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a> border-left-width
+				</header>
+				<section>
+					Epaisseur de la bordure gauche<br>
+					<code>thin | medium | thick | &lt;<a class="LIEN-tech">longueur</a>&gt;
+						| inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="border-radius">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>border-radius
+				</header>
+				<section>
+					Arrondi des coins - raccourci<br>
+					<code>[ none | &lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt; ]{1,4}
+					</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 0
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+			<article id="border-right">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a> border-right
+				</header>
+				<section>
+					Bordures droite<br>
+					<code>[ <a href="#border-top-width">border-top-width</a> ||
+						<a href="#border-style">border-style</a> || &lt;<a
+						class="LIEN-tech">couleur</a>&gt; ] | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="border-right-color">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a> border-right-color
+				</header>
+				<section>
+					Couleur de la bordure droite<br>
+					<code>&lt;<a class="LIEN-tech">couleur</a>&gt; | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="border-right-image">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a> border-right-image
+				</header>
+				<section>
+					Image de la bordure droite<br>
+					<code><strong>none</strong> | url() &lt;pourcentage&gt; [
+						&lt;stretch | repeat | round&gt; ]</code><span class="codif-info"></span>
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+			<article id="border-right-style">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>border-right-style
+				</header>
+				<section>
+					Style de la bordure droite<br>
+					<code><strong>none</strong> | dot-dash | dot-dot-dash | wave
+						| hidden | solid | dotted | dashed | double | groove | ridge |
+						inset | outset | inherit</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="border-right-width">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>border-right-width
+				</header>
+				<section>
+					Epaisseur de la bordure droite<br>
+					<code>thin | medium | thick | &lt;<a class="LIEN-tech">longueur</a>&gt;
+						| inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="border-spacing">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>border-spacing
+				</header>
+				<section>
+					Espace entre les bordures<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; &lt;<a
+						class="LIEN-tech">longueur</a>&gt;? | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 0
+					<br>
+					Eléments avec <code>display: table</code> ou <code>display:
+						inline-table</code>.
+					<br>
+					Héritée.
+				</section>
+			</article>
+			<article id="border-style">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>border-style
+				</header>
+				<section>
+					Style de bordure - raccourci<br>
+					<code>&lt;style-bordure&gt;{1,4}</code>
+					<br>
+					ou <code>&lt;style-bordure&gt;</code> peut être :
+					<br>
+					<code><strong>none</strong> |dot-dash | dot-dot-dash | wave
+						| hidden | solid | dotted | dashed | double | groove | ridge |
+						inset | outset | inherit</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="border-top">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a> border-top
+				</header>
+				<section>
+					Bordure en haut - raccourci<br>
+					<code>[ <a href="#border-top-width">border-top-width</a> ||
+						<a href="#border-style">border-style</a> || &lt;<a
+						class="LIEN-tech">couleur</a>&gt; ] | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="
+						border-top-color">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>border-top-color
+				</header>
+				<section>
+					Couleur de la bordure en haut<br>
+					<code>&lt;<a class="LIEN-tech">couleur</a>&gt; | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="border-top-image">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>border-top-image
+				</header>
+				<section>
+					Image de la bordure en haut<br>
+					<code><strong>none</strong> | url() &lt;pourcentage&gt; [
+						&lt;stretch | repeat | round&gt; ]</code><span class="codif-info"></span>
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+			<article id="border-top-left-radius">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>border-top-left-radius
+				</header>
+				<section>
+					Arrondi coin supérieur gauche<br>
+					<code>none | &lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt;
+					</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 0
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+			<article id="border-top-right-radius">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>border-top-right-radius
+				</header>
+				<section>
+					Arrondi coin supérieur droit<br>
+					<code>none | &lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt;
+					</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 0
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+			<article id="
+						border-top-style">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a> border-top-style
+				</header>
+				<section>
+					Style de la bordure en haut<br>
+					<code><strong>none</strong> | dot-dash | dot-dot-dash | wave
+						| hidden | solid | dotted | dashed | double | groove | ridge |
+						inset | outset | inherit</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="
+						border-top-width">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a> border-top-width
+				</header>
+				<section>
+					Epaisseur de la bordure en haut<br>
+					<code>thin | medium | thick | &lt;<a class="LIEN-tech">longueur</a>&gt;
+						| inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="border-width">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>border-width
+				</header>
+				<section>
+					Epaisseur des bordures - raccourci<br>
+					<code>[ thin | medium | thick | &lt;<a class="LIEN-tech">longueur</a>&gt;
+						]{1,4} | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="bottom">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>bottom
+				</header>
+				<section>
+					Position du bas du bloc par rapport au bas de son parent<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt; | <strong>auto</strong> | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Eléments positionnés.
+				</section>
+			</article>
+			<article id="box-shadow">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>box-shadow
+				</header>
+				<section>
+					Ombre d'un bloc<br>
+					<code><strong>none</strong> | &lt;ombre&gt; [ ,&lt;ombre&gt;
+						]*</code><span class="codif-info"></span>
+					<br>
+					<code>&lt;ombre&gt;</code> est defini par :
+					<br>
+					<code> inset? &amp;&amp; [ &lt;offset-x&gt; &lt;offset-y&gt;
+						&lt;flou&gt;? &lt;grandeur&gt;? &lt;<a class="LIEN-tech">couleur</a>&gt;?
+						]
+					</code>
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+			<article id="box-sizing">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>box-sizing
+				</header>
+				<section>
+					Dimensions du bloc calculées en incluant ou non les marges
+						internes et les bordures<br>
+					<code><strong>content-box</strong> | padding-box |
+						border-box</code><span class="codif-info"></span>
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+			<article id="break-after">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>break-after
+				</header>
+				<section>
+					Définit le comportement du saut de colonne après un bloc de
+						contenu dans un élément multicolonne.<br>
+					<code>auto | always | avoid | left | right | page | column |
+						avoid-page | avoid-colum</code><span class="codif-info"></span>
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+			<article id="break-before">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>break-before
+				</header>
+				<section>
+					Définit le comportement du saut de colonne avant un bloc de
+						contenu dans un élément multicolonne.<br>
+					<code>auto | always | avoid | left | right | page | column |
+						avoid-page | avoid-colum</code><span class="codif-info"></span>
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+			<article id="break-inside">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>break-inside
+				</header>
+				<section>
+					Définit le comportement du saut de colonne dans un bloc de
+						contenu dans un élément multicolonne.<br>
+					<code>auto | avoid | avoid-page | avoid-colum</code><span class="codif-info"></span>
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+		</div>
+
+		<h3 class="alphabet" id="alpha_c">C</h3>
+
+		<div class="liste-prop">
+			<article id="caption-side">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>caption-side
+				</header>
+				<section>
+					Emplacement du titre (tableau)<br>
+					<code><strong>top</strong> | bottom | left | right | inherit</code><span
+						class="codif-info"></span>
+					<br>
+					Eléments avec <code>display: table</code> ou <code>display:
+						inline-table</code>.
+					<br>
+					Héritée.
+				</section>
+			</article>
+			<article id="clear">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>clear
+				</header>
+				<section>
+					Pas de boîtes flottantes à côté<br>
+					<code><strong>none</strong> | left | right | both | inherit</code><span
+						class="codif-info"></span>
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+			<article id="clip">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>clip
+				</header>
+				<section>
+					Partie visible du bloc<br>
+					<code> rect(&lt;top&gt;, &lt;right&gt;, &lt;bottom&gt;,
+						&lt;left&gt;) | <strong>auto</strong> | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+			<article id="color">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>color
+				</header>
+				<section>
+					Couleur du texte (et des bordures si pas précisée)<br>
+					<code>&lt;<a class="LIEN-tech">couleur</a>&gt; | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+					<br>
+					Héritée.
+				</section>
+			</article>
+			<article id="columns">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>columns
+				</header>
+				<section>
+					Raccourci pour column-width et column-count<br>
+					<code>&lt;<a class="#column-width">column-width</a>&gt; ||
+						&lt;<a class="#column-count">column-count</a>&gt;
+					</code><span class="codif-info"></span>
+					<br>
+					Eléments de bloc, cellules, bloc en-ligne.
+				</section>
+			</article>
+			<article id="column-count">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>column-count
+				</header>
+				<section>
+					Nombre colonnes d'un élément multicolonne.<br>
+					<code> &lt;Nombre entier&gt; | <strong>auto</strong></code><span
+						class="codif-info"></span>
+					<br>
+					Eléments de bloc, cellules, bloc en-ligne.
+				</section>
+			</article>
+			<article id="column-fill">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>column-fill
+				</header>
+				<section>
+					Répartition du contenu des colonnes d'un élément
+						multicolonne.<br>
+					<code><strong>balance</strong> | auto </code><span
+						class="codif-info"></span>
+					<br>
+					Eléments multicolonnes.
+				</section>
+			</article>
+			<article id="column-gap">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>column-gap
+				</header>
+				<section>
+					Largeur entre 2 colonnes dans un élément multicolonne.<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; | normal
+					</code><span class="codif-info"></span>
+					<br>
+					Eléments multicolonnes.
+				</section>
+			</article>
+			<article id="column-rule">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>column-rule
+				</header>
+				<section>
+					Raccourci pour la ligne entre 2 colonnes dans un élément
+						multicolonne.<br>
+					<code>&lt;<a class="#column-rule-width">column-rule-width</a>&gt;
+						|| &lt;<a class="#column-rule-style">column-rule-style</a>&gt; ||
+						&lt;<a class="#column-rule-color">column-rule-color</a>&gt;
+					</code><span class="codif-info"></span>
+					<br>
+					Eléments multicolonnes.
+				</section>
+			</article>
+			<article id="column-rule-color">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>column-rule-color
+				</header>
+				<section>
+					Couleur de la ligne entre 2 colonnes dans un élément
+						multicolonne.<br>
+					<code>&lt;<a class="LIEN-tech">couleur</a>&gt;
+					</code><span class="codif-info"></span>
+					<br>
+					Eléments multicolonnes.
+				</section>
+			</article>
+			<article id="column-rule-style">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>column-rule-style
+				</header>
+				<section>
+					Style de la ligne entre 2 colonnes dans un élément
+						multicolonne.<br>
+					<code>&lt;<a href="#border-style">border-style</a>&gt;
+					</code><span class="codif-info"></span>
+					<br>
+					Eléments multicolonnes.
+				</section>
+			</article>
+			<article id="column-rule-width">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>column-rule-width
+				</header>
+				<section>
+					Largeur de la ligne entre 2 colonnes dans un élément
+						multicolonne.<br>
+					<code>&lt;<a href="#border-width">border-width</a>&gt;
+					</code><span class="codif-info"></span>
+					<br>
+					Eléments multicolonnes.
+				</section>
+			</article>
+			<article id="column-span">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>column-span
+				</header>
+				<section>
+					Etendue de l'élément par rapport aux colonnes d'un élément
+						multicolonne.<br>
+					<code><strong>none</strong> | all </code><span class="codif-info"></span>
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+			<article id="column-width">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>column-width
+				</header>
+				<section>
+					Largeur suggérée des colonnes d'un élément multicolonne.<br>
+					<code><strong>auto</strong> | &lt;<a class="LIEN-tech">longueur</a>&gt;
+					</code><span class="codif-info"></span>
+					<br>
+					Eléments de bloc, cellules, bloc en-ligne.
+				</section>
+			</article>
+			<article id="content">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>content
+				</header>
+				<section>
+					Contenu à ajouter dans un pseudo élément <code>::before</code> ou <code>::after</code>
+					<br>
+					<code>[ &lt;chaîne&gt; | url()| counter(compteur) | attr() |
+						open-quote | close-quote | no-open-quote | no-close-quote ]+ |
+						inherit</code><span class="codif-info"></span>
+					<br>
+					Par défaut : chaîne vide
+					<br>
+					Pseudo éléments <code>:before</code> et<code> :after</code>.
+				</section>
+			</article>
+			<article id="counter-increment">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>counter-increment
+				</header>
+				<section>
+					Incrémentation de compteur<br>
+					<code>[ &lt;identifiant&gt; &lt;entier&gt;? ]+ | <strong>none</strong>
+						| inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 1
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="counter-reset">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>counter-reset
+				</header>
+				<section>
+					Remise à zéro de compteur<br>
+					<code>[ &lt;identifiant&gt; &lt;entier&gt;? ]+ | <strong>none</strong>
+						| inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 0
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="cursor">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>cursor
+				</header>
+				<section>
+					Type de curseur<br>
+					<code> [ [ url() [ &lt;x&gt; &lt;y&gt; ]?, ]* [ <strong>auto</strong>
+						| default | none | context-menu | help | pointer | progress | wait
+						| cell | crosshair | text | vertical-text | alias | copy | move |
+						no-drop | not-allowed | e-resize | n-resize | ne-resize |
+						nw-resize | s-resize | se-resize | sw-resize | w-resize |
+						ew-resize | ns-resize | nesw-resize | nwse-resize | col-resize |
+						row-resize | all-scroll ] ] | inherit
+					</code>
+					<br>
+					Tous les éléments.
+					<br>
+					Héritée.
+				</section>
+			</article>
+		</div>
+
+		<h3 class="alphabet" id="alpha_d">D</h3>
+
+		<div class="liste-prop">
+			<article id="direction">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>direction
+				</header>
+				<section>
+					Sens de lecture<br>
+					<code><strong>ltr</strong> | rtl | inherit </code><span
+						class="codif-info"></span>
+					<br>
+					Tous les éléments.
+					<br>
+					Héritée.
+				</section>
+			</article>
+			<article id="display">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>display
+				</header>
+				<section>
+					
+						Type d'affichage d'un élément
+						<br>
+						inherit | none | <strong>inline</strong> | block | inline-block |
+						list-item | compact | run-in | table-header-group |
+						table-footer-group | table | inline-table | table-caption |
+						table-cell | table-row | table-row-group | table-column |
+						table-column-group | flex | inline-flex
+						<br>
+						Tous les éléments.
+				</section>
+			</article>
+		</div>
+
+		<h3 class="alphabet" id="alpha_e">E</h3>
+
+		<div class="liste-prop">
+			<article id="empty-cells">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>empty-cells
+				</header>
+				<section>
+					Bordure des cellules vides<br>
+					<code><strong>show</strong> | hide | inherit</code><span
+						class="codif-info"></span>
+					<br>
+					Eléments avec <code>display: table-cell</code>.
+					<br>
+					Héritée.
+				</section>
+			</article>
+		</div>
+
+		<h3 class="alphabet" id="alpha_f">F</h3>
+
+		<div class="liste-prop">
+			<article id="flex">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>flex
+				</header>
+				<section>
+					Raccourci pour les dimensions et le remplissage d'un item d'une boîte flexible<br>
+					<code> none | [ <a href="#flex-grow">flex-grow</a> <a href="#flex-shrink">flex-shrink</a>? || <a href="#flex-basis">flex-basis</a> ] 
+					</code><span class="codif-info"></span>
+					<br>
+					Items d'une boîte flexible.
+				</section>		
+			</article>		
+			<article id="flex-basis">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>flex-basis
+				</header>
+				<section>
+					Largeur des items dans une boîte flexible<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt; | <strong>auto</strong> | initial
+					</code><span class="codif-info"></span>
+					<br>
+					Items d'une boîte flexible.
+				</section>		
+			</article>
+			<article id="flex-direction">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>flex-direction
+				</header>
+				<section>
+					Définit comment les items sont placés dans une boîte flexible<br>
+					<code><strong>row</strong> | row-reverse | column | column-reverse
+					</code><span class="codif-info"></span>
+					<br>
+					Boîtes flexibles.
+				</section>		
+			</article>			
+			<article id="flex-flow">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>flex-flow
+				</header>
+				<section>
+					Raccourci<br>
+					<code><a href="#flex-direction">flex-direction</a> || <a href="#flex-wrap">flex-wrap</a>
+					</code><span class="codif-info"></span>
+					<br>
+					Boîtes flexibles.
+				</section>		
+			</article>			
+			<article id="flex-grow">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>flex-grow
+				</header>
+				<section>
+					Définit comment un item d'une boîte flexible s'accroît par rapport aux autres items du conteneur<br>
+					<code>&lt;entier positif&gt;
+					</code><span class="codif-info"></span>
+					<br>
+					Items d'une boîte flexible.
+				</section>		
+			</article>		
+			<article id="flex-shrink">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>flex-shrink
+				</header>
+				<section>
+					Définit comment un item d'une boîte flexible rétrécit par rapport aux autres items du conteneur<br>
+					<code>&lt;entier positif&gt;
+					</code><span class="codif-info"></span>
+					<br>
+					Items d'une boîte flexible.
+				</section>		
+			</article>				
+			<article id="flex-wrap">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>flex-wrap
+				</header>
+				<section>
+					Indique si les items d'une boîte flexible sont agencés sur une seule ou plusieurs lignes/colonnes d'un conteneur<br>
+					<code><strong>nowrap</strong> | wrap | wrap-reverse
+					</code><span class="codif-info"></span>
+					<br>
+					Boîtes flexibles.
+				</section>		
+			</article>				
+			<article id="float">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>float
+				</header>
+				<section>
+					Bloc flottant<br>
+					<code>left | right | <strong>none</strong> | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="font">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>font
+				</header>
+				<section>
+					Raccourci pour les polices<br>
+					<code>[ [ <a href="#font-style">font-style</a> || <a
+						href="#font-variant">font-variant</a> || <a href="#font-weight">font-weight</a>
+						]? <a href="#font-size">font-size</a> [ /<a href="#line-height">line-height</a>
+						]?<a href="#font-family">font-family</a> ] | caption | icon | menu
+						| message-box | small-caption | status-bar | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+					<br>
+					Héritée.
+				</section>
+			</article>
+			<article id="font-family">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>font-family
+				</header>
+				<section>
+					Police de caractères<br>
+					<code>[ [ &lt;nom police&gt; | &lt;famille-générique&gt; ]
+						[, &lt;nom police&gt; | &lt;famille-générique&gt; ]*] | inherit</code><span
+						class="codif-info"></span>
+					<br>
+					ou <code>&lt;famille-générique&gt;</code> peut être :
+					<br>
+					<code>serif, sans-serif, cursive, fantasy, monospace</code>
+					<br>
+					Tous les éléments.
+					<br>
+					Héritée.
+				</section>
+			</article>
+			<article id="font-size">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>font-size
+				</header>
+				<section>
+					Taille des caractères<br>
+					<code> &lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt; | xx-small | x-small | small | medium | large
+						| x-large | xx-large | smaller | larger | inherit
+					</code> <span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+					<br>
+					Héritée.
+				</section>
+			</article>
+			<article id="font-stretch">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>font-stretch
+				</header>
+				<section>
+					Largeur des lettres<br>
+					<code>ultra-condensed | extra-condensed | condensed |
+						semi-condensed | <strong>normal</strong> | semi-expanded |
+						expanded | extra-expanded | ultra-expanded | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+					<br>
+					Héritée.
+				</section>
+			</article>
+			<article id="font-style">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>font-style
+				</header>
+				<section>
+					Italique<br>
+					<code><strong>normal</strong> | italic | oblique | inherit</code><span
+						class="codif-info"></span>
+					<br>
+					Tous les éléments.
+					<br>
+					Héritée.
+				</section>
+			</article>
+			<article id="font-variant">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>font-variant
+				</header>
+				<section>
+					Petites majuscules<br>
+					<code><strong>normal</strong> | small-caps | inherit</code><span
+						class="codif-info"></span>
+					<br>
+					Tous les éléments.
+					<br>
+					Héritée.
+				</section>
+			</article>
+			<article id="font-weight">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>font-weight
+				</header>
+				<section>
+					Graisse des caractères<br>
+					<code><strong>normal</strong> | bold | bolder | lighter |
+						100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | inherit</code><span
+						class="codif-info"></span>
+					<br>
+					Tous les éléments.
+					<br>
+					Héritée.
+				</section>
+			</article>
+		</div>
+
+		<h3 class="alphabet" id="alpha_h">H</h3>
+
+		<div class="liste-prop">
+			<article id="height">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>height
+				</header>
+				<section>
+					Hauteur<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt; | <strong>auto</strong> | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+		</div>
+
+		<h3 class="alphabet" id="alpha_j">J</h3>
+
+		<div class="liste-prop">
+			<article id="justify-content">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>justify-content
+				</header>
+				<section>
+					Définit comment les items d'une boîte flexible sont alignés le long de l'axe 
+					principal de la boîte<br>
+					<code><strong>flex-start</strong> | flex-end | center | space-between | space-around
+					</code><span class="codif-info"></span>
+					<br>
+					Boîtes flexibles.
+				</section>
+			</article>
+		</div>
+
+
+		<h3 class="alphabet" id="alpha_l">L</h3>
+
+		<div class="liste-prop">
+			<article id="left">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>left
+				</header>
+				<section>
+					Position de la gauche du bloc par rapport à la gauche de son
+						parent<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt; | <strong>auto</strong> | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Eléments positionnés.
+				</section>
+			</article>
+			<article id="letter-spacing">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>letter-spacing
+				</header>
+				<section>
+					Espacement entre les lettres<br>
+					<code><strong>normal</strong> | &lt;<a class="LIEN-tech">longueur</a>&gt;
+						| inherit</code><span class="codif-info"></span>
+					<br>
+					Héritée.
+				</section>
+			</article>
+			<article id="line-height">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>line-height
+				</header>
+				<section>
+					Hauteur de ligne<br>
+					<code><strong>normal</strong> | &lt;nombre&gt; | &lt;<a
+						class="LIEN-tech">longueur</a>&gt; | &lt;pourcentage&gt; | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+					<br>
+					Héritée.
+				</section>
+			</article>
+			<article id="list-style">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>list-style
+				</header>
+				<section>
+					Style des lignes d'une liste - raccourci<br>
+					<code>[ <a href="#list-style-type">list-style-type</a> || <a
+						href="#list-style-position">list-style-position</a> || <a
+						href="#list-style-image">list-style-image</a> ] | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Eléments avec <code>display: list-item</code>
+					<br>
+					Héritée.
+				</section>
+			</article>
+			<article id="list-style-image">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>list-style-image
+				</header>
+				<section>
+					Image à utiliser comme puce de la ligne de la liste<br>
+					<code>url() | <strong>none</strong> | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Eléments avec <code>display: list-item</code>
+					<br>
+					Héritée.
+				</section>
+			</article>
+			<article id="list-style-position">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>list-style-position
+				</header>
+				<section>
+					Position de la puce dans la ligne de la liste<br>
+					<code>inside | <strong>outside</strong> | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Eléments avec <code>display: list-item</code>
+					<br>
+					Héritée.
+				</section>
+			</article>
+			<article id="list-style-type">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>list-style-type
+				</header>
+				<section>
+					Type de puce ou de numérotation de la ligne de la liste<br>
+					<code><strong>disc</strong> | circle | square | decimal |
+						decimal-leading-zero | lowerroman | upper-roman | lowergreek |
+						lower-alpha | lower-latin | upper-alpha | upper-latin | hebrew |
+						armenian | georgian | cjk-ideographic | hiragana | katakana |
+						hiragana-iroha | katakana-iroha | none | inherit</code><span
+						class="codif-info"></span>
+					<br>
+					Eléments avec<code>display: list-item</code>
+					<br>
+					Héritée.
+				</section>
+			</article>
+		</div>
+
+		<h3 class="alphabet" id="alpha_m">M</h3>
+
+		<div class="liste-prop">
+			<article id="margin">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>margin
+				</header>
+				<section>
+					Marges extérieures - raccourci<br>
+					<code>[ &lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt; ]{1,4} | inherit
+					</code>| auto
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+
+			<article id="margin-bottom">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>margin-bottom
+				</header>
+				<section>
+					Marge extérieure en bas<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt; | inherit
+					</code>| auto
+					<br>
+					Par défaut : 0
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="margin-left">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>margin-left
+				</header>
+				<section>
+					Marge extérieure de gauche<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt; | inherit
+					</code>| auto
+					<br>
+					Par défaut : 0
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="margin-right">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>margin-right
+				</header>
+				<section>
+					Marge extérieure à droite<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt; | inherit
+					</code>| auto
+					<br>
+					Par défaut : 0
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="margin-top">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>margin-top
+				</header>
+				<section>
+					Marge extérieure en haut<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt; | inherit
+					</code>| auto
+					<br>
+					Par défaut : 0
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="max-height">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>max-height
+				</header>
+				<section>
+					Hauteur maximale<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt; | <strong>none</strong> | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+			<article id="max-width">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>max-width
+				</header>
+				<section>
+					Largeur maximale<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt; | <strong>none</strong> | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+			<article id="min-height">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>min-height
+				</header>
+				<section>
+					Hauteur minimale<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt; | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 0
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+			<article id="min-width">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>min-width
+				</header>
+				<section>
+					Largeur minimale<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt; | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+		</div>
+
+		<h3 class="alphabet" id="alpha_o">O</h3>
+
+		<div class="liste-prop">
+			<article id="opacity">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>opacity
+				</header>
+				<section>
+					Opacité : 0 totalement transparent, 1 totalement opaque<br>
+					<code>&lt;nombre entre 0 et <strong>1</strong>&gt; | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 1
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="order">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>order
+				</header>
+				<section>
+					Rédéfinit l'ordre d'affichage des items d'une boîte flexible<br>
+					<code>&lt;entier&gt;
+					</code><span class="codif-info"></span>
+					<br>
+					Items d'une boîte flexible.
+				</section>
+			</article>			
+			<article id="outline">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>outline
+				</header>
+				<section>
+					Raccourci pour la bordure extérieure<br>
+					<code>[ <a href="#outline-color">outline-color</a> || <a
+						href="#outline-style">outline-style</a> || <a
+						href="#outline-width">outline-width</a> ] | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="outline-color">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>outline-color
+				</header>
+				<section>
+					Couleur de la bordure extérieure<br>
+					<code>&lt;<a class="LIEN-tech">couleur</a>&gt; | <strong>invert</strong>
+						| inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="outline-offset">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>outline-offset
+				</header>
+				<section>
+					Espacement entre bordure interne et bordure externe<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 0
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="outline-style">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>outline-style
+				</header>
+				<section>
+					Style de la bordure extérieure<br>
+					<code><strong>none</strong> | dot-dash | dot-dot-dash | wave
+						| hidden | solid | dotted | dashed | double | groove | ridge |
+						inset | outset | inherit</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="outline-width">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>outline-width
+				</header>
+				<section>
+					Epaisseur de la bordure extérieure<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 0
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="overflow">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>overflow
+				</header>
+				<section>
+					Affichage des débordements<br>
+					<code><strong>visible</strong> | hidden | scroll | auto |
+						inherit</code><span class="codif-info"></span>
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+		</div>
+
+		<h3 class="alphabet" id="alpha_p">P</h3>
+
+		<div class="liste-prop">
+			<article id="padding">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>padding
+				</header>
+				<section>
+					Raccourci pour la marge intérieure<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt;{1,4} |
+						inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="padding-bottom">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>padding-bottom
+				</header>
+				<section>
+					Marge intérieure en bas<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 0
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="padding-left">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>padding-left
+				</header>
+				<section>
+					Marge intérieure à gauche<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 0
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="padding-right">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>padding-right
+				</header>
+				<section>
+					Marge intérieure à droite<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 0
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="padding-top">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>padding-top
+				</header>
+				<section>
+					Marge intérieure en haut<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 0
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="position">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>position
+				</header>
+				<section>
+					Type de positionnement<br>
+					<code><strong>static</strong> | relative | absolute | fixed
+						| inherit</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+		</div>
+
+		<h3 class="alphabet" id="alpha_q">Q</h3>
+
+		<div class="liste-prop">
+			<article id="quotes">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>quotes
+				</header>
+				<section>
+					Caractères pour guillemets<br>
+					<code>[ &lt;chaîne&gt; &lt;chaîne&gt; ]+ | none | inherit</code><span
+						class="codif-info"></span>
+					<br>
+					Tous les éléments.
+					<br>
+					Héritée.
+				</section>
+			</article>
+		</div>
+
+		<h3 class="alphabet" id="alpha_r">R</h3>
+
+		<div class="liste-prop">
+			<article id="resize">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>resize
+				</header>
+				<section>
+					Bloc redimensionnable<br>
+					<code><strong>none</strong> | both | horizontal | vertical |
+						inherit</code><span class="codif-info"></span>
+					<br>
+					Elements de bloc avec overflow hidden ou scroll
+				</section>
+			</article>
+			<article id="right">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>right
+				</header>
+				<section>
+					Position de la droite du bloc par rapport à la droite de son
+						parent<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt; | <strong>auto</strong> | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Eléments positionnés
+				</section>
+			</article>
+		</div>
+
+		<h3 class="alphabet" id="alpha_t">T</h3>
+
+		<div class="liste-prop">
+			<article id="table-layout">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>table-layout
+				</header>
+				<section>
+					Largeur des colonnes fixe ou variable<br>
+					<code><strong>auto</strong> | fixed | inherit</code><span
+						class="codif-info"></span>
+					<br>
+					Eléments avec <code>display: table</code> ou <code>display:
+						inline-table</code>.
+				</section>
+			</article>
+			<article id="text-align">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>text-align
+				</header>
+				<section>
+					Alignement horizontal du texte<br>
+					<code><strong>left</strong> | right | center | justify |
+						inherit</code><span class="codif-info"></span>
+					<br>
+					Eléments de bloc.
+					<br>
+					Héritée.
+				</section>
+			</article>
+			<article id="text-decoration">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>text-decoration
+				</header>
+				<section>
+					Décoration du texte<br>
+					<code><strong>none</strong> | [ underline || overline ||
+						line-through || blink ] | inherit</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="text-indent">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>text-indent
+				</header>
+				<section>
+					Indentation de la première ligne<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt; | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 0
+					<br>
+					Eléments de bloc.
+					<br>
+					Héritée.
+				</section>
+			</article>
+			<article id="text-overflow">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>text-overflow
+				</header>
+				<section>
+					Signalement de texte coupé<br>
+					<code><strong>clip</strong> | ellipsis | inherit</code><span
+						class="codif-info"></span>
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+			<article id="text-shadow">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>text-shadow
+				</header>
+				<section>
+					Ombrage du texte<br>
+					<code><strong>none</strong> | </code><code>&lt;ombre&gt; [
+						,&lt;ombre&gt; ]*</code><span class="codif-info"></span>
+					<br>
+					<code>&lt;ombre&gt;</code> est defini par :
+					<code> inset? &amp;&amp; [ &lt;offset-x&gt; &lt;offset-y&gt;
+						&lt;flou&gt;? &lt;grandeur&gt;? &lt;<a class="LIEN-tech">couleur</a>&gt;?
+						]
+					</code>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="text-transform">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>text-transform
+				</header>
+				<section>
+					Majuscules minuscules<br>
+					<code>capitalize | uppercase | lowercase | <strong>none</strong>
+						| inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+					<br>
+					Héritée.
+				</section>
+			</article>
+			<article id="top">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>top
+				</header>
+				<section>
+					Position du haut du bloc par rapport au haut de son parent<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt; | <strong>auto</strong> | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Eléments positionnés.
+				</section>
+			</article>
+			<article id="transform">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>transform
+				</header>
+				<section>
+					Transformation par une fonction géométrique<br>
+					<code><strong>none</strong> | translateX() | translateY() |
+						translate() | scaleX() | scaleY() | scale() | rotate() | skewX() |
+						skewY() | skew()</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="transform-origin">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>transform-origin
+				</header>
+				<section>
+					Origine de l'opération de transformation<br>
+					<code>[ &lt;pourcentage&gt; | &lt;<a class="LIEN-tech">longueur</a>&gt;
+						| left | center | right ] [ &lt;pourcentage&gt; | &lt;longueur&gt;
+						| top | center | bottom ] ?
+					</code>
+					<br>
+					ou <code>[ left | center | right ] [ top | center | bottom ]</code>
+					<br>
+					Par défaut : 50% 50%
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="transition">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>transition
+				</header>
+				<section>
+					Changement progressif de valeur de propriétés - raccourci<br>
+					<code>[ <a href="#transition-property">transition-property</a>
+						|| <a href="#transition-duration"> transition-duration</a> || <a
+						href="#transition-timing-function">transition-timing-function</a>
+						|| <a href="#transition-delay">transition-delay</a> [ , [ <a
+						href="#transition-property">transition-property</a> || <a
+						href="#transition-duration"> transition-duration</a> || <a
+						href="#transition-timing-function">transition-timing-function</a>
+						|| <a href="#transition-delay">transition-delay</a> ] ]
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="transition-delay">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>transition-delay
+				</header>
+				<section>
+					Délai avant le début de la transition<br>
+					<code>&lt;<a class="LIEN-tech" data-lien="longeur"
+						data-ancre="duree">durée</a>&gt; [ , &lt;<a class="LIEN-tech"
+						data-lien="longeur" data-ancre="duree">durée</a>&gt; ]+
+					</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 0
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="transition-duration">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>transition-duration
+				</header>
+				<section>
+					Durée de la transition<br>
+					<code>&lt;<a class="LIEN-tech" data-lien="longeur"
+						data-ancre="duree">durée</a>&gt; [ , &lt;<a class="LIEN-tech"
+						data-lien="longeur" data-ancre="duree">durée</a>&gt; ]+
+					</code><span class="codif-info"></span>
+					<br>
+					Par défaut : 0
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="transition-property">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>transition-property
+				</header>
+				<section>
+					Propriétés pour lesquelles il y aura une transition<br>
+					<code>none | <strong>all</strong> | &lt;propriété&gt; [ ,
+						&lt;propriété&gt; ]+
+					</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+			<article id="transition-timing-function">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>transition-timing-function
+				</header>
+				<section>
+					vitesse de transition<br>
+					<code><strong>ease</strong> | linear | ease-in | ease-out |
+						ease-in-out | step-start | step-end | steps(nombre[ , start | end
+						]) | cubic-bezier(x1,y1,x2,y2) [ , ... ]+</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+		</div>
+
+		<h3 class="alphabet" id="alpha_u">U</h3>
+
+		<div class="liste-prop">
+			<article id="unicode-bidi">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>unicode-bidi
+				</header>
+				<section>
+					Gestion du texte bidirectionnel<br>
+					<code><strong>normal</strong> | embed | bidi-override |
+						inherit</code>
+				</section>
+			</article>
+		</div>
+
+		<h3 class="alphabet" id="alpha_v">V</h3>
+
+		<div class="liste-prop">
+			<article id="vertical-align">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>vertical-align
+				</header>
+				<section>
+					Alignement vertical<br>
+					<code><strong>baseline</strong> | sub | super | top |
+						text-top | middle | bottom | text-bottom | &lt;pourcentage&gt; |
+						&lt;<a class="LIEN-tech">longueur</a>&gt; | inherit</code><span
+						class="codif-info"></span>
+					<br>
+					Eléments en ligne
+					<br>
+					ou avec <code>display: table-cell</code>.
+				</section>
+			</article>
+			<article id="visibility">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>visibility
+				</header>
+				<section>
+					Elément visible ou pas<br>
+					<code>visible | hidden | collapse | <strong>inherit</strong></code><span
+						class="codif-info"></span>
+					<br>
+					Tous les éléments.
+				</section>
+			</article>
+		</div>
+
+		<h3 class="alphabet" id="alpha_w">W</h3>
+
+		<div class="liste-prop">
+			<article id="white-space">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>white-space
+				</header>
+				<section>
+					Garder espaces et sauts de ligne<br>
+					<code><strong>normal</strong> | pre | nowrap | inherit</code><span
+						class="codif-info"></span>
+					<br>
+					Eléments de bloc.
+					<br>
+					Héritée.
+				</section>
+			</article>
+			<article id="width">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>width
+				</header>
+				<section>
+					Largeur de l'élément<br>
+					<code>&lt;<a class="LIEN-tech">longueur</a>&gt; |
+						&lt;pourcentage&gt; | <strong>auto</strong> | inherit
+					</code><span class="codif-info"></span>
+					<br>
+					Eléments de bloc.
+				</section>
+			</article>
+			<article id="word-break">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>word-break
+				</header>
+				<section>
+					Coupure des mots longs<br>
+					<code><strong>normal</strong> | break-all | keep-all</code><span
+						class="codif-info"></span>
+					<br>
+					Tous les éléments.
+					<br>
+					Héritée.
+				</section>
+			</article>
+			<article id="word-spacing">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>word-spacing
+				</header>
+				<section>
+					Espacement entre les mots<br>
+					<code><strong>normal</strong> | &lt;<a class="LIEN-tech">longueur</a>&gt;
+						| inherit</code><span class="codif-info"></span>
+					<br>
+					Tous les éléments.
+					<br>
+					Héritée.
+				</section>
+			</article>
+		</div>
+
+		<h3 class="alphabet" id="alpha_z">Z</h3>
+
+		<div class="liste-prop">
+			<article id="z-index">
+				<header>
+					<a class="LIEN-top" href="#"></a><a class="LIEN-w3c">w3c</a><a
+						class="LIEN-mdn">MDN</a>z-index
+				</header>
+				<section>
+					Ordre de superposition d'un élément et de ses descendants<br>
+					<code><strong>auto</strong> | &lt;nombre entier&gt; |
+						inherit</code><span class="codif-info"></span>
+					<br>
+					Eléments positionnés.
+				</section>
+			</article>
+		</div>
+
+
+		<table id="TAB-codif">
+			<tbody>
+				<tr>
+					<td>a b c</td>
+					<td>a est suivi de b qui est suivi de c</td>
+				</tr>
+				<tr>
+					<td>a | b</td>
+					<td>a ou b</td>
+				</tr>
+				<tr>
+					<td>a || b</td>
+					<td>a ou b ou les deux</td>
+				</tr>
+				<tr>
+					<td>[ a b ]</td>
+					<td>groupement</td>
+				</tr>
+				<tr>
+					<td>a?</td>
+					<td>a est optionnel</td>
+				</tr>
+				<tr>
+					<td>a*</td>
+					<td>a est répété 0 ou plusieurs fois</td>
+				</tr>
+				<tr>
+					<td>a+</td>
+					<td>a est répété 1 ou plusieurs fois</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

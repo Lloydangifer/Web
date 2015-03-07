@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Lit les droits d'un fichier</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.fileowner.html">fileowner</a>
+		</div>
+		<div class="next">
+			<a href="function.filesize.html">filesize</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.fileperms" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">fileperms</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">fileperms</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Lit les droits d&#039;un fichier</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.fileperms-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">int</span> <span class="methodname"><strong>fileperms</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$filename</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">Lit les droits du fichier donné.</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.fileperms-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">filename</code></em></span>
+				<dd>
+
+					<p class="para">Chemin vers le fichier.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.fileperms-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne les permissions du fichier sous forme numérique. Les bits
+				de poids faible sont les mêmes que ceux des permissions dans <span
+					class="function"><a href="function.chmod.html"
+					class="function">chmod()</a></span>, cependant certaines plateformes
+				incluent dans le retour des informations sur le type de fichier
+				donné dans <em><code class="parameter">filename</code></em>. Les
+				exemples qui suivent montrent comment tester la valeur de retour
+				concernant les permissions et le type de fichier sur des systèmes
+				POSIX comme Linux ou Mac OS X.
+			</p>
+			<p class="para">
+				Pour les fichiers locaux, la valeur spécifique <em>st_mode</em> de
+				la structure C retournée par la fonction <span class="function"><a
+					href="function.stat.html" class="function">stat()</a></span> est utilisée.
+				Les bits affectés peuvent changer en fonction de la plateforme et
+				vous devriez vous renseigner à son sujet si vous devez analyser les
+				bits ne concernant pas la permission.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.fileperms-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2245">
+				<p>
+					<strong>Exemple #1 Affichage des droits en valeur octale</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">substr</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">sprintf</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'%o'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">fileperms</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'/tmp'</span><span
+								style="color: #007700">)),&nbsp;-</span><span
+								style="color: #0000BB">4</span><span style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #0000BB">substr</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">sprintf</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'%o'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">fileperms</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'/etc/passwd'</span><span
+								style="color: #007700">)),&nbsp;-</span><span
+								style="color: #0000BB">4</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+1777
+0644
+</pre>
+					</div>
+				</div>
+			</div>
+			<div class="example" id="example-2246">
+				<p>
+					<strong>Exemple #2 Affichage de tous les droits</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$perms&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">fileperms</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'/etc/passwd'</span><span
+								style="color: #007700">);<br />
+								<br />if&nbsp;((
+							</span><span style="color: #0000BB">$perms&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">0xC000</span><span style="color: #007700">)&nbsp;==&nbsp;</span><span
+								style="color: #0000BB">0xC000</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;Socket<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$info&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'s'</span><span style="color: #007700">;<br />}&nbsp;elseif&nbsp;((
+							</span><span style="color: #0000BB">$perms&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">0xA000</span><span style="color: #007700">)&nbsp;==&nbsp;</span><span
+								style="color: #0000BB">0xA000</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;Lien&nbsp;symbolique<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$info&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'l'</span><span style="color: #007700">;<br />}&nbsp;elseif&nbsp;((
+							</span><span style="color: #0000BB">$perms&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">0x8000</span><span style="color: #007700">)&nbsp;==&nbsp;</span><span
+								style="color: #0000BB">0x8000</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;Régulier<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$info&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'-'</span><span style="color: #007700">;<br />}&nbsp;elseif&nbsp;((
+							</span><span style="color: #0000BB">$perms&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">0x6000</span><span style="color: #007700">)&nbsp;==&nbsp;</span><span
+								style="color: #0000BB">0x6000</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;Block&nbsp;special<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$info&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'b'</span><span style="color: #007700">;<br />}&nbsp;elseif&nbsp;((
+							</span><span style="color: #0000BB">$perms&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">0x4000</span><span style="color: #007700">)&nbsp;==&nbsp;</span><span
+								style="color: #0000BB">0x4000</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;Dossier<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$info&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'d'</span><span style="color: #007700">;<br />}&nbsp;elseif&nbsp;((
+							</span><span style="color: #0000BB">$perms&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">0x2000</span><span style="color: #007700">)&nbsp;==&nbsp;</span><span
+								style="color: #0000BB">0x2000</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;Caractère&nbsp;spécial<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$info&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'c'</span><span style="color: #007700">;<br />}&nbsp;elseif&nbsp;((
+							</span><span style="color: #0000BB">$perms&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">0x1000</span><span style="color: #007700">)&nbsp;==&nbsp;</span><span
+								style="color: #0000BB">0x1000</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;pipe&nbsp;FIFO<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$info&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'p'</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;Inconnu<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$info&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'u'</span><span style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Autres<br /></span><span
+								style="color: #0000BB">$info&nbsp;</span><span
+								style="color: #007700">.=&nbsp;((</span><span
+								style="color: #0000BB">$perms&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">0x0100</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span
+								style="color: #DD0000">'r'&nbsp;</span><span
+								style="color: #007700">:&nbsp;</span><span
+								style="color: #DD0000">'-'</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$info&nbsp;</span><span
+								style="color: #007700">.=&nbsp;((</span><span
+								style="color: #0000BB">$perms&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">0x0080</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span
+								style="color: #DD0000">'w'&nbsp;</span><span
+								style="color: #007700">:&nbsp;</span><span
+								style="color: #DD0000">'-'</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$info&nbsp;</span><span
+								style="color: #007700">.=&nbsp;((</span><span
+								style="color: #0000BB">$perms&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">0x0040</span><span style="color: #007700">)&nbsp;?<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((
+							</span><span style="color: #0000BB">$perms&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">0x0800</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span
+								style="color: #DD0000">'s'&nbsp;</span><span
+								style="color: #007700">:&nbsp;</span><span
+								style="color: #DD0000">'x'&nbsp;</span><span
+								style="color: #007700">)&nbsp;:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((
+							</span><span style="color: #0000BB">$perms&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">0x0800</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span
+								style="color: #DD0000">'S'&nbsp;</span><span
+								style="color: #007700">:&nbsp;</span><span
+								style="color: #DD0000">'-'</span><span style="color: #007700">));<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Groupe<br /></span><span
+								style="color: #0000BB">$info&nbsp;</span><span
+								style="color: #007700">.=&nbsp;((</span><span
+								style="color: #0000BB">$perms&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">0x0020</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span
+								style="color: #DD0000">'r'&nbsp;</span><span
+								style="color: #007700">:&nbsp;</span><span
+								style="color: #DD0000">'-'</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$info&nbsp;</span><span
+								style="color: #007700">.=&nbsp;((</span><span
+								style="color: #0000BB">$perms&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">0x0010</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span
+								style="color: #DD0000">'w'&nbsp;</span><span
+								style="color: #007700">:&nbsp;</span><span
+								style="color: #DD0000">'-'</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$info&nbsp;</span><span
+								style="color: #007700">.=&nbsp;((</span><span
+								style="color: #0000BB">$perms&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">0x0008</span><span style="color: #007700">)&nbsp;?<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((
+							</span><span style="color: #0000BB">$perms&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">0x0400</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span
+								style="color: #DD0000">'s'&nbsp;</span><span
+								style="color: #007700">:&nbsp;</span><span
+								style="color: #DD0000">'x'&nbsp;</span><span
+								style="color: #007700">)&nbsp;:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((
+							</span><span style="color: #0000BB">$perms&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">0x0400</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span
+								style="color: #DD0000">'S'&nbsp;</span><span
+								style="color: #007700">:&nbsp;</span><span
+								style="color: #DD0000">'-'</span><span style="color: #007700">));<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Tout&nbsp;le&nbsp;monde<br /></span><span
+								style="color: #0000BB">$info&nbsp;</span><span
+								style="color: #007700">.=&nbsp;((</span><span
+								style="color: #0000BB">$perms&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">0x0004</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span
+								style="color: #DD0000">'r'&nbsp;</span><span
+								style="color: #007700">:&nbsp;</span><span
+								style="color: #DD0000">'-'</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$info&nbsp;</span><span
+								style="color: #007700">.=&nbsp;((</span><span
+								style="color: #0000BB">$perms&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">0x0002</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span
+								style="color: #DD0000">'w'&nbsp;</span><span
+								style="color: #007700">:&nbsp;</span><span
+								style="color: #DD0000">'-'</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$info&nbsp;</span><span
+								style="color: #007700">.=&nbsp;((</span><span
+								style="color: #0000BB">$perms&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">0x0001</span><span style="color: #007700">)&nbsp;?<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((
+							</span><span style="color: #0000BB">$perms&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">0x0200</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span
+								style="color: #DD0000">'t'&nbsp;</span><span
+								style="color: #007700">:&nbsp;</span><span
+								style="color: #DD0000">'x'&nbsp;</span><span
+								style="color: #007700">)&nbsp;:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((
+							</span><span style="color: #0000BB">$perms&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">0x0200</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span
+								style="color: #DD0000">'T'&nbsp;</span><span
+								style="color: #007700">:&nbsp;</span><span
+								style="color: #DD0000">'-'</span><span style="color: #007700">));<br />
+								<br />echo&nbsp;
+							</span><span style="color: #0000BB">$info</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+-rw-r--r--
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 errors" id="refsect1-function.fileperms-errors">
+			<h3 class="title">Erreurs / Exceptions</h3>
+			<p class="para">
+				En cas d&#039;échec, une alerte de type <strong><code>E_WARNING</code></strong>
+				sera émise.
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.fileperms-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Les
+						résultats de cette fonction sont mis en cache. Voyez la fonction <span
+						class="function"><a href="function.clearstatcache.html"
+							class="function">clearstatcache()</a></span> pour plus de détails.
+					</span>
+				</p>
+			</blockquote>
+			<div class="tip">
+				<strong class="tip">Astuce</strong>
+				<p class="simpara">
+					Depuis PHP 5.0.0, cette fonction peut aussi être utilisée avec <em
+						class="emphasis">quelques</em> protocoles url. Lisez <a
+						href="wrappers.html" class="xref">Liste des protocoles et des
+						gestionnaires support&eacute;s</a> pour connaître les protocoles
+					supportant la famille de fonctionnalités de <span class="function"><a
+						href="function.stat.html" class="function">stat()</a></span>.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.fileperms-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.chmod.html" class="function" rel="rdfs-seeAlso">chmod()</a>
+						- Change le mode du fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.is-readable.html" class="function"
+						rel="rdfs-seeAlso">is_readable()</a> - Indique si un fichier
+						existe et est accessible en lecture</span></li>
+				<li class="member"><span class="function"><a
+						href="function.stat.html" class="function" rel="rdfs-seeAlso">stat()</a>
+						- Renvoie les informations &agrave; propos d'un fichier</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.fileowner.html">fileowner</a>
+		</div>
+		<div class="next">
+			<a href="function.filesize.html">filesize</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

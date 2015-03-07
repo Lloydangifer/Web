@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Lit et/ou modifie l'identifiant courant de session</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.session-get-cookie-params.html">session_get_cookie_params</a>
+		</div>
+		<div class="next">
+			<a href="function.session-is-registered.html">session_is_registered</a>
+		</div>
+		<div class="up">
+			<a href="ref.session.html">Fonctions Session</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.session-id" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">session_id</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">session_id</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Lit et/ou modifie l&#039;identifiant
+					courant de session</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.session-id-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>session_id</strong></span>
+				([ <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$id</code></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>session_id()</strong></span> est
+				utilisé pour récupérer ou définir l&#039;identifiant de session pour
+				la session courante.
+			</p>
+			<p class="para">
+				La constante <strong><code>SID</code></strong> peut également être
+				utilisée pour lire le nom de la session courante et
+				l&#039;identifiant de session à fournir dans les URL. Voyez aussi <a
+					href="ref.session.html" class="link">Gestion de session</a>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.session-id-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">id</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si <em><code class="parameter">id</code></em> est fourni, il
+						remplacera l&#039;identifiant courant de session. <span
+							class="function"><strong>session_id()</strong></span> doit alors
+						être appelé avant <span class="function"><a
+							href="function.session-start.html" class="function">session_start()</a></span>.
+						Suivant le gestionnaire de sessions que vous utilisez, tous les
+						caractères ne seront pas acceptés dans cette valeur. Par exemple,
+						le gestionnaire de sessions par défaut, basé sur les fichiers,
+						n&#039;accepte que les caractères compris dans l&#039;intervalle <em>a-z,
+							A-Z et 0-9</em> !
+					</p>
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>: <span class="simpara">
+								Lorsque vous utilisez les sessions avec les cookies, le fait de
+								spécifier un <em><code class="parameter">id</code></em> pour <span
+								class="function"><strong>session_id()</strong></span> fera
+								qu&#039;un nouveau cookie sera toujours envoyé lors de
+								l&#039;appel à <span class="function"><a
+									href="function.session-start.html" class="function">session_start()</a></span>,
+								sans ce soucier si l&#039;identifiant de session courant est
+								identique à celui qui vient d&#039;être défini.
+							</span>
+						</p>
+					</blockquote>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.session-id-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				<span class="function"><strong>session_id()</strong></span> retourne
+				l&#039;identifiant de session pour la session courante ou une chaîne
+				vide (<em>&quot;&quot;</em>) s&#039;il n&#039;y a pas de session
+				courante (aucun identifiant de session n&#039;existe).
+			</p>
+		</div>
+
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.session-id-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.0.0</td>
+						<td>Les virgules <em>,</em> et tirets <em>-</em> sont
+							autorisés dans le gestionnaire de session par fichiers.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.session-id-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.session-regenerate-id.html" class="function"
+						rel="rdfs-seeAlso">session_regenerate_id()</a> - Remplace
+						l'identifiant de session courant par un nouveau</span></li>
+				<li class="member"><span class="function"><a
+						href="function.session-start.html" class="function"
+						rel="rdfs-seeAlso">session_start()</a> - D&eacute;marre une
+						nouvelle session ou reprend une session existante</span></li>
+				<li class="member"><span class="function"><a
+						href="function.session-set-save-handler.html" class="function"
+						rel="rdfs-seeAlso">session_set_save_handler()</a> - Configure les
+						fonctions de stockage de sessions</span></li>
+				<li class="member"><a
+					href="session.configuration.html#ini.session.save-handler"
+					class="link">session.save_handler</a></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.session-get-cookie-params.html">session_get_cookie_params</a>
+		</div>
+		<div class="next">
+			<a href="function.session-is-registered.html">session_is_registered</a>
+		</div>
+		<div class="up">
+			<a href="ref.session.html">Fonctions Session</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Encode une cha&icirc;ne en URL</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.urldecode.html">urldecode</a>
+		</div>
+		<div class="next">
+			<a href="book.v8js.html">V8js</a>
+		</div>
+		<div class="up">
+			<a href="ref.url.html">Fonctions URL</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.urlencode" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">urlencode</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">urlencode</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Encode une chaîne en URL</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.urlencode-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>urlencode</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$str</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				Cette fonction est utile lors de l&#039;encodage d&#039;une <a
+					href="language.types.string.html" class="link">chaîne de
+					caractères</a> à utiliser dans la partie d&#039;une URL, comme façon
+				simple de passer des variables vers la page suivante.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.urlencode-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">str</code></em></span>
+				<dd>
+
+					<p class="para">
+						La <a href="language.types.string.html" class="link">chaîne de
+							caractères</a> à encoder.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.urlencode-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne une chaîne dont les caractères non alphanumériques (hormis
+				<em>-_.</em>) sont remplacés par des séquences commençant par un
+				caractère pourcentage (<em>%</em>), suivi de deux chiffres
+				hexadécimaux. Les espaces sont remplacés par des signes plus (<em>+</em>).
+				Ce codage est celui qui est utilisé pour poster des informations
+				dans les formulaires HTML. Le type MIME est <em>application/x-www-form-urlencoded</em>.
+				Ce codage est différent de celui spécifié dans la <a
+					href="http://www.faqs.org/rfcs/rfc3986" class="link external">&raquo;&nbsp;RFC
+					3986</a> (voir <span class="function"><a
+					href="function.rawurlencode.html" class="function">rawurlencode()</a></span>)
+				: pour des raisons historiques, les espaces sont remplacés par des
+				signes plus (<em>+</em>).
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.urlencode-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-3822">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>urlencode()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">'&lt;a&nbsp;href="mycgi?foo='</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">urlencode</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$userinput</span><span
+								style="color: #007700">),&nbsp;</span><span
+								style="color: #DD0000">'"&gt;'</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="example-3823">
+				<p>
+					<strong>Exemple #2 Exemple avec <span class="function"><strong>urlencode()</strong></span>
+						et <span class="function"><a
+							href="function.htmlentities.html" class="function">htmlentities()</a></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$query_string&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'foo='&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">urlencode</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$foo</span><span
+								style="color: #007700">)&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">'&amp;bar='&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">urlencode</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$bar</span><span
+								style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #DD0000">'&lt;a&nbsp;href="mycgi?'&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">htmlentities</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$query_string</span><span
+								style="color: #007700">)&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">'"&gt;'</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.urlencode-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Faites bien attention aux variables qui ressemblent à des entités
+					HTML, comme &amp;amp;, &amp;copy; et &amp;pound;, qui sont
+					analysées par le client web et remplacées par leur valeur.
+					C&#039;est un vrai problème qui a été montré par le W3C depuis
+					longtemps. La référence est ici : <a
+						href="http://www.w3.org/TR/html4/appendix/notes.html#h-B.2.2"
+						class="link external">&raquo;&nbsp;http://www.w3.org/TR/html4/appendix/notes.html#h-B.2.2</a>.
+				</p>
+				<p class="para">
+					PHP supporte le remplacement de séparateur d&#039;arguments par un
+					point-virgule, comme recommandé par le W3C, grâce à la directive <strong
+						class="option unknown">arg_separator</strong> du fichier
+					<var class="filename">php.ini</var>
+					. Malheureusement, la plupart des clients web n&#039;envoient pas
+					leurs données de formulaire avec des points-virgules. Une solution
+					plus portable est d&#039;utiliser <em>&amp;amp;</em> à la place de
+					<em>&amp;</em> comme séparateur. Vous n&#039;avez alors pas à
+					changer la directive <strong class="option unknown">arg_separator</strong>
+					. Laissez-la à &amp;, mais encodez vos URL en utilisant <span
+						class="function"><a href="function.htmlentities.html"
+						class="function">htmlentities()</a></span> ou <span class="function"><a
+						href="function.htmlspecialchars.html" class="function">htmlspecialchars()</a></span>.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.urlencode-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.urldecode.html" class="function" rel="rdfs-seeAlso">urldecode()</a>
+						- D&eacute;code une cha&icirc;ne encod&eacute;e URL</span></li>
+				<li class="member"><span class="function"><a
+						href="function.htmlentities.html" class="function"
+						rel="rdfs-seeAlso">htmlentities()</a> - Convertit tous les
+						caract&egrave;res &eacute;ligibles en entit&eacute;s HTML</span></li>
+				<li class="member"><span class="function"><a
+						href="function.rawurlencode.html" class="function"
+						rel="rdfs-seeAlso">rawurlencode()</a> - Encode une cha&icirc;ne en
+						URL, selon la RFC 3986</span></li>
+				<li class="member"><span class="function"><a
+						href="function.rawurldecode.html" class="function"
+						rel="rdfs-seeAlso">rawurldecode()</a> - D&eacute;code une
+						cha&icirc;ne URL</span></li>
+				<li class="member"><a href="http://www.faqs.org/rfcs/rfc3986"
+					class="link external">&raquo;&nbsp;RFC 3986</a></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.urldecode.html">urldecode</a>
+		</div>
+		<div class="next">
+			<a href="book.v8js.html">V8js</a>
+		</div>
+		<div class="up">
+			<a href="ref.url.html">Fonctions URL</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

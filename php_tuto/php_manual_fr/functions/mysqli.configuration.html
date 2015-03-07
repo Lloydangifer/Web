@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Configuration &agrave; l'ex&eacute;cution</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="mysqli.installation.html">Installation</a></div>
+ <div class="next"><a href="mysqli.resources.html">Types de ressources</a></div>
+ <div class="up"><a href="mysqli.setup.html">Installation/Configuration</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="mysqli.configuration" class="section">
+ <h2 class="title">Configuration à l&#039;exécution</h2>
+ <p class="simpara">Le comportement de ces fonctions est
+affecté par la configuration dans le fichier <var class="filename">php.ini</var>.</p>
+ <p class="para">
+  <table class="doctable table">
+   <caption><strong>Options de configuration MySQLi</strong></caption>
+   
+    <thead>
+     <tr>
+      <th>Nom</th>
+      <th>Défaut</th>
+      <th>Modifiable</th>
+      <th>Historique</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td><a href="mysqli.configuration.html#ini.mysqli.allow-local-infile" class="link">mysqli.allow_local_infile</a></td>
+      <td>&quot;1&quot;</td>
+      <td>PHP_INI_SYSTEM</td>
+      <td>Disponible depuis PHP 5.2.4.</td>
+     </tr>
+
+     <tr>
+      <td><a href="mysqli.configuration.html#ini.mysqli.allow-persistent" class="link">mysqli.allow_persistent</a></td>
+      <td>&quot;1&quot;</td>
+      <td>PHP_INI_SYSTEM</td>
+      <td>Disponible depuis PHP 5.3.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="mysqli.configuration.html#ini.mysqli.max-persistent" class="link">mysqli.max_persistent</a></td>
+      <td>&quot;-1&quot;</td>
+      <td>PHP_INI_SYSTEM</td>
+      <td>Disponible depuis PHP 5.3.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="mysqli.configuration.html#ini.mysqli.max-links" class="link">mysqli.max_links</a></td>
+      <td>&quot;-1&quot;</td>
+      <td>PHP_INI_SYSTEM</td>
+      <td>Disponible depuis PHP 5.0.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="mysqli.configuration.html#ini.mysqli.default-port" class="link">mysqli.default_port</a></td>
+      <td>&quot;3306&quot;</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponible depuis PHP 5.0.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="mysqli.configuration.html#ini.mysqli.default-socket" class="link">mysqli.default_socket</a></td>
+      <td>NULL</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponible depuis PHP 5.0.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="mysqli.configuration.html#ini.mysqli.default-host" class="link">mysqli.default_host</a></td>
+      <td>NULL</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponible depuis PHP 5.0.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="mysqli.configuration.html#ini.mysqli.default-user" class="link">mysqli.default_user</a></td>
+      <td>NULL</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponible depuis PHP 5.0.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="mysqli.configuration.html#ini.mysqli.default-pw" class="link">mysqli.default_pw</a></td>
+      <td>NULL</td>
+      <td>PHP_INI_ALL</td>
+      <td>Disponible depuis PHP 5.0.0.</td>
+     </tr>
+
+     <tr>
+      <td><a href="mysqli.configuration.html#ini.mysqli.reconnect" class="link">mysqli.reconnect</a></td>
+      <td>&quot;0&quot;</td>
+      <td>PHP_INI_SYSTEM</td>
+      <td>Disponible depuis PHP 4.3.5.</td>
+     </tr>
+
+     <tr>
+      <td><a href="mysqli.configuration.html#ini.mysqli.cache-size" class="link">mysqli.cache_size</a></td>
+      <td>&quot;2000&quot;</td>
+      <td>PHP_INI_SYSTEM</td>
+      <td>Disponible depuis PHP 5.3.0.</td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+  Pour plus de détails sur les modes PHP_INI_*,
+reportez-vous à <a href="configuration.changes.modes.html" class="xref">O&ugrave; une directive de configuration peut &ecirc;tre modifi&eacute;e</a>.
+ </p>
+ <p class="para">
+  Pour plus de détails et de définitions concernant les constantes PHP_INI_*
+  ci-dessus, reportez-vous au chapitre sur les <a href="configuration.changes.html" class="link">
+   modifications de configuration</a>.
+ </p>
+
+ <p class="para">Voici un éclaircissement sur
+l&#039;utilisation des directives de configuration.</p>
+
+ <p class="para">
+ <dl>
+
+  
+  <dt id="ini.mysqli.allow-local-infile">
+   <span class="term">
+    <em><code class="parameter">mysqli.allow_local_infile</code></em>
+    <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span>
+   </span>
+   <dd>
+
+    <p class="para">
+     Autorise l&#039;accès, depuis PHP, aux fichiers locaux chargés avec
+     LOAD DATA
+    </p>
+   </dd>
+
+  </dt>
+
+  
+  <dt id="ini.mysqli.allow-persistent">
+   <span class="term">
+    <em><code class="parameter">mysqli.allow_persistent</code></em>
+    <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span>
+   </span>
+   <dd>
+
+    <p class="para">
+     Active la possibilité de créer des connexions persistantes en
+     utilisant la fonction  <span class="function"><a href="function.mysqli-connect.html" class="function">mysqli_connect()</a></span>.
+    </p>
+   </dd>
+
+  </dt>
+
+  <dt id="ini.mysqli.max-persistent">
+   <span class="term">
+    <em><code class="parameter">mysqli.persistent</code></em>
+    <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span>
+   </span>
+   <dd>
+
+    <p class="para">
+     Nombre maximal de connexions persistantes pouvant être réalisé.
+     Par défaut, vaut 0, ce qui signifie &quot;illimité&quot;.
+    </p>
+   </dd>
+
+  </dt>
+
+  <dt id="ini.mysqli.max-links">
+   <span class="term">
+    <em><code class="parameter">mysqli.max_links</code></em>
+    <a href="language.types.integer.html" class="link">entier</a>
+   </span>
+   <dd>
+
+    <p class="para">
+     Le nombre maximal de connexions MySQL par processus, incluant les
+     connexions persistantes.
+    </p>
+   </dd>
+
+  </dt>
+
+   <dt id="ini.mysqli.default-port">
+   <span class="term">
+    <em><code class="parameter">mysqli.default_port</code></em>
+    <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span>
+   </span>
+   <dd>
+
+    <p class="para">
+     Le numéro par défaut de port TCP à utiliser lors de la connexion
+     au serveur si aucun autre port n&#039;est fourni. S&#039;il n&#039;est pas défini,
+     le port sera obtenu à partir de la variable d&#039;environnement  
+     <em>MYSQL_TCP_PORT</em>, l&#039;entrée <em>mysql-tcp</em>
+     dans <var class="filename">/etc/services</var> ou la constante de compilation
+     <em>MYSQL_PORT</em>, dans cet ordre. Win32 n&#039;utilisera que la 
+     constante <em>MYSQL_PORT</em>.
+    </p>
+   </dd>
+
+  </dt>
+
+
+  <dt id="ini.mysqli.default-socket">
+   <span class="term">
+    <em><code class="parameter">mysqli.default_socket</code></em>
+    <span class="type"><a href="language.types.string.html" class="type string">string</a></span>
+   </span>
+   <dd>
+
+    <p class="para">
+     Le nom par défaut du socket à utiliser lors des connexions locales
+     au serveur si aucun autre nom n&#039;est fourni.
+    </p>
+   </dd>
+
+  </dt>
+
+   <dt id="ini.mysqli.default-host">
+   <span class="term">
+    <em><code class="parameter">mysqli.default_host</code></em>
+    <span class="type"><a href="language.types.string.html" class="type string">string</a></span>
+   </span>
+   <dd>
+
+    <p class="para">
+     Le serveur par défaut à utiliser lors de la connexion à un
+     serveur si aucun autre hôte n&#039;est fourni. Ne s&#039;applique pas
+     avec le <a href="ini.sect.safe-mode.html#ini.safe-mode" class="link">safe mode</a>.
+    </p>
+   </dd>
+
+  </dt>
+
+
+  <dt id="ini.mysqli.default-user">
+   <span class="term">
+    <em><code class="parameter">mysqli.default_user</code></em>
+    <span class="type"><a href="language.types.string.html" class="type string">string</a></span>
+   </span>
+   <dd>
+
+    <p class="para">
+     Le nom d&#039;utilisateur par défaut à utiliser lors de la connexion
+     à un serveur si aucun autre nom n&#039;est fourni. Ne s&#039;applique pas
+     avec le <a href="ini.sect.safe-mode.html#ini.safe-mode" class="link">safe mode</a>.
+    </p>
+   </dd>
+
+  </dt>
+
+
+  <dt id="ini.mysqli.default-pw">
+   <span class="term">
+    <em><code class="parameter">mysqli.default_pw</code></em>
+    <span class="type"><a href="language.types.string.html" class="type string">string</a></span>
+   </span>
+   <dd>
+
+    <p class="para">
+     Le mot de passe par défaut à utiliser lors de la connexion 
+     à un serveur si aucun autre mot de passe n&#039;est fourni. Ne 
+     s&#039;applique pas avec le <a href="ini.sect.safe-mode.html#ini.safe-mode" class="link">safe mode</a>.
+    </p>
+   </dd>
+
+  </dt>
+
+  
+  <dt id="ini.mysqli.reconnect">
+   <span class="term">
+    <em><code class="parameter">mysqli.reconnect</code></em>
+    <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span>
+   </span>
+   <dd>
+
+    <p class="para">
+     Reconnexion automatique si la connexion est interrompue.
+    </p>
+   </dd>
+
+  </dt>
+
+  
+  <dt id="ini.mysqli.cache-size">
+   <span class="term">
+    <em><code class="parameter">mysqli.cache_size</code></em>
+    <span class="type"><a href="language.types.integer.html" class="type integer">integer</a></span>
+   </span>
+   <dd>
+
+    <p class="para">
+     Disponible uniquement avec <a href="book.mysqlnd.html" class="link">mysqlnd</a>.
+    </p>
+   </dd>
+
+  </dt>
+
+
+ </dl>
+
+ </p>
+ <p class="para">
+   Les utilisateurs ne peuvent changer <em>MYSQL_OPT_READ_TIMEOUT</em> via un appel
+   de l&#039;API ou au runtime. Notez que même si c&#039;était possible, il y aurait des différences
+   sur les manières de l&#039;interpreter par <em>libmysql</em> ou les flux. 
+ </p>
+</div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="mysqli.installation.html">Installation</a></div>
+ <div class="next"><a href="mysqli.resources.html">Types de ressources</a></div>
+ <div class="up"><a href="mysqli.setup.html">Installation/Configuration</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

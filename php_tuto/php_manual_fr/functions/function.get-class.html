@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Retourne la classe d'un objet</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.get-class-vars.html">get_class_vars</a>
+		</div>
+		<div class="next">
+			<a href="function.get-declared-classes.html">get_declared_classes</a>
+		</div>
+		<div class="up">
+			<a href="ref.classobj.html">Fonctions Classes/Objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.get-class" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">get_class</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">get_class</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Retourne la classe d&#039;un objet</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.get-class-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>get_class</strong></span>
+				([ <span class="methodparam"><span class="type">object</span>
+					<code class="parameter">$object</code><span class="initializer">
+						= <strong><code>NULL</code></strong>
+				</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				Retourne la classe de l&#039;objet <em><code class="parameter">obj</code></em>.
+			</p>
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.get-class-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">object</code></em></span>
+				<dd>
+
+					<p class="para">L&#039;objet testé. Ce paramètre peut être omis
+						lorsque la fonction est utilisée dans une classe.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.get-class-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne le nom de la classe pour laquelle <em><code
+						class="parameter">object</code></em> est une instance. Retourne <strong><code>FALSE</code></strong>
+				si <em><code class="parameter">object</code></em> n&#039;est pas un
+				objet.
+			</p>
+			<p class="para">
+				Si <em><code class="parameter">object</code></em> est omis lorsque
+				la fonction est appelée dans une classe, la classe courante est
+				retournée.
+			</p>
+		</div>
+
+		<div class="refsect1 errors" id="refsect1-function.get-class-errors">
+			<h3 class="title">Erreurs / Exceptions</h3>
+			<p class="para">
+				Si <span class="function"><strong>get_class()</strong></span> est
+				appelé avec autre chose qu&#039;un objet, une alerte de niveau <strong><code>E_WARNING</code></strong>
+				sera émise.
+			</p>
+		</div>
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.get-class-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.3.0</td>
+						<td><strong><code>NULL</code></strong> est devenue la valeur
+							par défaut pour <em><code class="parameter">object</code></em>,
+							donc passer <strong><code>NULL</code></strong> pour <em><code
+									class="parameter">object</code></em> a le même résultat que de
+							laisser le paramètre vide.</td>
+					</tr>
+
+					<tr>
+						<td>5.0.0</td>
+						<td>Le nom de la classe est retourné dans sa notation
+							originale.</td>
+					</tr>
+
+					<tr>
+						<td>5.0.0</td>
+						<td>Le paramètre <em><code class="parameter">object</code></em>
+							est optionnel s&#039;il est appelé depuis la méthode de
+							l&#039;objet.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+		<div class="refsect1 examples"
+			id="refsect1-function.get-class-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4706">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>get_class()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br /></span><span style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">foo&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">name</span><span
+								style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Mon&nbsp;nom&nbsp;est&nbsp;"&nbsp;</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">get_class</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">)&nbsp;,&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;création&nbsp;d'un&nbsp;objet<br /></span><span
+								style="color: #0000BB">$bar&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">foo</span><span style="color: #007700">();<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Appel&nbsp;externe<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">"Son&nbsp;nom&nbsp;est&nbsp;"&nbsp;</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">get_class</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$bar</span><span
+								style="color: #007700">)&nbsp;,&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Appel&nbsp;interne<br /></span><span
+								style="color: #0000BB">$bar</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">name</span><span style="color: #007700">();<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Son nom est foo
+Mon nom est foo
+</pre>
+					</div>
+				</div>
+			</div>
+			<div class="example" id="example-4707">
+				<p>
+					<strong>Exemple #2 Utilisation de <span class="function"><strong>get_class()</strong></span>
+						dans une superclasse
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br /></span><span style="color: #007700">abstract&nbsp;class&nbsp;</span><span
+								style="color: #0000BB">bar&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">__construct</span><span
+								style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">get_class</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">get_class</span><span
+								style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">foo&nbsp;</span><span
+								style="color: #007700">extends&nbsp;</span><span
+								style="color: #0000BB">bar&nbsp;</span><span
+								style="color: #007700">{<br />}<br />
+								<br />new&nbsp;
+							</span><span style="color: #0000BB">foo</span><span
+								style="color: #007700">;<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+string(3) &quot;foo&quot;
+string(3) &quot;bar&quot;
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+		<div class="refsect1 seealso" id="refsect1-function.get-class-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.get-called-class.html" class="function"
+						rel="rdfs-seeAlso">get_called_class()</a> - Le nom de la classe en
+						&quot;Late Static Binding&quot;</span></li>
+				<li class="member"><span class="function"><a
+						href="function.get-parent-class.html" class="function"
+						rel="rdfs-seeAlso">get_parent_class()</a> - Retourne le nom de la
+						classe parente d'un objet</span></li>
+				<li class="member"><span class="function"><a
+						href="function.gettype.html" class="function" rel="rdfs-seeAlso">gettype()</a>
+						- Retourne le type de la variable</span></li>
+				<li class="member"><span class="function"><a
+						href="function.is-subclass-of.html" class="function"
+						rel="rdfs-seeAlso">is_subclass_of()</a> - D&eacute;termine si un
+						objet est une sous-classe</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.get-class-vars.html">get_class_vars</a>
+		</div>
+		<div class="next">
+			<a href="function.get-declared-classes.html">get_declared_classes</a>
+		</div>
+		<div class="up">
+			<a href="ref.classobj.html">Fonctions Classes/Objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

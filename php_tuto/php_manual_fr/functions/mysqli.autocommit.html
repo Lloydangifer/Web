@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Active ou d&eacute;sactive le mode auto-commit</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="mysqli.affected-rows.html">mysqli::$affected_rows</a></div>
+ <div class="next"><a href="mysqli.change-user.html">mysqli::change_user</a></div>
+ <div class="up"><a href="class.mysqli.html">mysqli</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="mysqli.autocommit" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysqli::autocommit</h1>
+  <h1 class="refname">mysqli_autocommit</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">mysqli::autocommit</span> -- <span class="refname">mysqli_autocommit</span> <span class="mdash">&mdash;</span> <span class="dc-title">Active ou désactive le mode auto-commit</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mysqli.autocommit-description">
+  <h3 class="title">Description</h3>
+  <p class="para">Style orienté objet</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>mysqli::autocommit</strong></span>
+    ( <span class="methodparam"><span class="type">bool</span> <code class="parameter">$mode</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">Style procédural</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>mysqli_autocommit</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="class.mysqli.html" class="type mysqli">mysqli</a></span> <code class="parameter">$link</code></span>
+   , <span class="methodparam"><span class="type">bool</span> <code class="parameter">$mode</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Active ou désactive le mode auto-commit pour les requêtes sur la
+   connexion.
+  </p>
+  <p class="para">
+   Pour vérifier l&#039;état de l&#039;auto-commit, utilisez la commande SQL
+   <em>SELECT @@autocommit</em>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mysqli.autocommit-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><em><code class="parameter">
+link</code></em></span><dd>
+<p class="para">Seulement en style procédural : Un
+identifiant de lien retourné par la fonction  <span class="function"><a href="function.mysqli-connect.html" class="function">mysqli_connect()</a></span>
+ou par la fonction  <span class="function"><a href="mysqli.init.html" class="function">mysqli_init()</a></span></p></dd>
+</dt>
+
+    <dt>
+
+     <span class="term"><em><code class="parameter">mode</code></em></span>
+     <dd>
+
+      <p class="para">
+       Si l&#039;on doit activer ou non l&#039;auto-commit.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mysqli.autocommit-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+succès ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-mysqli.autocommit-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Cette fonction ne fonctionne pas avec les types de tables non
+    transactionnelles, comme MyISAM ou ISAM.
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mysqli.autocommit-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="example-1635">
+   <p><strong>Exemple #1 Exemple avec  <span class="methodname"><strong>mysqli::autocommit()</strong></span></strong></p>
+   <div class="example-contents"><p>Style orienté objet</p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"world"</span><span style="color: #007700">);<br /><br />if&nbsp;(</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Échec&nbsp;de&nbsp;la&nbsp;connexion.&nbsp;Erreur&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Activation&nbsp;de&nbsp;l'autocommit&nbsp;*/<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">autocommit</span><span style="color: #007700">(</span><span style="color: #0000BB">TRUE</span><span style="color: #007700">);<br /><br />if&nbsp;(</span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;@@autocommit"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_row</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"L'autocommit&nbsp;vaut&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">free</span><span style="color: #007700">();<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Fermeture&nbsp;de&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>Style procédural</p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqli_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"world"</span><span style="color: #007700">);<br /><br />if&nbsp;(!</span><span style="color: #0000BB">$link</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Échec&nbsp;de&nbsp;la&nbsp;connexion.&nbsp;Erreur&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Activation&nbsp;de&nbsp;l'autocommit&nbsp;*/<br /></span><span style="color: #0000BB">mysqli_autocommit</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">TRUE</span><span style="color: #007700">);<br /><br />if&nbsp;(</span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqli_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;@@autocommit"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqli_fetch_row</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"L'autocommit&nbsp;vaut&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">]);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">mysqli_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Fermeture&nbsp;de&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #0000BB">mysqli_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>Les exemples ci-dessus vont afficher :</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+L&#039;autocommit vaut 1
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mysqli.autocommit-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"> <span class="function"><a href="mysqli.commit.html" class="function" rel="rdfs-seeAlso">mysqli_commit()</a> - Valide la transaction courante</span></li>
+    <li class="member"> <span class="function"><a href="mysqli.rollback.html" class="function" rel="rdfs-seeAlso">mysqli_rollback()</a> - Annule la transaction courante</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="mysqli.affected-rows.html">mysqli::$affected_rows</a></div>
+ <div class="next"><a href="mysqli.change-user.html">mysqli::change_user</a></div>
+ <div class="up"><a href="class.mysqli.html">mysqli</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

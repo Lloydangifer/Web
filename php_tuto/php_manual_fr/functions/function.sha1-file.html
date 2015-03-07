@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Calcule le sha1 d'un fichier</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.setlocale.html">setlocale</a>
+		</div>
+		<div class="next">
+			<a href="function.sha1.html">sha1</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.sha1-file" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">sha1_file</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">sha1_file</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Calcule le sha1 d&#039;un fichier</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.sha1-file-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>sha1_file</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$filename</code></span> [, <span
+					class="methodparam"><span class="type">bool</span> <code
+						class="parameter">$raw_output</code><span class="initializer">
+						= false</span></span> ] )
+			</div>
+
+			<p class="simpara">
+				Calcule le sha1 du fichier spécifié par le paramètre <em><code
+						class="parameter">filename</code></em> en utilisant <a
+					href="http://www.faqs.org/rfcs/rfc3174" class="link external">&raquo;&nbsp;<em>US
+						Secure Hash Algorithm 1</em></a>, puis retourne ce sha1. Le sha1 est un
+				nombre hexadécimal de 40 caractères.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.sha1-file-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">filename</code></em></span>
+				<dd>
+
+					<p class="para">Le nom du fichier à hasher.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">raw_output</code></em></span>
+				<dd>
+
+					<p class="para">
+						Lorsque <strong><code>TRUE</code></strong>, retourne le
+						prétraitement en format binaire brut avec une grandeur de 20.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.sha1-file-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne une chaîne de caractères en cas de succès, <strong><code>FALSE</code></strong>
+				autrement.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.sha1-file-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4518">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>sha1_file()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">foreach(</span><span
+								style="color: #0000BB">glob</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'/home/Kalle/myproject/*.php'</span><span
+								style="color: #007700">)&nbsp;as&nbsp;</span><span
+								style="color: #0000BB">$ent</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;if(
+							</span><span style="color: #0000BB">is_dir</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$ent</span><span
+								style="color: #007700">))<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #0000BB">$ent&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #DD0000">'&nbsp;(SHA1:&nbsp;'&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">sha1_file</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$ent</span><span
+								style="color: #007700">)&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">')'</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">PHP_EOL</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.sha1-file-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.1.0</td>
+						<td>La fonction a changé pour utiliser les flux API. Cela
+							signifie que vous pouvez l&#039;utiliser avec des enveloppes,
+							comme <em>sha1_file(&#039;http://example.com/..&#039;)</em>
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.0.0</td>
+						<td>Ajout du paramètre <em><code class="parameter">raw_output</code></em>
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.sha1-file-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.sha1.html" class="function" rel="rdfs-seeAlso">sha1()</a>
+						- Calcule le sha1 d'une cha&icirc;ne de caract&egrave;res</span></li>
+				<li class="member"><span class="function"><a
+						href="function.md5-file.html" class="function" rel="rdfs-seeAlso">md5_file()</a>
+						- Calcule le md5 d'un fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.crc32.html" class="function" rel="rdfs-seeAlso">crc32()</a>
+						- Calcule la somme de contr&ocirc;le CRC32</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.setlocale.html">setlocale</a>
+		</div>
+		<div class="next">
+			<a href="function.sha1.html">sha1</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

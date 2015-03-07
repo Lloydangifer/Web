@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Attributs</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<h3>Attribut</h3>
+		<section>
+			<p>
+				Une balise n'est pas toujours suffisante pour caractériser un
+				élément. <strong>On lui associe alors un ou plusieurs
+					attributs</strong> qui vont apporter des précisions sur cet élément.
+			</p>
+
+			<p class="fp-p-raz">
+				Un bon exemple est celui de la balise <code>&lt;a&gt;</code> qui
+				permet de faire un lien sur un document externe. La balise en
+				elle-même n'est pas suffisante car il manque (au moins) une
+				information primordiale : l'adresse sur Internet du document à lier.
+				De plus, cette adresse ne peut pas être fixée une fois pour toute
+				car elle varie pour chaque lien différent que l'on voudra faire. On
+				va donc utiliser un attribut (appelé dans ce cas <code>href</code>)
+				et lui affecter une valeur correspondant au lien que l'on veut
+				faire.
+			</p>
+
+			<div
+				style="border: 2px solid #B60A36; padding: 5px; margin: 1em 0; font-weight: bold">
+				<p class="fp-bot0 fp-p-raz">Un attribut est constitué par :</p>
+				<img class="fp-f-right"
+					style="margin: 0; width: 319px; height: 62px;"
+					src="../htmlimg/attribut.png">
+				<ul class="fp-ul-puce fp-bot0">
+					<li>un nom d'attribut,</li>
+					<li>le caractère =</li>
+					<li>une valeur.</li>
+				</ul>
+			</div>
+
+			<p>
+				Le nom des attributs n'est <strong>pas sensible à la casse</strong>
+				et peut être écrit en minuscules, en majuscules ou dans un mélange
+				des deux.
+				<br>
+				<code>href</code> est équivalent à <code>HREF</code>
+				qui est équivalent à <code>Href</code> qui est équivalent à
+				<code>HrEf</code>, etc.
+			</p>
+
+			<p class="fp-bot0">La valeur d'un attribut peut :</p>
+			<p class="fp-rappel">Les
+				guillemets sont obligatoires uniquement quand la valeur contient un
+				ou plusieurs espaces, un ou plusieurs guillemets, un ou plusieurs
+				caractères =.</p>
+			<ul class="fp-ul-puce">
+				<li>être entourée par des guillemets doubles<br> <code>href=<span
+						class="fp-rouge">"</span>http://w3c.org<span class="fp-rouge">"</span></code></li>
+				<li>être entourée par des guillemets simples<br> <code>href=<span
+						class="fp-rouge">'</span>http://w3c.org<span class="fp-rouge">'</span></code></li>
+				<li>ne pas être entourée par des guillemets<br> <code>href=http://w3c.org</code></li>
+			</ul>
+
+			<p>
+				Il peut y avoir <strong>plusieurs attributs</strong> dans une même
+				balise.
+				<br>
+				Comme nous l'avons vu, la balise <a
+					onclick="top.FP.Voir.showPageTech('elements', 'img')">&lt;img&gt;</a>
+				accepte un attribut <code>href</code> qui permet de lier un fichier
+				image à la page. Elle accepte aussi d'autres attributs comme par
+				exemple <code>height</code> et <code>width</code> qui permettent de
+				définir ses dimensions. L'exemple suivant montre comment ces
+				attributs sont ajoutés.
+			</p>
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : plusieurs attributs
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Exemple de page&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;&lt;img src="info.png" width="32" height="32"&gt; 
+			avec les dimensions normales.&lt;/p&gt;
+		&lt;p&gt;&lt;img src="info.png" width="64" height="40"&gt; 
+			avec d'autres dimensions, on obtient une image 
+			déformée.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				Les attributs utilisables <strong>varient</strong> suivant les
+				balises. Dans les spécifications techniques ci-contre, vous aurez
+				pour chaque élément les attributs permis et les valeurs attendues.
+			</p>
+
+
+			<p>
+				Certains attributs n'ont pas de valeur : ce sont des <strong>attributs
+					booléens</strong>. Dans ce cas la présence de l'attribut dans la balise
+				équivaut à la valeur <code>true</code> et l'absence de l'attribut
+				équivaut à la valeur <code>false</code>. Il ne faut pas affecter de
+				valeur <code>true</code> ou <code>false</code> (ou <code>0</code>, <code>1</code>,
+				<code>on</code>, <code>off</code>, etc) à ce type d'attribut.
+			<p class="fp-p-raz">
+			<p class="fp-p-raz">
+				Dans l'exemple suivant, le 1er paragraphe a un attribut <code>hidden</code>
+				qui va le cacher. Le 2eme paragraphe a un attribut <code>hidden="false"</code>
+				et bien que la valeur soit <code>false</code>, le paragraphe est
+				quand même caché.
+			</p>
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : attribut booléen
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Exemple de page&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p hidden&gt;Je suis un exemple de document HTML.&lt;/p&gt;
+		&lt;ul&gt;
+			&lt;li&gt;On utilise &lt;strong&gt;des balises&lt;/strong&gt; pour
+				marquer la structure du	document.&lt;/li&gt;
+			&lt;li&gt;Les balises ont une &lt;strong&gt;syntaxe 
+				particulière&lt;/strong&gt;.&lt;/li&gt;
+			&lt;li&gt;Elles permettent de donner du sens aux 
+				informations en	définissant par exemple ici
+				un paragraphe et une liste.&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;p hidden="false"&gt;C'est le W3C qui définit 
+			les balises.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+
+			<p>
+				Quelques attributs sont disponibles <strong>pour toutes les
+					balises</strong>. Ce sont les <strong>attributs globaux</strong> (voir la
+				liste dans les spécifications techniques de n'importe quel élément).
+			</p>
+
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

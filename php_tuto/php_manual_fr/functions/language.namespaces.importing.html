@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Utilisation des espaces de noms : importation et alias</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.namespaces.nsconstants.html">La commande
+				namespace et la constante __NAMESPACE__</a>
+		</div>
+		<div class="next">
+			<a href="language.namespaces.global.html">Espace de noms global</a>
+		</div>
+		<div class="up">
+			<a href="language.namespaces.html">Les espaces de noms</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.namespaces.importing" class="sect1">
+		<p class="verinfo">(PHP 5 &gt;= 5.3.0)</p>
+		<h2 class="title">Utilisation des espaces de noms : importation
+			et alias</h2>
+		<p class="para">La capacité de faire référence à un nom absolu
+			avec un alias ou en important un espace de noms est stratégique.
+			C&#039;est un avantage similaire aux liens symboliques dans un
+			système de fichiers.</p>
+		<p class="para">Les espaces de noms PHP supportent trois types
+			d&#039;alias ou d&#039;importation : l&#039;alias de nom de classe,
+			l&#039;alias de nom d&#039;interface, et l&#039;alias d&#039;espace
+			de noms. Notez que l&#039;importation de constantes ou fonctions
+			n&#039;est pas supportée.</p>
+		<p class="para">
+			En PHP, l&#039;alias est créé avec l&#039;opérateur <em>use</em>.
+			Voici un exemple qui présente les trois types d&#039;importation :
+		<div class="example" id="example-252">
+			<p>
+				<strong>Exemple #1 importation et alias avec
+					l&#039;opérateur use</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">namespace&nbsp;</span><span
+							style="color: #0000BB">foo</span><span style="color: #007700">;<br />use&nbsp;
+						</span><span style="color: #0000BB">My</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">Full</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">Classname&nbsp;</span><span
+							style="color: #007700">as&nbsp;</span><span
+							style="color: #0000BB">Another</span><span style="color: #007700">;<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Ceci&nbsp;est&nbsp;la&nbsp;même&nbsp;chose&nbsp;que&nbsp;use&nbsp;My\Full\NSname&nbsp;as&nbsp;NSname<br /></span><span
+							style="color: #007700">use&nbsp;</span><span
+							style="color: #0000BB">My</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">Full</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">NSname</span><span style="color: #007700">;<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;importation&nbsp;d'une&nbsp;classe&nbsp;globale<br /></span><span
+							style="color: #007700">use&nbsp;</span><span
+							style="color: #0000BB">ArrayObject</span><span
+							style="color: #007700">;<br />
+							<br /></span><span style="color: #0000BB">$obj&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;namespace\</span><span
+							style="color: #0000BB">Another</span><span style="color: #007700">;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;instantie&nbsp;un&nbsp;objet&nbsp;de&nbsp;la&nbsp;classe&nbsp;foo\Another<br /></span><span
+							style="color: #0000BB">$obj&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">Another</span><span style="color: #007700">;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;instantie&nbsp;un&nbsp;objet&nbsp;de&nbsp;la&nbsp;classe&nbsp;My\Full\Classname<br /></span><span
+							style="color: #0000BB">NSname</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">subns</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">func</span><span style="color: #007700">();&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;appelle&nbsp;la&nbsp;fonction&nbsp;My\Full\NSname\subns\func<br /></span><span
+							style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">ArrayObject</span><span
+							style="color: #007700">(array(</span><span style="color: #0000BB">1</span><span
+							style="color: #007700">));&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;instantie&nbsp;un&nbsp;objet&nbsp;de&nbsp;la&nbsp;classe&nbsp;ArrayObject<br />//&nbsp;Sans&nbsp;l'instruction&nbsp;"use&nbsp;ArrayObject"&nbsp;nous&nbsp;aurions&nbsp;instantié&nbsp;un&nbsp;objet&nbsp;de&nbsp;la&nbsp;classe&nbsp;foo\ArrayObject<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		Notez que pour les noms avec chemin (les noms absolus contenant des
+		séparateurs d&#039;espaces, tels que <em>Foo\Bar</em>, par comparaison
+		avec les noms globaux, tels que <em>FooBar</em>, qui n&#039;en
+		contiennent pas), l&#039;anti-slash initial n&#039;est pas nécessaire
+		et n&#039;est pas recommandé, car les noms importés doivent être
+		absolus et ne sont pas résolus relativement à l&#039;espace de noms
+		courant.
+		</p>
+		<p class="para">De plus, PHP supporte des raccourcis pratiques,
+			tels que les commandes use multiples.
+		<div class="example" id="example-253">
+			<p>
+				<strong>Exemple #2 importation et alias multiples avec
+					l&#039;opérateur use</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">use&nbsp;</span><span
+							style="color: #0000BB">My</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">Full</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">Classname&nbsp;</span><span
+							style="color: #007700">as&nbsp;</span><span
+							style="color: #0000BB">Another</span><span style="color: #007700">,&nbsp;</span><span
+							style="color: #0000BB">My</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">Full</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">NSname</span><span style="color: #007700">;<br />
+							<br /></span><span style="color: #0000BB">$obj&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">Another</span><span style="color: #007700">;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;instantie&nbsp;un&nbsp;objet&nbsp;de&nbsp;la&nbsp;classe&nbsp;My\Full\Classname<br /></span><span
+							style="color: #0000BB">NSname</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">subns</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">func</span><span style="color: #007700">();&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;appelle&nbsp;la&nbsp;fonction&nbsp;My\Full\NSname\subns\func<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<p class="para">L&#039;importation est réalisée à la compilation,
+			ce qui fait que cela n&#039;affecte pas les classes, fonctions et
+			constantes dynamiques.
+		<div class="example" id="example-254">
+			<p>
+				<strong>Exemple #3 Importation et noms d&#039;espaces
+					dynamiques</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">use&nbsp;</span><span
+							style="color: #0000BB">My</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">Full</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">Classname&nbsp;</span><span
+							style="color: #007700">as&nbsp;</span><span
+							style="color: #0000BB">Another</span><span style="color: #007700">,&nbsp;</span><span
+							style="color: #0000BB">My</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">Full</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">NSname</span><span style="color: #007700">;<br />
+							<br /></span><span style="color: #0000BB">$obj&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">Another</span><span style="color: #007700">;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;instantie&nbsp;un&nbsp;objet&nbsp;de&nbsp;la&nbsp;classe&nbsp;My\Full\Classname<br /></span><span
+							style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Another'</span><span
+							style="color: #007700">;<br /></span><span
+							style="color: #0000BB">$obj&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">$a</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;instantie&nbsp;un&nbsp;objet&nbsp;de&nbsp;la&nbsp;classe&nbsp;Another<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<p class="para">De plus, l&#039;importation n&#039;affecte que les
+			noms sans qualification. Les noms absolus restent absolus, et
+			inchangés par un import.
+		<div class="example" id="example-255">
+			<p>
+				<strong>Exemple #4 Importation et noms d&#039;espaces
+					absolus</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">use&nbsp;</span><span
+							style="color: #0000BB">My</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">Full</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">Classname&nbsp;</span><span
+							style="color: #007700">as&nbsp;</span><span
+							style="color: #0000BB">Another</span><span style="color: #007700">,&nbsp;</span><span
+							style="color: #0000BB">My</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">Full</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">NSname</span><span style="color: #007700">;<br />
+							<br /></span><span style="color: #0000BB">$obj&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">Another</span><span style="color: #007700">;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;instantie&nbsp;un&nbsp;objet&nbsp;de&nbsp;la&nbsp;classe&nbsp;My\Full\Classname<br /></span><span
+							style="color: #0000BB">$obj&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;\</span><span
+							style="color: #0000BB">Another</span><span style="color: #007700">;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;instantie&nbsp;un&nbsp;objet&nbsp;de&nbsp;la&nbsp;classe&nbsp;Another<br /></span><span
+							style="color: #0000BB">$obj&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">Another</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">untruc</span><span style="color: #007700">;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;instantie&nbsp;un&nbsp;objet&nbsp;de&nbsp;la&nbsp;classe&nbsp;My\Full\Classname\untruc<br /></span><span
+							style="color: #0000BB">$obj&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;\</span><span
+							style="color: #0000BB">Another</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">untruc</span><span style="color: #007700">;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;instantie&nbsp;un&nbsp;objet&nbsp;de&nbsp;la&nbsp;classe&nbsp;Another\untruc<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<div class="sect2" id="language.namespaces.importing.scope">
+			<h3 class="title">Règles de contextes pour l&#039;importation</h3>
+			<p class="para">
+				Le mot-clé <em>use</em> doit être déclaré dans le contexte le plus
+				externe d&#039;un fichier (le contexte global) ou alors dans les
+				déclarations d&#039;espace de noms. Ceci car l&#039;importation est
+				effectuée à la compilation et non durant l&#039;éxecution, donc on
+				ne peut empiler les contextes. L&#039;exemple qui suit montre des
+				utilisation incorrectes du mot-clé <em>use</em>:
+			</p>
+			<p class="para">
+			<div class="example" id="example-256">
+				<p>
+					<strong>Exemple #5 Règles d&#039;importation incorrectes</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">namespace&nbsp;</span><span
+								style="color: #0000BB">Languages</span><span
+								style="color: #007700">;<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">Greenlandic<br /></span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;use&nbsp;
+							</span><span style="color: #0000BB">Languages</span><span
+								style="color: #007700">\</span><span style="color: #0000BB">Danish</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;...<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Les règles d&#039;importation sont basées sur les fichiers, ce qui
+					signifie que les fichiers inclus n&#039;hériteront <em
+						class="emphasis">PAS</em> des règles d&#039;importation du fichier
+					parent.
+			</blockquote>
+		</div>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.namespaces.nsconstants.html">La commande
+				namespace et la constante __NAMESPACE__</a>
+		</div>
+		<div class="next">
+			<a href="language.namespaces.global.html">Espace de noms global</a>
+		</div>
+		<div class="up">
+			<a href="language.namespaces.html">Les espaces de noms</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

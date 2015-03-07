@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Cases à cocher</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>Les cases à cocher permettent généralement de faire un choix
+			multiple parmi plusieurs options possibles.</p>
+
+		<a id="type_checkbox"></a>
+		<h3>Principes de fonctionnement</h3>
+		<section>
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : cases à cocher
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Cases à cocher&lt;/h3&gt;
+		
+		&lt;form method="POST" action="dossier/reception.php"&gt;
+			Je connais les langages :
+			
+			&lt;input type="checkbox" name="chkHTML" value="html"
+				   checked id="chkHTML"&gt;
+			&lt;label for="chkHTML"&gt;HTML&lt;/label&gt;
+			
+			&lt;input type="checkbox" name="chkCSS" value="css"
+				   checked id="chkCSS"&gt;
+			&lt;label for="chkCSS"&gt;CSS&lt;/label&gt;
+			
+			&lt;input type="checkbox" name="chkJavaS" value="js"
+				   id="chkJavaS"&gt;
+			&lt;label for="chkJavaS"&gt;JavaScript&lt;/label&gt;
+			
+			&lt;p&gt;
+				&lt;input type="submit" value="Envoi" name="btn"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				<strong>La zone est faite avec l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+					dont l'attribut <code>type</code> a la valeur <code>checkbox</code>.
+				</strong> L'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+				est un élement vide (ie sans balise de fermeture).
+			</p>
+
+			<p>
+				La zone doit avoir un attribut <code>name</code> dont la valeur doit être <strong>unique</strong> parmi toutes les zones
+				composant le formulaire.
+			</p>
+
+			<p>
+				Les cases à cocher font le plus souvent parmi d'un groupe de
+				réponses possibles à un choix. Elles sont prévues pour que
+				l'utilisateur puisse <strong>choisir plusieurs réponses
+					possibles</strong> parmi celles qui lui sont proposées.
+				<br>
+				On peut aussi utiliser les cases à cocher seules comme dans
+				l'exemple ci-dessous.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : cases à cocher solitaires
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Cases à cocher solitaires&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form method="POST" action="dossier/reception.php"&gt;
+			&lt;input type="checkbox" name="chkUtil" value="util"
+				   id="chkUtil"&gt;
+			&lt;label for="chkUtil"&gt;
+				J'ai lu les conditions d'utilisation
+			&lt;/label&gt;
+			&lt;br&gt;
+			&lt;input type="checkbox" name="chkNews" value="news"
+				   id="chkNews"&gt;
+			&lt;label for="chkNews"&gt;
+				Je m'inscris à la news letter
+			&lt;/label&gt;
+			&lt;br&gt;
+			&lt;input type="checkbox" name="chkPub" value="pub"
+				   id="chkPub"&gt;
+			&lt;label for="chkPub"&gt;
+				J'accepte de recevoir des publicités des sites partenaires
+			&lt;/label&gt;
+			
+			&lt;p&gt;
+				&lt;input type="submit" name="btnEnvoi"
+					   value="Je m'inscris"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				Comme vous le voyez en testant l'exemple, <strong>si une
+					case n'est pas cochée, rien n'est envoyé au serveur</strong>. Cette
+				particularité rend le traitement des cases à cocher sur le serveur <strong>un
+					peu plus complexe</strong> que pour les autres zones de formulaire. Je vous
+				conseille donc d'éviter l'utilisation des cases à cocher quand vous
+				le pouvez.
+			</p>
+
+			<p>
+				Pour cocher une case par défaut, il suffit qu'elle ait <strong>l'attribut
+					<code>checked</code>
+				</strong>.
+				<br>
+				<code>checked</code> est un attribut <strong>booléen</strong> qui
+				n'a pas de valeur : sa présence ou son absence dans la balise
+				d'ouverture définit la valeur <code>true</code> (présence) ou <code>false</code>
+				(absence). Le piège est d'écrire :
+				<br>
+				<code>&lt;input type="checkbox" checked="false"...</code>
+				<br>
+				Comme <code>checked</code> est présent, la valeur sera <code>true</code>
+				et le navigateur ne tiendra pas compte de l'égalité faite dans le
+				code <abbr title="HyperText Markup Language">HTML</abbr>.
+			</p>
+
+			<p>
+				L'utilisation d'un élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'label')">label</a>
+				attaché à une case à cocher est particulièrement intéressante car la
+				sélection/déselection de la case est facilitée par la surface plus
+				grande du label.
+			</p>
+
+
+			<table class="TAB-zebre fp-petit">
+				<tr>
+					<td>Attribut possible</td>
+					<td>Utilité</td>
+				</tr>
+				<tr>
+					<td><code>checked</code></td>
+					<td>Etat par défaut (coché ou non). Attribut booléen.</td>
+				</tr>
+
+				<tr>
+					<td><code>dirname</code></td>
+					<td>Direction du texte saisi.</td>
+				</tr>
+				<tr>
+					<td><code>disabled</code></td>
+					<td>Zone désactivée, non transmise au serveur. Aucune
+						interaction n'est possible avec la zone (pas de focus, pas de
+						copie, etc). Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>form</code></td>
+					<td><code>id</code> du formulaire associé si la zone n'est pas
+						un élément <code>form</code> ou concerne un autre formulaire que
+						celui dans lequel elle est imbriquée.</td>
+				</tr>
+
+				<tr>
+					<td><code>name</code></td>
+					<td>Nom de la zone. Tous les boutons d'un même groupe DOIVENT
+						avoir le même.</td>
+				</tr>
+
+				<tr>
+					<td><code>readonly</code></td>
+					<td>Zone en lecture seule, non transmise au serveur. La zone
+						peut avoir le focus et le contenu peut être copié. Attribut
+						booléen.</td>
+				</tr>
+				<tr>
+					<td><code>required</code></td>
+					<td>Zone obligatoire. Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>value</code></td>
+					<td>Valeur initiale de la zone et valeur transmise au serveur
+						après saisie.</td>
+				</tr>
+			</table>
+		</section>
+
+		<a id="exo_case_cocher"></a>
+		<h3 class="fp-exo">Ajouter à mes amis</h3>
+		<section>
+			<p class="fp-p-raz">Complétez le code <abbr title="HyperText Markup Language">HTML</abbr>
+				pour obtenir le résultat ci-dessous.</p>
+
+			<figure>
+				<img src="../exercices/exo_case_cocher.png" width="588" height="588">
+				<figcaption> Ajouter à mes amis</figcaption>
+			</figure>
+
+			<figure style="float: right; width: 160px;">
+				<img src="../exercices/exo_form_rep.png" width="150" height="218">
+				<figcaption> arborescence de l'exercice</figcaption>
+			</figure>
+
+			<p class="fp-p-raz">
+				Les images s'appellent du nom du personnage, tout en minuscules, et
+				les espaces éventuels remplacés par un _ (underscore). L'extension
+				du fichier est <code>.png</code>
+			</p>
+
+			<p class="fp-p-raz fp-petit">(Personnages : Gandalf, Frodon,
+				Gimli, Sauron, Saroumane, Gollum, Yoda, Luke Skywalker, Chewbacca,
+				Palpatine, Dark vador, Comte Dooku.)</p>
+
+			<p class="fp-p-raz">Quand on clique sur les images ou sur les
+				noms des personnages, la case à cocher correspondante est
+				sélectionnée ou déselectionnée.</p>
+
+			<p class="fp-p-raz">Les cases à cocher impaires sont
+				sélectionnées par défaut (Gandalf, Gimli, Saroumane, Yoda,
+				Chewbacca, Dark vador).</p>
+
+			<p class="fp-p-raz">
+				Le formulaire utilise la méthode <code>POST</code> pour envoyer les
+				informations saisies à <code>ajouter.php</code>.
+			</p>
+
+			<p class="fp-p-raz">
+				Les boutons s'appellent <code>btnReset</code> et <code>btnSubmit</code>.
+			</p>
+
+			<p class="fp-completez">
+				<a onClick="top.FP.Voir.showCompletez('exo_case_cocher_comp')">Code à compléter</a>
+			</p>
+
+			<div id="exo_case_cocher_comp" class="BLOC-completez">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : ajouter à mes amis
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Groupes de boutons radio&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form&gt;
+			&lt;h3&gt;Ajouter à ma liste d'amis&lt;/h3&gt;
+			&lt;hr&gt;
+		
+			&lt;p&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+
+			<p class="fp-solution">
+				<a onClick="top.FP.Voir.showSolution('exo_case_cocher_solu', 1)">Une
+					solution possible</a>
+			</p>
+			<div id="exo_case_cocher_solu" class="BLOC-solution">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : ajouter à mes amis
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Ajouter des amis&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form method="POST" action="ajouter.php"&gt;
+			&lt;h3&gt;Ajouter à ma liste d'amis&lt;/h3&gt;
+			&lt;hr&gt;
+			&lt;input type="checkbox" name="chk1" 
+				   value="gandalf" checked id="chk1"&gt;
+			&lt;label for="chk1"&gt;
+				Gandalf&lt;img src="../exemples/lord_rings/images/gandalf.png"&gt;
+			&lt;/label&gt;
+			&lt;hr&gt;
+			&lt;input type="checkbox" name="chk2" 
+				   value="frodon" id="chk2"&gt;
+			&lt;label for="chk2"&gt;
+				Frodon&lt;img src="../exemples/lord_rings/images/frodon.png"&gt;
+			&lt;/label&gt;
+			&lt;hr&gt;
+			&lt;input type="checkbox" name="chk3" 
+				   value="gimli" checked id="chk3"&gt;
+			&lt;label for="chk3"&gt;
+				Gimli&lt;img src="../exemples/lord_rings/images/gimli.png"&gt;
+			&lt;/label&gt;
+			&lt;hr&gt;
+			&lt;input type="checkbox" name="chk4" 
+				   value="sauron" id="chk4"&gt;
+			&lt;label for="chk4"&gt;
+				Sauron&lt;img src="../exemples/lord_rings/images/sauron.png"&gt;
+			&lt;/label&gt;
+			&lt;hr&gt;
+			&lt;input type="checkbox" name="chk5"
+				   value="saroumane" checked id="chk5"&gt;
+			&lt;label for="chk5"&gt;
+				Saroumane&lt;img src="../exemples/lord_rings/images/saroumane.png"&gt;
+			&lt;/label&gt;
+			&lt;hr&gt;
+			&lt;input type="checkbox" name="chk6" 
+				   value="gollum" id="chk6"&gt;
+			&lt;label for="chk6"&gt;
+				Gollum&lt;img src="../exemples/lord_rings/images/gollum.png"&gt;
+			&lt;/label&gt;
+			&lt;hr&gt;
+			&lt;input type="checkbox" name="chk7" 
+				   value="yoda" checked id="chk7"&gt;
+			&lt;label for="chk7"&gt;
+				Yoda&lt;img src="../exemples/star_wars/images/yoda.png"&gt;
+			&lt;/label&gt;
+			&lt;hr&gt;
+			&lt;input type="checkbox" name="chk8" 
+				   value="luke" id="chk8"&gt;
+			&lt;label for="chk8"&gt;
+				Luke Skywalker&lt;img src="../exemples/star_wars/images/luke_skywalker.png"&gt;
+			&lt;/label&gt;
+			&lt;hr&gt;
+			&lt;input type="checkbox" name="chk9"
+				   value="chewbacca" checked id="chk9"&gt;
+			&lt;label for="chk9"&gt;
+				Chewbacca&lt;img src="../exemples/star_wars/images/chewbacca.png"&gt;
+			&lt;/label&gt;
+			&lt;hr&gt;
+			&lt;input type="checkbox" name="chk10"
+				   value="palpatine" id="chk10"&gt;
+			&lt;label for="chk10"&gt;
+				Palpatine&lt;img src="../exemples/star_wars/images/palpatine.png"&gt;
+			&lt;/label&gt;
+			&lt;hr&gt;
+			&lt;input type="checkbox" name="chk11" 
+				   value="vador" checked id="chk11"&gt;
+			&lt;label for="chk11"&gt;
+				Dark Vador&lt;img src="../exemples/star_wars/images/dark_vador.png"&gt;
+			&lt;/label&gt;
+			&lt;hr&gt;
+			&lt;input type="checkbox" name="chk12" 
+				   value="dooku" id="chk12"&gt;
+			&lt;label for="chk12"&gt;
+				Comte Dooku&lt;img src="../exemples/star_wars/images/comte_dooku.png"&gt;
+			&lt;/label&gt;
+			&lt;hr&gt;
+			&lt;p&gt;
+				&lt;input type="reset" value="Effacer"
+					   name="btnReset"&gt;
+				&lt;input type="submit" value="Ajouter"
+					   name="btnSubmit"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

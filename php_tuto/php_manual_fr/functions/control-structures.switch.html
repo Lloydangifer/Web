@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>switch</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="control-structures.continue.html">continue</a>
+		</div>
+		<div class="next">
+			<a href="control-structures.declare.html">declare</a>
+		</div>
+		<div class="up">
+			<a href="language.control-structures.html">Les structures de
+				contr&ocirc;le</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="control-structures.switch" class="sect1">
+		<h2 class="title">
+			<em>switch</em>
+		</h2>
+		<p class="verinfo">(PHP 4, PHP 5)</p>
+		<p class="simpara">
+			L&#039;instruction <em>switch</em> équivaut à une série
+			d&#039;instructions <em>if</em>. En de nombreuses occasions, vous
+			aurez besoin de comparer la même variable (ou expression) avec un
+			grand nombre de valeurs différentes, et d&#039;exécuter différentes
+			parties de code suivant la valeur à laquelle elle est égale.
+			C&#039;est exactement à cela que sert l&#039;instruction <em>switch</em>.
+		</p>
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>: <span class="simpara">
+					Notez que contrairement à d&#039;autres langages, la structure <a
+					href="control-structures.continue.html" class="link">continue</a>
+					s&#039;applique aux structures <em>switch</em> et se comporte de la
+					même manière que <em>break</em>. Si vous avez un <em>switch</em>
+					dans une boucle, et que vous souhaitez continuer jusqu&#039;à la
+					prochaine itération de la boucle extérieure, vous devez utiliser <em>continue
+						2</em>.
+				</span>
+			</p>
+		</blockquote>
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>:
+			<p class="para">
+				Notez que switch/case provoque une <a
+					href="types.comparisons.html#types.comparisions-loose" class="link">comparaison
+					large</a>.
+			</p>
+			</p>
+		</blockquote>
+		<p class="para">
+			Les deux exemples suivants sont deux manières différentes
+			d&#039;écrire la même chose, l&#039;une en utilisant une séries de <em>if</em>,
+			et l&#039;autre en utilisant l&#039;instruction <em>switch</em> :
+		<div class="example" id="example-140">
+			<p>
+				<strong>Exemple #1 Instruction <em>switch</em></strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">if&nbsp;(</span><span
+							style="color: #0000BB">$i&nbsp;</span><span
+							style="color: #007700">==&nbsp;</span><span
+							style="color: #0000BB">0</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;égal&nbsp;0"</span><span
+							style="color: #007700">;<br />}&nbsp;elseif&nbsp;(
+						</span><span style="color: #0000BB">$i&nbsp;</span><span
+							style="color: #007700">==&nbsp;</span><span
+							style="color: #0000BB">1</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;égal&nbsp;1"</span><span
+							style="color: #007700">;<br />}&nbsp;elseif&nbsp;(
+						</span><span style="color: #0000BB">$i&nbsp;</span><span
+							style="color: #007700">==&nbsp;</span><span
+							style="color: #0000BB">2</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;égal&nbsp;2"</span><span
+							style="color: #007700">;<br />}<br />
+							<br />switch&nbsp;(
+						</span><span style="color: #0000BB">$i</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+						</span><span style="color: #0000BB">0</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;égal&nbsp;0"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+						</span><span style="color: #0000BB">1</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;égal&nbsp;1"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+						</span><span style="color: #0000BB">2</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;égal&nbsp;2"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />}<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		<div class="example" id="example-141">
+			<p>
+				<strong>Exemple #2 Instruction <em>switch</em> utilisant
+					une chaîne de caractères
+				</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">switch&nbsp;(</span><span
+							style="color: #0000BB">$i</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+						</span><span style="color: #DD0000">"apple"</span><span
+							style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;est&nbsp;une&nbsp;tarte"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+						</span><span style="color: #DD0000">"bar"</span><span
+							style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;est&nbsp;une&nbsp;barre"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+						</span><span style="color: #DD0000">"cake"</span><span
+							style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;est&nbsp;un&nbsp;gateau"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />}<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<p class="para">
+			Il est important de comprendre que l&#039;instruction <em>switch</em>
+			exécute chacune des clauses dans l&#039;ordre. L&#039;instruction <em>switch</em>
+			est exécutée ligne par ligne. Au début, aucun code n&#039;est
+			exécuté. Seulement lorsqu&#039;un <em>case</em> est vérifié, PHP
+			exécute alors les instructions correspondantes. PHP continue
+			d&#039;exécuter les instructions jusqu&#039;à la fin du bloc
+			d&#039;instructions du <em>switch</em>, ou bien dès qu&#039;il trouve
+			l&#039;instruction <em>break</em>. Si vous ne pouvez pas utiliser
+			l&#039;instruction <em>break</em> à la fin de l&#039;instruction <em>case</em>,
+			PHP continuera à exécuter toutes les instructions qui suivent. Par
+			exemple :
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">switch&nbsp;(</span><span
+							style="color: #0000BB">$i</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+						</span><span style="color: #0000BB">0</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;égal&nbsp;0"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+						</span><span style="color: #0000BB">1</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;égal&nbsp;1"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+						</span><span style="color: #0000BB">2</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;égal&nbsp;2"</span><span
+							style="color: #007700">;<br />}<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<p class="simpara">
+			Dans cet exemple, si
+			<var class="varname">
+				<var class="varname">$i</var>
+			</var>
+			est égal à 0, PHP va exécuter quand même toutes les instructions qui
+			suivent! Si
+			<var class="varname">
+				<var class="varname">$i</var>
+			</var>
+			est égal à 1, PHP exécutera les deux dernières instructions. Et
+			seulement si
+			<var class="varname">
+				<var class="varname">$i</var>
+			</var>
+			est égal à 2, vous obtiendrez le résultat escompté,
+			c&#039;est-à-dire, l&#039;affichage de &quot;i égal 2&quot;. Donc,
+			l&#039;important est de ne pas oublier l&#039;instruction <em>break</em>
+			(même s&#039;il est possible que vous l&#039;omettiez dans certaines
+			circonstances).
+		</p>
+		<p class="simpara">
+			Dans une commande <em>switch</em>, une condition n&#039;est évaluée
+			qu&#039;une fois, et le résultat est comparé à chaque <em>case</em>.
+			Dans une structure <em>elseif</em>, les conditions sont évaluées à
+			chaque comparaison. Si votre condition est plus compliquée
+			qu&#039;une simple comparaison, ou bien fait partie d&#039;une
+			boucle, <em>switch</em> sera plus rapide.
+		</p>
+		<p class="para">
+			La liste de commandes d&#039;un <em>case</em> peut être vide, auquel
+			cas PHP utilisera la liste de commandes du cas suivant.
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">switch&nbsp;(</span><span
+							style="color: #0000BB">$i</span><span style="color: #007700">)&nbsp;{<br />case&nbsp;
+						</span><span style="color: #0000BB">0</span><span style="color: #007700">:<br />case&nbsp;
+						</span><span style="color: #0000BB">1</span><span style="color: #007700">:<br />case&nbsp;
+						</span><span style="color: #0000BB">2</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;est&nbsp;plus&nbsp;petit&nbsp;que&nbsp;3&nbsp;mais&nbsp;n'est&nbsp;pas&nbsp;négatif"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;break;<br />case&nbsp;
+						</span><span style="color: #0000BB">3</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;égal&nbsp;3"</span><span
+							style="color: #007700">;<br />}<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<p class="para">
+			Un cas spécial est <em>default</em>. Ce cas est utilisé lorsque tous
+			les autres cas ont échoué. Par exemple :
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">switch&nbsp;(</span><span
+							style="color: #0000BB">$i</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+						</span><span style="color: #0000BB">0</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;égal&nbsp;0"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+						</span><span style="color: #0000BB">1</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;égal&nbsp;1"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+						</span><span style="color: #0000BB">2</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;égal&nbsp;2"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;default:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;n'est&nbsp;ni&nbsp;égal&nbsp;à&nbsp;2,&nbsp;ni&nbsp;à&nbsp;1,&nbsp;ni&nbsp;à&nbsp;0."</span><span
+							style="color: #007700">;<br />}<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<p class="para">
+			Une autre chose à mentionner est que la valeur du <em>case</em> peut
+			être toute expression de type scalaire, c&#039;est-à-dire nombre
+			entier, nombre à virgule flottante et chaîne de caractères. Les
+			tableaux sont sans intérêt dans ce contexte-là.
+		</p>
+		<p class="para">
+			La syntaxe alternative pour cette structure de contrôle est la
+			suivante : (pour plus d&#039;informations, voir <a
+				href="control-structures.alternative-syntax.html" class="link">syntaxes
+				alternatives</a>).
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">switch&nbsp;(</span><span
+							style="color: #0000BB">$i</span><span style="color: #007700">):<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+						</span><span style="color: #0000BB">0</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;égal&nbsp;0"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+						</span><span style="color: #0000BB">1</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;égal&nbsp;1"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+						</span><span style="color: #0000BB">2</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;égal&nbsp;2"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;default:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;n'est&nbsp;ni&nbsp;égal&nbsp;à&nbsp;2,&nbsp;ni&nbsp;à&nbsp;1,&nbsp;ni&nbsp;à&nbsp;0"</span><span
+							style="color: #007700">;<br />endswitch;<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<p class="para">Il est possible d&#039;utiliser un point-virgule
+			plutôt que deux points après un case, comme ceci :
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">switch(</span><span style="color: #0000BB">$beer</span><span
+							style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+						</span><span style="color: #DD0000">'leffe'</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+						</span><span style="color: #DD0000">'grimbergen'</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+						</span><span style="color: #DD0000">'guinness'</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">'Bon&nbsp;choix'</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;default;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">'Merci&nbsp;de&nbsp;faire&nbsp;un&nbsp;choix...'</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;break;<br />}<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="control-structures.continue.html">continue</a>
+		</div>
+		<div class="next">
+			<a href="control-structures.declare.html">declare</a>
+		</div>
+		<div class="up">
+			<a href="language.control-structures.html">Les structures de
+				contr&ocirc;le</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Analyse un fichier de configuration</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.move-uploaded-file.html">move_uploaded_file</a>
+		</div>
+		<div class="next">
+			<a href="function.parse-ini-string.html">parse_ini_string</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.parse-ini-file" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">parse_ini_file</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">parse_ini_file</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Analyse un fichier de configuration</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.parse-ini-file-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>parse_ini_file</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$filename</code></span> [, <span
+					class="methodparam"><span class="type">bool</span> <code
+						class="parameter">$process_sections</code><span
+					class="initializer"> = false</span></span> [, <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$scanner_mode</code><span
+					class="initializer"> = INI_SCANNER_NORMAL</span></span> ]] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>parse_ini_file()</strong></span>
+				charge le fichier <em><code class="parameter">filename</code></em>
+				et retourne les configurations qui s&#039;y trouvent sous forme
+				d&#039;un tableau associatif.
+			</p>
+			<p class="para">
+				La structure des fichiers de configuration lus est similaire à celle
+				de
+				<var class="filename">php.ini</var>
+				.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.parse-ini-file-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">filename</code></em></span>
+				<dd>
+
+					<p class="para">Le nom du fichier de configuration à analyser.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">process_sections</code></em></span>
+				<dd>
+
+					<p class="para">
+						En passant le deuxième paramètre optionnel à <em><code
+								class="parameter">process_sections</code></em>, vous obtiendrez un
+						tableau multidimensionnel avec les noms des sections. La valeur
+						par défaut de ce paramètre est <strong><code>FALSE</code></strong>
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">scanner_mode</code></em></span>
+				<dd>
+
+					<p class="para">
+						Peut être <strong><code>INI_SCANNER_NORMAL</code></strong>
+						(défaut) ou <strong><code>INI_SCANNER_RAW</code></strong>. Si <strong><code>INI_SCANNER_RAW</code></strong>
+						est fourni, alors les valeurs en option ne seront pas analysées.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.parse-ini-file-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				La configuration est retournée sous la forme d&#039;un tableau
+				associatif en cas de succès, et <strong><code>FALSE</code></strong>
+				si une erreur survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.parse-ini-file-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.3.0</td>
+						<td>Ajout du paramètre optionnel <em><code
+									class="parameter">scanner_mode</code></em>. Les guillemets simples
+							doivent maintenant être utilisés autour des assignements de
+							variables. Le caractère dièse (<em>#</em>) ne peut plus être
+							utilisé comme commentaire, et émettra une alerte si vous
+							l&#039;utilisez.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.2.7</td>
+						<td>En cas d&#039;erreur de syntaxe, la fonction retourne
+							maintenant <strong><code>FALSE</code></strong> au lieu d&#039;un
+							tableau vide.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.2.4</td>
+						<td>Les noms de section et les clés, composés de numéros,
+							sont maintenant évalués comme des <a
+							href="language.types.integer.html" class="link">entiers</a>, ceux
+							commençant par un 0 seront évalués comme des octales, et ceux
+							commençant par 0x, comme des hexadécimaux.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.0.0</td>
+						<td>Les valeurs entourées par des guillemets, peuvent
+							contenir des nouvelles lignes.</td>
+					</tr>
+
+					<tr>
+						<td>4.2.1</td>
+						<td>Cette fonction est maintenant affectée par le <a
+							href="ini.sect.safe-mode.html#ini.safe-mode" class="link">safe
+								mode</a> et l&#039;<a href="ini.core.html#ini.open-basedir"
+							class="link">open_basedir</a>.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.parse-ini-file-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2281">
+				<p>
+					<strong>Exemple #1 Contenu du fichier <var
+							class="filename">sample.ini</var></strong>
+				</p>
+				<div class="example-contents">
+					<div class="cdata">
+						<pre>
+; Ceci est un fichier de configuration
+; Les commentaires commencent par &#039;;&#039;, comme dans php.ini
+
+[first_section]
+one = 1
+five = 5
+animal = BIRD
+
+[second_section]
+path = &quot;/usr/local/bin&quot;
+URL = &quot;http://www.example.com/~username&quot;
+
+[third_section]
+phpversion[] = &quot;5.0&quot;
+phpversion[] = &quot;5.1&quot;
+phpversion[] = &quot;5.2&quot;
+phpversion[] = &quot;5.3&quot;
+</pre>
+					</div>
+				</div>
+
+			</div>
+			<div class="example" id="example-2282">
+				<p>
+					<strong>Exemple #2 Exemple avec <span class="function"><strong>parse_ini_file()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<p>
+						Les <a href="language.constants.html" class="link">constantes</a>
+						peuvent aussi être utilisées dans le fichier .ini, ce qui fait que
+						si vous définissez une constante avant d&#039;exécuter <span
+							class="function"><strong>parse_ini_file()</strong></span>, elle
+						sera intégrée dans les résultats. Seules les valeurs de
+						configuration sont remplacées par leur équivalent en constantes.
+						Par exemple :
+					</p>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br />define
+							</span><span style="color: #007700">(</span><span style="color: #DD0000">'BIRD'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'Dodo&nbsp;bird'</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Analyse&nbsp;sans&nbsp;sections<br /></span><span
+								style="color: #0000BB">$ini_array&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">parse_ini_file</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"sample.ini"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$ini_array</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Analyse&nbsp;avec&nbsp;sections<br /></span><span
+								style="color: #0000BB">$ini_array&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">parse_ini_file</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"sample.ini"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$ini_array</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher quelque chose de
+						similaire à :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Array
+(
+    [one] =&gt; 1
+    [five] =&gt; 5
+    [animal] =&gt; Dodo bird
+    [path] =&gt; /usr/local/bin
+    [URL] =&gt; http://www.example.com/~username
+    [phpversion] =&gt; Array
+        (
+            [0] =&gt; 5.0
+            [1] =&gt; 5.1
+            [2] =&gt; 5.2
+            [3] =&gt; 5.3
+        )
+
+)
+Array
+(
+    [first_section] =&gt; Array
+        (
+            [one] =&gt; 1
+            [five] =&gt; 5
+            [animal] =&gt; Dodo bird
+        )
+
+    [second_section] =&gt; Array
+        (
+            [path] =&gt; /usr/local/bin
+            [URL] =&gt; http://www.example.com/~username
+        )
+
+    [third_section] =&gt; Array
+        (
+            [phpversion] =&gt; Array
+                (
+                    [0] =&gt; 5.0
+                    [1] =&gt; 5.1
+                    [2] =&gt; 5.2
+                    [3] =&gt; 5.3
+                )
+
+)
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="example-2283">
+				<p>
+					<strong>Exemple #3 <span class="function"><strong>parse_ini_file()</strong></span>
+						pour analyser un fichier php.ini
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Une&nbsp;fonction&nbsp;simple&nbsp;pour&nbsp;comparer&nbsp;les&nbsp;résultats&nbsp;ci-dessous<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">yesno</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$expression</span><span
+								style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;return(
+							</span><span style="color: #0000BB">$expression&nbsp;</span><span
+								style="color: #007700">?&nbsp;</span><span
+								style="color: #DD0000">'Yes'&nbsp;</span><span
+								style="color: #007700">:&nbsp;</span><span
+								style="color: #DD0000">'No'</span><span style="color: #007700">);<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Lit&nbsp;le&nbsp;chemin&nbsp;du&nbsp;php.ini&nbsp;en&nbsp;utilisant&nbsp;php_ini_loaded_file()&nbsp;<br />//&nbsp;cette&nbsp;fonction&nbsp;est&nbsp;disponible&nbsp;depuis&nbsp;PHP&nbsp;5.2.4<br /></span><span
+								style="color: #0000BB">$ini_path&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">php_ini_loaded_file</span><span
+								style="color: #007700">();<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Analyse&nbsp;de&nbsp;php.ini<br /></span><span
+								style="color: #0000BB">$ini&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">parse_ini_file</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$ini_path</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Affichage&nbsp;et&nbsp;comparatif&nbsp;des&nbsp;valeurs.&nbsp;Notez&nbsp;que&nbsp;get_cfg_var()<br />//&nbsp;va&nbsp;donner&nbsp;les&nbsp;mêmes&nbsp;résultats&nbsp;entre&nbsp;les&nbsp;résultats&nbsp;analysés&nbsp;et&nbsp;chargés<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">'(analysé)&nbsp;magic_quotes_gpc&nbsp;=&nbsp;'&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">yesno</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$ini</span><span style="color: #007700">[</span><span
+								style="color: #DD0000">'magic_quotes_gpc'</span><span
+								style="color: #007700">])&nbsp;.&nbsp;</span><span
+								style="color: #0000BB">PHP_EOL</span><span
+								style="color: #007700">;<br />echo&nbsp;
+							</span><span style="color: #DD0000">'(chargé&nbsp;)&nbsp;magic_quotes_gpc&nbsp;=&nbsp;'&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">yesno</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">get_cfg_var</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'magic_quotes_gpc'</span><span
+								style="color: #007700">))&nbsp;.&nbsp;</span><span
+								style="color: #0000BB">PHP_EOL</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher quelque chose de
+						similaire à :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+(analysé) magic_quotes_gpc = Yes
+(chargé ) magic_quotes_gpc = Yes
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes"
+			id="refsect1-function.parse-ini-file-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Cette fonction n&#039;a rien a voir avec le fichier
+					<var class="filename">php.ini</var>
+					. Ce dernier a déjà été traité lorsque vous commencez à exécuter
+					votre script. Cette fonction peut vous permettre de lire vos
+					propres fichiers de configuration.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Si une valeur du fichier ini contient des
+					données non-alphanumériques, il faut la protéger en la plaçant
+					entre guillemets doubles (&quot;).
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">
+						Il existe des mots réservés qui ne doivent pas être utilisés en
+						tant que clés dans les fichiers ini. Cela inclut : <em>null</em>,
+						<em>yes</em>, <em>no</em>, <em>true</em>, <em>false</em>, <em>on</em>
+						et <em>off</em>. Les valeurs <em>null</em>, <em>no</em> et <em>false</em>
+						donnent &quot;&quot;, <em>yes</em> et <em>true</em> donnent
+						&quot;1&quot;. Les caractères <em>?{}|&amp;~![()^&quot;</em> ne
+						doivent pas être utilisés n&#039;importe où dans la clé et ont une
+						signification spéciale dans la valeur.
+					</span>
+				</p>
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.parse-ini-file-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.parse-ini-string.html" class="function"
+						rel="rdfs-seeAlso">parse_ini_string()</a> - Analyse une
+						cha&icirc;ne de configuration</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.move-uploaded-file.html">move_uploaded_file</a>
+		</div>
+		<div class="next">
+			<a href="function.parse-ini-string.html">parse_ini_string</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

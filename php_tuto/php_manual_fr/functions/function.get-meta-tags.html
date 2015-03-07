@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Extrait toutes les balises m&eacute;ta d'un fichier HTML</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.get-headers.html">get_headers</a>
+		</div>
+		<div class="next">
+			<a href="function.http-build-query.html">http_build_query</a>
+		</div>
+		<div class="up">
+			<a href="ref.url.html">Fonctions URL</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.get-meta-tags" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">get_meta_tags</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">get_meta_tags</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Extrait toutes les balises méta
+					d&#039;un fichier HTML</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.get-meta-tags-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>get_meta_tags</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$filename</code></span> [, <span
+					class="methodparam"><span class="type">bool</span> <code
+						class="parameter">$use_include_path</code><span
+					class="initializer"> = false</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>get_meta_tags()</strong></span> ouvre
+				le fichier <em><code class="parameter">filename</code></em> et
+				l&#039;analyse ligne par ligne à la recherche de balises <em>&quot;meta&quot;</em>.
+				L&#039;analyse cesse lors de la rencontre de la balise <em>&lt;/head&gt;</em>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.get-meta-tags-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">filename</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le chemin vers un fichier HTML, sous la forme d&#039;une <a
+							href="language.types.string.html" class="link">chaîne de
+							caractères</a>. Ce peut être un fichier local ou une <acronym
+							title="Uniform Resource Locator">URL</acronym>.
+					</p>
+					<p class="para">
+					<div class="example" id="example-3811">
+						<p>
+							<strong>Exemple #1 Ce que la fonction <span
+								class="function"><strong>get_meta_tags()</strong></span> analyse
+							</strong>
+						</p>
+						<div class="example-contents">
+							<div class="htmlcode">
+								<pre class="htmlcode">&lt;meta name=&quot;author&quot; content=&quot;name&quot;&gt;
+&lt;meta name=&quot;keywords&quot; content=&quot;php documentation&quot;&gt;
+&lt;meta name=&quot;DESCRIPTION&quot; content=&quot;a php manual&quot;&gt;
+&lt;meta name=&quot;geo.position&quot; content=&quot;49.33;-86.59&quot;&gt;
+&lt;/head&gt; &lt;!-- cesse l&#039;analyse ici --&gt;</pre>
+							</div>
+						</div>
+
+					</div>
+					Attention au format des nouvelles lignes : PHP utilise une fonction
+					native pour analyser le fichier, et les fichiers Mac ne seront pas
+					reconnus.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">use_include_path</code></em></span>
+				<dd>
+
+					<p class="para">
+						En donnant la valeur de <strong><code>TRUE</code></strong> au
+						paramètre optionnel <em><code class="parameter">use_include_path</code></em>
+						fera que <span class="function"><strong>get_meta_tags()</strong></span>
+						recherchera aussi le fichier dans l&#039;<a
+							href="ini.core.html#ini.include-path" class="link">include_path</a>.
+						Ce paramètre est utilisé pour des fichiers locaux, non des URLs.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.get-meta-tags-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Retourne un tableau contenant toutes les balises
+				méta analysées.</p>
+			<p class="para">
+				La valeur de la propriété sera utilisée comme clé du tableau, et sa
+				valeur comme valeur correspondante de la clé. Vous pourrez ainsi
+				passer en revue facilement ce tableau avec les fonctions de tableau
+				standard. Les caractères spéciaux présents dans la valeur seront
+				replacés par un souligné (<em>&quot;_&quot;</em>), et le reste est
+				converti en minuscule. Si deux balises méta possèdent le même nom,
+				seule la dernière sera retournée.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.get-meta-tags-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.0.5</td>
+						<td>le support des attributs HTML sans guillemets a été
+							ajouté.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.get-meta-tags-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-3812">
+				<p>
+					<strong>Exemple #2 Ce que la fonction <span
+						class="function"><strong>get_meta_tags()</strong></span> retourne
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Supposons&nbsp;que&nbsp;les&nbsp;balises&nbsp;ci-dessus&nbsp;sont&nbsp;disponibles&nbsp;sur&nbsp;example.com<br /></span><span
+								style="color: #0000BB">$tags&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">get_meta_tags</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'http://www.example.com/'</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Notez&nbsp;que&nbsp;les&nbsp;clés&nbsp;sont&nbsp;en&nbsp;minuscule,&nbsp;et<br />//&nbsp;le&nbsp;.&nbsp;a&nbsp;été&nbsp;remplacé&nbsp;par&nbsp;_&nbsp;dans&nbsp;la&nbsp;clé<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">$tags</span><span style="color: #007700">[</span><span
+								style="color: #DD0000">'author'</span><span
+								style="color: #007700">];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;nom<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">$tags</span><span style="color: #007700">[</span><span
+								style="color: #DD0000">'keywords'</span><span
+								style="color: #007700">];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;documentation&nbsp;php<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">$tags</span><span style="color: #007700">[</span><span
+								style="color: #DD0000">'description'</span><span
+								style="color: #007700">];&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;n&nbsp;manuel&nbsp;PHP<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">$tags</span><span style="color: #007700">[</span><span
+								style="color: #DD0000">'geo_position'</span><span
+								style="color: #007700">];&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;49.33;-86.59<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.get-meta-tags-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Seules les balises méta avec un attribut name
+					seront parsées.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.get-meta-tags-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.htmlentities.html" class="function"
+						rel="rdfs-seeAlso">htmlentities()</a> - Convertit tous les
+						caract&egrave;res &eacute;ligibles en entit&eacute;s HTML</span></li>
+				<li class="member"><span class="function"><a
+						href="function.urlencode.html" class="function" rel="rdfs-seeAlso">urlencode()</a>
+						- Encode une cha&icirc;ne en URL</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.get-headers.html">get_headers</a>
+		</div>
+		<div class="next">
+			<a href="function.http-build-query.html">http_build_query</a>
+		</div>
+		<div class="up">
+			<a href="ref.url.html">Fonctions URL</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Les dates</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../_local/codemirror.css">
+<script src="../_local/codemirror_pour_php.js"></script>
+
+<link rel="stylesheet" href="../_core/def.css">
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+
+</head>
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p class="fp-puce">
+			La fonction <a
+				onclick="top.FP.Voir.showPageTech('ref.datetime','function.microtime')">microtime()</a>
+			renvoie le nombre de secondes et de microsecondes écoulées depuis le
+			1/1/1970.
+		</p>
+
+		<p class="fp-bottom0 fp-puce">La fonction renvoie une chaîne de
+			caractères composée de 2 sous-chaînes :</p>
+		<ul class="fp-ul-puce">
+			<li>le nombre de microsecondes</li>
+			<li>nombre de secondes.</li>
+		</ul>
+		<p>Cette particularité est dûe à la précision trop faible des
+			nombres décimaux de type double, qui ne permet pas d'afficher
+			suffisamment de chiffres significatifs.</p>
+		<form action="" method="post" class="TEST-form">
+			<a class="TEST-lien"
+				onclick="top.FP.Voir.showPLUS('exemple/bib_fonctions_03.html')"
+				title="Afficher la bibliothéque de fonctions"></a>
+			<div class="TEST-titre">
+				<strong>Exemple</strong> : microsecondes
+			</div>
+			<textarea name="txtCode" class="TEST-textarea">&lt;?php
+require('bib_fonctions.php');
+
+htmlDebut('Microsecondes');
+
+htmlInfo('La chaîne microtime');
+echo microtime();
+
+htmlFin();
+?&gt;</textarea>
+		</form>
+
+		<p class="fp-inter2">
+			Pour récupèrer les informations nous pouvons utiliser la fonction <a
+				onclick="top.FP.Voir.showPageTech('ref.strings','function.substr')">substr()</a>
+			comme dans l'exemple suivant.
+		</p>
+		<form action="" method="post" class="TEST-form">
+			<a class="TEST-lien"
+				onclick="top.FP.Voir.showPLUS('exemple/bib_fonctions_03.html')"
+				title="Afficher la bibliothéque de fonctions"></a>
+			<div class="TEST-titre">
+				<strong>Exemple</strong> : microsecondes
+			</div>
+			<textarea name="txtCode" class="TEST-textarea">&lt;?php
+require('bib_fonctions.php');
+
+htmlDebut('Microsecondes');
+
+$micro = microtime();
+
+htmlInfo('La chaîne microtime');
+echo $micro;
+
+htmlInfo('Nombre de microsecondes');
+echo substr($micro, 2 , 8);
+
+htmlInfo('Nombre de secondes');
+echo substr($micro, 11);
+
+htmlInfo('Timestamp à la microseconde'); 
+echo substr($micro, 11), substr($micro, 1 , 9);
+
+htmlFin();
+?&gt;</textarea>
+		</form>
+
+		<p>Le comptage du temps en microsecondes peut être utilisé par
+			exemple pour mesurer les temps d'exécution d'un script ou de ses
+			parties ou comme base pour la génération de nombre aléatoire.</p>
+		<p>Nous allons construire un chronomètre qui permettra de mesurer
+			les temps d'exécution de parties de script.</p>
+		<form action="" method="post" class="TEST-form">
+			<a class="TEST-lien"
+				onclick="top.FP.Voir.showPLUS('exemple/bib_fonctions_03.html')"
+				title="Afficher la bibliothéque de fonctions"></a>
+			<div class="TEST-titre">
+				<strong>Exemple</strong> : chronométre
+			</div>
+			<textarea name="txtCode" class="TEST-textarea">&lt;?php
+require('bib_fonctions.php');
+
+htmlDebut('Chronométre');
+
+function chronometrer($txt = '', $precis = 5) {
+    static $debut, $texte, $precision;
+    
+    // Debut du chronométrage
+    if ($txt != '') {
+        $texte = $txt;
+        $precision = $precis;
+        $debut = microtime();
+        return;		// Fin du début
+    }
+    
+    // Arrêt du chronométrage
+    $fin = microtime();
+    $debut = substr($debut , 11).substr($debut , 1, 9);
+    $fin = substr($fin, 11).substr($fin, 1, 9);
+    
+    echo '&lt;hr&gt;Temps (', $texte, ') : ',
+           round($fin - $debut, $precision),
+           '&lt;hr&gt;';
+}
+
+// Démarre le chronomètre
+chronometrer('boucle 100000 itérations');
+for ($i = 0, $tmp = 0; $i &lt; 100000; $i++) {
+	$tmp += $i;	// pour avoir quelque chose à faire
+}
+chronometrer();	// Arrête le chrono
+
+// Démarre le chronomètre
+chronometrer('boucle 10000 itérations', 10);
+for ($i = 0, $tmp = 0; $i &lt; 10000; $i++) {
+	$tmp += $i;	// pour avoir quelque chose à faire
+}
+chronometrer();	// Arrête le chrono
+
+htmlFin();
+?&gt;</textarea>
+		</form>
+
+		<p>
+			Le code ne présente pas de difficultés particulières. C'est la
+			fonction <span class="fp-code">chronometrer</span> qui fait tout le
+			travail.
+		</p>
+		<pre data-code="PHP">
+function chronometrer($txt = '', $precis = 5) {
+    static $debut, $texte, $precision;
+    
+    // Debut du chronométrage
+    if ($txt != '') {
+        $texte = $txt;
+        $precision = $precis;
+        $debut = microtime();
+        return;		// Fin du début
+    }
+    
+    // Arrêt du chronométrage
+    $fin = microtime();
+    $debut = substr($debut , 11).substr($debut , 1, 9);
+    $fin = substr($fin, 11).substr($fin, 1, 9);
+    
+    echo '&lt;hr&gt;Temps (', $texte, ') : ',
+           round($fin - $debut, $precision),
+           '&lt;hr&gt;';
+}</pre>
+
+		<p>
+			Si le paramètre <span class="fp-code">$txt</span> contient quelque
+			chose, le chronomètre est initialisé.
+		</p>
+		<p>
+			Si le paramètre <span class="fp-code">$txt</span> est vide, nous
+			considérons que le chronométre est arrêté. Nous récupérons la valeur
+			du moment, transformons le moment du début et le moment de fin en
+			nombre, puis affichons le temps d'exécution en soustrayant les deux
+			valeurs et en les arrondissant à la précision voulue.
+		</p>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

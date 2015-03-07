@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Cr&eacute;e un processus de pointeur de fichier</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.pclose.html">pclose</a>
+		</div>
+		<div class="next">
+			<a href="function.readfile.html">readfile</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.popen" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">popen</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">popen</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Crée un processus de pointeur de
+					fichier</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.popen-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">resource</span> <span class="methodname"><strong>popen</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$command</code></span> , <span class="methodparam"><span
+					class="type">string</span> <code class="parameter">$mode</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				Crée un processus de pointeur de fichier, exécuté en effectuant un
+				fork de la commande fournie par le paramètre <em><code
+						class="parameter">command</code></em>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.popen-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">command</code></em></span>
+				<dd>
+
+					<p class="para">La commande</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">mode</code></em></span>
+				<dd>
+
+					<p class="para">Le mode</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.popen-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne un pointeur de fichier identique à celui retourné par <span
+					class="function"><a href="function.fopen.html"
+					class="function">fopen()</a></span>, hormis le fait qu&#039;il sera
+				unidirectionnel (lecture seule, ou écriture seule), et doit être
+				terminé par <span class="function"><a
+					href="function.pclose.html" class="function">pclose()</a></span>. Ce
+				pointeur peut être utilisé avec <span class="function"><a
+					href="function.fgets.html" class="function">fgets()</a></span>, <span
+					class="function"><a href="function.fgetss.html"
+					class="function">fgetss()</a></span> et <span class="function"><a
+					href="function.fwrite.html" class="function">fwrite()</a></span>. Lorsque
+				le mode est &#039;r&#039;, le pointeur de fichier retourné équivaut
+				au STDOUT de la commande, et lorsque le mode est &#039;w&#039;, le
+				pointeur de fichier retourné équivaut au STDIN de la commande.
+			</p>
+			<p class="para">
+				Si une erreur survient, la fonction retournera <strong><code>FALSE</code></strong>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.popen-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2287">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>popen()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$handle&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">popen</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"/bin/ls"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"r"</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">Si la commande à exécuter n&#039;a pu être
+				trouvée, une ressource valide sera retournée. Cela semble étrange,
+				mais c&#039;est pratique. cela vous permet d&#039;accéder aux
+				messages d&#039;erreur qui ont été retournés par le Shell :
+			<div class="example" id="example-2288">
+				<p>
+					<strong>Exemple #2 Exemple avec <span class="function"><strong>popen()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />error_reporting
+							</span><span style="color: #007700">(</span><span style="color: #0000BB">E_ALL</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">/*&nbsp;Ajoute&nbsp;une&nbsp;redirection&nbsp;pour&nbsp;que&nbsp;vous&nbsp;puissiez&nbsp;lire&nbsp;stderr.&nbsp;*/<br /></span><span
+								style="color: #0000BB">$handle&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">popen</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'/path/to/executable&nbsp;2&gt;&amp;1'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'r'</span><span style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #DD0000">"'</span><span
+								style="color: #0000BB">$handle</span><span
+								style="color: #DD0000">';&nbsp;"&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">gettype</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span
+								style="color: #007700">)&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$read&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">fread</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$handle</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">2096</span><span style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #0000BB">$read</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">pclose</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$handle</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.popen-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Si vous souhaitez un support bidirectionnel (two-way), utilisez la
+					fonction <span class="function"><a
+						href="function.proc-open.html" class="function">proc_open()</a></span>.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Lorsque
+						le <a href="features.safe-mode.html" class="link">safe mode</a>
+						est activé, vous pouvez uniquement exécuter des programmes qui se
+						situent dans le dossier défini par <a
+						href="ini.sect.safe-mode.html#ini.safe-mode-exec-dir" class="link">safe_mode_exec_dir</a>.
+						Pour des raisons pratiques, il n&#039;est actuellement pas permis
+						d&#039;&#039;avoir le composant <em>..</em> dans le chemin de
+						l&#039;exécutable.
+					</span>
+				</p>
+			</blockquote>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="simpara">
+					Lorsque le <a href="features.safe-mode.html" class="link">safe
+						mode</a> est activé, la chaîne de commande est échappée avec la
+					fonction <span class="function"><a
+						href="function.escapeshellcmd.html" class="function">escapeshellcmd()</a></span>.
+					Par exemple, <em>echo y | echo x</em> devient <em>echo y \|
+						echo x</em>.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.popen-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.pclose.html" class="function" rel="rdfs-seeAlso">pclose()</a>
+						- Ferme un processus de pointeur de fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fopen.html" class="function" rel="rdfs-seeAlso">fopen()</a>
+						- Ouvre un fichier ou une URL</span></li>
+				<li class="member"><span class="function"><a
+						href="function.proc-open.html" class="function" rel="rdfs-seeAlso">proc_open()</a>
+						- Ex&eacute;cute une commande et ouvre les pointeurs de fichiers
+						pour les entr&eacute;es / sorties</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.pclose.html">pclose</a>
+		</div>
+		<div class="next">
+			<a href="function.readfile.html">readfile</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

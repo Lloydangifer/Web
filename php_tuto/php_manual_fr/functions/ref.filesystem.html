@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Fonctions sur les syst&egrave;mes de fichiers</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="filesystem.constants.html">Constantes
+				pr&eacute;-d&eacute;finies</a>
+		</div>
+		<div class="next">
+			<a href="function.basename.html">basename</a>
+		</div>
+		<div class="up">
+			<a href="book.filesystem.html">Syst&egrave;me de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="ref.filesystem" class="reference">
+		<h1 class="title">Fonctions sur les systèmes de fichiers</h1>
+
+		<div class="partintro">
+			<h1 class="title">Voir aussi</h1>
+			<p class="simpara">
+				Pour les fonctions connexes, voyez aussi la section sur les accès
+				aux <a href="ref.dir.html" class="link">Dossiers</a> et <a
+					href="ref.exec.html" class="link">sur les exécutions de
+					programme</a>.
+			</p>
+			<p class="simpara">
+				Pour une liste et une explication sur les différents outils
+				d&#039;accès aux fichiers distants, voyez aussi <a
+					href="wrappers.html" class="xref">Liste des protocoles et des
+					gestionnaires support&eacute;s</a>.
+			</p>
+		</div>
+
+		<h2>Sommaire</h2>
+		<ul class="chunklist chunklist_reference">
+			<li><a href="function.basename.html">basename</a> — Retourne le
+				nom du fichier dans un chemin</li>
+			<li><a href="function.chgrp.html">chgrp</a> — Change le groupe
+				d'un fichier</li>
+			<li><a href="function.chmod.html">chmod</a> — Change le mode du
+				fichier</li>
+			<li><a href="function.chown.html">chown</a> — Change le
+				propri&eacute;taire du fichier</li>
+			<li><a href="function.clearstatcache.html">clearstatcache</a> —
+				Efface le cache de stat</li>
+			<li><a href="function.copy.html">copy</a> — Copie un fichier</li>
+			<li><a href="function.delete.html">delete</a> — Voir unlink ou
+				unset</li>
+			<li><a href="function.dirname.html">dirname</a> — Renvoie le nom
+				du dossier parent</li>
+			<li><a href="function.disk-free-space.html">disk_free_space</a>
+				— Renvoie l'espace disque disponible sur le syst&egrave;me de
+				fichiers ou la partition</li>
+			<li><a href="function.disk-total-space.html">disk_total_space</a>
+				— Retourne la taille d'un dossier ou d'une partition</li>
+			<li><a href="function.diskfreespace.html">diskfreespace</a> —
+				Alias de disk_free_space</li>
+			<li><a href="function.fclose.html">fclose</a> — Ferme un fichier</li>
+			<li><a href="function.feof.html">feof</a> — Teste la fin du
+				fichier</li>
+			<li><a href="function.fflush.html">fflush</a> — Envoie tout le
+				contenu g&eacute;n&eacute;r&eacute; dans un fichier</li>
+			<li><a href="function.fgetc.html">fgetc</a> — Lit un
+				caract&egrave;re dans un fichier</li>
+			<li><a href="function.fgetcsv.html">fgetcsv</a> — Obtient une
+				ligne depuis un pointeur de fichier et l'analyse pour des champs CSV</li>
+			<li><a href="function.fgets.html">fgets</a> —
+				R&eacute;cup&egrave;re la ligne courante sur laquelle se trouve le
+				pointeur du fichier</li>
+			<li><a href="function.fgetss.html">fgetss</a> — Renvoie la ligne
+				courante du fichier et &eacute;limine les balises HTML</li>
+			<li><a href="function.file-exists.html">file_exists</a> —
+				V&eacute;rifie si un fichier ou un dossier existe</li>
+			<li><a href="function.file-get-contents.html">file_get_contents</a>
+				— Lit tout un fichier dans une cha&icirc;ne</li>
+			<li><a href="function.file-put-contents.html">file_put_contents</a>
+				— &Eacute;crit un contenu dans un fichier</li>
+			<li><a href="function.file.html">file</a> — Lit le fichier et
+				renvoie le r&eacute;sultat dans un tableau</li>
+			<li><a href="function.fileatime.html">fileatime</a> — Renvoie la
+				date &agrave; laquelle le fichier a &eacute;t&eacute;
+				acc&eacute;d&eacute; pour la derni&egrave;re fois</li>
+			<li><a href="function.filectime.html">filectime</a> — Renvoie la
+				date de dernier acc&egrave;s &agrave; un inode</li>
+			<li><a href="function.filegroup.html">filegroup</a> — Lire le
+				nom du groupe</li>
+			<li><a href="function.fileinode.html">fileinode</a> — Lit le
+				num&eacute;ro d'inode du fichier</li>
+			<li><a href="function.filemtime.html">filemtime</a> — Lit la
+				date de derni&egrave;re modification du fichier</li>
+			<li><a href="function.fileowner.html">fileowner</a> — Lit
+				l'identifiant du propri&eacute;taire d'un fichier</li>
+			<li><a href="function.fileperms.html">fileperms</a> — Lit les
+				droits d'un fichier</li>
+			<li><a href="function.filesize.html">filesize</a> — Lit la
+				taille d'un fichier</li>
+			<li><a href="function.filetype.html">filetype</a> — Retourne le
+				type de fichier</li>
+			<li><a href="function.flock.html">flock</a> — Verrouille le
+				fichier</li>
+			<li><a href="function.fnmatch.html">fnmatch</a> — Rep&egrave;re
+				un fichier &agrave; partir d'un masque de recherche</li>
+			<li><a href="function.fopen.html">fopen</a> — Ouvre un fichier
+				ou une URL</li>
+			<li><a href="function.fpassthru.html">fpassthru</a> — Affiche le
+				reste du fichier</li>
+			<li><a href="function.fputcsv.html">fputcsv</a> — Formate une
+				ligne en CSV et l'&eacute;crit dans un fichier</li>
+			<li><a href="function.fputs.html">fputs</a> — Alias de fwrite</li>
+			<li><a href="function.fread.html">fread</a> — Lecture du fichier
+				en mode binaire</li>
+			<li><a href="function.fscanf.html">fscanf</a> — Analyse un
+				fichier en fonction d'un format</li>
+			<li><a href="function.fseek.html">fseek</a> — Modifie la
+				position du pointeur de fichier</li>
+			<li><a href="function.fstat.html">fstat</a> — Lit les
+				informations sur un fichier &agrave; partir d'un pointeur de fichier</li>
+			<li><a href="function.ftell.html">ftell</a> — Renvoie la
+				position courant du pointeur de fichier</li>
+			<li><a href="function.ftruncate.html">ftruncate</a> — Tronque un
+				fichier</li>
+			<li><a href="function.fwrite.html">fwrite</a> — &Eacute;crit un
+				fichier en mode binaire</li>
+			<li><a href="function.glob.html">glob</a> — Recherche des
+				chemins qui v&eacute;rifient un masque</li>
+			<li><a href="function.is-dir.html">is_dir</a> — Indique si le
+				fichier est un dossier</li>
+			<li><a href="function.is-executable.html">is_executable</a> —
+				Indique si le fichier est ex&eacute;cutable</li>
+			<li><a href="function.is-file.html">is_file</a> — Indique si le
+				fichier est un v&eacute;ritable fichier</li>
+			<li><a href="function.is-link.html">is_link</a> — Indique si le
+				fichier est un lien symbolique</li>
+			<li><a href="function.is-readable.html">is_readable</a> —
+				Indique si un fichier existe et est accessible en lecture</li>
+			<li><a href="function.is-uploaded-file.html">is_uploaded_file</a>
+				— Indique si le fichier a &eacute;t&eacute;
+				t&eacute;l&eacute;charg&eacute; par HTTP POST</li>
+			<li><a href="function.is-writable.html">is_writable</a> —
+				Indique si un fichier est accessible en &eacute;criture</li>
+			<li><a href="function.is-writeable.html">is_writeable</a> —
+				Alias de is_writable</li>
+			<li><a href="function.lchgrp.html">lchgrp</a> — Change
+				l'appartenance du groupe d'un lien symbolique</li>
+			<li><a href="function.lchown.html">lchown</a> — Change le
+				propri&eacute;taire d'un lien symbolique</li>
+			<li><a href="function.link.html">link</a> — Cr&eacute;e un lien</li>
+			<li><a href="function.linkinfo.html">linkinfo</a> — Renvoie les
+				informations d'un lien</li>
+			<li><a href="function.lstat.html">lstat</a> — Retourne les
+				informations sur un fichier ou un lien symbolique</li>
+			<li><a href="function.mkdir.html">mkdir</a> — Cr&eacute;e un
+				dossier</li>
+			<li><a href="function.move-uploaded-file.html">move_uploaded_file</a>
+				— D&eacute;place un fichier t&eacute;l&eacute;charg&eacute;</li>
+			<li><a href="function.parse-ini-file.html">parse_ini_file</a> —
+				Analyse un fichier de configuration</li>
+			<li><a href="function.parse-ini-string.html">parse_ini_string</a>
+				— Analyse une cha&icirc;ne de configuration</li>
+			<li><a href="function.pathinfo.html">pathinfo</a> — Retourne des
+				informations sur un chemin syst&egrave;me</li>
+			<li><a href="function.pclose.html">pclose</a> — Ferme un
+				processus de pointeur de fichier</li>
+			<li><a href="function.popen.html">popen</a> — Cr&eacute;e un
+				processus de pointeur de fichier</li>
+			<li><a href="function.readfile.html">readfile</a> — Affiche un
+				fichier</li>
+			<li><a href="function.readlink.html">readlink</a> — Renvoie le
+				contenu d'un lien symbolique</li>
+			<li><a href="function.realpath-cache-get.html">realpath_cache_get</a>
+				— R&eacute;cup&egrave;re les entr&eacute;es du cache realpath</li>
+			<li><a href="function.realpath-cache-size.html">realpath_cache_size</a>
+				— R&eacute;cup&egrave;re la taille du cache realpath</li>
+			<li><a href="function.realpath.html">realpath</a> — Retourne le
+				chemin canonique absolu</li>
+			<li><a href="function.rename.html">rename</a> — Renomme un
+				fichier ou un dossier</li>
+			<li><a href="function.rewind.html">rewind</a> — Replace le
+				pointeur de fichier au d&eacute;but</li>
+			<li><a href="function.rmdir.html">rmdir</a> — Efface un dossier</li>
+			<li><a href="function.set-file-buffer.html">set_file_buffer</a>
+				— Alias de stream_set_write_buffer</li>
+			<li><a href="function.stat.html">stat</a> — Renvoie les
+				informations &agrave; propos d'un fichier</li>
+			<li><a href="function.symlink.html">symlink</a> — Cr&eacute;e un
+				lien symbolique</li>
+			<li><a href="function.tempnam.html">tempnam</a> — Cr&eacute;e un
+				fichier avec un nom unique</li>
+			<li><a href="function.tmpfile.html">tmpfile</a> — Cr&eacute;e un
+				fichier temporaire</li>
+			<li><a href="function.touch.html">touch</a> — Modifie la date de
+				modification et de dernier acc&egrave;s d'un fichier</li>
+			<li><a href="function.umask.html">umask</a> — Change le
+				&quot;umask&quot; courant</li>
+			<li><a href="function.unlink.html">unlink</a> — Efface un
+				fichier</li>
+		</ul>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="filesystem.constants.html">Constantes
+				pr&eacute;-d&eacute;finies</a>
+		</div>
+		<div class="next">
+			<a href="function.basename.html">basename</a>
+		</div>
+		<div class="up">
+			<a href="book.filesystem.html">Syst&egrave;me de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

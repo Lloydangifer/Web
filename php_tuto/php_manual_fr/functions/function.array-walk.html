@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Ex&eacute;cute une fonction sur chacun des
+	&eacute;l&eacute;ments d'un tableau</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.array-walk-recursive.html">array_walk_recursive</a>
+		</div>
+		<div class="next">
+			<a href="function.array.html">array</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.array-walk" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">array_walk</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">array_walk</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Exécute une fonction sur chacun des
+					éléments d&#039;un tableau</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.array-walk-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>array_walk</strong></span>
+				( <span class="methodparam"><span class="type">array</span> <code
+						class="parameter reference">&$array</code></span> , <span
+					class="methodparam"><span class="type"><a
+						href="language.types.callable.html" class="type callable">callable</a></span>
+					<code class="parameter">$funcname</code></span> [, <span
+					class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$userdata</code><span
+					class="initializer"> = <strong><code>NULL</code></strong></span></span> ]
+				)
+			</div>
+
+			<p class="simpara">
+				Exécute la fonction <em><code class="parameter">funcname</code></em>
+				définie par l&#039;utilisateur sur chaque élément du tableau <em><code
+						class="parameter">array</code></em>.
+			</p>
+			<p class="para">
+				<span class="function"><strong>array_walk()</strong></span>
+				n&#039;est pas affecté par le pointeur interne du tableau <em><code
+						class="parameter">array</code></em>. <span class="function"><strong>array_walk()</strong></span>
+				traversera le tableau en totalité sans se soucier de la position du
+				pointeur.
+			</p>
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.array-walk-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">array</code></em></span>
+				<dd>
+
+					<p class="para">Le tableau d&#039;entrée.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">funcname</code></em></span>
+				<dd>
+
+					<p class="para">
+						Typiquement, <em><code class="parameter">funcname</code></em>
+						prend deux paramètres. La valeur du paramètre <em><code
+								class="parameter">input</code></em> étant le premier et la clé/index,
+						le second.
+					</p>
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>:
+						<p class="para">
+							Si <em><code class="parameter">funcname</code></em> doit
+							travailler avec les véritables valeurs du tableau, spécifiez que
+							le premier paramètre de <em><code class="parameter">funcname</code></em>
+							doit être passé par <a href="language.references.html"
+								class="link">référence</a>. Alors, les éléments seront
+							directement modifiés dans le tableau.
+					</blockquote>
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>:
+						<p class="para">
+							Plusieurs fonctions internes (par exemple, <span class="function"><a
+								href="function.strtolower.html" class="function">strtolower()</a></span>)
+							émettent une alerte si plus d&#039;arguments que ceux attendus
+							sont passés à la fonction et ne sont pas utilisable directement
+							comme <em><code class="parameter">funcname</code></em>.
+					</blockquote>
+					<p class="para">
+						Seules les valeurs du <em><code class="parameter">array</code></em>
+						peuvent être modifiées; sa structure ne peut pas, c&#039;est à
+						dire que vous ne pouvez ajouter, supprimer ou réordonner des
+						éléments. Si la fonction de callback ne respecte pas cette règle,
+						le comportement va devenir indéfini et imprévisible.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">userdata</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si le paramètre optionnel <em><code class="parameter">userdata</code></em>
+						est fourni, il sera passé comme troisième paramètre à la fonction
+						définie par l&#039;utilisateur <em><code class="parameter">funcname</code></em>.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.array-walk-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+		<div class="refsect1 errors" id="refsect1-function.array-walk-errors">
+			<h3 class="title">Erreurs / Exceptions</h3>
+			<p class="para">
+				Si <em><code class="parameter">function</code></em> requiert plus de
+				paramètres que ceux donnés, une alerte <a
+					href="errorfunc.constants.html" class="link">E_WARNING</a> sera
+				générée à chaque fois que la fonction <span class="function"><strong>array_walk()</strong></span>
+				appellera <em><code class="parameter">funcname</code></em>. Ces
+				alertes peuvent ne pas être affichées en utilisant l&#039;opérateur
+				d&#039;erreur PHP <a href="language.operators.errorcontrol.html"
+					class="link">@</a> lors de l&#039;appel de la fonction <span
+					class="function"><strong>array_walk()</strong></span> ou en
+				utilisant <span class="function"><a
+					href="function.error-reporting.html" class="function">error_reporting()</a></span>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.array-walk-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4653">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>array_walk()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$fruits&nbsp;
+							</span><span style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">"d"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">"lemon"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"a"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">"orange"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"b"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">"banana"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"c"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">"apple"</span><span
+								style="color: #007700">);<br />
+								<br />function&nbsp;
+							</span><span style="color: #0000BB">test_alter</span><span
+								style="color: #007700">(&amp;</span><span style="color: #0000BB">$item1</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$key</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$prefix</span><span
+								style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$item1&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"</span><span style="color: #0000BB">$prefix</span><span
+								style="color: #DD0000">:&nbsp;</span><span
+								style="color: #0000BB">$item1</span><span style="color: #DD0000">"</span><span
+								style="color: #007700">;<br />}<br />
+								<br />function&nbsp;
+							</span><span style="color: #0000BB">test_print</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$item2</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$key</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$key</span><span
+								style="color: #DD0000">.&nbsp;</span><span
+								style="color: #0000BB">$item2</span><span style="color: #DD0000">&lt;br&nbsp;/&gt;\n"</span><span
+								style="color: #007700">;<br />}<br />
+								<br />echo&nbsp;
+							</span><span style="color: #DD0000">"Avant&nbsp;...:\n"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">array_walk</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fruits</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'test_print'</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #0000BB">array_walk</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fruits</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'test_alter'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'fruit'</span><span
+								style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #DD0000">"...&nbsp;et&nbsp;après&nbsp;:\n"</span><span
+								style="color: #007700">;<br />
+								<br /></span><span style="color: #0000BB">array_walk</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fruits</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'test_print'</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Avant ...:
+d. lemon
+a. orange
+b. banana
+c. apple
+... et après :
+d. fruit: lemon
+a. fruit: orange
+b. fruit: banana
+c. fruit: apple
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.array-walk-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.array-walk-recursive.html" class="function"
+						rel="rdfs-seeAlso">array_walk_recursive()</a> - Applique une
+						fonction de rappel r&eacute;cursivement &agrave; chaque membre
+						d'un tableau</span></li>
+				<li class="member"><span class="function"><a
+						href="function.iterator-apply.html" class="function"
+						rel="rdfs-seeAlso">iterator_apply()</a> - Appelle une fonction
+						pour tous les &eacute;l&eacute;ments d'un it&eacute;rateur</span></li>
+				<li class="member"><span class="function"><a
+						href="function.create-function.html" class="function"
+						rel="rdfs-seeAlso">create_function()</a> - Cr&eacute;e une
+						fonction anonyme</span></li>
+				<li class="member"><span class="function"><a
+						href="function.list.html" class="function" rel="rdfs-seeAlso">list()</a>
+						- Assigne des variables comme si elles &eacute;taient un tableau</span></li>
+				<li class="member"><span class="function"><a
+						href="function.each.html" class="function" rel="rdfs-seeAlso">each()</a>
+						- Retourne chaque paire cl&eacute;/valeur d'un tableau</span></li>
+				<li class="member"><span class="function"><a
+						href="function.call-user-func-array.html" class="function"
+						rel="rdfs-seeAlso">call_user_func_array()</a> - Appelle une
+						fonction de rappel avec les param&egrave;tres rassembl&eacute;s en
+						tableau</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-map.html" class="function" rel="rdfs-seeAlso">array_map()</a>
+						- Applique une fonction sur les &eacute;l&eacute;ments d'un
+						tableau</span></li>
+				<li class="member">Informations sur le type <a
+					href="language.pseudo-types.html#language.types.callback"
+					class="link">callback</a></li>
+				<li class="member"><a href="control-structures.foreach.html"
+					class="link">foreach</a></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.array-walk-recursive.html">array_walk_recursive</a>
+		</div>
+		<div class="next">
+			<a href="function.array.html">array</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

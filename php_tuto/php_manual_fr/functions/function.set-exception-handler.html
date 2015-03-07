@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>D&eacute;finit une fonction utilisateur de gestion
+	d'exceptions</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.set-error-handler.html">set_error_handler</a>
+		</div>
+		<div class="next">
+			<a href="function.trigger-error.html">trigger_error</a>
+		</div>
+		<div class="up">
+			<a href="ref.errorfunc.html">Fonctions sur la gestion des erreurs</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.set-exception-handler" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">set_exception_handler</h1>
+			<p class="verinfo">(PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">set_exception_handler</span> <span
+					class="mdash">&mdash;</span> <span class="dc-title"> Définit
+					une fonction utilisateur de gestion d&#039;exceptions </span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.set-exception-handler-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><a href="language.types.callable.html"
+					class="type callable">callable</a></span> <span class="methodname"><strong>set_exception_handler</strong></span>
+				( <span class="methodparam"><span class="type"><a
+						href="language.types.callable.html" class="type callable">callable</a></span>
+					<code class="parameter">$exception_handler</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>set_exception_handler()</strong></span>
+				définit le gestionnaire d&#039;exceptions par défaut si une
+				exception n&#039;est pas attrapée avec un bloc
+				d&#039;essai/d&#039;attrape. L&#039;exécution sera stoppée après
+				l&#039;appel à la fonction <em><code class="parameter">exception_handler</code></em>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.set-exception-handler-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">exception_handler</code></em></span>
+				<dd>
+
+					<p class="para">
+						Nom de la fonction à appeler lorsqu&#039;une exception qui
+						n&#039;a pu être attrapée survient. Cette fonction doit être
+						définie avant l&#039;appel de la fonction <span class="function"><strong>set_exception_handler()</strong></span>.
+						Ce gestionnaire doit accepter un paramètre qui sera l&#039;objet
+						représentant l&#039;exception qui vient d&#039;être lancée.
+					</p>
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>:
+						<p class="para">
+							<strong><code>NULL</code></strong> peut aussi être passé, pour
+							réinitialiser ce gestionnaire en son statut par défaut.
+					</blockquote>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.set-exception-handler-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne le nom du gestionnaire précédemment défini ou <strong><code>NULL</code></strong>
+				en cas d&#039;erreur. Si aucun gestionnaire n&#039;a été
+				précédemment défini, <strong><code>NULL</code></strong> est
+				également retourné. Si <strong><code>NULL</code></strong> est passé,
+				le gestionnaire sera réinitialisé dans son état par défaut, et <strong><code>TRUE</code></strong>
+				sera retourné.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.set-exception-handler-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-456">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>set_exception_handler()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">exception_handler</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$exception</span><span
+								style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Exception&nbsp;non&nbsp;attrapée&nbsp;:&nbsp;"&nbsp;</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$exception</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span
+								style="color: #007700">(),&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #0000BB">set_exception_handler</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'exception_handler'</span><span
+								style="color: #007700">);<br />
+								<br />throw&nbsp;new&nbsp;
+							</span><span style="color: #0000BB">Exception</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'Uncaught&nbsp;Exception'</span><span
+								style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #DD0000">"Non&nbsp;exécuté\n"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.set-exception-handler-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.restore-exception-handler.html" class="function"
+						rel="rdfs-seeAlso">restore_exception_handler()</a> -
+						R&eacute;active l'ancienne fonction de gestion d'exceptions</span></li>
+				<li class="member"><span class="function"><a
+						href="function.restore-error-handler.html" class="function"
+						rel="rdfs-seeAlso">restore_error_handler()</a> - R&eacute;active
+						l'ancienne fonction de gestion des erreurs</span></li>
+				<li class="member"><span class="function"><a
+						href="function.error-reporting.html" class="function"
+						rel="rdfs-seeAlso">error_reporting()</a> - Fixe le niveau de
+						rapport d'erreurs PHP</span></li>
+				<li class="member">Informations sur le type <a
+					href="language.pseudo-types.html#language.types.callback"
+					class="link">callback</a></li>
+				<li class="member">Les <a href="language.exceptions.html"
+					class="link">exceptions en PHP 5</a></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.set-error-handler.html">set_error_handler</a>
+		</div>
+		<div class="next">
+			<a href="function.trigger-error.html">trigger_error</a>
+		</div>
+		<div class="up">
+			<a href="ref.errorfunc.html">Fonctions sur la gestion des erreurs</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

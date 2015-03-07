@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Sp&eacute;cifie une fonction utilisateur comme
+	gestionnaire d'erreurs</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.restore-exception-handler.html">restore_exception_handler</a>
+		</div>
+		<div class="next">
+			<a href="function.set-exception-handler.html">set_exception_handler</a>
+		</div>
+		<div class="up">
+			<a href="ref.errorfunc.html">Fonctions sur la gestion des erreurs</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.set-error-handler" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">set_error_handler</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.0.1, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">set_error_handler</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Spécifie une fonction utilisateur
+					comme gestionnaire d&#039;erreurs</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.set-error-handler-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><a
+					href="language.pseudo-types.html#language.types.mixed"
+					class="type mixed">mixed</a></span> <span class="methodname"><strong>set_error_handler</strong></span>
+				( <span class="methodparam"><span class="type"><a
+						href="language.types.callable.html" class="type callable">callable</a></span>
+					<code class="parameter">$error_handler</code></span> [, <span
+					class="methodparam"><span class="type">int</span> <code
+						class="parameter">$error_types</code><span class="initializer">
+						= E_ALL | E_STRICT</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>set_error_handler()</strong></span>
+				choisit la fonction utilisateur <em><code class="parameter">error_handler</code></em>
+				pour gérer les erreurs dans un script.
+			</p>
+			<p class="para">
+				<span class="function"><strong>set_error_handler()</strong></span>
+				peut être utilisé pour définir votre propre manière de gérer les
+				erreurs durant l&#039;exécution, par exemple pour une application
+				dans laquelle vous devez nettoyer les données/fichiers
+				lorsqu&#039;une erreur survient ou lorsque vous devez déclencher une
+				erreur sous certaines conditions (en utilisant <span
+					class="function"><a href="function.trigger-error.html"
+					class="function">trigger_error()</a></span>).
+			</p>
+			<p class="para">
+				Il faut se rappeler que la fonction standard de traitement des
+				erreurs de PHP est alors complètement ignorée pour les erreurs de
+				types spécifiés par <em><code class="parameter">error_types</code></em>
+				à moins que la fonction de rappel retourne <strong><code>FALSE</code></strong>.
+				<span class="function"><a
+					href="function.error-reporting.html" class="function">error_reporting()</a></span>
+				n&#039;aura plus d&#039;effet, et votre fonction de gestion des
+				erreurs sera toujours appelée. Vous pourrez toujours lire la valeur
+				de l&#039;erreur courante de <a
+					href="errorfunc.configuration.html#ini.error-reporting"
+					class="link">error_reporting</a> et faire réagir la fonction de
+				gestion des erreurs en fonction. Cette remarque est notamment
+				valable si la commande a été préfixée par <a
+					href="language.operators.errorcontrol.html" class="link">@</a>.
+			</p>
+			<p class="para">
+				Notez aussi qu&#039;il est alors confié à cette fonction de terminer
+				le script ( <span class="function"><a
+					href="function.die.html" class="function">die()</a></span>) si nécessaire.
+				Si la fonction de gestion des erreurs se termine normalement,
+				l&#039;exécution du script se poursuivra avec l&#039;exécution de la
+				prochaine commande.
+			</p>
+			<p class="para">
+				Les types d&#039;erreur suivants ne peuvent pas être gérés avec
+				cette fonction : <strong><code>E_ERROR</code></strong>, <strong><code>E_PARSE</code></strong>,
+				<strong><code>E_CORE_ERROR</code></strong>, <strong><code>E_CORE_WARNING</code></strong>,
+				<strong><code>E_COMPILE_ERROR</code></strong>, <strong><code>E_COMPILE_WARNING</code></strong>
+				ainsi que la plupart des <strong><code>E_STRICT</code></strong>
+				d&#039;un fichier lorsque <span class="function"><strong>set_error_handler()</strong></span>
+				est appelé.
+			</p>
+			<p class="para">Si une erreur survient avant que le script ne
+				soit exécuté (par exemple un téléchargement de fichier), le
+				gestionnaire d&#039;erreurs personnalisé ne pourra pas être appelé,
+				car il n&#039;est pas encore enregistré.</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.set-error-handler-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">error_handler</code></em></span>
+				<dd>
+
+					<p class="para">La fonction utilisateur doit accepter deux
+						paramètres : le code d&#039;erreur et une chaîne décrivant le code
+						d&#039;erreur. Depuis, trois paramètres optionnels sont fournis en
+						même temps : le fichier dans lequel l&#039;erreur est survenue, la
+						ligne à laquelle l&#039;erreur est survenue, et le contexte dans
+						lequel l&#039;erreur est survenue (un tableau contenant la liste
+						des symboles lors de l&#039;erreur). La fonction peut être décrite
+						comme ceci :</p>
+					<p class="para">
+					<div class="methodsynopsis dc-description">
+						<span class="methodname"><span class="replaceable">handler</span></span>
+						( <span class="methodparam"><span class="type">int</span> <code
+								class="parameter">$errno</code></span> , <span class="methodparam"><span
+							class="type">string</span> <code class="parameter">$errstr</code></span>
+						[, <span class="methodparam"><span class="type">string</span>
+							<code class="parameter">$errfile</code></span> [, <span
+							class="methodparam"><span class="type">int</span> <code
+								class="parameter">$errline</code></span> [, <span class="methodparam"><span
+							class="type">array</span> <code class="parameter">$errcontext</code></span>
+						]]] )
+					</div>
+
+					<dl>
+
+						<dt>
+
+							<span class="term"><em><code class="parameter">errno</code></em></span>
+						<dd>
+
+							<span class="simpara"> Le premier paramètre <em><code
+										class="parameter">errno</code></em>, contient le niveau
+								d&#039;erreur, sous la forme d&#039;un entier.
+							</span>
+						</dd>
+
+						</dt>
+
+						<dt>
+
+							<span class="term"><em><code class="parameter">errstr</code></em></span>
+						<dd>
+
+							<span class="simpara"> Le second paramètre <em><code
+										class="parameter">errstr</code></em>, contient le message
+								d&#039;erreur, sous forme de chaîne.
+							</span>
+						</dd>
+
+						</dt>
+
+						<dt>
+
+							<span class="term"><em><code class="parameter">errfile</code></em></span>
+						<dd>
+
+							<span class="simpara"> Le troisième paramètre, optionnel,
+								<em><code class="parameter">errfile</code></em>, contient le nom
+								du fichier dans lequel l&#039;erreur a été identifiée.
+							</span>
+						</dd>
+
+						</dt>
+
+						<dt>
+
+							<span class="term"><em><code class="parameter">errline</code></em></span>
+						<dd>
+
+							<span class="simpara"> Le quatrième paramètre, optionnel,
+								<em><code class="parameter">errline</code></em>, contient le
+								numéro de ligne à laquelle l&#039;erreur a été identifiée.
+							</span>
+						</dd>
+
+						</dt>
+
+						<dt>
+
+							<span class="term"><em><code class="parameter">errcontext</code></em></span>
+						<dd>
+
+							<span class="simpara"> Le cinquième paramètre, optionnel,
+								<em><code class="parameter">errcontext</code></em>, est un
+								tableau qui pointe sur la table des symboles actifs lors de
+								l&#039;erreur. En d&#039;autres termes, <em><code
+										class="parameter">errcontext</code></em> contient un tableau avec
+								toutes les variables qui existaient lorsque l&#039;erreur a été
+								déclenchée. La fonction de gestion d&#039;erreurs de
+								l&#039;utilisateur ne doit pas modifier le contexte
+								d&#039;erreur.
+							</span>
+						</dd>
+
+						</dt>
+
+					</dl>
+
+					</p>
+					<p class="para">
+						Si la fonction retourne <strong><code>FALSE</code></strong>, alors
+						le gestionnaire d&#039;erreurs normal continue.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">error_types</code></em></span>
+				<dd>
+
+					<p class="para">
+						Sert de masque pour appeler la fonction <em><code
+								class="parameter">error_handler</code></em> de la même façon que
+						l&#039;option de configuration <a
+							href="errorfunc.configuration.html#ini.error-reporting"
+							class="link">error_reporting</a> contrôle les erreurs qui sont
+						affichées. Sans le masque, <em><code class="parameter">error_handler</code></em>
+						sera appelé pour toutes les erreurs, quelle que soit la valeur de
+						<a href="errorfunc.configuration.html#ini.error-reporting"
+							class="link">error_reporting</a>.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.set-error-handler-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne une chaîne contenant le dernier gestionnaire d&#039;erreurs
+				(s&#039;il existe). Si le gestionnaire d&#039;erreurs natif est
+				utilisé, <strong><code>NULL</code></strong> est retourné. <strong><code>NULL</code></strong>
+				est également retourné dans le cas d&#039;une erreur, comme une
+				fonction de rappel incorrecte. Si le gestionnaire d&#039;erreurs
+				précédent est une méthode d&#039;une classe, cette fonction
+				retournera un tableau indexé de la classe et du nom de la méthode.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.set-error-handler-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.2.0</td>
+						<td>Le gestionnaire d&#039;erreurs doit retourner <strong><code>FALSE</code></strong>
+							pour peupler la variable <var class="varname">
+								<var class="varname">
+									<a href="reserved.variables.phperrormsg.html" class="classname">$php_errormsg</a>
+								</var>
+							</var>.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.0.0</td>
+						<td>Le paramètre <em><code class="parameter">error_types</code></em>
+							a été introduit.
+						</td>
+					</tr>
+
+					<tr>
+						<td>4.3.0</td>
+						<td>Au lieu d&#039;un nom de fonction, un tableau contenant
+							une référence à un objet ainsi qu&#039;un nom de méthode peut
+							aussi être passé au paramètre <em><code class="parameter">error_handler</code></em>.
+						</td>
+					</tr>
+
+					<tr>
+						<td>4.0.2</td>
+						<td>Trois paramètres optionnels pour le paramètre <em><code
+									class="parameter">error_handler</code></em> de la fonction
+							utilisateur ont été introduits. C&#039;est le nom du fichier, le
+							numéro de ligne ainsi que le contexte.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.set-error-handler-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-455">
+				<p>
+					<strong>Exemple #1 Gestionnaire d&#039;erreurs avec <span
+						class="function"><strong>set_error_handler()</strong></span> et <span
+						class="function"><a href="function.trigger-error.html"
+							class="function">trigger_error()</a></span></strong>
+				</p>
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessous illustre l&#039;interception
+						d&#039;erreurs internes avec génération d&#039;erreur et son
+						exploitation dans une fonction utilisateur :</p>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Gestionnaire&nbsp;d'erreurs<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">myErrorHandler</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$errno</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$errstr</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$errfile</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$errline</span><span
+								style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;if&nbsp;(!(
+							</span><span style="color: #0000BB">error_reporting</span><span
+								style="color: #007700">()&nbsp;&amp;&nbsp;</span><span
+								style="color: #0000BB">$errno</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;Ce&nbsp;code&nbsp;d'erreur&nbsp;n'est&nbsp;pas&nbsp;inclus&nbsp;dans&nbsp;error_reporting()<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">return;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;switch&nbsp;(
+							</span><span style="color: #0000BB">$errno</span><span
+								style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+							</span><span style="color: #0000BB">E_USER_ERROR</span><span
+								style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"&lt;b&gt;Mon&nbsp;ERREUR&lt;/b&gt;&nbsp;[</span><span
+								style="color: #0000BB">$errno</span><span style="color: #DD0000">]&nbsp;</span><span
+								style="color: #0000BB">$errstr</span><span
+								style="color: #DD0000">&lt;br&nbsp;/&gt;\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"&nbsp;&nbsp;Erreur&nbsp;fatale&nbsp;sur&nbsp;la&nbsp;ligne&nbsp;</span><span
+								style="color: #0000BB">$errline</span><span
+								style="color: #DD0000">&nbsp;dans&nbsp;le&nbsp;fichier&nbsp;</span><span
+								style="color: #0000BB">$errfile</span><span
+								style="color: #DD0000">"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">",&nbsp;PHP&nbsp;"&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">PHP_VERSION&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #DD0000">"&nbsp;("&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">PHP_OS&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #DD0000">")&lt;br&nbsp;/&gt;\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Arrêt...&lt;br&nbsp;/&gt;\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exit(
+							</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+							</span><span style="color: #0000BB">E_USER_WARNING</span><span
+								style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"&lt;b&gt;Mon&nbsp;ALERTE&lt;/b&gt;&nbsp;[</span><span
+								style="color: #0000BB">$errno</span><span style="color: #DD0000">]&nbsp;</span><span
+								style="color: #0000BB">$errstr</span><span
+								style="color: #DD0000">&lt;br&nbsp;/&gt;\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+							</span><span style="color: #0000BB">E_USER_NOTICE</span><span
+								style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"&lt;b&gt;Mon&nbsp;AVERTISSEMENT&lt;/b&gt;&nbsp;[</span><span
+								style="color: #0000BB">$errno</span><span style="color: #DD0000">]&nbsp;</span><span
+								style="color: #0000BB">$errstr</span><span
+								style="color: #DD0000">&lt;br&nbsp;/&gt;\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;default:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Type&nbsp;d'erreur&nbsp;inconnu&nbsp;:&nbsp;[</span><span
+								style="color: #0000BB">$errno</span><span style="color: #DD0000">]&nbsp;</span><span
+								style="color: #0000BB">$errstr</span><span
+								style="color: #DD0000">&lt;br&nbsp;/&gt;\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">/*&nbsp;Ne&nbsp;pas&nbsp;exécuter&nbsp;le&nbsp;gestionnaire&nbsp;interne&nbsp;de&nbsp;PHP&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">return&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Fonction&nbsp;pour&nbsp;tester&nbsp;la&nbsp;gestion&nbsp;d'erreur<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">scale_by_log</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$vect</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$scale</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!
+							</span><span style="color: #0000BB">is_numeric</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$scale</span><span
+								style="color: #007700">)&nbsp;||&nbsp;</span><span
+								style="color: #0000BB">$scale&nbsp;</span><span
+								style="color: #007700">&lt;=&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">trigger_error</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"log(x)&nbsp;for&nbsp;x&nbsp;&lt;=&nbsp;0&nbsp;is&nbsp;undefined,&nbsp;you&nbsp;used:&nbsp;scale&nbsp;=&nbsp;</span><span
+								style="color: #0000BB">$scale</span><span style="color: #DD0000">"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">E_USER_ERROR</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!
+							</span><span style="color: #0000BB">is_array</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$vect</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">trigger_error</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"Type&nbsp;d'entrée&nbsp;incorrect,&nbsp;tableau&nbsp;de&nbsp;valeurs&nbsp;attendu"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">E_USER_WARNING</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">null</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$temp&nbsp;</span><span
+								style="color: #007700">=&nbsp;array();<br />&nbsp;&nbsp;&nbsp;&nbsp;foreach(
+							</span><span style="color: #0000BB">$vect&nbsp;</span><span
+								style="color: #007700">as&nbsp;</span><span
+								style="color: #0000BB">$pos&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #0000BB">$value</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!
+							</span><span style="color: #0000BB">is_numeric</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$value</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">trigger_error</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"La&nbsp;valeur&nbsp;à&nbsp;la&nbsp;position&nbsp;</span><span
+								style="color: #0000BB">$pos</span><span style="color: #DD0000">&nbsp;n'est&nbsp;pas&nbsp;un&nbsp;nombre,&nbsp;utilisation&nbsp;0&nbsp;(zéro)"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">E_USER_NOTICE</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$value&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$temp</span><span
+								style="color: #007700">[</span><span style="color: #0000BB">$pos</span><span
+								style="color: #007700">]&nbsp;=&nbsp;</span><span
+								style="color: #0000BB">log</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$scale</span><span style="color: #007700">)&nbsp;*&nbsp;</span><span
+								style="color: #0000BB">$value</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">$temp</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Configuration&nbsp;du&nbsp;gestionnaire&nbsp;d'erreurs<br /></span><span
+								style="color: #0000BB">$old_error_handler&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">set_error_handler</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"myErrorHandler"</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Génération&nbsp;de&nbsp;quelques&nbsp;erreurs.&nbsp;Commençons&nbsp;par&nbsp;créer&nbsp;un&nbsp;tableau<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">"vector&nbsp;a\n"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"foo"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">5.5</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">43.3</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">21.11</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Générons&nbsp;maintenant&nbsp;un&nbsp;second&nbsp;tableau<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">"----\nvector&nbsp;b&nbsp;-&nbsp;a&nbsp;notice&nbsp;(b&nbsp;=&nbsp;log(PI)&nbsp;*&nbsp;a)\n"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #FF8000">/*&nbsp;Valeur&nbsp;à&nbsp;la&nbsp;position&nbsp;$pos&nbsp;n'est&nbsp;pas&nbsp;un&nbsp;nombre,&nbsp;utilisation&nbsp;de&nbsp;0&nbsp;(zéro)&nbsp;*/<br /></span><span
+								style="color: #0000BB">$b&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">scale_by_log</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">M_PI</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$b</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Ceci&nbsp;est&nbsp;un&nbsp;problème,&nbsp;nous&nbsp;avons&nbsp;utilisé&nbsp;une&nbsp;chaîne&nbsp;au&nbsp;lieu&nbsp;d'un&nbsp;tableau<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">"----\nvector&nbsp;c&nbsp;-&nbsp;a&nbsp;warning\n"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #FF8000">/*&nbsp;Type&nbsp;d'entrée&nbsp;incorrect,&nbsp;tableau&nbsp;de&nbsp;valeurs&nbsp;attendu&nbsp;*/<br /></span><span
+								style="color: #0000BB">$c&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">scale_by_log</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"non&nbsp;un&nbsp;tablau"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">2.3</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$c</span><span
+								style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;NULL<br />
+								<br />//&nbsp;Ceci&nbsp;est&nbsp;une&nbsp;erreur&nbsp;critique&nbsp;:&nbsp;le&nbsp;logarithme&nbsp;de&nbsp;zéro&nbsp;ou&nbsp;d'un&nbsp;nombre&nbsp;négatif&nbsp;est&nbsp;indéfini<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">"----\nvector&nbsp;d&nbsp;-&nbsp;fatal&nbsp;error\n"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #FF8000">/*&nbsp;log(x)&nbsp;pour&nbsp;x&nbsp;&lt;=&nbsp;0&nbsp;est&nbsp;indéfini,&nbsp;vous&nbsp;utilisez&nbsp;:&nbsp;scale&nbsp;=&nbsp;$scale"&nbsp;*/<br /></span><span
+								style="color: #0000BB">$d&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">scale_by_log</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">,&nbsp;-</span><span
+								style="color: #0000BB">2.5</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$d</span><span
+								style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;Jamais&nbsp;atteint<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher quelque chose de
+						similaire à :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+vector a
+Array
+(
+    [0] =&gt; 2
+    [1] =&gt; 3
+    [2] =&gt; foo
+    [3] =&gt; 5.5
+    [4] =&gt; 43.3
+    [5] =&gt; 21.11
+)
+----
+vector b - a notice (b = log(PI) * a)
+&lt;b&gt;Mon AVERTISSEMENT&lt;/b&gt; [1024] La valeur à la position 2 n&#039;est pas un nombre, utilisation de 0 (zéro)&lt;br /&gt;
+Array
+(
+    [0] =&gt; 2.2894597716988
+    [1] =&gt; 3.4341896575482
+    [2] =&gt; 0
+    [3] =&gt; 6.2960143721717
+    [4] =&gt; 49.566804057279
+    [5] =&gt; 24.165247890281
+)
+----
+vector c - an warning
+&lt;b&gt;Mon ALERTE&lt;/b&gt; [512] Entrée incorrect, tableau de valeurs attendu&lt;br /&gt;
+NULL
+----
+vector d - fatal error
+&lt;b&gt;Mon ERREUR&lt;/b&gt; [256] log(x) for x &lt;= 0 est indéfini, vous utilisez : scale = -2.5&lt;br /&gt;
+Erreur fatale sur la ligne 36 dans le fichier trigger_error.php, PHP 4.0.2 (Linux)&lt;br /&gt;
+Abandon...&lt;br /&gt;
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.set-error-handler-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><a href="class.errorexception.html"
+					class="classname">ErrorException</a></li>
+				<li class="member"><span class="function"><a
+						href="function.error-reporting.html" class="function"
+						rel="rdfs-seeAlso">error_reporting()</a> - Fixe le niveau de
+						rapport d'erreurs PHP</span></li>
+				<li class="member"><span class="function"><a
+						href="function.restore-error-handler.html" class="function"
+						rel="rdfs-seeAlso">restore_error_handler()</a> - R&eacute;active
+						l'ancienne fonction de gestion des erreurs</span></li>
+				<li class="member"><span class="function"><a
+						href="function.trigger-error.html" class="function"
+						rel="rdfs-seeAlso">trigger_error()</a> - D&eacute;clenche une
+						erreur utilisateur</span></li>
+				<li class="member"><a href="errorfunc.constants.html"
+					class="link">Constantes de niveau d&#039;erreur</a></li>
+				<li class="member">Informations sur le type <a
+					href="language.pseudo-types.html#language.types.callback"
+					class="link">callback</a></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.restore-exception-handler.html">restore_exception_handler</a>
+		</div>
+		<div class="next">
+			<a href="function.set-exception-handler.html">set_exception_handler</a>
+		</div>
+		<div class="up">
+			<a href="ref.errorfunc.html">Fonctions sur la gestion des erreurs</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

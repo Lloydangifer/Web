@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Prot&egrave;ge les caract&egrave;res sp&eacute;ciaux du
+	Shell</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.escapeshellarg.html">escapeshellarg</a>
+		</div>
+		<div class="next">
+			<a href="function.exec.html">exec</a>
+		</div>
+		<div class="up">
+			<a href="ref.exec.html">Fonctions sur l'ex&eacute;cution de
+				programmes externes</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.escapeshellcmd" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">escapeshellcmd</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">escapeshellcmd</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Protège les caractères spéciaux du
+					Shell</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.escapeshellcmd-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>escapeshellcmd</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$command</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>escapeshellcmd()</strong></span>
+				échappe tous les caractères de la chaîne <em><code
+						class="parameter">command</code></em> qui pourraient avoir une
+				signification spéciale dans une commande Shell. Cette fonction
+				permet de s&#039;assurer que la commande sera correctement passée à
+				l&#039;exécuteur de commande Shell <span class="function"><a
+					href="function.exec.html" class="function">exec()</a></span> et <span
+					class="function"><a href="function.system.html"
+					class="function">system()</a></span>, ou encore à <a
+					href="language.operators.execution.html" class="link">guillemets
+					obliques</a>.
+			</p>
+			<p class="para">
+				Les caractères suivants seront échappés : <em>#&amp;;`|*?~&lt;&gt;^()[]{}$\</em>,
+				<em>\x0A</em> et <em>\xFF</em>. <em>&#039;</em> et <em>&quot;</em>
+				sont échappés que s&#039;ils ne sont pas par paire. Sous Windows,
+				tous ces caractères ainsi que <em>%</em> sont remplacés par un
+				espace.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.escapeshellcmd-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">command</code></em></span>
+				<dd>
+
+					<p class="para">La commande à échapper.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.escapeshellcmd-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">La chaîne échappée.</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.escapeshellcmd-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-3452">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>escapeshellcmd()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Nous&nbsp;autorisons&nbsp;un&nbsp;nombre&nbsp;arbitraire&nbsp;d'arguments&nbsp;de&nbsp;façon&nbsp;intentionnel&nbsp;ici.<br /></span><span
+								style="color: #0000BB">$command&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'./configure&nbsp;'</span><span
+								style="color: #007700">.</span><span style="color: #0000BB">$_POST</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">'configure_options'</span><span
+								style="color: #007700">];<br />
+								<br /></span><span style="color: #0000BB">$escaped_command&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">escapeshellcmd</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$command</span><span
+								style="color: #007700">);<br />&nbsp;<br /></span><span
+								style="color: #0000BB">system</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$escaped_command</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes"
+			id="refsect1-function.escapeshellcmd-notes">
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">
+					La fonction <span class="function"><strong>escapeshellcmd()</strong></span>
+					doit être utilisée sur toute la chaîne de commande, et elle
+					autorise les personnes mal intentionnées de passer un nombre
+					d&#039;arguments arbitraire. Pour échapper un seul argument, la
+					fonction <span class="function"><a
+						href="function.escapeshellarg.html" class="function">escapeshellarg()</a></span>
+					devrait être utilisée à la place.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.escapeshellcmd-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.escapeshellarg.html" class="function"
+						rel="rdfs-seeAlso">escapeshellarg()</a> - Prot&egrave;ge une
+						cha&icirc;ne de caract&egrave;res pour utilisation en ligne de
+						commande</span></li>
+				<li class="member"><span class="function"><a
+						href="function.exec.html" class="function" rel="rdfs-seeAlso">exec()</a>
+						- Ex&eacute;cute un programme externe</span></li>
+				<li class="member"><span class="function"><a
+						href="function.popen.html" class="function" rel="rdfs-seeAlso">popen()</a>
+						- Cr&eacute;e un processus de pointeur de fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.system.html" class="function" rel="rdfs-seeAlso">system()</a>
+						- Ex&eacute;cute un programme externe et affiche le
+						r&eacute;sultat</span></li>
+				<li class="member"><a href="language.operators.execution.html"
+					class="link">les guillemets obliques</a></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.escapeshellarg.html">escapeshellarg</a>
+		</div>
+		<div class="next">
+			<a href="function.exec.html">exec</a>
+		</div>
+		<div class="up">
+			<a href="ref.exec.html">Fonctions sur l'ex&eacute;cution de
+				programmes externes</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

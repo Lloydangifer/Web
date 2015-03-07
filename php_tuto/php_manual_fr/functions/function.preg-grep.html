@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Retourne un tableau avec les r&eacute;sultats de la
+	recherche</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.preg-filter.html">preg_filter</a>
+		</div>
+		<div class="next">
+			<a href="function.preg-last-error.html">preg_last_error</a>
+		</div>
+		<div class="up">
+			<a href="ref.pcre.html">Fonctions PCRE</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.preg-grep" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">preg_grep</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">preg_grep</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Retourne un tableau avec les résultats
+					de la recherche</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.preg-grep-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>preg_grep</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$pattern</code></span> , <span class="methodparam"><span
+					class="type">array</span> <code class="parameter">$input</code></span> [,
+				<span class="methodparam"><span class="type">int</span> <code
+						class="parameter">$flags</code><span class="initializer"> =
+						0</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>preg_grep()</strong></span> retourne
+				un <a href="language.types.array.html" class="link">tableau</a> qui
+				contient les éléments de <em><code class="parameter">input</code></em>
+				qui satisfont le masque <em><code class="parameter">pattern</code></em>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.preg-grep-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">pattern</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le motif à chercher, sous la forme d&#039;une <a
+							href="language.types.string.html" class="link">chaîne de
+							caractères</a>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">input</code></em></span>
+				<dd>
+
+					<p class="para">Le tableau d&#039;entrée.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">flags</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si cette option vaut <strong><code>PREG_GREP_INVERT</code></strong>,
+						cette fonction retourne les éléments du tableau <em><code
+								class="parameter">input</code></em> qui ne correspondent <em
+							class="emphasis">pas</em> au motif <em><code
+								class="parameter">pattern</code></em>.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.preg-grep-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne un <a href="language.types.array.html" class="link">tableau</a>
+				indexé, en utilisant les clés du tableau <em><code
+						class="parameter">input</code></em> d&#039;entrée.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.preg-grep-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.2.0</td>
+						<td>Le paramètre <em><code class="parameter">flags</code></em>
+							a été ajouté.
+						</td>
+					</tr>
+
+					<tr>
+						<td>4.0.4</td>
+						<td>
+							<p class="para">
+								Depuis cette version, le tableau retourné est indexé en
+								utilisant les clés issues du tableau <em><code
+										class="parameter">input</code></em>.
+							</p>
+							<p class="para">
+								Pour obtenir l&#039;ancien comportement, utilisez la fonction <span
+									class="function"><a href="function.array-values.html"
+									class="function">array_values()</a></span> sur le tableau retourné
+								afin de réindexer les valeurs.
+							</p>
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.preg-grep-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4441">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>preg_grep()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Recherche&nbsp;les&nbsp;nombres&nbsp;à&nbsp;virgule&nbsp;flottante&nbsp;dans&nbsp;le&nbsp;tableau<br /></span><span
+								style="color: #0000BB">$fl_array&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">preg_grep</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"/^(\d+)?\.\d+$/"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$array</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.preg-grep-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member">Les <a href="pcre.pattern.html" class="link">Patterns
+						PCRE</a></li>
+				<li class="member"><span class="function"><a
+						href="function.preg-match-all.html" class="function"
+						rel="rdfs-seeAlso">preg_match_all()</a> - Expression rationnelle
+						globale</span></li>
+				<li class="member"><span class="function"><a
+						href="function.preg-filter.html" class="function"
+						rel="rdfs-seeAlso">preg_filter()</a> - Recherche et remplace avec
+						une expression rationnelle</span></li>
+				<li class="member"><span class="function"><a
+						href="function.preg-last-error.html" class="function"
+						rel="rdfs-seeAlso">preg_last_error()</a> - Retourne le code erreur
+						de la derni&egrave;re expression PCRE ex&eacute;cut&eacute;e</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.preg-filter.html">preg_filter</a>
+		</div>
+		<div class="next">
+			<a href="function.preg-last-error.html">preg_last_error</a>
+		</div>
+		<div class="up">
+			<a href="ref.pcre.html">Fonctions PCRE</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

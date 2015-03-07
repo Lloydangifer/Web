@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Remplace les cl&eacute;s par les valeurs, et les valeurs
+	par les cl&eacute;s</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.array-filter.html">array_filter</a>
+		</div>
+		<div class="next">
+			<a href="function.array-intersect-assoc.html">array_intersect_assoc</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.array-flip" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">array_flip</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">array_flip</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Remplace les clés par les valeurs, et
+					les valeurs par les clés</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.array-flip-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>array_flip</strong></span>
+				( <span class="methodparam"><span class="type">array</span> <code
+						class="parameter">$trans</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>array_flip()</strong></span> retourne
+				un tableau dont les clés sont les valeurs du précédent tableau <em><code
+						class="parameter">trans</code></em>, et les valeurs sont les clés.
+			</p>
+			<p class="para">
+				Notez bien que les valeurs de <em><code class="parameter">trans</code></em>
+				doivent être des clés valides, c&#039;est-à-dire qu&#039;elles
+				doivent être des entiers (<a href="language.types.integer.html"
+					class="link">entier</a>) ou des chaînes de caractères (<a
+					href="language.types.string.html" class="link">chaîne de
+					caractères</a>). Une alerte sera émise si une valeur est d&#039;un type
+				qui ne convient pas et la paire en question <em class="emphasis">ne
+					sera pas incluse dans le résultat</em>.
+			</p>
+			<p class="para">Si une valeur n&#039;est pas unique, seule la
+				dernière clé sera utilisée comme valeur, et toutes les autres seront
+				perdues.</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.array-flip-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">trans</code></em></span>
+				<dd>
+
+					<p class="para">Un tableau de paire clés/valeurs à inverser.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.array-flip-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne un tableau inversé en cas de succès, <strong><code>NULL</code></strong>
+				si une erreur survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.array-flip-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4603">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>array_flip()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$trans&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">array_flip</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$trans</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$original&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">strtr</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$str</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$trans</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="example-4604">
+				<p>
+					<strong>Exemple #2 Exemple avec <span class="function"><strong>array_flip()</strong></span>
+						: collision
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$trans&nbsp;
+							</span><span style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">"a"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"b"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"c"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #0000BB">2</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$trans&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">array_flip</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$trans</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$trans</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>
+						maintenant,
+						<var class="varname">
+							<var class="varname">$trans</var>
+						</var>
+						vaut :
+					</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Array
+(
+    [1] =&gt; b
+    [2] =&gt; c
+)
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.array-flip-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.array-values.html" class="function"
+						rel="rdfs-seeAlso">array_values()</a> - Retourne toutes les
+						valeurs d'un tableau</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-keys.html" class="function"
+						rel="rdfs-seeAlso">array_keys()</a> - Retourne toutes les
+						cl&eacute;s ou un ensemble des cl&eacute;s d'un tableau</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-reverse.html" class="function"
+						rel="rdfs-seeAlso">array_reverse()</a> - Inverse l'ordre des
+						&eacute;l&eacute;ments d'un tableau</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.array-filter.html">array_filter</a>
+		</div>
+		<div class="next">
+			<a href="function.array-intersect-assoc.html">array_intersect_assoc</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

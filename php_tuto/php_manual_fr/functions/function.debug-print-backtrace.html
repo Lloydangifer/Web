@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Affiche la pile d'ex&eacute;cution PHP</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.debug-backtrace.html">debug_backtrace</a>
+		</div>
+		<div class="next">
+			<a href="function.error-get-last.html">error_get_last</a>
+		</div>
+		<div class="up">
+			<a href="ref.errorfunc.html">Fonctions sur la gestion des erreurs</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.debug-print-backtrace" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">debug_print_backtrace</h1>
+			<p class="verinfo">(PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">debug_print_backtrace</span> <span
+					class="mdash">&mdash;</span> <span class="dc-title"> Affiche
+					la pile d&#039;exécution PHP </span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.debug-print-backtrace-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><span class="type void">void</span></span> <span
+					class="methodname"><strong>debug_print_backtrace</strong></span> ([
+				<span class="methodparam"><span class="type">int</span> <code
+						class="parameter">$options</code><span class="initializer">
+						= 0</span></span> [, <span class="methodparam"><span class="type">int</span>
+					<code class="parameter">$limit</code><span class="initializer">
+						= 0</span></span> ]] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>debug_print_backtrace()</strong></span>
+				affiche la pile d&#039;exécution de PHP. Elle affiche les appels aux
+				fonctions, aux fichiers inclus / requis ainsi que les appels à <span
+					class="function"><a href="function.eval.html"
+					class="function">eval()</a></span>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.debug-print-backtrace-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">options</code></em></span>
+				<dd>
+
+					<p class="para">Depuis 5.3.6, ce paramètre est un masque
+						d&#039;options suivantes :
+					<table class="doctable table">
+						<caption>
+							<strong>Options pour <span class="function"><strong>debug_print_backtrace()</strong></span></strong>
+						</caption>
+
+						<tbody class="tbody">
+							<tr>
+								<td>DEBUG_BACKTRACE_IGNORE_ARGS</td>
+								<td>Si l&#039;on doit omettre l&#039;index &quot;args&quot;
+									et ainsi, tous les arguments de la méthode/fonction pour
+									préserver la mémoire.</td>
+							</tr>
+
+						</tbody>
+
+					</table>
+
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">limit</code></em></span>
+				<dd>
+
+					<p class="para">
+						Depuis 5.4.0, ce paramètre peut être utilisé pour limiter le
+						nombre de trames de la pile à afficher. Par défaut (<em><code
+								class="parameter">limit</code></em>=<em>0</em>), toutes les trames de
+						la pile seront affichées.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.debug-print-backtrace-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Aucune valeur n&#039;est retournée.</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.debug-print-backtrace-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.4.0</td>
+						<td>Ajout du paramètre optionnel <em><code
+									class="parameter">limit</code></em>.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.3.6</td>
+						<td>Ajout du paramètre optionnel <em><code
+									class="parameter">options</code></em>.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.debug-print-backtrace-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-449">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>debug_print_backtrace()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;fichier&nbsp;include.php<br />
+								<br /></span><span style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">a</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">b</span><span style="color: #007700">();<br />}<br />
+								<br />function&nbsp;
+							</span><span style="color: #0000BB">b</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">c</span><span style="color: #007700">();<br />}<br />
+								<br />function&nbsp;
+							</span><span style="color: #0000BB">c</span><span style="color: #007700">(){<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">debug_print_backtrace</span><span
+								style="color: #007700">();<br />}<br />
+								<br /></span><span style="color: #0000BB">a</span><span
+								style="color: #007700">();<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;fichier&nbsp;test.php<br />//&nbsp;C'est&nbsp;le&nbsp;fichier&nbsp;que&nbsp;vous&nbsp;devez&nbsp;exécuter<br />
+								<br /></span><span style="color: #007700">include&nbsp;</span><span
+								style="color: #DD0000">'include.php'</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher quelque chose de
+						similaire à :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+#0  c() called at [/tmp/include.php:10]
+#1  b() called at [/tmp/include.php:6]
+#2  a() called at [/tmp/include.php:17]
+#3  include(/tmp/include.php) called at [/tmp/test.php:3]
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.debug-print-backtrace-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.debug-backtrace.html" class="function"
+						rel="rdfs-seeAlso">debug_backtrace()</a> - G&eacute;n&egrave;re le
+						contexte de d&eacute;boguage</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.debug-backtrace.html">debug_backtrace</a>
+		</div>
+		<div class="next">
+			<a href="function.error-get-last.html">error_get_last</a>
+		</div>
+		<div class="up">
+			<a href="ref.errorfunc.html">Fonctions sur la gestion des erreurs</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

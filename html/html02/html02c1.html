@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Liens vers des documents</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<h3>La balise a</h3>
+		<section>
+			<div class="fp-puce">
+				<p class="fp-p-raz">
+					La balise <a onclick="top.FP.Voir.showPageTech('elements', 'a')">a</a>
+					permet de faire un lien hypertexte d'une ressource vers une autre
+					ressource (le plus généralement d'une page Web vers une autre page
+					Web).
+				</p>
+
+				<p class="fp-p-raz">
+					<b>Un lien a deux extrémités, appelées ancres</b> (anchor - d'où le
+					nom de la balise).
+				</p>
+
+				<p class="fp-bot0 fp-p-raz">
+					<b>L'ancre de départ contient :</b>
+				</p>
+				<ul>
+					<li>une <abbr title="Uniform Resource Locator">URL</abbr> : la localisation physique de l'ancre d'arrivée
+						(la cible vers laquelle pointe le lien)</li>
+					<li>l'élément visuel marquant le lien (texte, images, etc)</li>
+				</ul>
+
+				<p class="fp-p-raz">
+					<b>L'ancre d'arrivée (la cible)</b> est généralement une page Web
+					(ou un endroit à l'intérieur d'une page) mais peut être n'importe
+					quelle ressource Web (une image, une vidéo, un son, un programme,
+					une animation, etc).
+				</p>
+
+				<p class="fp-bot0 fp-p-raz">L'ancre de départ d'un lien aura la
+					forme minimum suivante :</p>
+				<figure>
+					<img src="../htmlimg/lien.png" width="576" height="136">
+					<figcaption> Ancre de départ</figcaption>
+				</figure>
+			</div>
+
+			<p>
+				C'est la valeur de l'attribut <code>href</code> qui définit l'ancre
+				d'arrivée du lien. La valeur de cet attribut doit être une <abbr title="Uniform Resource Locator">URL</abbr>
+				valide (absolue ou relative, avec n'importe quel protocole supporté
+				par le navigateur).
+			</p>
+
+			<p class="fp-bot0">
+				Par défaut, un lien dans une page est repéré par un changement de
+				couleur et un soulignement du texte avec éventuellement le
+				changement de la forme du curseur de la souris quand le lien est
+				survolé.
+				<br>
+				Il y a 3 couleurs différentes pour signaler un lien. Ces couleurs
+				varient selon l'état du lien :
+			</p>
+			<ul>
+				<li><span style="color: #0000EE">#0000EE</span> pour un lien
+					qui n'a jamais été visité (vu),</li>
+				<li><span style="color: #551A8B;">#551A8B</span> pour un lien
+					qui a déjà été visité (vu),</li>
+				<li><span style="color: #EE0000;">#EE0000</span> quand on
+					active un lien : le moment où la souris est enfoncée quand on
+					clique sur un lien,</li>
+			</ul>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : signalement visuel d'un lien
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Signalement visuel d'un lien&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Voilà un lien vers : &lt;a href="http://www.bing.fr"&gt;
+			la page d'accueil de bing&lt;/a&gt;.&lt;/p&gt;
+		&lt;p&gt;Si vous n'avez jamais visité le site, le lien 
+			apparaitra en bleu.&lt;/p&gt;
+		&lt;p&gt;Si vous avez déjà visité le site, le lien 
+			appraitra en violet.&lt;/p&gt;
+		&lt;p&gt;Pour voir la couleur d'un lien actif, cliquez 
+			sur le lien en laissant le bouton de la souris 
+			enfoncé.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p class="fp-p-raz">
+				Remarque : la mise en forme des liens peut être modifiée par des
+				règles de style <abbr title="Cascading Style Sheets">CSS</abbr>
+				appliquée à l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'a')">a</a> suivant
+				son état (link, visited, active et hover)
+			</p>
+
+			<p>Si du texte est majoritairement utilisé comme support des
+				liens, des images peuvent aussi remplir ce rôle.</p>
+
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : une image comme support de lien
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Image lien&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Voilà un lien vers &lt;a href="http://www.bing.fr"&gt;
+			&lt;img src="logo_bing.png"&gt;&lt;/a&gt; et un autre 
+		 vers &lt;a href="http://www.google.fr" target="_blank"&gt;
+			&lt;img src="logo_google.png"&gt;&lt;/a&gt;.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				Depuis HTML5, bien que <a
+					onclick="top.FP.Voir.showPageTech('elements', 'a')">a</a> soit un
+				élément en ligne il peut aussi contenir des éléments de bloc.
+			</p>
+
+			<p>
+				Un nouvel attribut, <code>download</code> est prévu pour le liens
+				sur des ressources à télécharger. Avec cet attribut le navigateur
+				pourra faire la distinction entre une ressource vers laquelle
+				naviguer, et une ressource destinée à être téléchargée sur
+				l'ordinateur client. L'attribut <code>download</code> n'a pas besoin
+				forcément d'une valeur : elle est nécessaire uniquement si le nom
+				par défaut proposé à l'utilisateur pour le stockage est différent du
+				nom sur le serveur Web.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : lien download
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Lien download&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Téléchargez le sujet du  
+			&lt;a href="../exemples/examen.pdf" download&gt;
+				prochain examen&lt;/a&gt;.
+		&lt;/p&gt;
+		&lt;p&gt;Téléchargez   
+			&lt;a href="../exemples/photo.jpg"
+			   download="francois_piat.jpg"&gt;une photo&lt;/a&gt;.
+		&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+		</section>
+
+		<h3>Ancre d'arrivée nommée</h3>
+		<section>
+			<p>Un lien peut envoyer à un point précis situé dans la même page
+				ou dans une autre page. Ce point s'appelle une ancre d'arrivée
+				nommée.</p>
+
+			<p>Une ancre d'arrivée nommée permet au navigateur de se
+				positionner autre part qu'au début d'une page quand elle est chargée
+				et affichée. Elle permet aussi à l'utilisateur de se déplacer
+				rapidement à l'intérieur d'une page longue. Les liens en haut à
+				gauche de certaines pages de ce tutoriel sont des exemples de cette
+				technique.</p>
+
+			<h4>Ancre de départ</h4>
+			<section>
+				<p>
+					L'ancre de départ doit avoir une <abbr title="Uniform Resource Locator">URL</abbr> dans laquelle le nom de la
+					ressources et le nom de la partie à atteindre sont séparés par le
+					caractère <code>#</code> (dièse).
+				</p>
+
+				<figure>
+					<img src="../htmlimg/url3.png" width="484" height="97">
+					<figcaption> <abbr title="Uniform Resource Locator">URL</abbr> avec une ancre nommée</figcaption>
+				</figure>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : lien sur un point dans une page du <abbr title="World Wide Web Consortium">W3C</abbr>
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Lien sur un point&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		Exemple de lien vers une ancre nommée dans 
+		&lt;a href="http://www.w3.org/TR/2014/REC-html5-20141028/links.html#attr-hyperlink-href"&gt;la page du W3C&lt;/a&gt;
+		qui parle de l'attribut href.
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+			</section>
+
+			<h4>Ancre d'arrivée</h4>
+			<section>
+				<p>
+					Une ancre d'arrivée nommée est réalisé en nommant n'importe quel
+					élément de la page <abbr title="HyperText Markup Language">HTML</abbr> avec un attribut <code>id</code> et sa
+					valeur. Si on veut rester "sémantiquement correct", il convient
+					d'utiliser un élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'a')">a</a> auquel
+					on ne donne pas d'attribut <code>href</code>.
+				</p>
+
+				<p>L'élément servant d'ancre d'arrivée nommée n'a aucune
+					signalisation particulière parmi le reste du texte. L'ancre marque
+					tout simplement un endroit dans une page.</p>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : ancre nommée dans une page
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-fichier="../exemples/ancre_nommee.html">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Ancre nommée&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;a href="#partie_1"&gt;Partie 1&lt;/a&gt;
+		&lt;a href="#partie_2"&gt;Partie 2&lt;/a&gt;
+		&lt;a href="#partie_3"&gt;Partie 3&lt;/a&gt;
+		
+		&lt;p&gt;Pour que cet exemple soit représentatif, il faut
+			que la page soit longue et que son affichage ne
+			tienne pas dans la fenêtre du navigateur qui doit
+			faire apparaitre une barre d'ascenseur
+			vertical.&lt;/p&gt;
+		
+		&lt;a id="partie_1"&gt;&lt;h3&gt;Partie 1&lt;/h3&gt;&lt;/a&gt;
+		&lt;p&gt;C'est la première partie de cette page longue.&lt;/p&gt;
+		&lt;p&gt;L'ancre nommée est faite avec une balise a qui
+			entoure un élément de titre h3.&lt;/p&gt;
+		&lt;p&gt;Notez l'utilisation de l'attribut name et l'absence
+			d'attribut href&lt;/p&gt;
+		&lt;p&gt;Notez aussi que le nom de l'ancre ne contient pas
+		le caractère # qui est à utiliser uniquement dans l'URL
+		de l'ancre de départ.
+		&lt;p&gt;Blablabla.&lt;/p&gt;&lt;p&gt;Blablabla.&lt;/p&gt;&lt;p&gt;Blablabla.&lt;/p&gt;
+		
+		&lt;h3 id="partie_2"&gt;Partie 2&lt;/h3&gt;
+		&lt;p&gt;C'est la deuxième partie de cette page longue.&lt;/p&gt;
+		&lt;p&gt;L'ancre nommée est faite avec une balise h3 qui a
+			un attribut id pour son identification.&lt;/p&gt;
+		&lt;p&gt;Blablabla&lt;/p&gt;&lt;p&gt;Blablabla.&lt;/p&gt;&lt;p&gt;Blablabla.&lt;/p&gt;	
+		&lt;p&gt;Blablabla.&lt;/p&gt;&lt;p&gt;Blablabla.&lt;/p&gt;
+		
+		&lt;h3 id="partie_3"&gt;Partie 3&lt;/h3&gt;
+		&lt;p&gt;C'est la troisième partie de cette page longue.&lt;/p&gt;
+		&lt;p&gt;Notez que dans l'ance de départ, si l'url est 
+		constituée uniquement par le nom de l'ancre 
+		d'arrivée, le signe # doit quand même être là.&lt;/p&gt;
+		&lt;p&gt;Blablabla&lt;/p&gt;&lt;p&gt;Blablabla.&lt;/p&gt;&lt;p&gt;Blablabla.&lt;/p&gt;	
+		&lt;p&gt;Blablabla.&lt;/p&gt;&lt;p&gt;Blablabla.&lt;/p&gt;
+		
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</section>
+		</section>
+
+		<h3>Fenêtre d'affichage</h3>
+		<section>
+			<p>
+				Avec l'attribut <code>target</code> on peut préciser dans un lien la
+				fenêtre (ou l'onglet) dans laquelle le document lié doit s'afficher.
+			</p>
+
+			<figure>
+				<img src="../htmlimg/target.png" width="576" height="107">
+				<figcaption> cible d'affichage</figcaption>
+			</figure>
+
+			<div class="fp-puce">
+				<p class="fp-bot0 fp-p-raz">
+					Suivant la valeur donnée à l'attribut <code>target</code>,
+					l'affichage du document lié ne se fera pas au même endroit. Si le
+					nom donné comme valeur de l'attribut <code>target</code> est
+				</p>
+
+				<ul>
+					<li>le mot clé <code>_blank</code> : la ressource liée est
+						chargée et affichée dans une nouvelle fenêtre ou onglet.
+					<li>le mot clé <code>_parent</code> : la ressource liée est
+						chargée et affichée dans la fenêtre conteneur du document en cours
+						si il y en a une, sinon à la place du document en cours.
+					</li>
+					<li>le mot clé <code>_top</code> : la ressource liée est
+						chargée et affichée dans la fenêtre conteneur la plus haute de la
+						hiéarchie des conteneurs du document en cours si il y en a une,
+						sinon à la place du document en cours.
+					</li>
+					<li>le mot clé <code>_self</code> : la ressource liée est
+						chargée et affichée dans la fenêtre du document en cours. c'est la
+						même chose que si'il n'y avait pas d'attribut <code>target</code>
+						et c'est le fonctionnement par défaut des liens.
+					</li>
+				</ul>
+
+				<p class="fp-bot0 fp-p-raz">
+					Si le nom donné comme valeur de l'attribut <code>target</code> est
+				</p>
+				<ul>
+					<li>le nom d'un cadre (<a
+						onclick="top.FP.Voir.showPageTech('elements', 'iframe')">iframe</a>)
+						: la ressource liée est chargée et affichée dans ce cadre.
+					</li>
+					<li>le nom d'une fenêtre (ou onglet) déjà ouverte : la
+						ressource liée sera chargée et affichée dans cette fenêtre (ou
+						onglet).</li>
+				</ul>
+
+				<p class="fp-p-raz">
+					Si le nom donné comme valeur de l'attribut <code>target</code>
+					n'est aucun de ceux évoqué précédemment, une nouvelle fenêtre (ou
+					onglet) du navigateur est ouverte et la ressource liée y est
+					chargée et affichée.
+				</p>
+				<p>
+					Détails sur <a
+						href="http://www.w3.org/TR/2014/REC-html5-20141028/browsers.html#valid-browsing-context-name-or-keyword"
+						target="_blank">cette page du W3c</a>.
+				</p>
+			</div>
+		</section>
+
+
+		<a id="exo_lien_a_01"></a>
+		<h3 class="fp-exo">Liens vers d'autres pages - 1</h3>
+		<section>
+			<table class="TAB-sans-bord">
+				<tr>
+					<td colspan="2">
+						<p class="fp-p-raz fp-bot0">
+							Complétez le code <abbr title="HyperText Markup Language">HTML</abbr> ci-dessous pour réaliser les liens vers
+							les pages suivantes en utilisant des <abbr title="Uniform Resource Locator">URLs</abbr> relatives par rapport à
+							la page <code>ici.html</code>.
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<ul class="fp-ul-puce">
+							<li style="margin-left: 1em">aragorn.html (dans anneaux)</li>
+							<li style="margin-left: 1em">boromir.html (dans anneaux)</li>
+							<li style="margin-left: 1em">elrond.html (dans elfes). Le
+								lien doit s'ouvrir dans un onglet appelé "elfe".</li>
+							<li style="margin-left: 1em">frodon.html (dans lord_rings)</li>
+							<li style="margin-left: 1em">gandalf.html (dans lord_rings).
+								Faire pointer le lien sur l'ancre nommée "origine".</li>
+							<li style="margin-left: 1em">gimli.html (dans lord_rings).
+								Le lien doit s'ouvrir dans un nouvel onglet.</li>
+							<li style="margin-left: 1em">gollum.html (dans lord_rings).
+								Faire pointer le lien sur l'ancre nommée "atypique" et ouvrir un
+								nouvel onglet.</li>
+							<li style="margin-left: 1em">legolas.html (dans elfes). Le
+								lien doit s'ouvrir dans un onglet appelé "elfe".</li>
+						</ul>
+					</td>
+					<td>
+						<figure>
+							<img src="../exercices/terre_du_milieu.png" width="308"
+								height="337">
+							<figcaption> arborescence de l'exercice</figcaption>
+						</figure>
+					</td>
+				<tr>
+				<tr>
+					<td colspan="2">
+						<p class="fp-p-raz fp-bot0">Le support d'un lien est le nom du
+							personnage vers lequel pointe le lien (exemple: Aragorn pour
+							aragorn.html).</p>
+					</td>
+				</tr>
+			</table>
+
+			<p class="fp-completez">
+				<a onclick="top.FP.Voir.showCompletez('exo_lien_a_01_comp')">Code à
+					compléter</a>
+			</p>
+
+			<div id="exo_lien_a_01_comp" class="BLOC-completez">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : liens vers d'autres pages - 1
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Liens&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Aragorn&lt;/p&gt;
+		&lt;p&gt;Boromir&lt;/p&gt;
+		&lt;p&gt;Elrond&lt;/p&gt;
+		&lt;p&gt;Frodon&lt;/p&gt;
+		&lt;p&gt;Gandalf&lt;/p&gt;
+		&lt;p&gt;Gimli&lt;/p&gt;
+		&lt;p&gt;Gollum&lt;/p&gt;
+		&lt;p&gt;Legolas&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+
+			<p class="fp-solution">
+				<a onclick="top.FP.Voir.showSolution('exo_lien_a_01_solu', 1)">Une
+					solution possible</a>
+			</p>
+
+			<div id="exo_lien_a_01_solu" class="BLOC-solution">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : liens vers d'autres pages - 1
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Liens&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;&lt;a href="../exemples/anneaux/aragorn.html"&gt;Aragorn&lt;/a&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;a href="../exemples/anneaux/boromir.html"&gt;Boromir&lt;/a&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;a href="../exemples/anneaux/elfes/elrond.html" target="elfe"&gt;Elrond&lt;/a&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;a href="../exemples/lord_rings/frodon.html"&gt;Frodon&lt;/a&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;a href="../exemples/lord_rings/gandalf.html#origine"&gt;Gandalf&lt;/a&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;a href="../exemples/lord_rings/gimli.html" target="_blank"&gt;Gimli&lt;/a&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;a href="../exemples/lord_rings/gollum.html#atypique" target="_blank"&gt;Gollum&lt;/p&gt;
+		&lt;p&gt;&lt;a href="../exemples/anneaux/elfes/legolas.html" target="elfe"&gt;Legolas&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+		</section>
+
+		<a id="exo_lien_a_02"></a>
+		<h3 class="fp-exo">Liens vers d'autres pages - 2</h3>
+		<section>
+			<table class="TAB-sans-bord">
+				<tr>
+					<td colspan="2">
+						<p class="fp-p-raz fp-bot0">
+							Complétez le code <abbr title="HyperText Markup Language">HTML</abbr> ci-dessous pour réaliser les liens
+							demandés en utilisant des <abbr title="Uniform Resource Locator">URLs</abbr> relatives par rapport à la page <code>ici.html</code>.
+							<br>
+							Le support des liens est une image.
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td width="100%">
+						<ul class="fp-ul-puce">
+							<li style="margin-left: 1em">aragorn.png (dans anneaux)</li>
+							<li style="margin-left: 1em">boromir.png (dans anneaux)</li>
+							<li style="margin-left: 1em">elrond.png (dans elfes)</li>
+							<li style="margin-left: 1em">frodon.png (dans hobbits)</li>
+							<li style="margin-left: 1em">gandalf.png (dans html02)</li>
+							<li style="margin-left: 1em">gimli.png (dans images)</li>
+							<li style="margin-left: 1em">gollum.png (dans hobbits)</li>
+							<li style="margin-left: 1em">legolas.png (dans elfes)</li>
+						</ul>
+
+						<p>
+							Toutes les pages <abbr title="HyperText Markup Language">HTML</abbr> se trouvent dans le dossier <code>lord_rings</code>.
+							Le nom de la page est le même que celui de l'image, sauf pour
+							l'extension qui est <code>html</code> et pas <code>png</code>.
+						</p>
+					</td>
+					<td>
+						<figure>
+							<img src="../exercices/terre_du_milieu.png" width="308"
+								height="337">
+							<figcaption> arborescence de l'exercice</figcaption>
+						</figure>
+					</td>
+				</tr>
+			</table>
+
+			<p class="fp-p-raz">
+				L'intégration des image se fait avec la balise <a
+					onclick="top.FP.Voir.showPageTech('elements', 'img')">img</a> et
+				son attribut <code>src</code>. Pas la peine de donner les dimensions
+				des images.
+			</p>
+
+			<p class="fp-completez">
+				<a onclick="top.FP.Voir.showCompletez('exo_lien_a_02_comp')">Code à
+					compléter</a>
+			</p>
+
+			<div id="exo_lien_a_02_comp" class="BLOC-completez">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : liens vers d'autres pages - 2
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Liens&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;img src="chemin/de/la/ressource"&gt;
+		&lt;img src="chemin/de/la/ressource"&gt;
+		&lt;img src="chemin/de/la/ressource"&gt;
+		&lt;img src="chemin/de/la/ressource"&gt;
+		&lt;img src="chemin/de/la/ressource"&gt;
+		&lt;img src="chemin/de/la/ressource"&gt;
+		&lt;img src="chemin/de/la/ressource"&gt;
+		&lt;img src="chemin/de/la/ressource"&gt;	
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+
+			<p class="fp-solution">
+				<a onclick="top.FP.Voir.showSolution('exo_lien_a_02_solu', 1)">Une
+					solution possible</a>
+			</p>
+			<div id="exo_lien_a_02_solu" class="BLOC-solution">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : liens vers d'autres pages - 2
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Liens&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;a href="../exemples/lord_rings/aragorn.html"&gt;&lt;img src="../exemples/anneaux/aragorn.png"&gt;&lt;/a&gt;
+		&lt;a href="../exemples/lord_rings/boromir.html"&gt;&lt;img src="../exemples/anneaux/boromir.png"&gt;&lt;/a&gt;
+		&lt;a href="../exemples/lord_rings/elrond.html"&gt;&lt;img src="../exemples/anneaux/elfes/elrond.png"&gt;&lt;/a&gt;
+		&lt;a href="../exemples/lord_rings/frodon.html"&gt;&lt;img src="images/hobbits/frodon.png"&gt;&lt;/a&gt;
+		&lt;a href="../exemples/lord_rings/gandalf.html"&gt;&lt;img src="gandalf.png"&gt;&lt;/a&gt;
+		&lt;a href="../exemples/lord_rings/gimli.html"&gt;&lt;img src="images/gimli.png"&gt;&lt;/a&gt;
+		&lt;a href="../exemples/lord_rings/gollum.html"&gt;&lt;img src="images/hobbits/gollum.png"&gt;&lt;/a&gt;
+		&lt;a href="../exemples/lord_rings/legolas.html"&gt;&lt;img src="../exemples/anneaux/elfes/legolas.png"&gt;&lt;/a&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

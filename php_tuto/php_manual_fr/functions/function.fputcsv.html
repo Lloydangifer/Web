@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Formate une ligne en CSV et l'&eacute;crit dans un
+	fichier</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.fpassthru.html">fpassthru</a>
+		</div>
+		<div class="next">
+			<a href="function.fputs.html">fputs</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.fputcsv" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">fputcsv</h1>
+			<p class="verinfo">(PHP 5 &gt;= 5.1.0)</p>
+			<p class="refpurpose">
+				<span class="refname">fputcsv</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Formate une ligne en CSV et
+					l&#039;écrit dans un fichier</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.fputcsv-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">int</span> <span class="methodname"><strong>fputcsv</strong></span>
+				( <span class="methodparam"><span class="type">resource</span>
+					<code class="parameter">$handle</code></span> , <span class="methodparam"><span
+					class="type">array</span> <code class="parameter">$fields</code></span> [,
+				<span class="methodparam"><span class="type">string</span> <code
+						class="parameter">$delimiter</code><span class="initializer">
+						= &#039;,&#039;</span></span> [, <span class="methodparam"><span
+					class="type">string</span> <code class="parameter">$enclosure</code><span
+					class="initializer"> = &#039;&quot;&#039;</span></span> ]] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>fputcsv()</strong></span> formate la
+				ligne passée sous forme de tableau <em><code class="parameter">fields</code></em>,
+				puis écrit le résultat dans le fichier <em><code
+						class="parameter">handle</code></em>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.fputcsv-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">handle</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le pointeur de fichier doit être valide et pointer sur un fichier
+						ouvert avec succès par <span class="function"><a
+							href="function.fopen.html" class="function">fopen()</a></span> ou <span
+							class="function"><a href="function.fsockopen.html"
+							class="function">fsockopen()</a></span> (et pas encore fermé par <span
+							class="function"><a href="function.fclose.html"
+							class="function">fclose()</a></span>).
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">fields</code></em></span>
+				<dd>
+
+					<p class="para">Un tableau de valeurs.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">delimiter</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le paramètre optionnel <em><code class="parameter">delimiter</code></em>
+						spécifie le délimiteur (un seul caractère).
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">enclosure</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le paramètre <em><code class="parameter">enclosure</code></em>
+						spécifie le caractère d&#039;encadrement (un seul caractère).
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.fputcsv-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne la taille de la chaîne écrite ou <strong><code>FALSE</code></strong>
+				si une erreur survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.fputcsv-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2254">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>fputcsv()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br />$list&nbsp;
+							</span><span style="color: #007700">=&nbsp;array&nbsp;(<br />&nbsp;&nbsp;&nbsp;array(
+							</span><span style="color: #DD0000">'aaa'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'bbb'</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'ccc'</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'dddd'</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;array(
+							</span><span style="color: #DD0000">'123'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'456'</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'789'</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;array(
+							</span><span style="color: #DD0000">'"aaa"'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'"bbb"'</span><span
+								style="color: #007700">)<br />);<br />
+								<br /></span><span style="color: #0000BB">$fp&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'file.csv'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'w'</span><span style="color: #007700">);<br />
+								<br />foreach&nbsp;(
+							</span><span style="color: #0000BB">$list&nbsp;</span><span
+								style="color: #007700">as&nbsp;</span><span
+								style="color: #0000BB">$fields</span><span
+								style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">fputcsv</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$fields</span><span
+								style="color: #007700">);<br />}<br />
+								<br /></span><span style="color: #0000BB">fclose</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>
+						L&#039;exemple ci-dessus va écrire ce qui suit vers <em>file.csv</em>:
+					</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+aaa,bbb,ccc,dddd
+123,456,789
+&quot;&quot;&quot;aaa&quot;&quot;&quot;,&quot;&quot;&quot;bbb&quot;&quot;&quot;
+
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.fputcsv-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Si
+						vous avez des problèmes avec PHP qui ne reconnaît pas certaines
+						lignes lors de la lecture de fichiers qui ont été créés ou lus sur
+						un MacIntosh, vous pouvez activer l&#039;option de configuration <a
+						href="filesystem.configuration.html#ini.auto-detect-line-endings"
+						class="link">auto_detect_line_endings</a>.
+					</span>
+				</p>
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.fputcsv-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.fgetcsv.html" class="function" rel="rdfs-seeAlso">fgetcsv()</a>
+						- Obtient une ligne depuis un pointeur de fichier et l'analyse
+						pour des champs CSV</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.fpassthru.html">fpassthru</a>
+		</div>
+		<div class="next">
+			<a href="function.fputs.html">fputs</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

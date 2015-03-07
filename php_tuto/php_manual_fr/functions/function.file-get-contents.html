@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Lit tout un fichier dans une cha&icirc;ne</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.file-exists.html">file_exists</a>
+		</div>
+		<div class="next">
+			<a href="function.file-put-contents.html">file_put_contents</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.file-get-contents" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">file_get_contents</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">file_get_contents</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Lit tout un fichier dans une chaîne</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.file-get-contents-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>file_get_contents</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$filename</code></span> [, <span
+					class="methodparam"><span class="type">bool</span> <code
+						class="parameter">$use_include_path</code><span
+					class="initializer"> = false</span></span> [, <span class="methodparam"><span
+					class="type">resource</span> <code class="parameter">$context</code></span>
+				[, <span class="methodparam"><span class="type">int</span> <code
+						class="parameter">$offset</code><span class="initializer">
+						= -1</span></span> [, <span class="methodparam"><span class="type">int</span>
+					<code class="parameter">$maxlen</code></span> ]]]] )
+			</div>
+
+			<p class="para rdfs-comment">
+				Identique à la fonction <span class="function"><a
+					href="function.file.html" class="function">file()</a></span>, hormis le
+				fait que <span class="function"><strong>file_get_contents()</strong></span>
+				retourne le fichier <em><code class="parameter">filename</code></em>
+				dans une chaîne, à partir de la position <em><code
+						class="parameter">offset</code></em>, et jusqu&#039;à <em><code
+						class="parameter">maxlen</code></em> octets. En cas d&#039;erreur, <span
+					class="function"><strong>file_get_contents()</strong></span>
+				retourne <strong><code>FALSE</code></strong>.
+			</p>
+			<p class="para">
+				<span class="function"><strong>file_get_contents()</strong></span>
+				est la façon recommandée pour lire le contenu d&#039;un fichier dans
+				une <a href="language.types.string.html" class="link">chaîne de
+					caractères</a>. Elle utilisera un buffer en mémoire si ce mécanisme est
+				supporté par votre système, afin d&#039;améliorer les performances.
+			</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Si vous ouvrez une URI avec des caractères spéciaux, comme des
+					espaces, vous devez encoder cette URI avec la fonction <span
+						class="function"><a href="function.urlencode.html"
+						class="function">urlencode()</a></span>.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.file-get-contents-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">filename</code></em></span>
+				<dd>
+
+					<p class="para">Nom du fichier à lire.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">use_include_path</code></em></span>
+				<dd>
+
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>:
+						<p class="para">
+							Depuis PHP 5, la constante <strong><code>FILE_USE_INCLUDE_PATH</code></strong>
+							peut être utilisée pour déclencher la recherche dans le <a
+								href="ini.core.html#ini.include-path" class="link">chemin
+								d&#039;inclusion</a>.
+					</blockquote>
+
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">context</code></em></span>
+				<dd>
+
+					<p class="para">
+						Une ressource de contexte valide, créée avec la fonction <span
+							class="function"><a
+							href="function.stream-context-create.html" class="function">stream_context_create()</a></span>.
+						Si vous n&#039;avez pas besoin d&#039;utiliser un contexte
+						particulier, vous pouvez ignorer ce paramètre en affectant la
+						valeur <strong><code>NULL</code></strong>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">offset</code></em></span>
+				<dd>
+
+					<p class="para">La position à partir de laquelle on commence à
+						lire dans le flux original.</p>
+					<p class="para">
+						Le déplacement dans le fichier (<em><code class="parameter">offset</code></em>)
+						n&#039;est pas supporté sur des fichiers distants. Si vous tentez
+						de vous déplacer dans un fichier qui n&#039;est pas un fichier
+						local peut fonctionner sur les petits déplacements, mais le
+						comportement peut ne pas être attendu car le processus utilise le
+						flux du buffer.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">maxlen</code></em></span>
+				<dd>
+
+					<p class="para">La taille maximale des données à lire. Le
+						comportement par défaut est de lire jusqu&#039;à la fin du
+						fichier. Ce paramètre s&#039;applique sur le flux traité par les
+						filtres.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.file-get-contents-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne les données lues ou <strong><code>FALSE</code></strong> si
+				une erreur survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 errors"
+			id="refsect1-function.file-get-contents-errors">
+			<h3 class="title">Erreurs / Exceptions</h3>
+			<p class="para">
+				Émets une alerte de type <strong><code>E_WARNING</code></strong> si,
+				soit le paramètre <em><code class="parameter">maxlength</code></em>
+				est plus petit que zéro, soit le déplacement à la position <em><code
+						class="parameter">offset</code></em> spécifié dans le flux échoue.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.file-get-contents-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2232">
+				<p>
+					<strong>Exemple #1 Lit et affiche le code HTML d&#039;un
+						site Web</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$homepage&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">file_get_contents</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'http://www.example.com/'</span><span
+								style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #0000BB">$homepage</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			<div class="example" id="example-2233">
+				<p>
+					<strong>Exemple #2 Recherche un fichier dans le
+						include_path</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;avant&nbsp;PHP&nbsp;5<br /></span><span
+								style="color: #0000BB">$file&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">file_get_contents</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'./people.txt'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">);<br /></span><span
+								style="color: #FF8000">//&nbsp;depuis&nbsp;PHP&nbsp;5<br /></span><span
+								style="color: #0000BB">$file&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">file_get_contents</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'./people.txt'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">FILE_USE_INCLUDE_PATH</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			<div class="example" id="example-2234">
+				<p>
+					<strong>Exemple #3 Lit une section d&#039;un fichier</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Lit&nbsp;14&nbsp;caractères&nbsp;à&nbsp;partir&nbsp;du&nbsp;20ème<br /></span><span
+								style="color: #0000BB">$section&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">file_get_contents</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'./people.txt'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">NULL</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">NULL</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">20</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">14</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$section</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher quelque chose de
+						similaire à :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+string(14) &quot;lle Bjori Ro&quot; 
+</pre>
+					</div>
+				</div>
+			</div>
+			<div class="example" id="example-2235">
+				<p>
+					<strong>Exemple #4 Utilisation des contextes de flux</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Création&nbsp;d'un&nbsp;flux<br /></span><span
+								style="color: #0000BB">$opts&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;
+							</span><span style="color: #DD0000">'http'</span><span
+								style="color: #007700">=&gt;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #DD0000">'method'</span><span
+								style="color: #007700">=&gt;</span><span style="color: #DD0000">"GET"</span><span
+								style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #DD0000">'header'</span><span
+								style="color: #007700">=&gt;</span><span style="color: #DD0000">"Accept-language:&nbsp;en\r\n"&nbsp;</span><span
+								style="color: #007700">.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #DD0000">"Cookie:&nbsp;foo=bar\r\n"<br />&nbsp;&nbsp;
+							</span><span style="color: #007700">)<br />);<br />
+								<br /></span><span style="color: #0000BB">$context&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">stream_context_create</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$opts</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Accès&nbsp;à&nbsp;un&nbsp;fichier&nbsp;HTTP&nbsp;avec&nbsp;les&nbsp;entêtes&nbsp;HTTP&nbsp;indiqués&nbsp;ci-dessus<br /></span><span
+								style="color: #0000BB">$file&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">file_get_contents</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'http://www.example.com/'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">false</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$context</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.file-get-contents-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+
+					<tr>
+						<td>5.1.0</td>
+						<td>Ajout des paramètres <em><code class="parameter">offset</code></em>
+							et <em><code class="parameter">maxlen</code></em>.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.0.0</td>
+						<td>Ajout du support du contexte.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes"
+			id="refsect1-function.file-get-contents-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Cette
+						fonction gère les chaînes binaires.</span>
+				</p>
+			</blockquote>
+			<div class="tip">
+				<strong class="tip">Astuce</strong>
+				<p class="simpara">
+					Vous pouvez utiliser une URL comme nom de fichier avec cette
+					fonction, si le <a
+						href="filesystem.configuration.html#ini.allow-url-fopen"
+						class="link">gestionnaire fopen</a> a été activé. Voyez <span
+						class="function"><a href="function.fopen.html"
+						class="function">fopen()</a></span> pour plus de détails sur la façon de
+					spécifier le nom du fichier. Reportez-vous aux <a
+						href="wrappers.html" class="xref">Liste des protocoles et des
+						gestionnaires support&eacute;s</a> pour plus d&#039;informations sur
+					les capacités des différents gestionnaires, les notes sur leur
+					utilisation, ainsi que les informations sur leurs variables
+					prédéfinies fournies.
+				</p>
+			</div>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">
+					Lorsque vous utilisez SSL, le serveur IIS de Microsoft violera le
+					protocole en fermant la connexion sans envoyer l&#039;indicateur <em>close_notify</em>.
+					PHP le reportera en tant que &quot;SSL: Fatal Protocol Error&quot;
+					quand vous arrivez à la fin des données. L&#039;astuce est de
+					baisser le niveau de la directive <a
+						href="errorfunc.configuration.html#ini.error-reporting"
+						class="link">error_reporting</a> pour ne pas inclure les alertes.
+					À partir de PHP 4.3.7, le bogue est détecté automatiquement lors de
+					l&#039;ouverture du flux en utilisant <em>https://</em> et
+					supprimera cet avertissement pour vous. Si vous utilisez <span
+						class="function"><a href="function.fsockopen.html"
+						class="function">fsockopen()</a></span> pour créer un socket <em>ssl://</em>,
+					vous devez vous occuper vous-même de supprimer l&#039;erreur.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.file-get-contents-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.file.html" class="function" rel="rdfs-seeAlso">file()</a>
+						- Lit le fichier et renvoie le r&eacute;sultat dans un tableau</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fgets.html" class="function" rel="rdfs-seeAlso">fgets()</a>
+						- R&eacute;cup&egrave;re la ligne courante sur laquelle se trouve
+						le pointeur du fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fread.html" class="function" rel="rdfs-seeAlso">fread()</a>
+						- Lecture du fichier en mode binaire</span></li>
+				<li class="member"><span class="function"><a
+						href="function.readfile.html" class="function" rel="rdfs-seeAlso">readfile()</a>
+						- Affiche un fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.file-put-contents.html" class="function"
+						rel="rdfs-seeAlso">file_put_contents()</a> - &Eacute;crit un
+						contenu dans un fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.stream-get-contents.html" class="function"
+						rel="rdfs-seeAlso">stream_get_contents()</a> - Lit tout un flux
+						dans une cha&icirc;ne</span></li>
+				<li class="member"><span class="function"><a
+						href="function.stream-context-create.html" class="function"
+						rel="rdfs-seeAlso">stream_context_create()</a> - Cr&eacute;e un
+						contexte de flux</span></li>
+				<li class="member"><a
+					href="reserved.variables.httpresponseheader.html" class="link">$http_response_header</a></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.file-exists.html">file_exists</a>
+		</div>
+		<div class="next">
+			<a href="function.file-put-contents.html">file_put_contents</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

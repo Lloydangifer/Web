@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Hachage &agrave; sens unique (ind&eacute;chiffrable)</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.crc32.html">crc32</a>
+		</div>
+		<div class="next">
+			<a href="function.echo.html">echo</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.crypt" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">crypt</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">crypt</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Hachage à sens unique (indéchiffrable)</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.crypt-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>crypt</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$str</code></span> [, <span class="methodparam"><span
+					class="type">string</span> <code class="parameter">$salt</code></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				Retourne la chaîne <em><code class="parameter">str</code></em>
+				chiffrée avec l&#039;algorithme standard Unix <abbr class="abbrev">DES</abbr>,
+				ou bien un des algorithmes disponibles sur la machine.
+			</p>
+			<p class="para">
+				Certains systèmes supportent plus d&#039;un type de hachage. En
+				fait, il arrive que le chiffrement DES standard soit remplacé par un
+				algorithme de chiffrement MD5. Le choix du type de hachage est
+				effectué en se basant sur la valeur du <em><code
+						class="parameter">salt</code></em>. À l&#039;installation, PHP
+				détermine les possibilités de la fonction <span class="function"><strong>crypt()</strong></span>,
+				et acceptera des <em><code class="parameter">salt</code></em> pour
+				d&#039;autres types de chiffrements. Si aucun <em><code
+						class="parameter">salt</code></em> n&#039;est fourni, PHP va en générer
+				deux caractères (DES), à moins que le système par défaut soit MD5,
+				auquel cas un <em><code class="parameter">salt</code></em>
+				compatible MD5 sera généré. PHP définit une constante appelée <strong><code>CRYPT_SALT_LENGTH</code></strong>
+				permettant de vous indiquer la longueur du <em><code
+						class="parameter">salt</code></em> disponible pour le système de
+				hachage utilisé.
+			</p>
+			<p class="para">
+				<span class="function"><strong>crypt()</strong></span>,
+				lorsqu&#039;elle est utilisée avec le chiffrement standard DES,
+				retourne le <em><code class="parameter">salt</code></em> dans les
+				deux premiers caractères de la chaîne retournée. Elle n&#039;utilise
+				que les 8 premiers caractères de <em><code class="parameter">str</code></em>,
+				ce qui fait que toutes les chaînes plus longues, qui ont les mêmes
+				premiers 8 octets retourneront le même résultat (tant que le <em><code
+						class="parameter">salt</code></em> est toujours le même).
+			</p>
+			<p class="simpara">
+				Sur les systèmes où <span class="function"><strong>crypt()</strong></span>
+				supporte plusieurs types de hachages, les constantes suivantes sont
+				mises à 0 ou 1, suivant que le type correspondant est disponible :
+			</p>
+			<ul class="itemizedlist">
+				<li class="listitem"><span class="simpara"> <strong><code>CRYPT_STD_DES</code></strong>
+						: chiffrement DES standard à 2 caractères depuis la classe de
+						caractères &quot;./0-9A-Za-z&quot;. L&#039;utilisation de
+						caractères invalides dans le salt fera échouer la fonction
+						crypt().
+				</span></li>
+				<li class="listitem"><span class="simpara"> <strong><code>CRYPT_EXT_DES</code></strong>
+						: Hachage DES étendu. Le &quot;salt&quot; sera une chaîne de 9
+						caractères composé d&#039;un underscore, suivi de 4 octets du
+						compteur d&#039;itération puis 4 octets du &quot;salt&quot;. Ces
+						caractères seront encodés en tant que caractères imprimables, 6
+						octets par caractère, et dont le premier caractère au moins sera
+						significatif. Les valeurs de 0 à 63 seront encodés comme
+						&quot;./0-9A-Za-z&quot;. L&#039;utilisation de caractères
+						invalides dans le salt fera échouer la fonction crypt().
+				</span></li>
+				<li class="listitem"><span class="simpara"> <strong><code>CRYPT_MD5</code></strong>
+						: hachage MD5 à 12 caractères commençant par <em>$1$</em>
+				</span></li>
+				<li class="listitem"><span class="simpara"> <strong><code>CRYPT_BLOWFISH</code></strong>
+						: hachage Blowfish dont le salt est composé comme ceci ;
+						&quot;$2a$&quot;, &quot;$2x$&quot; or &quot;$2y$&quot;, un
+						paramètre à 2 chiffres, <em>$</em>, et 22 chiffres depuis
+						l&#039;alphabet &quot;./0-9A-Za-z&quot;. L&#039;utilisation de
+						caractères en dehors de cette classe dans le salt fera que la
+						fonction crypt() retournera une chaîne vide (de longueur 0). Le
+						paramètre à 2 chiffres est le logarithme base-2 du compteur
+						d&#039;itération pour l&#039;algorithme de hachage basé sur
+						Blowfish sous jacent et doivent être dans l&#039;intervalle 04-31.
+						De la même façon, si vous utilisez une valeur en dehors de cet
+						intervalle, la fonction crypt() échouera. Les versions de PHP
+						antérieures à la version 5.3.7 ne supportent que &quot;$2a$&quot;
+						comme préfixe salt : PHP 5.3.7 a introduit deux nouveaux préfixes
+						pour résoudre une faille de sécurité dans l&#039;implémentation de
+						Blowfish. Référez-vous à <a
+						href="http://www.php.net/security/crypt_blowfish.php"
+						class="link external">&raquo;&nbsp;ce document</a> pour la
+						totalité des détails de la correction de cette faille, mais pour
+						résumer, les développeurs prévoient uniquement l&#039;utilisation
+						de &quot;$2y$&quot; à la place de &quot;$2a$&quot; pour les
+						versions supérieures à 5.3.7 de PHP.
+				</span></li>
+				<li class="listitem"><span class="simpara"> <strong><code>CRYPT_SHA256</code></strong>
+						- Hachage SHA-256 dont le salt est composé de 16 caractères
+						préfixé par <em>$5$</em>. Si le salt commence par <em>&#039;rounds=&lt;N&gt;$&#039;</em>,
+						la valeur numérique de N sera utilisée pour indiquer le nombre de
+						fois que la boucle de hachage doit être exécutée, un peu comme le
+						paramètre dans l&#039;algorithme Blowfish. La valeur par défaut de
+						<em>rounds</em> est de 5000, le minimum pouvant être de 1000 et le
+						maximum, de 999,999,999. Tout autre sélection de N en dehors de
+						cet intervalle sera tronqué à la plus proche des 2 limites.
+				</span></li>
+				<li class="listitem"><span class="simpara"> <strong><code>CRYPT_SHA512</code></strong>
+						- Hachage SHA-512 dont le salt est composé de 16 caractères
+						préfixé par <em>$6$</em>. Si le salt commence par <em>&#039;rounds=&lt;N&gt;$&#039;</em>,
+						la valeur numérique de N sera utilisée pour indiquer le nombre de
+						fois que la boucle de hachage doit être exécutée, un peu comme le
+						paramètre dans l&#039;algorithme Blowfish. La valeur par défaut de
+						<em>rounds</em> est de 5000, le minimum pouvant être de 1000 et le
+						maximum, de 999,999,999. Tout autre sélection de N en dehors de
+						cet intervalle sera tronqué à la plus proche des 2 limites.
+				</span></li>
+			</ul>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Depuis PHP 5.3.0, PHP dispose de sa propre
+					implémentation, et l&#039;utilisera si le système ne dispose pas de
+					fonction crypt, ou de certains algorithmes.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.crypt-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">str</code></em></span>
+				<dd>
+
+					<p class="para">La chaîne à hacher.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">salt</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si l&#039;argument <em><code class="parameter">salt</code></em>
+						n&#039;est pas fourni, le comportement est défini par
+						l&#039;implémentation de l&#039;algorithme et peut provoquer des
+						résultats inattendus.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.crypt-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Retourne la chaîne hachée ou une chaîne qui sera
+				inférieure à 13 caractères et qui est garantie de différer du salt
+				en cas d&#039;erreur.</p>
+		</div>
+
+
+		<div class="refsect1 changelog" id="refsect1-function.crypt-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.3.7</td>
+						<td>Ajout de deux nouveaux modes Blowfish <em>$2x$</em> et <em>$2y$</em>
+							pour éviter de potentielles attaques.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.3.2</td>
+						<td>Ajout de SHA-256 et de SHA-512 basés sur l&#039;<a
+							href="http://people.redhat.com/drepper/SHA-crypt.txt"
+							class="link external">&raquo;&nbsp;implementation</a> de Ulrich
+							Drepper.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.3.2</td>
+						<td>Correction du comportement de Blowfish lors d&#039;étape
+							invalide où une chaîne d&#039;échec (&quot;*0&quot; ou
+							&quot;*1&quot;) était retournée au lieu de retourner le DES dans
+							ce cas.</td>
+					</tr>
+
+					<tr>
+						<td>5.3.0</td>
+						<td>PHP dispose maintenant de sa propre implémentation de
+							crypt MD5, Standard DES, Extended DES et l&#039;algorithme
+							Blowfish. Il l&#039;utilisera si le système ne fournit pas
+							l&#039;un ou l&#039;autre des algorithmes.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.crypt-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4482">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>crypt()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;laissons&nbsp;le&nbsp;salt&nbsp;initialisé&nbsp;par&nbsp;PHP<br /></span><span
+								style="color: #0000BB">$hashed_password&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">crypt</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'mypassword'</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">/*<br />&nbsp;&nbsp;Il&nbsp;vaut&nbsp;mieux&nbsp;passer&nbsp;le&nbsp;résultat&nbsp;complet&nbsp;de&nbsp;crypt()&nbsp;comme&nbsp;salt&nbsp;nécessaire<br />&nbsp;&nbsp;pour&nbsp;le&nbsp;chiffrement&nbsp;du&nbsp;mot&nbsp;de&nbsp;passe,&nbsp;pour&nbsp;éviter&nbsp;les&nbsp;problèmes&nbsp;entre&nbsp;les<br />&nbsp;&nbsp;algorithmes&nbsp;utilisés&nbsp;(comme&nbsp;nous&nbsp;le&nbsp;disons&nbsp;ci-dessus,&nbsp;le&nbsp;chiffrement<br />&nbsp;&nbsp;standard&nbsp;DES&nbsp;utilise&nbsp;un&nbsp;salt&nbsp;de&nbsp;2&nbsp;caractères,&nbsp;mais&nbsp;un&nbsp;chiffrement<br />&nbsp;&nbsp;MD5&nbsp;utilise&nbsp;un&nbsp;salt&nbsp;de&nbsp;12).<br />*/<br /></span><span
+								style="color: #007700">if&nbsp;(</span><span
+								style="color: #0000BB">crypt</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$user_input</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$hashed_password</span><span
+								style="color: #007700">)&nbsp;==&nbsp;</span><span
+								style="color: #0000BB">$hashed_password</span><span
+								style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Mot&nbsp;de&nbsp;passe&nbsp;correct&nbsp;!"</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="example-4483">
+				<p>
+					<strong>Exemple #2 Utilisation de <span class="function"><strong>crypt()</strong></span>
+						avec htpasswd
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Définition&nbsp;du&nbsp;mot&nbsp;de&nbsp;passe<br /></span><span
+								style="color: #0000BB">$password&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'mypassword'</span><span
+								style="color: #007700">;<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Récupération&nbsp;du&nbsp;hash,&nbsp;on&nbsp;laisse&nbsp;le&nbsp;salt&nbsp;se&nbsp;générer&nbsp;automatiquement<br /></span><span
+								style="color: #0000BB">$hash&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">crypt</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$password</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="example-4484">
+				<p>
+					<strong>Exemple #3 Utilisation de <span class="function"><strong>crypt()</strong></span>
+						avec différents types de chiffrement
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">/*&nbsp;Ces&nbsp;salts&nbsp;ne&nbsp;sont&nbsp;que&nbsp;pour&nbsp;l'exemple,&nbsp;et&nbsp;ne&nbsp;doivent&nbsp;pas&nbsp;être&nbsp;utilisés<br />&nbsp;&nbsp;&nbsp;dans&nbsp;votre&nbsp;application.&nbsp;Vous&nbsp;devriez&nbsp;générer&nbsp;un&nbsp;salt&nbsp;distinct,<br />&nbsp;&nbsp;&nbsp;correctement&nbsp;formatté&nbsp;pour&nbsp;chaque&nbsp;mot&nbsp;de&nbsp;passe.<br />*/<br /></span><span
+								style="color: #007700">if&nbsp;(</span><span
+								style="color: #0000BB">CRYPT_STD_DES&nbsp;</span><span
+								style="color: #007700">==&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'DES&nbsp;standard&nbsp;:&nbsp;'&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">crypt</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'rasmuslerdorf'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'rl'</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br />
+								<br />if&nbsp;(
+							</span><span style="color: #0000BB">CRYPT_EXT_DES&nbsp;</span><span
+								style="color: #007700">==&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'DES&nbsp;étendu&nbsp;:&nbsp;'&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">crypt</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'rasmuslerdorf'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'_J9..rasm'</span><span
+								style="color: #007700">)&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br />
+								<br />if&nbsp;(
+							</span><span style="color: #0000BB">CRYPT_MD5&nbsp;</span><span
+								style="color: #007700">==&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'MD5&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">crypt</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'rasmuslerdorf'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'$1$rasmusle$'</span><span
+								style="color: #007700">)&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br />
+								<br />if&nbsp;(
+							</span><span style="color: #0000BB">CRYPT_BLOWFISH&nbsp;</span><span
+								style="color: #007700">==&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'Blowfish&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">crypt</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'rasmuslerdorf'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'$2a$07$usesomesillystringforsalt$'</span><span
+								style="color: #007700">)&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br />
+								<br />if&nbsp;(
+							</span><span style="color: #0000BB">CRYPT_SHA256&nbsp;</span><span
+								style="color: #007700">==&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'SHA-256&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">crypt</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'rasmuslerdorf'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'$5$rounds=5000$usesomesillystringforsalt$'</span><span
+								style="color: #007700">)&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br />
+								<br />if&nbsp;(
+							</span><span style="color: #0000BB">CRYPT_SHA512&nbsp;</span><span
+								style="color: #007700">==&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'SHA-512&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">crypt</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'rasmuslerdorf'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'$6$rounds=5000$usesomesillystringforsalt$'</span><span
+								style="color: #007700">)&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher quelque chose de
+						similaire à :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+DES standard : rl.3StKT.4T8M
+DES étendu : _J9..rasmBYk8r9AiWNc
+MD5 :          $1$rasmusle$rISCgZzpwk3UhDidwXvin0
+Blowfish :     $2a$07$usesomesillystringfore2uDLvp1Ii2e./U9C8sBjqp8I90dH6hi
+SHA-256 :      $5$rounds=5000$usesomesillystri$KqJWpanXZHKq2BOB43TSaYhEWsQ1Lr5QNyPCDH/Tp.6
+SHA-512 :      $6$rounds=5000$usesomesillystri$D4IrlXatmP7rx3P3InaxBeoomnAihCKRVQP22JZ6EY47Wc6BkroIuUUBOov1i.S5KPgErtP/EN5mcO.ChWQW21
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.crypt-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">
+						Il n&#039;existe pas de fonction de déchiffrement, car la fonction
+						<span class="function"><strong>crypt()</strong></span> utilise un
+						algorithme à un seul sens (injection).
+					</span>
+				</p>
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.crypt-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.md5.html" class="function" rel="rdfs-seeAlso">md5()</a>
+						- Calcule le md5 d'une cha&icirc;ne</span></li>
+				<li class="member">L&#039;extension <a href="ref.mcrypt.html"
+					class="link">Mcrypt</a></li>
+				<li class="member">La page de manuel Unix de la fonction crypt
+					pour plus d&#039;informations</li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.crc32.html">crc32</a>
+		</div>
+		<div class="next">
+			<a href="function.echo.html">echo</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

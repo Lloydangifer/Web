@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Les Superglobales sont des variables internes qui sont
+	toujours disponibles, quel que soit le contexte</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="reserved.variables.html">Variables
+				pr&eacute;d&eacute;finies</a>
+		</div>
+		<div class="next">
+			<a href="reserved.variables.globals.html">$GLOBALS</a>
+		</div>
+		<div class="up">
+			<a href="reserved.variables.html">Variables
+				pr&eacute;d&eacute;finies</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.variables.superglobals" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">Les Superglobales</h1>
+			<p class="refpurpose">
+				<span class="refname">Les Superglobales</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Les Superglobales sont des variables
+					internes qui sont toujours disponibles, quel que soit le contexte</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-language.variables.superglobals-description">
+			<h3 class="title">Description</h3>
+			<p class="para">
+				Plusieurs variables prédéfinies en PHP sont
+				&quot;superglobales&quot;, ce qui signifie qu&#039;elles sont
+				disponibles quel que soit le contexte du script. Il est inutile de
+				faire <strong class="command">global $variable;</strong> avant
+				d&#039;y accéder dans les fonctions ou les méthodes.
+			</p>
+			<p class="para">Les variables superglobales sont :
+			<ul class="simplelist">
+				<li class="member"><var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.globals.html" class="classname">$GLOBALS</a>
+						</var>
+					</var></li>
+				<li class="member"><var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.server.html" class="classname">$_SERVER</a>
+						</var>
+					</var></li>
+				<li class="member"><var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.get.html" class="classname">$_GET</a>
+						</var>
+					</var></li>
+				<li class="member"><var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.post.html" class="classname">$_POST</a>
+						</var>
+					</var></li>
+				<li class="member"><var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.files.html" class="classname">$_FILES</a>
+						</var>
+					</var></li>
+				<li class="member"><var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.cookies.html" class="classname">$_COOKIE</a>
+						</var>
+					</var></li>
+				<li class="member"><var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.session.html" class="classname">$_SESSION</a>
+						</var>
+					</var></li>
+				<li class="member"><var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.request.html" class="classname">$_REQUEST</a>
+						</var>
+					</var></li>
+				<li class="member"><var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.environment.html" class="classname">$_ENV</a>
+						</var>
+					</var></li>
+			</ul>
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-language.variables.superglobals-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.1.0</td>
+						<td>Les superglobales sont introduites en PHP.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes"
+			id="refsect1-language.variables.superglobals-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <strong>Disponibilité
+						des variables</strong><br />
+				<p class="para">
+					Par défaut, toutes les superglobales sont disponibles, et seules
+					les directives de configuration peuvent les rendre indisponibles.
+					Pour plus d&#039;informations, reportez-vous à la documentation sur
+					l&#039;<a href="ini.core.html#ini.variables-order" class="link">ordre
+						des variables</a>.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <strong>Gérer la
+						directive register_globals</strong><br />
+				<p class="para">
+					Si la directive obsolète <a
+						href="ini.core.html#ini.register-globals" class="link">register_globals</a>
+					est définie à <em>on</em>, alors les variables simples seront
+					également disponibles dans le contexte global du script. Par
+					exemple,
+					<var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.post.html" class="classname">$_POST['foo']</a>
+						</var>
+					</var>
+					existera également sous la forme
+					<var class="varname">
+						<var class="varname">$foo</var>
+					</var>
+					.
+				</p>
+				<p class="para">
+					Pour plus d&#039;informations, voir la FAQ intitulée &quot;<a
+						href="faq.using.html#faq.register-globals" class="link">Comment
+						la directive register_globals affecte-t-elle mes scripts ?</a>&quot;
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <strong>Variable
+						variables</strong><br />
+				<p class="para">
+					Les superglobales ne peuvent pas être utilisées comme <a
+						href="language.variables.variable.html" class="link">variables
+						variables</a> dans une fonction ou une méthode d&#039;une classe.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-language.variables.superglobals-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member">La <a href="language.variables.scope.html"
+					class="link">portée des variables</a></li>
+				<li class="member">La directive <a
+					href="ini.core.html#ini.variables-order" class="link">variables_order</a></li>
+				<li class="member"><a href="book.filter.html" class="link">L&#039;extension
+						sur les filtres</a></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="reserved.variables.html">Variables
+				pr&eacute;d&eacute;finies</a>
+		</div>
+		<div class="next">
+			<a href="reserved.variables.globals.html">$GLOBALS</a>
+		</div>
+		<div class="up">
+			<a href="reserved.variables.html">Variables
+				pr&eacute;d&eacute;finies</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

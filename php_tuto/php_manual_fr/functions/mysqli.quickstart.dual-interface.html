@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Interface proc&eacute;durale et orient&eacute;e objet</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="mysqli.quickstart.html">Guide de d&eacute;marrage rapide</a></div>
+ <div class="next"><a href="mysqli.quickstart.connections.html">Connexions</a></div>
+ <div class="up"><a href="mysqli.quickstart.html">Guide de d&eacute;marrage rapide</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="mysqli.quickstart.dual-interface" class="section">
+  <h2 class="title">Interface procédurale et orientée objet</h2>
+  <p class="para">
+   L&#039;extension mysqli fournit 2 interfaces. Elle supporte la programmation
+   procédurale mais aussi, la programmation orientée objet.
+  </p>
+  <p class="para">
+   Les utilisateurs migrants depuis l&#039;ancienne extension mysql préfèreront
+   l&#039;interface procédurale. Cette interface est similaire à celle utilisée
+   par l&#039;ancienne extension mysql. Dans la plupart des cas, les noms de fonctions
+   ne diffèrent que par leurs préfixes. Quelques fonctions mysqli prennent
+   un gestionnaire de connexion comme premier argument, alors que la fonction
+   correspondante de l&#039;ancienne interface mysql le prennait comme argument
+   optionnel en dernière position.
+  </p>
+  <p class="para">
+   <div class="example" id="example-1605">
+    <p><strong>Exemple #1 Migration facile depuis l&#039;ancienne extension mysql</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqli_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"example.com"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqli_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;'Please,&nbsp;do&nbsp;not&nbsp;use&nbsp;'&nbsp;AS&nbsp;_msg&nbsp;FROM&nbsp;DUAL"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqli_fetch_assoc</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'_msg'</span><span style="color: #007700">];<br /><br /></span><span style="color: #0000BB">$mysql&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"root"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">""</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">mysql_select_db</span><span style="color: #007700">(</span><span style="color: #DD0000">"test"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;'the&nbsp;mysql&nbsp;extension&nbsp;for&nbsp;new&nbsp;developments.'&nbsp;AS&nbsp;_msg&nbsp;FROM&nbsp;DUAL"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysql</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_fetch_assoc</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'_msg'</span><span style="color: #007700">];<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Please, do not use the mysql extension for new developments.
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <em class="emphasis">L&#039;interface orientée objet</em>
+  </p>
+  <p class="para">
+   En plus de l&#039;interface procédurale, les utilisateurs peuvent choisir
+   d&#039;utiliser l&#039;interface orientée objet. La documentation est organisée
+   en utilisant cette interface. Elle montre les fonctions groupées
+   par leurs buts, rendant simple le démarrage de la programmation.
+   La section référence fournit des exemples sur les deux syntaxes.
+  </p>
+  <p class="para">
+   Il n&#039;y a pas de différence significative d&#039;un point de vue performance
+   entre les deux interfaces. Les utilisateurs peuvent faire leur choix
+   que d&#039;un point de vue personnel.
+  </p>
+  <p class="para">
+   <div class="example" id="example-1606">
+    <p><strong>Exemple #2 Interface procédurale et orientée objet</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqli_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"example.com"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Echec&nbsp;lors&nbsp;de&nbsp;la&nbsp;connexion&nbsp;à&nbsp;MySQL&nbsp;:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">();<br />}<br /><br /></span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqli_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;'A&nbsp;world&nbsp;full&nbsp;of&nbsp;'&nbsp;AS&nbsp;_msg&nbsp;FROM&nbsp;DUAL"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqli_fetch_assoc</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'_msg'</span><span style="color: #007700">];<br /><br /></span><span style="color: #0000BB">$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"example.com"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect_errno</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Echec&nbsp;lors&nbsp;de&nbsp;la&nbsp;connexion&nbsp;à&nbsp;MySQL&nbsp;:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect_error</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;'choices&nbsp;to&nbsp;please&nbsp;everybody.'&nbsp;AS&nbsp;_msg&nbsp;FROM&nbsp;DUAL"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_assoc</span><span style="color: #007700">();<br />echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'_msg'</span><span style="color: #007700">];<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+A world full of choices to please everybody.
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   L&#039;interface orientée objet est utilisée dans le démarrage rapide de la documentation
+   en raison du fait que la section référence est organisée de cette façon.
+  </p>
+  <p class="para">
+   <em class="emphasis">Mixage des styles</em>
+  </p>
+  <p class="para">
+   Il est possible de passer d&#039;un style à un autre à tout moment bien que ce ne
+   soit pas recommandé pour des raisons de clareté et de style de codage.
+  </p>
+  <p class="para">
+   <div class="example" id="example-1607">
+    <p><strong>Exemple #3 Mauvais style de codage</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"example.com"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect_errno</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Echec&nbsp;lors&nbsp;de&nbsp;la&nbsp;connexion&nbsp;à&nbsp;MySQL&nbsp;:&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect_error</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqli_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;'Possible&nbsp;but&nbsp;bad&nbsp;style.'&nbsp;AS&nbsp;_msg&nbsp;FROM&nbsp;DUAL"</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$res</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Echec&nbsp;lors&nbsp;de&nbsp;l'exécution&nbsp;de&nbsp;la&nbsp;requête&nbsp;:&nbsp;("&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">")&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">;<br />}<br /><br />if&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_assoc</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'_msg'</span><span style="color: #007700">];<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Possible but bad style.
+</pre></div>
+    </div>
+    </div>
+  </p>
+  <p class="para">
+   <em class="emphasis">Voir aussi</em>
+  </p>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"> <span class="methodname"><a href="mysqli.construct.html" class="methodname">mysqli::__construct()</a></span></li>
+    <li class="member"> <span class="methodname"><a href="mysqli.query.html" class="methodname">mysqli::query()</a></span></li>
+    <li class="member"> <span class="methodname"><a href="mysqli-result.fetch-assoc.html" class="methodname">mysqli_result::fetch_assoc()</a></span></li>
+    <li class="member"><a href="mysqli.connect-errno.html" class="link">$mysqli::connect_errno</a></li>
+    <li class="member"><a href="mysqli.connect-error.html" class="link">$mysqli::connect_error</a></li>
+    <li class="member"><a href="mysqli.errno.html" class="link">$mysqli::errno</a></li>
+    <li class="member"><a href="mysqli.error.html" class="link">$mysqli::error</a></li>
+    <li class="member"><a href="mysqli.summary.html" class="link">Le résumé des fonctions de l&#039;extension MySQLi</a></li>
+   </ul>
+  </p>
+ </div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="mysqli.quickstart.html">Guide de d&eacute;marrage rapide</a></div>
+ <div class="next"><a href="mysqli.quickstart.connections.html">Connexions</a></div>
+ <div class="up"><a href="mysqli.quickstart.html">Guide de d&eacute;marrage rapide</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

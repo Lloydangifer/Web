@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Copie un fichier</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.clearstatcache.html">clearstatcache</a>
+		</div>
+		<div class="next">
+			<a href="function.delete.html">delete</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.copy" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">copy</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">copy</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Copie un fichier</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.copy-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>copy</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$source</code></span> , <span class="methodparam"><span
+					class="type">string</span> <code class="parameter">$dest</code></span> [,
+				<span class="methodparam"><span class="type">resource</span>
+					<code class="parameter">$context</code></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				Fait une copie du fichier <em><code class="parameter">source</code></em>
+				vers le fichier <em><code class="parameter">dest</code></em>.
+			</p>
+			<p class="para">
+				Si vous souhaitez déplacer un fichier, utilisez la fonction <span
+					class="function"><a href="function.rename.html"
+					class="function">rename()</a></span>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.copy-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">source</code></em></span>
+				<dd>
+
+					<p class="para">Chemin vers le fichier source.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">dest</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le chemin de destination. Si <em><code class="parameter">dest</code></em>
+						est une URL, la copie peut échouer si ce protocole ne supporte pas
+						l&#039;écrasement de fichiers existants.
+					</p>
+					<div class="warning">
+						<strong class="warning">Avertissement</strong>
+						<p class="para">
+							Si le fichier de destination <em><code class="parameter">dest</code></em>
+							existe déjà, il sera écrasé.
+						</p>
+					</div>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">context</code></em></span>
+				<dd>
+
+					<p class="para">
+						Une ressource de contexte valide, créée par la fonction <span
+							class="function"><a
+							href="function.stream-context-create.html" class="function">stream_context_create()</a></span>.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.copy-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog" id="refsect1-function.copy-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.3.0</td>
+						<td>Ajout du support du contexte.</td>
+					</tr>
+
+					<tr>
+						<td>4.3.0</td>
+						<td>Les paramètres <em><code class="parameter">source</code></em>
+							et <em><code class="parameter">dest</code></em> peuvent désormais
+							être des URL si le gestionnaire de fichiers distants a été
+							activé. Voir la fonction <span class="function"><a
+								href="function.fopen.html" class="function">fopen()</a></span> pour
+							plus de détails.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.copy-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2219">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>copy()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$file&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'example.txt'</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$newfile&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'example.txt.bak'</span><span
+								style="color: #007700">;<br />
+								<br />if&nbsp;(!
+							</span><span style="color: #0000BB">copy</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$file</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$newfile</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"La&nbsp;copie&nbsp;</span><span
+								style="color: #0000BB">$file</span><span style="color: #DD0000">&nbsp;du&nbsp;fichier&nbsp;a&nbsp;échoué...\n"</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.copy-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.move-uploaded-file.html" class="function"
+						rel="rdfs-seeAlso">move_uploaded_file()</a> - D&eacute;place un
+						fichier t&eacute;l&eacute;charg&eacute;</span></li>
+				<li class="member"><span class="function"><a
+						href="function.rename.html" class="function" rel="rdfs-seeAlso">rename()</a>
+						- Renomme un fichier ou un dossier</span></li>
+				<li class="member">La section du manuel concernant la <a
+					href="features.file-upload.html" class="link">gestion des
+						téléchargements de fichiers</a></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.clearstatcache.html">clearstatcache</a>
+		</div>
+		<div class="next">
+			<a href="function.delete.html">delete</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

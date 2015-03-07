@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Ce que les r&eacute;f&eacute;rences ne sont pas</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.references.whatdo.html">Que font les
+				r&eacute;f&eacute;rences ?</a>
+		</div>
+		<div class="next">
+			<a href="language.references.pass.html">Passage par
+				r&eacute;f&eacute;rence</a>
+		</div>
+		<div class="up">
+			<a href="language.references.html">Les r&eacute;f&eacute;rences</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.references.arent" class="sect1">
+		<h2 class="title">Ce que les références ne sont pas</h2>
+		<p class="para">Comme nous l&#039;avons vu précédemment, les
+			références ne sont pas des pointeurs. Cela signifie que le script
+			suivant ne fera pas ce à quoi on peut s&#039;attendre :
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">function&nbsp;</span><span
+							style="color: #0000BB">foo</span><span style="color: #007700">(&amp;</span><span
+							style="color: #0000BB">$var</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;
+						</span><span style="color: #0000BB">$var&nbsp;</span><span
+							style="color: #007700">=&amp;&nbsp;</span><span
+							style="color: #0000BB">$GLOBALS</span><span
+							style="color: #007700">[</span><span style="color: #DD0000">"baz"</span><span
+							style="color: #007700">];<br />}<br /></span><span
+							style="color: #0000BB">foo</span><span style="color: #007700">(</span><span
+							style="color: #0000BB">$bar</span><span style="color: #007700">);<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<p class="simpara">
+			Ici, la variable
+			<var class="varname">
+				<var class="varname">$var</var>
+			</var>
+			dans la fonction
+			<var class="varname">
+				<var class="varname">foo</var>
+			</var>
+			sera liée à
+			<var class="varname">
+				<var class="varname">$bar</var>
+			</var>
+			dans l&#039;appelant, mais elle sera ensuite reliée à
+			<var class="varname">
+				<var class="varname">
+					<a href="reserved.variables.globals.html" class="classname">$GLOBALS["baz"]</a>
+				</var>
+			</var>
+			. Il n&#039;est pas possible de lier
+			<var class="varname">
+				<var class="varname">$bar</var>
+			</var>
+			à quelque chose d&#039;autre en utilisant le mécanisme de références,
+			car
+			<var class="varname">
+				<var class="varname">$bar</var>
+			</var>
+			n&#039;est pas accessible dans la fonction
+			<var class="varname">
+				<var class="varname">foo</var>
+			</var>
+			(certes, elle est représentée par
+			<var class="varname">
+				<var class="varname">$var</var>
+			</var>
+			, mais
+			<var class="varname">
+				<var class="varname">$var</var>
+			</var>
+			ne fait référence qu&#039;à la valeur, et n&#039;a pas de liaison
+			dans la table de symboles de l&#039;appelant). Vous pouvez utiliser
+			le <a href="language.references.return.html" class="link">retour
+				par référence</a> pour référencer des variables sélectionnées par la
+			fonction.
+		</p>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.references.whatdo.html">Que font les
+				r&eacute;f&eacute;rences ?</a>
+		</div>
+		<div class="next">
+			<a href="language.references.pass.html">Passage par
+				r&eacute;f&eacute;rence</a>
+		</div>
+		<div class="up">
+			<a href="language.references.html">Les r&eacute;f&eacute;rences</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

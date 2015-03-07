@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Zones de saisie de texte</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>Les zones de textes sont sans doute les zones de saisies les
+			plus courantes. Même si leur rôle diminuera peut être dans l'avenir à
+			cause des périphériques avec lesquels la saisie de textes n'est pas
+			pratique (tablette, smartphone), elles resteront toujours
+			incontournables.</p>
+
+		<a id="type_text"></a>
+		<h3>Texte simple</h3>
+		<section>
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : zone de saisie texte simple
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Zone de saisie texte simple&lt;/h3&gt;
+		
+		&lt;form action="dossier/reception.php" method="POST"&gt;
+			&lt;label for="txtNom"&gt;Votre nom &lt;/label&gt;
+			
+			&lt;input type="text" name="txtNom" size="30"
+				   maxlength="40" id="txtNom"&gt;
+			
+			&lt;p&gt;
+				&lt;input type="submit" value="Envoi" name="btn"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>C'est la zone de saisie la plus classique et la plus souvent
+				utilisée dans les formulaires. Elle permet la saisie d'un texte
+				monoligne, relativement court à cause de la lisibilité dans une
+				largeur déterminée.</p>
+
+			<p>
+				<strong>La zone est faite avec l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+					dont l'attribut <code>type</code> a la valeur <code>text</code></strong>, ou
+				dont l'attribut <code>type</code> n'est pas précisé. L'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+				est un élement vide (ie sans balise de fermeture).
+			</p>
+
+			<p>
+				La zone doit avoir un attribut <code>name</code> dont la valeur doit
+				être <strong>unique</strong> parmi toutes les zones composant le
+				formulaire.
+			</p>
+
+			<table class="TAB-zebre fp-petit">
+				<tr>
+					<td>Attribut possible</td>
+					<td>Utilité</td>
+				</tr>
+				<tr>
+					<td><code>autocomplete</code></td>
+					<td>Autocomplétion. Les saisies précédemment faites dans la
+						zone sont proposées. Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>autofocus</code></td>
+					<td>1er élément activé dans le formulaire. Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>dirname</code></td>
+					<td>Direction du texte saisi.</td>
+				</tr>
+				<tr>
+					<td><code>disabled</code></td>
+					<td>Zone désactivée, non transmise au serveur. Aucune
+						interaction n'est possible avec la zone (pas de focus, pas de
+						copie, etc). Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>form</code></td>
+					<td><code>id</code> du formulaire associé si la zone n'est pas
+						un élément <code>form</code> ou concerne un autre formulaire que
+						celui dans lequel elle est imbriquée.</td>
+				</tr>
+				<tr>
+					<td><code>list</code></td>
+					<td><code>id</code> de la liste de suggestions associée à la
+						zone.</td>
+				</tr>
+				<tr>
+					<td><code>maxlength</code></td>
+					<td>Nombre maximal de caractères pouvant être saisis.</td>
+				</tr>
+				<tr>
+					<td><code>name</code></td>
+					<td>Nom de la zone.</td>
+				</tr>
+				<tr>
+					<td><code>pattern</code></td>
+					<td>Expression régulière à laquelle doit correspondre la
+						valeur de la zone. Permet de vérifier la saisie. <a
+						href="http://regexlib.com/%28X%281%29A%28zseIUS5cThlLV_8PSI6h_ap3axRPYn8a-jeAwxb42kSIpn2uJ7wiItRO9dqa0xIo44v5GMwW1FP3cauiQHR4kELACUqeLtipqNfu1glt8F4nq9mNBBFb6LtLxdPPNL0G6KzifWDdVoB4ONUiSqy8y3xhVr9GfBo-CCXH6aDGv2R1zvGr5xSmGCWDrhycU4vl0%29%29/DisplayPatterns.aspx"
+						target="_blank"> Des centaines d'expressions régulières</a>.
+					</td>
+				</tr>
+				<tr>
+					<td><code>placeholder</code></td>
+					<td>Texte d'aide, d'indication de saisie.</td>
+				</tr>
+				<tr>
+					<td><code>readonly</code></td>
+					<td>Zone en lecture seule, non transmise au serveur. La zone
+						peut avoir le focus et le contenu peut être copié. Attribut
+						booléen.</td>
+				</tr>
+				<tr>
+					<td><code>required</code></td>
+					<td>Zone obligatoire. Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>size</code></td>
+					<td>Nombre de caractères visibles directement. Si l'attribut
+						est absent, la valeur par défaut est 20.</td>
+				</tr>
+				<tr>
+					<td><code>value</code></td>
+					<td>Valeur initiale de la zone et valeur transmise au serveur
+						après saisie.</td>
+				</tr>
+			</table>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : zone de saisie texte simple
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Zone de saisie texte simple&lt;/title&gt;
+		&lt;style&gt;
+			form {width: 300px; margin: 0 auto}
+			label {display:block; margin: 1em 0 0.2em 0}
+			input[name="btn"] {display:block; margin:2em auto}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form action="dossier/reception.php" method="POST"&gt;
+			&lt;label for="txt1"&gt;Placeholder et vérif&lt;/label&gt;
+			&lt;input type="text" name="txt1" size="40"
+				   maxlength="40" id="txt1"
+				   placeholder="Doit commencer par A et finir par z"
+				   pattern="^A.*z$"&gt;
+			
+			&lt;label for="txt2"&gt;Zone obligatoire&lt;/label&gt;
+			&lt;input type="text" name="txt2" size="10"
+				   maxlength="10" id="txt2" required&gt;
+			
+			&lt;label for="txt3"&gt;Zone désactivée&lt;/label&gt;
+			&lt;input type="text" name="txt3" size="40"
+				   value="Valeur non transmise" disabled&gt;
+			
+			&lt;label for="txt4"&gt;Zone en lecture seule&lt;/label&gt;
+			&lt;input type="text" name="txt4" size="40"
+				   value="Valeur transmise" readonly&gt;
+			
+			&lt;input type="submit" value="Envoi" name="btn"&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p class="fp-p-raz fp-bot0">A noter</p>
+			<ul>
+				<li>La validation de la 1ére zone est faite uniquement si elle
+					n'est pas vide, bien que l'expression régulière de l'attribut <code>pattern</code>
+					demande que la zone contienne au moins 2 caractères : un A et un z.
+				</li>
+				<li>L'affichage par défaut d'une zone désactivée est identique
+					à une zone affichant le message de l'attribut <code>placholder</code>
+					et peut prêter à confusion
+				</li>
+			</ul>
+
+			<a id="exo_input_text"></a>
+			<h4 class="fp-exo">Saisie texte simple</h4>
+			<section>
+				<figure style="float: right; width: 280px;">
+					<img src="../exercices/exo_input_text.png" width="280" height="173">
+					<figcaption>saisie texte simple</figcaption>
+				</figure>
+
+				<p class="fp-p-raz">Complétez le code <abbr title="HyperText Markup Language">HTML</abbr>
+				pour obtenir le résultat ci-contre.</p>
+
+				<p class="fp-p-raz">
+					La feuille de style liée à l'exercice (<code>form04.css</code>)
+					fera automatiquement la mise en forme des éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'fieldset')">fieldset</a>
+					et <a onclick="top.FP.Voir.showPageTech('elements', 'legend')">legend</a>
+				</p>
+
+				<p class="fp-p-raz">
+					Le formulaire utilise la méthode <code>POST</code> pour envoyer les
+					informations saisies à <code>script.php</code>.
+				</p>
+
+				<p class="fp-p-raz">Les zones de saisie ont les caractéristiques
+					suivantes:</p>
+
+				<table style="width: 400px">
+					<tr>
+						<th>Nom</th>
+						<th>Taille</th>
+						<th>Maxi caractères</th>
+						<th>Obligatoire</th>
+					</tr>
+					<tr>
+						<td>txtRue</td>
+						<td>44</td>
+						<td>60</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>txtCode</td>
+						<td>6</td>
+						<td></td>
+						<td>Oui</td>
+					</tr>
+					<tr>
+						<td>txtVille</td>
+						<td>34</td>
+						<td>40</td>
+						<td>Oui</td>
+					</tr>
+				</table>
+
+				<p class="fp-p-raz">
+					La zone <code>txtCode</code> doit être validée avec l'expression
+					régulière
+					<br>
+					<code>^(0[1-9]|[1-8][0-9]|9[0-8])\d{3}$</code>
+				</p>
+
+				<p class="fp-p-raz">
+					Les boutons s'appellent <code>btnReset</code> et <code>btnSubmit</code>.</p>
+					 
+				<p class="fp-completez">
+					<a onClick="top.FP.Voir.showCompletez('exo_input_text_comp')">Code
+						à compléter</a>
+				</p>
+
+				<div id="exo_input_text_comp" class="BLOC-completez">
+					<form action="" method="post" class="TEST-form">
+						<a class="TEST-lien-css" title="Afficher le fichier CSS"
+							onclick="top.FP.Voir.showPLUS('html08/styles/form04.css.html')"></a>
+						<div class="TEST-titre">
+							<strong>Exercice</strong> : saisie texte simple
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-wrap
+							data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Structurer un formulaire&lt;/title&gt;
+		&lt;link rel="stylesheet" href="../html08/styles/form04.css"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+				</div>
+
+				<p class="fp-solution">
+					<a onClick="top.FP.Voir.showSolution('exo_input_text_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_input_text_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form">
+						<a class="TEST-lien-css" title="Afficher le fichier CSS"
+							onclick="top.FP.Voir.showPLUS('html08/styles/form04.css.html')"></a>
+						<div class="TEST-titre">
+							<strong>Exercice</strong> : saisie texte simple
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-wrap
+							data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Saisie texte simple&lt;/title&gt;
+		&lt;link rel="stylesheet" href="../html08/styles/form04.css"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form method="POST" action="script.php"&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Adresse&lt;/legend&gt;
+				&lt;div&gt;
+					&lt;input type="text" name="txtRue" size="44"
+				   		   maxlength="60" placeholder="Rue"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;input type="text" name="txtCode" size="6"
+						   placeholder="CP" required
+						   pattern="^(0[1-9]|[1-8][0-9]|9[0-8])\d{3}$"&gt;
+				
+					&lt;input type="text" name="txtVille" 
+						   size="34" maxlength="40" 
+						   placeholder="Ville" required&gt;
+				&lt;/div&gt;
+			&lt;/fieldset&gt;	
+			&lt;fieldset&gt;
+				&lt;input type="reset" name="btnReset"
+					   value="J'efface"&gt;
+				&lt;input type="submit" name="btnSubmit"
+					   value="J'envoie"&gt;
+			&lt;/fieldset&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+				</div>
+			</section>
+		</section>
+
+		<a id="type_password"></a>
+		<h3>Texte masqué</h3>
+		<section>
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : zone de saisie texte masqué
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Zone de saisie texte masqué&lt;/h3&gt;
+		
+		&lt;form action="dossier/reception.php" method="POST"&gt;
+			&lt;label for="txtPasse"&gt;Mot de passe &lt;/label&gt;
+			
+			&lt;input type="password" name="txtPasse" size="30"
+				   maxlength="40" id="txtPasse"&gt;
+			
+			&lt;p&gt;
+				&lt;input type="submit" value="Envoi" name="btn"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				<strong>La zone est faite avec l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+					dont l'attribut <code>type</code> a la valeur <code>password</code>.
+				</strong> L'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+				est un élement vide (ie sans balise de fermeture).
+			</p>
+
+			<p>
+				La zone doit avoir un attribut <code>name</code> dont la valeur doit
+				être <strong>unique</strong> parmi toutes les zones composant le
+				formulaire.
+			</p>
+
+
+			<p class="fp-bot0">Cette zone de saisie est identique à la zone
+				de texte simple, à la différence que :</p>
+			<ul>
+				<li>le texte saisi est masqué par un rond noir ou un astérisque
+					(dépendant du système d'exploitation),</li>
+				<li>copier le contenu en clair de la zone n'est pas possible.</li>
+			</ul>
+
+			<p>Le contenu de cette zone de saisie n'est pas sécurisé car le
+				remplacement de caractère est uniquement visuel. La valeur saisie
+				dans la zone transitera en clair sur le réseau lors de la soumission
+				du formulaire. Le contenu est également accessible en clair par
+				JavaScript ou n'importe quel outil développeur et inspecteur DOM.</p>
+
+			<table class="TAB-zebre fp-petit">
+				<tr>
+					<td>Attribut possible</td>
+					<td>Utilité</td>
+				</tr>
+				<tr>
+					<td><code>autocomplete</code></td>
+					<td>Autocomplétion. Les saisies précédemment faites dans la
+						zone sont proposées. Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>autofocus</code></td>
+					<td>1er élément activé dans le formulaire. Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>dirname</code></td>
+					<td>Direction du texte saisi.</td>
+				</tr>
+				<tr>
+					<td><code>disabled</code></td>
+					<td>Zone désactivée, non transmise au serveur. Aucune
+						interaction n'est possible avec la zone (pas de focus, pas de
+						copie, etc). Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>form</code></td>
+					<td><code>id</code> du formulaire associé si la zone n'est pas
+						un élément <code>form</code> ou concerne un autre formulaire que
+						celui dans lequel elle est imbriquée.</td>
+				</tr>
+				<tr>
+					<td><code>list</code></td>
+					<td><code>id</code> de la liste de suggestions associée à la
+						zone.</td>
+				</tr>
+				<tr>
+					<td><code>maxlength</code></td>
+					<td>Nombre maximal de caractères pouvant être saisis.</td>
+				</tr>
+				<tr>
+					<td><code>name</code></td>
+					<td>Nom de la zone.</td>
+				</tr>
+				<tr>
+					<td><code>pattern</code></td>
+					<td>Expression régulière à laquelle doit correspondre la
+						valeur de la zone. Permet de vérifier la saisie. <a
+						href="http://regexlib.com/%28X%281%29A%28zseIUS5cThlLV_8PSI6h_ap3axRPYn8a-jeAwxb42kSIpn2uJ7wiItRO9dqa0xIo44v5GMwW1FP3cauiQHR4kELACUqeLtipqNfu1glt8F4nq9mNBBFb6LtLxdPPNL0G6KzifWDdVoB4ONUiSqy8y3xhVr9GfBo-CCXH6aDGv2R1zvGr5xSmGCWDrhycU4vl0%29%29/DisplayPatterns.aspx"
+						target="_blank"> Des centaines d'expressions régulières</a>.
+					</td>
+				</tr>
+				<tr>
+					<td><code>placeholder</code></td>
+					<td>Texte d'aide, d'indication de saisie.</td>
+				</tr>
+				<tr>
+					<td><code>readonly</code></td>
+					<td>Zone en lecture seule, non transmise au serveur. La zone
+						peut avoir le focus et le contenu peut être copié. Attribut
+						booléen.</td>
+				</tr>
+				<tr>
+					<td><code>required</code></td>
+					<td>Zone obligatoire. Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>size</code></td>
+					<td>Nombre de caractères visibles directement. Si l'attribut
+						est absent, la valeur par défaut est 20.</td>
+				</tr>
+				<tr>
+					<td><code>value</code></td>
+					<td>Valeur initiale de la zone et valeur transmise au serveur
+						après saisie.</td>
+				</tr>
+			</table>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : zone de saisie texte masqué
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Zone de saisie texte masqué&lt;/title&gt;
+		&lt;style&gt;
+			form {width: 300px; margin: 0 auto}
+			label {display:block; margin: 1em 0 0.2em 0}
+			input[name="btn"] {display:block; margin:2em auto}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form action="dossier/reception.php" method="POST"&gt;
+			&lt;p&gt;
+				Le mot de passe doit être composé de 4
+				chiffres, suivis de 2 lettres en minuscules,
+				suivies de 4 caractères au choix.
+			&lt;/p&gt;
+			
+			&lt;label for="txt1"&gt;Mot de passe&lt;/label&gt;
+			&lt;input type="password" name="txt1" size="40"
+				   id="txt1" required 
+				   pattern="^\d{4}[a-z]{2}.{4}$"&gt;
+			
+			&lt;input type="submit" value="Envoi" name="btn"&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+		</section>
+
+		<a id="type_textarea"></a>
+		<h3>Texte multi-lignes</h3>
+		<section>
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : zone de saisie texte multi-lignes
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Zone de saisie texte multi-lignes&lt;/h3&gt;
+		
+		&lt;form action="dossier/reception.php" method="POST"&gt;
+			&lt;label for="txtComment"&gt;Commentaires&lt;/label&gt;
+			
+			&lt;textarea name="txtComment" id="txtComment"
+				   cols="30" rows="6"&gt;&lt;/textarea&gt;
+			
+			&lt;p&gt;
+				&lt;input type="submit" value="Envoi" name="btn"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				<strong>La zone est faite avec l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'textarea')">textarea</a>.
+				</strong>
+				<br>
+				Il doit y avoir une balise d'ouverture <code>&lt;textarea&gt;</code>
+				et une balise de fermeture <code>&lt;/textarea&gt;</code>
+			</p>
+
+			<p>
+				La zone doit avoir un attribut <code>name</code> dont la valeur doit
+				être <strong>unique</strong> parmi toutes les zones composant le
+				formulaire.
+			</p>
+
+			<div class="fp-puce">
+				<p class="fp-bot0">
+					L'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'textarea')">textarea</a>
+					a plusieurs particularités :
+				</p>
+				<ul>
+					<li>il n'y a pas d'attribut <code>value</code>. Le contenu
+						envoyé au serveur est ce qui se trouve entre la balise d'ouverture
+						<code>&lt;textarea&gt;</code> et la balise de fermeture <code>&lt;/textarea&gt;</code>
+						;
+					</li>
+					<li>le contenu saisi dans cette zone peut avoir des sauts de
+						ligne</li>
+					<li>la largeur de la zone est définie par l'attribut <code>cols</code>
+						qui représente (plus ou moins) un nombre de caractères ;
+					</li>
+					<li>la hauteur de la zone est définie par l'attribut <code>rows</code>
+						qui réprésente un nombre de lignes. Si le texte saisi dépasse la
+						hauteur définie, une barre de défilement vertical sera affichée
+						automatiquement par le navigateur ;
+					</li>
+					<li>les navigateurs de dernière génération ajoutent
+						automatiquement la possibilité de redimensionner la zone en
+						"tirant" le point inférieur droit avec la souris ;</li>
+					<li>la police de caractères utilisée par défaut est une police
+						à espacement fixe (comme celle utilisée généralement par les
+						éditeurs de code). Elle n'est pas très adaptée à du texte
+						"normal".</li>
+				</ul>
+
+				<p>
+					A cause de ces spécificités d'affichage, la mise ne forme des zones
+					<a onclick="top.FP.Voir.showPageTech('elements', 'textarea')">textarea</a>
+					est le plus souvent réalisée avec des propriétés de style <abbr
+						title="Cascading Style Sheets">CSS</abbr>.
+				</p>
+			</div>
+
+			<p>
+				Tous les sauts de lignes et tabulations que vous aurez dans votre
+				code <abbr title="HyperText Markup Language">HTML</abbr>, entre les
+				balises <code>&lt;textarea&gt;</code> et <code>&lt;/textarea&gt;</code>
+				seront affichés tel que dans la zone.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : saut de ligne et tabulations
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Saut de ligne et tabulations&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form action="dossier/reception.php" method="POST"&gt;
+			&lt;label for="txtMulti"&gt;Texte multi-lignes&lt;/label&gt;
+			
+			&lt;textarea name="txtMulti" id="txtMulti"
+				   cols="40" rows="15"&gt;
+			Il y a un saut de ligne et 3 tabulations après la balise d'ouverture.
+Un saut de ligne.
+				
+				Une ligne vierge et 4 tabulations. Le contenu de la zone s'arrête à la balise de fermeture. La fin du contenu aura un saut de ligne et des tabulations.			
+			&lt;/textarea&gt;
+			
+			&lt;p&gt;
+				&lt;input type="submit" value="Envoi"
+					   name="btnEnvoi"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+
+			<table class="TAB-zebre fp-petit">
+				<tr>
+					<td>Attribut possible</td>
+					<td>Utilité</td>
+				</tr>
+				<tr>
+					<td><code>autocomplete</code></td>
+					<td>Autocomplétion. Les saisies précédemment faites dans la
+						zone sont proposées. Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>autofocus</code></td>
+					<td>1er élément activé dans le formulaire. Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>cols</code></td>
+					<td>Nombre de caractères affichés en largeur.</td>
+				</tr>
+				<tr>
+					<td><code>dirname</code></td>
+					<td>Direction du texte saisi.</td>
+				</tr>
+				<tr>
+					<td><code>disabled</code></td>
+					<td>Zone désactivée, non transmise au serveur. Aucune
+						interaction n'est possible avec la zone (pas de focus, pas de
+						copie, etc). Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>form</code></td>
+					<td><code>id</code> du formulaire associé si la zone n'est pas
+						un élément <code>form</code> ou concerne un autre formulaire que
+						celui dans lequel elle est imbriquée.</td>
+				</tr>
+				<tr>
+					<td><code>name</code></td>
+					<td>Nom de la zone.</td>
+				</tr>
+				<tr>
+					<td><code>pattern</code></td>
+					<td>Expression régulière à laquelle doit correspondre la
+						valeur de la zone. Permet de vérifier la saisie. <a
+						href="http://regexlib.com/%28X%281%29A%28zseIUS5cThlLV_8PSI6h_ap3axRPYn8a-jeAwxb42kSIpn2uJ7wiItRO9dqa0xIo44v5GMwW1FP3cauiQHR4kELACUqeLtipqNfu1glt8F4nq9mNBBFb6LtLxdPPNL0G6KzifWDdVoB4ONUiSqy8y3xhVr9GfBo-CCXH6aDGv2R1zvGr5xSmGCWDrhycU4vl0%29%29/DisplayPatterns.aspx"
+						target="_blank"> Des centaines d'expressions régulières</a>.
+					</td>
+				</tr>
+				<tr>
+					<td><code>readonly</code></td>
+					<td>Zone en lecture seule, non transmise au serveur. La zone
+						peut avoir le focus et le contenu peut être copié. Attribut
+						booléen.</td>
+				</tr>
+				<tr>
+					<td><code>required</code></td>
+					<td>Zone obligatoire. Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>rows</code></td>
+					<td>Nombre de lignes affichées avant qu'une barre de
+						défilement ne soit fournie.</td>
+				</tr>
+			</table>
+
+			<p>
+				L'exemple suivant présente une mise en forme de <a
+					onclick="top.FP.Voir.showPageTech('elements', 'textarea')">textarea</a>
+				avec une classe <abbr title="Cascading Style Sheets">CSS</abbr> (un
+				ensemble de règles de style regroupées et nommées).
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : zone de saisie multi-lignes
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Zone de saisie texte multi-lignes&lt;/title&gt;
+		&lt;style&gt;
+			form {width: 300px; margin: 0 auto}
+			label {display:block; margin: 1em 0 0.2em 0}
+			input[name="btn"] {display:block; margin:2em auto}
+			.multi-lignes {
+				font-family: serif;
+				width: 300px;
+				height: 100px;
+				resize: none;
+			}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form action="dossier/reception.php" method="POST"&gt;
+			&lt;label for="txt1"&gt;Multi-ligne normal&lt;/label&gt;
+			&lt;textarea name="txt1" id="txt1" 
+				cols="35" rows="3"&gt;Cette zone utilise la mise en forme par défaut faite par le navigateur. Le redimensionnement possible n'est pas géré par tous les navigateurs et risque de "faire sauter" la mise en page de votre page Web. Notez aussi que les dimensions sont assez approximatives.&lt;/textarea&gt;
+			
+			&lt;label for="txt2"&gt;Multi-ligne avec style&lt;/label&gt;
+			&lt;textarea name="txt2" id="txt2" 
+				class="multi-lignes"&gt;Cette zone est mise en forme avec la classe CSS "multi-lignes" définie dans l'élément style. On a changé la police pour qu'elle soit la même que le reste du texte, on a fixé les dimensions en pixels et on a enlevé le redimensionnement.&lt;/textarea&gt;
+			
+			&lt;input type="submit" value="Envoi" name="btn"&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<a id="exo_textarea"></a>
+			<h4 class="fp-exo">Saisie textarea</h4>
+			<section>
+				<figure style="float: right; width: 280px;">
+					<img src="../exercices/exo_textarea.png" width="280" height="308">
+					<figcaption>saisie texte simple</figcaption>
+				</figure>
+
+				<p class="fp-p-raz">Complétez le code <abbr title="HyperText Markup Language">HTML</abbr>
+				pour obtenir le résultat ci-contre.</p>
+
+				<p class="fp-p-raz">
+					<i>Remarque : suivant les navigateurs la largeur du textearea
+						peut être différente de celle de la capture d'écran.</i>
+				</p>
+
+				<p class="fp-p-raz">
+					La feuille de style liée à l'exercice (<code>form05.css</code>)
+					fera automatiquement la mise en forme des éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'fieldset')">fieldset</a>
+					et <a onclick="top.FP.Voir.showPageTech('elements', 'legend')">legend</a>
+				</p>
+
+				<p class="fp-p-raz">
+					Le formulaire utilise la méthode <code>POST</code> pour envoyer les
+					informations saisies à <code>exo_textarea.php</code>.
+				</p>
+
+				<p class="fp-p-raz">
+					La zone "Objet" s'appelle <code>txtObjet</code>, fait 44 de long et
+					est obligatoire. Elle doit être initialisée avec le texte qui
+					apparait sur la figure précédente. Son label est lié à la zone (ie
+					quand on clique sur le label, le curseur se met dans la zone).
+				</p>
+
+				<p class="fp-p-raz">
+					La zone "Texte" s'appelle <code>txtTexte</code>, fait 36 de long et
+					a 5 lignes. Elle doit être initialisée avec le texte qui apparait
+					sur la figure précédente. Son label est lié à la zone (ie quand on
+					clique sur le label, le curseur se met dans la zone). Son label est
+					lié à la zone (ie quand on clique sur le label, le curseur se met
+					dans la zone). La zone est active à l'affichage de la page.
+				</p>
+
+				<p class="fp-p-raz">
+					Les boutons s'appellent <code>btnReset</code> et <code>btnSubmit</code>.</p>
+
+				<p class="fp-completez">
+					<a onClick="top.FP.Voir.showCompletez('exo_textarea_comp')">Code
+						à compléter</a>
+				</p>
+
+				<div id="exo_textarea_comp" class="BLOC-completez">
+					<form action="" method="post" class="TEST-form">
+						<a class="TEST-lien-css" title="Afficher le fichier CSS"
+							onclick="top.FP.Voir.showPLUS('html08/styles/form05.css.html')"></a>
+						<div class="TEST-titre">
+							<strong>Exercice</strong> : saisie textarea
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-wrap
+							data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Saisie textarea&lt;/title&gt;
+		&lt;link rel="stylesheet" href="../html08/styles/form05.css"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+				</div>
+
+				<p class="fp-solution">
+					<a onClick="top.FP.Voir.showSolution('exo_textarea_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_textarea_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form">
+						<a class="TEST-lien-css" title="Afficher le fichier CSS"
+							onclick="top.FP.Voir.showPLUS('html08/styles/form05.css.html')"></a>
+						<div class="TEST-titre">
+							<strong>Exercice</strong> : saisie textarea
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-wrap
+							data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Saisie textarea&lt;/title&gt;
+		&lt;link rel="stylesheet" href="../html08/styles/form05.css"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form method="POST" action="exo_textarea.php"&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Message&lt;/legend&gt;
+				&lt;label for="txtObjet"&gt;Objet&lt;/label&gt;&lt;br&gt;
+				&lt;input type="text" required id="txtObjet"
+					   name="txtObjet" size="44" 
+					   value="Re : exercice textarea"&gt;
+				&lt;br&gt;
+				&lt;label for="txtTexte"&gt;Texte&lt;/label&gt;&lt;br&gt;
+				&lt;textarea cols="36" rows="5" autofocus 
+						  id="txtTexte" name="txtTexte"&gt;
+				
+Le 4 mai à 17:33, François Piat a écrit :
+Merci de terminer cet exercice au plus tôt.
+Que la farce soit avec toi.&lt;/textarea&gt;
+			&lt;/fieldset&gt;	
+			&lt;fieldset&gt;
+				&lt;input type="reset" name="btnReset"
+					   value="J'efface"&gt;
+				&lt;input type="submit" name="btnSubmit"
+					   value="J'envoie"&gt;
+			&lt;/fieldset&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+				</div>
+			</section>
+		</section>
+
+		<a id="type_datalist"></a>
+		<h3>Texte avec liste de suggestions</h3>
+		<section>
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : liste de suggestions
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Liste de suggestions&lt;/h3&gt;
+		
+		&lt;form action="dossier/reception.php" method="POST"&gt;
+			&lt;label for="txtPerso"&gt;Personnages&lt;/label&gt;
+			
+			&lt;input type="text" name="txtPerso" id="txtPerso"
+					size="30" list="personnages"&gt;
+			
+			&lt;datalist id="personnages"&gt;
+				&lt;option value="Dark Vador"&gt;
+				&lt;option value="Yoda"&gt;
+				&lt;option value="Gandalf"&gt;
+				&lt;option value="Gollum"&gt;
+			&lt;/datalist&gt;
+			
+			&lt;p&gt;
+				&lt;input type="submit" value="Envoi" name="btn"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				Les listes de suggestions se construisent avec <strong>2
+					éléments</strong> : l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'datalist')">datalist</a>
+				est le conteneur des termes de la liste qui sont faits avec des
+				éléments <a onclick="top.FP.Voir.showPageTech('elements', 'option')">option</a>.
+				<br>
+				<br>
+				Il doit y avoir une balise d'ouverture <code>&lt;datalist&gt;</code>
+				et une balise de fermeture <code>&lt;/datalist&gt;</code>
+			</p>
+
+			<p>
+				Les termes de la liste sont définit par l'attribut <code>value</code>
+				des éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'option')">option</a>
+				qui sont ici des élements vides (ie sans balise de fermeture).
+			</p>
+
+			<p>
+				La liste ainsi constituée a un <strong>attribut <code>id</code></strong>
+				qui lui permet d'être rattachée à une zone de saisie qui a un <strong>attribut
+					<code>list</code>
+				</strong>.
+			</p>
+
+			<figure>
+				<img src="../htmlimg/datalist.png" width="500" height="243">
+				<figcaption>structure d'une liste de suggestions</figcaption>
+			</figure>
+
+			<p>
+				La valeur de l'attribut <code>id</code> de l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'datalist')">datalist</a>
+				doit être <strong>unique</strong> parmi tous les <code>id</code> de
+				la page <abbr title="HyperText Markup Language">HTML</abbr>.
+			</p>
+
+			<p>
+				Le plus généralement <a
+					onclick="top.FP.Voir.showPageTech('elements', 'datalist')">datalist</a>
+				est rattaché à une zone de saisie de texte simple (<a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+				de <code>type="text"</code>), mais elle peut aussi être rattachée à
+				des zones de <code>type</code> color, date, datetime,
+				datetime-local, email, month, number, password, range, tel, search,
+				time, url, week.
+			</p>
+
+			<p>
+				Les navigateurs ne gérent pas les listes de suggestions de la même
+				façon.
+				<br>
+				Dans l'exemple précédent si on saisit "a", <a
+					href="http://www.mozilla.org/fr/firefox/new/" target="_blank">Firefox</a>
+				affichera tous les termes de la liste qui contiennent un "a",
+				quelque soit la position de celui-ci dans les mots. <a
+					href="http://www.google.fr/intl/fr/chrome/browser/" target="_blank">Chrome</a>
+				et <a
+					href="http://windows.microsoft.com/fr-fr/internet-explorer/download-ie"
+					target="_blank">Internet Explorer</a> affichent uniquement les
+				termes de la liste qui commencent par ce qui est saisi dans la zone
+				texte.
+				<br>
+				Le nombre de termes affichés répondant à la saisie est différent
+				selon les navigateurs. Ca n'est visible qu'avec les grandes listes,
+				mais peut être un peu gênant pour l'utilisateur.
+			</p>
+
+			<a id="exo_datalist"></a>
+			<h4 class="fp-exo">Liste de suggestions</h4>
+			<section>
+				<figure style="float: right; width: 280px;">
+					<img src="../exercices/exo_datalist.png" width="280" height="275">
+					<figcaption>liste de suggestions</figcaption>
+				</figure>
+
+				<p class="fp-p-raz">Complétez le code <abbr title="HyperText Markup Language">HTML</abbr>
+				pour obtenir le résultat ci-contre.</p>
+
+				<p class="fp-p-raz">
+					La feuille de style liée à l'exercice (<code>form05.css</code>)
+					fera automatiquement la mise en forme des éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'fieldset')">fieldset</a>
+					et <a onclick="top.FP.Voir.showPageTech('elements', 'legend')">legend</a>
+				</p>
+
+				<p class="fp-p-raz">
+					Le formulaire utilise la méthode <code>POST</code> pour envoyer les
+					informations saisies à <code>test_datalist.php</code>.
+				</p>
+
+				<p class="fp-p-raz">
+					Les zones de saisie s'appellent respectivement <code>txtEdit</code>, <code>txtPref</code> et <code>txtDet</code>.
+					Elles sont toutes obligatoires et ont une longeur de 30.
+				</p>
+
+				<p class="fp-p-raz">
+					La zone <code>txtEdit</code> est liée à une liste de suggestions dont les valeurs sont : 
+					NetBeans, Eclipse, Scite, Notepad.
+				</p>
+
+				<p class="fp-p-raz">
+					Pour les zones <code>txtPref</code> et <code>txtDet</code> les suggestions sont : 
+					ActionScript, C, C#, C++, CSS, HTML, JavaScript, Java, Perl, PHP, Python, Ruby.
+				</p>
+
+				<p class="fp-p-raz">
+					Les boutons s'appellent <code>btnReset</code> et <code>btnSubmit</code>.</p>
+
+				<p class="fp-completez">
+					<a onClick="top.FP.Voir.showCompletez('exo_datalist_comp')">Code
+						à compléter</a>
+				</p>
+
+				<div id="exo_datalist_comp" class="BLOC-completez">
+					<form action="" method="post" class="TEST-form">
+						<a class="TEST-lien-css" title="Afficher le fichier CSS"
+							onclick="top.FP.Voir.showPLUS('html08/styles/form05.css.html')"></a>
+						<div class="TEST-titre">
+							<strong>Exercice</strong> : liste de suggestions
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-wrap
+							data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Liste de suggestions&lt;/title&gt;
+		&lt;link rel="stylesheet" href="../html08/styles/form05.css"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+				</div>
+
+				<p class="fp-solution">
+					<a onClick="top.FP.Voir.showSolution('exo_datalist_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_datalist_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form">
+						<a class="TEST-lien-css" title="Afficher le fichier CSS"
+							onclick="top.FP.Voir.showPLUS('html08/styles/form05.css.html')"></a>
+						<div class="TEST-titre">
+							<strong>Exercice</strong> : liste de suggestions
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-wrap
+							data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Liste de suggestions&lt;/title&gt;
+		&lt;link rel="stylesheet" href="../html08/styles/form05.css"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form action="test_datalist.php" method="POST"&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Informatique&lt;/legend&gt;
+				&lt;label for="txtNb"&gt;Editeur de code préféré&lt;/label&gt;&lt;br&gt;
+				&lt;input type="text" name="txtEdit" required 
+					   id="txtEdit" size="30" list="editeurs"&gt;
+					   
+				&lt;datalist id="editeurs"&gt;
+					&lt;option value="NetBeans"&gt;
+					&lt;option value="Eclipse"&gt;
+					&lt;option value="Scite"&gt;
+					&lt;option value="Notepad ++"&gt;
+				&lt;/datalist&gt;
+				&lt;br&gt;
+				&lt;label for="txtPref"&gt;Langage préféré&lt;/label&gt;
+				&lt;br&gt;
+				&lt;input type="text" name="txtPref" id="txtPref"
+					   required size="30" list="langages"
+					   placeholder="Un seul langage SVP"&gt;
+				&lt;br&gt;
+				&lt;label for="txtDet"&gt;Langage détesté&lt;/label&gt;
+				&lt;br&gt;
+				&lt;input type="text" name="txtDet" id="txtDet"
+					   required size="30" list="langages"
+					   placeholder="Un seul langage SVP"&gt;
+				
+				&lt;datalist id="langages"&gt;
+					&lt;option value="ActionScript"&gt;
+					&lt;option value="C"&gt;
+					&lt;option value="C#"&gt;
+					&lt;option value="C++"&gt;
+					&lt;option value="CSS"&gt;
+					&lt;option value="HTML"&gt;
+					&lt;option value="JavaScript"&gt;
+					&lt;option value="Java"&gt;
+					&lt;option value="Perl"&gt;
+					&lt;option value="PHP"&gt;
+					&lt;option value="Python"&gt;
+					&lt;option value="Ruby"&gt;
+				&lt;/datalist&gt;
+			&lt;/fieldset&gt;
+			&lt;fieldset&gt;
+				&lt;input type="reset" name="btnReset"
+					   value="J'efface"&gt;
+				&lt;input type="submit" name="btnSubmit"
+					   value="J'envoie"&gt;
+			&lt;/fieldset&gt;			
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+				</div>
+			</section>
+		</section>
+
+		<a id="type_search"></a>
+		<h3>Recherche</h3>
+		<section>
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : zone de saisie recherche
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Zone de saisie recherche&lt;/h3&gt;
+		
+		&lt;form action="dossier/reception.php" method="POST"&gt;
+			&lt;label for="txtRecherche"&gt;Rechercher&lt;/label&gt;
+			
+			&lt;input type="search" name="txtRecherche" size="30"
+				   id="txtRecherche"&gt;
+			
+			&lt;p&gt;
+				&lt;input type="submit" value="Envoi" name="btn"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				La zone est faite avec l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+				dont l'attribut <code>type</code> a la valeur <code>search</code>.
+				L'élément <a onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+				est un élement vide (ie sans balise de fermeture).
+			</p>
+
+			<p>
+				La zone doit avoir un attribut <code>name</code> dont la valeur doit
+				être <strong>unique</strong> parmi toutes les zones composant le
+				formulaire.
+			</p>
+
+			<p>
+				C'est un type de zone introduit par HTML5 et pour le moment aucun
+				navigateur ne fait de différence entre une zone de type <code>search</code>
+				et une zone de type <code>text</code>.
+			</p>
+
+			<table class="TAB-zebre fp-petit">
+				<tr>
+					<td>Attribut possible</td>
+					<td>Utilité</td>
+				</tr>
+				<tr>
+					<td><code>autocomplete</code></td>
+					<td>Autocomplétion. Les saisies précédemment faites dans la
+						zone sont proposées. Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>autofocus</code></td>
+					<td>1er élément activé dans le formulaire. Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>dirname</code></td>
+					<td>Direction du texte saisi.</td>
+				</tr>
+				<tr>
+					<td><code>disabled</code></td>
+					<td>Zone désactivée, non transmise au serveur. Aucune
+						interaction n'est possible avec la zone (pas de focus, pas de
+						copie, etc). Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>form</code></td>
+					<td><code>id</code> du formulaire associé si la zone n'est pas
+						un élément <code>form</code> ou concerne un autre formulaire que
+						celui dans lequel elle est imbriquée.</td>
+				</tr>
+				<tr>
+					<td><code>list</code></td>
+					<td><code>id</code> de la liste de suggestions associée à la
+						zone.</td>
+				</tr>
+				<tr>
+					<td><code>maxlength</code></td>
+					<td>Nombre maximal de caractères pouvant être saisis.</td>
+				</tr>
+				<tr>
+					<td><code>name</code></td>
+					<td>Nom de la zone.</td>
+				</tr>
+				<tr>
+					<td><code>pattern</code></td>
+					<td>Expression régulière à laquelle doit correspondre la
+						valeur de la zone. Permet de vérifier la saisie. <a
+						href="http://regexlib.com/%28X%281%29A%28zseIUS5cThlLV_8PSI6h_ap3axRPYn8a-jeAwxb42kSIpn2uJ7wiItRO9dqa0xIo44v5GMwW1FP3cauiQHR4kELACUqeLtipqNfu1glt8F4nq9mNBBFb6LtLxdPPNL0G6KzifWDdVoB4ONUiSqy8y3xhVr9GfBo-CCXH6aDGv2R1zvGr5xSmGCWDrhycU4vl0%29%29/DisplayPatterns.aspx"
+						target="_blank"> Des centaines d'expressions régulières</a>.
+					</td>
+				</tr>
+				<tr>
+					<td><code>placeholder</code></td>
+					<td>Texte d'aide, d'indication de saisie.</td>
+				</tr>
+				<tr>
+					<td><code>readonly</code></td>
+					<td>Zone en lecture seule, non transmise au serveur. La zone
+						peut avoir le focus et le contenu peut être copié. Attribut
+						booléen.</td>
+				</tr>
+				<tr>
+					<td><code>required</code></td>
+					<td>Zone obligatoire. Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>size</code></td>
+					<td>Nombre de caractères visibles directement. Si l'attribut
+						est absent, la valeur par défaut est 20.</td>
+				</tr>
+				<tr>
+					<td><code>value</code></td>
+					<td>Valeur initiale de la zone et valeur transmise au serveur
+						après saisie.</td>
+				</tr>
+			</table>
+
+			<p>
+				L'exemple suivant utilise un bouton mis en forme avec une classe <abbr
+					title="Cascading Style Sheets">CSS</abbr> (un ensemble de règles de
+				style regroupées et nommées) pour pallier l'absence de différence
+				entre une zone de <code>type="search"</code> et une zone de <code>type="text"</code>.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : zone de saisie recherche
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Zone de saisie recherche&lt;/title&gt;
+		&lt;style&gt;
+			form {text-align: right}
+			.btn-search {
+				background: url("../exemples/images/search.png") no-repeat;
+				border: 0;
+				width: 24px;
+				height: 24px;
+				cursor: pointer;
+				margin-left: -10px;
+			}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form action="dossier/chercher.php" method="POST"&gt;
+			&lt;label for="txt1"&gt;Rechercher&lt;/label&gt;
+			
+			&lt;input type="search" name="txt1" size="20"
+				   id="txt1" placeholder="saisir un mot"&gt;
+			
+			&lt;input type="submit" name="btn" value=""
+				   class="btn-search"&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

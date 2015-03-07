@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Scinde un code source en &eacute;l&eacute;ments de base</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="ref.tokenizer.html">Fonctions Tokenizer</a>
+		</div>
+		<div class="next">
+			<a href="function.token-name.html">token_name</a>
+		</div>
+		<div class="up">
+			<a href="ref.tokenizer.html">Fonctions Tokenizer</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.token-get-all" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">token_get_all</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">token_get_all</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Scinde un code source en éléments de
+					base</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.token-get-all-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>token_get_all</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$source</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>token_get_all()</strong></span>
+				analyse la chaîne donnée <em><code class="parameter">source</code></em>
+				en utilisant l&#039;analyseur lexical du moteur Zend.
+			</p>
+			<p class="para">
+				Pour une liste des tokens, voir <a href="tokens.html" class="xref">Liste
+					des tokens de l'analyseur</a>, ou utilisez la fonction <span
+					class="function"><a href="function.token-name.html"
+					class="function">token_name()</a></span> pour traduire une valeur token
+				dans une représentation sous forme de chaîne de caractères.
+			</p>
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.token-get-all-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">source</code></em></span>
+				<dd>
+
+					<p class="para">Le source PHP à analyser.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.token-get-all-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Un tableau contenant la liste des descriptions des éléments. Chaque
+				élément du tableau peut être un caractère unique (i.e.: <em>;</em>,
+				<em>.</em>, <em>&gt;</em>, <em>!</em>, etc.), ou un tableau
+				contenant un identifiant de token dans l&#039;élément 0, la
+				représentation textuelle originale de ce token dans l&#039;élément
+				1, et le numéro de la ligne dans l&#039;élément 2.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.token-get-all-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-3805">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>token_get_all()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$tokens&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">token_get_all</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'&lt;?php&nbsp;echo;&nbsp;?&gt;'</span><span
+								style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">/*&nbsp;=&gt;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(T_OPEN_TAG,&nbsp;'&lt;?php'),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(T_ECHO,&nbsp;'echo'),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';',<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(T_CLOSE_TAG,&nbsp;'?&gt;')&nbsp;);&nbsp;*/<br />/*&nbsp;Notez&nbsp;que&nbsp;dans&nbsp;l'exemple&nbsp;suivant,&nbsp;la&nbsp;chaîne&nbsp;est&nbsp;parsée<br />comme&nbsp;T_INLINE_HTML&nbsp;plutôt&nbsp;que&nbsp;l'attendu&nbsp;T_COMMENT&nbsp;(T_COMMENT&nbsp;dans&nbsp;PHP&nbsp;inférieur<br />à&nbsp;la&nbsp;version&nbsp;5),&nbsp;car&nbsp;il&nbsp;n'y&nbsp;a&nbsp;pas&nbsp;d'ouverture/fermeture&nbsp;de&nbsp;balises&nbsp;utilisées&nbsp;dans&nbsp;le&nbsp;"code".<br />Cela&nbsp;revient&nbsp;à&nbsp;mettre&nbsp;un&nbsp;commentaire&nbsp;à&nbsp;l'extérieur&nbsp;des&nbsp;balises&nbsp;&lt;?php&nbsp;?&gt;&nbsp;dans<br />un&nbsp;fichier&nbsp;normal.&nbsp;*/<br /></span><span
+								style="color: #0000BB">$tokens&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">token_get_all</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'/*&nbsp;comment&nbsp;*/'</span><span
+								style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;=&gt;&nbsp;array(array(T_INLINE_HTML,&nbsp;'/*&nbsp;comment&nbsp;*/'));<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.token-get-all-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.2.2</td>
+						<td>Les numéros de lignes sont retournés dans l&#039;élément
+							2</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="ref.tokenizer.html">Fonctions Tokenizer</a>
+		</div>
+		<div class="next">
+			<a href="function.token-name.html">token_name</a>
+		</div>
+		<div class="up">
+			<a href="ref.tokenizer.html">Fonctions Tokenizer</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

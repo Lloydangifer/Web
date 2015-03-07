@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Cr&eacute;e un tableau &agrave; partir de variables et de leur valeur</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="function.asort.html">asort</a></div>
+ <div class="next"><a href="function.count.html">count</a></div>
+ <div class="up"><a href="ref.array.html">Fonctions sur les tableaux</a></div><div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="function.compact" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">compact</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">compact</span> <span class="mdash">&mdash;</span> <span class="dc-title">Crée un tableau à partir de variables et de leur valeur</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.compact-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><strong>compact</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$varname</code></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter">$...</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Crée un tableau à partir de variables et de leur valeur.
+  </p>
+  <p class="para">
+   Pour chacun des arguments <em><code class="parameter">varname</code></em>, <em><code class="parameter">...</code></em>,
+    <span class="function"><strong>compact()</strong></span> recherche une variable
+   avec un même nom dans la table courante des symboles, et
+   l&#039;ajoute dans le tableau, de manière à avoir la relation nom =&gt;
+   &#039;valeur de variable&#039;. En bref, c&#039;est le contraire de la fonction
+    <span class="function"><a href="function.extract.html" class="function">extract()</a></span>.
+  </p>
+  <p class="para">
+   Toute chaîne non reconnue dans la table des symboles sera tout simplement
+   ignorée.
+  </p>
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.compact-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><em><code class="parameter">varname</code></em></span>
+     <dd>
+
+      <p class="para">
+        <span class="function"><strong>compact()</strong></span> accepte différents paramètres <em><code class="parameter">varname</code></em>. 
+       Les paramètres peuvent être des variables contenant des chaînes,
+       ou un tableau de chaînes, qui peut contenir d&#039;autres tableaux de noms de
+       variables, que  <span class="function"><strong>compact()</strong></span> traitera récursivement.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ <div class="refsect1 returnvalues" id="refsect1-function.compact-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne le tableau de sortie contenant toutes les variables ajoutées.
+  </p>
+ </div>
+
+ <div class="refsect1 examples" id="refsect1-function.compact-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-4660">
+    <p><strong>Exemple #1 Exemple avec  <span class="function"><strong>compact()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$city&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"San&nbsp;Francisco"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$state&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"CA"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$event&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SIGGRAPH"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$location_vars&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #DD0000">"city"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"state"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">compact</span><span style="color: #007700">(</span><span style="color: #DD0000">"event"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"nothing_here"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$location_vars</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Array
+(
+    [event] =&gt; SIGGRAPH
+    [city] =&gt; San Francisco
+    [state] =&gt; CA
+)
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+ <div class="refsect1 notes" id="refsect1-function.compact-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <strong>Erreur commune</strong><br />
+   <p class="para">
+    Parce que les <a href="language.variables.variable.html" class="link">variables
+    variables</a> ne doivent pas être utilisées avec les
+    <a href="language.variables.superglobals.html" class="link">tableaux superglobaux</a>
+    dans des fonctions, les tableaux Superglobaux ne doivent pas être passés
+    dans la fonction  <span class="function"><strong>compact()</strong></span>.
+   </p>
+  </p></blockquote>
+ </div>
+
+ <div class="refsect1 seealso" id="refsect1-function.compact-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"> <span class="function"><a href="function.extract.html" class="function" rel="rdfs-seeAlso">extract()</a> - Importe les variables dans la table des symboles</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="function.asort.html">asort</a></div>
+ <div class="next"><a href="function.count.html">count</a></div>
+ <div class="up"><a href="ref.array.html">Fonctions sur les tableaux</a></div>
+<div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

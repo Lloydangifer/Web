@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Applique une fonction de rappel r&eacute;cursivement
+	&agrave; chaque membre d'un tableau</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.array-values.html">array_values</a>
+		</div>
+		<div class="next">
+			<a href="function.array-walk.html">array_walk</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.array-walk-recursive" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">array_walk_recursive</h1>
+			<p class="verinfo">(PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">array_walk_recursive</span> <span
+					class="mdash">&mdash;</span> <span class="dc-title">Applique
+					une fonction de rappel récursivement à chaque membre d&#039;un
+					tableau</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.array-walk-recursive-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>array_walk_recursive</strong></span>
+				( <span class="methodparam"><span class="type">array</span> <code
+						class="parameter reference">&$input</code></span> , <span
+					class="methodparam"><span class="type"><a
+						href="language.types.callable.html" class="type callable">callable</a></span>
+					<code class="parameter">$funcname</code></span> [, <span
+					class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$userdata</code><span
+					class="initializer"> = <strong><code>NULL</code></strong></span></span> ]
+				)
+			</div>
+
+			<p class="para rdfs-comment">
+				Applique la fonction utilisateur <em><code class="parameter">funcname</code></em>
+				à chaque élément du tableau <em><code class="parameter">input</code></em>.
+				Cette fonction se reproduira dans toutes les profondeurs du tableau.
+			</p>
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.array-walk-recursive-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">input</code></em></span>
+				<dd>
+
+					<p class="para">Le tableau d&#039;entrée.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">funcname</code></em></span>
+				<dd>
+
+					<p class="para">
+						Typiquement, <em><code class="parameter">funcname</code></em>
+						prend 2 paramètres. Le paramètre <em><code class="parameter">input</code></em>,
+						représentant la valeur, est le premier, l&#039;index/clé, le
+						deuxième.
+					</p>
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>:
+						<p class="para">
+							Si <em><code class="parameter">funcname</code></em> doit être
+							exécuté avec les valeurs actuelles du tableau, spécifiez le
+							premier paramètre de <em><code class="parameter">funcname</code></em>
+							par <a href="language.references.html" class="link">référence</a>.
+							Alors, tout changement effectué sur les éléments de ce tableau
+							sera également effectué sur le tableau original.
+					</blockquote>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">userdata</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si le paramètre optionnel <em><code class="parameter">userdata</code></em>
+						est fourni, il sera passé comme troisième paramètre à la fonction
+						de rappel <em><code class="parameter">funcname</code></em>.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.array-walk-recursive-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+		<div class="refsect1 examples"
+			id="refsect1-function.array-walk-recursive-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4652">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>array_walk_recursive()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$sweet&nbsp;
+							</span><span style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">'a'&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">'apple'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'b'&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">'banana'</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$fruits&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">'sweet'&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #0000BB">$sweet</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'sour'&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">'lemon'</span><span
+								style="color: #007700">);<br />
+								<br />function&nbsp;
+							</span><span style="color: #0000BB">test_print</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$item</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$key</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"La&nbsp;clé&nbsp;</span><span
+								style="color: #0000BB">$key</span><span style="color: #DD0000">&nbsp;contient&nbsp;l'élément&nbsp;</span><span
+								style="color: #0000BB">$item</span><span style="color: #DD0000">\n"</span><span
+								style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #0000BB">array_walk_recursive</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fruits</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'test_print'</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+La clé a contient l&#039;élément apple
+La clé b contient l&#039;élément banana
+La clé sour contient l&#039;élément lemon
+</pre>
+					</div>
+				</div>
+				<div class="example-contents">
+					<p>
+						Vous aurez noté que la clé &#039;<em>sweet</em>&#039; n&#039;est
+						jamais affichée. Toute clé qui est associée à un <a
+							href="language.types.array.html" class="link">tableau</a>
+						n&#039;est pas passée à la fonction de rappel.
+					</p>
+				</div>
+			</div>
+			</p>
+		</div>
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.array-walk-recursive-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.array-walk.html" class="function"
+						rel="rdfs-seeAlso">array_walk()</a> - Ex&eacute;cute une fonction
+						sur chacun des &eacute;l&eacute;ments d'un tableau</span></li>
+				<li class="member">Informations sur le type <a
+					href="language.pseudo-types.html#language.types.callback"
+					class="link">callback</a></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.array-values.html">array_values</a>
+		</div>
+		<div class="next">
+			<a href="function.array-walk.html">array_walk</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

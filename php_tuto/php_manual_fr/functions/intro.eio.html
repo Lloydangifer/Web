@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Introduction</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="book.eio.html">Eio</a></div>
+ <div class="next"><a href="eio.setup.html">Installation/Configuration</a></div>
+ <div class="up"><a href="book.eio.html">Eio</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="intro.eio" class="preface">
+  <h1 class="title">Introduction</h1>
+  <p class="para">
+   Cette extension fournit un système POSIX I/O asynchrone via
+   la bibliothèque C <a href="http://software.schmorp.de/pkg/libeio.html" class="link external">&raquo;&nbsp;libeio</a>
+   écrit par Marc Lehmann.
+  </p>
+
+  <blockquote class="note"><p><strong class="note">Note</strong>: <span class="simpara">Cette extension n&#039;est
+pas disponible sur les plates-formes Windows.</span></p></blockquote>
+
+  <p class="para">
+
+  <div class="warning"><strong class="warning">Avertissement</strong>
+  <p class="simpara">
+   Il est important de noter que chaque demande est exécuté dans un thread,
+   et l&#039;ordre d&#039;exécution des demandes en attente n&#039;est pas assuré.
+   Pour l&#039;instant, le code suivant n&#039;est pas correct.
+  </p>
+  </div>
+
+  <div class="example" id="example-3381">
+  <p><strong>Exemple #1 Demandes incorrectes</strong></p>
+  <div class="example-contents"><div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Demande&nbsp;la&nbsp;création&nbsp;d'un&nbsp;lien&nbsp;symbolique&nbsp;$filename&nbsp;vers&nbsp;$link<br /></span><span style="color: #0000BB">eio_symlink</span><span style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Demande&nbsp;de&nbsp;déplacement&nbsp;de&nbsp;$filename&nbsp;vers&nbsp;$new_filename<br /></span><span style="color: #0000BB">eio_rename</span><span style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$new_filename</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Exécution&nbsp;des&nbsp;demandes<br /></span><span style="color: #0000BB">eio_event_loop</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   </div>
+   Dans l&#039;exemple ci-dessus, la fonction  <span class="function"><a href="function.eio-rename.html" class="function">eio_rename()</a></span>
+   peut se terminer avant la fonction  <span class="function"><a href="function.eio-symlink.html" class="function">eio_symlink()</a></span>.
+   Pour résoudre ce problème, vous pouvez appeler la fonction
+    <span class="function"><a href="function.eio-rename.html" class="function">eio_rename()</a></span> dans la fonction de rappel de la
+   fonction  <span class="function"><a href="function.eio-symlink.html" class="function">eio_symlink()</a></span>:
+  <div class="example" id="example-3382">
+   <p><strong>Exemple #2 Exécution d&#039;une demande dans la fonction de rappel d&#039;une autre</strong></p>
+   <div class="example-contents"><div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">my_symlink_done</span><span style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">)&nbsp;{<br />&nbsp;</span><span style="color: #FF8000">//&nbsp;Demande&nbsp;de&nbsp;déplacement&nbsp;de&nbsp;$filename&nbsp;vers&nbsp;$new_filename<br />&nbsp;</span><span style="color: #0000BB">eio_rename</span><span style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"/path/to/new-name"</span><span style="color: #007700">);<br /><br />&nbsp;</span><span style="color: #FF8000">//&nbsp;Exécution&nbsp;des&nbsp;demandes<br />&nbsp;</span><span style="color: #0000BB">eio_event_loop</span><span style="color: #007700">();<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;Demande&nbsp;de&nbsp;création&nbsp;d'un&nbsp;lien&nbsp;symbolique&nbsp;$filename&nbsp;vers&nbsp;$link<br /></span><span style="color: #0000BB">eio_symlink</span><span style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">EIO_PRI_DEFAULT</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_symlink_done"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$filename</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Exécution&nbsp;des&nbsp;demandes<br /></span><span style="color: #0000BB">eio_event_loop</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+   Alternativement, vous pouvez créer un groupe de demandes :
+
+  <div class="example" id="example-3383">
+   <p><strong>Exemple #3 Exécution d&#039;une demande depuis la fonction de rappel d&#039;une autre</strong></p>
+   <div class="example-contents"><div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Sera&nbsp;appelé&nbsp;lorsque&nbsp;le&nbsp;groupe&nbsp;de&nbsp;demandes&nbsp;aura&nbsp;terminé&nbsp;*/<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">my_grp_done</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">)&nbsp;{<br />&nbsp;</span><span style="color: #FF8000">//&nbsp;...<br /></span><span style="color: #007700">}<br /><br />function&nbsp;</span><span style="color: #0000BB">my_symlink_done</span><span style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">)&nbsp;{<br />&nbsp;</span><span style="color: #FF8000">//&nbsp;Crée&nbsp;une&nbsp;demande&nbsp;eio_rename&nbsp;et&nbsp;l'ajoute&nbsp;au&nbsp;groupe<br />&nbsp;</span><span style="color: #0000BB">$req&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">eio_rename</span><span style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"/path/to/new-name"</span><span style="color: #007700">);<br />&nbsp;</span><span style="color: #0000BB">eio_grp_add</span><span style="color: #007700">(</span><span style="color: #0000BB">$grp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$req</span><span style="color: #007700">);<br />&nbsp;</span><span style="color: #FF8000">//&nbsp;Vous&nbsp;pouvez&nbsp;vouloir&nbsp;d'autres&nbsp;actions...<br /></span><span style="color: #007700">}<br /><br /></span><span style="color: #FF8000">//&nbsp;Création&nbsp;d'un&nbsp;groupe&nbsp;de&nbsp;demandes<br /></span><span style="color: #0000BB">$grp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">eio_grp</span><span style="color: #007700">(</span><span style="color: #DD0000">"my_grp_done"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_grp_data"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Crée&nbsp;une&nbsp;demande&nbsp;eio_symlink&nbsp;et&nbsp;l'ajoute&nbsp;au&nbsp;groupe<br />//&nbsp;Passage&nbsp;de&nbsp;$filename&nbsp;à&nbsp;la&nbsp;fonction&nbsp;de&nbsp;rappel<br /></span><span style="color: #0000BB">$req&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">eio_symlink</span><span style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$link</span><span style="color: #007700">,<br />&nbsp;&nbsp;</span><span style="color: #0000BB">EIO_PRI_DEFAULT</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_symlink_done"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$filename</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">eio_grp_add</span><span style="color: #007700">(</span><span style="color: #0000BB">$grp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$req</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Exécution&nbsp;des&nbsp;demandes<br /></span><span style="color: #0000BB">eio_event_loop</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div></div>
+
+  </div>
+   Un groupe est une demande spéciale qui peut cumuler un jeu de
+   demandes <em class="emphasis">eio</em>. Ce mécanisme peut être utile pour
+   créer une demande complexe qui ouvre, lit et ferme un fichier.
+  </p>
+  <p class="para">
+   Depuis la version 0.3.0 alpha, une variable utilisée dans les
+   communications internes avec libeio peut être récupérée
+   avec la fonction  <span class="function"><a href="function.eio-get-event-stream.html" class="function">eio_get_event_stream()</a></span>. La
+   variable peut être utilisé pour lier une boucle d&#039;événements
+   avec d&#039;autres extensions. Vous pouvez organiser une boucle
+   d&#039;événements où libeio et libevent fonctionnent ensemble :
+  <div class="example" id="example-3384">
+   <p><strong>Exemple #4 Utilisation de eio et libevent</strong></p>
+   <div class="example-contents"><div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">my_eio_poll</span><span style="color: #007700">(</span><span style="color: #0000BB">$fd</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$events</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$arg</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Quelques&nbsp;régulations&nbsp;libevent&nbsp;peuvent&nbsp;venir&nbsp;ici&nbsp;..&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">eio_nreqs</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">eio_poll</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;..&nbsp;et&nbsp;ici&nbsp;*/<br /></span><span style="color: #007700">}<br /><br />function&nbsp;</span><span style="color: #0000BB">my_res_cb</span><span style="color: #007700">(</span><span style="color: #0000BB">$d</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$r</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$r</span><span style="color: #007700">);&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$d</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #0000BB">$base&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">event_base_new</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">$event&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">event_new</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">//&nbsp;Ce&nbsp;flux&nbsp;est&nbsp;utilisé&nbsp;pour&nbsp;se&nbsp;lier&nbsp;avec&nbsp;libevent<br /></span><span style="color: #0000BB">$fd&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">eio_get_event_stream</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">eio_nop</span><span style="color: #007700">(</span><span style="color: #0000BB">EIO_PRI_DEFAULT</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_res_cb"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"nop&nbsp;data"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">eio_mkdir</span><span style="color: #007700">(</span><span style="color: #DD0000">"/tmp/abc-eio-temp"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0750</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">EIO_PRI_DEFAULT</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_res_cb"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"mkdir&nbsp;data"</span><span style="color: #007700">);<br /></span><span style="color: #FF8000">/*&nbsp;d'autres&nbsp;appels&nbsp;eio_*&nbsp;ici&nbsp;...&nbsp;*/<br /><br /><br />//&nbsp;Définit&nbsp;les&nbsp;drapeaux&nbsp;des&nbsp;événements<br /></span><span style="color: #0000BB">event_set</span><span style="color: #007700">(</span><span style="color: #0000BB">$event</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$fd</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">EV_READ&nbsp;</span><span style="color: #FF8000">/*|&nbsp;EV_PERSIST*/</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_eio_poll"</span><span style="color: #007700">,&nbsp;array(</span><span style="color: #0000BB">$event</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$base</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">//&nbsp;Définit&nbsp;l'événement&nbsp;de&nbsp;base<br /></span><span style="color: #0000BB">event_base_set</span><span style="color: #007700">(</span><span style="color: #0000BB">$event</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$base</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Active&nbsp;l'événement<br /></span><span style="color: #0000BB">event_add</span><span style="color: #007700">(</span><span style="color: #0000BB">$event</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Démarre&nbsp;la&nbsp;boucle&nbsp;des&nbsp;événements<br /></span><span style="color: #0000BB">event_base_loop</span><span style="color: #007700">(</span><span style="color: #0000BB">$base</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;La&nbsp;même&nbsp;chose&nbsp;est&nbsp;disponible&nbsp;via&nbsp;l'interface&nbsp;libevent&nbsp;bufferisée&nbsp;*/<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div></div>
+
+  </div>
+
+  </p>
+ </div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="book.eio.html">Eio</a></div>
+ <div class="next"><a href="eio.setup.html">Installation/Configuration</a></div>
+ <div class="up"><a href="book.eio.html">Eio</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

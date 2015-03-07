@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Envoie un en-t&ecirc;te HTTP</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.header-remove.html">header_remove</a>
+		</div>
+		<div class="next">
+			<a href="function.headers-list.html">headers_list</a>
+		</div>
+		<div class="up">
+			<a href="ref.network.html">Fonctions r&eacute;seaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.header" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">header</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">header</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Envoie un en-tête HTTP</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.header-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><span class="type void">void</span></span> <span
+					class="methodname"><strong>header</strong></span> ( <span
+					class="methodparam"><span class="type">string</span> <code
+						class="parameter">$string</code></span> [, <span class="methodparam"><span
+					class="type">bool</span> <code class="parameter">$replace</code><span
+					class="initializer"> = true</span></span> [, <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$http_response_code</code></span>
+				]] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>header()</strong></span> permet de
+				spécifier l&#039;en-tête <acronym
+					title="Hypertext Transfer Protocol">HTTP</acronym> <em><code
+						class="parameter">string</code></em> lors de l&#039;envoi des fichiers
+				HTML. Reportez-vous à <a href="http://www.faqs.org/rfcs/rfc2616"
+					class="link external">&raquo;&nbsp;<em>HTTP/1.1
+						Specification</em></a> pour plus d&#039;informations sur les en-têtes <acronym
+					title="Hypertext Transfer Protocol">HTTP</acronym>.
+			</p>
+			<p class="para">
+				N&#039;oubliez jamais que <span class="function"><strong>header()</strong></span>
+				doit être appelée avant que le moindre contenu ne soit envoyé, soit
+				par des lignes HTML habituelles dans le fichier, soit par des
+				affichages PHP. Une erreur très classique est de lire un fichier
+				avec <span class="function"><a href="function.include.html"
+					class="function">include</a></span> ou <span class="function"><a
+					href="function.require.html" class="function">require</a></span>, et de
+				laisser des espaces ou des lignes vides, qui produiront un affichage
+				avant que la fonction <span class="function"><strong>header()</strong></span>
+				ne soit appelée. Le même problème existe avec les fichiers PHP/HTML
+				standards.
+			<div class="informalexample">
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> &lt;html&gt;<br />
+							<span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">/*&nbsp;Ceci&nbsp;produira&nbsp;une&nbsp;erreur.&nbsp;Notez&nbsp;la&nbsp;sortie&nbsp;ci-dessus,<br />&nbsp;*&nbsp;qui&nbsp;se&nbsp;trouve&nbsp;avant&nbsp;l'appel&nbsp;à&nbsp;la&nbsp;fonction&nbsp;header()&nbsp;*/<br /></span><span
+								style="color: #0000BB">header</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'Location:&nbsp;http://www.example.com/'</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.header-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">string</code></em></span>
+				<dd>
+
+					<p class="para">L&#039;en-tête.</p>
+					<p class="para">
+						Il y a deux en-têtes spéciaux. Le premier commence par la chaîne
+						&quot;<em>HTTP/</em>&quot; (insensible à la casse), qui est
+						utilisée pour signifier le statut HTTP à envoyer. Par exemple, si
+						vous avez configuré Apache pour utiliser les scripts PHP pour
+						gérer les requêtes vers des fichiers inexistants (en utilisant la
+						directive <em>ErrorDocument</em>), vous voulez-vous assurer que le
+						script génère un code statut correct.
+					</p>
+					<p class="para">
+					<div class="informalexample">
+						<div class="example-contents">
+							<div class="phpcode">
+								<code>
+									<span style="color: #000000"> <span
+										style="color: #0000BB">&lt;?php<br />header
+									</span><span style="color: #007700">(</span><span
+										style="color: #DD0000">"HTTP/1.0&nbsp;404&nbsp;Not&nbsp;Found"</span><span
+										style="color: #007700">);<br /></span><span
+										style="color: #0000BB">?&gt;</span>
+									</span>
+								</code>
+							</div>
+						</div>
+
+					</div>
+					</p>
+					<p class="para">Avec FastCGI vous devez utiliser ceci pour une
+						réponse 404:
+					<div class="informalexample">
+						<div class="example-contents">
+							<div class="phpcode">
+								<code>
+									<span style="color: #000000"> <span
+										style="color: #0000BB">&lt;?php<br />header
+									</span><span style="color: #007700">(</span><span
+										style="color: #DD0000">"Status:&nbsp;404&nbsp;Not&nbsp;Found"</span><span
+										style="color: #007700">);<br /></span><span
+										style="color: #0000BB">?&gt;</span>
+									</span>
+								</code>
+							</div>
+						</div>
+
+					</div>
+					</p>
+					<p class="para">
+						Le deuxième type d&#039;appel spécial est <em>&quot;Location:&quot;</em>.
+						Non seulement il renvoie un en-tête au client, mais, en plus, il
+						envoie un statut <em>REDIRECT</em> (302) au navigateur tant
+						qu&#039;un code statut <em>201</em> ou <em>3xx</em> n&#039;a pas
+						été envoyé.
+					</p>
+					<p class="para">
+					<div class="informalexample">
+						<div class="example-contents">
+							<div class="phpcode">
+								<code>
+									<span style="color: #000000"> <span
+										style="color: #0000BB">&lt;?php<br />header
+									</span><span style="color: #007700">(</span><span
+										style="color: #DD0000">"Location:&nbsp;http://www.example.com/"</span><span
+										style="color: #007700">);&nbsp;</span><span
+										style="color: #FF8000">/*&nbsp;Redirection&nbsp;du&nbsp;navigateur&nbsp;*/<br />
+										<br />/*&nbsp;Assurez-vous&nbsp;que&nbsp;la&nbsp;suite&nbsp;du&nbsp;code&nbsp;ne&nbsp;soit&nbsp;pas&nbsp;exécutée&nbsp;une&nbsp;fois&nbsp;la&nbsp;redirection&nbsp;effectuée.&nbsp;*/<br /></span><span
+										style="color: #007700">exit;<br /></span><span
+										style="color: #0000BB">?&gt;</span>
+									</span>
+								</code>
+							</div>
+						</div>
+
+					</div>
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">replace</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le paramètre optionnel <em><code class="parameter">replace</code></em>
+						indique si la fonction <span class="function"><strong>header()</strong></span>
+						doit remplacer un en-tête précédemment émis, ou bien ajouter un
+						autre en-tête du même type. Par défaut, un nouvel en-tête va
+						écraser le précédent, mais si vous passez <strong><code>FALSE</code></strong>
+						dans cet argument, vous pouvez forcer les en-têtes multiples pour
+						un même type d&#039;en-tête. Par exemple :
+					</p>
+					<p class="para">
+					<div class="informalexample">
+						<div class="example-contents">
+							<div class="phpcode">
+								<code>
+									<span style="color: #000000"> <span
+										style="color: #0000BB">&lt;?php<br />header
+									</span><span style="color: #007700">(</span><span
+										style="color: #DD0000">'WWW-Authenticate:&nbsp;Negotiate'</span><span
+										style="color: #007700">);<br /></span><span
+										style="color: #0000BB">header</span><span
+										style="color: #007700">(</span><span style="color: #DD0000">'WWW-Authenticate:&nbsp;NTLM'</span><span
+										style="color: #007700">,&nbsp;</span><span
+										style="color: #0000BB">false</span><span
+										style="color: #007700">);<br /></span><span
+										style="color: #0000BB">?&gt;</span>
+									</span>
+								</code>
+							</div>
+						</div>
+
+					</div>
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">http_response_code</code></em></span>
+				<dd>
+
+					<p class="para">Force le code réponse HTTP à la valeur
+						spécifiée.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.header-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Aucune valeur n&#039;est retournée.</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.header-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.4.2 et 5.1.2</td>
+						<td>Cette fonction prévient l&#039;envoi de plus d&#039;un
+							en-tête en même temps pour lutter contre les attaques par
+							injection d&#039;en-tête.</td>
+					</tr>
+
+					<tr>
+						<td>4.3.0</td>
+						<td>Ajout du paramètre <em><code class="parameter">http_response_code</code></em>.
+						</td>
+					</tr>
+
+					<tr>
+						<td>4.0.4</td>
+						<td>Ajout du paramètre <em><code class="parameter">replace</code></em>.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.header-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4150">
+				<p>
+					<strong>Exemple #1 Boîte de téléchargement</strong>
+				</p>
+				<div class="example-contents">
+					<p>
+						Si vous voulez que vos utilisateur recoivent une alerte pour
+						sauver les fichiers générés, comme si vous génériez un fichier
+						PDF, vous pouvez utiliser l&#039;en-tête <a
+							href="http://www.faqs.org/rfcs/rfc2183" class="link external">&raquo;&nbsp;Content-Disposition</a>
+						pour fournir un nom de fichier par défaut, à afficher dans le
+						dialogue de sauvegarde.
+					</p>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Vous&nbsp;voulez&nbsp;afficher&nbsp;un&nbsp;pdf<br /></span><span
+								style="color: #0000BB">header</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'Content-type:&nbsp;application/pdf'</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Il&nbsp;sera&nbsp;nommé&nbsp;downloaded.pdf<br /></span><span
+								style="color: #0000BB">header</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'Content-Disposition:&nbsp;attachment;&nbsp;filename="downloaded.pdf"'</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Le&nbsp;source&nbsp;du&nbsp;PDF&nbsp;original.pdf<br /></span><span
+								style="color: #0000BB">readfile</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'original.pdf'</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="example-4151">
+				<p>
+					<strong>Exemple #2 Directives concernant la mise en cache</strong>
+				</p>
+				<div class="example-contents">
+					<p>Les scripts PHP génèrent souvent du HTML dynamiquement, qui
+						ne doit pas être mis en cache, ni par le client, ni par les proxy
+						intermédiaires. On peut forcer la désactivation du cache de
+						nombreux clients et proxy avec :</p>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />header
+							</span><span style="color: #007700">(</span><span style="color: #DD0000">"Cache-Control:&nbsp;no-cache,&nbsp;must-revalidate"</span><span
+								style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;HTTP/1.1<br /></span><span
+								style="color: #0000BB">header</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"Expires:&nbsp;Sat,&nbsp;26&nbsp;Jul&nbsp;1997&nbsp;05:00:00&nbsp;GMT"</span><span
+								style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;Date&nbsp;dans&nbsp;le&nbsp;passé<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>:
+						<p class="para">Vous pouvez vous rendre compte que vos pages
+							ne sont jamais mises en cache même si vous utilisez tous les
+							en-têtes ci-dessus. Il existe toute une collection de paramètres
+							que les utilisateurs peuvent modifier sur leur navigateur pour
+							modifier le comportement par défaut du cache. En envoyant les
+							en-têtes ci-dessus, vous pouvez imposer vos propres valeurs.</p>
+						<p class="para">
+							De plus, les paramètres <span class="function"><a
+								href="function.session-cache-limiter.html" class="function">session_cache_limiter()</a></span>
+							et <em>session.cache_limiter</em> peuvent être utilisés pour
+							générer les en-têtes de caches corrects, lorsque les sessions
+							sont utilisées.
+					</blockquote>
+					</p>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.header-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Les en-têtes ne seront accessibles et
+					s&#039;afficheront que lorsqu&#039;un SAPI qui les supportent sera
+					utilisé.
+			</blockquote>
+
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Vous pouvez utiliser le système de cache (output buffering) pour
+					contourner ce problème. Tous vos textes générés seront mis en
+					buffer sur le serveur jusqu&#039;à ce que vous les envoyiez. Vous
+					pouvez utiliser les fonctions <span class="function"><a
+						href="function.ob-start.html" class="function">ob_start()</a></span> et <span
+						class="function"><a href="function.ob-end-flush.html"
+						class="function">ob_end_flush()</a></span> dans vos scripts, ou en
+					modifiant la directive de configuration <em>output_buffering</em>
+					dans votre fichier
+					<var class="filename">php.ini</var>
+					ou vos fichiers de configuration du serveur.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Le code statut HTTP doit toujours être le premier à être envoyé au
+					client, au regard de l&#039;actuel <span class="function"><strong>header()</strong></span>
+					qui peut être le premier ou non. Le statut peut être écrasé en
+					appelant <span class="function"><strong>header()</strong></span>
+					avec un nouveau statut à n&#039;importe quel moment même si
+					l&#039;en-tête HTTP a déjà été envoyé.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Il y a un bogue sous Microsoft Internet Explorer
+					4.01 qui empêche cet en-tête de fonctionner. Il n&#039;y a pas
+					d&#039;autre solution. Il y a aussi un bogue dans Microsoft
+					Internet Explorer 5.5 qui interfère avec ceci, mais qui peut être
+					résolu en utilisant le Service Pack 2 ou plus récent.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">
+						Si <a href="ini.sect.safe-mode.html#ini.safe-mode" class="link">safe
+							mode</a> est activé, l&#039;UID du script est ajouté à la partie <em>realm</em>
+						des en-têtes <em>WWW-Authenticate</em> que vous envoyez avec cet
+						en-tête.
+					</span>
+				</p>
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					HTTP/1.1 demande une <acronym title="Uniform Resource Identifier">URI</acronym>
+					absolue comme argument de <a
+						href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.30"
+						class="link external">&raquo;&nbsp;<em>Location:</em></a>, y
+					compris le protocole, hôte et chemin absolu. Mais certains
+					navigateurs acceptent les URI relatives. Vous pouvez généralement
+					utiliser les variables globales
+					<var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.server.html" class="classname">$_SERVER['HTTP_HOST']</a>
+						</var>
+					</var>
+					,
+					<var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.server.html" class="classname">$_SERVER['PHP_SELF']</a>
+						</var>
+					</var>
+					et <span class="function"><a href="function.dirname.html"
+						class="function">dirname()</a></span> pour construire vous-même une URI
+					absolue :
+				<div class="informalexample">
+					<div class="example-contents">
+						<div class="phpcode">
+							<code>
+								<span style="color: #000000"> <span
+									style="color: #0000BB">&lt;?php<br /></span><span
+									style="color: #FF8000">/*&nbsp;Redirection&nbsp;vers&nbsp;une&nbsp;page&nbsp;différente&nbsp;du&nbsp;même&nbsp;dossier&nbsp;*/<br /></span><span
+									style="color: #0000BB">$host&nbsp;&nbsp;</span><span
+									style="color: #007700">=&nbsp;</span><span
+									style="color: #0000BB">$_SERVER</span><span
+									style="color: #007700">[</span><span style="color: #DD0000">'HTTP_HOST'</span><span
+									style="color: #007700">];<br /></span><span
+									style="color: #0000BB">$uri&nbsp;&nbsp;&nbsp;</span><span
+									style="color: #007700">=&nbsp;</span><span
+									style="color: #0000BB">rtrim</span><span style="color: #007700">(</span><span
+									style="color: #0000BB">dirname</span><span
+									style="color: #007700">(</span><span style="color: #0000BB">$_SERVER</span><span
+									style="color: #007700">[</span><span style="color: #DD0000">'PHP_SELF'</span><span
+									style="color: #007700">]),&nbsp;</span><span
+									style="color: #DD0000">'/\\'</span><span style="color: #007700">);<br /></span><span
+									style="color: #0000BB">$extra&nbsp;</span><span
+									style="color: #007700">=&nbsp;</span><span
+									style="color: #DD0000">'mypage.php'</span><span
+									style="color: #007700">;<br /></span><span
+									style="color: #0000BB">header</span><span
+									style="color: #007700">(</span><span style="color: #DD0000">"Location:&nbsp;http://</span><span
+									style="color: #0000BB">$host$uri</span><span
+									style="color: #DD0000">/</span><span style="color: #0000BB">$extra</span><span
+									style="color: #DD0000">"</span><span style="color: #007700">);<br />exit;<br /></span><span
+									style="color: #0000BB">?&gt;</span>
+								</span>
+							</code>
+						</div>
+					</div>
+
+				</div>
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					L&#039;ID de session n&#039;est pas passé avec l&#039;en-tête
+					Location même si <a
+						href="session.configuration.html#ini.session.use-trans-sid"
+						class="link">session.use_trans_sid</a> est activé. Il doit être
+					passé manuellement en utilisant la constante <strong><code>SID</code></strong>.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.header-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.headers-sent.html" class="function"
+						rel="rdfs-seeAlso">headers_sent()</a> - Indique si les
+						en-t&ecirc;tes HTTP ont d&eacute;j&agrave; &eacute;t&eacute;
+						envoy&eacute;s</span></li>
+				<li class="member"><span class="function"><a
+						href="function.setcookie.html" class="function" rel="rdfs-seeAlso">setcookie()</a>
+						- Envoie un cookie</span></li>
+				<li class="member"><span class="function"><a
+						href="function.http-response-code.html" class="function"
+						rel="rdfs-seeAlso">http_response_code()</a> -
+						R&eacute;cup&egrave;re ou change le code de la r&eacute;ponse HTTP</span></li>
+				<li class="member">La section sur l&#039;<a
+					href="features.http-auth.html" class="link">identification HTTP</a>
+				</li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.header-remove.html">header_remove</a>
+		</div>
+		<div class="next">
+			<a href="function.headers-list.html">headers_list</a>
+		</div>
+		<div class="up">
+			<a href="ref.network.html">Fonctions r&eacute;seaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Constantes de classe</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.oop5.properties.html">Propri&eacute;t&eacute;s</a>
+		</div>
+		<div class="next">
+			<a href="language.oop5.autoload.html">Auto-chargement de classes</a>
+		</div>
+		<div class="up">
+			<a href="language.oop5.html">Les classes et les objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.oop5.constants" class="sect1">
+		<h2 class="title">Constantes de classe</h2>
+		<p class="para">
+			Il est possible de définir des valeurs constantes à l&#039;intérieur
+			d&#039;une classe, qui ne seront pas modifiables. Les constantes
+			diffèrent des variables normales du fait que l&#039;on n&#039;utilise
+			pas le symbole
+			<var class="varname">
+				<var class="varname">$</var>
+			</var>
+			pour les déclarer ou les utiliser.
+		</p>
+		<p class="para">La valeur doit être une expression constante, pas
+			(par exemple) une variable, une propriété, le résultat d&#039;une
+			opération mathématique, ou un appel de fonction.</p>
+		<p class="para">
+			Il est aussi possible pour les interfaces d&#039;avoir des <em>constantes</em>.
+			Regardez la <a href="language.oop5.interfaces.html" class="link">documentation
+				des interfaces</a> pour quelques exemples.
+		</p>
+		<p class="para">
+			Depuis PHP 5.3.0, il est possible de référencer la classe en
+			utilisant une variable. La valeur de la variable ne peut pas être un
+			mot-clé (e.g. <em>self</em>, <em>parent</em> et <em>static</em>).
+		</p>
+
+		<div class="example" id="example-182">
+			<p>
+				<strong>Exemple #1 Définition et utilisation d&#039;une
+					constante de classe</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">class&nbsp;</span><span
+							style="color: #0000BB">MyClass<br /></span><span
+							style="color: #007700">{<br />&nbsp;&nbsp;const&nbsp;
+						</span><span style="color: #0000BB">constant&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'valeur&nbsp;constante'</span><span
+							style="color: #007700">;<br />
+							<br />&nbsp;&nbsp;function&nbsp;
+						</span><span style="color: #0000BB">showConstant</span><span
+							style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;&nbsp;
+						</span><span style="color: #0000BB">self</span><span
+							style="color: #007700">::</span><span style="color: #0000BB">constant&nbsp;</span><span
+							style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;}<br />}<br />
+							<br />echo&nbsp;
+						</span><span style="color: #0000BB">MyClass</span><span
+							style="color: #007700">::</span><span style="color: #0000BB">constant&nbsp;</span><span
+							style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span
+							style="color: #007700">;<br />
+							<br /></span><span style="color: #0000BB">$classname&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"MyClass"</span><span
+							style="color: #007700">;<br />echo&nbsp;
+						</span><span style="color: #0000BB">$classname</span><span
+							style="color: #007700">::</span><span style="color: #0000BB">constant&nbsp;</span><span
+							style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span
+							style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;Depuis&nbsp;PHP&nbsp;5.3.0<br />
+							<br /></span><span style="color: #0000BB">$class&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">MyClass</span><span style="color: #007700">();<br /></span><span
+							style="color: #0000BB">$class</span><span style="color: #007700">-&gt;</span><span
+							style="color: #0000BB">showConstant</span><span
+							style="color: #007700">();<br />
+							<br />echo&nbsp;
+						</span><span style="color: #0000BB">$class</span><span
+							style="color: #007700">::</span><span style="color: #0000BB">constant</span><span
+							style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span
+							style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;Depuis&nbsp;PHP&nbsp;5.3.0<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="example" id="example-183">
+			<p>
+				<strong>Exemple #2 Exemple de données statiques</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">class&nbsp;</span><span
+							style="color: #0000BB">foo&nbsp;</span><span
+							style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #FF8000">//&nbsp;Depuis&nbsp;PHP&nbsp;5.3.0<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">const&nbsp;</span><span
+							style="color: #0000BB">bar&nbsp;</span><span
+							style="color: #007700">=&nbsp;&lt;&lt;&lt;'EOT'<br /></span><span
+							style="color: #DD0000">bar<br /></span><span
+							style="color: #007700">EOT;<br />}<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+			<div class="example-contents">
+				<p>Contrairement à heredocs, nowdocs peut être utilisée dans
+					n&#039;importe quel contexte de données statiques.</p>
+			</div>
+		</div>
+
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>:
+			<p class="para">Le support de Nowdoc a été ajouté en PHP 5.3.0.
+		</blockquote>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.oop5.properties.html">Propri&eacute;t&eacute;s</a>
+		</div>
+		<div class="next">
+			<a href="language.oop5.autoload.html">Auto-chargement de classes</a>
+		</div>
+		<div class="up">
+			<a href="language.oop5.html">Les classes et les objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

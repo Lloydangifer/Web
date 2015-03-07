@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>D&eacute;truit les donn&eacute;es du tampon de sortie et
+	&eacute;teint la tamporisation de sortie</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.ob-clean.html">ob_clean</a>
+		</div>
+		<div class="next">
+			<a href="function.ob-end-flush.html">ob_end_flush</a>
+		</div>
+		<div class="up">
+			<a href="ref.outcontrol.html">Fonctions de bufferisation de
+				sortie</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.ob-end-clean" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">ob_end_clean</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">ob_end_clean</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Détruit les données du tampon de
+					sortie et éteint la tamporisation de sortie</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.ob-end-clean-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>ob_end_clean</strong></span>
+				( <span class="methodparam">void</span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				Cette fonction vide le contenu du premier tampon de sortie et
+				désactive la tamporisation de sortie. Si vous voulez traiter le
+				contenu du tampon, vous devrez appeler <span class="function"><a
+					href="function.ob-get-contents.html" class="function">ob_get_contents()</a></span>
+				avant <span class="function"><strong>ob_end_clean()</strong></span>,
+				car le tampon est détruit par <span class="function"><strong>ob_end_clean()</strong></span>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.ob-end-clean-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient. Les raisons d&#039;un tel échec sont que la tamporisation
+				de sortie pouvait ne pas être activée, ou que, pour une raison
+				quelconque, le tampon n&#039;a pu être détruit.
+			</p>
+		</div>
+
+
+		<div class="refsect1 errors"
+			id="refsect1-function.ob-end-clean-errors">
+			<h3 class="title">Erreurs / Exceptions</h3>
+			<p class="para">
+				Si la fonction échoue, elle génère une note <strong><code>E_NOTICE</code></strong>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.ob-end-clean-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.2.0</td>
+						<td>La valeur booléen retournée par la fonction a été
+							ajoutée.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.ob-end-clean-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">L&#039;exemple suivant montre comment se
+				débarrasser de tous les tampons de sortie :</p>
+			<p class="para">
+			<div class="example" id="example-464">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>ob_end_clean()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />ob_start
+							</span><span style="color: #007700">();<br />echo&nbsp;
+							</span><span style="color: #DD0000">'Texte&nbsp;qui&nbsp;ne&nbsp;sera&nbsp;pas&nbsp;affiché.'</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">ob_end_clean</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.ob-end-clean-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.ob-start.html" class="function" rel="rdfs-seeAlso">ob_start()</a>
+						- Enclenche la tamporisation de sortie</span></li>
+				<li class="member"><span class="function"><a
+						href="function.ob-get-contents.html" class="function"
+						rel="rdfs-seeAlso">ob_get_contents()</a> - Retourne le contenu du
+						tampon de sortie</span></li>
+				<li class="member"><span class="function"><a
+						href="function.ob-flush.html" class="function" rel="rdfs-seeAlso">ob_flush()</a>
+						- Envoie le tampon de sortie</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.ob-clean.html">ob_clean</a>
+		</div>
+		<div class="next">
+			<a href="function.ob-end-flush.html">ob_end_flush</a>
+		</div>
+		<div class="up">
+			<a href="ref.outcontrol.html">Fonctions de bufferisation de
+				sortie</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>D&eacute;code une cha&icirc;ne JSON</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="ref.json.html">Fonctions JSON</a>
+		</div>
+		<div class="next">
+			<a href="function.json-encode.html">json_encode</a>
+		</div>
+		<div class="up">
+			<a href="ref.json.html">Fonctions JSON</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.json-decode" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">json_decode</h1>
+			<p class="verinfo">(PHP 5 &gt;= 5.2.0, PECL json &gt;= 1.2.0)</p>
+			<p class="refpurpose">
+				<span class="refname">json_decode</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Décode une chaîne JSON</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.json-decode-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><a
+					href="language.pseudo-types.html#language.types.mixed"
+					class="type mixed">mixed</a></span> <span class="methodname"><strong>json_decode</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$json</code></span> [, <span class="methodparam"><span
+					class="type">bool</span> <code class="parameter">$assoc</code><span
+					class="initializer"> = false</span></span> [, <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$depth</code><span
+					class="initializer"> = 512</span></span> [, <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$options</code><span
+					class="initializer"> = 0</span></span> ]]] )
+			</div>
+
+			<p class="para rdfs-comment">Récupère une chaîne encodée JSON et
+				la convertit en une variable PHP.</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.json-decode-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">json</code></em></span>
+				<dd>
+
+					<p class="para">
+						La chaîne <em><code class="parameter">json</code></em> à décoder.
+					</p>
+					<p class="para">Cette fonction ne traite qu&#039;avec des
+						données encodées avec UTF-8.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">assoc</code></em></span>
+				<dd>
+
+					<p class="para">
+						Lorsque ce paramètre vaut <strong><code>TRUE</code></strong>,
+						l&#039;objet retourné sera converti en un tableau associatif.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">depth</code></em></span>
+				<dd>
+
+					<p class="para">Définit la profondeur de récursion.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">options</code></em></span>
+				<dd>
+
+					<p class="para">
+						Un masque d&#039;options JSON decode. Actuellement, seul <strong><code>JSON_BIGINT_AS_STRING</code></strong>
+						est supporté (par défaut, les gros entiers sont convertis en
+						nombres à virgule flottante)
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.json-decode-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne la valeur encodée dans le paramètre <em><code
+						class="parameter">json</code></em> dans le type PHP approprié. Les
+				valeurs <em>true</em>, <em>false</em> et <em>null</em> (insensible à
+				la casse) sont retournées respectivement comme <strong><code>TRUE</code></strong>,
+				<strong><code>FALSE</code></strong> et <strong><code>NULL</code></strong>.
+				<strong><code>NULL</code></strong> est retourné si le paramètre <em><code
+						class="parameter">json</code></em> n&#039;a pu être décodé ou si les
+				données encodées sont plus profondes que la limite de récursion
+				fournie.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.json-decode-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-3483">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>json_decode()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$json&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'{"a":1,"b":2,"c":3,"d":4,"e":5}'</span><span
+								style="color: #007700">;<br />
+								<br /></span><span style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">json_decode</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$json</span><span
+								style="color: #007700">));<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">json_decode</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$json</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">));<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+object(stdClass)#1 (5) {
+    [&quot;a&quot;] =&gt; int(1)
+    [&quot;b&quot;] =&gt; int(2)
+    [&quot;c&quot;] =&gt; int(3)
+    [&quot;d&quot;] =&gt; int(4)
+    [&quot;e&quot;] =&gt; int(5)
+}
+
+array(5) {
+    [&quot;a&quot;] =&gt; int(1)
+    [&quot;b&quot;] =&gt; int(2)
+    [&quot;c&quot;] =&gt; int(3)
+    [&quot;d&quot;] =&gt; int(4)
+    [&quot;e&quot;] =&gt; int(5)
+}
+</pre>
+					</div>
+				</div>
+			</div>
+			<div class="example" id="example-3484">
+				<p>
+					<strong>Exemple #2 Accès à des propriétés d&#039;objet
+						invalides</strong>
+				</p>
+				<div class="example-contents">
+					<p>Accéder à des éléments d&#039;un objet qui contiennent des
+						caractères non permis par la convention de nommage de PHP (i.e. le
+						trait d&#039;union) peut être effectué en encapsulant le nom de
+						l&#039;élément avec des crochets et des apostrophes.</p>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br />$json&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'{"foo-bar":&nbsp;12345}'</span><span
+								style="color: #007700">;<br />
+								<br /></span><span style="color: #0000BB">$obj&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">json_decode</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$json</span><span
+								style="color: #007700">);<br />print&nbsp;
+							</span><span style="color: #0000BB">$obj</span><span
+								style="color: #007700">-&gt;{</span><span style="color: #DD0000">'foo-bar'</span><span
+								style="color: #007700">};&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;12345<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			<div class="example" id="example-3485">
+				<p>
+					<strong>Exemple #3 Erreurs habituelles lors de
+						l&#039;utilisation de la fonction <span class="function"><strong>json_decode()</strong></span>
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Les&nbsp;chaînes&nbsp;suivantes&nbsp;sont&nbsp;valides&nbsp;en&nbsp;JavaScript&nbsp;mais&nbsp;pas&nbsp;en&nbsp;JSON<br />
+								<br />//&nbsp;Le&nbsp;nom&nbsp;et&nbsp;la&nbsp;valeur&nbsp;doivent&nbsp;être&nbsp;entourrés&nbsp;de&nbsp;double-guillemets.<br />//&nbsp;Les&nbsp;simple-guillements&nbsp;ne&nbsp;sont&nbsp;pas&nbsp;valides<br /></span><span
+								style="color: #0000BB">$bad_json&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"{&nbsp;'bar':&nbsp;'baz'&nbsp;}"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">json_decode</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$bad_json</span><span
+								style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;null<br />
+								<br />//&nbsp;le&nbsp;nom&nbsp;doit&nbsp;être&nbsp;entourré&nbsp;de&nbsp;double-guillemets<br /></span><span
+								style="color: #0000BB">$bad_json&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'{&nbsp;bar:&nbsp;"baz"&nbsp;}'</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">json_decode</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$bad_json</span><span
+								style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;null<br />
+								<br />//&nbsp;la&nbsp;virgule&nbsp;de&nbsp;fin&nbsp;n'est&nbsp;pas&nbsp;autorisée<br /></span><span
+								style="color: #0000BB">$bad_json&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'{&nbsp;bar:&nbsp;"baz",&nbsp;}'</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">json_decode</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$bad_json</span><span
+								style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;null<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			<div class="example" id="example-3486">
+				<p>
+					<strong>Exemple #4 Erreurs avec le paramètre <em><code
+								class="parameter">depth</code></em></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Encode&nbsp;les&nbsp;données.<br /></span><span
+								style="color: #0000BB">$json&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">json_encode</span><span
+								style="color: #007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">1&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #DD0000">'English'&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #DD0000">'One'</span><span
+								style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #DD0000">'January'<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #DD0000">'French'&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #DD0000">'Une'</span><span
+								style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #DD0000">'Janvier'<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br />&nbsp;&nbsp;&nbsp;&nbsp;)<br />);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Définie&nbsp;les&nbsp;erreurs<br /></span><span
+								style="color: #0000BB">$constants&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">get_defined_constants</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">true</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$json_errors&nbsp;</span><span
+								style="color: #007700">=&nbsp;array();<br />foreach&nbsp;(
+							</span><span style="color: #0000BB">$constants</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">"json"</span><span
+								style="color: #007700">]&nbsp;as&nbsp;</span><span
+								style="color: #0000BB">$name&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #0000BB">$value</span><span style="color: #007700">)&nbsp;{<br />&nbsp;if&nbsp;(!
+							</span><span style="color: #0000BB">strncmp</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$name</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"JSON_ERROR_"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">11</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$json_errors</span><span
+								style="color: #007700">[</span><span style="color: #0000BB">$value</span><span
+								style="color: #007700">]&nbsp;=&nbsp;</span><span
+								style="color: #0000BB">$name</span><span style="color: #007700">;<br />&nbsp;}<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Affiche&nbsp;les&nbsp;erreurs&nbsp;pour&nbsp;les&nbsp;différentes&nbsp;profondeurs.<br /></span><span
+								style="color: #007700">foreach&nbsp;(</span><span
+								style="color: #0000BB">range</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">4</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;-</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">)&nbsp;as&nbsp;</span><span
+								style="color: #0000BB">$depth</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">json_decode</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$json</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$depth</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'Dernière&nbsp;erreur&nbsp;:&nbsp;'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$json_errors</span><span
+								style="color: #007700">[</span><span style="color: #0000BB">json_last_error</span><span
+								style="color: #007700">()],&nbsp;</span><span
+								style="color: #0000BB">PHP_EOL</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">PHP_EOL</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+array(1) {
+  [1]=&gt;
+  array(2) {
+    [&quot;English&quot;]=&gt;
+    array(2) {
+      [0]=&gt;
+      string(3) &quot;One&quot;
+      [1]=&gt;
+      string(7) &quot;January&quot;
+    }
+    [&quot;French&quot;]=&gt;
+    array(2) {
+      [0]=&gt;
+      string(3) &quot;Une&quot;
+      [1]=&gt;
+      string(7) &quot;Janvier&quot;
+    }
+  }
+}
+Dernière erreur : JSON_ERROR_NONE
+
+NULL
+Dernière erreur : JSON_ERROR_DEPTH
+</pre>
+					</div>
+				</div>
+			</div>
+			<div class="example" id="example-3487">
+				<p>
+					<strong>Exemple #5 Exemple avec <span class="function"><strong>json_decode()</strong></span>
+						et de gros entiers
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$json&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'12345678901234567890'</span><span
+								style="color: #007700">;<br />
+								<br /></span><span style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">json_decode</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$json</span><span
+								style="color: #007700">));<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">json_decode</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$json</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">false</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">512</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">JSON_BIGINT_AS_STRING</span><span
+								style="color: #007700">));<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+float(1.2345678901235E+19)
+string(20) &quot;12345678901234567890&quot;
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.json-decode-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">La spécification JSON ne fait pas partie de
+					Javascript mais d&#039;un sous-projet de Javascript.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Si une erreur survient lors du décodage, la fonction <span
+						class="function"><a href="function.json-last-error.html"
+						class="function">json_last_error()</a></span> pourra être utilisée pour
+					déterminer la nature exacte de l&#039;erreur.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.json-decode-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.4.0</td>
+						<td>Le paramètre <em><code class="parameter">options</code></em>
+							a été ajouté.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.3.0</td>
+						<td>Ajout du paramètre optionnel <em><code
+									class="parameter">depth</code></em>. La profondeur de récursion par
+							défaut a augmenté de 128 à 512
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.2.3</td>
+						<td>La limite a été élevée de 20 à 128</td>
+					</tr>
+
+					<tr>
+						<td>5.2.1</td>
+						<td>Ajout du support du décodage JSON des types basiques.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.json-decode-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.json-encode.html" class="function"
+						rel="rdfs-seeAlso">json_encode()</a> - Retourne le
+						repr&eacute;sentation JSON d'une valeur</span></li>
+				<li class="member"><span class="function"><a
+						href="function.json-last-error.html" class="function"
+						rel="rdfs-seeAlso">json_last_error()</a> - Retourne la
+						derni&egrave;re erreur JSON</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="ref.json.html">Fonctions JSON</a>
+		</div>
+		<div class="next">
+			<a href="function.json-encode.html">json_encode</a>
+		</div>
+		<div class="up">
+			<a href="ref.json.html">Fonctions JSON</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

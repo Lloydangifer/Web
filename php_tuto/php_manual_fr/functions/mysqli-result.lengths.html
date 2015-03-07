@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Retourne la longueur des colonnes de la ligne courante du jeu de r&eacute;sultats</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="mysqli-result.free.html">mysqli_result::free</a></div>
+ <div class="next"><a href="mysqli-result.num-rows.html">mysqli_result::$num_rows</a></div>
+ <div class="up"><a href="class.mysqli-result.html">mysqli_result</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="mysqli-result.lengths" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysqli_result::$lengths</h1>
+  <h1 class="refname">mysqli_fetch_lengths</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">mysqli_result::$lengths</span> -- <span class="refname">mysqli_fetch_lengths</span> <span class="mdash">&mdash;</span> <span class="dc-title">Retourne la longueur des colonnes de la ligne courante du jeu de résultats</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mysqli-result.lengths-description">
+  <h3 class="title">Description</h3>
+  <p class="para">Style orienté objet</p>
+  <div class="fieldsynopsis"><span class="type">array</span> <var class="varname"><a href="mysqli-result.lengths.html">$mysqli_result-&gt;lengths</a></var>;</div>
+
+  <p class="para">Style procédural</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><strong>mysqli_fetch_lengths</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="class.mysqli-result.html" class="type mysqli_result">mysqli_result</a></span> <code class="parameter">$result</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   La fonction  <span class="function"><strong>mysqli_fetch_lengths()</strong></span> retourne un tableau
+   contenant la longueur de chaque colonne de la ligne courante du jeu de
+   résultats représenté par le paramètre <em><code class="parameter">result</code></em>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mysqli-result.lengths-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><em><code class="parameter">
+result</code></em></span><dd>
+<p class="para">Style procédural uniquement : Un
+identifiant de jeu de résultats retourné par la fonction  <span class="function"><a href="mysqli.query.html" class="function">mysqli_query()</a></span>,
+ <span class="function"><a href="mysqli.store-result.html" class="function">mysqli_store_result()</a></span> ou  <span class="function"><a href="mysqli.use-result.html" class="function">mysqli_use_result()</a></span>.
+</p></dd>
+</dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mysqli-result.lengths-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Un tableau d&#039;entiers représentant la taille de chaque colonne (n&#039;incluant
+   aucun caractère null de fin). Retourne <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+  <p class="para">
+    <span class="function"><strong>mysqli_fetch_lengths()</strong></span> n&#039;est valide que pour la ligne courant du
+   jeu de résultats. Elle retourne <strong><code>FALSE</code></strong> si vous l&#039;appelez avant les fonctions
+    <span class="function"><a href="mysqli-result.fetch-row.html" class="function">mysqli_fetch_row()</a></span>,  <span class="function"><a href="mysqli-result.fetch-array.html" class="function">mysqli_fetch_array()</a></span>,
+    <span class="function"><a href="mysqli-result.fetch-object.html" class="function">mysqli_fetch_object()</a></span>
+   ou après avoir récupéré toutes les lignes du résultat.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mysqli-result.lengths-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="example-1733">
+   <p><strong>Exemple #1 Style orienté objet</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"mon_user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"mon_mot_de_passe"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"la_base"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Vérification&nbsp;de&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Échec&nbsp;de&nbsp;la&nbsp;connexion&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;*&nbsp;from&nbsp;Country&nbsp;ORDER&nbsp;BY&nbsp;Code&nbsp;LIMIT&nbsp;1"</span><span style="color: #007700">;<br /><br />if&nbsp;(</span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">$query</span><span style="color: #007700">))&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_row</span><span style="color: #007700">();<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Affichage&nbsp;de&nbsp;la&nbsp;longueur&nbsp;des&nbsp;colonnes&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">foreach&nbsp;(</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">lengths&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Le&nbsp;champ&nbsp;n°%2d&nbsp;a&nbsp;une&nbsp;longueur&nbsp;de&nbsp;%2d\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">+</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Ferme&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <div class="example" id="example-1734">
+   <p><strong>Exemple #2 Style procédural</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqli_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"world"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Vérification&nbsp;de&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Échec&nbsp;de&nbsp;la&nbsp;connexion&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #0000BB">$query&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;*&nbsp;from&nbsp;Country&nbsp;ORDER&nbsp;BY&nbsp;Code&nbsp;LIMIT&nbsp;1"</span><span style="color: #007700">;<br /><br />if&nbsp;(</span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqli_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$query</span><span style="color: #007700">))&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqli_fetch_row</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Affichage&nbsp;de&nbsp;la&nbsp;longueur&nbsp;des&nbsp;colonnes&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">foreach&nbsp;(</span><span style="color: #0000BB">mysqli_fetch_lengths</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">)&nbsp;as&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Le&nbsp;champ&nbsp;n°%2d&nbsp;a&nbsp;une&nbsp;longueur&nbsp;de&nbsp;%2d\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">+</span><span style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$val</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">mysqli_free_result</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Ferme&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #0000BB">mysqli_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>Les exemples ci-dessus vont afficher :</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Le champ n° 1 a une longueur de  3
+Le champ n° 2 a une longueur de  5
+Le champ n° 3 a une longueur de 13
+Le champ n° 4 a une longueur de  9
+Le champ n° 5 a une longueur de  6
+Le champ n° 6 a une longueur de  1
+Le champ n° 7 a une longueur de  6
+Le champ n° 8 a une longueur de  4
+Le champ n° 9 a une longueur de  6
+Le champ n°10 a une longueur de  6
+Le champ n°11 a une longueur de  5
+Le champ n°12 a une longueur de 44
+Le champ n°13 a une longueur de  7
+Le champ n°14 a une longueur de  3
+Le champ n°15 a une longueur de  2
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+</div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="mysqli-result.free.html">mysqli_result::free</a></div>
+ <div class="next"><a href="mysqli-result.num-rows.html">mysqli_result::$num_rows</a></div>
+ <div class="up"><a href="class.mysqli-result.html">mysqli_result</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

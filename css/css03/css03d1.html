@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Positionnement absolu</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function(){top.FP.initPage();}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			Le positionnement absolu retire la boîte du flux normal et la
+			positionne dans son bloc conteneur. Celui-ci joue donc un rôle
+			primordial et il faut bien arriver à le situer dans l'imbrication des
+			éléments de la page <abbr title="HyperText Markup Language">HTML</abbr>
+		</p>
+
+		<!-- ################################################################################################## -->
+		<h3>Principes</h3>
+		<section>
+			<p class="fp-p-raz fp-t-center">
+				<code><strong>position: <span class="fp-rouge">absolute</span>;
+				</strong></code>
+			</p>
+
+			<p>
+				Une boîte en positionnement absolu est positionnée par rapport à son
+				<a class="fp-lientuto"
+					onclick="top.FP.Voir.showPageTuto('css03a3', '')">bloc
+					conteneur</a> : l'ancêtre le plus proche en positionnement relatif,
+				absolu ou fixe. S'il n'y a pas d'ancêtre correspondant, l'ancêtre
+				est le bloc conteneur initial.
+			</p>
+
+
+			<p>
+				Une boîte en positionnement absolu est totalement retirée du flux
+				normal : l'emplacement de l'élément dans le code <abbr
+					title="HyperText Markup Language">HTML</abbr> n'a absolument aucune
+				importance.
+				<br>
+				Elle est ensuite positionnée à l'intérieur de son <a
+					class="fp-lientuto"
+					onclick="top.FP.Voir.showPageTuto('css03a3', '')">bloc
+					conteneur</a> suivant les valeurs de ses propriétés <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'top')">top</a>,
+				<a onclick="top.FP.Voir.showPageTech('css_proprietes', 'left')">left</a>,
+				<a onclick="top.FP.Voir.showPageTech('css_proprietes', 'bottom')">bottom</a>
+				et <a onclick="top.FP.Voir.showPageTech('css_proprietes', 'right')">right</a>.
+				<br>
+				Le positionnement est calculé par rapport à la bordure de l'ancêtre,
+				soit la zone de contenu plus la marge interne.
+			</p>
+
+
+			<p>Dans la figure ci-dessous, la boîte du bloc conteneur est en
+				bleu et la boîte en positionnement absolu est en orange.</p>
+
+			<figure>
+				<img src="../cssimg/tlbr_absolu.png" width="420" height="310">
+				<figcaption>top, left, bottom, right avec
+					positionnement absolu</figcaption>
+			</figure>
+
+
+			<p class="fp-bot0">
+				Pour les 4 propriétés <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'top')">top</a>,
+				<a onclick="top.FP.Voir.showPageTech('css_proprietes', 'left')">left</a>,
+				<a onclick="top.FP.Voir.showPageTech('css_proprietes', 'bottom')">bottom</a>
+				et <a onclick="top.FP.Voir.showPageTech('css_proprietes', 'right')">right</a>,
+				les valeurs possibles sont :
+			</p>
+			<ul>
+				<li><a onclick="top.FP.Voir.showPageTech('longueur', '')">une
+						longeur</a> (valeur négative possible),</li>
+				<li>un pourcentage,</li>
+				<li><code>auto</code> (valeur par défaut)</li>
+				<li><code>inherit</code></li>
+			</ul>
+
+			<p>
+				Si la valeur de <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'top')">top</a>
+				ou <a onclick="top.FP.Voir.showPageTech('css_proprietes', 'bottom')">bottom</a>
+				est un pourcentage, le calcul est fait sur la hauteur de la zone
+				d'affichage du bloc conteneur.
+			</p>
+
+			<p>
+				Si la valeur de <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'left')">left</a>
+				ou <a onclick="top.FP.Voir.showPageTech('css_proprietes', 'right')">right</a>
+				est un pourcentage, le calcul est fait sur la largeur de la zone
+				d'affichage du bloc conteneur.
+			</p>
+
+			<p>Une boîte en positionnement absolu devient le conteneur de toutes les boîtes qu'elle contient.<br>
+			Si la boîte positionnée est une boîte de type en ligne, elle devient une booîte de type bloc.</p>
+			
+			<p>
+				La largeur d'une boîte en positionnement absolu est <strong>modifiée</strong>
+				pour n'occuper que la place nécessaire à son contenu (cf les boîtes
+				"yoda" et "envoie" dans l'exemple suivant).
+			</p>
+			
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : top, left, bottom, right et
+					positionnement absolu
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;L'Arrière des Etoiles&lt;/h3&gt;
+		&lt;p&gt;Les CSS sont l'arme secrète de la Force !&lt;/p&gt;
+		&lt;p id="envoie"&gt;Tu veux savoir les utiliser ?  
+			Envoie CSS au 7 1718.&lt;/p&gt;
+		&lt;div&gt;
+			&lt;p id="yoda"&gt;
+				&lt;img src="../exemples/img/yoda.jpg"&gt; 
+				Le côté obscur des CSS redouter tu dois.&lt;/p&gt;
+	    	&lt;p&gt;&lt;img src="../exemples/img/darkv.jpg"&gt; 
+				Les CSS ont vraiment transformé ma vie.&lt;/p&gt;
+	  	&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {
+	margin: 0;
+	padding: 0;
+}
+div {
+	margin: 20px; 
+	border: 1px solid black; 
+	padding: 10px;  
+	background-color: lightgrey;
+}
+p {
+	margin: 10px;
+	border: 1px solid #000;
+	padding: 5px;
+	background-color: yellow;
+}
+#yoda {
+	position: absolute;
+	top: 90px;
+	right: 20px;
+	background-color: orange;
+}
+#envoie {
+	position: absolute;
+	bottom: 10px;
+	left: 250px;
+	background-color: orange;
+}</textarea>
+			</form>
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Changement de conteneur</h3>
+		<section>
+			<p>
+				Dans l'exemple précédent, le bloc conteneur des boîtes positionnées
+				est le bloc conteneur initial (la fenêtre d'affichage du navigateur
+				- <i>viewport</i> -) car elles n'ont aucun ancêtre positionné.
+				<br>
+				Si on positionne la boîte de l'élément <code>div</code> en relatif,
+				elle devient le bloc conteneur du paragraphe "yoda" et les positions
+				<a onclick="top.FP.Voir.showPageTech('css_proprietes', 'top')">top</a>
+				et <a onclick="top.FP.Voir.showPageTech('css_proprietes', 'right')">right</a>
+				seront calculées dans ce nouvel espace.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : top, left, bottom, right et bloc
+					conteneur
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;L'Arrière des Etoiles&lt;/h3&gt;
+		&lt;p&gt;Les CSS sont l'arme secrète de la Force !&lt;/p&gt;
+		&lt;p id="envoie"&gt;Tu veux savoir les utiliser ?  
+			Envoie CSS au 7 1718.&lt;/p&gt;
+		&lt;div&gt;
+			&lt;p id="yoda"&gt;
+				&lt;img src="../exemples/img/yoda.jpg"&gt; 
+				Le côté obscur des CSS redouter tu dois.&lt;/p&gt;
+	    	&lt;p&gt;&lt;img src="../exemples/img/darkv.jpg"&gt; 
+				Les CSS ont vraiment transformé ma vie.&lt;/p&gt;
+	  	&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {
+	margin: 0;
+	padding: 0;
+}
+/* Le positionnement relatif rend le bloc conteneur de ses 
+	enfants. En ne changeant pas sa position, on ne change 
+	rien dans l'affichage. C'est un "truc" souvent utilisé */
+div {
+	position: relative;
+	margin: 20px; 
+	border: 1px solid black; 
+	padding: 10px;  
+	background-color: lightgrey;
+}
+p {
+	margin: 10px;
+	border: 1px solid #000;
+	padding: 5px;
+	background-color: yellow;
+}
+/* Le positionnement se fait par rapport au div qui est
+	devenu le bloc conteneur */
+#yoda {
+	position: absolute;
+	top: 90px;
+	right: 0;
+	background-color: orange;
+}
+/* Le positionnement se fait toujours par rapport au bloc 
+	conteneur initial - le viewport - */
+#envoie {
+	position: absolute;
+	bottom: 10px;
+	left: 250px;
+	background-color: orange;
+}</textarea>
+			</form>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Effets indésirables</h3>
+		<section>
+
+			<p>
+				Le positionnement des boîtes qui suivent la boîte en positionnement
+				absolu est affecté car la boîte en positionnement absolu est retirée
+				du flux normal.
+				<br>
+				On peut avoir <strong>des chevauchements</strong> avec la boîte
+				déplacée qui cache le contenu d'autres boîtes.
+			</p>
+
+			<p>
+				On peut aussi avoir une boîte qui semble "disparaître" si elle ne
+				contient que des boîtes en positionnement absolus.
+				<br>
+				Dans l'exemple suivant, les 2 paragraphes contenus dans l'élément <code>div</code>
+				sont positionnés en absolu. La boîte de l'élément <code>div</code>
+				est réduite à la hauteur de sa marge intérieure puisque ces éléments
+				sont retirés du flot normal et qu'ainsi elle ne contient plus rien.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : effets indésirables
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;L'Arrière des Etoiles&lt;/h3&gt;
+		&lt;p&gt;Les CSS sont l'arme secrète de la Force !&lt;/p&gt;
+		&lt;p id="envoie"&gt;Tu veux savoir les utiliser ?  
+			Envoie CSS au 7 1718.&lt;/p&gt;
+		&lt;div&gt;
+			&lt;p id="yoda"&gt;
+				&lt;img src="../exemples/img/yoda.jpg"&gt; 
+				Le côté obscur des CSS redouter tu dois.&lt;/p&gt;
+	    	&lt;p id="dark"&gt;
+				&lt;img src="../exemples/img/darkv.jpg"&gt; 
+				Les CSS ont vraiment transformé ma vie.&lt;/p&gt;
+	  	&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {
+	margin: 0;
+	padding: 0;
+}
+div {
+	position: relative;
+	margin: 20px; 
+	border: 1px solid black; 
+	padding: 10px;  
+	background-color: lightgrey;
+}
+p {
+	margin: 10px;
+	border: 1px solid #000;
+	padding: 5px;
+	background-color: yellow;
+}
+#yoda {
+	position: absolute;
+	top: 120px;
+	right: 0;
+	background-color: orange;
+}
+#dark {
+	position: absolute;
+	top: 20px;
+	left: 250px;
+	background-color: orange;
+}</textarea>
+			</form>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Contexte de superposition</h3>
+		<section>
+			<p>
+				Les boîtes en positionnement absolu appartiennent à un <strong>contexte
+					de superposition</strong>.
+				<br>
+				Le contexte de superposition initial est défini par le bloc
+				conteneur initial (la fenêtre d'affichage du navigateur - <i>viewport</i>
+				-). Ensuite chaque bloc conteneur définit son propre contexte de
+				superposition.
+			</p>
+
+			<p>
+				Pour gérer l'ordre de superposition à l'intérieur d'un contexte on
+				utilise la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'z-index')">z-index</a>
+				dont la valeur est un nombre. Plus le nombre est élevé, plus le bloc
+				est mis au dessus de la superposition et affiché devant les autres.
+				<br>
+				Si dans un même contexte, plusieurs blocs en positionnement absolu
+				n'ont pas de <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'z-index')">z-index</a>,
+				c'est leur ordre d'apparition dans le code HTML qui détermine leur
+				ordre de superposition.
+			</p>
+
+			<p class="fp-p-raz">
+				L'exemple suivant reprend le précédent en changeant le <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'z-index')">z-index</a>
+				de la boîte "yoda" pour qu'elle soit affichée devant la boîte "dark"
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : contexte de superpostion
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;L'Arrière des Etoiles&lt;/h3&gt;
+		&lt;p&gt;Les CSS sont l'arme secrète de la Force !&lt;/p&gt;
+		&lt;p id="envoie"&gt;Tu veux savoir les utiliser ?  
+			Envoie CSS au 7 1718.&lt;/p&gt;
+		&lt;div&gt;
+			&lt;p id="yoda"&gt;
+				&lt;img src="../exemples/img/yoda.jpg"&gt; 
+				Le côté obscur des CSS redouter tu dois.&lt;/p&gt;
+	    	&lt;p id="dark"&gt;
+				&lt;img src="../exemples/img/darkv.jpg"&gt; 
+				Les CSS ont vraiment transformé ma vie.&lt;/p&gt;
+	  	&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {
+	margin: 0;
+	padding: 0;
+}
+div {
+	position: relative;
+	margin: 20px; 
+	border: 1px solid black; 
+	padding: 10px;  
+	background-color: lightgrey;
+}
+p {
+	margin: 10px;
+	border: 1px solid #000;
+	padding: 5px;
+	background-color: yellow;
+}
+#yoda {
+	position: absolute;
+	top: 120px;
+	right: 0;
+	background-color: orange;
+	z-index: 1;
+}
+#dark {
+	position: absolute;
+	top: 20px;
+	left: 250px;
+	background-color: orange;
+}</textarea>
+			</form>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Définir left, top, right, bottom</h3>
+		<section>
+			<p>
+				Avec le positionnement absolu, on peut spécifier les 4 propriétes <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'top')">top</a>,
+				<a onclick="top.FP.Voir.showPageTech('css_proprietes', 'left')">left</a>,
+				<a onclick="top.FP.Voir.showPageTech('css_proprietes', 'bottom')">bottom</a>
+				et <a onclick="top.FP.Voir.showPageTech('css_proprietes', 'right')">right</a>
+				<strong>en même temps</strong>.
+				<br>
+				L'effet sera un changement de la taille (largeur et/ou hauteur) de
+				la boîte.
+			</p>
+
+			<p class="fp-p-raz">
+				Dans L'exemple suivant, la boîte <code>yoda</code> est
+				redimensionnée pour occuper la moitié de son conteneur.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : définir left, top, right, bottom pour
+					changer la taille
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;L'Arrière des Etoiles&lt;/h3&gt;
+		&lt;p&gt;Les CSS sont l'arme secrète de la Force !&lt;/p&gt;
+		&lt;p&gt;Tu veux savoir les utiliser ?  
+			Envoie CSS au 7 1718.&lt;/p&gt;
+		&lt;div&gt;
+			&lt;p id="yoda"&gt;
+				&lt;img src="../exemples/img/yoda.jpg"&gt; 
+				Le côté obscur des CSS redouter tu dois.&lt;/p&gt;
+	    	&lt;p&gt;&lt;img src="../exemples/img/darkv.jpg"&gt; 
+				Les CSS ont vraiment transformé ma vie.&lt;/p&gt;
+	  	&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {
+	margin: 0;
+	padding: 0;
+}
+div {
+	position: relative;
+	margin: 20px; 
+	border: 1px solid black; 
+	padding: 10px;  
+	background-color: lightgrey;
+}
+p {
+	margin: 10px;
+	border: 1px solid #000;
+	padding: 5px;
+	background-color: yellow;
+}
+#yoda {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 50%;
+	background-color: orange;
+}</textarea>
+			</form>
+
+			<p class="fp-p-raz">
+				Si on change la valeur de <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'left')">left</a>
+				pour 0, la boîte "yoda" occupera tout l'espace de son conteneur et
+				le recouvrira.
+			</p>
+
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Retourne le timestamp UNIX actuel avec les microsecondes</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.localtime.html">localtime</a>
+		</div>
+		<div class="next">
+			<a href="function.mktime.html">mktime</a>
+		</div>
+		<div class="up">
+			<a href="ref.datetime.html">Fonctions Date/Heure</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.microtime" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">microtime</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">microtime</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Retourne le timestamp UNIX actuel avec
+					les microsecondes</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.microtime-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><a
+					href="language.pseudo-types.html#language.types.mixed"
+					class="type mixed">mixed</a></span> <span class="methodname"><strong>microtime</strong></span>
+				([ <span class="methodparam"><span class="type">bool</span> <code
+						class="parameter">$get_as_float</code><span class="initializer">
+						= false</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>microtime()</strong></span> retourne
+				le timestamp Unix, avec les microsecondes. Cette fonction est
+				uniquement disponible sur les systèmes qui supportent la fonction <em>gettimeofday()</em>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.microtime-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">get_as_float</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si utilisé et défini à <strong><code>TRUE</code></strong>, <span
+							class="function"><strong>microtime()</strong></span> retournera
+						un nombre à virgule flottante au lieu d&#039;une <a
+							href="language.types.string.html" class="link">chaîne de
+							caractères</a>, tel que décrit dans la section des valeurs retournées
+						ci-dessous.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.microtime-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Par défaut, <span class="function"><strong>microtime()</strong></span>
+				retourne une <a href="language.types.string.html" class="link">chaîne
+					de caractères</a> au format &quot;msec sec&quot;, où <em>sec</em> est
+				le temps courant mesuré en nombre de secondes depuis l&#039;époque
+				Unix (1 Janvier 1970, 00:00:00 GMT), et <em>msec</em> est le nombre
+				de microsecondes qui se sont écoulées depuis <em>sec</em> exprimé en
+				secondes.
+			</p>
+			<p class="para">
+				Si <em><code class="parameter">get_as_float</code></em> est défini à
+				<strong><code>TRUE</code></strong>, alors <span class="function"><strong>microtime()</strong></span>
+				retourne un nombre à virgule flottante, qui représente le temps
+				courant, en secondes, depuis l&#039;époque Unix, précis à la
+				microseconde près.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.microtime-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.0.0</td>
+						<td>Le paramètre <em><code class="parameter">get_as_float</code></em>
+							a été ajouté.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.microtime-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-689">
+				<p>
+					<strong>Exemple #1 Durée d&#039;exécution d&#039;un script
+						avec la fonction <span class="function"><strong>microtime()</strong></span>
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">/**<br />*&nbsp;Fonction&nbsp;simple&nbsp;identique&nbsp;à&nbsp;celle&nbsp;en&nbsp;PHP&nbsp;5&nbsp;qui&nbsp;va&nbsp;suivre<br />*/<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">microtime_float</span><span
+								style="color: #007700">()<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;list(
+							</span><span style="color: #0000BB">$usec</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$sec</span><span style="color: #007700">)&nbsp;=&nbsp;</span><span
+								style="color: #0000BB">explode</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"&nbsp;"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">microtime</span><span
+								style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;((float)
+							</span><span style="color: #0000BB">$usec&nbsp;</span><span
+								style="color: #007700">+&nbsp;(float)</span><span
+								style="color: #0000BB">$sec</span><span style="color: #007700">);<br />}<br />
+								<br /></span><span style="color: #0000BB">$time_start&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">microtime_float</span><span
+								style="color: #007700">();<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Attend&nbsp;pendant&nbsp;un&nbsp;moment<br /></span><span
+								style="color: #0000BB">usleep</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">100</span><span style="color: #007700">);<br />
+								<br /></span><span style="color: #0000BB">$time_end&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">microtime_float</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">$time&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">$time_end&nbsp;</span><span
+								style="color: #007700">-&nbsp;</span><span
+								style="color: #0000BB">$time_start</span><span
+								style="color: #007700">;<br />
+								<br />echo&nbsp;
+							</span><span style="color: #DD0000">"Ne&nbsp;rien&nbsp;faire&nbsp;pendant&nbsp;</span><span
+								style="color: #0000BB">$time</span><span style="color: #DD0000">&nbsp;secondes\n"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			<div class="example" id="example-690">
+				<p>
+					<strong>Exemple #2 Durée d&#039;exécution d&#039;un script
+						en PHP 5</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$time_start&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">microtime</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">true</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Sleep&nbsp;for&nbsp;a&nbsp;while<br /></span><span
+								style="color: #0000BB">usleep</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">100</span><span style="color: #007700">);<br />
+								<br /></span><span style="color: #0000BB">$time_end&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">microtime</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">true</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$time&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">$time_end&nbsp;</span><span
+								style="color: #007700">-&nbsp;</span><span
+								style="color: #0000BB">$time_start</span><span
+								style="color: #007700">;<br />
+								<br />echo&nbsp;
+							</span><span style="color: #DD0000">"Did&nbsp;nothing&nbsp;in&nbsp;</span><span
+								style="color: #0000BB">$time</span><span style="color: #DD0000">&nbsp;seconds\n"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.microtime-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.time.html" class="function" rel="rdfs-seeAlso">time()</a>
+						- Retourne le timestamp UNIX actuel</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.localtime.html">localtime</a>
+		</div>
+		<div class="next">
+			<a href="function.mktime.html">mktime</a>
+		</div>
+		<div class="up">
+			<a href="ref.datetime.html">Fonctions Date/Heure</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

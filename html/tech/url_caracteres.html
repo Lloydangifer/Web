@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Caractères réservés dans les URLs</title>
+
+<link rel="stylesheet" href="tech.css">
+
+<script>
+	if (!top.FP) {
+		location.replace('../index.html');
+	}
+</script>
+</head>
+<body>
+	<div id="PAGE-tech">
+		<h2>Caractères réservés dans les URLs</h2>
+
+		<p>Tous les caractères ne sont pas utilisables tels que dans les
+			<abbr title="Uniform Resource Locator">URLs</abbr>. Certains sont des caractères réservés qui ont une signification
+			particulière et nécessite un encodage spécifique ("encodage <abbr title="Uniform Resource Locator">URL</abbr>") si
+			on veut les utiliser dans une <abbr title="Uniform Resource Locator">URL</abbr>.</p>
+
+		<table>
+			<tr>
+				<td>
+					<p class="fp-code fp-gras">:</p>
+				</td>
+				<td>
+					<p>
+						Les deux points s&eacute;parent le type de protocole
+						utilis&eacute; du reste de l'Url.
+						<br>
+						Ils s&eacute;parent aussi le nom du serveur du num&eacute;ro de
+						port utilis&eacute;.
+						<br>
+						Dans le protocole ftp, ils s&eacute;parent aussi le nom
+						d'utilisateur du mot de passe.
+					</p>
+					<p class="fp-code">
+						http://www.monsite.com/
+						<br>
+						http://www.nomsite.com:80/
+						<br>
+						ftp://anonymous:user@monsite.com/fichier.txt
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p class="fp-code fp-gras">//</p>
+				</td>
+				<td>
+					<p>Le double slash indique que le protocole utilis&eacute; suit
+						le format d&eacute;fini par le CISS (Common Internet Scheme
+						Syntax).</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p class="fp-code fp-gras">/</p>
+				</td>
+				<td>
+					<p>Le slash s&eacute;pare le nom de domaine ou de serveur et le
+						chemin du r&eacute;pertoire o&ugrave; est stock&eacute;e la
+						ressource (page, images, etc.).</p>
+					<p class="fp-code">http://www.monsite.com/repert1/reprt2/fichier.htm
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p class="fp-code fp-gras">~</p>
+				</td>
+				<td>
+					<p>Le tilde est g&eacute;n&eacute;ralement utilis&eacute; au
+						d&eacute;but d'un chemin pour indiquer que la ressource est
+						situ&eacute;e dans le r&eacute;pertoire public de l'utilisateur.</p>
+					<p class="fp-code">http://www.monsite.com/~francois</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p class="fp-code fp-gras">%</p>
+				</td>
+				<td>
+					<p>Le pourcentage introduit une s&eacute;quence de codes
+						d'&eacute;chappement, utilis&eacute;e pour sp&eacute;cifier un
+						caract&egrave;re sp&eacute;cial ou interdit.</p>
+					<p class="fp-code">http://www.monsite.com/nom%20de%20%fichier.htm</p>
+					<p><strong>Les caract&egrave;res
+									n&eacute;cessitant un codage sp&eacute;cial</strong></p>
+					<table class="TAB-zebre">
+						<tr>
+							<td>Caract&egrave;re</td>
+							<td>Codage <abbr title="Uniform Resource Locator">URL</abbr></td>
+							<td>Caract&egrave;re</td>
+							<td>Codage <abbr title="Uniform Resource Locator">URL</abbr></td>
+						</tr>
+						<tr>
+							<td>Tabulation</td>
+							<td>%09</td>
+							<td>=</td>
+							<td>%3D</td>
+						</tr>
+						<tr>
+							<td>Espace</td>
+							<td>%20</td>
+							<td>&gt;</td>
+							<td>%3E</td>
+						</tr>
+						<tr>
+							<td>"</td>
+							<td>%22</td>
+							<td>?</td>
+							<td>%3F</td>
+						</tr>
+						<tr>
+							<td>#</td>
+							<td>%23</td>
+							<td>@</td>
+							<td>%40</td>
+						</tr>
+						<tr>
+							<td>%</td>
+							<td>%25</td>
+							<td>[</td>
+							<td>%5B</td>
+						</tr>
+						<tr>
+							<td>&amp;</td>
+							<td>%26</td>
+							<td>\</td>
+							<td>%5C</td>
+						</tr>
+						<tr>
+							<td>(</td>
+							<td>%28</td>
+							<td>]</td>
+							<td>%5D</td>
+						</tr>
+						<tr>
+							<td>)</td>
+							<td>%29</td>
+							<td>^</td>
+							<td>%5E</td>
+						</tr>
+						<tr>
+							<td>,</td>
+							<td>%2C</td>
+							<td>'</td>
+							<td>%60</td>
+						</tr>
+						<tr>
+							<td>.</td>
+							<td>%2E</td>
+							<td>{</td>
+							<td>%7B</td>
+						</tr>
+						<tr>
+							<td>/</td>
+							<td>%2F</td>
+							<td>|</td>
+							<td>%7C</td>
+						</tr>
+						<tr>
+							<td>:</td>
+							<td>%3A</td>
+							<td>}</td>
+							<td>%7D</td>
+						</tr>
+						<tr>
+							<td>;</td>
+							<td>%3B</td>
+							<td>~</td>
+							<td>%7E</td>
+						</tr>
+						<tr>
+							<td>&lt;</td>
+							<td>%3C</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p class="fp-code fp-gras">@</p>
+				</td>
+				<td>
+					<p>Ce symbole s&eacute;pare le nom d'utilisateur du nom du
+						serveur.</p>
+					<p class="fp-code">mailto:francois.piat@univ-fcomte.fr</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p class="fp-code fp-gras">?</p>
+				</td>
+				<td>
+					<p>Le point d'interrogation d&eacute;termine le d&eacute;but
+						d'une cha&icirc;ne de param&egrave;tres pass&eacute;e au serveur.
+						Ces param&egrave;tres pourront &ecirc;tre
+						r&eacute;cup&eacute;r&eacute;s sur le serveur par la cible de
+						l'<abbr title="Uniform Resource Locator">URL</abbr> (page JSP, PHP, script PERL, programmes ex&eacute;cutables)
+						qui pourra les utiliser pour ex&eacute;cuter des traitements
+						sp&eacute;cifiques.</p>
+					<p class="fp-code">http://www.monsite.com/reponse.htm?param1=val1
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p class="fp-code fp-gras">=</p>
+				</td>
+				<td>
+					<p>Le signe &eacute;gal est utilis&eacute; pour s&eacute;parer
+						les param&egrave;tres de leur valeur dans une cha&icirc;ne de
+						param&egrave;tres.</p>
+					<p class="fp-code">http://www.monsite.com/reponse.htm?param1=val1
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p class="fp-code fp-gras">+</p>
+				</td>
+				<td>
+					<p>Le signe plus est utilis&eacute; pour remplacer les espaces
+						entre les mots dans une cha&icirc;ne de param&egrave;tres.</p>
+					<p class="fp-code">http://www.monsite.com/reponse.htm?p1=mot1+mot2
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p class="fp-code fp-gras">&amp;</p>
+				</td>
+				<td>
+					<p>Utilis&eacute; pour s&eacute;parer les couples
+						param&egrave;tre=valeur dans une cha&icirc;ne de
+						param&egrave;tres.</p>
+					<p class="fp-code">http://www.monsite.com/reponse.htm?p1=r1&amp;p2=r2&amp;p3=r3</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p class="fp-code fp-gras">^</p>
+				</td>
+				<td>
+					<p>Caract&egrave;re r&eacute;serv&eacute;.</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p class="fp-code fp-gras">{}</p>
+				</td>
+				<td>
+					<p>Caract&egrave;res r&eacute;serv&eacute;s.</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p class="fp-code fp-gras">[]</p>
+				</td>
+				<td>
+					<p>Caract&egrave;res r&eacute;serv&eacute;s.</p>
+				</td>
+			</tr>
+		</table>
+
+
+	</div>
+</body>
+</html>

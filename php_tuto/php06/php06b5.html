@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Urls - liens</title>
+<link rel="stylesheet" href="../_local/codemirror.css">
+<script src="../_local/codemirror_pour_php.js"></script>
+
+<link rel="stylesheet" href="../_core/def.css">
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<p>
+			Nous avons vu que le navigateur utilise 2 méthodes privilégiées pour
+			faire une requête au serveur : <span class="fp-code">POST</span> et <span
+				class="fp-code">GET</span>. Ces 2 méthodes permettent de passer des
+			informations au serveur, soit dans le corps du message HTTP (<span
+				class="fp-code">POST</span>), soit à la suite de l'url demandée (<span
+				class="fp-code">GET</span>). Nous allons voir ici plus en détail le
+			passage d'informations par url et leur récupèration dans le tableau <a
+				onclick="top.FP.Voir.showPageTech('phpSuperglobales','reserved.variables.get')">$_GET</a>.
+		</p>
+
+		<p class="fp-puce">Une url est composée des parties suivantes :</p>
+		<figure>
+			<img src="../phpimg/url.png" width="590" height="86">
+			<figcaption>Fig 1 : composition d'une URL</figcaption>
+		</figure>
+
+
+		<p class="fp-puce">
+			C'est la partie "query string" qui nous intéresse. Les informations
+			sont passées sous la forme de couples nom=valeur, séparés par le
+			caractère &amp;. Sur le serveur, avec PHP, on retrouve ces couples
+			dans le tableau <a
+				onclick="top.FP.Voir.showPageTech('phpSuperglobales','reserved.variables.get')">$_GET</a>
+			: le nom devient une clé et la valeur est la valeur associée à cette
+			clé.
+		</p>
+
+		<p>
+			Exemple de lien :<br> <span class="fp-code">&lt;a
+				href="lien01_get.php?id=12345&amp;nom=piat"
+				target="_blank"&gt;cliquez ici&lt;/a&gt;</span><br> Rendu :<br> <a
+				href="lien01_get.php?id=12345&nom=piat" target="_blank">cliquez
+				ici</a>
+		</p>
+		<p class="fp-remarque">L'attribut target permet de spécifier la
+			cible dans laquelle va s'afficher le lien (ici un nouvel onglet pour
+			qu'on puisse voir l'url dans la barre d'url du navigateur)</p>
+
+		<p>
+			Le code PHP du fichier <span class="fp-code">lien01_get.php</span>
+			est le suivant :
+		</p>
+		<pre data-code="PHP">
+&lt;?php
+require('bib_fonctions.php');
+
+htmlDebut('Informations transmises dans une url');
+
+foreach ($_GET as $nom =&gt; $valeur) {
+	htmlInfo($nom);
+	echo $valeur;
+}
+
+htmlFin();
+?&gt;</pre>
+
+
+		<p class="fp-puce fp-bottom0">Si les valeurs des paramètres passés
+			dans l'url sont des chaînes de caractères, elles doivent être
+			protégées car les urls ont un codage spécifiques pour certains
+			caractères (caractères de séparations, caractères accentués, etc). On
+			utilise :</p>
+		<ul class="fp-ul-puce">
+			<li><a
+				onclick="top.FP.Voir.showPageTech('ref.url','function.urlencode')">urlencode())</a>
+				du côté de l'émetteur, pour protéger la chaîne avant de la mettre
+				dans l'url,</li>
+			<li>du côté du récepteur, on n'a pas besoin de décoder la chaîne
+				pour retrouver la chaîne originale car PHP le fait automatiquement
+				pour tout ce qu'il stocke dans <a
+				onclick="top.FP.Voir.showPageTech('phpSuperglobales','reserved.variables.get')">$_GET</a>.
+			</li>
+		</ul>
+
+		<form action="" method="post" class="TEST-form">
+			<a class="TEST-lien"
+				onclick="top.FP.Voir.showPLUS('exemple/bib_fonctions_06.html')"
+				title="Afficher la bibliothéque de fonctions"></a>
+			<div class="TEST-titre">
+				<strong>Exemple</strong> : paramètres dans des liens
+			</div>
+			<textarea name="txtCode" class="TEST-textarea">
+&lt;?php
+require('bib_fonctions.php');
+
+htmlDebut('Paramètres dans des liens');
+
+if (isset($_GET['x'])) {
+	htmlInfo('Réception x - pas besoin de décodage');
+	echo $_GET['x'];
+	htmlInfo('Réception y - pas besoin de décodage');
+	echo $_GET['y'];
+	htmlInfo('Réception z');
+	echo $_GET['z'];
+	htmlFin();
+	exit();
+}
+
+htmlInfo('Emission');
+$lien = $_SERVER['PHP_SELF'];
+$lien .= '?x='.urlencode('François Piat');
+$lien .= '&y='.urlencode('5=4+1');
+$lien .= '&z=12345';
+
+echo '&lt;a href="', $lien, '"&gt;Cliquez ici&lt;/a&gt;';
+
+htmlFin();
+?&gt;</textarea>
+		</form>
+
+		<p class="fp-remarque">En agrandissant la fentêtre de test, vous
+			pouvez voir les paramètres encodés, tels qu'ils sont passés au
+			serveur.</p>
+
+		<p class="fp-puce">On utilise fréquemment les paramètres dans les
+			urls pour passer des informations de page en page bien que l'une des
+			faiblesses viennne de la modification manuelle possible de l'url
+			affichée par le navigateur.</p>
+		<p>
+			On peut ainsi facilement passer des informations qui n'étaient pas
+			attendues : <br> saissez pas exemple <span class="fp-code">&amp;action=afficher</span>
+			au bout de l'url de l'onglet puis validez.<br> Le script est
+			exécuté à nouveau, et le couple nom/valeur ajouté est listé comme si
+			il faisait partie du lien original.
+		</p>
+		<p>On peut de la même façon modifier les valeurs affichées dans
+			l'url et redemander la page.
+		<p>
+		<p class="fp-bottom0 fp-puce">Le passage d'informations par les
+			urls doit donc être entouré de beaucoup de précautions :</p>
+		<ul class="fp-ul-puce">
+			<li>si le nombre de couples nom=valeur est différent de celui
+				attendu, le script doit être arrêté et tous les éléments
+				éventuellement rattachés à l'utilisateur (session par exemple)
+				doivent être supprimés,</li>
+			<li>les noms des couples reçus doivent être validés,
+			<li>les valeurs des couples reçues doivent être validées.
+		</ul>
+
+
+		<p class="fp-puce">
+			Le cryptage de données est un moyen de protéger les valeurs passées
+			dans les urls. PHP fournit l'extension <a
+				onclick="top.FP.Voir.showPageTech('ref.mcrypt','ref.mcrypt')">mcrypt</a>
+			pour réaliser des cryptages selon différentes méthodes et
+			algorithmes. Généralement cette extension est compilée avec PHP, mais
+			on peut s'en assurer avec la fonction <a
+				onclick="top.FP.Voir.showPageTech('ref.strings','function.function-exists')">function_exists()</a>
+			très pratique pour savoir ce qui est disponible dans la configuration
+			ou version de PHP.
+		</p>
+
+		<form action="" method="post" class="TEST-form">
+			<a class="TEST-lien"
+				onclick="top.FP.Voir.showPLUS('exemple/bib_fonctions_06.html')"
+				title="Afficher la bibliothéque de fonctions"></a>
+			<div class="TEST-titre">
+				<strong>Exemple</strong> : vérification de l'existence d'une
+				fonction
+			</div>
+			<textarea name="txtCode" class="TEST-textarea">
+&lt;?php
+require('bib_fonctions.php');
+
+htmlDebut('Vérifier l\'existence d\'une fonction');
+
+htmlInfo('Fonction mcrypt_encrypt');
+if (function_exists('mcrypt_encrypt')) {
+	echo 'utilisable';
+} else {
+	echo 'pas dans cette version PHP';
+}
+
+htmlInfo('Fonction htmlFin');
+echo (function_exists('htmlFin')) ? 'utilisable' : 'ko';
+
+htmlInfo('Fonction francois_piat ');
+echo (function_exists('francois_piat')) ? 'ok' : 'ko';
+
+htmlFin();
+?&gt;</textarea>
+		</form>
+
+		<p class="fp-bottom0 fp-inter2">
+			Le cryptage de données n'est pas la même chose que la signature de
+			données (faite avec par exemple la méthode <a
+				onclick="top.FP.Voir.showPageTech('ref.strings','function.md5')">md5</a>
+			bien connue) :
+		</p>
+		<ul class="fp-ul-puce">
+			<li>le cryptage applique un algorithme de transformation sur une
+				chaîne de caractères en utilisant une clé de cryptage et donne en
+				résultat la chaîne cryptée. Celle-ci peut ensuite être décryptée (on
+				retrouve la chaîne originale) si on connaît la clé et l'algorithme
+				utilisés.</li>
+			<li>la signature de données applique un algorithme sur une
+				chaîne de caractères et donne en résultat une autre chaîne de
+				caractères. Cette dernière ne permet pas de retrouver la chaîne
+				originale, mais permettra de vérifier qu'une chaîne n'a pas été
+				altérée.</li>
+		</ul>
+
+		<p class="fp-remarque">La cryptographie et l'étude des différents
+			modes de cryptage dépassent de loin le cadre de ce tutoriel et nous
+			n'entrerons pas dans les détails de tel ou tel agorithme.</p>
+
+		<p class="fp-puce">
+			Pour crypter/décrypter simplement des données on peut utiliser la
+			fonction <a
+				onclick="top.FP.Voir.showPageTech('ref.mcrypt','function.mcrypt-encrypt')">mcrypt_encrypt()</a>
+			et son pendant <a
+				onclick="top.FP.Voir.showPageTech('ref.mcrypt','function.mcrypt-decrypt')">mcrypt_decrypt()</a>
+			comme dans l'exemple suivant qui utilise l'algorithme blow-fish et le
+			mode ECB.
+		</p>
+
+		<form action="" method="post" class="TEST-form">
+			<a class="TEST-lien"
+				onclick="top.FP.Voir.showPLUS('exemple/bib_fonctions_06.html')"
+				title="Afficher la bibliothéque de fonctions"></a>
+			<div class="TEST-titre">
+				<strong>Exemple</strong> : cryptage / décryptage
+			</div>
+			<textarea name="txtCode" class="TEST-textarea">
+&lt;?php
+require('bib_fonctions.php');
+
+htmlDebut('Crypter / décrypter');
+
+htmlInfo('Clé de cryptage');
+$cle = 'May the force be with you';
+echo $cle;
+
+htmlInfo('Chaîne à crypter');
+$val = 'François Piat';
+echo $val;
+
+htmlInfo('Chaîne cryptée');
+
+$x = mcrypt_encrypt(MCRYPT_BLOWFISH, $cle, $val, MCRYPT_MODE_ECB);
+
+echo $x;
+
+htmlInfo('Chaîne décryptée');
+
+$y = mcrypt_decrypt(MCRYPT_BLOWFISH, $cle, $x, MCRYPT_MODE_ECB);
+
+echo $y;
+
+htmlFin();
+?&gt;</textarea>
+		</form>
+
+		<p class="fp-puce">Notre exemple sur le passage de paramètres dans
+			une url peut être ré-écrit :</p>
+
+		<form action="" method="post" class="TEST-form">
+			<a class="TEST-lien"
+				onclick="top.FP.Voir.showPLUS('exemple/bib_fonctions_06.html')"
+				title="Afficher la bibliothéque de fonctions"></a>
+			<div class="TEST-titre">
+				<strong>Exemple</strong> : paramètres cryptés dans des liens
+			</div>
+			<textarea name="txtCode" class="TEST-textarea">
+&lt;?php
+require('bib_fonctions.php');
+
+$cle = 'I am your father! Noooooooooooo';
+
+htmlDebut('Paramètres cryptés dans des liens');
+
+if (isset($_GET['x'])) {
+	afficherReception($cle);
+	exit();
+}
+
+htmlInfo('Emission');
+
+$x = mcrypt_encrypt(MCRYPT_BLOWFISH, $cle, 
+					'François', MCRYPT_MODE_ECB);
+$y = mcrypt_encrypt(MCRYPT_BLOWFISH, $cle, 
+					'5=4+1', MCRYPT_MODE_ECB);
+$z = mcrypt_encrypt(MCRYPT_BLOWFISH, $cle, 
+					12345, MCRYPT_MODE_ECB);
+
+$lien = $_SERVER['PHP_SELF'];
+$lien .= '?x='.urlencode($x);
+$lien .= '&y='.urlencode($y);
+$lien .= '&z='.urlencode($z);
+
+echo '&lt;a href="', $lien, '" target="_blank"&gt;Cliquez ici&lt;/a&gt;';
+
+htmlFin();
+
+/**
+ * Affichage des données reçues.
+ * @param string	$cle	clé de cryptage
+ */
+function afficherReception($cle) {
+	htmlInfo('Réception x');
+	$x = mcrypt_decrypt(MCRYPT_BLOWFISH, $cle, 
+						$_GET['x'], MCRYPT_MODE_ECB);
+	$x = rtrim($x);
+	echo $x;
+	
+	htmlInfo('Réception y');
+	$y = mcrypt_decrypt(MCRYPT_BLOWFISH, $cle, 
+						$_GET['y'], MCRYPT_MODE_ECB);
+	$y = rtrim($y);
+	echo $y;
+	
+	htmlInfo('Réception z');
+	$z = mcrypt_decrypt(MCRYPT_BLOWFISH, $cle, 
+						$_GET['z'], MCRYPT_MODE_ECB);
+	$z = rtrim($z);
+	echo $z;
+	
+	htmlFin();
+}
+?&gt;</textarea>
+		</form>
+
+		<p class="fp-remarque">Le lien de l'exemple s'ouvrira dans un
+			nouvel onglet pour que vous puissiez voir/manipuler l'url.</p>
+
+		<p class="fp-puce fp-inter2">
+			Vous remarquerez l'utilisation de la fonction <a
+				onclick="top.FP.Voir.showPageTech('ref.strings','function.rtrim')">rtrim()</a>
+			sur les données récupèrées. La plupart des algorithmes vont en effet
+			compléter la donnée à crypter avec des '\0' jusqu'à obtenir une
+			chaîne qui soit un multiple de la taille de bloc définie pour ce
+			cryptage. Si par exemple la taille de bloc de l'algorithme est de 8
+			et que l'on fournisse une donnée de 20 caractères, la donnée sera
+			complétée de 4 '\0' pour obtenir une taille finale de 24 (3 fois 8
+			blocs).
+		</p>
+
+		<p class="fp-puce fp-inter2">
+			Etant donné les caractères totalement "aléatoires" que l'on peut
+			trouver dans une chaîne cryptée, il est particulièrement important
+			d'encoder cette chaîne avec <a
+				onclick="top.FP.Voir.showPageTech('ref.url','function.urlencode')">urlencode()</a>
+			si on veut la passer dans une url.
+		</p>
+
+		<p class="fp-puce">Si nous nous arrêtons ici dans le cryptage,
+			nous avons un problème : rien ne garantit que la donnée reçue et
+			décryptée est bien la même que celle qui a été cryptée et envoyée. On
+			peut toujours modifier manuellement l'url et on obtiendra toujours
+			quelque chose au décryptage, même si ce quelque chose est totalement
+			incohérent. Dans le cas d'un nombre attendu, on pourra se douter que
+			l'url a été modifiée, mais dans le cas d'une chaîne de caractères
+			attendue, on aura plus de mal à le définir.</p>
+
+		<p class="fp-puce">
+			C'est ici que la signature de données intervient. Avec de tels
+			algorithmes (md5, sha256, crc32, etc) nous pouvons signer la chaîne
+			cryptée, passer la signature également dans l'url, et vérifier à la
+			réception que la signature correspond bien.<br> Nous utiliserons
+			la fonction <a
+				onclick="top.FP.Voir.showPageTech('ref.hash','function.hash')">hash()</a>
+			pour signer nos paramètres. On doit fournir à cette fonction le nom
+			de l'algorithme à utiliser. Le choix est très grand et peut être
+			obtenu avec la fonction <a
+				onclick="top.FP.Voir.showPageTech('ref.hash','function.hash-algos')">hash_algos()</a>.
+			Nous prendrons dans nos exemples tiger160,4 qui renvoie une signature
+			de 40 caractères de long.
+		</p>
+
+		<p class="fp-remarque">
+			Un algorithme de signature revoie toujours une signature de la même
+			longueur, quelque soit la longueur de la chaînes de caractères qui
+			est signées.<br>Par exemple sha1 renverra une signature de 40
+			caractères, sha224 de 56 caractères, sha512 de 128 caractères,
+			ripemd256 de 64 caractères, md5 de 32 caractères, etc.
+		</p>
+
+		<p class="fp-puce">Comme la signature est de longeur fixe, et pour
+			ne pas doubler les paramètres à passer, nous pouvons concaténer la
+			chaîne cryptée et la signature (soit avant, soit après, ou en coupant
+			la signature en 2 parties, etc).</p>
+
+		<form action="" method="post" class="TEST-form">
+			<a class="TEST-lien"
+				onclick="top.FP.Voir.showPLUS('exemple/bib_fonctions_06.html')"
+				title="Afficher la bibliothéque de fonctions"></a>
+			<div class="TEST-titre">
+				<strong>Exemple</strong> : paramètres cryptés et signés dans des
+				liens
+			</div>
+			<textarea name="txtCode" class="TEST-textarea">
+&lt;?php
+require('bib_fonctions.php');
+
+$cle = 'Mon nom est Piat, François Piat.';
+
+htmlDebut('Paramètres cryptés et signés dans des liens');
+
+if (isset($_GET['x'])) {
+	afficherReception($cle);
+	exit();
+}
+
+htmlInfo('Emission');
+
+$x = mcrypt_encrypt(MCRYPT_BLOWFISH, $cle, 
+					'François', MCRYPT_MODE_ECB);
+// crypté + signature
+$x .= hash('tiger160,4', $x);	
+
+$y = mcrypt_encrypt(MCRYPT_BLOWFISH, $cle, 
+					'5=4+1', MCRYPT_MODE_ECB);
+// signature + crypté
+$y = hash('tiger160,4', $y) . $y;	
+
+$z = mcrypt_encrypt(MCRYPT_BLOWFISH, $cle, 
+					12345, MCRYPT_MODE_ECB);
+$zz = hash('tiger160,4', $z);
+// 1/2 signature + crypté + 1/2 signature
+$z = substr($zz, 0, 20).$z.substr($zz, 20);
+
+$lien = $_SERVER['PHP_SELF'];
+$lien .= '?x='.urlencode($x);
+$lien .= '&y='.urlencode($y);
+$lien .= '&z='.urlencode($z);
+
+echo '&lt;a href="', $lien, '" target="_blank"&gt;Cliquez ici&lt;/a&gt;';
+
+htmlFin();
+
+/**
+ * Affichage des données reçues.
+ * @param string	$cle	clé de cryptage
+ */
+function afficherReception($cle) {
+	htmlInfo('Réception x');
+	
+	$x = substr($_GET['x'], 0, -40);
+	$signe = substr($_GET['x'], -40);
+	
+	if (hash('tiger160,4', $x) != $signe) {
+		exit('Problème');
+	}
+	
+	$x = mcrypt_decrypt(MCRYPT_BLOWFISH, $cle, 
+						$x, MCRYPT_MODE_ECB);
+	$x = rtrim($x);
+	echo $x;
+	
+	htmlInfo('Réception y');
+	
+	$y = substr($_GET['y'], 40);
+	$signe = substr($_GET['y'], 0, 40);
+	
+	if (hash('tiger160,4', $y) != $signe) {
+		exit('Problème');
+	}
+	
+	$y = mcrypt_decrypt(MCRYPT_BLOWFISH, $cle, 
+						$y, MCRYPT_MODE_ECB);
+	$y = rtrim($y);
+	echo $y;
+	
+	htmlInfo('Réception z');
+	
+	$z = substr($_GET['z'], 20, -20);
+	$signe = substr($_GET['z'], 0, 20);
+	$signe .= substr($_GET['z'], -20);
+	
+	if (hash('tiger160,4', $z) != $signe) {
+		exit('Problème');
+	}
+	
+	$z = mcrypt_decrypt(MCRYPT_BLOWFISH, $cle, 
+						$z, MCRYPT_MODE_ECB);
+	$z = rtrim($z);
+	echo $z;
+	
+	htmlFin();
+}
+?&gt;</textarea>
+		</form>
+
+		<p class="fp-remarque">Le lien de l'exemple s'ouvrira dans un
+			nouvel onglet pour que vous puissiez voir/manipuler l'url.</p>
+
+		<p class="fp-puce fp-inter2">Pour éviter d'avoir des urls trop
+			longues et avec trop d'éléments et de calcul de cryptage / signature
+			à faire, on peut concaténer les valeurs des paramètres avec un
+			caractères séparateurs comme dans l'exemple suivant.</p>
+
+		<form action="" method="post" class="TEST-form">
+			<a class="TEST-lien"
+				onclick="top.FP.Voir.showPLUS('exemple/bib_fonctions_06.html')"
+				title="Afficher la bibliothéque de fonctions"></a>
+			<div class="TEST-titre">
+				<strong>Exemple</strong> : paramètres cryptés et signés dans des
+				liens
+			</div>
+			<textarea name="txtCode" class="TEST-textarea">
+&lt;?php
+require('bib_fonctions.php');
+
+$cle = 'Mon nom est Piat, François Piat.';
+
+htmlDebut('Paramètres cryptés et signés dans des liens');
+
+if (isset($_GET['xyz'])) {
+	afficherReception($cle);
+	exit();
+}
+
+htmlInfo('Emission');
+
+$x = 'François';
+$y = '5=4+1';
+$z = 12345;
+
+$xyz = "$x|$y|$z";
+
+$xyz = mcrypt_encrypt(MCRYPT_BLOWFISH, $cle, 
+					$xyz, MCRYPT_MODE_ECB);
+								
+$xyz .= hash('tiger160,4', $xyz);	
+
+$lien = $_SERVER['PHP_SELF'];
+$lien .= '?xyz='.urlencode($xyz);
+
+echo '&lt;a href="', $lien, '" target="_blank"&gt;Cliquez ici&lt;/a&gt;';
+
+htmlFin();
+
+/**
+ * Affichage des données reçues.
+ * @param string	$cle	clé de cryptage
+ */
+function afficherReception($cle) {
+	$xyz = substr($_GET['xyz'], 0, -40);
+	$signe = substr($_GET['xyz'], -40);
+	
+	if (hash('tiger160,4', $xyz) != $signe) {
+		exit('Problème');
+	}
+
+	$xyz = mcrypt_decrypt(MCRYPT_BLOWFISH, $cle, 
+						$xyz, MCRYPT_MODE_ECB);
+						
+	list($x, $y, $z) = explode('|', $xyz);
+
+	htmlInfo('Réception x');
+	echo $x;
+	
+	htmlInfo('Réception y');
+	echo $y;
+	
+	htmlInfo('Réception z');
+	$z = rtrim($z);
+	echo $z;
+	
+	htmlFin();
+}
+?&gt;</textarea>
+		</form>
+
+		<p class="fp-remarque">Le lien de l'exemple s'ouvrira dans un
+			nouvel onglet pour que vous puissiez voir/manipuler l'url.</p>
+	</div>
+	<footer></footer>
+</body>
+</html>

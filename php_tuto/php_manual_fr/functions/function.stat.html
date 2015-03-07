@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Renvoie les informations &agrave; propos d'un fichier</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.set-file-buffer.html">set_file_buffer</a>
+		</div>
+		<div class="next">
+			<a href="function.symlink.html">symlink</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.stat" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">stat</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">stat</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Renvoie les informations à propos
+					d&#039;un fichier</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.stat-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>stat</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$filename</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				Renvoie les informations à propos du fichier <em><code
+						class="parameter">filename</code></em>. Si <em><code
+						class="parameter">filename</code></em> est un lien symbolique, les
+				informations proviennent du fichier lui-même, et non du lien
+				symbolique.
+			</p>
+			<p class="para">
+				<span class="function"><a href="function.lstat.html"
+					class="function">lstat()</a></span> est identique à <span class="function"><strong>stat()</strong></span>
+				sauf que les informations seront alors basées sur le lien
+				symbolique.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.stat-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">filename</code></em></span>
+				<dd>
+
+					<p class="para">Le chemin vers le fichier.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.stat-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+			<table class="doctable table">
+				<caption>
+					<strong>Format du résultat de <span class="function"><strong>stat()</strong></span>
+						et <span class="function"><a href="function.fstat.html"
+							class="function">fstat()</a></span></strong>
+				</caption>
+
+				<thead>
+					<tr>
+						<th>Numéro</th>
+						<th>Nom (depuis PHP 4.0.6)</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>0</td>
+						<td>dev</td>
+						<td>volume</td>
+					</tr>
+
+					<tr>
+						<td>1</td>
+						<td>ino</td>
+						<td>Numéro d&#039;inode (*)</td>
+					</tr>
+
+					<tr>
+						<td>2</td>
+						<td>mode</td>
+						<td>droit d&#039;accès à l&#039;inode</td>
+					</tr>
+
+					<tr>
+						<td>3</td>
+						<td>nlink</td>
+						<td>nombre de liens</td>
+					</tr>
+
+					<tr>
+						<td>4</td>
+						<td>uid</td>
+						<td>userid du propriétaire (*)</td>
+					</tr>
+
+					<tr>
+						<td>5</td>
+						<td>gid</td>
+						<td>groupid du propriétaire (*)</td>
+					</tr>
+
+					<tr>
+						<td>6</td>
+						<td>rdev</td>
+						<td>type du volume, si le volume est une inode</td>
+					</tr>
+
+					<tr>
+						<td>7</td>
+						<td>size</td>
+						<td>taille en octets</td>
+					</tr>
+
+					<tr>
+						<td>8</td>
+						<td>atime</td>
+						<td>date de dernier accès (Unix timestamp)</td>
+					</tr>
+
+					<tr>
+						<td>9</td>
+						<td>mtime</td>
+						<td>date de dernière modification (Unix timestamp)</td>
+					</tr>
+
+					<tr>
+						<td>10</td>
+						<td>ctime</td>
+						<td>date de dernier changement d&#039;inode (Unix timestamp)</td>
+					</tr>
+
+					<tr>
+						<td>11</td>
+						<td>blksize</td>
+						<td>taille de bloc (**)</td>
+					</tr>
+
+					<tr>
+						<td>12</td>
+						<td>blocks</td>
+						<td>nombre de blocs de 512 octets alloués (**)</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			* - Sous Windows, vaut toujours 0.
+			</p>
+			<p class="para">
+				** - uniquement sur les systèmes qui supportent le type <em>st_blksize</em>.
+				Les autres systèmes (e.g. Windows) retournent -1.
+			</p>
+			<p class="para">
+				En cas d&#039;erreur, <span class="function"><strong>stat()</strong></span>
+				retourne <strong><code>FALSE</code></strong>.
+			</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">
+						Comme le type entier de PHP est signé et que de nombreuses
+						plates-formes utilisent des entiers de 32 bits, certaines
+						fonctions relatives au système de fichiers peuvent retourner des
+						résultats étranges pour les fichiers de taille supérieure à 2 Go.
+					</span>
+				</p>
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 errors" id="refsect1-function.stat-errors">
+			<h3 class="title">Erreurs / Exceptions</h3>
+			<p class="para">
+				Si une erreur survient, une alerte de type <strong><code>E_WARNING</code></strong>
+				est émise.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog" id="refsect1-function.stat-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.0.6</td>
+						<td>En plus de retourner ces attributs dans un tableau
+							numérique, ils peuvent être lus à l&#039;aide de leurs indices,
+							tels que notés près de chacun des paramètres</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.stat-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2298">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>stat()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">/*&nbsp;Récupération&nbsp;des&nbsp;informations&nbsp;*/<br /></span><span
+								style="color: #0000BB">$stat&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">stat</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'C:\php\php.exe'</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">/*<br />&nbsp;*&nbsp;Affichage&nbsp;de&nbsp;la&nbsp;date&nbsp;et&nbsp;heure&nbsp;de&nbsp;l'accès&nbsp;à&nbsp;ce&nbsp;fichier,<br />&nbsp;*&nbsp;identique&nbsp;à&nbsp;l'appel&nbsp;à&nbsp;la&nbsp;fonction&nbsp;fileatime()<br />&nbsp;*/<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">'Date&nbsp;et&nbsp;heure&nbsp;d\'accès&nbsp;:&nbsp;'&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">$stat</span><span style="color: #007700">[</span><span
+								style="color: #DD0000">'atime'</span><span
+								style="color: #007700">];<br />
+								<br /></span><span style="color: #FF8000">/*<br />&nbsp;*&nbsp;Affiche&nbsp;de&nbsp;la&nbsp;date&nbsp;et&nbsp;heure&nbsp;de&nbsp;modification&nbsp;du&nbsp;fichier,<br />&nbsp;*&nbsp;identique&nbsp;à&nbsp;l'appel&nbsp;à&nbsp;la&nbsp;fonction&nbsp;filemtime()<br />&nbsp;*/<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">'Date&nbsp;et&nbsp;heure&nbsp;de&nbsp;modification&nbsp;:&nbsp;'&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">$stat</span><span style="color: #007700">[</span><span
+								style="color: #DD0000">'mtime'</span><span
+								style="color: #007700">];<br />
+								<br /></span><span style="color: #FF8000">/*&nbsp;Affichage&nbsp;du&nbsp;numéro&nbsp;du&nbsp;device&nbsp;*/<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">'Numéro&nbsp;du&nbsp;Device&nbsp;:&nbsp;'&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">$stat</span><span style="color: #007700">[</span><span
+								style="color: #DD0000">'dev'</span><span style="color: #007700">];<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="example-2299">
+				<p>
+					<strong>Exemple #2 Utilisation des informations issues de
+						<span class="function"><strong>stat()</strong></span>
+						conjointement avec la fonction <span class="function"><a
+							href="function.touch.html" class="function">touch()</a></span>
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">/*&nbsp;Récupération&nbsp;des&nbsp;informations&nbsp;issues&nbsp;de&nbsp;la&nbsp;fonction&nbsp;stat&nbsp;*/<br /></span><span
+								style="color: #0000BB">$stat&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">stat</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'C:\php\php.exe'</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">/*&nbsp;L'accès&nbsp;aux&nbsp;informations&nbsp;a-t-il&nbsp;échoué&nbsp;?&nbsp;*/<br /></span><span
+								style="color: #007700">if&nbsp;(!</span><span
+								style="color: #0000BB">$stat</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'L\'appel&nbsp;à&nbsp;stat()&nbsp;a&nbsp;échoué...'</span><span
+								style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">/*<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Nous&nbsp;voulons&nbsp;que&nbsp;la&nbsp;date&nbsp;et&nbsp;heure&nbsp;d'accès&nbsp;soit&nbsp;d'une<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;semaine&nbsp;après&nbsp;la&nbsp;date&nbsp;courante.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$atime&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">$stat</span><span style="color: #007700">[</span><span
+								style="color: #DD0000">'atime'</span><span
+								style="color: #007700">]&nbsp;+&nbsp;</span><span
+								style="color: #0000BB">604800</span><span style="color: #007700">;<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">/*&nbsp;Touchons&nbsp;le&nbsp;fichier&nbsp;!&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">if(!</span><span
+								style="color: #0000BB">touch</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'some_file.txt'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">time</span><span style="color: #007700">(),&nbsp;</span><span
+								style="color: #0000BB">$atime</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'Échec&nbsp;lors&nbsp;de&nbsp;l\'appel&nbsp;à&nbsp;la&nbsp;fonction&nbsp;touch()...'</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'L\'appel&nbsp;à&nbsp;touch()&nbsp;a&nbsp;réussi...'</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.stat-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Notez que la précision temporelle peut varier
+					selon le système de fichiers utilisé.</p>
+				</p>
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Les
+						résultats de cette fonction sont mis en cache. Voyez la fonction <span
+						class="function"><a href="function.clearstatcache.html"
+							class="function">clearstatcache()</a></span> pour plus de détails.
+					</span>
+				</p>
+			</blockquote>
+			<div class="tip">
+				<strong class="tip">Astuce</strong>
+				<p class="simpara">
+					Depuis PHP 5.0.0, cette fonction peut aussi être utilisée avec <em
+						class="emphasis">quelques</em> protocoles url. Lisez <a
+						href="wrappers.html" class="xref">Liste des protocoles et des
+						gestionnaires support&eacute;s</a> pour connaître les protocoles
+					supportant la famille de fonctionnalités de <span class="function"><strong>stat()</strong></span>.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.stat-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.lstat.html" class="function" rel="rdfs-seeAlso">lstat()</a>
+						- Retourne les informations sur un fichier ou un lien symbolique</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fstat.html" class="function" rel="rdfs-seeAlso">fstat()</a>
+						- Lit les informations sur un fichier &agrave; partir d'un
+						pointeur de fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.filemtime.html" class="function" rel="rdfs-seeAlso">filemtime()</a>
+						- Lit la date de derni&egrave;re modification du fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.filegroup.html" class="function" rel="rdfs-seeAlso">filegroup()</a>
+						- Lire le nom du groupe</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.set-file-buffer.html">set_file_buffer</a>
+		</div>
+		<div class="next">
+			<a href="function.symlink.html">symlink</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

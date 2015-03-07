@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Requ&ecirc;tes multiples</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="mysqli.quickstart.stored-procedures.html">Les proc&eacute;dures stock&eacute;es</a></div>
+ <div class="next"><a href="mysqli.quickstart.transactions.html">Support API pour les transactions</a></div>
+ <div class="up"><a href="mysqli.quickstart.html">Guide de d&eacute;marrage rapide</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="mysqli.quickstart.multiple-statement" class="section">
+  <h2 class="title">Requêtes multiples</h2>
+  <p class="para">
+   MySQL autorise optionnellement le fait d&#039;avoir plusieurs requêtes dans une
+   seule chaîne de requête. L&#039;envoi de requêtes multiples en une fois réduit
+   les aller-retour client serveur mais nécessite une gestion spéciale.
+  </p>
+  <p class="para">
+   Les requêtes multiples ou multi-requêtes doivent être exécutées
+   avec la fonction  <span class="function"><a href="mysqli.multi-query.html" class="function">mysqli_multi_query()</a></span>. Les requêtes
+   individuelles dans la chaîne de requête sont séparées par un point virgule.
+   Ensuite, tous les jeux de résultats retournés par l&#039;exécution des requêtes
+   doivent être récupérés.
+  </p>
+  <p class="para">
+   Le serveur MySQL autorise d&#039;avoir des requêtes qui retournent des jeux
+   de résultats ainsi que des requêtes qui ne retournent aucun jeu de résultats
+   dans la même requête multiple.
+  </p>
+  <p class="para">
+   <div class="example" id="example-1628">
+    <p><strong>Exemple #1 Requêtes multiples</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"example.com"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect_errno</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Echec&nbsp;lors&nbsp;de&nbsp;la&nbsp;connexion&nbsp;à&nbsp;MySQL:&nbsp;("&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect_errno&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">")&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect_error</span><span style="color: #007700">;<br />}<br /><br />if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"DROP&nbsp;TABLE&nbsp;IF&nbsp;EXISTS&nbsp;test"</span><span style="color: #007700">)&nbsp;||&nbsp;!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"CREATE&nbsp;TABLE&nbsp;test(id&nbsp;INT)"</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Echec&nbsp;lors&nbsp;de&nbsp;la&nbsp;création&nbsp;de&nbsp;la&nbsp;table&nbsp;:&nbsp;("&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">")&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">$sql&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;COUNT(*)&nbsp;AS&nbsp;_num&nbsp;FROM&nbsp;test;&nbsp;"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$sql</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;test(id)&nbsp;VALUES&nbsp;(1);&nbsp;"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$sql</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;COUNT(*)&nbsp;AS&nbsp;_num&nbsp;FROM&nbsp;test;&nbsp;"</span><span style="color: #007700">;<br /><br />if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">multi_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$sql</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Echec&nbsp;lors&nbsp;de&nbsp;l'exécution&nbsp;de&nbsp;la&nbsp;multi-requête&nbsp;:&nbsp;("&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">")&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">;<br />}<br /><br />do&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$res&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">store_result</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">var_dump</span><span style="color: #007700">(</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_all</span><span style="color: #007700">(</span><span style="color: #0000BB">MYSQLI_ASSOC</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$res</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">free</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}&nbsp;while&nbsp;(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">more_results</span><span style="color: #007700">()&nbsp;&amp;&amp;&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">next_result</span><span style="color: #007700">());<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+array(1) {
+  [0]=&gt;
+  array(1) {
+    [&quot;_num&quot;]=&gt;
+    string(1) &quot;0&quot;
+  }
+}
+array(1) {
+  [0]=&gt;
+  array(1) {
+    [&quot;_num&quot;]=&gt;
+    string(1) &quot;1&quot;
+  }
+}
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <em class="emphasis">D&#039;un point de vue de la sécurité</em>
+  </p>
+  <p class="para">
+   Les fonctions  <span class="function"><a href="mysqli.query.html" class="function">mysqli_query()</a></span> et
+    <span class="function"><a href="mysqli.real-query.html" class="function">mysqli_real_query()</a></span> de l&#039;API ne définissent pas de
+   drapeau de connexion nécessaire pour l&#039;activation des multi-requêtes sur
+   le serveur. Un appel supplémentaire à l&#039;API est utilisé pour les multi-requêtes
+   pour réduire la probabilité d&#039;injection SQL accidentelle. Un attaquant peut
+   tenter d&#039;ajouter des requêtes comme
+   <em>; DROP DATABASE mysql</em> ou <em>; SELECT SLEEP(999)</em>.
+   Si l&#039;attaquant arrive à ajouter ce genre de SQL dans la chaîne de requête
+   mais que <em>mysqli_multi_query</em> n&#039;est pas utilisé, le serveur
+   n&#039;excutera que la première requête, mais pas la seconde représentant la requête SQL
+   malicieuse.
+  </p>
+  <p class="para">
+   <div class="example" id="example-1629">
+    <p><strong>Exemple #2 Injection SQL</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"example.com"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$res&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;1;&nbsp;DROP&nbsp;TABLE&nbsp;mysql.user"</span><span style="color: #007700">);<br />if&nbsp;(!</span><span style="color: #0000BB">$res</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Erreur&nbsp;lors&nbsp;de&nbsp;l'exécution&nbsp;de&nbsp;la&nbsp;requête&nbsp;:&nbsp;("&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">")&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Erreur lors de l&#039;exécution de la requête : (1064) You have an error in your SQL syntax;
+check the manual that corresponds to your MySQL server version for the right syntax 
+to use near &#039;DROP TABLE mysql.user&#039; at line 1
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <em class="emphasis">Prepared statements</em>
+  </p>
+  <p class="para">
+   L&#039;utilisation des requêtes multiples avec des requêtes préparées n&#039;est pas supportée.
+  </p>
+  <p class="para">
+   <em class="emphasis">Voir aussi</em>
+  </p>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"> <span class="methodname"><a href="mysqli.query.html" class="methodname">mysqli::query()</a></span></li>
+    <li class="member"> <span class="methodname"><a href="mysqli.multi-query.html" class="methodname">mysqli::multi_query()</a></span></li>
+    <li class="member"> <span class="methodname"><strong>mysqli_result::next-result()</strong></span></li>
+    <li class="member"> <span class="methodname"><strong>mysqli_result::more-results()</strong></span></li>
+   </ul>
+  </p>
+ </div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="mysqli.quickstart.stored-procedures.html">Les proc&eacute;dures stock&eacute;es</a></div>
+ <div class="next"><a href="mysqli.quickstart.transactions.html">Support API pour les transactions</a></div>
+ <div class="up"><a href="mysqli.quickstart.html">Guide de d&eacute;marrage rapide</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

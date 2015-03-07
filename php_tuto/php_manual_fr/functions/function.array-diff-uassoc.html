@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Calcule la diff&eacute;rence entre deux tableaux
+	associatifs, &agrave; l'aide d'une fonction de rappel</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.array-diff-key.html">array_diff_key</a>
+		</div>
+		<div class="next">
+			<a href="function.array-diff-ukey.html">array_diff_ukey</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.array-diff-uassoc" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">array_diff_uassoc</h1>
+			<p class="verinfo">(PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">array_diff_uassoc</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Calcule la différence entre deux
+					tableaux associatifs, à l&#039;aide d&#039;une fonction de rappel</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.array-diff-uassoc-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>array_diff_uassoc</strong></span>
+				( <span class="methodparam"><span class="type">array</span> <code
+						class="parameter">$array1</code></span> , <span class="methodparam"><span
+					class="type">array</span> <code class="parameter">$array2</code></span> [,
+				<span class="methodparam"><span class="type">array</span> <code
+						class="parameter">$...</code></span> ], <span class="methodparam"><span
+					class="type"><a href="language.types.callable.html"
+						class="type callable">callable</a></span> <code class="parameter">$key_compare_func</code></span>
+				)
+			</div>
+
+			<p class="para rdfs-comment">
+				Compare le tableau <em><code class="parameter">array1</code></em>
+				avec le tableau <em><code class="parameter">array2</code></em> et
+				retourne la différence. Contrairement à la fonction <span
+					class="function"><a href="function.array-diff.html"
+					class="function">array_diff()</a></span>, les clés du tableau sont
+				utilisées dans la comparaison.
+			</p>
+			<p class="para">
+				Contrairement à la fonction <span class="function"><a
+					href="function.array-diff-assoc.html" class="function">array_diff_assoc()</a></span>,
+				un utilisateur fournit une fonction de rappel utilisée pour la
+				comparaison des indices, et non une fonction interne.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.array-diff-uassoc-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">array1</code></em></span>
+				<dd>
+
+					<p class="para">Le tableau à comparer</p>
+				</dd>
+
+				</dt>
+
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">array2</code></em></span>
+				<dd>
+
+					<p class="para">Le tableau à comparer</p>
+				</dd>
+
+				</dt>
+
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">...</code></em></span>
+				<dd>
+
+					<p class="para">Plus de tableaux à comparer</p>
+				</dd>
+
+				</dt>
+
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">key_compare_func</code></em></span>
+				<dd>
+
+					<p class="para">La fonction de comparaison doit retourner un
+						entier inférieur à, égal à, ou supérieur à 0 si le premier
+						argument est considéré comme, respectivement, inférieur à, égal à,
+						ou supérieur au second.</p>
+					<div class="methodsynopsis dc-description">
+						<span class="type">int</span> <span class="methodname"><span
+							class="replaceable">callback</span></span> ( <span class="methodparam"><span
+							class="type"><a
+								href="language.pseudo-types.html#language.types.mixed"
+								class="type mixed">mixed</a></span> <code class="parameter">$a</code></span>,
+						<span class="methodparam"><span class="type"><a
+								href="language.pseudo-types.html#language.types.mixed"
+								class="type mixed">mixed</a></span> <code class="parameter">$b</code></span> )
+					</div>
+
+				</dd>
+
+				</dt>
+
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.array-diff-uassoc-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne un <a href="language.types.array.html" class="link">tableau</a>
+				contenant toutes les entrées du tableau <em><code
+						class="parameter">array1</code></em> qui ne sont présentes dans aucun
+				autre tableau.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.array-diff-uassoc-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4596">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>array_diff_uassoc()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<p>
+						Dans cet exemple, vous voyez que la paire <em>&quot;a&quot;
+							=&gt; &quot;vert&quot;</em> est présente dans les deux tableaux et
+						donc ne figure pas dans le résultat de la fonction. Contrairement
+						à cela, la paire <em>0 =&gt; &quot;rouge&quot;</em> est dans le
+						résultat car dans le second argument, la clé de <em>&quot;rouge&quot;</em>
+						est <em>1</em>.
+					</p>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">key_compare_func</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$b</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(
+							</span><span style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">===&nbsp;</span><span
+								style="color: #0000BB">$b</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(
+							</span><span style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">&gt;&nbsp;</span><span
+								style="color: #0000BB">$b</span><span style="color: #007700">)?&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">:-</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #0000BB">$array1&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">"a"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">"vert"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"b"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">"marron"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"c"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">"bleu"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"rouge"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$array2&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">"a"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">"vert"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"jaune"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"rouge"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$result&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">array_diff_uassoc</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$array1</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$array2</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"key_compare_func"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$result</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Array
+(
+    [b] =&gt; marron
+    [c] =&gt; bleu
+    [0] =&gt; rouge
+)
+</pre>
+					</div>
+				</div>
+				<div class="example-contents">
+					<p>L&#039;égalité de deux indices est vérifiée par la fonction
+						utilisateur.</p>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes"
+			id="refsect1-function.array-diff-uassoc-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Notez que cette fonction ne vérifie qu&#039;une seule dimension
+					d&#039;un tableau multidimensionnel. Vous pouvez, bien sûr, tester
+					une dimension particulière en utilisant par exemple, <em>array_diff_uassoc($array1[1],
+						$array2[1], &quot;key_compare_func&quot;);</em>.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.array-diff-uassoc-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.array-diff.html" class="function"
+						rel="rdfs-seeAlso">array_diff()</a> - Calcule la diff&eacute;rence
+						entre des tableaux</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-diff-assoc.html" class="function"
+						rel="rdfs-seeAlso">array_diff_assoc()</a> - Calcule la
+						diff&eacute;rence de deux tableaux, en prenant aussi en compte les
+						cl&eacute;s</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-udiff.html" class="function"
+						rel="rdfs-seeAlso">array_udiff()</a> - Calcule la
+						diff&eacute;rence entre deux tableaux en utilisant une fonction
+						rappel</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-udiff-assoc.html" class="function"
+						rel="rdfs-seeAlso">array_udiff_assoc()</a> - Calcule la
+						diff&eacute;rence entre des tableaux avec v&eacute;rification des
+						index, compare les donn&eacute;es avec une fonction de rappel</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-udiff-uassoc.html" class="function"
+						rel="rdfs-seeAlso">array_udiff_uassoc()</a> - Calcule la
+						diff&eacute;rence de deux tableaux associatifs, compare les
+						donn&eacute;es et les index avec une fonction de rappel</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-intersect.html" class="function"
+						rel="rdfs-seeAlso">array_intersect()</a> - Calcule l'intersection
+						de tableaux</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-intersect-assoc.html" class="function"
+						rel="rdfs-seeAlso">array_intersect_assoc()</a> - Calcule
+						l'intersection de deux tableaux avec des tests sur les index</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-uintersect.html" class="function"
+						rel="rdfs-seeAlso">array_uintersect()</a> - Calcule l'intersection
+						de deux tableaux, compare les donn&eacute;es en utilisant une
+						fonction de rappel</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-uintersect-assoc.html" class="function"
+						rel="rdfs-seeAlso">array_uintersect_assoc()</a> - Calcule
+						l'intersection de deux tableaux avec des tests sur l'index,
+						compare les donn&eacute;es en utilisant une fonction de rappel</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-uintersect-uassoc.html" class="function"
+						rel="rdfs-seeAlso">array_uintersect_uassoc()</a> - Calcule
+						l'intersection de deux tableaux avec des tests sur l'index,
+						compare les donn&eacute;es et les indexes des deux tableaux en
+						utilisant une fonction de rappel</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.array-diff-key.html">array_diff_key</a>
+		</div>
+		<div class="next">
+			<a href="function.array-diff-ukey.html">array_diff_ukey</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

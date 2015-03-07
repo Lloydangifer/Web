@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Nettoyage de Cycles</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="features.gc.refcounting-basics.html">Bases sur le comptage des r&eacute;f&eacute;rences</a></div>
+ <div class="next"><a href="features.gc.performance-considerations.html">Considerations sur les performances</a></div>
+ <div class="up"><a href="features.gc.html">Ramasse-miettes (Garbage Collection)</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="features.gc.collecting-cycles" class="sect1">
+   <h2 class="title">Nettoyage de Cycles</h2>
+   <p class="para">
+    Traditionnellement, les mécanismes de comptage de références, comme utilisés auparavant
+    dans PHP, ne savent pas gérer les fuites mémoires dûes à des références circulaires.
+    Depuis PHP 5.3.0, un algorithme synchrone issu de l&#039;analyse
+    <a href="http://www.research.ibm.com/people/d/dfb/papers/Bacon01Concurrent.pdf" class="link external">&raquo;&nbsp;Concurrent Cycle Collection in Reference Counted Systems</a>
+    est utilisé pour répondre à ce problème particulier.
+   </p>
+   <p class="para">
+    Une explication complète du fonctionnement de l&#039;algorithme irait un peu au-delà du cadre de cette section,
+    mais nous allons ici présenter les principes de base. Avant tout, nous allons établir quelques règles de base.
+    Si un refcount est incrémenté, le conteneur est toujours utilisé, donc pas nettoyé. Si le refcount
+    est décrémenté et atteint zéro, le conteneur zval peut être supprimé et la mémoire libérée. Premièrement, ceci signifie
+    que les cycles perturbateur ne peuvent être créés que lorsque le refcount est décrémenté vers une valeur
+    différente de zéro. Ensuite, dans un cycle problématique, il est possible de détecter les déchets en
+    vérifiant s&#039;il est possible ou non de décrémenter leur refcount de un, en vérifiant ensuite quelles zvals
+    ont un refcount à zéro.
+   </p>
+   <p class="para">
+     <div class="mediaobject">
+      
+      <div class="imageobject">
+       <img src="images/12f37b1c6963c1c5c18f30495416a197-gc-algorithm.png" alt="Algorithme de collecte des déchets" width="614" height="814" />
+      </div>
+     </div>
+   </p>
+   <p class="para">
+    Pour éviter d&#039;avoir à appeler la routine de nettoyage à chaque décrémentation de refcount possible,
+    l&#039;algorithme place toutes les zval racines dans un &quot;tampon de racines&quot; (en les marquant en &quot;violet&quot;).
+    Il s&#039;assure aussi que chaque racine n&#039;apparaisse qu&#039;une seule fois dans le tampon. Le
+    mécanisme de nettoyage n&#039;intervient alors que lorsque le tampon est plein. Voyez l&#039;étape A
+    sur la figure ci-dessus.
+   </p>
+   <p class="para">
+    A l&#039;étape B, l&#039;algorithme lance une recherche sur toutes les racines possibles, afin de
+    décrémenter de une unité les refcounts de toutes les zvals qu&#039;il trouve, en faisant bien
+    attention de ne pas décrémenter deux fois le refcount de la même zval (en les marquant
+    comme &quot;grises&quot;). A l&#039;étape C, l&#039;algorithme relance une recherche sur toutes les racines
+    possibles et scrute la valeur de refcount de chaque zval. S&#039;il trouve un refcount à zéro,
+    la zval est marquée comme &quot;blanche&quot; (bleu sur la figure). S&#039;il trouve une valeur supérieure à zéro,
+    il annule la décrémentation du refcount en refaisant une recherche à partir de ce noeud, et les
+    marque comme &quot;noires&quot; à nouveau. Dans la dernière étape, D, l&#039;algorithme parcourt tout le
+    tampon des racines et les supprime, tout en scrutant chaque zval ; toute zval marquée
+    comme &quot;blanche&quot; à l&#039;étape précédente sera alors supprimée de la mémoire.
+   </p>
+   <p class="para">
+    Maintenant que vous savez globalement comment l&#039;algorithme fonctionne, nous allons
+    voir comment il a été intégré dans PHP. Par défaut, le ramasse-miettes de PHP est
+    activé. Il existe cependant une options de <var class="filename">php.ini</var> pour changer cela :
+    <strong class="option unknown">zend.enable_gc</strong>
+.
+   </p>
+   <p class="para">
+    Lorsque le ramasse-miettes est activé, l&#039;algorithme de recherche des cycles
+    décrit ci-dessus est exécuté à chaque fois que le tampon est plein. Le tampon de
+    racines a une taille fixée à 10.000 racines (ce paramètre est changeable grâce à
+    <em>GC_ROOT_BUFFER_MAX_ENTRIES</em> dans <em>Zend/zend_gc.c</em>
+    dans le code source de PHP, une recompilation est donc nécessaire). Si le ramasse-
+    miettes est désactivé, la recherche des cycles l&#039;est aussi. Cependant, les racines
+    possibles seront toujours enregistrées dans le tampon, ceci ne dépend pas de l&#039;activation
+    du ramasse-miettes.
+   </p>
+   <p class="para">
+    Si le tampon est plein alors que le mécanisme de nettoyage est désactivé, les racines
+    ne seront plus enregistrées. Ces racines ne seront donc jamais analysées par l&#039;algorithme,
+    et si elles faisaient partie de références circulaires, elles ne seront jamais nettoyées,
+    et elles causeront des fuites de mémoire.
+   </p>
+   <p class="para">
+    La raison pour laquelle les racines possibles sont enregistrées dans le tampon
+    même si le mécanisme est désactivé est qu&#039;il aurait été trop coûteux de vérifier l&#039;activation
+    éventuelle du mécanisme à chaque tentative d&#039;ajout d&#039;une racine dans le tampon. Le mécanisme
+    de ramasse-miettes et d&#039;analyse peut, lui, être très coûteux en temps.
+   </p>
+   <p class="para">
+    En plus de pouvoir changer la valeur du paramètre de configuration
+    <strong class="option unknown">zend.enable_gc</strong>
+, vous pouvez aussi activer ou désactiver le mécanisme de
+    ramasse-miettes en appelant les fonctions  <span class="function"><a href="function.gc-enable.html" class="function">gc_enable()</a></span> ou
+     <span class="function"><a href="function.gc-disable.html" class="function">gc_disable()</a></span> respectivement. Utiliser ces fonctions aura le même effet que de
+    modifier le paramètre de configuration. Vous avez aussi la possibilité de forcer l&#039;exécution du
+    ramasse-miettes à un moment donné dans votre script, même si le tampon n&#039;est pas encore
+    complètement plein. Utilisez pour cela la fonction  <span class="function"><a href="function.gc-collect-cycles.html" class="function">gc_collect_cycles()</a></span>,
+    qui retournera le nombre de cycles alors collectés.
+   </p>
+   <p class="para">
+    Vous pouvez prendre le contrôle en désactivant le ramasse-miettes ou en le
+    forçant à passer à un moment donné car certaines parties de votre application
+    pourraient être fortement dépendantes du temps de traitement, auquel cas vous pourriez
+    souhaiter que le ramasse-miettes ne se lance pas. Bien entendu, en désactivant le
+    ramasse-miettes pour certaines parties de votre application, vous prenez le risque de créer
+    des fuites de mémoire, puisque certaines racines probables pourraient de pas être
+    enregistrées dans le tampon mémoire de taille limitée.
+    En conséquence, il est généralement recommandé de déclencher manuellement le processus grâce à
+     <span class="function"><a href="function.gc-collect-cycles.html" class="function">gc_collect_cycles()</a></span> juste avant l&#039;appel à
+     <span class="function"><a href="function.gc-disable.html" class="function">gc_disable()</a></span>, pour libérer de la mémoire. Ceci laissera un tampon
+    vidé, et il y aura plus d&#039;espace pour des racines probables lorsque
+    le mécanisme sera désactivé.
+   </p>
+  </div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="features.gc.refcounting-basics.html">Bases sur le comptage des r&eacute;f&eacute;rences</a></div>
+ <div class="next"><a href="features.gc.performance-considerations.html">Considerations sur les performances</a></div>
+ <div class="up"><a href="features.gc.html">Ramasse-miettes (Garbage Collection)</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

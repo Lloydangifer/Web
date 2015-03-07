@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>D&eacute;clenche une erreur utilisateur</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.set-exception-handler.html">set_exception_handler</a>
+		</div>
+		<div class="next">
+			<a href="function.user-error.html">user_error</a>
+		</div>
+		<div class="up">
+			<a href="ref.errorfunc.html">Fonctions sur la gestion des erreurs</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.trigger-error" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">trigger_error</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.0.1, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">trigger_error</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Déclenche une erreur utilisateur</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.trigger-error-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>trigger_error</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$error_msg</code></span> [, <span
+					class="methodparam"><span class="type">int</span> <code
+						class="parameter">$error_type</code><span class="initializer">
+						= E_USER_NOTICE</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>trigger_error()</strong></span> est
+				utilisé pour déclencher une erreur utilisateur. Elle peut aussi être
+				utilisée en conjonction avec un gestionnaire d&#039;erreurs interne,
+				ou un gestionnaire d&#039;erreurs utilisateur qui a été choisi comme
+				gestionnaire d&#039;erreurs avec <span class="function"><a
+					href="function.set-error-handler.html" class="function">set_error_handler()</a></span>.
+			</p>
+			<p class="para">
+				<span class="function"><strong>trigger_error()</strong></span> est
+				pratique lorsque vous devez générer une réponse particulière lors de
+				l&#039;exécution.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.trigger-error-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">error_msg</code></em></span>
+				<dd>
+
+					<p class="para">Le message d&#039;erreur désigné pour cette
+						erreur. Il est limité en longueur à 1024 caractères. Tous
+						caractères après les 1024 seront ignorés.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">error_type</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le type d&#039;erreur désigné pour cette erreur. Cela ne
+						fonctionne qu&#039;avec la famille de constantes E_USER et sera
+						par défaut <strong><code>E_USER_NOTICE</code></strong>.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.trigger-error-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>FALSE</code></strong> si un
+				paramètre incorrect est passé à <em><code class="parameter">error_type</code></em>,
+				<strong><code>TRUE</code></strong> sinon.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.trigger-error-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-457">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>trigger_error()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<p>
+						Voir <span class="function"><a
+							href="function.set-error-handler.html" class="function">set_error_handler()</a></span>
+						pour un exemple plus conséquent.
+					</p>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">if&nbsp;(</span><span
+								style="color: #0000BB">$divisor&nbsp;</span><span
+								style="color: #007700">==&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;
+							</span><span style="color: #0000BB">trigger_error</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"Impossible&nbsp;de&nbsp;diviser&nbsp;par&nbsp;zéro"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">E_USER_ERROR</span><span
+								style="color: #007700">);<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.trigger-error-notes">
+			<h3 class="title">Notes</h3>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">
+					Les entités HTML contenues dans le paramètre <em><code
+							class="parameter">error_msg</code></em> ne sont pas échappées.
+					Utilisez la fonction <span class="function"><a
+						href="function.htmlentities.html" class="function">htmlentities()</a></span>
+					sur le message si l&#039;erreur doit être affichée dans un
+					navigateur.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.trigger-error-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.error-reporting.html" class="function"
+						rel="rdfs-seeAlso">error_reporting()</a> - Fixe le niveau de
+						rapport d'erreurs PHP</span></li>
+				<li class="member"><span class="function"><a
+						href="function.set-error-handler.html" class="function"
+						rel="rdfs-seeAlso">set_error_handler()</a> - Sp&eacute;cifie une
+						fonction utilisateur comme gestionnaire d'erreurs</span></li>
+				<li class="member"><span class="function"><a
+						href="function.restore-error-handler.html" class="function"
+						rel="rdfs-seeAlso">restore_error_handler()</a> - R&eacute;active
+						l'ancienne fonction de gestion des erreurs</span></li>
+				<li class="member">Les <a href="errorfunc.constants.html"
+					class="link">constantes de niveau d&#039;erreur</a></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.set-exception-handler.html">set_exception_handler</a>
+		</div>
+		<div class="next">
+			<a href="function.user-error.html">user_error</a>
+		</div>
+		<div class="up">
+			<a href="ref.errorfunc.html">Fonctions sur la gestion des erreurs</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

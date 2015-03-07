@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Modifie le comportement d'une requ&ecirc;te pr&eacute;par&eacute;e</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="mysqli-stmt.attr-get.html">mysqli_stmt::attr_get</a></div>
+ <div class="next"><a href="mysqli-stmt.bind-param.html">mysqli_stmt::bind_param</a></div>
+ <div class="up"><a href="class.mysqli-stmt.html">mysqli_stmt</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="mysqli-stmt.attr-set" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysqli_stmt::attr_set</h1>
+  <h1 class="refname">mysqli_stmt_attr_set</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">mysqli_stmt::attr_set</span> -- <span class="refname">mysqli_stmt_attr_set</span> <span class="mdash">&mdash;</span> <span class="dc-title">Modifie le comportement d&#039;une requête préparée</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mysqli-stmt.attr-set-description">
+  <h3 class="title">Description</h3>
+  <p class="para">Style orienté objet</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>mysqli_stmt::attr_set</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$attr</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$mode</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">Style procédural</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>mysqli_stmt_attr_set</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="class.mysqli-stmt.html" class="type mysqli_stmt">mysqli_stmt</a></span> <code class="parameter">$stmt</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$attr</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$mode</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Modifie le comportement d&#039;une requête préparée. Cette fonction peut être
+   appelée plusieurs fois pour définir plusieurs attributs.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mysqli-stmt.attr-set-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+<dt>
+<span class="term"><em><code class="parameter">
+stmt</code></em></span><dd>
+<p class="para">Style procédural uniquement : Un identifiant
+de requête retourné par la fonction  <span class="function"><a href="mysqli.stmt-init.html" class="function">mysqli_stmt_init()</a></span>.</p>
+</dd>
+</dt>
+<dt>
+
+     <span class="term"><em><code class="parameter">attr</code></em></span>
+     <dd>
+
+      <p class="para">
+       L&#039;attribut que vous voulez définir. Il peut avoir une des valeurs
+       suivantes :
+       <table class="doctable table">
+        <caption><strong>Valeurs des attributs</strong></caption>
+        
+         <thead>
+          <tr>
+           <th>Caractère</th>
+           <th>Description</th>
+          </tr>
+
+         </thead>
+
+         <tbody class="tbody">
+          <tr>
+           <td>MYSQLI_STMT_ATTR_UPDATE_MAX_LENGTH</td>
+           <td>
+            Si défini à 1, la fonction  <span class="function"><a href="mysqli-stmt.store-result.html" class="function">mysqli_stmt_store_result()</a></span>
+            mettra à jour la valeur de la méta-donnée
+            <em>MYSQL_FIELD-&gt;max_length</em>.
+           </td>
+          </tr>
+
+          <tr>
+           <td>MYSQLI_STMT_ATTR_CURSOR_TYPE</td>
+           <td>
+            Type du curseur permettant l&#039;ouverture de la requête lorsque la
+            fonction  <span class="function"><a href="mysqli-stmt.execute.html" class="function">mysqli_stmt_execute()</a></span> est appelée.
+            <em><code class="parameter">mode</code></em> peut valoir
+            <em>MYSQLI_CURSOR_TYPE_NO_CURSOR</em> (par défaut) ou
+            <em>MYSQLI_CURSOR_TYPE_READ_ONLY</em>.
+           </td>
+          </tr>
+
+          <tr>
+           <td>MYSQLI_STMT_ATTR_PREFETCH_ROWS</td>
+           <td>
+            Nombre de lignes à récupérer depuis le serveur en une fois lors
+            de l&#039;utilisation d&#039;un curseur. <em><code class="parameter">mode</code></em> peut
+            être compris entre 1 et la valeur maximale d&#039;un type long non-signé.
+            Par défaut, vaut 1.
+           </td>
+          </tr>
+
+         </tbody>
+        
+       </table>
+
+      </p>
+      <p class="para">
+       Si vous utilisez l&#039;option <em>MYSQLI_STMT_ATTR_CURSOR_TYPE</em>
+       avec <em>MYSQLI_CURSOR_TYPE_READ_ONLY</em>, un curseur sera
+       ouvert pour la requête lors de l&#039;appel à la fonction
+        <span class="function"><a href="mysqli-stmt.execute.html" class="function">mysqli_stmt_execute()</a></span>. S&#039;il y a déjà un curseur d&#039;ouvert
+       depuis un précédent appel à la fonction
+        <span class="function"><a href="mysqli-stmt.execute.html" class="function">mysqli_stmt_execute()</a></span>, il sera fermé avant d&#039;en ouvrir
+       un nouveau. La fonction  <span class="function"><a href="mysqli-stmt.reset.html" class="function">mysqli_stmt_reset()</a></span> ferme
+       également tous les curseurs avant de préparer la requête pour une
+       ré-exécution. La fonction  <span class="function"><a href="mysqli-stmt.free-result.html" class="function">mysqli_stmt_free_result()</a></span>
+       ferme tout curseur ouvert.
+      </p>
+      <p class="para">
+       Si vous ouvrez un curseur pour une requête préparée, la fonction
+        <span class="function"><a href="mysqli-stmt.store-result.html" class="function">mysqli_stmt_store_result()</a></span> n&#039;est pas nécessaire.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><em><code class="parameter">mode</code></em></span>
+     <dd>
+
+      <p class="para">La valeur à assigner à l&#039;attribut.</p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+</div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="mysqli-stmt.attr-get.html">mysqli_stmt::attr_get</a></div>
+ <div class="next"><a href="mysqli-stmt.bind-param.html">mysqli_stmt::bind_param</a></div>
+ <div class="up"><a href="class.mysqli-stmt.html">mysqli_stmt</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

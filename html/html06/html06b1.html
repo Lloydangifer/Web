@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Les images</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<table class="TAB-sans-bord">
+			<tr>
+				<td rowspan="2">
+					<p>
+						L'intégration d'images dans les documents <abbr
+							title="HyperText Markup Language">HTML</abbr> ne faisait pas
+						partie des spécifications de départ. Il faut attendre février 1993
+						pour que Marc Andreessen <a
+							href="http://1997.webhistory.org/www.lists/www-talk.1993q1/0182.html"
+							target="_blank">propose le tag IMG</a> qui permet de lier des
+						images aux pages.
+					</p>
+
+					<p>Si "Une image vaut mille mots", il faut veillez à ce que cet
+						adage ne se transforme pas en "Une image vaut mille maux" car si
+						l'intégration d'une image dans du contenu se fait extrêmement
+						facilement, il existe différents formats graphiques d'image et il
+						faut veiller à utiliser le plus adapté pour avoir des fichiers le
+						moins volumineux possibles et donc plus rapides à télécharger.</p>
+				</td>
+
+				<td>
+					<ul id="MENU-page"></ul>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="fp-ordre" style="width: 18em; margin-left: 0">
+						<div class="fp-ordre-t">
+							<a onClick="top.FP.Voir.showPageTech('images', '')">Images et
+								formats graphiques</a> lire aussi tu dois.
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<section>
+			<p>
+				On utilise la balise <a
+					onclick="top.FP.Voir.showPageTech('elements', 'img')">img</a> pour
+				embarquer une image dans du contenu. L'élément créé avec <a
+					onclick="top.FP.Voir.showPageTech('elements', 'img')">img</a> est
+				un élément vide qui n'a pas de balise de fermeture.
+			</p>
+
+			<p class="fp-remarque">
+				<a onClick="top.FP.Voir.showPageTech('elements', 'img')">img</a> ne
+				peut pas être utilisé pour les images de fond de page ou de fond de
+				blocs. Les images de fond sont gérées avec des règles de style <abbr
+					title="Cascading Style Sheets">CSS</abbr> dont certaines propriétés
+				sont spécialement faite pour gérer la disposition, la répétition,
+				etc. des images de fond.
+			</p>
+		</section>
+
+		<h3>L'attribut src</h3>
+		<section>
+			<p>
+				L'attribut <code>src</code> doit toujours être présent car c'est sa
+				valeur qui va définir l'<abbr title="Uniform Resource Locator">URL</abbr>
+				du fichier image à télécharger et à inclure dans la page. <strong>Bien
+					sûr si l'image est un fichier situé dans un des dossiers de votre
+					site, il faut utiliser une <abbr title="Uniform Resource Locator">URL</abbr>
+					relative pour faire le lien.
+				</strong>
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : image
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Image&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;img src="images/dv.png"&gt;
+		&lt;img src="images/yoda.png"&gt;
+		&lt;img src="../exemples/lord_rings/images/gimli.png"&gt;
+		&lt;img src="../exemples/lord_rings/images/gandalf.png"&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<div class="fp-remarque">
+				<p class="fp-bot0">Je vous rappelle qu'il convient d'être
+					prudent avec les caractères utilisés pour les noms des fichiers et
+					des dossiers qui les contiennent et je vous conseille (à nouveau)
+					d'adopter les règles suivantes :</p>
+				<ul>
+					<li>les noms de fichier et de dossiers étant sensibles à la
+						casse, utilisez uniquement des minuscules,</li>
+					<li>utilisez uniquement les caractères aplhabétiques non
+						accentués (de a à z), des chiffres (de 0 à 9), le caractère -, le
+						caractère _ et le caractère .</li>
+					<li>n'utilisez jamais d'espaces.</li>
+				</ul>
+			</div>
+		</section>
+
+		<a id="image_dim"></a>
+		<h3>Dimensions</h3>
+		<section>
+			<p>
+				Les attributs <code>width</code> et <code>height</code> permettent
+				de donner la largeur et la hauteur de l'image. La valeur de ces
+				attributs est simplement <strong>un nombre entier</strong> qui
+				exprime la hauteur ou la largeur en <a
+					onclick="top.FP.Voir.showPageTech('images', 'pixel')">pixels</a>.
+				Il ne faut surtout pas spécifier d'unité (le pixel) car la valeur ne
+				serait pas prise en compte.
+			<p>
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : dimensions
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Dimensions&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;img src="images/dv.png"&gt;
+		&lt;img src="images/dv.png" width="133" height="147"&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p class="fp-p-raz">Visuellement, il n'y aucune différence quand
+				on ajoute les dimensions de l'image. En effet, si les dimensions ne
+				sont pas données dans le code, le navigateur les calcule pour
+				l'affichage.</p>
+
+			<div class="fp-dialogue">
+				<div class="fp-dialogue-q">Mais grand mâiêiïtre Jedi, alors
+					pourquoi se compliquer la vie en donnant ces dimensions ?</div>
+				<div class="fp-dialogue-r">Parce que, jeune Padawan, les pages
+					s'afficheront plus vite. Le navigateur n'aura pas à attendre que
+					l'image soit chargée depuis le serveur, puis passer quelques
+					millisecondes à calculer sa taille. Il pourra tout de suite
+					réserver l'espace nécessaire à l'affiche de l'image, faire le rendu
+					des autres élements, et placer l'image quand il l'aura recu du
+					serveur.</div>
+			</div>
+
+			<p>
+				<strong>Spécifiez toujours la taille des images que vous
+					intégrez dans une page Web.</strong>
+			</p>
+
+			<p>Veillez à donner les dimensions correctes de l'image, sinon
+				celle-ci sera déformée lors de son affichage par le navigateur.</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : déformation d'images
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Déformation d'images&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;!-- Taille originale --&gt;
+		&lt;img src="images/dv.png" width="133" height="147"&gt;
+		
+		&lt;!-- Largeur modifiée --&gt;
+		&lt;img src="images/dv.png" width="80" height="142"&gt;
+		
+		&lt;!-- Hauteur modifiée --&gt;
+		&lt;img src="images/dv.png" width="133" height="294"&gt;
+		
+		&lt;!-- Hauteur et largeur modifiées --&gt;
+		&lt;img src="images/dv.png" width="266" height="294"&gt;	
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p class="fp-p-raz">
+				D'une façon générale, il faut éviter de donner des dimensions
+				différentes des dimensions originales de l'image. Le rendu des
+				images ainsi déformée n'est pas excellent car le navigateur n'est
+				pas un outil de traitement d'images comme peuvent l'être des
+				logiciels spécialisés (<a
+					href="http://fr.wikipedia.org/wiki/Adobe_Photoshop" target="_blank">photoshop</a>,
+				<a href="http://fr.wikipedia.org/wiki/Gimp" target="_blank">Gimp</a>,
+				etc).
+				<br>
+				Remarque : le fait de réduire ou d'augmenter la taille de l'image
+				affichée par le navigateur ne réduit pas ou n'augmente pas la taille
+				du fichier transféré sur le réseau. Le nombre d'octets transférés
+				sera toujours celui du fichier situé sur le serveur.
+			</p>
+
+			<p>
+				On utilise souvent des miniatures à la place des images de grandes
+				tailles. En cliquant sur ces miniatures on voit l'image en taille
+				réelle. Ces miniatures ne sont pas obtenues en reduisant les
+				dimensions de l'image originale avec les attributs <code>width</code>
+				et <code>height</code> car comme on l'a vu le navigateur n'est pas
+				un logiciel de traitement d'images.
+				<br>
+				La miniature est obtenue par la réduction des dimensions de l'image
+				originale avec un logiciel spécialisé (<a
+					href="http://fr.wikipedia.org/wiki/Adobe_Photoshop" target="_blank">photoshop</a>,
+				<a href="http://fr.wikipedia.org/wiki/Gimp" target="_blank">Gimp</a>,
+				etc) ou d'un outil comme <a href="http://www.fookes.com/ezthumbs/"
+					target="_blank">Easy Thumbnails</a>.
+				<br>
+				On a donc 2 versions de l'image : une réduite et une à la taille
+				originale. On affiche la réduite dans un lien qui pointe sur
+				l'originale comme dans l'exemple suivant.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : miniatures
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Miniatures&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;a href="images/sw_family.jpg" target="_blank"&gt;
+			&lt;img src="images/sw_family_mini.jpg" 
+				 width="150" height="107"&gt;
+		&lt;/a&gt;
+		
+		&lt;a href="images/sw_lego.jpg" target="_blank"&gt;
+			&lt;img src="images/sw_lego_mini.jpg" 
+				 width="171" height="107"&gt;
+		&lt;/a&gt;
+		
+		&lt;a href="images/lr_affiche.jpg" target="_blank"&gt;
+			&lt;img src="images/lr_affiche_mini.jpg" 
+				 width="134" height="107"&gt;
+		&lt;/a&gt;
+		
+		&lt;a href="images/lr_lego.jpg" target="_blank"&gt;
+			&lt;img src="images/lr_lego_mini.jpg" 
+				 width="190" height="107"&gt;
+		&lt;/a&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+		</section>
+
+		<h3>Alignement</h3>
+		<section>
+			<p class="fp-bot0">Par défaut, les images sont considérées comme
+				des éléments de type en ligne. Dans un bloc de texte, elles se
+				positionnent comme un caractère : le bas de l'image est affiché sur
+				la ligne de base des caractères.</p>
+
+			<figure>
+				<img src="../htmlimg/anatomielettre.png" width="500" height="174">
+				<figcaption>
+					vocabulaire typographique
+					<br>
+					Image : http://commons.wikimedia.org/wiki/File:Anatomielettre.gif
+				</figcaption>
+			</figure>
+
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : alignement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Alignement&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Yoda &lt;img src="images/y01.png"&gt; dans la Guerre
+			des Etoiles est-il l'équivalent de Gandalf 
+			&lt;img src="images/g01.png"&gt; dans le Seigneur
+			des Anneaux ?&lt;/p&gt;
+		
+		&lt;p&gt;Les images sont volontairement encadrées en rouge
+			pour bien signaler leur encombrement.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				Changer l'alignement par défaut est parfois nécessaire. Il faut
+				alors utiliser la propriété de style <abbr
+					title="Cascading Style Sheets">CSS</abbr> <code>vertical-align</code>
+				comme le montre l'exemple suivant.
+				<br>
+				La valeur par défaut de la la propriété <code>vertical-align</code>
+				est <code>baseline</code>.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : alignement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Alignement&lt;/title&gt;
+		&lt;style&gt;
+			.align1 {vertical-align: text-bottom;}
+			.align2 {vertical-align: text-top;}
+			.align3 {vertical-align: bottom;}
+			.align4 {vertical-align: middle;}
+			.align5 {vertical-align: top;}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Aligné &lt;img src="images/y01.png" class="align1"&gt;
+			avec &lt;img src="images/g01.png" class="align1"&gt;
+			text-bottom.&lt;/h3&gt;
+		
+		&lt;h3&gt;Aligné &lt;img src="images/y01.png" class="align2"&gt;
+			avec &lt;img src="images/g01.png" class="align2"&gt;
+			text-top.&lt;/h3&gt;
+		
+		&lt;h3&gt;Aligné &lt;img src="images/y01.png" class="align3"&gt;
+			avec &lt;img src="images/g01.png" class="align3"&gt;
+			bottom.&lt;/h3&gt;
+		
+		&lt;h3&gt;Aligné &lt;img src="images/y01.png" class="align4"&gt;
+			avec &lt;img src="images/g01.png" class="align4"&gt;
+			middle.&lt;/h3&gt;
+		
+		&lt;h3&gt;Aligné &lt;img src="images/y01.png" class="align5"&gt;
+			avec &lt;img src="images/g01.png" class="align5"&gt;
+			top.&lt;/h3&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+		</section>
+
+		<h3>L'attribut alt</h3>
+		<section>
+			<p class="fp-bot0">
+				Quand une image n'est pas là simplement pour un effet décoratif, il
+				faudrait mettre un attribut <code>alt</code> (pour alternative
+				textuelle) dont la valeur est un court texte descriptif de l'image.
+				Ce texte sera :
+			</p>
+			<ul>
+				<li>affiché à la place de l'image si celle-ci ne peut pas être
+					téléchargée,</li>
+				<li>lu par les applications spécialisées des personnes avec un
+					handicap visuel</li>
+				<li>utilisé par les moteurs de recherches pour leur indexation.</li>
+			</ul>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : attribut alt
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Attribut alt&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;L'URL de l'image est volontairement fausse pour
+			que la valeur de l'attribut alt soit affichée.&lt;/p&gt;
+		
+		&lt;img src="images/darkvador.png" alt="Dark Vador le grand méchant"&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p class="fp-remarque" style="width: 185px; margin-left: 304px;">
+				Dans la suite de ce tutoriel et pour simplifier le code, nous
+				n'utiliserons pas d'attribut <code>alt</code>.
+			</p>
+		</section>
+
+
+		<h3>Bulle d'aide</h3>
+		<section>
+			<p>
+				On peut utiliser l'attribut <code>title</code> pour réaliser des
+				bulles d'aide. Particulièrement utiles quand on utilise des images
+				pour faire des liens, les bulles d'aide (ou infos bulle) affichent
+				un cours texte quand le curseur de la souris stationne quelques
+				dixièmes de secondes sur une image.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : bulles d'aide
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Bulles d'aide&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Laisser la souris sur les images.&lt;/p&gt;
+		&lt;a href="#fauxlien"&gt;
+			&lt;img src="images/gauche.png" width="32"
+				 height="32" title="Page précédente"&gt;&lt;/a&gt;
+		
+		&lt;a href="#fauxlien"&gt;
+			&lt;img src="images/haut.png" width="32"
+				 height="32" title="Page d'accueil"&gt;&lt;/a&gt;
+		
+		&lt;a href="#fauxlien"&gt;
+			&lt;img src="images/droite.png" width="32"
+				 height="32" title="Page suivante"&gt;&lt;/a&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<div class="fp-ordre">
+				<div class="fp-ordre-t">
+					<a onClick="top.FP.Voir.showPageTech('images', '')">Rappel :
+						images et formats graphiques</a> lire aussi tu dois.
+				</div>
+			</div>
+		</section>
+
+		<a id="exo_img_02"></a>
+		<h3 class="fp-exo">Images et textes (1)</h3>
+		<section>
+
+			<table class="TAB-sans-bord">
+				<tr>
+					<td>
+						<p class="fp-p-raz">
+							Complétez le code <abbr
+								title="HyperText Markup Language">HTML</abbr> pour obtenir le
+							résultat ci-dessous.</p>
+
+						<figure>
+							<img src="../exercices/exo_img_02.png" width="300" height="206">
+							<figcaption>images et textes</figcaption>
+						</figure>
+
+					</td>
+					<td>
+						<p>
+							Les images dans la page se trouvent dans le dossier <code>images</code>
+							du dossier <code>lord_rings</code> de l'arborescence suivante :
+						</p>
+						<figure>
+							<img src="../exercices/exo_chap06_repert.png" width="150" height="218">
+							<figcaption>arborescence de l'exercice</figcaption>
+						</figure>
+
+						<table>
+							<thead>
+								<tr>
+									<th>Nom fichier</th>
+									<th>Dimension</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>u.png</td>
+									<td>48 X 44</td>
+								</tr>
+								<tr>
+									<td>a.png</td>
+									<td>46 X 44</td>
+								</tr>
+								<tr>
+									<td>anneau.png</td>
+									<td>60 X 52</td>
+								</tr>
+								<tr>
+									<td>google_maps.png</td>
+									<td>210 X 40</td>
+								</tr>
+								<tr>
+									<td>anneaux_lies.png</td>
+									<td>180 X 101</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</table>
+
+
+
+			<p class="fp-completez">
+				<a onClick="top.FP.Voir.showCompletez('exo_img_02_comp')">Code à compléter</a>
+			</p>
+
+			<div id="exo_img_02_comp" class="BLOC-completez">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : images et textes
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Images et textes&lt;/title&gt;
+		&lt;style&gt;
+			body {font-size: 24px;}
+			.align1 {vertical-align: text-bottom;}
+			.align2 {vertical-align: text-top;}
+			.align3 {vertical-align: bottom;}
+			.align4 {vertical-align: middle;}
+			.align5 {vertical-align: top}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;
+			&lt;Un Anneau pour les gouverner tous,&lt;/p&gt;
+		&lt;p&gt;
+			Un Anneau pour les trouver,&lt;/p&gt;
+		&lt;p&gt;
+			Un Anneau pour les amener tous&lt;/p&gt;
+		&lt;p&gt;
+			Et dans les ténèbres les lier.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+
+			<p class="fp-solution">
+				<a onClick="top.FP.Voir.showSolution('exo_img_02_solu', 1)">Une
+					solution possible</a>
+			</p>
+			<div id="exo_img_02_solu" class="BLOC-solution">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : images et textes
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Images et textes&lt;/title&gt;
+		&lt;style&gt;
+			body {font-size: 24px;}
+			.align1 {vertical-align: text-bottom;}
+			.align2 {vertical-align: text-top;}
+			.align3 {vertical-align: bottom;}
+			.align4 {vertical-align: middle;}
+			.align5 {vertical-align: top}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;
+			&lt;img src="../exemples/lord_rings/images/u.png" width="48" height="44"&gt;n &lt;img src="../exemples/lord_rings/images/a.png" width="46" height="44"&gt;nneau pour les gouverner tous,&lt;/p&gt;
+		&lt;p&gt;
+			Un &lt;img src="../exemples/lord_rings/images/anneau.png" width="60" height="52" class="align4"&gt; pour les trouver,&lt;/p&gt;
+		&lt;p&gt;
+			Un Anneau pour les amener tous &lt;img src="../exemples/lord_rings/images/google_maps.png" width="210" height="40" class="align4"&gt;&lt;/p&gt;
+		&lt;p&gt;
+			Et dans les ténèbres les lier.&lt;img src="../exemples/lord_rings/images/anneaux_lies.png" width="180" height="101" class="align5"&gt;
+		&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+		</section>
+
+		<a id="exo_img_01"></a>
+		<h3 class="fp-exo">Images et textes (2)</h3>
+		<section>
+
+			<table class="TAB-sans-bord">
+				<tr>
+					<td>
+						<p class="fp-p-raz">
+							Complétez le code <abbr
+								title="HyperText Markup Language">HTML</abbr> pour obtenir le
+							résultat ci-dessous.</p>
+
+						<figure>
+							<img src="../exercices/exo_img_01.jpg" width="300" height="294">
+							<figcaption>images et textes</figcaption>
+						</figure>
+
+					</td>
+					<td>
+						<p>Les images dans la page se trouvent dans l'arborescence
+							suivante :</p>
+						<figure>
+							<img src="../exercices/exo_chap06_repert.png" width="150" height="218">
+							<figcaption>arborescence de l'exercice</figcaption>
+						</figure>
+					</td>
+				</tr>
+			</table>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Nom fichier</th>
+						<th>Dimension</th>
+						<th>Dossier</th>
+						<th>Bulle</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>yoda.jpg</td>
+						<td>200 X 148</td>
+						<td>star_wars, images</td>
+						<td>Yoda</td>
+					</tr>
+					<tr>
+						<td>darkv.jpg</td>
+						<td>200 X 148</td>
+						<td>star_wars</td>
+						<td>Dark Vador</td>
+					</tr>
+					<tr>
+						<td>gandalf.jpg</td>
+						<td>200 X 124</td>
+						<td>lord_rings, images</td>
+						<td>Gandalf</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p class="fp-completez">
+				<a onClick="top.FP.Voir.showCompletez('exo_img_01_comp')">Code à compléter</a>
+			</p>
+
+			<div id="exo_img_01_comp" class="BLOC-completez">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : images et textes
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Images et textes&lt;/title&gt;
+		&lt;style&gt;
+			.align1 {vertical-align: text-bottom;}
+			.align2 {vertical-align: text-top;}
+			.align3 {vertical-align: bottom;}
+			.align4 {vertical-align: middle;}
+			.align5 {vertical-align: top}
+			p {border: 2px solid red; width: 500px;}
+			.gauche {text-align: left;}
+			.droite {text-align: right;}
+			.centre {text-align: center;}
+			.justifie {text-align: justify;}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+
+			<p class="fp-solution">
+				<a onClick="top.FP.Voir.showSolution('exo_img_01_solu', 1)">Une
+					solution possible</a>
+			</p>
+			<div id="exo_img_01_solu" class="BLOC-solution">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : images et textes
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Images et textes&lt;/title&gt;
+		&lt;style&gt;
+			.align1 {vertical-align: text-bottom;}
+			.align2 {vertical-align: text-top;}
+			.align3 {vertical-align: bottom;}
+			.align4 {vertical-align: middle;}
+			.align5 {vertical-align: top}
+			p {border: 2px solid red; width: 500px;}
+			.gauche {text-align: left;}
+			.droite {text-align: right;}
+			.centre {text-align: center;}
+			.justifie {text-align: justify;}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;
+			&lt;img src="../exemples/star_wars/images/yoda.jpg" class="align4" width="200" height="148" title="Yoda"&gt; Le côté obscur du Web redouter tu dois.&lt;/p&gt;
+		&lt;p class="droite"&gt;
+			Pas sûr. Je suis passé du côté lumineux. &lt;img src="../exemples/star_wars/darkv.jpg" class="align4" width="200" height="148" title="Dark Vador"&gt;&lt;/p&gt;	
+		&lt;p&gt;
+			&lt;img src="../exemples/lord_rings/images/gandalf.jpg" class="align4" width="200" height="124" title="Gandalf"&gt; Obscur ou lumineux, vous ne passerez pas.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+		</section>
+
+
+	</div>
+	<footer></footer>
+</body>
+</html>

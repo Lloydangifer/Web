@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Cr&eacute;e un vecteur d'initialisation (IV) &agrave; partir d'une source al&eacute;atoire</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="function.mcrypt-cfb.html">mcrypt_cfb</a></div>
+ <div class="next"><a href="function.mcrypt-decrypt.html">mcrypt_decrypt</a></div>
+ <div class="up"><a href="ref.mcrypt.html">Fonctions Mcrypt</a></div><div class="home" onClick="location.href='../accueil.html'"></div>
+</div><hr /><div id="function.mcrypt-create-iv" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mcrypt_create_iv</h1>
+  <p class="verinfo">(PHP 4, PHP 5)</p><p class="refpurpose"><span class="refname">mcrypt_create_iv</span> <span class="mdash">&mdash;</span> <span class="dc-title">Crée un vecteur d&#039;initialisation (IV) à partir d&#039;une source aléatoire</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.mcrypt-create-iv-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>mcrypt_create_iv</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$size</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$source</code><span class="initializer"> = MCRYPT_DEV_RANDOM</span></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+    <span class="function"><strong>mcrypt_create_iv()</strong></span> crée un IV
+   (vecteur d&#039;initialisation) à partir d&#039;une source aléatoire.
+  </p>
+  <p class="para">
+   Le vecteur d&#039;initialisation est le seul moyen de fournir une initialisation
+   de remplacement aux méthodes d&#039;initialisation. Ce vecteur n&#039;a pas besoin
+   d&#039;être particulièrement secret, même si c&#039;est mieux. Vous pouvez l&#039;envoyer
+   avec vos documents chiffrés sans perdre en sécurité.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.mcrypt-create-iv-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><em><code class="parameter">size</code></em></span>
+     <dd>
+
+      <p class="para">
+       La taille du vecteur.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><em><code class="parameter">source</code></em></span>
+     <dd>
+
+      <p class="para">
+       La source d&#039;un IV. La source peut être <strong><code>MCRYPT_RAND</code></strong> (le générateur
+       de nombre aléatoire du système), <strong><code>MCRYPT_DEV_RANDOM</code></strong> 
+       (lit les données depuis <var class="filename">/dev/random</var>) et
+       <strong><code>MCRYPT_DEV_URANDOM</code></strong> (lit les données depuis
+       <var class="filename">/dev/urandom</var>). Avant la version 5.3.0,
+       <strong><code>MCRYPT_RAND</code></strong> était la seule constante
+       supportée par Windows.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+   </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.mcrypt-create-iv-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne le vecteur d&#039;initialisation, ou bien <strong><code>FALSE</code></strong> en cas d&#039;erreur.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 changelog" id="refsect1-function.mcrypt-create-iv-changelog">
+  <h3 class="title">Historique</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>5.3.0</td>
+       <td>
+        <strong><code>MCRYPT_DEV_RANDOM</code></strong> et
+        <strong><code>MCRYPT_DEV_URANDOM</code></strong>
+        deviennent disponibles sous Windows.
+       </td>
+      </tr>
+
+      <tr>
+       <td>5.3.0</td>
+       <td>
+        Il n&#039;est plus nécessaire d&#039;appeler  <span class="function"><a href="function.srand.html" class="function">srand()</a></span>
+        dans un premier temps. Cet appel est maintenant fait automatiquement.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.mcrypt-create-iv-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-914">
+    <p><strong>Exemple #1 Exemple avec  <span class="function"><strong>mcrypt_create_iv()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$size&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mcrypt_get_iv_size</span><span style="color: #007700">(</span><span style="color: #0000BB">MCRYPT_CAST_256</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MCRYPT_MODE_CFB</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$iv&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mcrypt_create_iv</span><span style="color: #007700">(</span><span style="color: #0000BB">$size</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MCRYPT_DEV_RANDOM</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.mcrypt-create-iv-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"><a href="http://www.ciphersbyritter.com/GLOSSARY.HTM#IV" class="link external">&raquo;&nbsp;http://www.ciphersbyritter.com/GLOSSARY.HTM#IV</a></li>
+    <li class="member"><a href="http://www.quadibloc.com/crypto/co0409.htm" class="link external">&raquo;&nbsp;http://www.quadibloc.com/crypto/co0409.htm</a></li>
+    <li class="member">Chapter 9.3 of Applied Cryptography by Schneier (ISBN 0-471-11709-9)</li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="function.mcrypt-cfb.html">mcrypt_cfb</a></div>
+ <div class="next"><a href="function.mcrypt-decrypt.html">mcrypt_decrypt</a></div>
+ <div class="up"><a href="ref.mcrypt.html">Fonctions Mcrypt</a></div>
+<div class="home" onClick="location.href='../accueil.html'"></div>
+</div></body></html>

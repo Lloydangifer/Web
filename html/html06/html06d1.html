@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Audio</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			Comme pour la vidéo, embarquer un fichier audio dans une page <abbr
+				title="HyperText Markup Language">HTML</abbr> se fait maintenant
+			très facilement car des éléments ont été spécifiquement définis dans
+			<abbr title="HyperText Markup Language">HTML</abbr>5.
+			<br>
+			Comme pour les vidéos, il existe des <a
+				onclick="top.FP.Voir.showPageTech('videos', '')">formats
+				spécifiques à utiliser</a> car tous les navigateurs ne gérent pas <a
+				href="http://www.codecsdb.com/" target="_blank">tous les codecs
+				audio</a>.
+			<br>
+			De plus, certains codecs qui relévent de brevets propriétaires avec
+			paiement de droits pour l'implémentation des algorithmes de
+			décompression ne seront pas supportés par tous les navigateurs.
+		</p>
+
+		<h3>L'élément &lt;audio&gt;</h3>
+		<section>
+			<p>
+				On utilise la balise <a
+					onclick="top.FP.Voir.showPageTech('elements', 'audio')">audio</a>
+				pour embarquer une source audio dans du contenu. La balise doit
+				avoir une balise de fermeture <code>&lt;/audio&gt;</code> bien que
+				le contenu audio ne soit pas dans le fichier <abbr
+					title="HyperText Markup Language">HTML</abbr>.
+			</p>
+
+			<p>Les conteneurs (ie ~ les formats) utilisables sont les
+				suivants :</p>
+			<table class="TAB-zebre">
+				<tr>
+					<td>Navigateurs</td>
+					<td>Conteneur</td>
+					<td>Extension</td>
+				</tr>
+				<tr>
+					<td><a href="http://www.google.fr/intl/fr/chrome/browser/"
+						target="_blank">Chrome</a></td>
+					<td>AAC, MP3, Vorbis, WAV</td>
+					<td>.mp4, .mp3, .ogg, .wav</td>
+				</tr>
+				<tr>
+					<td><a href="http://www.mozilla.org/fr/firefox/new/"
+						target="_blank">Firefox</a></td>
+					<td>AAC, MP3, Vorbis, WAV</td>
+					<td>.mp4, .mp3, .ogg, .wav</td>
+				</tr>
+				<tr>
+					<td><a
+						href="http://windows.microsoft.com/fr-fr/internet-explorer/download-ie"
+						target="_blank">Internet Explorer</a></td>
+					<td>MP3</td>
+					<td>.mp3</td>
+				</tr>
+				<tr>
+					<td><a href="http://www.opera.com/fr/computer/windows"
+						target="_blank">Opera</a></td>
+					<td>Vorbis, WAV</td>
+					<td>.ogg, .wav</td>
+				</tr>
+			</table>
+
+			<p class="fp-bot0">
+				Comme pour tous les éléments embarqués, il faut spécifier la
+				localisation de la ressource sur le réseau (ie son <abbr
+					title="Uniform Resource Locator">URL</abbr>). Avec l'audio, il y a
+				2 façons de spécifier le fichier source :
+			</p>
+			<ul>
+				<li>avec un attribut <code>src</code></li>
+				<li>avec un ou plusieurs éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'source')">source</a>
+			</ul>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : audio avec attribut src
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Audio&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;audio src="audio/dv.mp3" controls&gt;&lt;/audio&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : audio avec éléments source
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Audio avec éléments source&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;audio controls&gt;
+			&lt;source src="audio/dv.mp3" type="audio/mpeg"&gt;
+			&lt;source src="audio/dv.mp4" type="audio/mp4"&gt;
+			&lt;source src="audio/dv.ogg" type="audio/ogg"&gt;				
+		&lt;/audio&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<h4>L'attribut src</h4>
+			<section>
+				<p>
+					L'attribut <code>src</code> est une des solutions possibles pour
+					définir l'<abbr title="Uniform Resource Locator">URL</abbr> du
+					fichier audio à télécharger et à inclure dans la page. Bien sûr si
+					le fichier audio est situé dans un des dossiers de votre site, il
+					faut utiliser une <abbr title="Uniform Resource Locator">URL</abbr>
+					relative pour faire le lien.
+				</p>
+
+				<div class="fp-remarque">
+					<p class="fp-bot0">Je vous rappelle qu'il convient d'être
+						prudent avec les caractères utilisés pour les noms des fichiers et
+						des dossiers qui les contiennent et je vous conseille (à nouveau)
+						d'adopter les règles suivantes :</p>
+					<ul>
+						<li>les noms de fichier et de dossiers étant sensibles à la
+							casse, utilisez uniquement des minuscules,</li>
+						<li>utilisez uniquement les caractères aplhabétiques non
+							accentués (de a à z), des chiffres (de 0 à 9), le caractère -, le
+							caractère _ et le caractère .</li>
+						<li>n'utilisez jamais d'espaces.</li>
+					</ul>
+				</div>
+				
+				
+				<p class="fp-p-raz">
+					Quand vous allez tester le code <abbr title="HyperText Markup Language">HTML</abbr>
+					suivant, vous obtiendrez une page dans laquelle aucun lecteur
+					d'audio ne s'affiche.
+				</p>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : audio
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Audio&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;audio src="audio/dv.mp3"&gt;&lt;/audio&gt;
+		
+		&lt;p&gt;La forme du lecteur audio n'est pas modifiable
+		par HTML.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<p class="fp-p-raz">
+					<strong>L'attribut <code>src</code> tout seul n'est pas
+						suffisant pour que le fichier audio soit lu
+					</strong>. On doit ajouter d'autres attributs pour la lecture à la demande
+					de l'utilisateur (attribut <code>controls</code>) ou automatique
+					(attribut <code>autoplay</code>).
+				</p>
+				
+			</section>
+
+			<h4>L'attribut controls</h4>
+			<section>
+				<p>
+					<strong>Pour que l'audio soit fonctionnel il faut ajouter
+						l'attribut <code>controls</code>
+					</strong> qui va forcer l'affichage d'une barre d'icônes permettant de
+					contrôler  différentes actions : play, pause, début, etc.
+				</p>
+
+				<p>
+					<code>controls</code> est un attribut booléen : c'est la présence
+					de l'attribut qui définit sa prise en compte. Si une valeur est
+					affectée elle n'aura aucune influence. Une <strong>erreur
+						commune</strong> est d'écrire <code>controls="false"</code> : la barre de
+					contrôle sera affichée malgré la valeur <code>false</code>.
+				</p>
+
+				<p>
+					Avec <abbr title="HyperText Markup Language">HTML</abbr> seul on ne
+					peut pas agir sur cette barre de contrôle. Il n'est pas possible de
+					modifier sa position, sa couleur, la forme ou la présence de tel ou
+					tel bouton. Chaque navigateur l'affiche comme il veut, à l'endroit
+					où il veut, et celà peut changer d'une version à une autre, ou même
+					selon les dimensions de la vidéo.
+				</p>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : audio avec contrôles
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Audio avec contrôles&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;audio src="audio/dv.mp3" controls&gt;&lt;/audio&gt;
+		
+		&lt;p&gt;La forme du lecteur audio n'est pas modifiable
+		par HTML.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</section>
+
+			<h4>L'attribut autoplay</h4>
+			<section>
+				<p>
+					L'attribut <code>autoplay</code> est un attribut booléen qui
+					déclenche la lecture automatique du fichier audio dès qu'elle est
+					possible.
+				</p>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : lecture automatique
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Lecture automatique&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;audio src="audio/dv.mp3" controls autoplay&gt;&lt;/audio&gt;
+		
+		&lt;p&gt;La forme du lecteur audio n'est pas modifiable
+		par HTML.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<p>
+					Si vous ne voulez pas que l'utilisateur ait le contrôle de l'audio
+					mais que vous voulez que le fichier soit lu malgré tout, vous
+					pouvez ne pas mettre d'attribut <code>controls</code> et uniquement
+					un attribut <code>autoplay</code>.
+				</p>
+			</section>
+
+
+			<h4>L'attribut loop</h4>
+			<section>
+				<p>
+					L'attribut <code>loop</code> est un attribut booléen qui déclenche
+					la lecture en boucle du fichier audio.
+				</p>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : lecture en boucle
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Lecture en boucle&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;audio src="audio/tel.mp3" controls autoplay loop&gt;&lt;/audio&gt;
+		
+		&lt;p&gt;La forme du lecteur audio n'est pas modifiable
+		par HTML.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</section>
+
+			<h4>L'attribut preload</h4>
+			<section>
+				<p class="fp-bot0">
+					L'attribut <code>preload</code> définit comment sera chargé le
+					fichier audio si on ne veut pas utiliser le système mis en place
+					par le navigateur pour la gestion des chargements.
+					<br>
+					L'attribut <code>preload</code> peut avoir 3 valeurs.
+				</p>
+				<ul>
+					<li><code>preload="none"</code> : le téléchargement du fichier
+						audio commencera seulement quand l'utilisateur démarrera la
+						lecture.
+					<li><code>preload="auto"</code> : le téléchargement du fichier
+						audio commencera dès que la page sera affichée. Celà peut conduire
+						à surcharger le réseau et le serveur si le fichier est de grande
+						taille et pas écouté.</li>
+					<li><code>preload="metadata"</code> : le navigateur va
+						seulement télécharger les métadonnées du fichier audio comme sa
+						durée, sa taille, etc.</li>
+				</ul>
+			</section>
+		</section>
+
+		<h3>Sources multiples</h3>
+		<section>
+			<p>
+				L'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'source')">source</a>
+				permet de définir plusieurs sources audio, et ainsi de pallier
+				l'absence de support de certains formats par le navigateur.
+			</p>
+
+			<p>
+				Le travail de préparation est plus long car si on veut être complet,
+				il faut encoder la même source audio dans 3 formats différents et
+				fournir un fichier MP4, un fichier MP3 et un fichier Ogg (cf <a
+					onclick="top.FP.Voir.showPageTech('videos', '')">les conteneurs
+					vidéo et audio</a>).
+			</p>
+
+			<p>
+				Entre les balises &lt;audio&gt; et &lt;/audio&gt; on placera autant
+				d'éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'source')">source</a>
+				que l'on veut fournir de formats différents.
+				<br>
+				La localisation de la ressource sur le réseaut est fait avec l'<abbr
+					title="Uniform Resource Locator">URL</abbr> donnée comme valeur de
+				l'attribut <code>src</code>
+				<br>
+				Le navigateur téléchargera la 1ère source de la liste qu'il sait
+				décoder et lire.
+				<br>
+				Pour faire ce choix, il se base sur le <a
+					onclick="top.FP.Voir.showPageTech('types_mime', '')">type MIME</a>
+				définit par l'attribut <code>type</code>.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : sources audio multiples
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Sources audio multiples&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;audio controls&gt;
+			&lt;source src="audio/dv.mp3" type="audio/mpeg"&gt;
+			&lt;source src="audio/dv.mp4" type="audio/mp4"&gt;
+			&lt;source src="audio/dv.ogg" type="audio/ogg"&gt;				
+		&lt;/audio&gt;
+	
+		&lt;p&gt;La forme du lecteur audio n'est pas modifiable
+		par HTML.&lt;/p&gt;	
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>Une particularité est de pouvoir préciser le codec utilisé
+				pour la compression. La syntaxe est un peu embarassante car il y a
+				un mélange à faire entre des guillemets simples et des guillemets
+				doubles.</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : sources audio multiples
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Sources audio multiples&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;audio controls&gt;
+			&lt;source src="audio/dv.mp3" 
+			type='audio/mpeg; codecs="mp3"'&gt;
+			
+			&lt;source src="audio/dv.mp4" 
+			type='audio/mp4; codecs="mp4a.40.5"'&gt;
+			
+			&lt;source src="audio/dv.ogg" 
+			type='audio/ogg; codecs="vorbis"'&gt;				
+		&lt;/audio&gt;
+	
+		&lt;p&gt;La forme du lecteur audio n'est pas modifiable
+		par HTML.&lt;/p&gt;	
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<hr>
+
+			<div class="fp-ordre" style="width: 34em; margin: 1em auto">
+				<div class="fp-ordre-t">
+					<a onclick="top.FP.Voir.showPageTech('videos', '')">Vidéo et
+						audio, codecs et conteneurs</a> lire aussi tu dois.
+				</div>
+			</div>
+
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

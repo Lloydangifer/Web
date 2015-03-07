@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Abstraction de classes</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.oop5.static.html">Statique</a>
+		</div>
+		<div class="next">
+			<a href="language.oop5.interfaces.html">Interfaces</a>
+		</div>
+		<div class="up">
+			<a href="language.oop5.html">Les classes et les objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.oop5.abstract" class="sect1">
+		<h2 class="title">Abstraction de classes</h2>
+
+		<p class="para">PHP 5 introduit les concepts de classes et de
+			méthodes abstraites. Les classes définies comme abstraites ne peuvent
+			pas être instanciées, et toute classe contenant au moins une méthode
+			abstraite doit elle-aussi être abstraite. Les méthodes définies comme
+			abstraites déclarent simplement la signature de la méthode - elles ne
+			peuvent définir son implémentation.</p>
+
+		<p class="para">
+			Lors de l&#039;héritage d&#039;une classe abstraite, toutes les
+			méthodes marquées comme abstraites dans la déclaration de la classe
+			parente doivent être définies par l&#039;enfant ; de plus, ces
+			méthodes doivent être définies avec la même <a
+				href="language.oop5.visibility.html" class="link">visibilité</a>, ou
+			une visibilité moins restreinte. Par exemple, si la méthode abstraite
+			est définie comme protégée, l&#039;implémentation de la fonction doit
+			être définie comme protégée ou publique, mais pas privée. De plus,
+			les signatures de ces méthodes doivent correspondre, ce qui signifie
+			que les types des paramètres et le nombre d&#039;arguments requis
+			doivent être les mêmes. Ceci s&#039;applique aussi aux constructeurs
+			depuis PHP 5.4. Avant la version 5.4, les signatures des
+			constructeurs pouvaient être différentes.
+		</p>
+
+		<div class="example" id="example-200">
+			<p>
+				<strong>Exemple #1 Exemple de classe abstraite</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">abstract&nbsp;class&nbsp;</span><span
+							style="color: #0000BB">AbstractClass&nbsp;<br /></span><span
+							style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #FF8000">//&nbsp;Force&nbsp;les&nbsp;classes&nbsp;filles&nbsp;à&nbsp;définir&nbsp;cette&nbsp;méthode<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">abstract&nbsp;protected&nbsp;function&nbsp;</span><span
+							style="color: #0000BB">getValue</span><span
+							style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;abstract&nbsp;protected&nbsp;function&nbsp;
+						</span><span style="color: #0000BB">prefixValue</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$prefix</span><span
+							style="color: #007700">);<br />
+							<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #FF8000">//&nbsp;méthode&nbsp;commune<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">public&nbsp;function&nbsp;</span><span
+							style="color: #0000BB">printOut</span><span
+							style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;
+						</span><span style="color: #0000BB">$this</span><span
+							style="color: #007700">-&gt;</span><span style="color: #0000BB">getValue</span><span
+							style="color: #007700">()&nbsp;.&nbsp;</span><span
+							style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;}<br />}<br />
+							<br />class&nbsp;
+						</span><span style="color: #0000BB">ConcreteClass1&nbsp;</span><span
+							style="color: #007700">extends&nbsp;</span><span
+							style="color: #0000BB">AbstractClass&nbsp;<br /></span><span
+							style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;function&nbsp;
+						</span><span style="color: #0000BB">getValue</span><span
+							style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+						</span><span style="color: #DD0000">"ConcreteClass1"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+							<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+						</span><span style="color: #0000BB">prefixValue</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$prefix</span><span
+							style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+						</span><span style="color: #DD0000">"</span><span style="color: #007700">{</span><span
+							style="color: #0000BB">$prefix</span><span style="color: #007700">}</span><span
+							style="color: #DD0000">ConcreteClass1"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+							<br />class&nbsp;
+						</span><span style="color: #0000BB">ConcreteClass2&nbsp;</span><span
+							style="color: #007700">extends&nbsp;</span><span
+							style="color: #0000BB">AbstractClass&nbsp;<br /></span><span
+							style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+						</span><span style="color: #0000BB">getValue</span><span
+							style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+						</span><span style="color: #DD0000">"ConcreteClass2"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+							<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+						</span><span style="color: #0000BB">prefixValue</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$prefix</span><span
+							style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+						</span><span style="color: #DD0000">"</span><span style="color: #007700">{</span><span
+							style="color: #0000BB">$prefix</span><span style="color: #007700">}</span><span
+							style="color: #DD0000">ConcreteClass2"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+							<br /></span><span style="color: #0000BB">$class1&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">ConcreteClass1</span><span
+							style="color: #007700">;<br /></span><span
+							style="color: #0000BB">$class1</span><span style="color: #007700">-&gt;</span><span
+							style="color: #0000BB">printOut</span><span
+							style="color: #007700">();<br />echo&nbsp;
+						</span><span style="color: #0000BB">$class1</span><span
+							style="color: #007700">-&gt;</span><span style="color: #0000BB">prefixValue</span><span
+							style="color: #007700">(</span><span style="color: #DD0000">'FOO_'</span><span
+							style="color: #007700">)&nbsp;.</span><span
+							style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />
+							<br /></span><span style="color: #0000BB">$class2&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">ConcreteClass2</span><span
+							style="color: #007700">;<br /></span><span
+							style="color: #0000BB">$class2</span><span style="color: #007700">-&gt;</span><span
+							style="color: #0000BB">printOut</span><span
+							style="color: #007700">();<br />echo&nbsp;
+						</span><span style="color: #0000BB">$class2</span><span
+							style="color: #007700">-&gt;</span><span style="color: #0000BB">prefixValue</span><span
+							style="color: #007700">(</span><span style="color: #DD0000">'FOO_'</span><span
+							style="color: #007700">)&nbsp;.</span><span
+							style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+			<div class="example-contents">
+				<p>L&#039;exemple ci-dessus va afficher :</p>
+			</div>
+			<div class="example-contents screen">
+				<div class="cdata">
+					<pre>
+ConcreteClass1
+FOO_ConcreteClass1
+ConcreteClass2
+FOO_ConcreteClass2
+</pre>
+				</div>
+			</div>
+		</div>
+
+		<p class="para">L&#039;ancien code qui n&#039;a pas de classe
+			définie par l&#039;utilisateur ou de fonction nommée
+			&#039;abstract&#039; devrait continuer à fonctionner sans
+			modification.</p>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.oop5.static.html">Statique</a>
+		</div>
+		<div class="next">
+			<a href="language.oop5.interfaces.html">Interfaces</a>
+		</div>
+		<div class="up">
+			<a href="language.oop5.html">Les classes et les objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Sélecteur d'enfants</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+<link rel="stylesheet" href="../_local/selecteurs.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function(){top.FP.initPage();}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<!-- ################################################################################################## -->
+		<a id="sel_enfants"></a>
+		<h3>Sélecteur d'enfants</h3>
+
+		<section>
+			<div class="bloc-syntaxe">
+				<p>
+					<span class="lib-syntaxe">Syntaxe </span><strong><code>S1
+							&gt; S2</code></strong>
+				</p>
+				<pre data-code="CSS">
+div &gt; p {
+	margin-bottom: 0;
+	font-family: verdana;
+	}
+</pre>
+			</div>
+
+			<p class="fp-p-raz">
+				Le combinateur <strong>&gt;</strong> permet de sélectionner les
+				éléments enfants d'un autre élément.
+				<br>
+				La sélection s'arrête donc au premier niveau d'imbrication des
+				éléments.
+			</p>
+
+			<figure>
+				<img src="../cssimg/dom_parent.jpg" width="380" height="128">
+				<figcaption>un parent et ses enfants</figcaption>
+			</figure>
+
+			<div class="fp-puce">
+				<p>L'élément parent est le premier sélecteur et ses enfants sont
+					obtenus par le deuxième sélecteur.</p>
+
+				<p>
+					<code>div &gt; strong { ... }</code>
+					<br>
+					se lit : je cherche tous les éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'strong')">strong</a>
+					qui ont pour parent un élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'div')">div</a>
+				</p>
+
+				<p>Avec le code HTML</p>
+
+				<pre data-code="HTML">
+&lt;p&gt;Texte &lt;strong&gt;un&lt;/strong&gt;&lt;/p&gt;
+&lt;div&gt;
+	Texte &lt;strong&gt;deux&lt;/strong&gt;
+	&lt;p&gt;Texte &lt;strong&gt;trois&lt;/strong&gt;&lt;/p&gt;
+	Texte &lt;strong&gt;quatre&lt;/strong&gt;
+&lt;/div&gt;</pre>
+
+				<p>
+					seul "deux" et "quatre" sont des enfants et seront sélectionnés
+					avec la règle précédente. Les autres éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'strong')">strong</a>
+					sont soit en dehors du <a
+						onclick="top.FP.Voir.showPageTech('elements', 'div')">div</a>,
+					soit des petits-enfants
+				</p>
+			</div>
+
+			<div class="fp-puce">
+				<p>Les sélecteurs utilisés dans la règle peuvent être de
+					n'importe quel type ( simples, d'attributs, des pseudo classes, des
+					pseudo éléments).</p>
+
+				<p>
+					<code>#remarque &gt; a.trop-la-classe { ... }</code> se lit :
+					<br>
+					je cherche tous les éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'a')">a</a> avec la
+					classe <code>trop-la-classe</code> qui sont enfants de l'élément
+					dont l'attribut <code>id</code> à la valeur <code>remarque</code>.
+				</p>
+			</div>
+
+			<p class="fp-p-raz">
+				L'exemple suivant entoure d'une bordure les éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'li')">li</a> qui
+				sont les enfants d'éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'ol')">ol</a>. On
+				remarquera la sélection s'arrête aux premiers <a
+					onclick="top.FP.Voir.showPageTech('elements', 'li')">li</a> des
+				listes imbriquées <a
+					onclick="top.FP.Voir.showPageTech('elements', 'ol')">ol</a> <a
+					onclick="top.FP.Voir.showPageTech('elements', 'ul')">ul</a>.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : sélection d'enfants
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Star Wars - ze prélogie&lt;/h3&gt;
+		&lt;h4&gt;Personnages&lt;/h4&gt;
+		&lt;ul&gt;
+			&lt;li&gt;Anakin Webwalker&lt;/li&gt;
+			&lt;li&gt;Padmé Amidala&lt;/li&gt;
+			&lt;li&gt;Yoda&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;h4&gt;Films&lt;/h4&gt;
+		&lt;ol&gt;
+			&lt;li&gt;Le DOM fantôme
+				&lt;ul&gt;
+					&lt;li&gt;1999&lt;/li&gt;
+					&lt;li&gt;2 h 16 min&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li&gt;L'attaque des .com
+				&lt;ul&gt;
+					&lt;li&gt;2002&lt;/li&gt;
+					&lt;li&gt;2 h 22 min&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li&gt;La Revanche des Siths Web
+				&lt;ul&gt;
+					&lt;li&gt;2005&lt;/li&gt;
+					&lt;li&gt;2 h 20 min&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+		&lt;/ol&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<div class="dom-schema" id="dom_sel_enfants">
+				<div class="dom-legende">Seule la partie body de la page est
+					représentée. Les feuilles texte ne sont pas représentées.</div>
+				<img src="../cssimg/dom_sel_enfants.png" width="401" height="152">
+			</div>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a class="TEST-lien-dom" title="Afficher le DOM"
+					onclick="top.FP.Voir.showDOM('dom_sel_enfants')"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* Sélection des li enfants de ol */
+ol &gt; li {
+	border: 1px solid red;
+}
+
+/* Marge sur les li pour bien les voir */
+li {
+	margin: 3px;
+}</textarea>
+			</form>
+		</section>
+
+
+	</div>
+	<footer></footer>
+</body>
+</html>

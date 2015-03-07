@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Ouvre un socket de connexion Internet ou Unix</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.dns-get-record.html">dns_get_record</a>
+		</div>
+		<div class="next">
+			<a href="function.gethostbyaddr.html">gethostbyaddr</a>
+		</div>
+		<div class="up">
+			<a href="ref.network.html">Fonctions r&eacute;seaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.fsockopen" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">fsockopen</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">fsockopen</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Ouvre un socket de connexion Internet
+					ou Unix</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.fsockopen-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">resource</span> <span class="methodname"><strong>fsockopen</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$hostname</code></span> [, <span
+					class="methodparam"><span class="type">int</span> <code
+						class="parameter">$port</code><span class="initializer"> =
+						-1</span></span> [, <span class="methodparam"><span class="type">int</span>
+					<code class="parameter reference">&$errno</code></span> [, <span
+					class="methodparam"><span class="type">string</span> <code
+						class="parameter reference">&$errstr</code></span> [, <span
+					class="methodparam"><span class="type">float</span> <code
+						class="parameter">$timeout</code><span class="initializer">
+						= ini_get(&quot;default_socket_timeout&quot;)</span></span> ]]]] )
+			</div>
+
+			<p class="para rdfs-comment">
+				Initialise une connexion par socket à la ressource spécifiée par <em><code
+						class="parameter">hostname</code></em>.
+			</p>
+			<p class="para">
+				PHP supporte les cibles dans les domaines Internet et Unix comme
+				décrit dans <a href="transports.html" class="xref">Liste des
+					modes de transport de sockets disponibles</a>. Une liste des types de
+				transports peut également être trouvée en utilisant la fonction <span
+					class="function"><a
+					href="function.stream-get-transports.html" class="function">stream_get_transports()</a></span>.
+			</p>
+			<p class="para">
+				Le socket sera ouvert par défaut en mode bloquant. Vous pouvez
+				changer de mode en utilisant : <span class="function"><a
+					href="function.stream-set-blocking.html" class="function">stream_set_blocking()</a></span>.
+			</p>
+			<p class="para">
+				La fonction <span class="function"><a
+					href="function.stream-socket-client.html" class="function">stream_socket_client()</a></span>
+				est similaire mais fournit plus d&#039;options, incluant la
+				connexion non-bloquante et la possibilité de fournir un contexte de
+				flux.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.fsockopen-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">hostname</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si le support OpenSSL <a href="openssl.installation.html"
+							class="link">est installé</a>, vous pouvez préfixer <em><code
+								class="parameter">hostname</code></em> avec <em>ssl://</em> ou <em>tls://</em>
+						pour utiliser une connexion cliente SSL ou TLS sur TCP/IP pour
+						vous connectez à l&#039;hôte distant.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">port</code></em></span>
+				<dd>
+
+					<p class="para">Le numéro du port.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">errno</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si fourni, contient le numéro de l&#039;erreur système qui
+						survient lors de l&#039;appel système à <em>connect()</em>.
+					</p>
+					<p class="para">
+						Si la valeur retournée par <em><code class="parameter">errno</code></em>
+						est <em>0</em> et que la fonction retourne <strong><code>FALSE</code></strong>,
+						ce peut être une indication laissant penser que l&#039;erreur est
+						survenue avant l&#039;appel à <em>connect()</em>. La plupart du
+						temps, cela est du à un problème d&#039;initialisation du socket.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">errstr</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le message d&#039;erreur, sous la forme d&#039;une <a
+							href="language.types.string.html" class="link">chaîne de
+							caractères</a>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">timeout</code></em></span>
+				<dd>
+
+					<p class="para">Le délai d&#039;attente maximal, en secondes.</p>
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>:
+						<p class="para">
+							Si vous avez besoin de définir un délai limite pour lire/écrire
+							des données à travers ce socket, utilisez la fonction <span
+								class="function"><a
+								href="function.stream-set-timeout.html" class="function">stream_set_timeout()</a></span>,
+							car le paramètre <em><code class="parameter">timeout</code></em>
+							de la fonction <span class="function"><strong>fsockopen()</strong></span>
+							est uniquement appliqué lors de la connexion du socket.
+					</blockquote>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.fsockopen-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				<span class="function"><strong>fsockopen()</strong></span> retourne
+				un pointeur de fichier qui peut être utilisé avec d&#039;autres
+				fonctions fichiers, telles <span class="function"><a
+					href="function.fgets.html" class="function">fgets()</a></span>, <span
+					class="function"><a href="function.fgetss.html"
+					class="function">fgetss()</a></span>, <span class="function"><a
+					href="function.fputs.html" class="function">fputs()</a></span>, <span
+					class="function"><a href="function.fclose.html"
+					class="function">fclose()</a></span> et <span class="function"><a
+					href="function.feof.html" class="function">feof()</a></span>. Si
+				l&#039;appel échoue, la fonction retourne <strong><code>FALSE</code></strong>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 errors" id="refsect1-function.fsockopen-errors">
+			<h3 class="title">Erreurs / Exceptions</h3>
+			<p class="para">
+				Lance une alerte de type <strong><code>E_WARNING</code></strong> si
+				le paramètre <em><code class="parameter">hostname</code></em>
+				n&#039;est pas un domaine valide.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.fsockopen-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.3.0</td>
+						<td>Ajout du support du paramètre <em><code
+									class="parameter">timeout</code></em> sous les systèmes win32.
+						</td>
+					</tr>
+
+					<tr>
+						<td>4.3.0</td>
+						<td>Ajout du support SSL et TLS via TCP/IP.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.fsockopen-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4139">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>fsockopen()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$fp&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">fsockopen</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"www.example.com"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">80</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$errno</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$errstr</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">30</span><span style="color: #007700">);<br />if&nbsp;(!
+							</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$errstr</span><span
+								style="color: #DD0000">&nbsp;(</span><span
+								style="color: #0000BB">$errno</span><span style="color: #DD0000">)&lt;br&nbsp;/&gt;\n"</span><span
+								style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$out&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"GET&nbsp;/&nbsp;HTTP/1.1\r\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$out&nbsp;</span><span
+								style="color: #007700">.=&nbsp;</span><span
+								style="color: #DD0000">"Host:&nbsp;www.example.com\r\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$out&nbsp;</span><span
+								style="color: #007700">.=&nbsp;</span><span
+								style="color: #DD0000">"Connection:&nbsp;Close\r\n\r\n"</span><span
+								style="color: #007700">;<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">fwrite</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$out</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(!
+							</span><span style="color: #0000BB">feof</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #0000BB">fgets</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">128</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">fclose</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">);<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="example-4140">
+				<p>
+					<strong>Exemple #2 Utilisation d&#039;une connexion UDP</strong>
+				</p>
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessous décrit comment lire la date et
+						l&#039;heure grâce à un service UDP &quot;daytime&quot; (port 13),
+						sur votre propre machine.</p>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$fp&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">fsockopen</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"udp://127.0.0.1"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">13</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$errno</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$errstr</span><span
+								style="color: #007700">);<br />if&nbsp;(!
+							</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"ERREUR&nbsp;:&nbsp;</span><span
+								style="color: #0000BB">$errno</span><span style="color: #DD0000">&nbsp;-&nbsp;</span><span
+								style="color: #0000BB">$errstr</span><span
+								style="color: #DD0000">&lt;br&nbsp;/&gt;\n"</span><span
+								style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">fwrite</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #0000BB">fread</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">26</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">fclose</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">);<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.fsockopen-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Suivant les environnements, le type &#039;domaine Unix&#039; ou
+					l&#039;option <em><code class="parameter">timeout</code></em> ne
+					sont pas toujours disponibles.
+			</blockquote>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">
+					Les sockets UDP semblent quelques fois avoir été ouverts sans
+					erreur, même si l&#039;hôte distant n&#039;est pas accessible.
+					L&#039;erreur apparaît alors uniquement lorsque vous tentez de
+					lire/écrire sur le socket. La raison de cela est que UDP est un
+					protocole <em>&quot;connectionless&quot;</em>, ce qui signifie que
+					le système ne tentera pas d&#039;établir un lien pour le socket
+					tant qu&#039;il ne doit pas recevoir/envoyer de données.
+				</p>
+			</div>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Lors
+						de la spécification d&#039;adresses IPv6 au format numérique (e.g.
+						<em>fe80::1</em>) vous devez placer l&#039;adresse IP entre
+						crochets. Par exemple : <em>tcp://[fe80::1]:80</em>.
+					</span>
+				</p>
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.fsockopen-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.pfsockopen.html" class="function"
+						rel="rdfs-seeAlso">pfsockopen()</a> - Ouvre un socket de connexion
+						Internet ou Unix persistante</span></li>
+				<li class="member"><span class="function"><a
+						href="function.stream-socket-client.html" class="function"
+						rel="rdfs-seeAlso">stream_socket_client()</a> - Ouvre une
+						connexion socket Internet ou Unix</span></li>
+				<li class="member"><span class="function"><a
+						href="function.stream-set-blocking.html" class="function"
+						rel="rdfs-seeAlso">stream_set_blocking()</a> - Configure le mode
+						bloquant d'un flux</span></li>
+				<li class="member"><span class="function"><a
+						href="function.stream-set-timeout.html" class="function"
+						rel="rdfs-seeAlso">stream_set_timeout()</a> - Configure la
+						dur&eacute;e d'expiration d'un flux</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fgets.html" class="function" rel="rdfs-seeAlso">fgets()</a>
+						- R&eacute;cup&egrave;re la ligne courante sur laquelle se trouve
+						le pointeur du fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fgetss.html" class="function" rel="rdfs-seeAlso">fgetss()</a>
+						- Renvoie la ligne courante du fichier et &eacute;limine les
+						balises HTML</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fwrite.html" class="function" rel="rdfs-seeAlso">fwrite()</a>
+						- &Eacute;crit un fichier en mode binaire</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fclose.html" class="function" rel="rdfs-seeAlso">fclose()</a>
+						- Ferme un fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.feof.html" class="function" rel="rdfs-seeAlso">feof()</a>
+						- Teste la fin du fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.socket-connect.html" class="function"
+						rel="rdfs-seeAlso">socket_connect()</a> - Cr&eacute;e une
+						connexion sur un socket</span></li>
+				<li class="member">L&#039;<a href="ref.curl.html" class="link">extension
+						Curl</a></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.dns-get-record.html">dns_get_record</a>
+		</div>
+		<div class="next">
+			<a href="function.gethostbyaddr.html">gethostbyaddr</a>
+		</div>
+		<div class="up">
+			<a href="ref.network.html">Fonctions r&eacute;seaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

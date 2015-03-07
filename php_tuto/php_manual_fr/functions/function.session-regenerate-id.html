@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Remplace l'identifiant de session courant par un nouveau</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.session-name.html">session_name</a>
+		</div>
+		<div class="next">
+			<a href="function.session-register-shutdown.html">session_register_shutdown</a>
+		</div>
+		<div class="up">
+			<a href="ref.session.html">Fonctions Session</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.session-regenerate-id" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">session_regenerate_id</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.3.2, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">session_regenerate_id</span> <span
+					class="mdash">&mdash;</span> <span class="dc-title">
+					Remplace l&#039;identifiant de session courant par un nouveau </span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.session-regenerate-id-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>session_regenerate_id</strong></span>
+				([ <span class="methodparam"><span class="type">bool</span> <code
+						class="parameter">$delete_old_session</code><span
+					class="initializer"> = false</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>session_regenerate_id()</strong></span>
+				va remplacer l&#039;identifiant de session courant par un nouveau,
+				généré automatiquement, tout en conservant les valeurs de session.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.session-regenerate-id-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">delete_old_session</code></em></span>
+				<dd>
+
+					<p class="para">Si l&#039;on doit effacer l&#039;ancien fichier
+						de session associé ou pas.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.session-regenerate-id-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.session-regenerate-id-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.3.3</td>
+						<td>Avant cette version, si les cookies de session sont
+							activés, l&#039;utilisation de <span class="function"><strong>session_regenerate_id()</strong></span>
+							provoquera également un nouveau cookie de session avec le nouvel
+							identifiant de session.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.1.0</td>
+						<td>Ajout du paramètre <em><code class="parameter">delete_old_session</code></em>.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.session-regenerate-id-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4427">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>session_regenerate_id()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />session_start
+							</span><span style="color: #007700">();<br />
+								<br /></span><span style="color: #0000BB">$old_sessionid&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">session_id</span><span
+								style="color: #007700">();<br />
+								<br /></span><span style="color: #0000BB">session_regenerate_id</span><span
+								style="color: #007700">();<br />
+								<br /></span><span style="color: #0000BB">$new_sessionid&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">session_id</span><span
+								style="color: #007700">();<br />
+								<br />echo&nbsp;
+							</span><span style="color: #DD0000">"Ancienne&nbsp;Session:&nbsp;</span><span
+								style="color: #0000BB">$old_sessionid</span><span
+								style="color: #DD0000">&lt;br&nbsp;/&gt;"</span><span
+								style="color: #007700">;<br />echo&nbsp;
+							</span><span style="color: #DD0000">"Nouvelle&nbsp;Session:&nbsp;</span><span
+								style="color: #0000BB">$new_sessionid</span><span
+								style="color: #DD0000">&lt;br&nbsp;/&gt;"</span><span
+								style="color: #007700">;<br />
+								<br /></span><span style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$_SESSION</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.session-regenerate-id-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.session-id.html" class="function"
+						rel="rdfs-seeAlso">session_id()</a> - Lit et/ou modifie
+						l'identifiant courant de session</span></li>
+				<li class="member"><span class="function"><a
+						href="function.session-start.html" class="function"
+						rel="rdfs-seeAlso">session_start()</a> - D&eacute;marre une
+						nouvelle session ou reprend une session existante</span></li>
+				<li class="member"><span class="function"><a
+						href="function.session-name.html" class="function"
+						rel="rdfs-seeAlso">session_name()</a> - Lit et/ou modifie le nom
+						de la session</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.session-name.html">session_name</a>
+		</div>
+		<div class="next">
+			<a href="function.session-register-shutdown.html">session_register_shutdown</a>
+		</div>
+		<div class="up">
+			<a href="ref.session.html">Fonctions Session</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

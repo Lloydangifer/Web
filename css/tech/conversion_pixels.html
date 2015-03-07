@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Les unités de taille</title>
+
+<link rel="stylesheet" href="tech.css">
+
+<script>
+	if (!top.FP) {
+		location.replace('../index.html');
+	}
+
+	window.onload = function() {
+		FPL.convertir(16);
+	}
+
+	FPL = {
+		convertir : function(base) {
+			var H = '<tr><td>Pixels</td><td>em (ou rem)</td><td>Pourcentage</td><td>Point</td></tr>',
+				i, em, tr, pt;
+			
+			for (i = 1; i < 41; i++) {
+				em = i / base;
+				pt = (i * 72) / 96;
+				tr = (i != base) ? '<tr>' : '<tr style="background: #ccc">';
+					
+				H += tr + '<td>' + i + 'px </td><td>' + Math.round10(em, -4) + 'em </td><td>'
+						+ Math.round10(em * 100, -4) + '% </td><td>' + Math.round10(pt, 0) + 'pt </td></tr>';
+
+				document.getElementById('tblConversion').innerHTML = H;
+			}
+
+		}
+	};
+	
+	(function(){
+
+		/**
+		 * Decimal adjustment of a number.
+		 *
+		 * @param	{String}	type	The type of adjustment.
+		 * @param	{Number}	value	The number.
+		 * @param	{Integer}	exp		The exponent (the 10 logarithm of the adjustment base).
+		 * @returns	{Number}			The adjusted value.
+		 */
+		function decimalAdjust(type, value, exp) {
+			// If the exp is undefined or zero...
+			if (typeof exp === 'undefined' || +exp === 0) {
+				return Math[type](value);
+			}
+			value = +value;
+			exp = +exp;
+			// If the value is not a number or the exp is not an integer...
+			if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+				return NaN;
+			}
+			// Shift
+			value = value.toString().split('e');
+			value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+			// Shift back
+			value = value.toString().split('e');
+			return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+		}
+
+		// Decimal round
+		if (!Math.round10) {
+			Math.round10 = function(value, exp) {
+				return decimalAdjust('round', value, exp);
+			};
+		}
+		// Decimal floor
+		if (!Math.floor10) {
+			Math.floor10 = function(value, exp) {
+				return decimalAdjust('floor', value, exp);
+			};
+		}
+		// Decimal ceil
+		if (!Math.ceil10) {
+			Math.ceil10 = function(value, exp) {
+				return decimalAdjust('ceil', value, exp);
+			};
+		}
+
+	})();
+</script>
+</head>
+<body>
+	<div id="PAGE-tech">
+		<h2>Conversion pixel / em / pourcentage / point</h2>
+		<section>
+			<p class="fp-p-raz">
+				Taille de base <select onchange="FPL.convertir(this.value)">
+					<option value=10>10 pixels</option>
+					<option value=11>11 pixels</option>
+					<option value=12>12 pixels</option>
+					<option value=13>13 pixels</option>
+					<option value=14>14 pixels</option>
+					<option value=15>15 pixels</option>
+					<option value=16 selected>16 pixels</option>
+					<option value=17>17 pixels</option>
+					<option value=18>18 pixels</option>
+				</select>
+			</p>
+
+			<table id="tblConversion" class="TAB-zebre"></table>
+
+
+		</section>
+
+	</div>
+</body>
+</html>

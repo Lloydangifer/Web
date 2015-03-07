@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Typage objet</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.oop5.object-comparison.html">Comparaison
+				d'objets</a>
+		</div>
+		<div class="next">
+			<a href="language.oop5.late-static-bindings.html">Late Static
+				Bindings (R&eacute;solution statique &agrave; la vol&eacute;e)</a>
+		</div>
+		<div class="up">
+			<a href="language.oop5.html">Les classes et les objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.oop5.typehinting" class="sect1">
+		<h2 class="title">Typage objet</h2>
+		<p class="para">
+			PHP 5 introduit le typage objet implicite (littéralement, <em>Type
+				Hinting</em>). Les fonctions peuvent maintenant imposer aux paramètres
+			d&#039;être des objets (en spécifiant le nom de la classe dans le
+			prototype de la fonction), des interfaces, des tableaux (depuis PHP
+			5.1), ou de type <span class="type"><a
+				href="language.types.callable.html" class="type callable">callable</a></span>
+			(depuis PHP 5.4). Cependant, si <span class="type"><a
+				href="language.types.null.html" class="type NULL">NULL</a></span> est
+			utilisé en tant que valeur par défaut du paramètre, il sera autorisé
+			comme argument pour tous les futurs appels.
+		</p>
+
+		<p class="para">Si une classe ou une interface est spécifiée comme
+			type, alors toutes les classes en héritant ou ses implémentations
+			seront aussi autorisées.</p>
+
+		<p class="para">
+			La spécification d&#039;un type ne peut être utilisée avec les types
+			scalaires comme <span class="type"><a
+				href="language.types.integer.html" class="type int">int</a></span> ou <span
+				class="type"><a href="language.types.string.html"
+				class="type string">string</a></span>. Les <a
+				href="language.oop5.traits.html" class="link">Traits</a> ne sont pas
+			non plus autorisés.
+		</p>
+
+		<div class="example" id="example-230">
+			<p>
+				<strong>Exemple #1 Exemples de typage d&#039;objets</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #FF8000">//&nbsp;Un&nbsp;exemple&nbsp;de&nbsp;classe<br /></span><span
+							style="color: #007700">class&nbsp;</span><span
+							style="color: #0000BB">MaClasse<br /></span><span
+							style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #FF8000">/**<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Fonction&nbsp;de&nbsp;test<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Le&nbsp;premier&nbsp;paramètre&nbsp;doit&nbsp;être&nbsp;un&nbsp;objet&nbsp;de&nbsp;type&nbsp;AutreClasse<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">public&nbsp;function&nbsp;</span><span
+							style="color: #0000BB">test</span><span style="color: #007700">(</span><span
+							style="color: #0000BB">AutreClasse&nbsp;$autreclasse</span><span
+							style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #0000BB">$autreclasse</span><span
+							style="color: #007700">-&gt;</span><span style="color: #0000BB">var</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+							<br />
+							<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #FF8000">/**<br />&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Une&nbsp;autre&nbsp;fonction&nbsp;de&nbsp;test<br />&nbsp;&nbsp;&nbsp;&nbsp;*<br />&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Le&nbsp;premier&nbsp;paramètre&nbsp;doit&nbsp;être&nbsp;un&nbsp;tableau<br />&nbsp;&nbsp;&nbsp;&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">public&nbsp;function&nbsp;</span><span
+							style="color: #0000BB">test_array</span><span
+							style="color: #007700">(array&nbsp;</span><span
+							style="color: #0000BB">$input_array</span><span
+							style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #0000BB">print_r</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$input_array</span><span
+							style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #FF8000">/**<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Le&nbsp;premier&nbsp;paramètre&nbsp;doit&nbsp;être&nbsp;un&nbsp;itérateur<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">public&nbsp;function&nbsp;</span><span
+							style="color: #0000BB">test_interface</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">Traversable&nbsp;$iterator</span><span
+							style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #0000BB">get_class</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$iterator</span><span
+							style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #FF8000">/**<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Le&nbsp;premier&nbsp;paramètre&nbsp;doit&nbsp;être&nbsp;une&nbsp;fonction&nbsp;de&nbsp;rappel&nbsp;(callable)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">public&nbsp;function&nbsp;</span><span
+							style="color: #0000BB">test_callable</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">callable&nbsp;$callback</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$data</span><span
+							style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #0000BB">call_user_func</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$callback</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$data</span><span
+							style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Un&nbsp;autre&nbsp;exemple&nbsp;de&nbsp;classe<br /></span><span
+							style="color: #007700">class&nbsp;</span><span
+							style="color: #0000BB">AutreClasse&nbsp;</span><span
+							style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;
+						</span><span style="color: #0000BB">$var&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Bonjour&nbsp;le&nbsp;monde!'</span><span
+							style="color: #007700">;<br />}<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+			<div class="example-contents">
+				<p>Si un paramètre ne satisfait pas les conditions imposées, une
+					erreur fatale (qui peut être attrapée) est émise.</p>
+			</div>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #FF8000">//&nbsp;Une&nbsp;instance&nbsp;de&nbsp;chaque&nbsp;classe<br /></span><span
+							style="color: #0000BB">$maclasse&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">MaClasse</span><span
+							style="color: #007700">;<br /></span><span
+							style="color: #0000BB">$autreclasse&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">AutreClasse</span><span
+							style="color: #007700">;<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Erreur&nbsp;fatale&nbsp;:&nbsp;Argument&nbsp;1&nbsp;doit&nbsp;être&nbsp;un&nbsp;objet&nbsp;de&nbsp;la&nbsp;classe&nbsp;AutreClasse<br /></span><span
+							style="color: #0000BB">$maclasse</span><span
+							style="color: #007700">-&gt;</span><span style="color: #0000BB">test</span><span
+							style="color: #007700">(</span><span style="color: #DD0000">'salut'</span><span
+							style="color: #007700">);<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Erreur&nbsp;fatale&nbsp;:&nbsp;Argument&nbsp;1&nbsp;doit&nbsp;être&nbsp;une&nbsp;instance&nbsp;de&nbsp;AutreClasse<br /></span><span
+							style="color: #0000BB">$foo&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">stdClass</span><span
+							style="color: #007700">;<br /></span><span
+							style="color: #0000BB">$maclasse</span><span
+							style="color: #007700">-&gt;</span><span style="color: #0000BB">test</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$foo</span><span
+							style="color: #007700">);<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Erreur&nbsp;fatale&nbsp;:&nbsp;Argument&nbsp;1&nbsp;ne&nbsp;doit&nbsp;pas&nbsp;être&nbsp;null<br /></span><span
+							style="color: #0000BB">$maclasse</span><span
+							style="color: #007700">-&gt;</span><span style="color: #0000BB">test</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">null</span><span
+							style="color: #007700">);<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Fonctionne&nbsp;:&nbsp;Affiche&nbsp;'Bonjour&nbsp;le&nbsp;monde!'<br /></span><span
+							style="color: #0000BB">$maclasse</span><span
+							style="color: #007700">-&gt;</span><span style="color: #0000BB">test</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$autreclasse</span><span
+							style="color: #007700">);<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Erreur&nbsp;fatale&nbsp;:&nbsp;Argument&nbsp;1&nbsp;doit&nbsp;être&nbsp;un&nbsp;tableau<br /></span><span
+							style="color: #0000BB">$maclasse</span><span
+							style="color: #007700">-&gt;</span><span style="color: #0000BB">test_array</span><span
+							style="color: #007700">(</span><span style="color: #DD0000">'a&nbsp;string'</span><span
+							style="color: #007700">);<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Fonctionne&nbsp;:&nbsp;Affiche&nbsp;le&nbsp;tableau<br /></span><span
+							style="color: #0000BB">$maclasse</span><span
+							style="color: #007700">-&gt;</span><span style="color: #0000BB">test_array</span><span
+							style="color: #007700">(array(</span><span style="color: #DD0000">'a'</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'b'</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'c'</span><span
+							style="color: #007700">));<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Fonctionne&nbsp;:&nbsp;Affiche&nbsp;ArrayObject<br /></span><span
+							style="color: #0000BB">$maclasse</span><span
+							style="color: #007700">-&gt;</span><span style="color: #0000BB">test_interface</span><span
+							style="color: #007700">(new&nbsp;</span><span
+							style="color: #0000BB">ArrayObject</span><span
+							style="color: #007700">(array()));<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Fonctionne&nbsp;:&nbsp;Affiche&nbsp;int(1)<br /></span><span
+							style="color: #0000BB">$maclasse</span><span
+							style="color: #007700">-&gt;</span><span style="color: #0000BB">test_callable</span><span
+							style="color: #007700">(</span><span style="color: #DD0000">'var_dump'</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span
+							style="color: #007700">);<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+			<div class="example-contents">
+				<p>Le typage fonctionne aussi avec les fonctions :</p>
+			</div>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #FF8000">//&nbsp;Un&nbsp;exemple&nbsp;de&nbsp;classe<br /></span><span
+							style="color: #007700">class&nbsp;</span><span
+							style="color: #0000BB">MaClasse&nbsp;</span><span
+							style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;
+						</span><span style="color: #0000BB">$var&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Bonjour&nbsp;le&nbsp;monde!'</span><span
+							style="color: #007700">;<br />}<br />
+							<br /></span><span style="color: #FF8000">/**<br />&nbsp;*&nbsp;Fonction&nbsp;de&nbsp;test<br />&nbsp;*<br />&nbsp;*&nbsp;Le&nbsp;premier&nbsp;paramètre&nbsp;doit&nbsp;être&nbsp;un&nbsp;objet&nbsp;de&nbsp;type&nbsp;MaClasse<br />&nbsp;*/<br /></span><span
+							style="color: #007700">function&nbsp;</span><span
+							style="color: #0000BB">maFonction</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">MaClasse&nbsp;$foo</span><span
+							style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #0000BB">$foo</span><span
+							style="color: #007700">-&gt;</span><span style="color: #0000BB">var</span><span
+							style="color: #007700">;<br />}<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Fonctionne<br /></span><span
+							style="color: #0000BB">$maclasse&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">MaClasse</span><span
+							style="color: #007700">;<br /></span><span
+							style="color: #0000BB">maFonction</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$maclasse</span><span
+							style="color: #007700">);<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+			<div class="example-contents">
+				<p>Le typage objet autorise la valeur NULL :</p>
+			</div>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+							<br /></span><span style="color: #FF8000">/*&nbsp;On&nbsp;accepte&nbsp;la&nbsp;valeur&nbsp;NULL&nbsp;*/<br /></span><span
+							style="color: #007700">function&nbsp;</span><span
+							style="color: #0000BB">test</span><span style="color: #007700">(</span><span
+							style="color: #0000BB">stdClass&nbsp;$obj&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">NULL</span><span
+							style="color: #007700">)&nbsp;{<br />
+							<br />}<br />
+							<br /></span><span style="color: #0000BB">test</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">NULL</span><span
+							style="color: #007700">);<br /></span><span
+							style="color: #0000BB">test</span><span style="color: #007700">(new&nbsp;</span><span
+							style="color: #0000BB">stdClass</span><span
+							style="color: #007700">);<br />
+							<br /></span><span style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.oop5.object-comparison.html">Comparaison
+				d'objets</a>
+		</div>
+		<div class="next">
+			<a href="language.oop5.late-static-bindings.html">Late Static
+				Bindings (R&eacute;solution statique &agrave; la vol&eacute;e)</a>
+		</div>
+		<div class="up">
+			<a href="language.oop5.html">Les classes et les objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

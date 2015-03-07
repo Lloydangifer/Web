@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>meta</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p class="fp-p-raz">
+			L'élément <a onclick="top.FP.Voir.showPageTech('elements', 'meta')">meta</a>
+			est un peu comme un couteau suisse car il permet de faire beaucoup de
+			choses différentes suivant les attributs utilisés et leur valeur.
+		</p>
+
+		<p class="fp-p-raz">
+			Quelque soit son utilité finale, l'élément <a
+				onclick="top.FP.Voir.showPageTech('elements', 'meta')">meta</a> est
+			toujours un élément vide qui ne peut donc pas contenir d'autres
+			éléments.
+		</p>
+
+		<a name="meta_charset"></a>
+		<h3>meta charset</h3>
+		<section>
+
+			<pre data-code="HTML" class="fp-gras">
+&lt;meta charset="nom-encodage"&gt;
+</pre>
+			<p class="fp-bot0">
+				Avec cette syntaxe l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'meta')">meta</a> est
+				une déclaration d'encodage qui avertit le navigateur de l'encodage
+				utilisé pour enregistrer le fichier qui contient le code <abbr
+					title="HyperText Markup Language">HTML</abbr>. Cet encodage varie
+				et dépend de l'éditeur de texte utilisé lors de la création du code.
+				On trouvera le plus généralement en France :
+			</p>
+			<ul>
+				<li>ISO-8859-1 (ou Latin 1) : utilisé pour l'Europe
+					occidentale, avec les caractères accentués de l'Europe de l'Ouest</li>
+				<li>ISO-8859-15 (ou Latin 9) : utilisé pour l'Europe
+					occidentale, avec quelques caractères en plus de de ISO-8859-1,
+					comme le signe euro (€)</li>
+				<li>Windows-1252 (ou ANSI) : utilisé par windows pour l'Europe
+					occidentale, à peu près identique à ISO-8859-1</li>
+				<li>UTF-8 : codage Unicode sur 1 ou 2 octets. A privilégier car
+					il est universel et permet de représenter pratiquement tous les
+					caractères de toutes les langues de la Terre.</li>
+			</ul>
+
+			<p class="fp-remarque">
+				Le fichier <abbr title="HyperText Markup Language">HTML</abbr> doit
+				être édité et enregistré avec le même type de codage que celui
+				déclaré dans l'attribut <code>charset</code>. Le choix de l'encodage
+				du contenu du fichier se fait dans l'éditeur de textes utilisé pour
+				créer/modifier le fichier. Cet éditeur a toujours un encodage par
+				défaut dans sa configuration (Windows-1252, UTF-8, etc). On peut
+				toujours modifier l'encodage utilisé pour un fichier, soit au moment
+				de son enregistrement, soit par une option dans les menus de
+				l'éditeur (Fichier-&gt;Encodage, Propriétés-&gt;Encodage, Format, Options ...)
+			</p>
+
+			<p class="fp-bot0">
+				Définir précisément l'encodage utilisé permet au navigateur de
+				traiter et d'afficher correctement tous les caractères contenu dans
+				le fichier <abbr title="HyperText Markup Language">HTML</abbr>.
+				<br>
+				Si vous ne faites pas cette définition, il faut utiliser le système
+				des entités HTML pour représenter les caractères non ASCII (ie les
+				caractères accentués et les symboles).
+				<br>
+				Une entité <abbr title="HyperText Markup Language">HTML</abbr> est
+				composée de la façon suivante :
+			</p>
+			<ul>
+				<li>le signe <code><strong>&amp;</strong></code> signifie
+					marque le commencement de l'entité,
+				</li>
+				<li>le nom en anglais du caractère ou sa valeur numérique,
+				<li>le signe <code><strong>;</strong></code> marque la fin la
+					fin de l'entité.
+				</li>
+			</ul>
+
+			<p>Quelques exemples :</p>
+			<table class="TAB-zebre">
+				<tr>
+					<td>Caractère</td>
+					<td>Entité</td>
+					<td>Caractère</td>
+					<td>Entité</td>
+					<td>Caractère</td>
+					<td>Entité</td>
+				</tr>
+				<tr>
+					<td>é</td>
+					<td><code>&amp;eacute;</code></td>
+					<td>è</td>
+					<td><code>&amp;egrave;</code></td>
+					<td>ç</td>
+					<td><code>&amp;ccedil;</code></td>
+				</tr>
+				<tr>
+					<td>ê</td>
+					<td><code>&amp;ecirc;</code></td>
+					<td>ù</td>
+					<td><code>&amp;ugrave;</code></td>
+					<td>î</td>
+					<td><code>&amp;icirc;</code></td>
+				</tr>
+				<tr>
+					<td>à</td>
+					<td><code>&amp;agrave;</code></td>
+					<td>€</td>
+					<td><code>&amp;euro;</code></td>
+					<td>&phone;</td>
+					<td><code>&amp;phone;</code></td>
+				</tr>
+				<tr>
+					<td colspan="6"><a
+						onclick="top.FP.Voir.showPageTech('entites_html_w3c', '')">Liste
+							complète</a></td>
+				</tr>
+
+
+			</table>
+
+			<div class="fp-remarque">
+				<p class="fp-bot0">
+					Les caractères <code>&lt;</code>, <code>&gt;</code> et <code>&amp;</code>
+					font partie des éléments syntaxiques de HTML, et ne peuvent donc
+					pas être utilisés tels que dans le texte. A la place on doit
+					utiliser les entités :
+				</p>
+				<ul>
+					<li><code>&amp;lt;</code> pour &lt; (plus petit que - Less
+						Than)</li>
+					<li><code>&amp;gt;</code> pour &gt; (plus grand que - Greater
+						Than)</li>
+					<li><code>&amp;amp;</code> pour &amp; (et commercial -
+						Amperstand)</li>
+				</ul>
+
+				<p>
+					L'entité <code>&amp;nbsp;</code> (No Breaking SPace) vous permet
+					d'insérer un espace obligatoirement rendu par le navigateur. En
+					mettant plusieurs <code> &amp;nbsp;</code> les uns à la suite des
+					autres, on pourra forcer le navigateur à afficher plusieurs espaces
+					consécutifs.
+				</p>
+			</div>
+			<p>
+				Quelque soit l'encodage que vous utilisez lors de la création de vos
+				fichier <abbr title="HyperText Markup Language">HTML</abbr>, je vous
+				conseille de toujours utiliser le même pour tous les fichiers texte
+				de votre site : les fichiers <abbr title="HyperText Markup Language">HTML</abbr>,
+				les fichiers <abbr title="Cascading Style Sheets">CSS</abbr> et les
+				fichier JavaScript.
+				<br>
+				La liste des encodages possibles est définie <a
+					href="http://www.iana.org/assignments/character-sets/character-sets.xml"
+					target="_blank">dans ce document par l'IANA</a>.
+			</p>
+
+			<p>
+				Si vous ne faites de déclaration d'encodage, le navigateur va
+				essayer avec plus ou moins de bonheur de trouver celui utilisé. Je
+				vous conseille donc de toujours faire cette déclaration d'encodage <strong>qui
+					DOIT se trouver les 512 premiers caractères de votre fichier <abbr
+					title="HyperText Markup Language">HTML</abbr>
+				</strong> car <a
+					href="http://windows.microsoft.com/fr-fr/internet-explorer/download-ie"
+					target="_blank">Internet Explorer</a> par exemple ne prendra en compte que ces
+				caractères pour définir l'encodage utilisé.
+			</p>
+
+			<p class="fp-p-raz">
+				Le début d'un fichier <abbr title="HyperText Markup Language">HTML</abbr>
+				devrait toujours être :
+			</p>
+			<pre data-code="HTML">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;	
+</pre>
+
+			<p class="fp-p-raz">
+				Remarque : les valeurs des attributs <code>lang</code> et <code>charset</code>
+				peuvent bien sûr être différentes.
+				<br>
+				Par exemple, selon l'encodage de vos fichiers, vous pourrez avoir :
+			</p>
+			<table class="TAB-zebre">
+				<tr>
+					<td>Encodage</td>
+					<td>charset</td>
+				</tr>
+				<tr>
+					<td>ISO-8859-1</td>
+					<td><code>&lt;meta charset="iso-8859-1"&gt;</code></td>
+				</tr>
+				<tr>
+					<td>ISO-8859-15</td>
+					<td><code>&lt;meta charset="iso-8859-15"&gt;</code></td>
+				</tr>
+				<tr>
+					<td>Windows 1252</td>
+					<td><code>&lt;meta charset="windows-1252"&gt;</code></td>
+				</tr>
+
+
+			</table>
+		</section>
+
+		<h3>meta http-equiv</h3>
+		<section>
+			<pre data-code="HTML" class="fp-gras">
+&lt;meta http-equiv="nom-en-tête-HTTP" content="valeur associée"&gt;	
+</pre>
+
+			<p>
+				Avec cette syntaxe l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'meta')">meta</a>
+				définit un en-tête <abbr title="HyperText Transfert Protocol">HTTP</abbr> en plus de ceux qui transitent dans le
+				dialogue client/serveur (navigateur/serveur Web).
+			</p>
+
+			<p>
+				Les valeurs possibles pour l'attribut <code>http-equiv</code> sont
+				fixées précisément :
+			</p>
+			<table>
+				<tr>
+					<td nowrap><code>content-language</code></td>
+					<td>A ne plus utiliser. C'est l'attribut <code>lang</code> qui
+						doit le remplacer.
+					</td>
+				</tr>
+				<tr>
+					<td nowrap><code>content-type</code></td>
+					<td>C'est "l'ancienne version" de <code>&lt;meta
+							charset="nom-encodage"&gt;</code>. On peut encore l'utiliser pour que
+						les navigateurs anciens qui ne parlent pas <abbr
+						title="HyperText Markup Language">HTML</abbr>5 aient une
+						définition d'encodage.<br>La syntaxe est la suivante pour un
+						encodage en ISO-8859-1 : <pre data-code="HTML">
+&lt;meta http-equiv="content-type"
+      content="text/html; charset=iso-8859-1"&gt;
+</pre> Pour un encodage en UTF-8 utilisez : <pre data-code="HTML">
+&lt;meta http-equiv="content-type"
+      content="text/html; charset=utf-8"&gt;
+</pre>
+					</td>
+				</tr>
+				<tr>
+					<td nowrap><code>default-style</code></td>
+					<td>Feuille de styles à utiliser de préférence pour la page.
+						La valeur de <code>content</code> doit contenir la valeur de
+						l'attribut <code>id</code> de l'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'link')">link</a>
+						pointant sur la feuille de style désirée.
+					</td>
+				</tr>
+				<tr>
+					<td nowrap><code>refresh</code></td>
+					<td>Définit le nombre de secondes qu'il faut attendre pour que
+						la page soit rechargée automatiquement. Exemple pour un
+						rechargement toutes les 10 secondes : <pre data-code="HTML">
+&lt;meta http-equiv="refresh" content="10"&gt;
+</pre>Définit le nombre de secondes qu'il faut attendre pour qu'une autre page
+						soit affichée automatiquement. Exemple pour une redirection vers
+						google après 5 secondes : <pre data-code="HTML">
+&lt;meta http-equiv="refresh" 
+      content="5; url=http://www.google.fr"&gt;
+</pre>
+					</td>
+				</tr>
+				<tr>
+					<td nowrap><code>set-cookie</code></td>
+					<td>A ne plus utiliser. Permet de créér un cookie.</td>
+				</tr>
+			</table>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : métadonnées
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;meta http-equiv="content-type" 
+		      content="text/html; charset=utf-8"&gt;
+		&lt;meta http-equiv="refresh" 
+		      content="5; url=http://www.google.fr"&gt;
+		&lt;title&gt;Métadonnées&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		Après 5 secondes d'affichage de cette page, 
+		le navigateur affichera la page d'accueil de google.
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+		</section>
+
+		<h3>meta name</h3>
+		<section>
+			<pre data-code="HTML" class="fp-gras">
+&lt;meta name="nom-métadonnée" content="valeur associée"&gt;
+</pre>
+			<p>
+				Avec cette syntaxe l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'meta')">meta</a>
+				définit une métadonnée portant sur le contenu entier du document.
+				C'est à ce titre une réelle métadonnée (ie une donnée sur les
+				données).
+			</p>
+			<p>
+				Les valeurs possibles pour l'attribut <code>name</code> sont fixées
+				précisément :
+			</p>
+			<table>
+				<tr>
+					<td><code>application-name</code></td>
+					<td>Nom d'un application Web dont la page fait partie.</td>
+				</tr>
+				<tr>
+					<td><code>author</code></td>
+					<td>Informations sur l'auteur de la page.</td>
+				</tr>
+				<tr>
+					<td><code>description</code></td>
+					<td>Description, résumé du contenu de la page. Utilisé
+						éventuellement dans l'affichage des résultats d'une recherche par
+						un moteur de recherche (ie <a href="http://www.google.fr"
+						target=" _blank">google</a>, <a href="http://www.bing.com"
+						target="_blank">bing</a>, etc).
+					</td>
+				</tr>
+				<tr>
+					<td><code>generator</code></td>
+					<td>Nom de l'éditeur de texte ayant servi à générer le contenu
+						de la page.</td>
+				</tr>
+				<tr>
+					<td><code>keywords</code></td>
+					<td>Mots-clés séparés par une virgule, prévus à l'origine pour
+						l'indexation de la page.</td>
+				</tr>
+			</table>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : métadonnées
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;meta name="application-name" content="Tutoriel HTML"&gt;
+		&lt;meta name="author" content="François Piat"&gt;
+		&lt;meta name="description" content="L'élement meta dans l'en-tête du document HTML"&gt;
+		&lt;meta name="generator" content="Eclipse 3.0.2"&gt;
+		&lt;meta name="keywords" content="Piat, html, head, meta, tutoriel"&gt;
+		&lt;title&gt;Métadonnées&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		Les métadonnées ne sont pas affichées par le navigateur.
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+		</section>
+	</div>
+	<footer> </footer>
+</body>
+</html>

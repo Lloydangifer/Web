@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Essentiel</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.variables.html">Les variables</a>
+		</div>
+		<div class="next">
+			<a href="language.variables.predefined.html">Variables
+				pr&eacute;-d&eacute;finies</a>
+		</div>
+		<div class="up">
+			<a href="language.variables.html">Les variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.variables.basics" class="sect1">
+		<h2 class="title">Essentiel</h2>
+
+		<p class="simpara">En PHP, les variables sont représentées par un
+			signe dollar &quot;$&quot; suivi du nom de la variable. Le nom est
+			sensible à la casse.</p>
+
+		<p class="para">
+			Les noms de variables suivent les mêmes règles de nommage que les
+			autres entités PHP. Un nom de variable valide doit commencer par une
+			lettre ou un souligné (_), suivi de lettres, chiffres ou soulignés.
+			Exprimé sous la forme d&#039;une expression régulière, cela donne :
+			&#039;<em>[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*</em>&#039;
+		</p>
+
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>: <span class="simpara">
+					Dans nos propos, une lettre peut être a-z, A-Z, et les octets de
+					127 à 255 (<em>0x7f-0xff</em>).
+				</span>
+			</p>
+		</blockquote>
+
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>: <span class="simpara"> <em>$this</em>
+					est une variable spéciale, qui ne peut pas être assignée.
+				</span>
+			</p>
+		</blockquote>
+
+		<div class="tip">
+			<strong class="tip">Astuce</strong>
+			<p class="simpara">
+				Vous pourriez également avoir besoin de jeter un oeil sur <a
+					href="userlandnaming.html" class="xref">Guide de nommage de
+					l'espace utilisateur</a>.
+			</p>
+		</div>
+
+		<p class="para">
+			Pour obtenir des informations sur une variable, voyez les fonctions
+			dédiées aux <a href="ref.var.html" class="link">variables</a>.
+		</p>
+
+		<p class="para">
+		<div class="example" id="example-101">
+			<p>
+				<strong>Exemple #1 Validité des noms de variables</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$var&nbsp;
+						</span><span style="color: #007700">=&nbsp;</span><span
+							style="color: #DD0000">'Jean'</span><span style="color: #007700">;<br /></span><span
+							style="color: #0000BB">$Var&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Paul'</span><span
+							style="color: #007700">;<br />echo&nbsp;
+						</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$var</span><span
+							style="color: #DD0000">,&nbsp;</span><span style="color: #0000BB">$Var</span><span
+							style="color: #DD0000">"</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;affiche&nbsp;"Jean,&nbsp;Paul"<br />
+							<br /></span><span style="color: #007700">$</span><span
+							style="color: #0000BB">4site&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'pas&nbsp;encore'</span><span
+							style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;invalide&nbsp;:&nbsp;commence&nbsp;par&nbsp;un&nbsp;nombre<br /></span><span
+							style="color: #0000BB">$_4site&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'pas&nbsp;encore'</span><span
+							style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;valide&nbsp;:&nbsp;commence&nbsp;par&nbsp;un&nbsp;souligné<br /></span><span
+							style="color: #0000BB">$täyte&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'mansikka'</span><span
+							style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;valide&nbsp;:&nbsp;'ä'&nbsp;est&nbsp;ASCII&nbsp;(étendu)&nbsp;228.<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+
+		<p class="para">
+			Les variables sont toujours assignées par valeur. C&#039;est-à-dire,
+			lorsque vous assignez une expression à une variable, la valeur de
+			l&#039;expression est recopiée dans la variable. Cela signifie, par
+			exemple, qu&#039;après avoir assigné la valeur d&#039;une variable à
+			une autre, modifier l&#039;une des variables n&#039;aura pas
+			d&#039;effet sur l&#039;autre. Pour plus de détails sur ce genre
+			d&#039;assignation, reportez-vous aux <a
+				href="language.expressions.html" class="link">expressions</a>.
+		</p>
+		<p class="para">
+			PHP permet aussi d&#039;assigner les valeurs aux variables <a
+				href="language.references.html" class="link">par référence</a>. Cela
+			signifie que la nouvelle variable ne fait que référencer (en
+			d&#039;autres termes, &quot;devient un alias de&quot;, ou encore
+			&quot;pointe sur&quot;) la variable originale. Les modifications de
+			la nouvelle variable affecteront l&#039;ancienne et vice versa.
+		</p>
+		<p class="para">
+			Pour assigner par référence, ajoutez simplement un &amp; (ET
+			commercial) au début de la variable qui est assignée (la variable
+			source). Dans l&#039;exemple suivant, <em>Mon nom est Pierre</em>
+			s&#039;affichera deux fois :
+		<div class="example" id="example-102">
+			<p>
+				<strong>Exemple #2 Assignation de référence</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$foo&nbsp;
+						</span><span style="color: #007700">=&nbsp;</span><span
+							style="color: #DD0000">'Pierre'</span><span
+							style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;Assigne&nbsp;la&nbsp;valeur&nbsp;'Pierre'&nbsp;à&nbsp;$foo<br /></span><span
+							style="color: #0000BB">$bar&nbsp;</span><span
+							style="color: #007700">=&nbsp;&amp;</span><span
+							style="color: #0000BB">$foo</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;Référence&nbsp;$foo&nbsp;avec&nbsp;$bar.<br /></span><span
+							style="color: #0000BB">$bar&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"Mon&nbsp;nom&nbsp;est&nbsp;</span><span
+							style="color: #0000BB">$bar</span><span style="color: #DD0000">"</span><span
+							style="color: #007700">;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;Modifie&nbsp;$bar...<br /></span><span
+							style="color: #007700">echo&nbsp;</span><span
+							style="color: #0000BB">$foo</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;$foo&nbsp;est&nbsp;aussi&nbsp;modifiée<br /></span><span
+							style="color: #007700">echo&nbsp;</span><span
+							style="color: #0000BB">$bar</span><span style="color: #007700">;<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+
+			</div>
+
+		</div>
+		</p>
+
+		<p class="para">Une chose importante à noter est que seules les
+			variables nommées peuvent être assignées par référence.
+		<div class="example" id="example-103">
+			<p>
+				<strong>Exemple #3 Assignation de référence et variables
+					anonymes</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$foo&nbsp;
+						</span><span style="color: #007700">=&nbsp;</span><span
+							style="color: #0000BB">25</span><span style="color: #007700">;<br /></span><span
+							style="color: #0000BB">$bar&nbsp;</span><span
+							style="color: #007700">=&nbsp;&amp;</span><span
+							style="color: #0000BB">$foo</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;assignation&nbsp;valide<br /></span><span
+							style="color: #0000BB">$bar&nbsp;</span><span
+							style="color: #007700">=&nbsp;&amp;(</span><span
+							style="color: #0000BB">24&nbsp;</span><span
+							style="color: #007700">*&nbsp;</span><span style="color: #0000BB">7</span><span
+							style="color: #007700">);&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;assignation&nbsp;invalide&nbsp;:&nbsp;référence&nbsp;une&nbsp;expression&nbsp;sans&nbsp;nom<br /></span><span
+							style="color: #007700">function&nbsp;</span><span
+							style="color: #0000BB">test</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;return&nbsp;
+						</span><span style="color: #0000BB">25</span><span style="color: #007700">;<br />}<br /></span><span
+							style="color: #0000BB">$bar&nbsp;</span><span
+							style="color: #007700">=&nbsp;&amp;</span><span
+							style="color: #0000BB">test</span><span style="color: #007700">();&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;assignation&nbsp;invalide.<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+
+		<p class="para">
+			Il n&#039;est pas nécessaire d&#039;initialiser les variables en PHP,
+			cependant, cela reste une excellente pratique. Les variables non
+			initialisées ont une valeur par défaut selon leur type - <strong><code>FALSE</code></strong>
+			pour les booléens, zéro pour les entiers et les réels, chaîne vide
+			pour les chaînes de caractères (comme utilisée avec <span
+				class="function"><a href="function.echo.html"
+				class="function">echo</a></span>) ou un tableau vide pour les tableaux.
+		</p>
+		<p class="para">
+		<div class="example" id="example-104">
+			<p>
+				<strong>Exemple #4 Valeurs par défaut des variables non
+					initialisées</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #FF8000">//&nbsp;Une&nbsp;variable&nbsp;non&nbsp;initialisée&nbsp;et&nbsp;non&nbsp;référencée&nbsp;(pas&nbsp;de&nbsp;contexte&nbsp;d'utilisation);&nbsp;retourne&nbsp;NULL<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$unset_var</span><span
+							style="color: #007700">);<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;L'utilisation&nbsp;d'un&nbsp;booléen;&nbsp;retourne&nbsp;'false'&nbsp;(Voir&nbsp;l'opérateur&nbsp;ternaire&nbsp;pour&nbsp;comprendre&nbsp;cette&nbsp;syntaxe)<br /></span><span
+							style="color: #007700">echo(</span><span style="color: #0000BB">$unset_bool&nbsp;</span><span
+							style="color: #007700">?&nbsp;</span><span style="color: #DD0000">"true\n"&nbsp;</span><span
+							style="color: #007700">:&nbsp;</span><span style="color: #DD0000">"false\n"</span><span
+							style="color: #007700">);<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Utilisation&nbsp;d'une&nbsp;chaîne&nbsp;de&nbsp;caractères;&nbsp;retourne&nbsp;'string(3)&nbsp;"abc"'<br /></span><span
+							style="color: #0000BB">$unset_str&nbsp;</span><span
+							style="color: #007700">.=&nbsp;</span><span
+							style="color: #DD0000">'abc'</span><span style="color: #007700">;<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$unset_str</span><span
+							style="color: #007700">);<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Utilisation&nbsp;d'un&nbsp;entier;&nbsp;retourne&nbsp;'int(25)'<br /></span><span
+							style="color: #0000BB">$unset_int&nbsp;</span><span
+							style="color: #007700">+=&nbsp;</span><span
+							style="color: #0000BB">25</span><span style="color: #007700">;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;0&nbsp;+&nbsp;25&nbsp;=&gt;&nbsp;25<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$unset_int</span><span
+							style="color: #007700">);<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Utilisation&nbsp;d'un&nbsp;entier/double;&nbsp;retourne&nbsp;'float(1.25)'<br /></span><span
+							style="color: #0000BB">$unset_float&nbsp;</span><span
+							style="color: #007700">+=&nbsp;</span><span
+							style="color: #0000BB">1.25</span><span style="color: #007700">;<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$unset_float</span><span
+							style="color: #007700">);<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Utilisation&nbsp;d'un&nbsp;tableau&nbsp;:&nbsp;retourne&nbsp;array(1)&nbsp;{&nbsp;&nbsp;[3]=&gt;&nbsp;&nbsp;string(3)&nbsp;"def"&nbsp;}<br /></span><span
+							style="color: #0000BB">$unset_arr</span><span
+							style="color: #007700">[</span><span style="color: #0000BB">3</span><span
+							style="color: #007700">]&nbsp;=&nbsp;</span><span
+							style="color: #DD0000">"def"</span><span style="color: #007700">;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;array()&nbsp;+&nbsp;array(3&nbsp;=&gt;&nbsp;"def")&nbsp;=&gt;&nbsp;array(3&nbsp;=&gt;&nbsp;"def")<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$unset_arr</span><span
+							style="color: #007700">);<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Utilisation&nbsp;d'un&nbsp;objet;&nbsp;crée&nbsp;un&nbsp;nouvel&nbsp;objet&nbsp;stdClass&nbsp;(voir&nbsp;http://www.php.net/manual/fr/reserved.classes.php)<br />//&nbsp;Retourne&nbsp;:&nbsp;object(stdClass)#1&nbsp;(1)&nbsp;{&nbsp;&nbsp;["foo"]=&gt;&nbsp;&nbsp;string(3)&nbsp;"bar"&nbsp;}<br /></span><span
+							style="color: #0000BB">$unset_obj</span><span
+							style="color: #007700">-&gt;</span><span style="color: #0000BB">foo&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'bar'</span><span
+							style="color: #007700">;<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$unset_obj</span><span
+							style="color: #007700">);<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<p class="para">
+			Utiliser la valeur par défaut d&#039;une variable non initialisée est
+			problématique lorsque vous incluez un fichier dans un autre qui
+			utilise le même nom de variable. C&#039;est également un <a
+				href="security.globals.html" class="link">risque niveau sécurité</a>
+			lorsque <a href="ini.core.html#ini.register-globals" class="link">register_globals</a>
+			est activé. Une erreur de niveau <a href="" class="link">E_NOTICE</a>
+			sera émise lorsque vous travaillerez avec des variables non
+			initialisées, cependant, aucune erreur ne sera lancée lorsque vous
+			tenterez d&#039;insérer un élément dans un tableau non initialisé. La
+			structure de langage <span class="function"><a
+				href="function.isset.html" class="function">isset()</a></span> peut être
+			utilisée pour détecter si une variable a déjà été initialisée.
+		</p>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.variables.html">Les variables</a>
+		</div>
+		<div class="next">
+			<a href="language.variables.predefined.html">Variables
+				pr&eacute;-d&eacute;finies</a>
+		</div>
+		<div class="up">
+			<a href="language.variables.html">Les variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

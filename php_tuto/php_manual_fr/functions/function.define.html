@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>D&eacute;finit une constante</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.constant.html">constant</a>
+		</div>
+		<div class="next">
+			<a href="function.defined.html">defined</a>
+		</div>
+		<div class="up">
+			<a href="ref.misc.html">Fonctions diverses</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.define" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">define</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">define</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Définit une constante</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.define-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>define</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$name</code></span> , <span class="methodparam"><span
+					class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$value</code></span>
+				[, <span class="methodparam"><span class="type">bool</span> <code
+						class="parameter">$case_insensitive</code><span
+					class="initializer"> = false</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">Définit une constante à
+				l&#039;exécution.</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.define-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">name</code></em></span>
+				<dd>
+
+					<p class="para">Le nom de la constante.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">value</code></em></span>
+				<dd>
+
+					<p class="para">
+						La valeur de la constante ; seuls les scalaires et les valeurs <strong><code>NULL</code></strong>
+						sont autorisées. Les valeurs scalaires sont les valeurs <a
+							href="language.types.integer.html" class="link">entier</a>, <a
+							href="language.types.float.html" class="link">nombre décimal</a>,
+						<a href="language.types.string.html" class="link">chaîne de
+							caractères</a> ou <a href="language.types.boolean.html" class="link">booléen</a>.
+						Il est techniquement possible de définir des constantes de type <a
+							href="language.types.resource.html" class="link">ressource</a>,
+						mais cela est fortement déconseillé, et peut causer des
+						comportements inattendus.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">case_insensitive</code></em></span>
+				<dd>
+
+					<p class="para">
+						S&#039;il vaut <strong><code>TRUE</code></strong>, le nom de la
+						constante sera insensible à la casse : <em>CONSTANT</em> et <em>Constant</em>
+						représentent des valeurs identiques.
+					</p>
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>:
+						<p class="para">Les constantes insensibles à la casse sont
+							stockées en minuscule.
+					</blockquote>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.define-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.define-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-3500">
+				<p>
+					<strong>Exemple #1 Définition d&#039;une constante</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />define
+							</span><span style="color: #007700">(</span><span style="color: #DD0000">"CONSTANT"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"Bonjour&nbsp;le&nbsp;monde."</span><span
+								style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #0000BB">CONSTANT</span><span
+								style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;affiche&nbsp;"Bonjour&nbsp;le&nbsp;monde."<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">Constant</span><span
+								style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;affiche&nbsp;"Constant"&nbsp;et&nbsp;émet&nbsp;une&nbsp;alerte<br />
+								<br /></span><span style="color: #0000BB">define</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"GREETING"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"Salut&nbsp;toi."</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #0000BB">GREETING</span><span
+								style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;affiche&nbsp;"Salut&nbsp;toi."<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">Greeting</span><span
+								style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;affiche&nbsp;"Salut&nbsp;toi."<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.define-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.defined.html" class="function" rel="rdfs-seeAlso">defined()</a>
+						- V&eacute;rifie l'existence d'une constante</span></li>
+				<li class="member"><span class="function"><a
+						href="function.constant.html" class="function" rel="rdfs-seeAlso">constant()</a>
+						- Retourne la valeur d'une constante</span></li>
+				<li class="member">La section sur les <a
+					href="language.constants.html" class="link">constantes</a></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.constant.html">constant</a>
+		</div>
+		<div class="next">
+			<a href="function.defined.html">defined</a>
+		</div>
+		<div class="up">
+			<a href="ref.misc.html">Fonctions diverses</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

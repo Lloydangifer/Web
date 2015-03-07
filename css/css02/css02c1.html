@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Les sélecteurs simples</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+<link rel="stylesheet" href="../_local/selecteurs.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function(){top.FP.initPage();}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<!-- ################################################################################################## -->
+		<a id="sel_universel"></a>
+		<h3>Sélecteur universel</h3>
+
+		<section>
+
+			<div class="bloc-syntaxe">
+				<p>
+					<span class="lib-syntaxe">Syntaxe </span><strong><code>*</code></strong>
+				</p>
+
+				<pre data-code="CSS">
+* {
+	color: #333;
+	font-size: 15px;
+}</pre>
+
+
+			</div>
+
+			<p>
+				Le sélecteur universel permet de sélectionner tous les éléments d'un
+				document <abbr title="
+				HyperTextMarkupLanguage"> HTML</abbr>.
+			</p>
+
+			<p>
+				A cause de la sélection trop large qu'il fait, ce sélecteur est en
+				réalité peu pratique. Une de ses seules utilisations connues est
+				dans la réinitialisation des marges par défaut faites par les
+				navigateurs sur certains éléments <abbr
+					title="HyperText Markup Language">HTML</abbr> (<a
+					onclick="top.FP.Voir.showPageTech('elements', 'body')">body</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'p')">p</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'ul')">ul</a>, etc).
+			</p>
+
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : sélecteur universel
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;L'Arrière des Etoiles&lt;/h3&gt;
+		&lt;p&gt;Les CSS sont l'arme secrète de la Force !&lt;/p&gt;
+		&lt;p&gt;Tu veux savoir les utiliser ?  
+			Envoie CSS au 7 1718.&lt;/p&gt;
+		&lt;div&gt;
+			&lt;p&gt;&lt;img src="../exemples/img/yoda.jpg"&gt; 
+				Le côté obscur des CSS redouter tu dois.&lt;/p&gt;
+	    	&lt;p&gt;&lt;img src="../exemples/img/darkv.jpg"&gt; 
+				Les CSS ont vraiment transformé ma vie.&lt;/p&gt;
+	    	&lt;p&gt;&lt;img src="../exemples/img/gandalf.jpg"&gt; 
+				Bien sûr, moi aussi j'utilise les CSS !&lt;/p&gt;
+	  	&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<div class="dom-schema" id="dom_sel_universel">
+				<img src="../cssimg/dom_sel_universel.png" width="469" height="168">
+			</div>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a class="TEST-lien-dom" title="Afficher le DOM"
+					onclick="top.FP.Voir.showDOM('dom_sel_universel')"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* Sélecteur universel pour réinitialiser les marges de tous les éléments */
+
+* { 
+	margin: 0; 
+	padding: 0;
+}</textarea>
+			</form>
+
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<a id="sel_type"></a>
+		<h3>Sélecteur de type</h3>
+
+		<section>
+			<div class="bloc-syntaxe">
+				<p>
+					<span class="lib-syntaxe">Syntaxe </span><strong><code>Nom_élément_HTML</code></strong>
+				</p>
+
+				<pre data-code="CSS">
+section {
+	padding: 10px;
+	font-family: arial;
+}</pre>
+			</div>
+
+			<p>
+				Un sélecteur de type sélectionne tous les éléments du document <abbr
+					title="HyperText Markup Language">HTML</abbr> qui ont le même nom
+				que le sélecteur.
+			</p>
+
+			<p>
+				L'élément peut être n'importe quel <a
+					onclick="top.FP.Voir.showPageTech('elements', '')">élément HTML</a>
+				et la sélection portera sur tous ceux qui se trouvent dans le
+				document, quelque soit leur niveau d'imbrication.
+			</p>
+
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : sélecteur de type
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;L'Arrière des Etoiles&lt;/h3&gt;
+		&lt;p&gt;Les CSS sont l'arme secrète de la Force !&lt;/p&gt;
+		&lt;p&gt;Tu veux savoir les utiliser ?  
+			Envoie CSS au 7 1718.&lt;/p&gt;
+		&lt;div&gt;
+			&lt;p&gt;&lt;img src="../exemples/img/yoda.jpg"&gt; 
+				Le côté obscur des CSS redouter tu dois.&lt;/p&gt;
+	    	&lt;p&gt;&lt;img src="../exemples/img/darkv.jpg"&gt; 
+				Les CSS ont vraiment transformé ma vie.&lt;/p&gt;
+	    	&lt;p&gt;&lt;img src="../exemples/img/gandalf.jpg"&gt; 
+				Bien sûr, moi aussi j'utilise les CSS !&lt;/p&gt;
+	  	&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<div class="dom-schema" id="dom_sel_type">
+				<div class="dom-legende">Seule la partie body de la page est
+					représentée. Les feuilles texte ne sont pas représentées.</div>
+				<img src="../cssimg/dom_sel_type.png" width="308" height="130">
+			</div>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a class="TEST-lien-dom" title="Afficher le DOM"
+					onclick="top.FP.Voir.showDOM('dom_sel_type')"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* Sélectionner tous les p du document */
+p { 
+	border: 2px solid red; 
+}
+
+/* Sélectionner tous les h3 du document */
+h3 {
+	background: red;
+}</textarea>
+			</form>
+
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<a id="sel_classe"></a>
+		<h3>Sélecteur de classe</h3>
+
+		<section>
+			<div class="bloc-syntaxe">
+				<p>
+					<span class="lib-syntaxe">Syntaxe </span><strong><code>.nom_de_classe</code></strong>
+				</p>
+
+				<pre data-code="CSS">
+.remarque {
+	border: 1px solid;
+	font-size: 0.8em;
+	padding: 10px;
+}</pre>
+			</div>
+
+
+			<p>
+				Un sélecteur de classe sélectionne tous les éléments du document <abbr
+					title="HyperText Markup Language">HTML</abbr> qui ont un attribut <code>class</code>
+				dont la valeur contient <code>nom_de_classe</code>.
+			</p>
+			<p>
+				Ces éléments peuvent être n'importe quel <a
+					onclick="top.FP.Voir.showPageTech('elements', '')">élément HTML</a>,
+				situés à n'importe quel niveau d'imbrication.
+			</p>
+
+			<div class="fp-warning fp-clear">
+				<p>
+					La définition du nom de la classe dans le code <abbr
+						title="Cascading Style Sheets">CSS</abbr> DOIT être précédé d'un
+					point (<code><strong>.</strong></code>). Il ne doit pas y avoir
+					d'espace ou de tabulation entre ce point et le nom de la classe.
+				</p>
+
+				<p>
+					Dans le code <abbr title="HyperText Markup Language">HTML</abbr>,
+					le nom de la classe doit être utilisé SANS le point.
+					<br>
+					<code>&lt;p class="remarque"&gt;C'est une remarque
+						importante.&lt;/p&gt;</code>
+				</p>
+			</div>
+
+			<a id="token_identifiant"></a>
+			<div class="fp-puce">
+				<!-- 
+				http://www.w3.org/TR/CSS21/grammar.html
+				http://mathiasbynens.be/notes/css-escapes 
+				http://mathiasbynens.be/notes/html5-id-class
+				-->
+				<p>
+					Suivant les <a
+						href="http://www.w3.org/TR/css3-syntax/#token-diagrams"
+						target="_blank">spécifications du W3C</a>, un nom de classe (ou
+					d'identifiant) peut être constitué des caractères décrits dans le
+					schéma suivant :
+				</p>
+
+				<figure>
+					<img src="../cssimg/token_identifiant.png" width="590" height="83">
+					<figcaption>composition d'un identifiant CSS</figcaption>
+				</figure>
+
+				<p>
+					Le nom peut commencer éventuellement par un tiret, suivi d'un
+					caractère alphabétique ou d'un caractère non-ascii (&gt; à U+0079)
+					ou d'un caractère en hexadecimal ('escape') ou d'un tiret souligné
+					(underscore).
+					<br>
+					On aura ensuite autant de caractères alphabétiques ou non-ascii
+					(&gt; à U+0079) ou en hexadecimal ('escape') ou de tirets ou de
+					tirets soulignés ou de chiffres que l'on veut.
+					<br>
+					Par exemple <strong><code>.♥</code></strong> est un nom de classe
+					(ou d'identifiant) tout à fait valide, tout comme <code>.\3A
+						\)</code> ou <strong><code>.☺☃</code></strong>.
+				</p>
+
+				<p class="fp-bot0">Pour être à l'abri de tout problème
+					d'interprétation, je vous conseille de nommer vos classes (ou vos
+					identifiants) toujours en minuscules, sans caractères accentués, de
+					la façon suivante :</p>
+				<ul>
+					<li>un caractère alphabétique,</li>
+					<li>autant de caractères alphabétiques, tirets, tirets
+						soulignés, chiffres que nécessaire.</li>
+				</ul>
+			</div>
+
+			<p>Une classe peut être affectée à autant d'éléments différents
+				que l'on veut et la même classe peut s'appliquer indiféremment à
+				tout type d'élément.</p>
+
+			<p>
+				L'attribut <code>class</code> d'un élément <abbr
+					title="HyperText Markup Language">HTML</abbr> peut contenir
+				plusieurs noms de classe, séparé par un espace. L'élément aura les
+				styles cumulés de toutes ces classes.
+				<br>
+				<code>&lt;p class="remarque rouge important"&gt;C'est très
+					très très utile.&lt;/p&gt;</code>
+			</p>
+
+
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : sélecteur de classe
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3 class="avec-bord"&gt;L'Arrière des Etoiles&lt;/h3&gt;
+		&lt;p&gt;Les CSS sont l'arme secrète de la Force !&lt;/p&gt;
+		&lt;p class="en-rouge"&gt;Tu veux savoir les utiliser ?  
+			Envoie CSS au 7 1718.&lt;/p&gt;
+		&lt;div&gt;
+			&lt;p&gt;&lt;img src="../exemples/img/yoda.jpg"&gt; 
+				Le côté obscur des CSS redouter tu dois.&lt;/p&gt;
+	    	&lt;p class="en-rouge avec-bord"&gt;
+				&lt;img src="../exemples/img/darkv.jpg"&gt; 
+				Les CSS ont vraiment transformé ma vie.&lt;/p&gt;
+	    	&lt;p&gt;&lt;img src="../exemples/img/gandalf.jpg"&gt; 
+				Bien sûr, moi aussi j'utilise les CSS !&lt;/p&gt;
+	  	&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<div class="dom-schema" id="dom_sel_classe">
+				<div class="dom-legende">Seule la partie body de la page est
+					représentée. Les feuilles texte ne sont pas représentées.</div>
+				<img src="../cssimg/dom_sel_classe.png" width="308" height="130">
+			</div>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a class="TEST-lien-dom" title="Afficher le DOM"
+					onclick="top.FP.Voir.showDOM('dom_sel_classe')"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* Définit la classe en-rouge */
+.en-rouge { 
+	color: red;
+}
+
+/* Définit la classe avec-bord */
+.avec-bord {
+	border: 2px solid red;
+}</textarea>
+			</form>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<a id="sel_id"></a>
+		<h3>Sélecteur d'identifiant</h3>
+
+		<section>
+			<div class="bloc-syntaxe">
+				<p>
+					<span class="lib-syntaxe">Syntaxe </span><strong><code>#nom_identifiant</code></strong>
+				</p>
+
+				<pre data-code="CSS">
+#moi {
+	border: 1px solid;
+	font-size: 0.8em;
+	padding: 10px;
+}</pre>
+			</div>
+
+			<p>
+				Un sélecteur d'identifiant sélectionne l'élément du document <abbr
+					title="HyperText Markup Language">HTML</abbr> qui a un attribut <code>id</code>
+				dont la valeur est <code>nom_identifiant</code>.
+			</p>
+
+			<p>
+				Cet élément peut être n'importe quel <a
+					onclick="top.FP.Voir.showPageTech('elements', '')">élément HTML</a>,
+				situé à n'importe quel niveau d'imbrication.
+			</p>
+
+			<div class="fp-warning fp-clear">
+				<p>
+					La définition du nom de l'identifiant dans le code <abbr
+						title="Cascading Style Sheets">CSS</abbr> DOIT être précédé d'un
+					dièse (<code><strong>#</strong></code>). Il ne doit pas y avoir
+					d'espace ou de tabulation entre ce diése et le nom de
+					l'identifiant.
+				</p>
+
+				<p>
+					Dans le code <abbr title="HyperText Markup Language">HTML</abbr>,
+					le nom de l'identifiant doit être utilisé SANS le dièse.
+					<br>
+					<code>&lt;p id="moi"&gt;C'est une remarque
+						importante.&lt;/p&gt;</code>
+				</p>
+			</div>
+
+			<p>
+				Un nom d'identifiant obéit aux même règles de grammaire qu'un nom de
+				classe. <a href="#token_identifiant">Voir ci-dessus</a>
+			</p>
+
+			<p>
+				Un identifiant DOIT <strong>être unique</strong> dans un document <abbr
+					title="HyperText Markup Language">HTML</abbr>. Si ce n'est pas le
+				cas, le sélecteur <abbr title="Cascading Style Sheets">CSS</abbr>
+				sélectionnera tous les éléments avec le même identifiant, mais la
+				sélection faite par JavaScript sélectionnera uniquement le 1er
+				élément.
+				<br>
+				Pour éviter tout problème, je vous conseille de respecter la règle
+				de la spécification : <em>"an ID attribute can be used to
+					uniquely identify its element"</em>
+			</p>
+
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : sélecteur d'identifiant
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;L'Arrière des Etoiles&lt;/h3&gt;
+		&lt;p&gt;Les CSS sont l'arme secrète de la Force !&lt;/p&gt;
+		&lt;p&gt;Tu veux savoir les utiliser ?  
+			Envoie CSS au 349 25.&lt;/p&gt;
+		&lt;div&gt;
+			&lt;p id="yoda"&gt;
+				&lt;img src="../exemples/img/yoda.jpg"&gt; 
+				Le côté obscur des CSS redouter tu dois.&lt;/p&gt;
+	    	&lt;p id="vador"&gt;
+				&lt;img src="../exemples/img/darkv.jpg"&gt; 
+				Les CSS ont vraiment transformé ma vie.&lt;/p&gt;
+	    	&lt;p&gt;&lt;img src="../exemples/img/gandalf.jpg"&gt; 
+				Bien sûr, moi aussi j'utilise les CSS !&lt;/p&gt;
+	  	&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<div class="dom-schema" id="dom_sel_id">
+				<div class="dom-legende">Seule la partie body de la page est
+					représentée. Les feuilles texte ne sont pas représentées.</div>
+				<img src="../cssimg/dom_sel_id.png" width="308" height="130">
+			</div>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a class="TEST-lien-dom" title="Afficher le DOM"
+					onclick="top.FP.Voir.showDOM('dom_sel_id')"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* Définit l'identifiant yoda */
+#yoda { 
+	background: lawngreen; 
+}
+
+/* Définit l'identifiant vador */
+#vador {
+	background: black;
+	color: hotpink;
+}</textarea>
+			</form>
+
+		</section>
+
+
+	</div>
+	<footer></footer>
+</body>
+</html>

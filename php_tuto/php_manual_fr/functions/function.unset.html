@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>D&eacute;truit une variable</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.unserialize.html">unserialize</a>
+		</div>
+		<div class="next">
+			<a href="function.var-dump.html">var_dump</a>
+		</div>
+		<div class="up">
+			<a href="ref.var.html">Fonctions de gestion des variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.unset" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">unset</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">unset</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Détruit une variable</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.unset-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><span class="type void">void</span></span> <span
+					class="methodname"><strong>unset</strong></span> ( <span
+					class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$var</code></span>
+				[, <span class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$...</code></span> ]
+				)
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>unset()</strong></span> détruit la ou
+				les variables dont le nom a été passé en argument <em><code
+						class="parameter">var</code></em>.
+			</p>
+			<p class="para">
+				Le comportement de <span class="function"><strong>unset()</strong></span>
+				à l&#039;intérieur d&#039;une fonction peut varier suivant le type
+				de variable que vous voulez détruire.
+			</p>
+			<p class="para">
+				Si une variable globale est détruite avec <span class="function"><strong>unset()</strong></span>
+				depuis une fonction, seule la variable locale sera détruite. La
+				variable globale gardera la valeur acquise avant l&#039;appel à <span
+					class="function"><strong>unset()</strong></span>.
+			<div class="informalexample">
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">destroy_foo</span><span
+								style="color: #007700">()&nbsp;<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;global&nbsp;
+							</span><span style="color: #0000BB">$foo</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;unset(
+							</span><span style="color: #0000BB">$foo</span><span
+								style="color: #007700">);<br />}<br />
+								<br /></span><span style="color: #0000BB">$foo&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'bar'</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">destroy_foo</span><span
+								style="color: #007700">();<br />echo&nbsp;
+							</span><span style="color: #0000BB">$foo</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">L&#039;exemple ci-dessus va afficher :</p>
+			<p class="para">
+			<div class="informalexample">
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+bar
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+			<p class="para">
+				Pour détruire une variable globale à l&#039;intérieur d&#039;une
+				fonction, vous pouvez utiliser le tableau
+				<var class="varname">
+					<var class="varname">
+						<a href="reserved.variables.globals.html" class="classname">$GLOBALS</a>
+					</var>
+				</var>
+				:
+			<div class="informalexample">
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">foo</span><span style="color: #007700">()&nbsp;<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;unset(
+							</span><span style="color: #0000BB">$GLOBALS</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">'bar'</span><span
+								style="color: #007700">]);<br />}<br />
+								<br /></span><span style="color: #0000BB">$bar&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"truc"</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">foo</span><span style="color: #007700">();<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">
+				Si une variable qui est passée par référence est détruite à
+				l&#039;intérieur d&#039;une fonction, seule la variable locale sera
+				détruite. La variable globale conservera la même valeur qu&#039;elle
+				avait avant l&#039;appel de <span class="function"><strong>unset()</strong></span>.
+			
+			<div class="informalexample">
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">foo</span><span style="color: #007700">(&amp;</span><span
+								style="color: #0000BB">$bar</span><span style="color: #007700">)&nbsp;<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;unset(
+							</span><span style="color: #0000BB">$bar</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$bar&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"blah"</span><span style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #0000BB">$bar&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'truc'</span><span style="color: #007700">;<br />echo&nbsp;
+							</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$bar</span><span
+								style="color: #DD0000">\n"</span><span style="color: #007700">;<br />
+								<br /></span><span style="color: #0000BB">foo</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$bar</span><span
+								style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$bar</span><span
+								style="color: #DD0000">\n"</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">L&#039;exemple ci-dessus va afficher :</p>
+			<p class="para">
+			<div class="informalexample">
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+truc
+truc
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+			<p class="para">
+				Si une variable statique est détruite à l&#039;intérieur d&#039;une
+				fonction <span class="function"><strong>unset()</strong></span>
+				détruira la variable seulement dans le contexte du reste de la
+				fonction. Les appels suivants restaureront la valeur précédente de
+				la variable.
+			<div class="informalexample">
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">foo</span><span style="color: #007700">()<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;
+							</span><span style="color: #0000BB">$bar</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$bar</span><span
+								style="color: #007700">++;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Avant&nbsp;unset&nbsp;:&nbsp;</span><span
+								style="color: #0000BB">$bar</span><span style="color: #DD0000">,&nbsp;"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;unset(
+							</span><span style="color: #0000BB">$bar</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$bar&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">23</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"après&nbsp;unset&nbsp;:&nbsp;</span><span
+								style="color: #0000BB">$bar</span><span style="color: #DD0000">\n"</span><span
+								style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #0000BB">foo</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">foo</span><span style="color: #007700">();<br /></span><span
+								style="color: #0000BB">foo</span><span style="color: #007700">();<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">L&#039;exemple ci-dessus va afficher :</p>
+			<p class="para">
+			<div class="informalexample">
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Avant unset : 1, après unset: 23
+Avant unset : 2, après unset: 23
+Avant unset : 3, après unset: 23
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.unset-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">var</code></em></span>
+				<dd>
+
+					<p class="para">La variable à détruire.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">...</code></em></span>
+				<dd>
+
+					<p class="para">Autres variables...</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.unset-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Aucune valeur n&#039;est retournée.</p>
+		</div>
+
+
+		<div class="refsect1 changelog" id="refsect1-function.unset-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.0.1</td>
+						<td>Ajout du support des arguments multiples.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.unset-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4927">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>unset()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Destruction&nbsp;d'une&nbsp;seule&nbsp;variable<br /></span><span
+								style="color: #007700">unset(</span><span style="color: #0000BB">$foo</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Destruction&nbsp;d'un&nbsp;élément&nbsp;de&nbsp;tableau<br /></span><span
+								style="color: #007700">unset(</span><span style="color: #0000BB">$bar</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">'quux'</span><span
+								style="color: #007700">]);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Destruction&nbsp;de&nbsp;plusieurs&nbsp;variables<br /></span><span
+								style="color: #007700">unset(</span><span style="color: #0000BB">$foo1</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$foo2</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$foo3</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			<div class="example" id="example-4928">
+				<p>
+					<strong>Exemple #2 Exemple avec un transtypage <em>(unset)</em></strong>
+				</p>
+				<div class="example-contents">
+					<p>
+						Le transtypage <em>(unset)</em> est souvent confondu avec la
+						fonction <span class="function"><strong>unset()</strong></span>.
+						Le transtypage <em>(unset)</em> sert uniquement à transtyper en
+						type <em>NULL</em>. Il n&#039;altère pas la variable transtypée.
+					</p>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$name&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'Felipe'</span><span
+								style="color: #007700">;<br />
+								<br /></span><span style="color: #0000BB">var_dump</span><span
+								style="color: #007700">((unset)&nbsp;</span><span
+								style="color: #0000BB">$name</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$name</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+NULL
+string(6) &quot;Felipe&quot;
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.unset-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Comme
+						ceci est une structure du langage, et non pas une fonction, il
+						n&#039;est pas possible de l&#039;appeler avec les <a
+						href="functions.variable-functions.html" class="link">fonctions
+							variables</a>.
+					</span>
+				</p>
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Il est possible de détruire n&#039;importe
+					quelle propriété visible dans le contexte courant.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Il n&#039;est pas possible de détruire la variable spéciale <em>$this</em>
+					à l&#039;intérieur d&#039;une méthode d&#039;un objet, depuis PHP
+					5.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Lors de l&#039;utilisation de cette fonction sur des propriétés
+					d&#039;objet inaccessibles, la méthode magique <a
+						href="language.oop5.overloading.html#object.unset" class="link">__unset</a>
+					sera appelée, si elle existe.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.unset-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.isset.html" class="function" rel="rdfs-seeAlso">isset()</a>
+						- D&eacute;termine si une variable est d&eacute;finie et est
+						diff&eacute;rente de NULL</span></li>
+				<li class="member"><a
+					href="language.oop5.overloading.html#object.unset" class="link">__unset()</a></li>
+				<li class="member"><span class="function"><a
+						href="function.empty.html" class="function" rel="rdfs-seeAlso">empty()</a>
+						- D&eacute;termine si une variable est vide</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-splice.html" class="function"
+						rel="rdfs-seeAlso">array_splice()</a> - Efface et remplace une
+						portion de tableau</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.unserialize.html">unserialize</a>
+		</div>
+		<div class="next">
+			<a href="function.var-dump.html">var_dump</a>
+		</div>
+		<div class="up">
+			<a href="ref.var.html">Fonctions de gestion des variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

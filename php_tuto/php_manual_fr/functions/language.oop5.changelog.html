@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Modifications en POO (Programmation orient&eacute;e
+	objet)</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.oop5.serialization.html">S&eacute;rialisation
+				d'objets</a>
+		</div>
+		<div class="next">
+			<a href="language.namespaces.html">Les espaces de noms</a>
+		</div>
+		<div class="up">
+			<a href="language.oop5.html">Les classes et les objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.oop5.changelog" class="sect1">
+		<h2 class="title">Modifications en POO (Programmation orientée
+			objet)</h2>
+		<p class="para">Les changements du modèle objet de PHP 5 sont
+			recensés ici. Plus d&#039;informations et quelques notes peuvent être
+			trouvées dans la documentation sur la POO en PHP5.</p>
+		<p class="para">
+		<table class="doctable informaltable">
+
+			<thead>
+				<tr>
+					<th>Version</th>
+					<th>Description</th>
+				</tr>
+
+			</thead>
+
+			<tbody class="tbody">
+				<tr>
+					<td>5.4.0</td>
+					<td>Changement : Si une classe <a
+						href="language.oop5.abstract.html" class="link">abstraite</a>
+						définit une signature pour le constructeur, celle-ci sera
+						désormais appliquée.
+					</td>
+				</tr>
+
+				<tr>
+					<td>5.3.3</td>
+					<td>Changement : Les méthodes ayant le même nom que la classe
+						dans un <a href="language.namespaces.html" class="link">espace
+							de noms</a> ne sont plus considérées comme <a
+						href="language.oop5.decon.html" class="link">constructeur</a>. Ce
+						changement n&#039;affecte pas les classes sans espace de nom.
+					</td>
+				</tr>
+
+				<tr>
+					<td>5.3.0</td>
+					<td>Changement : les classes qui implémentent une interface
+						avec des méthodes ayant des valeurs par défaut définies dans leurs
+						prototypes ne sont plus obligées de respecter les valeurs par
+						défaut définies dans l&#039;interface.</td>
+				</tr>
+
+				<tr>
+					<td>5.3.0</td>
+					<td>Changement : Il est maintenant possible de référencer une
+						classe en utilisant une variable (ex: <em>echo
+							$classname::constant;</em>). La valeur de la variable ne peut être un
+						mot-clé (ex: <em>self</em>, <em>parent</em> ou <em>static</em>).
+					</td>
+				</tr>
+
+				<tr>
+					<td>5.3.0</td>
+					<td>Changement : Une erreur de niveau <strong><code>E_WARNING</code></strong>
+						est levée si les méthodes magiques de <a
+						href="language.oop5.overloading.html" class="link">surcharge</a>
+						sont déclarées comme <a href="language.oop5.static.html"
+						class="link">statiques</a>. La visibilité publique est aussi
+						requise.
+					</td>
+				</tr>
+
+				<tr>
+					<td>5.3.0</td>
+					<td>Changement : Avant 5.3.0, les exceptions lancées dans la
+						fonction <span class="function"><a
+							href="function.autoload.html" class="function">__autoload()</a></span>
+						ne pouvaient être traitées dans un bloc <a
+						href="language.exceptions.html" class="link">catch</a> et
+						résultaient en une erreur fatale. A présent, les exceptions levées
+						dans la fonction __autoload peuvent être attrapées dans un bloc <a
+						href="language.exceptions.html" class="link">catch</a> et
+						traitées. Si une exception personnalisée est lancée, alors sa
+						classe doit être disponible. La fonction __autoload peut par
+						contre être utilisée recursivement pour autocharger la classe
+						d&#039;exception personnalisée.
+					</td>
+				</tr>
+
+				<tr>
+					<td>5.3.0</td>
+					<td>Ajout de la méthode magique <a
+						href="language.oop5.overloading.html" class="link">__callStatic</a>.
+					</td>
+				</tr>
+
+				<tr>
+					<td>5.3.0</td>
+					<td>Ajout : <a
+						href="language.types.string.html#language.types.string.syntax.heredoc"
+						class="link">heredoc</a> et <a
+						href="language.types.string.html#language.types.string.syntax.heredoc"
+						class="link">nowdoc</a> sont supportées pour définir les <em
+						class="emphasis">constantes</em> de classes et les propriétés.
+						Note: Les valeurs heredoc ne doivent pas contenir de variables.
+					</td>
+				</tr>
+
+				<tr>
+					<td>5.3.0</td>
+					<td>Ajout du <a href="language.oop5.late-static-bindings.html"
+						class="link">Late Static Bindings</a> (résolution statique
+						tardive).
+					</td>
+				</tr>
+
+				<tr>
+					<td>5.3.0</td>
+					<td>Ajout de la méthode magique <a
+						href="language.oop5.magic.html#object.invoke" class="link">__invoke()</a>.
+					</td>
+				</tr>
+
+				<tr>
+					<td>5.2.0</td>
+					<td>Changement : La méthode magique <a
+						href="language.oop5.magic.html#object.tostring" class="link">__toString()</a>
+						n&#039;était appelée que lors des appels à <span class="function"><a
+							href="function.echo.html" class="function">echo</a></span> ou <span
+						class="function"><a href="function.print.html"
+							class="function">print</a></span>. Maintenant, elle l&#039;est dans
+						n&#039;importe quel contexte de chaîne (ex: dans <span
+						class="function"><a href="function.printf.html"
+							class="function">printf()</a></span> avec <em>%s</em>) mais pas dans les
+						autres contextes (ex: avec le modificateur <em>%d</em>). Depuis
+						PHP 5.2.0, convertir un objet sans méthode<em>__toString</em> en
+						chaîne émet une erreur <strong><code>E_RECOVERABLE_ERROR</code></strong>.
+					</td>
+				</tr>
+
+				<tr>
+					<td>5.1.3</td>
+					<td>Changement : Dans les versions antérieures de PHP 5,
+						l&#039;utilisation de <em>var</em> était considérée comme obsolète
+						et envoyait une erreur <strong><code>E_STRICT</code></strong>. Ce
+						n&#039;est plus le cas.
+					</td>
+				</tr>
+
+				<tr>
+					<td>5.1.0</td>
+					<td>Changement : La méthode magique statique <a
+						href="language.oop5.magic.html#object.set-state" class="link">__set_state()</a>
+						est maintenant appelée pour les classes exportées via <span
+						class="function"><a href="function.var-export.html"
+							class="function">var_export()</a></span>.
+					</td>
+				</tr>
+
+				<tr>
+					<td>5.1.0</td>
+					<td>Ajout des méthodes magiques <a
+						href="language.oop5.overloading.html#object.isset" class="link">__isset()</a>
+						et <a href="language.oop5.overloading.html#object.unset"
+						class="link">__unset()</a>.
+					</td>
+				</tr>
+
+			</tbody>
+
+		</table>
+
+		</p>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.oop5.serialization.html">S&eacute;rialisation
+				d'objets</a>
+		</div>
+		<div class="next">
+			<a href="language.namespaces.html">Les espaces de noms</a>
+		</div>
+		<div class="up">
+			<a href="language.oop5.html">Les classes et les objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

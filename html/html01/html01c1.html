@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Imbrications</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<h3>Imbrications</h3>
+		<section>
+			<p class="fp-p-raz">
+				Le contenu d'un élément peut être du contenu simple, mais également
+				<strong>un autre élément</strong>. C'est ce qui fait toute la
+				puissance de <abbr title="HyperText Markup Language">HTML</abbr> et des langages de balisages.
+			</p>
+
+			<p class="fp-p-raz">Quand on reprend notre exemple de document
+				simple, on peut clairement voir l'imbrication des éléments car elle
+				est intentionnellement et physiquement marquée par l'indentation du
+				code.</p>
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : une page html
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Exemple de page&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Je suis un exemple de document HTML.&lt;/p&gt;
+		&lt;ul&gt;
+			&lt;li&gt;On utilise &lt;strong&gt;des balises&lt;/strong&gt; pour
+				marquer la structure du	document.&lt;/li&gt;
+			&lt;li&gt;Les balises ont une &lt;strong&gt;syntaxe 
+				particulière&lt;/strong&gt;.&lt;/li&gt;
+			&lt;li&gt;Elles permettent de donner du sens aux 
+				informations en	définissant par exemple ici
+				un paragraphe et une liste.&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;p&gt;&lt;img src="info.png"&gt;C'est le 
+			&lt;a href="http://w3.org"&gt;W3C&lt;/a&gt; qui définit 
+			les balises.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p class="fp-bot0 fp-p-raz">Dans l'exemple ci-dessus, on trouve
+				les imbrications suivantes :</p>
+			<ul>
+				<li>l'élément <code>html</code> contient deux éléments : <code>head</code>
+					et <code>body</code>,
+				</li>
+				<li>l'élément <code>head</code> contient un élément : <code>title</code>,
+				</li>
+				<li>l'élément <code>body</code> contient trois éléments : deux
+					<code>p</code> et un <code>ul</code> qui contient trois éléments<code>li</code>.
+				</li>
+				<li>certains éléments <code>li</code> contiennent un élément <code>strong</code>.
+				</li>
+				<li>un élément <code>p</code> contient deux élément : <code>img</code>
+					et <code>a</code>.
+				</li>
+			</ul>
+
+			<p>Ce principe des poupées russes peut être schématisé
+				graphiquement de la façon suivante :</p>
+			<figure>
+				<img src="../htmlimg/dom.png" width="600" height="265">
+				<figcaption> graphe d'imbrications</figcaption>
+			</figure>
+
+			<p class="fp-p-raz">
+				Ce type de représentation est appelé un <strong>arbre DOM</strong>
+				(Document Object Model). Il est très utilisé pour définir les
+				héritages des styles de mise en forme que l'on pourra appliquer à
+				tel ou tel noeud du graphe, ou avec JavaScript pour atteindre tel ou
+				tel élément, en modifier dynamiquement les noeuds et donc la
+				structure du document.
+			</p>
+
+			<p>
+				Il peut y avoir <strong>autant de niveaux d'imbrication que
+					l'on veut</strong> dans un document. Bien sûr plus les niveaux
+				d'imbrications seront nombreux et plus le travail du navigateur pour
+				<a href="http://fr.wikipedia.org/wiki/Analyse_syntaxique"
+					target="_blank">parser le code <abbr title="HyperText Markup Language">HTML</abbr></a> sera difficile et plus
+				l'arbre <abbr title="Document Object Model">DOM</abbr> sera complexe. L'arbre <abbr title="Document Object Model">DOM</abbr> étant stocké en mémoire sous
+				la forme d'une structure de données, il est toujours avantageux que
+				celui-ci soit le plus simple possible. Tous les traitement en se
+				feront également plus vite : le parsing du code <abbr title="HyperText Markup Language">HTML</abbr>, le calcul des
+				héritages de styles de mise en forme, l'accès aux objets du graphe
+				par JavaScript.
+			</p>
+
+			<div class="fp-puce">
+				<p>
+					Il faut veiller à réaliser des <strong>imbrications
+						correctes</strong> (et pas des chevauchements) : l'élément A est imbriqué
+					dans l'élément B quand les balises de début et de fin de l'élément
+					A sont entièrement contenues dans les balises de début et de fin de
+					l'élément B
+				</p>
+				<pre data-code="HTML">
+&lt;ul&gt;
+	&lt;li&gt;Des balises sont utilisées pour marquer
+		la structure du document.
+	&lt;/li&gt;
+&lt;/ul&gt;	
+</pre>
+				<p>
+					L'élément <code>li</code> est correctement imbriqué dans l'élément
+					<code>ul</code> car la balise de fermeture <code>&lt;/li&gt;</code>
+					vient bien avant <code>&lt;/ul&gt;</code>;. Autrement dit l'élément
+					<code>li</code> est totalement contenu dans l'élément <code>ul</code>
+				</p>
+
+				<pre data-code="HTML">
+&lt;ul&gt;
+	&lt;li&gt;Des balises sont utilisées pour marquer
+		la structure du document.
+&lt;/ul&gt;
+&lt;/li&gt;
+</pre>
+				<p>
+					L'élément <code>li</code> n'est pas correctement imbriqué dans
+					l'élément <code>ul</code> mais le chevauche car la balise <code>&lt;/ul&gt;</code>
+					se trouve entre <code>&lt;li&gt;</code> et <code>&lt;/li&gt;</code>.
+					Aucun élément ne contient totalement l'autre.
+				</p>
+			</div>
+
+			<p>
+				Certains éléments doivent obligatoirement être <strong>imbriqués
+					dans un certain ordre</strong>. C'est le cas par exemple pour réaliser des
+				listes ou des tableaux de données.
+			</p>
+
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

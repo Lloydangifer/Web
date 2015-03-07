@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Compacte des donn&eacute;es dans une cha&icirc;ne binaire</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.ignore-user-abort.html">ignore_user_abort</a>
+		</div>
+		<div class="next">
+			<a href="function.php-check-syntax.html">php_check_syntax</a>
+		</div>
+		<div class="up">
+			<a href="ref.misc.html">Fonctions diverses</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.pack" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">pack</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">pack</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Compacte des données dans une chaîne
+					binaire</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.pack-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>pack</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$format</code></span> [, <span class="methodparam"><span
+					class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$args</code></span>
+				[, <span class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$...</code></span>
+				]] )
+			</div>
+
+			<p class="para rdfs-comment">
+				Compacte les arguments <em><code class="parameter">args</code></em>
+				dans une chaîne binaire, suivant le format <em><code
+						class="parameter">format</code></em>.
+			</p>
+			<p class="para">
+				Le concept vient du Perl et tout le formatage fonctionne de la même
+				façon qu&#039;en Perl, mais quelques formats manquent encore (comme
+				&quot;<em>u</em>&quot;).
+			</p>
+			<p class="para">
+				Notez que la distinction entre signé et non signé n&#039;affecte que
+				la fonction <span class="function"><a
+					href="function.unpack.html" class="function">unpack()</a></span>, tandis
+				que la fonction <span class="function"><strong>pack()</strong></span>
+				fournira le même résultat pour les deux formats.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.pack-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">format</code></em></span>
+				<dd>
+
+					<p class="para">
+						La <a href="language.types.string.html" class="link">chaîne de
+							caractères</a> <em><code class="parameter">format</code></em>
+						consiste en des codes de format suivis par un argument répéteur
+						optionnel. Le répéteur peut être soit une valeur entière, soit <em>*</em>
+						pour une répétition jusqu&#039;à la fin des données
+						d&#039;entrées. Pour a, A, h, H, le répéteur spécifie combien de
+						caractères d&#039;une donnée est pris, pour @, c&#039;est la
+						position absolue où l&#039;on insère les prochaines données, pour
+						tout le reste, le répéteur spécifie combien d&#039;arguments de
+						données sont consommés et compactés dans la chaîne binaire
+						résultante.
+					</p>
+					<p class="para">Les formats actuellement acceptés sont :
+					<table class="doctable table">
+						<caption>
+							<strong>Caractères de formatage pour <span
+								class="function"><strong>pack()</strong></span></strong>
+						</caption>
+
+						<thead>
+							<tr>
+								<th>Code</th>
+								<th>Description</th>
+							</tr>
+
+						</thead>
+
+						<tbody class="tbody">
+							<tr>
+								<td>a</td>
+								<td>NUL - Une chaîne complétée avec <strong><code>NULL</code></strong></td>
+							</tr>
+
+							<tr>
+								<td>A</td>
+								<td>SPACE - Une chaîne complétée avec un espace</td>
+							</tr>
+
+							<tr>
+								<td>h</td>
+								<td>Chaîne hexadécimale h, bit de poids faible en premier</td>
+							</tr>
+
+							<tr>
+								<td>H</td>
+								<td>Chaîne hexadécimale H, bit de poids fort en premier</td>
+							</tr>
+
+							<tr>
+								<td>c</td>
+								<td>Caractère signé</td>
+							</tr>
+
+							<tr>
+								<td>C</td>
+								<td>Caractère non signé</td>
+							</tr>
+
+							<tr>
+								<td>s</td>
+								<td>entier court signé (toujours sur 16 bits, ordre des
+									bits dépendant de la machine)</td>
+							</tr>
+
+							<tr>
+								<td>S</td>
+								<td>entier court non signé (toujours 16 bits, ordre des
+									bits dépendant de la machine)</td>
+							</tr>
+
+							<tr>
+								<td>n</td>
+								<td>entier cours non signé (toujours 16 bits, ordre des
+									bits big endian)</td>
+							</tr>
+
+							<tr>
+								<td>v</td>
+								<td>entier cours non signé (toujours 16 bits, ordre des
+									bits little endian)</td>
+							</tr>
+
+							<tr>
+								<td>i</td>
+								<td>entier signé (taille et ordre des bits dépendants de la
+									machine)</td>
+							</tr>
+
+							<tr>
+								<td>I</td>
+								<td>entier non signé (taille et ordre des bits dépendants
+									de la machine)</td>
+							</tr>
+
+							<tr>
+								<td>l</td>
+								<td>entier long signé (toujours 32 bits, ordre des bits
+									dépendant de la machine)</td>
+							</tr>
+
+							<tr>
+								<td>L</td>
+								<td>entier long non signé (toujours 32 bits, ordre des bits
+									dépendant de la machine)</td>
+							</tr>
+
+							<tr>
+								<td>N</td>
+								<td>entier long non signé (toujours 32 bits, ordre des bits
+									big endian)</td>
+							</tr>
+
+							<tr>
+								<td>V</td>
+								<td>entier long non signé (toujours 32 bits, ordre des bits
+									little endian)</td>
+							</tr>
+
+							<tr>
+								<td>f</td>
+								<td>nombre à virgule flottante (taille et représentation
+									dépendantes de la machine)</td>
+							</tr>
+
+							<tr>
+								<td>d</td>
+								<td>nombre à virgule flottante double (taille et
+									représentation dépendantes de la machine)</td>
+							</tr>
+
+							<tr>
+								<td>x</td>
+								<td>caractère NUL</td>
+							</tr>
+
+							<tr>
+								<td>X</td>
+								<td>Recule d&#039;un caractère</td>
+							</tr>
+
+							<tr>
+								<td>@</td>
+								<td>Remplit avec des NUL jusqu&#039;à la position absolue</td>
+							</tr>
+
+						</tbody>
+
+					</table>
+
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">args</code></em></span>
+				<dd>
+
+					<p class="para"></p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.pack-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne une <a href="language.types.string.html" class="link">chaîne
+					de caractères</a> binaire contenant les données.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.pack-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-3510">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>pack()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$binarydata&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">pack</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"nvc*"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0x1234</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0x5678</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">65</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">66</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>La chaîne binaire résultante aura 6 octets de long, et
+						contiendra la séquence 0x12, 0x34, 0x78, 0x56, 0x41, 0x42.</p>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.pack-notes">
+			<h3 class="title">Notes</h3>
+			<div class="caution">
+				<strong class="caution">Attention</strong>
+				<p class="para">
+					Notee que PHP stocke en interne les valeurs <span class="type"><a
+						href="language.types.integer.html" class="type integer">integer</a></span>
+					comme valeurs signées dépendantes de la machine (type C <em>long</em>).
+					Les opérations sur les entiers qui mènent à des chiffres en dehors
+					de l&#039;espace de définition de l&#039;<span class="type"><a
+						href="language.types.integer.html" class="type integer">integer</a></span>
+					seront stockées dans des <span class="type"><a
+						href="language.types.float.html" class="type float">float</a></span>.
+					Lors de l&#039;empaquetage de ses flottants en entiers, ils sont
+					transtypés vers le type entier. Ceci peut éventuellement mener à
+					une représentation inattendue des octets.
+				</p>
+				<p class="para">
+					Le cas le plus classique est l&#039;empaquetage de nombres non
+					signés qui seraient représentables dans le type <span class="type"><a
+						href="language.types.integer.html" class="type integer">integer</a></span>
+					si celui-ci était non signé. Sur les systèmes ayant un <span
+						class="type"><a href="language.types.integer.html"
+						class="type integer">integer</a></span> d&#039;une taille de 32-bits, le
+					transtypage résulte en un octet identique que si le type <span
+						class="type"><a href="language.types.integer.html"
+						class="type integer">integer</a></span> était non signé (même si cela
+					reste dépendant de l&#039;implémentation non signé vers signé, du
+					standard C). Sur les systèmes ayant un <span class="type"><a
+						href="language.types.integer.html" class="type integer">integer</a></span>
+					d&#039;une taille de 64-bits, le <span class="type"><a
+						href="language.types.float.html" class="type float">float</a></span>
+					n&#039;a souvent pas une mantisse assez large pour contenir la
+					valeur sans perte de précision. Si ces systèmes possèdent aussi un
+					type C natif <em>int</em> 64-bits (la plupart des *NIX ne
+					l&#039;ont pas), le seul moyen d&#039;utiliser le format de
+					paquetage <em>I</em> dans les hautes valeurs est de créer des
+					valeurs <span class="type"><a
+						href="language.types.integer.html" class="type integer">integer</a></span>
+					négatives avec la même représentation des octets que la valeur non
+					signées voulue correspondante.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.pack-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.unpack.html" class="function" rel="rdfs-seeAlso">unpack()</a>
+						- D&eacute;conditionne des donn&eacute;es depuis une cha&icirc;ne
+						binaire</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.ignore-user-abort.html">ignore_user_abort</a>
+		</div>
+		<div class="next">
+			<a href="function.php-check-syntax.html">php_check_syntax</a>
+		</div>
+		<div class="up">
+			<a href="ref.misc.html">Fonctions diverses</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

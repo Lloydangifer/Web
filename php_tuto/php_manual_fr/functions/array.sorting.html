@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Tri des tableaux</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="array.constants.html">Constantes pr&eacute;-d&eacute;finies</a></div>
+ <div class="next"><a href="ref.array.html">Fonctions sur les tableaux</a></div>
+ <div class="up"><a href="book.array.html">Les tableaux</a></div><div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="array.sorting" class="chapter">
+ <h1>Tri des tableaux</h1>
+
+ <p class="para">
+  PHP dispose de nombreuses fonctions pour trier les tableaux, 
+  et cette section du manuel va vous aider à vous y retrouver.
+ </p>
+ <p class="para">
+  Les différences principales sont : 
+ </p>
+ <p class="para">
+  <ul class="simplelist">
+   <li class="member">
+    Certains des tris de <a href="language.types.array.html" class="link">tableau</a> sont basés sur les clés, tandis que les
+    autres sont basés sur les valeurs : 
+    <em>$array[&#039;cle&#039;] = &#039;valeur&#039;;</em>
+   </li>
+   <li class="member">
+    Certains tris maintiennent la corrélation entre les clés 
+    et les valeurs, et d&#039;autres non, ce qui signifie que les clés
+    sont généralement réaffectées numériquement (0,1,2 ...)
+   </li>
+   <li class="member">
+    L&#039;ordre du tri peut être : alphabétique, croissant, décroissant, 
+    numérique, naturel, aléatoire ou personnalisé.
+   </li>
+   <li class="member">
+    Note : toutes ces fonctions de tris travaillent sur le tableau
+    lui-même, contrairement à la pratique normale qui serait de 
+    retourner le tableau trié.
+   </li>
+   <li class="member">
+    Si une de ces fonctions de tri évalue 2 membres comme égaux, alors l&#039;ordre
+    est indéfini (le tri n&#039;est pas stable).
+   </li>
+  </ul>
+ </p>
+ <p class="para">
+  <table class="doctable table">
+   <caption><strong>Attributs de fonctions de tri</strong></caption>
+   
+    <thead>
+     <tr>
+      <th>Nom de la fonction</th>
+      <th>Tri par</th>
+      <th>Association clé-valeur</th>
+      <th>Ordre de tri</th>
+      <th>Fonctions associée</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td> <span class="function"><a href="function.array-multisort.html" class="function">array_multisort()</a></span></td>
+      <td>valeur</td>
+      <td>associatif oui, numérique non</td>
+      <td>premier tableau, ou bien options de tri</td>
+      <td> <span class="function"><a href="function.array-walk.html" class="function">array_walk()</a></span></td>
+     </tr>
+
+     <tr>
+      <td> <span class="function"><a href="function.asort.html" class="function">asort()</a></span></td>
+      <td>valeur</td>
+      <td>oui</td>
+      <td>croissant</td>
+      <td> <span class="function"><a href="function.arsort.html" class="function">arsort()</a></span></td>
+     </tr>
+
+     <tr>
+      <td> <span class="function"><a href="function.arsort.html" class="function">arsort()</a></span></td>
+      <td>valeur</td>
+      <td>oui</td>
+      <td>décroissant</td>
+      <td> <span class="function"><a href="function.asort.html" class="function">asort()</a></span></td>
+     </tr>
+
+     <tr>
+      <td> <span class="function"><a href="function.krsort.html" class="function">krsort()</a></span></td>
+      <td>clé</td>
+      <td>oui</td>
+      <td>décroissant</td>
+      <td> <span class="function"><a href="function.ksort.html" class="function">ksort()</a></span></td>
+     </tr>
+
+     <tr>
+      <td> <span class="function"><a href="function.ksort.html" class="function">ksort()</a></span></td>
+      <td>clé</td>
+      <td>oui</td>
+      <td>croissant</td>
+      <td> <span class="function"><a href="function.asort.html" class="function">asort()</a></span></td>
+     </tr>
+
+     <tr>
+      <td> <span class="function"><a href="function.natcasesort.html" class="function">natcasesort()</a></span></td>
+      <td>valeur</td>
+      <td>oui</td>
+      <td>naturel, insensible à la casse</td>
+      <td> <span class="function"><a href="function.natsort.html" class="function">natsort()</a></span></td>
+     </tr>
+
+     <tr>
+      <td> <span class="function"><a href="function.natsort.html" class="function">natsort()</a></span></td>
+      <td>valeur</td>
+      <td>oui</td>
+      <td>naturel</td>
+      <td> <span class="function"><a href="function.natcasesort.html" class="function">natcasesort()</a></span></td>
+     </tr>
+
+     <tr>
+      <td> <span class="function"><a href="function.rsort.html" class="function">rsort()</a></span></td>
+      <td>valeur</td>
+      <td>non</td>
+      <td>décroissant</td>
+      <td> <span class="function"><a href="function.sort.html" class="function">sort()</a></span></td>
+     </tr>
+
+     <tr>
+      <td> <span class="function"><a href="function.shuffle.html" class="function">shuffle()</a></span></td>
+      <td>valeur</td>
+      <td>non</td>
+      <td>aléatoire</td>
+      <td> <span class="function"><a href="function.array-rand.html" class="function">array_rand()</a></span></td>
+     </tr>
+
+     <tr>
+      <td> <span class="function"><a href="function.sort.html" class="function">sort()</a></span></td>
+      <td>valeur</td>
+      <td>non</td>
+      <td>croissant</td>
+      <td> <span class="function"><a href="function.rsort.html" class="function">rsort()</a></span></td>
+     </tr>
+
+     <tr>
+      <td> <span class="function"><a href="function.uasort.html" class="function">uasort()</a></span></td>
+      <td>valeur</td>
+      <td>oui</td>
+      <td>Définit par une fonction utilisateur</td>
+      <td> <span class="function"><a href="function.uksort.html" class="function">uksort()</a></span></td>
+     </tr>
+
+     <tr>
+      <td> <span class="function"><a href="function.uksort.html" class="function">uksort()</a></span></td>
+      <td>clé</td>
+      <td>oui</td>
+      <td>Définit par une fonction utilisateur</td>
+      <td> <span class="function"><a href="function.uasort.html" class="function">uasort()</a></span></td>
+     </tr>
+
+     <tr>
+      <td> <span class="function"><a href="function.usort.html" class="function">usort()</a></span></td>
+      <td>valeur</td>
+      <td>non</td>
+      <td>Définit par une fonction utilisateur</td>
+      <td> <span class="function"><a href="function.uasort.html" class="function">uasort()</a></span></td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </p>
+</div>
+<hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="array.constants.html">Constantes pr&eacute;-d&eacute;finies</a></div>
+ <div class="next"><a href="ref.array.html">Fonctions sur les tableaux</a></div>
+ <div class="up"><a href="book.array.html">Les tableaux</a></div>
+<div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

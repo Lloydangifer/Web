@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Annule la r&eacute;&eacute;criture d'URL</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.output-add-rewrite-var.html">output_add_rewrite_var</a>
+		</div>
+		<div class="next">
+			<a href="book.info.html">Options PHP et informations PHP</a>
+		</div>
+		<div class="up">
+			<a href="ref.outcontrol.html">Fonctions de bufferisation de
+				sortie</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.output-reset-rewrite-vars" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">output_reset_rewrite_vars</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">output_reset_rewrite_vars</span> <span
+					class="mdash">&mdash;</span> <span class="dc-title">Annule
+					la réécriture d&#039;URL</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.output-reset-rewrite-vars-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>output_reset_rewrite_vars</strong></span>
+				( <span class="methodparam">void</span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				Cette fonction annule la règle de réécriture et efface toutes les
+				variables de réécriture précédemment définies avec la fonction <span
+					class="function"><a
+					href="function.output-add-rewrite-var.html" class="function">output_add_rewrite_var()</a></span>
+				ou par le mécanisme de session (si <em>session.use_trans_sid</em> a
+				été défini lors de l&#039;utilisation de la fonction <span
+					class="function"><a href="function.session-start.html"
+					class="function">session_start()</a></span>).
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.output-reset-rewrite-vars-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.output-reset-rewrite-vars-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-474">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>output_reset_rewrite_vars()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />session_start
+							</span><span style="color: #007700">();<br /></span><span
+								style="color: #0000BB">output_add_rewrite_var</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'var'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'value'</span><span
+								style="color: #007700">);<br />
+								<br />echo&nbsp;
+							</span><span style="color: #DD0000">'&lt;a&nbsp;href="file.php"&gt;link&lt;/a&gt;'</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">ob_flush</span><span
+								style="color: #007700">();<br />
+								<br /></span><span style="color: #0000BB">output_reset_rewrite_vars</span><span
+								style="color: #007700">();<br />echo&nbsp;
+							</span><span style="color: #DD0000">'&lt;a&nbsp;href="file.php"&gt;link&lt;/a&gt;'</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+&lt;a href=&quot;file.php?PHPSESSID=xxx&amp;var=value&quot;&gt;link&lt;/a&gt;
+&lt;a href=&quot;file.php&quot;&gt;link&lt;/a&gt;
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.output-reset-rewrite-vars-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.output-add-rewrite-var.html" class="function"
+						rel="rdfs-seeAlso">output_add_rewrite_var()</a> - Ajoute une
+						r&egrave;gle de r&eacute;&eacute;criture d'URL</span></li>
+				<li class="member"><span class="function"><a
+						href="function.ob-flush.html" class="function" rel="rdfs-seeAlso">ob_flush()</a>
+						- Envoie le tampon de sortie</span></li>
+				<li class="member"><span class="function"><a
+						href="function.ob-list-handlers.html" class="function"
+						rel="rdfs-seeAlso">ob_list_handlers()</a> - Liste les
+						gestionnaires d'affichage utilis&eacute;s</span></li>
+				<li class="member"><span class="function"><a
+						href="function.session-start.html" class="function"
+						rel="rdfs-seeAlso">session_start()</a> - D&eacute;marre une
+						nouvelle session ou reprend une session existante</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.output-add-rewrite-var.html">output_add_rewrite_var</a>
+		</div>
+		<div class="next">
+			<a href="book.info.html">Options PHP et informations PHP</a>
+		</div>
+		<div class="up">
+			<a href="ref.outcontrol.html">Fonctions de bufferisation de
+				sortie</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

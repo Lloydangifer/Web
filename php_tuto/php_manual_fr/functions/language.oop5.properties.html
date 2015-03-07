@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Propri&eacute;t&eacute;s</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.oop5.basic.html">Syntaxe de base</a>
+		</div>
+		<div class="next">
+			<a href="language.oop5.constants.html">Constantes de classe</a>
+		</div>
+		<div class="up">
+			<a href="language.oop5.html">Les classes et les objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.oop5.properties" class="sect1">
+		<h2 class="title">Propriétés</h2>
+
+		<p class="para">
+			Les variables au sein d&#039;une classe sont appelées
+			&quot;propriétés&quot;. On peut également les retrouver sous les
+			dénominations &quot;attributs&quot;, &quot;membres&quot; ou
+			&quot;champs&quot;, mais nous conservervons l&#039;appellation
+			&quot;propriété&quot; pour cette documentation. Elles sont définies
+			en utilisant un des mots-clés <em>public</em>, <em>protected</em>, ou
+			<em>private</em>, suivi d&#039;une déclaration classique de variable.
+			Cette déclaration peut comprendre une initialisation, mais celle-ci
+			doit être une valeur constante, c&#039;est à dire qu&#039;elle doit
+			pouvoir être évaluée pendant la compilation du code, et qu&#039;elle
+			ne peut ne pas dépendre d&#039;informations déterminées lors de
+			l&#039;exécution de celui-ci pour pouvoir être évaluée.
+		</p>
+		<p class="para">
+			Référez-vous à <a href="language.oop5.visibility.html" class="xref">Visibilit&eacute;</a>
+			pour plus d&#039;informations sur la signification de <em>public</em>,
+			<em>protected</em>, et <em>private</em>.
+		</p>
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>:
+			<p class="para">
+				Afin de maintenir la rétrocompatibilité avec PHP 4, PHP 5 continue
+				d&#039;accepter l&#039;usage du mot-clé <em>var</em> pour la
+				déclaration de propriétés en remplacement de (ou en plus de) <em>public</em>,
+				<em>protected</em>, et <em>private</em>. Cependant, <em>var</em>
+				n&#039;est plus requis par le modèle objet de PHP 5. Pour les
+				versions allant de PHP 5.0 à 5.1.3, l&#039;usage de <em>var</em>
+				était considéré comme obsolète et déclenchait un avertissement de
+				niveau <strong><code>E_STRICT</code></strong>, mais depuis PHP
+				5.1.3, l&#039;usage n&#039;est plus obsolète et ne déclenche plus
+				d&#039;avertissement.
+			</p>
+			<p class="para">
+				Si vous déclarez une propriété en utilisant <em>var</em> au lieu de
+				<em>public</em>, <em>protected</em>, ou <em>private</em>, alors PHP
+				5 traitera la propriété comme si elle avait été déclarée comme <em>public</em>.
+		</blockquote>
+		<p class="para">
+			Au sein des méthodes de classes, les propriétés, constantes, et
+			méthodes peuvent être appelées en utilisant la syntaxe
+			<var class="varname">
+				<var class="varname">$this->property</var>
+			</var>
+			(où <em>property</em> est le nom de la propriété), à moins que
+			l&#039;appel ne se fasse sur une propriété statique, dans le contexte
+			d&#039;une méthode statique, auquel cas l&#039;accès se fait en
+			utilisant la syntaxe
+			<var class="varname">
+				<var class="varname">self::$property</var>
+			</var>
+			. Voir <a href="language.oop5.static.html" class="link">Statique</a>
+			pour plus d&#039;informations.
+		</p>
+		<p class="para">
+			La pseudo-variable
+			<var class="varname">
+				<var class="varname">$this</var>
+			</var>
+			est disponible au sein de n&#039;importe quelle méthode, lorsque
+			cette méthode est appelée depuis un objet.
+			<var class="varname">
+				<var class="varname">$this</var>
+			</var>
+			est une référence à l&#039;objet appelant (en général l&#039;objet
+			auquel la méthode appartient, mais il peut s&#039;agir d&#039;un
+			autre objet si la méthode est appelée de façon <a
+				href="language.oop5.static.html" class="link">statique</a> depuis le
+			contexte d&#039;un second objet).
+		</p>
+
+		<p class="para">
+		<div class="example" id="example-180">
+			<p>
+				<strong>Exemple #1 Déclarations de propriétés</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">class&nbsp;</span><span
+							style="color: #0000BB">SimpleClass<br /></span><span
+							style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #FF8000">//&nbsp;Déclarations&nbsp;invalides&nbsp;de&nbsp;propriétés&nbsp;:<br />&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">public&nbsp;</span><span
+							style="color: #0000BB">$var1&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'hello&nbsp;'&nbsp;</span><span
+							style="color: #007700">.&nbsp;</span><span style="color: #DD0000">'world'</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;public&nbsp;
+						</span><span style="color: #0000BB">$var2&nbsp;</span><span
+							style="color: #007700">=&nbsp;&lt;&lt;&lt;EOD<br /></span><span
+							style="color: #DD0000">hello&nbsp;world<br /></span><span
+							style="color: #007700">EOD;<br />&nbsp;&nbsp;&nbsp;public&nbsp;
+						</span><span style="color: #0000BB">$var3&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1</span><span
+							style="color: #007700">+</span><span style="color: #0000BB">2</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;public&nbsp;
+						</span><span style="color: #0000BB">$var4&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">self</span><span
+							style="color: #007700">::</span><span style="color: #0000BB">myStaticMethod</span><span
+							style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;public&nbsp;
+						</span><span style="color: #0000BB">$var5&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$myVar</span><span
+							style="color: #007700">;<br />
+							<br />&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #FF8000">//&nbsp;Déclarations&nbsp;valides&nbsp;de&nbsp;propriétés&nbsp;:<br />&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">public&nbsp;</span><span
+							style="color: #0000BB">$var6&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">myConstant</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;public&nbsp;
+						</span><span style="color: #0000BB">$var7&nbsp;</span><span
+							style="color: #007700">=&nbsp;array(</span><span
+							style="color: #0000BB">true</span><span style="color: #007700">,&nbsp;</span><span
+							style="color: #0000BB">false</span><span style="color: #007700">);<br />
+							<br />&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #FF8000">//&nbsp;Ceci&nbsp;est&nbsp;autorisé&nbsp;uniquement&nbsp;depuis&nbsp;PHP&nbsp;5.3.0&nbsp;:<br />&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">public&nbsp;</span><span
+							style="color: #0000BB">$var8&nbsp;</span><span
+							style="color: #007700">=&nbsp;&lt;&lt;&lt;'EOD'<br /></span><span
+							style="color: #DD0000">hello&nbsp;world<br /></span><span
+							style="color: #007700">EOD;<br />}<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>:
+			<p class="para">
+				Il existe des fonctions qui permettent de gérer des classes et des
+				objets. Vous voudrez peut-être jeter un coup d&#039;oeil à <a
+					href="ref.classobj.html" class="link">Fonctions Classes/Objets</a>.
+		</blockquote>
+
+		<p class="para">
+			Contrairement à la syntaxe <a
+				href="language.types.string.html#language.types.string.syntax.heredoc"
+				class="link">heredoc</a>, la syntaxe <a
+				href="language.types.string.html#language.types.string.syntax.nowdoc"
+				class="link">nowdoc</a> peut être utilisée dans n&#039;importe quel
+			contexte de données statiques, y compris la déclaration de
+			propriétés.
+		<div class="example" id="example-181">
+			<p>
+				<strong>Exemple #2 Exemple d&#039;utilisation de la syntaxe
+					nowdoc pour initialiser une propriété</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">class&nbsp;</span><span
+							style="color: #0000BB">foo&nbsp;</span><span
+							style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #FF8000">//&nbsp;Depuis&nbsp;PHP&nbsp;5.3.0<br />&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">public&nbsp;</span><span
+							style="color: #0000BB">$bar&nbsp;</span><span
+							style="color: #007700">=&nbsp;&lt;&lt;&lt;'EOT'<br /></span><span
+							style="color: #DD0000">bar<br /></span><span
+							style="color: #007700">EOT;<br />}<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>:
+			<p class="para">Le support de la syntaxe nowdoc à été ajouté en
+				PHP 5.3.0.
+		</blockquote>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.oop5.basic.html">Syntaxe de base</a>
+		</div>
+		<div class="next">
+			<a href="language.oop5.constants.html">Constantes de classe</a>
+		</div>
+		<div class="up">
+			<a href="language.oop5.html">Les classes et les objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

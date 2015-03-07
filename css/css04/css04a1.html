@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Polices de caractères</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function(){top.FP.initPage();}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header>
+			<figure>
+				<img src="../cssimg/traitement_texte.png" width="470" height="211"
+					usemap="#traite_texte">
+				<map name="traite_texte">
+					<area shape="rect" coords="54,5,133,21" href="javascript:top.FP.Voir.showPartie('h3-font-family', true)">
+					<area shape="rect" coords="154,5,223,21" href="javascript:top.FP.Voir.showPageTuto('css04a2', '')">
+					<area shape="rect" coords="240,5,327,21" href="javascript:top.FP.Voir.showPageTuto('css04a4', 'h3-font-variant')">
+					<area shape="rect" coords="341,5,443,21" href="top.FP.Voir.showPageTech('css_proprietes', 'text-transform')">
+					<area shape="rect" coords="4,120,80,134" href="javascript:top.FP.Voir.showPageTuto('css04a4', 'h3-font-weight')">
+					<area shape="rect" coords="35,143,106,159" href="javascript:top.FP.Voir.showPageTuto('css04a4', 'h3-font-style')">
+					<area shape="rect" coords="26,167,133,183" href="top.FP.Voir.showPageTech('css_proprietes', 'text-decoration')">
+					<area shape="rect" coords="73,191,175,207" href="top.FP.Voir.showPageTech('css_proprietes', 'letter-spacing')">
+					<area shape="rect" coords="197,163,277,180" href="top.FP.Voir.showPageTech('css_proprietes', 'text-shadow')">
+					<area shape="rect" coords="218,120,256,136" href="top.FP.Voir.showPageTech('css_proprietes', 'color')">
+					<area shape="rect" coords="235,142,312,158" href="top.FP.Voir.showPageTech('css_proprietes', 'background')">
+					<area shape="rect" coords="302,120,379,136" href="javascript:top.FP.Voir.showPageTuto('css04a6', '')">
+					<area shape="rect" coords="384,120,466,136" href="javascript:top.FP.Voir.showPageTuto('css04a3', '')">
+				</map>
+				<figcaption>Analogie CSS et bandeau traitement de texte</figcaption>
+			</figure>
+		</header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			Si aucune indication n'est donnée sur la police de caractères et la
+			taille à utiliser, les textes sont affichés avec les éléments de la
+			configuration du navigateur.
+			<br>
+			Par défaut, la police sera généralement "Times new roman" pour la
+			famille serif et "Arial" pour la famille sans-serif. La taille par
+			défaut est quant à elle définie à 16 pixels.
+		</p>
+
+		<table class="TAB-sans-bord">
+			<tr>
+				<td style="vertical-align: bottom">
+					<p>
+						Pour que la police choisie par l'auteur soit utilisée par le
+						navigateur, <strong>il faut que cette police soit
+							installée sur l'ordinateur du navigateur</strong>. Si ça n'est pas le cas,
+						le navigateur utilisera la police par défaut de sa configuration.
+					</p>
+					<p>
+						Il faut aussi que l'utilisateur n'ait pas précisé dans la
+						configuration que ses propres choix sont prioritaires sur ceux de
+						l'auteur des pages <abbr title="HyperText Markup Language">HTML</abbr>.
+					</p>
+
+					<figure>
+						<img src="../cssimg/config_police_chrome.png" width="295"
+							height="377">
+						<figcaption>Configuration police dans Chrome</figcaption>
+					</figure>
+				</td>
+				<td>
+					<figure>
+						<img src="../cssimg/config_police_firefox.png" width="295"
+							height="262">
+						<figcaption>Configuration police dans Firefox</figcaption>
+					</figure>
+
+					<figure>
+						<img src="../cssimg/config_police_ie.png" width="295" height="312">
+						<figcaption>Configuration police dans Internet
+							Explorer</figcaption>
+					</figure>
+				</td>
+			</tr>
+		</table>
+
+
+		<!-- ################################################################################################## -->
+		<a id="h3-font-family"></a>
+		<h3>La propriété font-family</h3>
+		<section>
+
+			<p>
+				Le choix d'une police de caractères pour afficher un texte se fait
+				avec la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'font-family')">font-family</a>
+				dont la valeur est le nom d'une police.
+			</p>
+
+			<pre data-code="CSS">
+body {
+	font-family: Verdana;
+}</pre>
+
+			<p>
+				Si le nom de la police est un nom composé qui contient des espaces,
+				le nom doit être <strong>entouré avec des guillemets</strong>.
+			</p>
+			<pre data-code="CSS">
+body {
+	font-family: "Lucida Grande";
+}</pre>
+
+			<p>La casse n'a pas d'importance dans le nom des polices.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : famille de polices
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;La Guerre des Etoiles du Milieu&lt;/h3&gt;
+			
+		&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la &lt;a href="gentils.html"&gt;Fédération de l'Empire du Commerce de la République&lt;/a&gt; se battent contre les &lt;a href="mechants.html"&gt;Méchants Gobelins de la Comté du Mordor&lt;/a&gt; de l'infâme Sauron.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+h3 { font-family: courier; }
+p { font-family: verdana; }
+a { font-family: "times new roman"; }</textarea>
+			</form>
+			
+			<p class="fp-remarque fp-f-right"
+				style="margin: 1em 84px 0 10px; width: 420px; min-height: 0;">
+				<a href="http://fontfamily.io/" target="_blank">fontfamily.io</a> donne des informations sur la présence 
+				de telle ou telle police sur tel ou tel OS.
+			</p>			
+			<div class="fp-clear">&nbsp;</div>
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Liste de polices</h3>
+		<section>
+			<p>
+				Pour avoir plus de chance que la police spécifiée soit présente sur
+				l'ordinateur du navigateur, <strong>on précise généralement
+					plusieurs polices de caractères avec la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'font-family')">font-family</a>.
+				</strong>.
+			</p>
+
+			<p>
+				Les noms des polices doivent être séparés par <strong>une
+					virgule</strong>.
+			</p>
+
+			<pre data-code="CSS">
+body {
+	font-family: Verdana, "Bitstream Vera Sans", "DejaVu Sans", 
+				"Lucida Sans", "Lucida Grande", sans-serif;
+}</pre>
+
+
+			<p class="fp-remarque fp-f-right"
+				style="margin: 1em 84px 0 10px; width: 134px; min-height: 0;">
+				Voir aussi <a onclick="top.FP.Voir.showPageTech('polices', '')">Les
+					polices de caractères</a> pour plus d'informations sur les familles de
+				polices.
+			</p>
+
+			<p class="fp-p-raz">La déclaration sera interprétée par le
+				navigateur de la façon suivante : si la police Verdana est sur le
+				système il l'utilise, sinon si "Bitstream Vera Sans" est sur le
+				système il l'utilise, sinon etc. Finalement si aucune des polices
+				n'est installée, il utilisera la police sans-serif par défaut de sa
+				configuration.</p>
+
+
+			<p class="fp-bot0">Terminez toujours votre liste avec l'un des
+				mot-clés suivants selon la famille de polices que vous définissez :</p>
+			<ul>
+				<li><code>serif</code> pour une famille de polices avec
+					empattement,</li>
+				<li><code>sans-serif</code> pour une famille de polices sans
+					empattement,</li>
+				<li><code>monospace</code> pour une famille de polices à
+					espacement fixe,</li>
+				<li><code>cursive</code> pour une famille de polices cursive ou
+					script,</li>
+				<li><code>fantasy</code> pour une famille de polices
+					décoratives.</li>
+			</ul>
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Ratio d'aspect</h3>
+		<section>
+			<p>Suivant la police utilisée, et à taille égale, un texte n'aura
+				pas le même encombrement (espace occupé). C'est parce que toutes les
+				polices n'ont pas le même ratio d'aspect (facteur de forme, rapport
+				de forme ou rapport d'aspect). Certaines polices, et spécialement
+				celles conçue pour l'affichage écran, sont plus larges et plus
+				hautes que d'autres.</p>
+
+			<figure>
+				<img src="../cssimg/police_160.png" width="584" height="165">
+				<figcaption>Différences de rapport d'aspect</figcaption>
+			</figure>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : emcombrement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3 class="verdana"&gt;Texte en Verdana&lt;/h3&gt;
+		&lt;p class="verdana"&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;
+		&lt;h3 class="arial"&gt;Texte en Arial&lt;/h3&gt;
+		&lt;p class="arial"&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;
+		&lt;h3 class="times"&gt;Texte en Times New Roman&lt;/h3&gt;
+		&lt;p class="times"&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+.verdana { font-family: verdana; }
+.arial { font-family: arial; }
+.times { font-family: "Times New Roman"; }
+p { 
+	width: 300px; 
+	border: 1px solid #aaa; 
+}</textarea>
+			</form>
+
+			<p>
+				Quand on définit la liste des polices pour une <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'font-family')">font-family</a>
+				il faut mieux utiliser des polices qui ont un ratio d'aspect
+				identique ou approchant pour que le passage éventuel d'une police à
+				une autre par le navigateur n'ait pas d'effets trop visibles.
+				<br>
+				On peut faire par exemple les associations suivantes.
+			</p>
+
+			<div>
+				<strong>Familles sans-serif</strong>
+			</div>
+			<ul class="fp-ul-puce">
+				<li>Optima, Segoe, "Segoe UI", Candara, Calibri, Arial,
+					sans-serif</li>
+				<li>Futura, "Trebuchet MS", Arial, sans-serif</li>
+				<li>"Gill Sans", "Gill Sans MT", Calibri, sans-serif</li>
+				<li>"Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode",
+					"Lucida Sans", Tahoma, sans-serif</li>
+				<li>"Helvetica Neue", Helvetica, Arial, sans-serif</li>
+				<li>Verdana, Geneva, sans-serif</li>
+				<li>"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans",
+					Geneva, Verdana, sans-serif</li>
+				<li>Geneva, Tahoma, Verdana, sans-serif</li>
+				<li>Segoe, "Segoe UI", "Helvetica Neue", Arial, sans-serif</li>
+				<li>Candara, Calibri, Segoe, "Segoe UI", Optima, Arial,
+					sans-serif</li>
+				<li>Calibri, Candara, Segoe, "Segoe UI", Optima, Arial,
+					sans-serif</li>
+				<li>"Franklin Gothic Medium", Arial, sans-serif</li>
+				<li>Tahoma, Geneva, Verdana, sans-serif</li>
+			</ul>
+
+			<div>
+				<strong>Familles serif</strong>
+			</div>
+			<ul class="fp-ul-puce">
+				<li>Garamond, Baskerville, "Baskerville Old Face", "Hoefler
+					Text", "Times New Roman", serif</li>
+				<li>"Lucida Bright", Georgia, serif</li>
+				<li>"Palatino Linotype", "Palatino LT STD", "Book Antiqua",
+					Georgia, serif</li>
+				<li>"Big Caslon", "Book Antiqua", "Palatino Linotype", Georgia,
+					serif</li>
+				<li>"Didot LT STD", "Hoefler Text", Garamond, "Times New
+					Roman", serif</li>
+				<li>Baskerville, "Baskerville old face", "Hoefler Text",
+					Garamond, "Times New Roman", serif</li>
+				<li>"Hoefler Text", "Baskerville old face", Garamond, "Times
+					New Roman", serif</li>
+				<li>"Bodoni MT", Didot, "Didot LT STD", "Hoefler Text",
+					Garamond, "Times New Roman", serif</li>
+				<li>"Goudy Old Style", Garamond, "Big Caslon", "Times New
+					Roman", serif</li>
+				<li>Constantia, Palatino, "Palatino Linotype", "Palatino LT
+					STD", Georgia, serif</li>
+				<li>Cambria, Georgia, serif</li>
+				<li>"Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT
+					STD", Georgia, serif</li>
+			</ul>
+
+			<div class=fp-ordre style="width: 38em; margin-left: 1em;">
+				<div class=fp-ordre-t>Il ne faut jamais baser une mise en page
+					sur le rendu visuel obtenu ponctuellement lors de la création de la
+					page, et surtout ne jamais forcer des sauts de ligne pour " faire
+					tenir" un texte dans un espace prédéfini. Si le navigateur passe
+					d'une police à une autre, vous risqueriez d'avoir un texte mal
+					affiché.</div>
+			</div>
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Propriété héritée</h3>
+		<section>
+			<p>
+				La propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'font-family')">font-family</a>
+				est héritée : elles est transmise automatiquement de l'élément
+				parent à ses enfants, quelque soit le niveau de descendance.
+				<br>
+				On peut donc facilement gérer la police principale d'une page en
+				mettant la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'font-family')">font-family</a>
+				sur l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'body')">body</a>,
+				ou sur l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'html')">html</a>.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : héritage
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h4&gt;Titre sans police précisée =&amp;gt; Verdana héritée de body&lt;/h4&gt;
+		&lt;p&gt;Paragraphe sans police précisée =&amp;gt; Verdana héritée de body&lt;/p&gt;
+		&lt;h4 class="arial"&gt;Titre en Arial, définie par la classe&lt;/h4&gt;
+		&lt;p class="arial"&gt;Paragraphe en Arial, définie dans la classe.&lt;/p&gt;
+		&lt;div&gt;
+			Bloc div sans police précisée =&amp;gt; Verdana héritée de body
+			&lt;p&gt;Paragraphe dans le div, sans police précisée =&amp;gt; Verdana héritée de body&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body { font-family: verdana; }
+.arial { font-family: arial; }</textarea>
+			</form>
+
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

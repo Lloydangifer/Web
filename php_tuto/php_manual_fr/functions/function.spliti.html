@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Scinde une cha&icirc;ne en un tableau, gr&acirc;ce
+	&agrave; une expression rationnelle</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.split.html">split</a>
+		</div>
+		<div class="next">
+			<a href="function.sql-regcase.html">sql_regcase</a>
+		</div>
+		<div class="up">
+			<a href="ref.regex.html">Fonctions POSIX Regex</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.spliti" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">spliti</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.0.1, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">spliti</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Scinde une chaîne en un tableau, grâce
+					à une expression rationnelle</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.spliti-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>spliti</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$pattern</code></span> , <span class="methodparam"><span
+					class="type">string</span> <code class="parameter">$string</code></span>
+				[, <span class="methodparam"><span class="type">int</span> <code
+						class="parameter">$limit</code><span class="initializer"> =
+						-1</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				Scinde la chaîne <em><code class="parameter">string</code></em> dans
+				un tableau, par expression rationnelle.
+			</p>
+			<p class="para">
+				Cette fonction est identique à <span class="function"><a
+					href="function.split.html" class="function">split()</a></span>, hormis le
+				fait qu&#039;elle ignore la casse pour les caractères alphabétiques.
+			</p>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="simpara">
+					Cette fonction est <em class="emphasis">OBSOLETE</em> depuis PHP
+					5.3.0. Nous vous encourageons vivement à ne plus l&#039;utiliser.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.spliti-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">pattern</code></em></span>
+				<dd>
+
+					<p class="para">Expression rationnelle insensible à la casse.</p>
+					<p class="para">
+						Si vous voulez effectuer la césure avec un caractère qui est
+						considéré comme spécial par les expressions rationnelles, vous
+						devez d&#039;abord l&#039;échapper. Si vous pensez que la fonction
+						<span class="function"><strong>spliti()</strong></span> (ou tout
+						autre fonction regex) fait quelque chose de bizarre, lisez le
+						fichier
+						<var class="filename">regex.7</var>
+						, inclus dans le sous-dossier
+						<var class="filename">regex/</var>
+						de la distribution PHP. Ce fichier est au format man, vous devrez
+						donc utiliser la commande <strong class="command">man
+							/usr/local/src/regex/regex.7</strong> pour le lire.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">string</code></em></span>
+				<dd>
+
+					<p class="para">La chaîne d&#039;entrée.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">limit</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si <em><code class="parameter">limit</code></em> est défini, le
+						tableau retourné contiendra un maximum de <em><code
+								class="parameter">limit</code></em> éléments, dont le dernier élément
+						contient le reste de la chaîne <em><code class="parameter">string</code></em>.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.spliti-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne un tableau de chaînes, dont chaque élément est une
+				sous-chaîne de <em><code class="parameter">string</code></em>,
+				formée par la césure réalisée grâce l&#039;expression rationnelle <em><code
+						class="parameter">pattern</code></em>.
+			</p>
+			<p class="para">
+				S&#039;il y a <span class="replaceable">n</span> occurrences de <em><code
+						class="parameter">pattern</code></em>, le tableau retourné contiendra <em><span
+					class="replaceable">n</span>+1</em> éléments. Par exemple, s&#039;il
+				n&#039;y a pas d&#039;occurrence de <em><code class="parameter">pattern</code></em>,
+				un tableau avec un seul élément sera retourné. Évidemment, ceci est
+				également vrai si la chaîne <em><code class="parameter">string</code></em>
+				est vide. Si une erreur survient, <span class="function"><strong>spliti()</strong></span>
+				retourne <strong><code>FALSE</code></strong>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.spliti-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">Scinder une chaîne en utilisant la lettre
+				&#039;a&#039; comme séparateur :
+			<div class="example" id="example-4472">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>spliti()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$string&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"aBBBaCCCADDDaEEEaGGGA"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$chunks&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">spliti&nbsp;</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"a"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$string</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">5</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$chunks</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Array
+(
+  [0] =&gt;
+  [1] =&gt; BBB
+  [2] =&gt; CCC
+  [3] =&gt; DDD
+  [4] =&gt; EEEaGGGA
+)
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.spliti-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					À partir de PHP 5.3.0, l&#039;extension regex est obsolète et vous
+					devez utiliser l&#039;extension <a href="book.pcre.html"
+						class="link">PCRE</a> à la place. Appeler des fonctions de
+					l&#039;extension regex émettra des alertes de type <strong><code>E_DEPRECATED</code></strong>.
+					Voir <a href="reference.pcre.pattern.posix.html" class="link">la
+						liste des différences</a> pour vous aider dans la conversion en PCRE.
+				</p>
+				</p>
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.spliti-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.preg-split.html" class="function"
+						rel="rdfs-seeAlso">preg_split()</a> - &Eacute;clate une
+						cha&icirc;ne par expression rationnelle</span></li>
+				<li class="member"><span class="function"><a
+						href="function.split.html" class="function" rel="rdfs-seeAlso">split()</a>
+						- Scinde une cha&icirc;ne en un tableau, gr&acirc;ce &agrave; une
+						expression rationnelle</span></li>
+				<li class="member"><span class="function"><a
+						href="function.explode.html" class="function" rel="rdfs-seeAlso">explode()</a>
+						- Coupe une cha&icirc;ne en segments</span></li>
+				<li class="member"><span class="function"><a
+						href="function.implode.html" class="function" rel="rdfs-seeAlso">implode()</a>
+						- Rassemble les &eacute;l&eacute;ments d'un tableau en une
+						cha&icirc;ne</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.split.html">split</a>
+		</div>
+		<div class="next">
+			<a href="function.sql-regcase.html">sql_regcase</a>
+		</div>
+		<div class="up">
+			<a href="ref.regex.html">Fonctions POSIX Regex</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

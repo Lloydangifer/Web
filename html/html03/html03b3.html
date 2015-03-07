@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>link</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<h3>&lt;link&gt;</h3>
+		<section>
+
+			<div class="fp-puce">
+				<p class="fp-p-raz">
+					L'élément <a onclick="top.FP.Voir.showPageTech('elements', 'link')">link</a>
+					permet de lier des ressources au document.
+				</p>
+
+				<p class="fp-p-raz">
+					La différence entre la liaison faite par cet élément et la liaison
+					faite pour les éléments embarqués (images, vidéos, autre document
+					dans un iframe, etc) est avant tout sémantique (le moyen physique
+					de la liaison est le même : une <abbr
+						title="Uniform Resource Locator">URL</abbr>). L'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'link')">link</a>
+					lie au document des ressources qui le concernent dans son ensemble
+					alors que les éléments embarqués sont du contenu dans le corps du
+					document et constituent seulement une partie de ce qui est affiché
+					par le navigateur.
+				</p>
+				<p class="fp-p-raz">
+					Pour le moment, l'utilisation principale de l'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'link')">link</a> <strong>
+						est la liaison à des feuilles de styles externes</strong> : des fichiers
+					contenant du code <abbr title="Cascading Style Sheets">CSS</abbr>
+					permettant la mise en forme et la mise en page des éléments
+					contenus dans le corps du document.
+				</p>
+			</div>
+
+			<p class="fp-bot0">Il y a trois attributs souvent utilisés :</p>
+			<ul>
+				<li><code>rel</code> qui définit le type de relation entre la
+					ressource et le document,</li>
+				<li><code>href</code> qui donne l'<abbr
+					title="Uniform Resource Locator">URL</abbr> de la ressource à lier,</li>
+				<li><code>type</code> qui définit le <a
+					onclick="top.FP.Voir.showPageTech('types_mime', 'top')">type
+						MIME</a> de la ressource.</li>
+			</ul>
+
+			<p class="fp-bot0">
+				Les valeurs possibles pour l'attribut <code>rel</code> sont <a
+					href="http://www.w3.org/TR/2014/REC-html5-20141028/links.html#linkTypes"
+					target="_blank">fixées précisément</a>.
+				<br>
+				Les plus utilisées sont :
+			</p>
+			<ul>
+				<li><code>stylesheet</code> : <code>href</code> sera alors l'<abbr
+					title="Uniform Resource Locator">URL</abbr> d'une feuille de style
+					utilisée dans le document. <code>type</code> est facultatif, mais
+					si il est précisé, il sera <code>text/css</code></li>
+				<li><code>icon</code> : <code>href</code> sera alors l'<abbr
+					title="Uniform Resource Locator">URL</abbr> d'une icône qui sera
+					affichée devant le <a
+					onclick="top.FP.Voir.showPageTech('elements', 'title')">title</a>
+					dans l'onglet du navigateur. Le format graphique supporté dépend
+					des navigateurs et peut être .ico, .gif, .png, etc</li>
+				<li><code>prefetch</code> : <code>href</code> sera alors l'<abbr
+					title="Uniform Resource Locator">URL</abbr> d'un document qui sera
+					téléchargé (ainsi que ses ressources) en arrière-plan pendant que
+					l'utilisateur consulte le document en-cours.</li>
+			</ul>
+
+			<p>
+				Il convient de mettre le lien sur le(s) fichier(s) <abbr
+					title="Cascading Style Sheets">CSS</abbr> tout au début du code <abbr
+					title="HyperText Markup Language">HTML</abbr>, car de cette façon
+				le navigateur pourra demander le fichier au serveur dès qu'il
+				commencera à parser le code <abbr title="HyperText Markup Language">HTML</abbr>,
+				et pourra l'utiliser plus rapidement pour faire son travail de
+				calcul de rendu et d'affichage.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : utilisation de link
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Utilisation de link&lt;/title&gt;
+		&lt;link rel="stylesheet" href="../_core/def.css" type="text/css"&gt;
+		&lt;link rel="icon" href="../favicon.ico" type="image/x-icon"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h4&gt;Mise en forme faite par la feuille de style liée.&lt;/h4&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<div class="fp-puce">
+				<p class="fp-p-raz">
+					<code>prefetch</code> peut sembler intéressant à première vue car
+					il permet d'accélerer la navigation en préchargeant la page que
+					l'utilisateur est sensé voir après le document en cours.
+				<p class="fp-p-raz">Dans certaines situations la page suivante
+					est relativement facile à deviner. Par exemple dans ce tutoriel, on
+					peut penser que l'utilisateur va avoir une navigation linéaire et
+					que la page qu'il consultera après celle_ci sera la page suivante
+					dans le menu générale.
+				<p class="fp-p-raz">Dans d'autres situations la page suivante
+					n'est pas aussi évidente comme par exemple dans le cas d'une page
+					qui propose beaucoup de choix différents après une recherche
+				<p class="fp-p-raz">Enfin, quelques fois le préchargement est
+					impossible car la page suivante sera faite dynamiquement à partir
+					d'informations saisies dans la page en cours. C'est le cas d'une
+					page de recherche : on ne peut pas savoir à l'avance quelle sera la
+					recherche de l'utilisateur. C'est le cas également dans des pages
+					de finalisation de commandes sur des sites commerciaux, où, bien
+					que chaque étape soit clairement identifiée et connue, le contenu
+					lui même est différent (nom de l'utilisateur, articles achetés,
+					adresse, numéro de carte de crédit, etc).
+			</div>
+		</section>
+
+		<a id="exo_head"></a>
+		<h3 class="fp-exo">Rédiger l'en-tête d'une page</h3>
+		<section>
+			<p class="fp-p-raz fp-bot0">
+				Complétez le code <abbr title="HyperText Markup Language">HTML</abbr>
+				ci-dessous avec les consignes suivantes :
+			</p>
+			<ul class="fp-ul-puce">
+				<li>le jeux de caractères utilisé est iso-8859-1</li>
+				<li>le nom de l'auteur est Pierre Poljack</li>
+				<li>la description de la page est "Exercice de la partie 3 du tutoriel HTML"</li>
+				<li>les mots clés sont "exercice", "tutoriel" et "HTML"</li>
+				<li>le titre de la page est "Exercice tuto"</li>
+				<li>il y a un lien sur la feuille de style <code>exo.css</code> située dans le dossier <code>styles</code></li>
+				<li>le corps de la page contient le texte "C'est un des exercices de la troisiéme partie du tutoriel 
+				HTML de François Piat." Les caractères accentués (é et ç) doivent être remplacés par leur entité HTML.</li>
+				</ul>
+
+			<p class="fp-completez">
+				<a onclick="top.FP.Voir.showCompletez('exo_head_comp')">Code à
+					compléter</a>
+			</p>
+
+			<div id="exo_head_comp" class="BLOC-completez">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : en-tête d'une page
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;! &gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+
+	&lt;/head&gt;
+	&lt;body&gt;
+	
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+
+			<p class="fp-solution">
+				<a onclick="top.FP.Voir.showSolution('exo_head_solu', 1)">Une
+					solution possible</a>
+			</p>
+			<div id="exo_head_solu" class="BLOC-solution">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : en-tête d'une page
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="iso-8859-1"&gt;
+		&lt;meta name="author" content="Pierre Poljack"&gt;
+		&lt;meta name="description" content="Exercice de la partie 3 du tutoriel HTML"&gt;
+		&lt;meta name="keywords" content="exercice, tutoriel, HTML"&gt;
+		&lt;title&gt;Exercice tuto&lt;/title&gt;
+		&lt;link rel="stylesheet" href="styles/exo.css" type="text/css"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		C'est un des exercices de la troisi&egrave;me partie du tutoriel HTML de Fran&ccedil;ois Piat.
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

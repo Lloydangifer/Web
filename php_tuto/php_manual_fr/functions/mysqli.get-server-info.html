@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Retourne la version du serveur MySQL</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="mysqli.get-proto-info.html">mysqli::$protocol_version</a></div>
+ <div class="next"><a href="mysqli.get-server-version.html">mysqli::$server_version</a></div>
+ <div class="up"><a href="class.mysqli.html">mysqli</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="mysqli.get-server-info" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysqli::$server_info</h1>
+  <h1 class="refname">mysqli_get_server_info</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">mysqli::$server_info</span> -- <span class="refname">mysqli_get_server_info</span> <span class="mdash">&mdash;</span> <span class="dc-title">Retourne la version du serveur MySQL</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mysqli.get-server-info-description">
+  <h3 class="title">Description</h3>
+  <p class="para">Style orienté objet</p>
+  <div class="fieldsynopsis"><span class="type">string</span> <var class="varname"><a href="mysqli.get-server-info.html">$mysqli-&gt;server_info</a></var>;</div>
+
+  <p class="para">Style procédural</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>mysqli_get_server_info</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="class.mysqli.html" class="type mysqli">mysqli</a></span> <code class="parameter">$link</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Retourne une chaîne de caractères représentant la version du serveur
+   MySQL auquel l&#039;extension MySQLi est connectée (représenté par le
+   paramètre <em><code class="parameter">link</code></em>).
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-mysqli.get-server-info-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><em><code class="parameter">
+link</code></em></span><dd>
+<p class="para">Seulement en style procédural : Un
+identifiant de lien retourné par la fonction  <span class="function"><a href="function.mysqli-connect.html" class="function">mysqli_connect()</a></span>
+ou par la fonction  <span class="function"><a href="mysqli.init.html" class="function">mysqli_init()</a></span></p></dd>
+</dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mysqli.get-server-info-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Une <a href="language.types.string.html" class="link">chaîne de caractères</a> représentant la version du serveur.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mysqli.get-server-info-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="example-1656">
+   <p><strong>Exemple #1 Exemple avec <var class="varname"><var class="varname">$mysqli->server_info</var></var></strong></p>
+   <div class="example-contents"><p>Style orienté objet</p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_password"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Vérification&nbsp;de&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Échec&nbsp;de&nbsp;la&nbsp;connexion&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Affichage&nbsp;de&nbsp;la&nbsp;version&nbsp;du&nbsp;serveur&nbsp;*/<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Version&nbsp;du&nbsp;serveur&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">server_info</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Fermeture&nbsp;de&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>Style procédural</p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqli_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_password"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Vérification&nbsp;de&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Échec&nbsp;de&nbsp;la&nbsp;connexion&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Affichage&nbsp;de&nbsp;la&nbsp;version&nbsp;du&nbsp;serveur&nbsp;*/<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Version&nbsp;du&nbsp;serveur&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_get_server_info</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">/*&nbsp;Fermeture&nbsp;de&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #0000BB">mysqli_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>Les exemples ci-dessus vont afficher :</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Version du serveur : 4.1.2-alpha-debug
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mysqli.get-server-info-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"> <span class="function"><a href="mysqli.get-client-info.html" class="function" rel="rdfs-seeAlso">mysqli_get_client_info()</a> - Retourne une cha&icirc;ne contenant la version du client MySQL</span></li>
+    <li class="member"> <span class="function"><a href="mysqli.get-client-version.html" class="function" rel="rdfs-seeAlso">mysqli_get_client_version()</a> - Lit les informations du client MySQL</span></li>
+    <li class="member"> <span class="function"><a href="mysqli.get-server-version.html" class="function" rel="rdfs-seeAlso">mysqli_get_server_version()</a> - Retourne un entier repr&eacute;sentant la version du serveur MySQL</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="mysqli.get-proto-info.html">mysqli::$protocol_version</a></div>
+ <div class="next"><a href="mysqli.get-server-version.html">mysqli::$server_version</a></div>
+ <div class="up"><a href="class.mysqli.html">mysqli</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

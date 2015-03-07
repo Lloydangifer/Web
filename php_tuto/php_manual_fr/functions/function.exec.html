@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Ex&eacute;cute un programme externe</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.escapeshellcmd.html">escapeshellcmd</a>
+		</div>
+		<div class="next">
+			<a href="function.passthru.html">passthru</a>
+		</div>
+		<div class="up">
+			<a href="ref.exec.html">Fonctions sur l'ex&eacute;cution de
+				programmes externes</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.exec" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">exec</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">exec</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Exécute un programme externe</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.exec-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>exec</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$command</code></span> [, <span
+					class="methodparam"><span class="type">array</span> <code
+						class="parameter reference">&$output</code></span> [, <span
+					class="methodparam"><span class="type">int</span> <code
+						class="parameter reference">&$return_var</code></span> ]] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>exec()</strong></span> exécute la
+				commande <em><code class="parameter">command</code></em>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.exec-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">command</code></em></span>
+				<dd>
+
+					<p class="para">La commande à exécuter.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">output</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si l&#039;argument <em><code class="parameter">output</code></em>
+						est présent, alors ce tableau sera rempli par les lignes
+						retournées par la commande. Les espaces de début et de fin de
+						chaîne, comme <em>\n</em>, ne seront pas inclus dans ce tableau.
+						Il faut noter que si ce tableau contient des éléments, <span
+							class="function"><strong>exec()</strong></span> ajoutera les
+						nouvelles lignes à la fin du tableau. Si vous ne voulez pas que
+						les nouveaux éléments soient concaténés, utilisez la fonction <span
+							class="function"><a href="function.unset.html"
+							class="function">unset()</a></span> avec ce tableau avant de le passer à
+						<span class="function"><strong>exec()</strong></span>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">return_var</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si l&#039;argument <em><code class="parameter">return_var</code></em>
+						est présent en plus du tableau <em><code class="parameter">output</code></em>,
+						alors le statut de retour d&#039;exécution sera inscrit dans cette
+						variable.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.exec-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				La dernière ligne du résultat de la commande. Pour exécuter une
+				commande et obtenir le résultat sans aucun traitement, il faut
+				utiliser la fonction <span class="function"><a
+					href="function.passthru.html" class="function">passthru()</a></span>.
+			</p>
+			<p class="para">
+				Pour récupérer la sortie de la commande exécutée, assurez-vous de
+				définir et d&#039;utiliser le paramètre <em><code
+						class="parameter">output</code></em>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.exec-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-3453">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>exec()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Affiche&nbsp;le&nbsp;nom&nbsp;d'utilisateur&nbsp;qui&nbsp;fait&nbsp;tourner&nbsp;le&nbsp;processus&nbsp;php/http<br />//&nbsp;(sur&nbsp;un&nbsp;système&nbsp;ayant&nbsp;"whoami"&nbsp;dans&nbsp;le&nbsp;chemin&nbsp;d'exécutables)<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">exec</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'whoami'</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.exec-notes">
+			<h3 class="title">Notes</h3>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">
+					Si vous allez passer des données provenant de l&#039;utilisateur à
+					cette fonction, vous devez utiliser <span class="function"><a
+						href="function.escapeshellarg.html" class="function">escapeshellarg()</a></span>
+					ou <span class="function"><a
+						href="function.escapeshellcmd.html" class="function">escapeshellcmd()</a></span>
+					pour être sûr qu&#039;ils n&#039;endommagent pas le système en
+					exécutant des commandes arbitraires.
+				</p>
+			</div>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Si vous démarrez un programme en utilisant cette
+					fonction et que vous voulez le laisser tourner en arrière plan,
+					vous devez vous assurer que la sortie du programme est redirigée
+					vers un fichier, ou un autre flux de sortie, sinon PHP attendra
+					jusqu&#039;à la fin de l&#039;exécution du programme.</p>
+				</p>
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Lorsque
+						le <a href="features.safe-mode.html" class="link">safe mode</a>
+						est activé, vous pouvez uniquement exécuter des programmes qui se
+						situent dans le dossier défini par <a
+						href="ini.sect.safe-mode.html#ini.safe-mode-exec-dir" class="link">safe_mode_exec_dir</a>.
+						Pour des raisons pratiques, il n&#039;est actuellement pas permis
+						d&#039;&#039;avoir le composant <em>..</em> dans le chemin de
+						l&#039;exécutable.
+					</span>
+				</p>
+			</blockquote>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="simpara">
+					Lorsque le <a href="features.safe-mode.html" class="link">safe
+						mode</a> est activé, la chaîne de commande est échappée avec la
+					fonction <span class="function"><a
+						href="function.escapeshellcmd.html" class="function">escapeshellcmd()</a></span>.
+					Par exemple, <em>echo y | echo x</em> devient <em>echo y \|
+						echo x</em>.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.exec-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.system.html" class="function" rel="rdfs-seeAlso">system()</a>
+						- Ex&eacute;cute un programme externe et affiche le
+						r&eacute;sultat</span></li>
+				<li class="member"><span class="function"><a
+						href="function.passthru.html" class="function" rel="rdfs-seeAlso">passthru()</a>
+						- Ex&eacute;cute un programme externe et affiche le
+						r&eacute;sultat brut</span></li>
+				<li class="member"><span class="function"><a
+						href="function.escapeshellcmd.html" class="function"
+						rel="rdfs-seeAlso">escapeshellcmd()</a> - Prot&egrave;ge les
+						caract&egrave;res sp&eacute;ciaux du Shell</span></li>
+				<li class="member"><span class="function"><a
+						href="function.pcntl-exec.html" class="function"
+						rel="rdfs-seeAlso">pcntl_exec()</a> - Ex&eacute;cute le programme
+						indiqu&eacute; dans l'espace courant de processus</span></li>
+				<li class="member"><a href="language.operators.execution.html"
+					class="link">les guillemets obliques</a></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.escapeshellcmd.html">escapeshellcmd</a>
+		</div>
+		<div class="next">
+			<a href="function.passthru.html">passthru</a>
+		</div>
+		<div class="up">
+			<a href="ref.exec.html">Fonctions sur l'ex&eacute;cution de
+				programmes externes</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

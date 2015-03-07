@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Enregistre une fonction de rappel pour l'envoi des
+	en-t&ecirc;tes</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.getservbyport.html">getservbyport</a>
+		</div>
+		<div class="next">
+			<a href="function.header-remove.html">header_remove</a>
+		</div>
+		<div class="up">
+			<a href="ref.network.html">Fonctions r&eacute;seaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.header-register-callback" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">header_register_callback</h1>
+			<p class="verinfo">(No version information available, might only
+				be in SVN)</p>
+			<p class="refpurpose">
+				<span class="refname">header_register_callback</span> <span
+					class="mdash">&mdash;</span> <span class="dc-title">Enregistre
+					une fonction de rappel pour l&#039;envoi des en-têtes</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.header-register-callback-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>header_register_callback</strong></span>
+				( <span class="methodparam"><span class="type"><a
+						href="language.types.callable.html" class="type callable">callable</a></span>
+					<code class="parameter">$callback</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">Enregistre une fonction de rappel
+				qui sera appelée lorsque PHP tentera d&#039;écrire sur la sortie.</p>
+			<p class="para">
+				<em><code class="parameter">callback</code></em> est exécutée juste
+				après que PHP ait préparé les en-têtes à envoyer, et avant
+				qu&#039;il ne les envoie. Ceci permet une manipulation fine des
+				en-têtes avant leur envoi.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.header-register-callback-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">callback</code></em></span>
+				<dd>
+
+					<p class="para">La fonction à appeler juste avant que les
+						en-têtes ne soient envoyés. Elle n&#039;accepte aucun paramètre et
+						sa valeur de retour est ignorée.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.header-register-callback-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.header-register-callback-examples">
+			<h3 class="title">Exemples</h3>
+			<div class="example" id="header-register-callback.example.basic">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>header_register_callback()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br />header
+							</span><span style="color: #007700">(</span><span style="color: #DD0000">'Content-Type:&nbsp;text/plain'</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">header</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'X-Test:&nbsp;foo'</span><span
+								style="color: #007700">);<br />
+								<br />function&nbsp;
+							</span><span style="color: #0000BB">foo</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;foreach&nbsp;(
+							</span><span style="color: #0000BB">headers_list</span><span
+								style="color: #007700">()&nbsp;as&nbsp;</span><span
+								style="color: #0000BB">$header</span><span
+								style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;if&nbsp;(
+							</span><span style="color: #0000BB">strpos</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$header</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'X-Powered-By:'</span><span
+								style="color: #007700">)&nbsp;!==&nbsp;</span><span
+								style="color: #0000BB">false</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">header_remove</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'X-Powered-By'</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">header_remove</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'X-Test'</span><span
+								style="color: #007700">);<br />&nbsp;}<br />}<br />
+								<br /></span><span style="color: #0000BB">$result&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">header_register_callback</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'foo'</span><span
+								style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #DD0000">"a"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher quelque chose de
+						similaire à :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Content-Type: text/plain
+
+a
+</pre>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="refsect1 notes"
+			id="refsect1-function.header-register-callback-notes">
+			<h3 class="title">Notes</h3>
+			<p class="para">
+				<span class="function"><strong>header_register_callback()</strong></span>
+				est exécutée juste avant l&#039;envoi des en-têtes, donc tout
+				affichage déclenché par cette fonction peut casser l&#039;affichage
+				final de la sortie.
+			</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Les en-têtes ne seront accessibles et
+					s&#039;afficheront que lorsqu&#039;un SAPI qui les supportent sera
+					utilisé.
+			</blockquote>
+
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.header-register-callback-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.headers-list.html" class="function"
+						rel="rdfs-seeAlso">headers_list()</a> - Retourne la liste des
+						en-t&ecirc;tes de r&eacute;ponse du script courant</span></li>
+				<li class="member"><span class="function"><a
+						href="function.header-remove.html" class="function"
+						rel="rdfs-seeAlso">header_remove()</a> - Supprime un en-t&ecirc;te
+						HTTP</span></li>
+				<li class="member"><span class="function"><a
+						href="function.header.html" class="function" rel="rdfs-seeAlso">header()</a>
+						- Envoie un en-t&ecirc;te HTTP</span></li>
+			</ul>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.getservbyport.html">getservbyport</a>
+		</div>
+		<div class="next">
+			<a href="function.header-remove.html">header_remove</a>
+		</div>
+		<div class="up">
+			<a href="ref.network.html">Fonctions r&eacute;seaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

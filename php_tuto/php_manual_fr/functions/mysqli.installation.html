@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Installation</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="mysqli.requirements.html">Pr&eacute;-requis</a></div>
+ <div class="next"><a href="mysqli.configuration.html">Configuration &agrave; l'ex&eacute;cution</a></div>
+ <div class="up"><a href="mysqli.setup.html">Installation/Configuration</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="mysqli.installation" class="section">
+ 
+<h2 class="title">Installation</h2>
+ 
+ <p class="para">
+  L&#039;extension <em>mysqli</em> a été introduite dans PHP 5.0.0.
+  Le pilote natif MySQL (MySQL Native Driver) a été introduit dans PHP 5.3.0.
+ </p>
+ 
+ <div class="section" id="mysqli.installation.linux">
+ 
+  <h2 class="title">Installation sur Linux</h2>
+ 
+  <p class="para">
+   Les distributions Linux incluent des versions binaires de PHP qui peuvent
+   être installées. Même si ces binaires sont construits avec les extensions
+   MySQL activées, les bibliothèques clientes doivent souvent être installées au
+   moyen d&#039;un paquet additionnel. Voyez si c&#039;est le cas pour votre distribution.
+  </p>
+ 
+ <p class="para">
+   A moins que votre distribution Linux ne fournisse de paquet binaire pour PHP
+   embarquant l&#039;extension <em>mysqli</em>, vous allez devoir construire
+   PHP depuis les sources. Cela permet de préciser les extensions MySQL à embarquer,
+   mais aussi les bibliothèques clientes de chaque extension.
+ </p>
+
+  <p class="para">
+   Le driver natif MySQL est l&#039;option recommandé, vu qu&#039;il apporte
+   un gain de performance et donne l&#039;accès à des fonctionnalités
+   qui ne sont pas disponibles lors de l&#039;utilisation de la bibliothèque
+   cliente MySQL. Reportez-vous à la section
+   <a href="mysqli.overview.html#mysqli.overview.mysqlnd" class="link">Qu&#039;est-ce que le driver
+    natif MySQL de PHP ?</a> pour une brève description des avantages
+   du driver natif MySQL.
+  </p>
+
+  <p class="para">
+   <em>/path/to/mysql_config</em> représente le chemin du programme
+   <em>mysql_config</em> fourni avec MySQL serveur.
+  </p>
+
+  <table class="doctable table">
+   <caption><strong>Matrice de support pour la compilation mysqli</strong></caption>
+   
+    <thead>
+     <tr>
+      <th>Version PHP</th>
+      <th>Défaut</th>
+      <th>Options de configuration : <a href="mysqlnd.overview.html" class="link">mysqlnd</a></th>
+      <th>Options de configuration : <em>libmysql</em></th>
+      <th>Historique</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>5.0.x, 5.1.x, 5.2.x</td>
+      <td>libmysql</td>
+      <td>Indisponible</td>
+      <td><strong class="option configure">--with-mysqli=/path/to/mysql_config</strong>
+</td>
+      <td class="empty">&nbsp;</td>
+     </tr>
+
+     <tr>
+      <td>5.3.x</td>
+      <td>libmysql</td>
+      <td><strong class="option configure">--with-mysqli=mysqlnd</strong>
+</td>
+      <td><strong class="option configure">--with-mysqli=/path/to/mysql_config</strong>
+</td>
+      <td>mysqlnd est maintenant supporté</td>
+     </tr>
+
+     <tr>
+      <td>5.4.x</td>
+      <td>mysqlnd</td>
+      <td><strong class="option configure">--with-mysqli</strong>
+</td>
+      <td><strong class="option configure">--with-mysqli=/path/to/mysql_config</strong>
+</td>
+      <td>mysqlnd est maintenant par défaut</td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+
+  <p class="para">
+   Notez qu&#039;il est possible de mixer les extensions MySQL ainsi que les
+   bibliothèques clientes. Par exemple, il est possible d&#039;activer l&#039;extension
+   MySQL pour utiliser la bibliothèque cliente MySQL (libmysql) tout en configurant
+   l&#039;extension  <em>mysqli</em> pour utiliser le driver natif MySQL.
+   Toutes les combinaisons d&#039;extensions et bibliothèques clientes sont possibles.
+  </p>
+
+  <p class="para">
+   L&#039;exemple suivant compile l&#039;extension MySQL pour utiliser la bibliothèque
+   cliente MySQL, et les extensions <em>mysqli</em> et PDO MYSQL
+   pour utiliser le driver natif MySQL :
+  </p>
+
+<div class="example-contents">
+<div class="shellcode"><pre class="shellcode">./configure --with-mysql=/usr/bin/mysql_config  \
+--with-mysqli=mysqlnd \
+--with-pdo-mysql=mysqlnd
+[autres options]</pre>
+</div>
+</div>
+
+
+ </div>
+ 
+ <div class="section" id="mysqli.installation.windows">
+  
+  <h2 class="title">Installation sur les systèmes Windows</h2>
+  
+  <p class="para">
+   Sur Windows, PHP est généralement installé avec un installeur binaire.
+  </p>
+  
+  <div class="section">
+  
+  <h2 class="title">PHP 5.0, 5.1, 5.2</h2>
+  
+  <p class="para">
+    Une fois PHP installé, certaines configurations demanderont l&#039;activation de
+    <em>mysqli</em> et la précision de la bibliothèque cliente à utiliser
+    avec.
+   </p>
+  
+  <p class="para">
+    L&#039;extension <em>mysqli</em> n&#039;est pas activée par défaut, donc la DLL
+    <var class="filename">php_mysqli.dll</var> doit être activée dans <var class="filename">php.ini</var>. Pour cela,
+    trouvez le fichier <var class="filename">php.ini</var> (souvent <var class="filename">c:\php</var>) et enlevez
+    le caractère de commentaire (;) devant la ligne
+    <em>extension=php_mysqli.dll</em> dans la section
+    <em>[PHP_MYSQLI]</em>.
+   </p>
+
+   <p class="para">
+    Aussi, si vous voulez utiliser MySQL Client Library avec
+    <em>mysqli</em>, vous devez vérifier que PHP a accès à ce fichier.
+    La MySQL Client Library est incluse dans le fichier
+    <var class="filename">libmysql.dll</var> de la distribution Windows de PHP.
+    Ce fichier doit se trouver dans le <span class="envar">PATH</span> de Windows pour pouvoir
+    être chargé sans problème. Voyez la FAQ intitulée
+    &quot;<a href="faq.installation.html#faq.installation.addtopath" class="link">Comment puis-je ajouter mon dossier PHP
+    au PATH de Windows</a>&quot; pour plus d&#039;informations. Copier le fichier
+    <var class="filename">libmysql.dll</var> dans le dossier système de Windows fonctionne aussi
+    (souvent <var class="filename">c:\Windows\system</var>) car ce dossier est par défaut présent
+    dans le <span class="envar">PATH</span> de Windows. Cependant, cette pratique est hautement
+    découragée.
+   </p>
+
+  <p class="para">
+    Pour activer une extension PHP (telle que
+    <var class="filename">php_mysqli.dll</var>), la directive PHP
+    <a href="ini.core.html#ini.extension-dir" class="link">extension_dir</a> doit pointer vers
+    le dossier contenant les extensions PHP. Voyez aussi
+    <a href="install.windows.manual.html" class="link">Installation manuelle sous Windows
+    </a>. Par exemple, <em>extension_dir</em> pourrait valoir
+    <var class="filename">c:\php\ext</var>.
+   </p>
+
+   <blockquote class="note"><p><strong class="note">Note</strong>: 
+    <p class="para">
+     Si lorsque vous démarrez le serveur web, une erreur telle que
+     <em>&quot;Unable to load dynamic library &#039;./php_mysqli.dll&#039;&quot;</em> se
+     produit, c&#039;est que <var class="filename">php_mysqli.dll</var> et/ou
+     <var class="filename">libmysql.dll</var> ne peut être trouvée sur le système.
+    </p>
+   </p></blockquote>
+  </div>
+
+  <div class="section">
+
+    <h2 class="title">PHP 5.3.0+</h2>
+
+   <p class="para">
+    Sur Windows, pour PHP 5.3 ou supérieur, l&#039;extension <em>mysqli</em>
+    est activée par défaut et utilise MySQL Native Driver par défaut. Ceci signifie
+    que vous n&#039;avez pas à vous inquiéter au sujet de <var class="filename">libmysql.dll</var>.
+   </p>
+
+  </div>
+
+ </div>
+ 
+</div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="mysqli.requirements.html">Pr&eacute;-requis</a></div>
+ <div class="next"><a href="mysqli.configuration.html">Configuration &agrave; l'ex&eacute;cution</a></div>
+ <div class="up"><a href="mysqli.setup.html">Installation/Configuration</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

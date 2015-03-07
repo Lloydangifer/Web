@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Retourne une instance de la classe Directory</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.closedir.html">closedir</a>
+		</div>
+		<div class="next">
+			<a href="function.getcwd.html">getcwd</a>
+		</div>
+		<div class="up">
+			<a href="ref.dir.html">Fonctions sur les dossiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.dir" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">dir</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">dir</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Retourne une instance de la classe
+					Directory</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.dir-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><a href="class.directory.html"
+					class="type Directory">Directory</a></span> <span class="methodname"><strong>dir</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$directory</code></span> [, <span
+					class="methodparam"><span class="type">resource</span> <code
+						class="parameter">$context</code></span> ] )
+			</div>
+
+
+			<p class="para rdfs-comment">
+				Un mécanisme pseudo-objet permet la lecture d&#039;un dossier.
+				L&#039;argument <em><code class="parameter">directory</code></em>
+				est ouvert.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters" id="refsect1-function.dir-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">directory</code></em></span>
+				<dd>
+
+					<p class="para">Le dossier à ouvrir</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">context</code></em></span>
+				<dd>
+
+					<p class="para">
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>: <span class="simpara">Le
+								support de contexte a été ajouté en PHP 5.0.0. Pour une
+								description des contextes, référez-vous à <a
+								href="book.stream.html" class="xref">Flux</a>.
+							</span>
+						</p>
+					</blockquote>
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.dir-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne une instance de la classe <a href="class.directory.html"
+					class="classname">Directory</a> en cas de succès, <strong><code>NULL</code></strong>
+				si de mauvais arguments sont passés, ou <strong><code>FALSE</code></strong>
+				pour les autres types d&#039;erreur.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.dir-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2203">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>dir()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<p>
+						Notez la façon dont la valeur de retour de <span class="function"><a
+							href="directory.read.html" class="function">Directory::read()</a></span>
+						est vérifiée dans l&#039;exemple suivant. Nous testons si la
+						valeur est identique (égale et de même type que -- voyez <a
+							href="language.operators.comparison.html" class="link">opérateurs
+							de comparaison</a> pour plus de détails) <strong><code>FALSE</code></strong>
+						sinon, toute entrée dans le nom serait évalué à <strong><code>FALSE</code></strong>
+						causera l&#039;arrêt de la boucle.
+					</p>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$d&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">dir</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"/etc/php5"</span><span
+								style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #DD0000">"Pointeur&nbsp;:&nbsp;"&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">$d</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">handle&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />echo&nbsp;
+							</span><span style="color: #DD0000">"Chemin&nbsp;:&nbsp;"&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">$d</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">path&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />while&nbsp;(
+							</span><span style="color: #0000BB">false&nbsp;</span><span
+								style="color: #007700">!==&nbsp;(</span><span
+								style="color: #0000BB">$entry&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">$d</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">read</span><span style="color: #007700">()))&nbsp;{<br />&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #0000BB">$entry</span><span
+								style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">$d</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher quelque chose de
+						similaire à :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Pointeur : Resource id #2
+Chemin : /etc/php5
+.
+..
+apache
+cgi
+cli
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.dir-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">L&#039;ordre dans lequel les entrées du dossier
+					sont retournées avec la méthode read dépend de votre système.
+			</blockquote>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.closedir.html">closedir</a>
+		</div>
+		<div class="next">
+			<a href="function.getcwd.html">getcwd</a>
+		</div>
+		<div class="up">
+			<a href="ref.dir.html">Fonctions sur les dossiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

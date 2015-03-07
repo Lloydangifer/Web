@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Les valeurs de retour</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="functions.arguments.html">Les arguments de fonction</a>
+		</div>
+		<div class="next">
+			<a href="functions.variable-functions.html">Fonctions variables</a>
+		</div>
+		<div class="up">
+			<a href="language.functions.html">Les fonctions</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="functions.returning-values" class="sect1">
+		<h2 class="title">Les valeurs de retour</h2>
+
+		<p class="para">
+			Les valeurs sont renvoyées en utilisant une instruction de retour
+			optionnelle. Tous les types de variables peuvent être renvoyés,
+			tableaux et objets compris. Cela fait que la fonction finit son
+			exécution immédiatement et passe le contrôle à la ligne appelante.
+			Voir <span class="function"><a href="function.return.html"
+				class="function">return</a></span> pour plus d&#039;informations.
+		</p>
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>:
+			<p class="para">
+				Si <span class="function"><a href="function.return.html"
+					class="function">return</a></span> est omis, la valeur <strong><code>NULL</code></strong>
+				sera retournée.
+		</blockquote>
+		<p class="para">
+		<div class="example" id="example-165">
+			<p>
+				<strong>Exemple #1 Utilisation de <span class="function"><a
+						href="function.return.html" class="function">return</a></span></strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">function&nbsp;</span><span
+							style="color: #0000BB">carre&nbsp;</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$num</span><span
+							style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+						</span><span style="color: #0000BB">$num&nbsp;</span><span
+							style="color: #007700">*&nbsp;</span><span style="color: #0000BB">$num</span><span
+							style="color: #007700">;<br />}<br />echo&nbsp;
+						</span><span style="color: #0000BB">carre&nbsp;</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">4</span><span
+							style="color: #007700">);<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+
+		<p class="para">Une fonction ne peut pas renvoyer plusieurs
+			valeurs en même temps, mais vous pouvez obtenir le même résultat en
+			renvoyant un tableau.</p>
+		<p class="para">
+		<div class="example" id="example-166">
+			<p>
+				<strong>Exemple #2 Retourner un tableau d&#039;une fonction</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">function&nbsp;</span><span
+							style="color: #0000BB">petit_nombre</span><span
+							style="color: #007700">()<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;array&nbsp;(
+						</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+							style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span
+							style="color: #0000BB">2</span><span style="color: #007700">);<br />}<br />list&nbsp;(
+						</span><span style="color: #0000BB">$zero</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$un</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$deux</span><span
+							style="color: #007700">)&nbsp;=&nbsp;</span><span
+							style="color: #0000BB">petit_nombre</span><span
+							style="color: #007700">();<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$zero</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$un</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$deux</span><span
+							style="color: #007700">);<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<p class="para">Pour retourner une référence d&#039;une fonction,
+			utilisez l&#039;opérateur &amp; aussi bien dans la déclaration de la
+			fonction que dans l&#039;assignation de la valeur de retour.</p>
+		<p class="para">
+		<div class="example" id="example-167">
+			<p>
+				<strong>Exemple #3 Retourner une référence d&#039;une
+					fonction</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">function&nbsp;&amp;</span><span
+							style="color: #0000BB">retourne_reference</span><span
+							style="color: #007700">()<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+						</span><span style="color: #0000BB">$uneref</span><span
+							style="color: #007700">;<br />}<br />
+							<br /></span><span style="color: #0000BB">$newref&nbsp;</span><span
+							style="color: #007700">=&amp;&nbsp;</span><span
+							style="color: #0000BB">retourne_reference</span><span
+							style="color: #007700">();<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<p class="simpara">
+			Pour plus d&#039;informations sur les références, référez-vous à <a
+				href="language.references.html" class="link">l&#039;explication
+				sur les références</a>.
+		</p>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="functions.arguments.html">Les arguments de fonction</a>
+		</div>
+		<div class="next">
+			<a href="functions.variable-functions.html">Fonctions variables</a>
+		</div>
+		<div class="up">
+			<a href="language.functions.html">Les fonctions</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

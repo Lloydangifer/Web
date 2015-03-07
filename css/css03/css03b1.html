@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Positionnement statique</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function(){top.FP.initPage();}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+
+		<!-- ################################################################################################## -->
+		<h3>position: static</h3>
+		<section>
+			<p class="fp-p-raz fp-t-center"><code><strong>position: <span class="fp-rouge">static</span>;</strong></code></p>
+			
+			<p>
+				Le mode de positionnement <strong>par défaut</strong> est le
+				positionnement dans le flux normal. La propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'position')">position</a>
+				a la valeur <code>static</code> (ou n'est pas précisée).				
+			<p>
+			
+			<p>
+				Les éléments <abbr title="HyperText Markup Language">HTML</abbr>
+				sont positionnés au fur et à mesure qu'ils sont rencontrés dans le
+				code source de la page. Les boîtes bloc générées sont affichées les
+				unes en dessous des autres, alignées verticalement sur leur marge
+				extérieure gauche. Les boîtes en ligne générées sont affichées les
+				unes à côté des autres, alignées horizontalement sur leur marge
+				extérieure inférieure.
+			</p>
+
+			<p>
+				La propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'margin')">margin</a>
+				permet de définir les marges hautes et basses qui séparent les
+				boîtes de bloc.
+				<br>
+				<strong>Fusion des marges</strong> : quand 2 boîtes de type bloc se
+				suivent, la marge inférieure de la première et la marge supérieure
+				de la seconde <strong>ne s'ajoutent pas</strong> : seule la marge la
+				plus grande est conservée.
+			</p>
+
+			<p>
+				Les propriétés <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'left')">left</a>,
+				<a onclick="top.FP.Voir.showPageTech('css_proprietes', 'top')">top</a>,
+				<a onclick="top.FP.Voir.showPageTech('css_proprietes', 'right')">right</a>
+				et <a onclick="top.FP.Voir.showPageTech('css_proprietes', 'bottom')">bottom</a>
+				n'ont <strong>aucune influence</strong> sur le positionnement statique et les spécifier ne sert à
+				rien car elles seront ignorées.
+			</p>
+
+			<p class="fp-p-raz">
+				L'exemple suivant montre une boîte de type bloc (<a
+					onclick="top.FP.Voir.showPageTech('elements', 'div')">div</a>) qui
+				contient des boîtes en ligne et 2 autres boîtes de type bloc (<a
+					onclick="top.FP.Voir.showPageTech('elements', 'p')">p</a>). Comme
+				aucune propriété de <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'position')">position</a>
+				n'est donnée, toutes les boîtes sont positionnées suivant le flux
+				normal.
+				</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement statique
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div class="parent"&gt;
+			&lt;img src="vador.png"&gt;&lt;span&gt;Je suis votre père
+			&lt;/span&gt;
+			
+			&lt;p class="enfant"&gt;
+				&lt;span&gt;Je suis son enfant : Luke. &lt;/span&gt;
+				&lt;img src="luke.png"&gt;&lt;span&gt; Je suis dans une
+				boîte de type bloc.&lt;/span&gt;&lt;/p&gt;
+			&lt;p class="enfant"&gt;
+				&lt;span&gt;Je suis aussi son enfant : Leia. &lt;/span&gt;
+				&lt;img src="leia.png"&gt;&lt;span&gt; Je suis aussi dans
+				une boîte de type bloc.&lt;/span&gt;&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+			<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {
+	margin: 0;
+	padding: 0;
+}
+.parent {
+	margin: 10px; 
+	border: 1px solid black; 
+	padding: 5px;  
+	background-color: lightgrey;
+}
+.enfant {
+	margin: 10px;
+	border: 1px solid black;
+	padding: 10px;
+	background-color: yellow;
+}
+/* boites en ligne */
+span, img {
+	border: 1px solid black;
+	background-color: white;
+}</textarea>
+			</form>
+			
+			<p class="fp-bot0">
+				On peut noter que :
+			</p>
+			<ul>
+				<li>les marges entre les 2 paragraphes sont bien fusionnées et
+					que la distance est de 10 pixels et non pas 2 * 10 pixels,</li>
+				<li>la distance entre la bordure gauche de la boîte <code>div</code>
+					et la bordure gauche des paragraphes est de 5 pixels (marge
+					intérieure du <code>div</code>) + 10 pixels (marges extérieur du <code>p</code>).
+					Idem pour les bords droits et les bords inférieurs.
+				</li>
+				<li>les boîtes des images sont alignées sur la ligne de base du
+					texte qui les entoure et non pas sur le bord inférieur de ces
+					boîtes en ligne. C'est l 'alignement vertical par défaut des images
+					(<code>vertical-align: baseline</code>). Pour aligner les images
+					avec les boîtes de la même ligne, il faut utiliser : <code>vertical-align:
+						bottom</code>
+				</li>
+			</ul>
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Retourne la liste des constantes et leurs valeurs</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.get-current-user.html">get_current_user</a>
+		</div>
+		<div class="next">
+			<a href="function.get-extension-funcs.html">get_extension_funcs</a>
+		</div>
+		<div class="up">
+			<a href="ref.info.html">Fonctions sur les options et les
+				informations de PHP</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.get-defined-constants" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">get_defined_constants</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.1.0, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">get_defined_constants</span> <span
+					class="mdash">&mdash;</span> <span class="dc-title">Retourne
+					la liste des constantes et leurs valeurs</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.get-defined-constants-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>get_defined_constants</strong></span>
+				([ <span class="methodparam"><span class="type">bool</span> <code
+						class="parameter">$categorize</code><span class="initializer">
+						= false</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				Retourne les noms et valeurs des constantes déjà définies. Cela
+				inclut les constantes créées par les extensions, et celles créées
+				avec la fonction <span class="function"><a
+					href="function.define.html" class="function">define()</a></span>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.get-defined-constants-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">categorize</code></em></span>
+				<dd>
+
+					<p class="para">Permet à cette fonction de retourner un tableau
+						multidimensionnel avec les catégories en tant que clés de la
+						première dimension et les constantes ainsi que leurs valeurs dans
+						la seconde dimension.
+					<div class="informalexample">
+						<div class="example-contents">
+							<div class="phpcode">
+								<code>
+									<span style="color: #000000"> <span
+										style="color: #0000BB">&lt;?php<br />define
+									</span><span style="color: #007700">(</span><span
+										style="color: #DD0000">"MY_CONSTANT"</span><span
+										style="color: #007700">,&nbsp;</span><span
+										style="color: #0000BB">1</span><span style="color: #007700">);<br /></span><span
+										style="color: #0000BB">print_r</span><span
+										style="color: #007700">(</span><span style="color: #0000BB">get_defined_constants</span><span
+										style="color: #007700">(</span><span style="color: #0000BB">true</span><span
+										style="color: #007700">));<br /></span><span
+										style="color: #0000BB">?&gt;</span>
+									</span>
+								</code>
+							</div>
+						</div>
+
+						<p class="para">L&#039;exemple ci-dessus va afficher quelque
+							chose de similaire à :</p>
+						<div class="example-contents screen">
+							<div class="cdata">
+								<pre>
+Array
+(
+    [Core] =&gt; Array
+        (
+            [E_ERROR] =&gt; 1
+            [E_WARNING] =&gt; 2
+            [E_PARSE] =&gt; 4
+            [E_NOTICE] =&gt; 8
+            [E_CORE_ERROR] =&gt; 16
+            [E_CORE_WARNING] =&gt; 32
+            [E_COMPILE_ERROR] =&gt; 64
+            [E_COMPILE_WARNING] =&gt; 128
+            [E_USER_ERROR] =&gt; 256
+            [E_USER_WARNING] =&gt; 512
+            [E_USER_NOTICE] =&gt; 1024
+            [E_ALL] =&gt; 2047
+            [TRUE] =&gt; 1
+        )
+
+    [pcre] =&gt; Array
+        (
+            [PREG_PATTERN_ORDER] =&gt; 1
+            [PREG_SET_ORDER] =&gt; 2
+            [PREG_OFFSET_CAPTURE] =&gt; 256
+            [PREG_SPLIT_NO_EMPTY] =&gt; 1
+            [PREG_SPLIT_DELIM_CAPTURE] =&gt; 2
+            [PREG_SPLIT_OFFSET_CAPTURE] =&gt; 4
+            [PREG_GREP_INVERT] =&gt; 1
+        )
+
+    [user] =&gt; Array
+        (
+            [MY_CONSTANT] =&gt; 1
+        )
+
+)
+</pre>
+							</div>
+						</div>
+					</div>
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.get-defined-constants-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para"></p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.get-defined-constants-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.3.1</td>
+						<td>Windows uniquement : Les constantes internes sont
+							catégorisées sous <em>Core</em>, précédemment, elles
+							l&#039;étaient sous <em>mhash</em>.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.3.0</td>
+						<td>Les constantes internes sont maintenant catégorisées sous
+							<em>Core</em> alors qu&#039;elles l&#039;étaient sous <em>internal</em>
+							auparavant. Sous WIndows, les constantes internes étaient
+							catégorisées sous <em>mhash</em>.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.2.11</td>
+						<td>Le paramètre <em><code class="parameter">categorize</code></em>
+							agit maintenant comme entendu. Avant, le paramètre <em><code
+									class="parameter">categorize</code></em> était interprété comme <em>!is_null($categorize)</em>,
+							faisant que n&#039;importe quelle valeur autre que <strong><code>NULL</code></strong>
+							forçait la constante a être catégorisée.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.0.0</td>
+						<td>Le paramètre <em><code class="parameter">categorize</code></em>
+							a été ajouté.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.get-defined-constants-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-481">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>get_defined_constants()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />print_r
+							</span><span style="color: #007700">(</span><span style="color: #0000BB">get_defined_constants</span><span
+								style="color: #007700">());<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher quelque chose de
+						similaire à :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Array
+(
+    [E_ERROR] =&gt; 1
+    [E_WARNING] =&gt; 2
+    [E_PARSE] =&gt; 4
+    [E_NOTICE] =&gt; 8
+    [E_CORE_ERROR] =&gt; 16
+    [E_CORE_WARNING] =&gt; 32
+    [E_COMPILE_ERROR] =&gt; 64
+    [E_COMPILE_WARNING] =&gt; 128
+    [E_USER_ERROR] =&gt; 256
+    [E_USER_WARNING] =&gt; 512
+    [E_USER_NOTICE] =&gt; 1024
+    [E_ALL] =&gt; 2047
+    [TRUE] =&gt; 1
+)
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.get-defined-constants-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.defined.html" class="function" rel="rdfs-seeAlso">defined()</a>
+						- V&eacute;rifie l'existence d'une constante</span></li>
+				<li class="member"><span class="function"><a
+						href="function.get-loaded-extensions.html" class="function"
+						rel="rdfs-seeAlso">get_loaded_extensions()</a> - Retourne la liste
+						de tous les modules compil&eacute;s et charg&eacute;s</span></li>
+				<li class="member"><span class="function"><a
+						href="function.get-defined-functions.html" class="function"
+						rel="rdfs-seeAlso">get_defined_functions()</a> - Liste toutes les
+						fonctions d&eacute;finies</span></li>
+				<li class="member"><span class="function"><a
+						href="function.get-defined-vars.html" class="function"
+						rel="rdfs-seeAlso">get_defined_vars()</a> - Liste toutes les
+						variables d&eacute;finies</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.get-current-user.html">get_current_user</a>
+		</div>
+		<div class="next">
+			<a href="function.get-extension-funcs.html">get_extension_funcs</a>
+		</div>
+		<div class="up">
+			<a href="ref.info.html">Fonctions sur les options et les
+				informations de PHP</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

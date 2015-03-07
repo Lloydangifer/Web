@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Positionnement flottant</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function(){top.FP.initPage();}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p class="fp-bot0">Les boîtes flottantes sont très souvent
+			utilisées car elles permettent de réaliser par exemple :</p>
+		<ul>
+			<li>des habillages : des éléments sont placés tout à gauche ou
+				tout à droite et le reste du contenu les entoure,</li>
+			<li>des dispositions automatiques d'éléments côte à côte,</li>
+			<li>des mises en page avec des colonnes.</li>
+		</ul>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Principes</h3>
+		<section>
+
+			<p class="fp-p-raz fp-t-center">
+				<code><strong>float: <span class="fp-rouge">right</span>;
+				</strong></code>
+				<br>
+				<code><strong>float: <span class="fp-rouge">left</span>;
+				</strong></code>
+			</p>
+
+			<p>Une boîte flottante est une boîte qui est déplacée le plus à
+				droite ou le plus à gauche de son conteneur. Le reste du contenu
+				s'écoule autour de la boîte.</p>
+
+			<figure>
+				<img src="../cssimg/float.png" width="590" height="312">
+				<figcaption>boîtes flottantes</figcaption>
+			</figure>
+
+
+			<p>
+				Pour faire flotter une boîte, il faut utiliser la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'float')">float</a>
+				et lui assigner comme valeur <code>left</code> ou <code>right</code>.
+			</p>
+
+			<p>
+				La boîte est d'abord placée normallement dans le flux. Elle est
+				ensuite rétirée du flux et poussée le plus à gauche possible de son
+				conteneur (<code>float: <span class="fp-rouge">left</span>;
+				</code>) ou le plus à droite possible de son conteneur (<code>float:
+					<span class="fp-rouge">right</span>;
+				</code>).
+				<br>
+				Le conteneu du conteneur se place autour d'elle, et éventuellement
+				les éléments qui suivent si la hauteur de la boîte est plus grande
+				que celle de son conteneur.
+			</p>
+
+			<p>
+				Une boîte flottante doit avoir <strong>une largeur
+					explicite</strong> spécifiée par la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'width')">width</a>
+				sinon elle prendra la largeur nécessaire pour afficher son contenu
+				et donc éventuellement toute la largeur de son conteneur.
+			</p>
+
+			<p>Par défaut, une boîte flottante ne dépasse jamais les limites
+				hautes, droites et gauches de son conteneur. Elle peut dépasser la
+				limite inférieure.</p>
+
+
+			<p>Une boîte flottante est toujours considérée comme une boîte de
+				type bloc même si son contenu est de type en ligne.</p>
+
+			<p>Les marges verticales d'une boîte flottante ne sont jamais
+				combinées avec celles les boîtes supérieure ou inférieure comme dans
+				le flux normal.</p>
+
+
+			<p class="fp-p-raz">L'exemple suivant montre une image flottante
+				à gauche avec le texte du paragraphe qui l'entoure.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement flottant
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div id="conteneur"&gt;
+			&lt;h3&gt;La Guerre des Etoiles du Milieu&lt;/h3&gt;
+			
+			&lt;p id="p1"&gt;&lt;img id="i1" src="../exemples/img/yoda2.jpg"&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron. &lt;/p&gt;
+					&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* La largeur du conteneur est réduite pour avoir
+	plusieurs lignes dans les paragraphes contenus. */
+#conteneur {
+	width: 400px;
+	margin: 10px auto;
+}
+p {
+	margin: 10px 0;
+	background: azure;
+	border:1px solid;
+	font-size: 1.125em;
+}
+/* Image flottante à gauche */
+#i1 {
+	float: left;
+	width: 108px;
+	margin-right: 10px;
+}</textarea>
+			</form>
+
+
+			<p class="fp-p-raz">Le titre est positionné en flottement à
+				droite.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement flottant
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div id="conteneur"&gt;
+			&lt;h3&gt;La Guerre des Etoiles du Milieu&lt;/h3&gt;
+			
+			&lt;p id="p1"&gt;&lt;img id="i1" src="../exemples/img/yoda2.jpg"&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron. &lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* La largeur du conteneur est réduite pour avoir
+	plusieurs lignes dans les paragraphes contenus. */
+#conteneur {
+	width: 400px;
+	margin: 10px auto;
+}
+p {
+	margin: 10px 0;
+	background: azure;
+	border:1px solid;
+	font-size: 1.125em;
+}
+/* Image flottante à gauche */
+#i1 {
+	float: left;
+	width: 108px;
+	margin-right: 10px;
+}
+/* Titre flottant à droite */
+h3 {
+	float: right;
+	width: 140px;
+	background: orange;
+	margin: 0;
+}</textarea>
+			</form>
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Eviter l'entourage</h3>
+		<section>
+			<figure style="float: right; margin: 0 0 0.5em 1em; width: 300px">
+				<img src="../cssimg/overflow.png" width="290" height="204">
+				<figcaption>flottement sans entourage</figcaption>
+			</figure>
+
+			<p class="fp-bot0">
+				Parfois on veut qu'une boîte flotte à droite ou à gauche, mais on ne
+				veut pas que le contenu qui suit cette boîte l'entoure complétement.
+				<br>
+				Il y a 2 solutions pour arriver à ce résultat :
+			</p>
+			<ul>
+				<li>utiliser la marge interne <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'padding')">padding</a></li>
+				<li>utiliser la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'overflow')">overflow</a>
+			</ul>
+
+			<p class="fp-clear">
+				La 1ere solution consiste donc à mettre une marge interne (<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'padding')">padding</a>)
+				légérement supérieure à la largeur de la boîte flottante, soit à
+				droite (<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'padding-right')">padding-right</a>,
+				soit à gauche <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'padding-left')">padding-left</a>
+				suivant le côté où flotte la boîte.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement flottant - éviter
+					l'entourage
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div id="conteneur"&gt;
+			&lt;h3&gt;La Guerre des Etoiles du Milieu&lt;/h3&gt;
+			
+			&lt;p id="p1"&gt;&lt;img id="i1" src="../exemples/img/yoda2.jpg"&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron. &lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* La largeur du conteneur est réduite pour avoir
+	plusieurs lignes dans les paragraphes contenus. */
+#conteneur {
+	width: 400px;
+	margin: 10px auto;
+}
+p {
+	margin: 10px 0;
+	background: azure;
+	border:1px solid;
+	font-size: 1.125em;
+}
+/* Image flottante à gauche */
+#i1 {
+	float: left;
+	width: 108px;
+	margin-right: 10px;
+}
+/* Titre flottant à droite */
+h3 {
+	float: right;
+	width: 140px;
+	background: orange;
+	margin: 0;
+}
+/* Eviter l'entourage de la boîte h3 */
+#p1 {
+	padding-right: 145px;
+}</textarea>
+			</form>
+
+			<p>
+				La 2ème solution consiste à utiliser la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'overflow')">overflow</a>
+				avec une valeur autre que <code>visible</code>, par exemple <code>auto</code>.
+				Une des caractéristiques de la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'overflow')">overflow</a>
+				avec une valeur autre que <code>visible</code> est de créer un
+				nouveau <a
+					href="http://www.w3.org/TR/CSS21/visuren.html#block-formatting"
+					target="_blank">contexte de formatage de bloc</a> dont l'un des
+				résultats est celui que nouv pouvons voir dans l'exemple.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement flottant - éviter
+					l'entourage
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div id="conteneur"&gt;
+			&lt;h3&gt;La Guerre des Etoiles du Milieu&lt;/h3&gt;
+			
+			&lt;p id="p1"&gt;&lt;img id="i1" src="../exemples/img/yoda2.jpg"&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron. &lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* La largeur du conteneur est réduite pour avoir
+	plusieurs lignes dans les paragraphes contenus. */
+#conteneur {
+	width: 400px;
+	margin: 10px auto;
+}
+p {
+	margin: 10px 0;
+	background: azure;
+	border:1px solid;
+	font-size: 1.125em;
+}
+/* Image flottante à gauche */
+#i1 {
+	float: left;
+	width: 108px;
+	margin-right: 10px;
+}
+/* Titre flottant à droite */
+h3 {
+	float: right;
+	width: 140px;
+	background: orange;
+	margin: 0;
+}
+/* Eviter l'entourage de la boîte h3 */
+#p1 {
+	overflow: auto;
+}</textarea>
+			</form>
+
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Eviter les chevauchements</h3>
+		<section>
+			<p>Comme une boîte flottante sort du flux normal, sa hauteur
+				n'est pas comptée dans le calcul de la hauteur du conteneur. Une
+				boîte flottante peut donc déborder en hauteur et s'étendre sur
+				plusieurs boîtes comme dans l'exemple suivant qui fait flotter à
+				gauche le 2ème paragraphe.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement flottant et chevauchement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div id="conteneur"&gt;
+			&lt;h3&gt;La Guerre des Etoiles du Milieu&lt;/h3&gt;
+			
+			&lt;p id="p1"&gt;&lt;img id="i1" src="../exemples/img/yoda2.jpg"&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron. &lt;/p&gt;
+			
+			&lt;p id="p2"&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;
+			
+			&lt;p id="p3"&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+			
+			&lt;p id="p4"&gt;De plus en plus portnawak les scénarios chez Disney.&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* La largeur du conteneur est réduite pour avoir
+	plusieurs lignes dans les paragraphes contenus. */
+#conteneur {
+	width: 400px;
+	margin: 10px auto;
+}
+p {
+	margin: 10px 0;
+	background: azure;
+	border:1px solid;
+	font-size: 1.125em;
+}
+/* Image flottante à gauche */
+#i1 {
+	float: left;
+	width: 108px;
+	margin-right: 10px;
+}
+/* 2eme paragraphe flottant à gauche */
+#p2 {
+	float: left;
+	width: 110px;
+	background: turquoise;
+	margin: 0 10px;
+}</textarea>
+			</form>
+
+			<p>
+				Pour éviter que la boîte flottante ne s'étende en hauteur sur
+				d'autres boîtes, on utiliser la <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'clear')">clear</a>
+				dans la boîte où l'on veut marquer la fin du chevauchement.
+			</p>
+
+			<p class="fp-bot0">
+				La <a onclick="top.FP.Voir.showPageTech('css_proprietes', 'clear')">clear</a>
+				peut avoir 3 valeurs :
+			</p>
+			<ul>
+				<li><code>left</code> arrête le chevauchement d'une boîte
+					flottante sur la gauche,</li>
+				<li><code>right</code> arrête le chevauchement d'une boîte
+					flottante sur la droite,</li>
+				<li><code>both</code> arrête le chevauchement des 2 côtés.</li>
+			</ul>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement flottant - arrêt du
+					chevauchement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div id="conteneur"&gt;
+			&lt;h3&gt;La Guerre des Etoiles du Milieu&lt;/h3&gt;
+			
+			&lt;p id="p1"&gt;&lt;img id="i1" src="../exemples/img/yoda2.jpg"&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron. &lt;/p&gt;
+			
+			&lt;p id="p2"&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;
+			
+			&lt;p id="p3"&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+			
+			&lt;p id="p4"&gt;De plus en plus portnawak les scénarios chez Disney.&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* La largeur du conteneur est réduite pour avoir
+	plusieurs lignes dans les paragraphes contenus. */
+#conteneur {
+	width: 400px;
+	margin: 10px auto;
+}
+p {
+	margin: 10px 0;
+	background: azure;
+	border:1px solid;
+	font-size: 1.125em;
+}
+/* Image flottante à gauche */
+#i1 {
+	float: left;
+	width: 108px;
+	margin-right: 10px;
+}
+/* 2eme paragraphe flottant à gauche */
+#p2 {
+	float: left;
+	width: 110px;
+	background: turquoise;
+	margin: 0 10px;
+}
+/* arrêt du chevauchement du dernier paragraphe */
+#p4 {
+	clear: left;
+}</textarea>
+			</form>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Boîtes flottantes adjacentes</h3>
+		<section>
+			<p>Lorsque des boîtes flottantes sont adjacentes (côte à côte)
+				leur bord supérieur est positionné sur la même ligne si il y a assez
+				de place. Si il n'y a pas assez de place, la ou les dernières boîtes
+				flottantes sont déplacées plus bas dans la première position où il y
+				a assez de place.</p>
+
+			<p class="fp-p-raz">
+				Dans l'exemple suivant, les boîtes <a
+					onclick="top.FP.Voir.showPageTech('elements', 'figure')">figure</a>
+				sont toutes avec un flottement à gauche. Suivant la largeur de la
+				fenêtre d'affichage, les boîtes seront disposées pour respecter la
+				règle. Vous pouvez redimensionner la fenêtre pour voir les
+				changements dynamiques de position.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : boîtes flottantes adjacentes
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Véhicules à louer&lt;/h3&gt;
+		&lt;figure&gt;
+			&lt;img src="../exemples/img/vulture_droid.png"&gt;
+			&lt;figcaption&gt;1 - Vulture Droid&lt;/figcaption&gt;
+		&lt;/figure&gt;
+		&lt;figure&gt;
+			&lt;img src="../exemples/img/naboo_starfighter.png"&gt;
+			&lt;figcaption&gt;2 - Naboo Starfighter&lt;/figcaption&gt;
+		&lt;/figure&gt;
+		&lt;figure&gt;
+			&lt;img src="../exemples/img/v_wing.png"&gt;
+			&lt;figcaption&gt;3 - V-wing&lt;/figcaption&gt;
+		&lt;/figure&gt;		
+		&lt;figure&gt;
+			&lt;img src="../exemples/img/mandalorian_fighter.png"&gt;
+			&lt;figcaption&gt;4 - Mandalorian Fighter&lt;/figcaption&gt;
+		&lt;/figure&gt;
+		&lt;figure&gt;
+			&lt;img src="../exemples/img/x_wing.png"&gt;
+			&lt;figcaption&gt;5 - X-wing&lt;/figcaption&gt;
+		&lt;/figure&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+figure {
+	float: left;	/* met les figures côte à côte */
+	margin: 0.2em;			/* marge tout autour */
+	border: 10px solid #fff;	/* bord blanc de 10 pixels */
+	box-shadow: 1px 1px 5px 1px #999;	/* ombre légére */
+}
+img {
+	background: #000;
+	padding: 5px;
+}</textarea>
+			</form>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Mise en page avec colonnes</h3>
+		<section>
+			<p>Les boîtes flottantes adjacentes peuvent être utilisées pour
+				faire des mises en page avec des colonnes (2, 3, 4, etc).</p>
+
+			<p class="fp-p-raz">L'exemple suivant présente une mise en page
+				classique avec 3 colonnes.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : mise en page avec boîtes flottantes
+					adjacentes
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;main&gt;
+			&lt;header&gt;
+				&lt;h3&gt;La Guerre des Etoiles du Milieu&lt;/h3&gt;
+			&lt;/header&gt;
+			
+			&lt;nav&gt;
+				&lt;ul&gt;
+					&lt;li&gt;Episode 1&lt;/li&gt;
+					&lt;li&gt;Episode 2&lt;/li&gt;
+					&lt;li&gt;Episode 3&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/nav&gt;
+			
+			&lt;section&gt;
+				&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron. &lt;/p&gt;
+			
+				&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;
+			
+				&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+			&lt;/section&gt;
+				
+			&lt;aside&gt;
+				&lt;p&gt;Pub&lt;/p&gt;
+				&lt;p&gt;Gagnez un ticket sur le Coudbar Express&lt;/p&gt;
+				&lt;p&gt;Pub&lt;/p&gt;
+			&lt;/aside&gt;
+			
+			&lt;footer&gt;De plus en plus portnawak les scénarios chez Disney.&lt;/footer&gt;
+		&lt;/main&gt;
+	&lt;/body&gt; 
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+main {
+	width: 500px;
+	margin: 0 auto;
+	overflow: auto;
+	border: 1px solid
+}
+nav ul {
+	list-style: none;
+	padding: 10px;
+	margin: 0 10px 0 0;
+	background: lightgrey;
+	float: left;
+	width: 80px;
+}
+section {
+	float: left;
+	width: 300px;
+	background: orange;
+	margin: 0 10px 10px 0;
+}
+aside {
+	float: left;
+	width: 80px;
+	background: turquoise;
+}
+footer {
+	clear: both;
+	text-align: center;
+}</textarea>
+			</form>
+
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

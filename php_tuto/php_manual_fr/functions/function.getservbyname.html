@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Retourne le num&eacute;ro de port associ&eacute; &agrave;
+	un service Internet et un protocole</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.getprotobynumber.html">getprotobynumber</a>
+		</div>
+		<div class="next">
+			<a href="function.getservbyport.html">getservbyport</a>
+		</div>
+		<div class="up">
+			<a href="ref.network.html">Fonctions r&eacute;seaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.getservbyname" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">getservbyname</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">getservbyname</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Retourne le numéro de port associé à
+					un service Internet et un protocole</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.getservbyname-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">int</span> <span class="methodname"><strong>getservbyname</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$service</code></span> , <span class="methodparam"><span
+					class="type">string</span> <code class="parameter">$protocol</code></span>
+				)
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>getservbyname()</strong></span>
+				retourne le numéro de port associé au service <em><code
+						class="parameter">service</code></em> et au protocole <em><code
+						class="parameter">protocol</code></em>, comme dans
+				<var class="filename">/etc/services</var>
+				.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.getservbyname-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">service</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le nom du service Internet, sous la forme d&#039;une <a
+							href="language.types.string.html" class="link">chaîne de
+							caractères</a>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">protocol</code></em></span>
+				<dd>
+
+					<p class="para">
+						<em><code class="parameter">protocol</code></em> vaut soit <em>&quot;tcp&quot;</em>,
+						soit <em>&quot;udp&quot;</em> (en minuscule).
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.getservbyname-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne le numéro du port, ou <strong><code>FALSE</code></strong>
+				si <em><code class="parameter">service</code></em> ou <em><code
+						class="parameter">protocol</code></em> n&#039;est pas trouvé.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.getservbyname-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4146">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>getservbyname()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$services&nbsp;
+							</span><span style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">'http'</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'ftp'</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'ssh'</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'telnet'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'imap'</span><span style="color: #007700">,<br /></span><span
+								style="color: #DD0000">'smtp'</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'nicname'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'gopher'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'finger'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'pop3'</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'www'</span><span style="color: #007700">);<br />
+								<br />foreach&nbsp;(
+							</span><span style="color: #0000BB">$services&nbsp;</span><span
+								style="color: #007700">as&nbsp;</span><span
+								style="color: #0000BB">$service</span><span
+								style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$port&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">getservbyname</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$service</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'tcp'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #0000BB">$service&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #DD0000">":&nbsp;"&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">$port&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.getservbyname-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.getservbyport.html" class="function"
+						rel="rdfs-seeAlso">getservbyport()</a> - Retourne le service
+						Internet qui correspond au port et protocole</span></li>
+				<li class="member"><a
+					href="http://www.iana.org/assignments/port-numbers"
+					class="link external">&raquo;&nbsp;http://www.iana.org/assignments/port-numbers</a>
+					pour une liste complète des numéros de port.</li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.getprotobynumber.html">getprotobynumber</a>
+		</div>
+		<div class="next">
+			<a href="function.getservbyport.html">getservbyport</a>
+		</div>
+		<div class="up">
+			<a href="ref.network.html">Fonctions r&eacute;seaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

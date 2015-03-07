@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Les unités de taille</title>
+
+<link rel="stylesheet" href="tech.css">
+
+<script>
+	if (!top.FP) {
+		location.replace('../index.html');
+	}
+
+	window.onload = function() {
+		FPL.convertir(16);
+	}
+
+	FPL = {
+		convertir : function(base) {
+			var H = '', i;
+			for (i = 1; i < 31; i++) {
+				em = i / base;
+				pcent = em * 100;
+
+				H += '<tr><td>' + i + 'px </td><td>' + em + 'em </td><td>'
+						+ pcent + '% </td></tr>';
+
+				document.getElementById('tblConversion').innerHTML = H;
+			}
+
+		}
+	};
+</script>
+</head>
+<body>
+	<div id="PAGE-tech">
+		<h2>Les unités de taille (longueur, hauteur, etc)</h2>
+
+		<section>
+			<p>
+				L'unité à choisir pour valoriser une propriété <abbr
+					title="Cascading Style Sheets">CSS</abbr> dépend avant tout du
+				support utilisé pour l'affichage du document : écran ou papier.
+			</p>
+			<p>
+				La tableau suivant liste les principales unités couramment
+				utilisées. Une liste complète peut être trouvée dans les <a
+					href="http://www.w3.org/TR/css3-values/#lengths" target="_blank">specifications
+					du W3C</a>.
+			</p>
+
+			<table style="">
+				<tr>
+					<td>Unité</td>
+					<td>Signification</td>
+					<td>Support<br> Type
+					</td>
+				</tr>
+				<tr>
+					<td><strong><code>px</code></strong></td>
+					<td>Pixel CSS. <br> 1 pixel CSS= 1/96 pouce = 0.0265 mm <br>
+						Exemple : <code>width: 500px;</code>
+					</td>
+					<td class="fp-t-center"><img src="../cssimg/computer.png"
+						width="24" height="24"> <br> Absolue</td>
+				</tr>
+				<tr>
+					<td><strong><code>em</code></strong></td>
+					<td>Cadratin. Taille d'une police par rapport à celle du
+						parent. <br> Exemple : <code>font-size: 1.5em;</code>
+					</td>
+					<td class="fp-t-center"><img src="../cssimg/computer.png"
+						width="24" height="24"> <br> Relative</td>
+				</tr>
+				<tr>
+					<td><strong><code>rem</code></strong></td>
+					<td>Taille d'une police par rapport à celle de la racine du
+						document (élément html).<br> Exemple : <code>font-size:
+							0.75rem;</code>
+					</td>
+					<td class="fp-t-center"><img src="../cssimg/computer.png"
+						width="24" height="24"> <br> Relative</td>
+				</tr>
+				<tr>
+					<td><strong><code>%</code></strong></td>
+					<td>Pourcentage par rapport à la valeur de la propriété dans
+						l'élément parent. <br> Exemple : <code>height: 80%;</code>
+					<br><span class="fp-petit">Remarque : un pourcentage n'est pas vraiment une unité,
+						mais pour simplifier il est classé ici.</span>
+					</td>
+					<td class="fp-t-center"><img src="../cssimg/computer.png"
+						width="24" height="24"> <br> Relative</td>
+				</tr>
+
+				<tr>
+					<td><strong><code>in</code></strong></td>
+					<td>Pouce (inch). <br> 1 in = 2.54 cm <br> Exemple :
+						<code>width: 10in;</code>
+					</td>
+					<td class="fp-t-center"><img src="../cssimg/printer.png"
+						width="24" height="24"> <br> Absolue</td>
+				</tr>
+				<tr>
+					<td><strong><code>cm</code></strong></td>
+					<td>Centimètre <br> Exemple : <code>width: 5.4cm;</code>
+					</td>
+					<td class="fp-t-center"><img src="../cssimg/printer.png"
+						width="24" height="24"> <br> Absolue</td>
+				</tr>
+				<tr>
+					<td><strong><code>mm</code></strong></td>
+					<td>Millimètre <br> Exemple : <code>width: 105mm;</code>
+					</td>
+					<td class="fp-t-center"><img src="../cssimg/printer.png"
+						width="24" height="24"> <br> Absolue</td>
+				</tr>
+				<tr>
+					<td><strong><code>pt</code></strong></td>
+					<td>Point (unité la plus petite en typographie). <br> 1
+						point = 1/72 pouce = 0.351 mm <br> Exemple : <code>width:
+							20pt;</code>
+					</td>
+					<td class="fp-t-center"><img src="../cssimg/printer.png"
+						width="24" height="24"> <br> Absolue</td>
+				</tr>
+				<tr>
+					<td><strong><code>pc</code></strong></td>
+					<td>Pica (unité de mesure standard typographique. Système en
+						base 12). <br> 1 pica = 12 points = 4.212 mm <br>
+						Exemple : <code>width: 10pc;</code>
+					</td>
+					<td class="fp-t-center"><img src="../cssimg/printer.png"
+						width="24" height="24"> <br> Absolue</td>
+				</tr>
+
+			</table>
+
+			<p>
+				Chaque fois qu'une valeur de propriété est un nombre, <strong>il
+					faut préciser l'unité utilisée</strong>, sinon la propriété ne sera pas
+				prise en compte.
+			</p>
+
+			<p class="fp-bot0">Cette règle a 3 exceptions :</p>
+			<ul>
+				<li>quand le nombre est égal à 0,</li>
+				<li>la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'line-height')">line-height</a></li>
+				<li>la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'border-image')">border-image</a></li>
+			</ul>
+
+			<p>
+				<strong>L'unité doit être collée au nombre.</strong>
+				<br>
+				<code>width: 100px</code> est correct.
+				<br>
+				<code>width: 100 px</code> sera ignoré et la propriété ne sera pas
+				prise en compte.
+			</p>
+
+			<p>
+				Il n'y a pas de restriction sur l'unité pouvant être utilisée avec
+				une propriété qui a une valeur numérique : on pourra préciser cette
+				valeur en pixels (<code>width: 100px</code>), en pouces (<code>width:
+					45in</code>), en pourcentage (<code>width: 50%</code>), ou en n'importe
+				quelle autre unité reconnue par les <abbr
+					title="Cascading Style Sheets">CSS</abbr>.
+			</p>
+
+			<p class="fp-bot0">Les unités permettant de définir une taille
+				peuvent être :</p>
+			<ul>
+				<li>des &quot;unités absolues&quot; : elles sont fixes les unes
+					par rapport aux autres (exemple centimètres et millimétres) et
+					ancrées dans la réalité physique,</li>
+				<li>des &quot;unités relatives&quot; : elles définissent une
+					taille relativement à une autre taille.</li>
+			</ul>
+
+
+			<p>
+				Le pixel CSS est un peu différent du pixel écran dont la taille en
+				centimètre dépend de la densité de pixels par pouce sur la dalle
+				écran (DPI - Density Per Inch - ou PPI - Pixels Per Inch). Les
+				écrans fixes ont généralement une densité de 96 PPI, les écrans de
+				portable de 125 PPI et les écrans de smartphone ou de tablette de
+				160 PPI.
+				<br>
+				Pour le W3C, le 'pixel CSS' de référence est de 96 PPI. <a
+					href="http://www.w3.org/TR/css3-values/#reference-pixel"
+					target="_blank">http://www.w3.org/TR/css3-values/#reference-pixel</a>
+			</p>
+
+		</section>
+
+		<h2>Conversion pixel / em / pourcentage / point</h2>
+		<section>
+			<p>
+				Taille de base <select onchange="FPL.convertir(this.value)">
+					<option value=10>10 pixels</option>
+					<option value=11>11 pixels</option>
+					<option value=12>12 pixels</option>
+					<option value=13>13 pixels</option>
+					<option value=14>14 pixels</option>
+					<option value=15>15 pixels</option>
+					<option value=16 selected>16 pixels</option>
+					<option value=17>17 pixels</option>
+					<option value=18>18 pixels</option>
+				</select>
+			</p>
+
+			<table id="tblConversion" class="TAB-zebre"></table>
+
+
+		</section>
+
+	</div>
+</body>
+</html>

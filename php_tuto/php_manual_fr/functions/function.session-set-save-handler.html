@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Configure les fonctions de stockage de sessions</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.session-set-cookie-params.html">session_set_cookie_params</a>
+		</div>
+		<div class="next">
+			<a href="function.session-start.html">session_start</a>
+		</div>
+		<div class="up">
+			<a href="ref.session.html">Fonctions Session</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.session-set-save-handler" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">session_set_save_handler</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">session_set_save_handler</span> <span
+					class="mdash">&mdash;</span> <span class="dc-title">Configure
+					les fonctions de stockage de sessions</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.session-set-save-handler-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>session_set_save_handler</strong></span>
+				( <span class="methodparam"><span class="type"><a
+						href="language.types.callable.html" class="type callable">callable</a></span>
+					<code class="parameter">$open</code></span> , <span class="methodparam"><span
+					class="type"><a href="language.types.callable.html"
+						class="type callable">callable</a></span> <code class="parameter">$close</code></span>
+				, <span class="methodparam"><span class="type"><a
+						href="language.types.callable.html" class="type callable">callable</a></span>
+					<code class="parameter">$read</code></span> , <span class="methodparam"><span
+					class="type"><a href="language.types.callable.html"
+						class="type callable">callable</a></span> <code class="parameter">$write</code></span>
+				, <span class="methodparam"><span class="type"><a
+						href="language.types.callable.html" class="type callable">callable</a></span>
+					<code class="parameter">$destroy</code></span> , <span class="methodparam"><span
+					class="type"><a href="language.types.callable.html"
+						class="type callable">callable</a></span> <code class="parameter">$gc</code></span>
+				)
+			</div>
+
+			<p class="para rdfs-comment">Depuis PHP 5.4, il est possible
+				d&#039;enregistrer le prototype suivant :</p>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>session_set_save_handler</strong></span>
+				( <span class="methodparam"><span class="type"><a
+						href="class.sessionhandlerinterface.html"
+						class="type SessionHandlerInterface">SessionHandlerInterface</a></span> <code
+						class="parameter">$sessionhandler</code></span> [, <span
+					class="methodparam"><span class="type">bool</span> <code
+						class="parameter">$register_shutdown</code><span
+					class="initializer"> = true</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>session_set_save_handler()</strong></span>
+				configure les fonctions de stockage de sessions, et permet de
+				choisir des fonctions utilisateurs pour sauver et relire toutes les
+				sessions. Cette fonction est très pratique lorsqu&#039;il faut
+				sauver les données de sessions en utilisant une autre technique que
+				le système par fichier fourni par défaut : notamment, stockage en
+				base de données.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.session-set-save-handler-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">Cette fonction a deux prototypes.
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">sessionhandler</code></em></span>
+				<dd>
+
+					<p class="para">
+						Une instance d&#039;une classe implémentant l&#039;interface <span
+							class="interfacename"><a
+							href="class.sessionhandlerinterface.html" class="interfacename">SessionHandlerInterface</a></span>,
+						comme la classe <a href="class.sessionhandler.html"
+							class="classname">SessionHandler</a>, pour l&#039;enregistrement
+						comme gestionnaire de session. Depuis PHP 5.4 uniquement.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">register_shutdown</code></em></span>
+				<dd>
+
+					<p class="para">
+						Enregistre la fonction <span class="function"><a
+							href="function.session-write-close.html" class="function">session_write_close()</a></span>
+						comme fonction <span class="function"><a
+							href="function.register-shutdown-function.html" class="function">register_shutdown_function()</a></span>.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+
+			ou
+
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">open(string
+								$savePath, string $sessionName)</code></em></span>
+				<dd>
+
+					<p class="para">
+						La fonction de rappel <em>open</em> fonctionne comme un
+						constructeur dans une classe, et est exécutée lorsque la session
+						s&#039;ouvre. C&#039;est la première fonction de rappel exécutée
+						lorsque la session démarre automatiquement ou manuellement avec la
+						fonction <span class="function"><a
+							href="function.session-start.html" class="function">session_start()</a></span>.
+						La valeur retournée est <strong><code>TRUE</code></strong> en cas
+						de succès ou <strong><code>FALSE</code></strong> si une erreur
+						survient.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">close()</code></em></span>
+				<dd>
+
+					<p class="para">
+						La fonction de rappel <em>close</em> fonctionne comme un
+						destructeur dans une classe, et est exécutée une fois que la
+						fonction de rappel write de la session a terminé de
+						s&#039;exécuter. Elle est également appelé lorsque la fonction <span
+							class="function"><a
+							href="function.session-write-close.html" class="function">session_write_close()</a></span>
+						est appelée. La valeur retournée est <strong><code>TRUE</code></strong>
+						en cas de succès, ou <strong><code>FALSE</code></strong> si une
+						erreur survient.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">read(string
+								$sessionId)</code></em></span>
+				<dd>
+
+					<p class="para">
+						La fonction de rappel <em><code class="parameter">read</code></em>
+						doit toujours retournée une chaîne linéarisée contenant les
+						données de session encodées ou une chaîne vide s&#039;il n&#039;y
+						a aucune donnée à lire.
+					</p>
+					<p class="para">
+						Cette fonction de rappel est appelée en interne par PHP lorsque la
+						session commence ou lorsque la fonction <span class="function"><a
+							href="function.session-start.html" class="function">session_start()</a></span>
+						est appelée. Avant que cette fonction de rappel ne soit invoquée,
+						PHP invoquera la fonction de rappel <em><code
+								class="parameter">open</code></em>.
+					</p>
+					<p class="para">
+						La valeur retournée par cette fonction de rappel doit être
+						exactement du même format de linéarisation que celui passé pour le
+						stockage à la fonction de rappel <em><code class="parameter">write</code></em>.
+						La valeur retournée sera délinéarisée automatiquement par PHP et
+						utilisée pour peupler la variable superglobale
+						<var class="varname">
+							<var class="varname">
+								<a href="reserved.variables.session.html" class="classname">$_SESSION</a>
+							</var>
+						</var>
+						. Malgré le fait que les données ressemblent fortement aux données
+						issuées de la fonction <span class="function"><a
+							href="function.serialize.html" class="function">serialize()</a></span>,
+						notez que c&#039;est bien un format différent, qui est spécifié
+						via l&#039;option de configuration <a
+							href="session.configuration.html#ini.session.serialize-handler"
+							class="link">session.serialize_handler</a>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">write(string
+								$sessionId, string $data)</code></em></span>
+				<dd>
+
+					<p class="para">
+						La fonction de rappel <em><code class="parameter">write</code></em>
+						est appelée lorsque la session doit être sauvegardée et fermée.
+						Cette fonction de rappel reçoit l&#039;identifiant de la session
+						courante ainsi qu&#039;une version linéarisée du contenu de la
+						variable superglobale
+						<var class="varname">
+							<var class="varname">
+								<a href="reserved.variables.session.html" class="classname">$_SESSION</a>
+							</var>
+						</var>
+						. La méthode de linéarisation utilisée en interne par PHP est
+						spécifiée via l&#039;option de configuration <a
+							href="session.configuration.html#ini.session.serialize-handler"
+							class="link">session.serialize_handler</a>.
+					</p>
+					<p class="para">
+						Les données de session linéarisées passées à cette fonction de
+						rappel doivent être stockées en utilisant l&#039;identifiant de
+						session fournie. Lors de la récupération de ces données, la
+						fonction de rappel <em><code class="parameter">read</code></em>
+						doit retourner la valeur exacte, originalement passée à la
+						fonction de rappel <em><code class="parameter">write</code></em>.
+					</p>
+					<p class="para">
+						Cette fonction de rappel est invoquée lorsque PHP s&#039;arrête ou
+						explicitement lorsque la fonction <span class="function"><a
+							href="function.session-write-close.html" class="function">session_write_close()</a></span>
+						est appelée. Notez qu&#039;après l&#039;exécution de cette
+						fonction, PHP exécutera en interne la fonction de rappel <em><code
+								class="parameter">close</code></em>.
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>:
+						<p class="para">Le gestionnaire d&#039;écriture n&#039;est pas
+							exécuté tant que le flux de sortie n&#039;aura pas été fermé.
+							Aussi, la sortie des requêtes de débogage du gestionnaire
+							&quot;write&quot; ne sera jamais affichée dans le navigateur. Si
+							la sortie de débogage est nécessaire, il est suggéré qu&#039;elle
+							soit plutôt orientée dans un fichier.
+					</blockquote>
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">destroy($sessionId)</code></em></span>
+				<dd>
+
+					<p class="para">
+						Cette fonction de rappel est exécutée lorsqu&#039;une session est
+						détruite avec la fonction <span class="function"><a
+							href="function.session-destroy.html" class="function">session_destroy()</a></span>
+						ou avec <span class="function"><a
+							href="function.session-regenerate-id.html" class="function">session_regenerate_id()</a></span>
+						avec le paramètre de destruction définie à <strong><code>TRUE</code></strong>.
+						La valeur retournée doit être <strong><code>TRUE</code></strong>
+						en cas de succès, ou <strong><code>FALSE</code></strong> si une
+						erreur survient.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">gc($lifetime)</code></em></span>
+				<dd>
+
+					<p class="para">
+						La fonction de rappel de collecteur de gabarit est invoquée en
+						interne par PHP périodiquement afin de purger les anciennes
+						données de session. La fréquence est contrôlé par les options de
+						configuration <a
+							href="session.configuration.html#ini.session.gc-probability"
+							class="link">session.gc_probability</a> et <a
+							href="session.configuration.html#ini.session.gc-divisor"
+							class="link">session.gc_divisor</a>. La valeur de la durée de vie
+						passée à cette fonction de rappel peut être définie via
+						l&#039;option de configuration <a
+							href="session.configuration.html#ini.session.gc-maxlifetime"
+							class="link">session.gc_maxlifetime</a>. La valeur retournée doit
+						être <strong><code>TRUE</code></strong> en cas de succès, ou <strong><code>FALSE</code></strong>
+						si une erreur survient.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.session-set-save-handler-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.session-set-save-handler-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4428">
+				<p>
+					<strong>Exemple #1 Gestionnaire de session personnalisé :
+						voir le code complet dans la documentation sur l&#039;interface <a
+						href="class.sessionhandlerinterface.html" class="classname">SessionHandlerInterface</a>.
+					</strong>
+				</p>
+				<div class="example-contents">
+					<p>
+						Le code suivant est pour PHP version 5.4.0 et supérieure. Vous
+						pouvez y voir l&#039;invocation, l&#039;exemple complet peut être
+						vu dans la documentation de l&#039;interface <a
+							href="class.sessionhandlerinterface.html" class="classname">SessionHandlerInterface</a>.
+					</p>
+				</div>
+				<div class="example-contents">
+					<p>
+						Notez que nous utilisons ici le prototype orienté objet avec <span
+							class="function"><strong>session_set_save_handler()</strong></span>
+						et enregistrons la fonction d&#039;arrêt en utilisant le drapeau
+						dans le paramètre de la fonction. C&#039;est généralement
+						préférable lors de l&#039;enregistrement d&#039;objets comme
+						gestionnaires de sauvegarde de session.
+					</p>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">MySessionHandler&nbsp;</span><span
+								style="color: #007700">implements&nbsp;</span><span
+								style="color: #0000BB">SessionHandlerInterface<br /></span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;implémentation&nbsp;de&nbsp;l'interface&nbsp;ici<br /></span><span
+								style="color: #007700">}<br />
+								<br /></span><span style="color: #0000BB">$handler&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">MySessionHandler</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">session_set_save_handler</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$handler</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">session_start</span><span
+								style="color: #007700">();<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;processus&nbsp;pour&nbsp;définir&nbsp;et&nbsp;récupérer&nbsp;les&nbsp;valeurs&nbsp;par&nbsp;leurs&nbsp;clés&nbsp;depuis&nbsp;$_SESSION</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			<div class="example" id="example-4429">
+				<p>
+					<strong>Exemple #2 Gestionnaire de sauvegarde de session
+						personnalisé en utilisant des objets </strong>
+				</p>
+				<div class="example-contents">
+					<p>Le code suivant est pour PHP en version inférieure à 5.4.0.
+					</p>
+				</div>
+				<div class="example-contents">
+					<p>
+						L&#039;exemple suivant fournit un gestionnaire de stockage des
+						sessions basé sur les fichiers, similaire au gestionnaire de
+						sauvegarde de session par défaut de PHP <em><code
+								class="parameter">files</code></em>. Cet exemple peut facilement être
+						étendu pour couvrir le stockage par base de données, en utilisant
+						votre moteur de base de données préféré.
+					</p>
+				</div>
+				<div class="example-contents">
+					<p>
+						Notez que nous enregistrons la fonction d&#039;arrêt <span
+							class="function"><a
+							href="function.session-write-close.html" class="function">session_write_close()</a></span>
+						en utilisant la fonction <span class="function"><a
+							href="function.register-shutdown-function.html" class="function">register_shutdown_function()</a></span>
+						en version antérieure à PHP 5.4.0. C&#039;est généralement
+						préférable lors de l&#039;enregistrement d&#039;objets comme
+						gestionnaires de sauvegarde des sessions sous PHP antérieure à la
+						version 5.4.0.
+					</p>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">FileSessionHandler<br /></span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;
+							</span><span style="color: #0000BB">$savePath</span><span
+								style="color: #007700">;<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">open</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$savePath</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$sessionName</span><span
+								style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">savePath&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">$savePath</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!
+							</span><span style="color: #0000BB">is_dir</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">savePath</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">mkdir</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">savePath</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0777</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">true</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">close</span><span
+								style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">true</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">read</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$id</span><span
+								style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(string)@
+							</span><span style="color: #0000BB">file_get_contents</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"</span><span
+								style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">savePath</span><span
+								style="color: #DD0000">/sess_</span><span style="color: #0000BB">$id</span><span
+								style="color: #DD0000">"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">write</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$id</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$data</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">file_put_contents</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"</span><span
+								style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">savePath</span><span
+								style="color: #DD0000">/sess_</span><span style="color: #0000BB">$id</span><span
+								style="color: #DD0000">"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$data</span><span style="color: #007700">)&nbsp;===&nbsp;</span><span
+								style="color: #0000BB">false&nbsp;</span><span
+								style="color: #007700">?&nbsp;</span><span
+								style="color: #0000BB">false&nbsp;</span><span
+								style="color: #007700">:&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">destroy</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$id</span><span
+								style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$file&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">savePath</span><span
+								style="color: #DD0000">/sess_</span><span style="color: #0000BB">$id</span><span
+								style="color: #DD0000">"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(
+							</span><span style="color: #0000BB">file_exists</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$file</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">unlink</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$file</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">true</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">gc</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$maxlifetime</span><span
+								style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(
+							</span><span style="color: #0000BB">glob</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"</span><span
+								style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">savePath</span><span
+								style="color: #DD0000">/sess_*"</span><span
+								style="color: #007700">)&nbsp;as&nbsp;</span><span
+								style="color: #0000BB">$file</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(
+							</span><span style="color: #0000BB">filemtime</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$file</span><span
+								style="color: #007700">)&nbsp;+&nbsp;</span><span
+								style="color: #0000BB">$maxlifetime&nbsp;</span><span
+								style="color: #007700">&lt;&nbsp;</span><span
+								style="color: #0000BB">time</span><span style="color: #007700">()&nbsp;&amp;&amp;&nbsp;</span><span
+								style="color: #0000BB">file_exists</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$file</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">unlink</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$file</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">true</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #0000BB">$handler&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">FileSessionHandler</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">session_set_save_handler</span><span
+								style="color: #007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;array(
+							</span><span style="color: #0000BB">$handler</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'open'</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;array(
+							</span><span style="color: #0000BB">$handler</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'close'</span><span
+								style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;array(
+							</span><span style="color: #0000BB">$handler</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'read'</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;array(
+							</span><span style="color: #0000BB">$handler</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'write'</span><span
+								style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;array(
+							</span><span style="color: #0000BB">$handler</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'destroy'</span><span
+								style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;array(
+							</span><span style="color: #0000BB">$handler</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'gc'</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Ceci&nbsp;permet&nbsp;de&nbsp;prévenir&nbsp;des&nbsp;effets&nbsp;non&nbsp;désirés&nbsp;lors&nbsp;de&nbsp;l'utilisation&nbsp;d'objets<br />//&nbsp;comme&nbsp;gestionnaires&nbsp;de&nbsp;session<br /></span><span
+								style="color: #0000BB">register_shutdown_function</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'session_write_close'</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #0000BB">session_start</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #FF8000">//&nbsp;processus&nbsp;pour&nbsp;définir&nbsp;et&nbsp;récupérer&nbsp;les&nbsp;valeurs&nbsp;par&nbsp;leurs&nbsp;clés&nbsp;depuis&nbsp;$_SESSION</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes"
+			id="refsect1-function.session-set-save-handler-notes">
+			<h3 class="title">Notes</h3>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">
+					Lors de l&#039;utilisation d&#039;objets comme gestionnaires de
+					sauvegarde des sessions, il est important d&#039;enregistrer la
+					fonction d&#039;arrêt avec PHP pour éviter les effets non désirés
+					issus de la façon dont PHP détruit en interne les objets lors de
+					l&#039;arrêt, et peut empécher les fonctions de rappel <em><code
+							class="parameter">write</code></em> et <em><code
+							class="parameter">close</code></em> d&#039;être exécutées.
+					Typiquement, vous devez enregistrer <em><code
+							class="parameter">&#039;session_write_close&#039;</code></em> en
+					utilisant la fonction <span class="function"><a
+						href="function.register-shutdown-function.html" class="function">register_shutdown_function()</a></span>.
+				</p>
+				<p class="para">
+					Depuis PHP 5.4.0, vous pouvez utiliser la fonction <span
+						class="function"><a
+						href="function.session-register-shutdown.html" class="function">session_register_shutdown()</a></span>
+					ou simplement utiliser le drapeau &#039;register shutdown&#039;
+					lors de l&#039;appel à la fonction <span class="function"><strong>session_set_save_handler()</strong></span>
+					en utilisant la méthode orientée objet, et passer une instance qui
+					implémente l&#039;interface <a
+						href="class.sessionhandlerinterface.html" class="classname">SessionHandlerInterface</a>.
+				</p>
+			</div>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">Les gestionnaires d&#039;écriture et de
+					fermeture sont appelés après la destruction des objets depuis PHP
+					5.0.5. et donc, ne peuvent pas utiliser les objets ou lancer des
+					exceptions. Les exceptions ne peuvent donc pas être attrapées ni
+					affichées, et l&#039;exécution ne fera que s&#039;arrêter de façon
+					innatendue.</p>
+				<p class="para">
+					Il est possible d&#039;appeler <span class="function"><a
+						href="function.session-write-close.html" class="function">session_write_close()</a></span>
+					depuis le destructeur pour résoudre ce problème mais la façon la
+					plus élégante est d&#039;enregistrer la fonction d&#039;arrêt tel
+					que décrit ci-dessus.
+				</p>
+			</div>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">
+					Le dossier de travail courant change suivant les SAPIs si la
+					session est fermée à la fin du script. Il est possible de fermer la
+					session plus tard, grâce à la fonction <span class="function"><a
+						href="function.session-write-close.html" class="function">session_write_close()</a></span>.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.session-set-save-handler-changelog">
+			<h3 class="title">Historique</h3>
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.4.0</td>
+						<td>Ajout de l&#039;interface <span class="interfacename"><a
+								href="class.sessionhandlerinterface.html" class="interfacename">SessionHandlerInterface</a></span>
+							pour implémenter les gestionnaires de sessions et de la classe <a
+							href="class.sessionhandler.html" class="classname">SessionHandler</a>
+							pour exposer les gestionnaires de sessions internes de PHP.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.session-set-save-handler-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member">La directive de configuration <a
+					href="session.configuration.html#ini.session.save-handler"
+					class="link">session.save_handler</a>
+				</li>
+				<li class="member">La directive de configuration <a
+					href="session.configuration.html#ini.session.serialize-handler"
+					class="link">session.serialize_handler</a>.
+				</li>
+				<li class="member"><span class="function"><a
+						href="function.register-shutdown-function.html" class="function"
+						rel="rdfs-seeAlso">register_shutdown_function()</a> - Enregistre
+						une fonction de rappel pour ex&eacute;cution &agrave; l'extinction</span></li>
+				<li class="member"><span class="function"><a
+						href="function.session-register-shutdown.html" class="function"
+						rel="rdfs-seeAlso">session_register_shutdown()</a> - Fonction de
+						fermeture de session</span> pour PHP 5.4.0+</li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.session-set-cookie-params.html">session_set_cookie_params</a>
+		</div>
+		<div class="next">
+			<a href="function.session-start.html">session_start</a>
+		</div>
+		<div class="up">
+			<a href="ref.session.html">Fonctions Session</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Lin&eacute;arise une variable</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.print-r.html">print_r</a>
+		</div>
+		<div class="next">
+			<a href="function.settype.html">settype</a>
+		</div>
+		<div class="up">
+			<a href="ref.var.html">Fonctions de gestion des variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.serialize" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">serialize</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">serialize</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Linéarise une variable</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.serialize-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>serialize</strong></span>
+				( <span class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$value</code></span>
+				)
+			</div>
+
+			<p class="para rdfs-comment">Linéarise une variable.</p>
+			<p class="para">C&#039;est une technique pratique pour stocker ou
+				passer des valeurs de PHP entre scripts, sans perdre ni leur
+				structure, ni leur type.</p>
+			<p class="para">
+				Pour récupérer une variable linéarisée, et retrouver une variable,
+				utilisez <span class="function"><a
+					href="function.unserialize.html" class="function">unserialize()</a></span>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.serialize-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">value</code></em></span>
+				<dd>
+
+					<p class="para">
+						La valeur à linéariser. <span class="function"><strong>serialize()</strong></span>
+						acceptent tous les types sauf les ressources. Vous pouvez
+						linéariser un tableau qui contient une référence sur lui-même. Les
+						références dans ce tableau/objet seront également stockées. Toutes
+						les autres références seront perdues.
+					</p>
+					<p class="para">
+						Lors de la linéarisation d&#039;un objet, PHP tentera
+						d&#039;appeler la fonction membre <a
+							href="language.oop5.magic.html#object.sleep" class="link">__sleep()</a>
+						avant de linéariser. Cela permet à l&#039;objet de faire un
+						dernier nettoyage, etc. avant d&#039;être linéarisé. De même,
+						lorsque l&#039;objet est restauré en utilisant <span
+							class="function"><a href="function.unserialize.html"
+							class="function">unserialize()</a></span>, la fonction membre <a
+							href="language.oop5.magic.html#object.wakeup" class="link">__wakeup()</a>
+						est appelée.
+					</p>
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>:
+						<p class="para">Les attributs privés d&#039;un objet auront le
+							nom de la classe préfixé au nom de l&#039;attributs; les
+							attributs protégés seront préfixé avec un astérisque
+							&#039;*&#039;. Ces valeurs préfixées ont des caractèrs nuls des
+							deux cotés.
+					</blockquote>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.serialize-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne une chaîne contenant une représentation linéaire de <em><code
+						class="parameter">value</code></em>, pour stockage.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.serialize-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4922">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>serialize()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;$session_data&nbsp;contient&nbsp;un&nbsp;tableau&nbsp;multidimensionnel&nbsp;,&nbsp;avec&nbsp;les<br />//&nbsp;informations&nbsp;de&nbsp;session&nbsp;de&nbsp;l'utilisateur&nbsp;courant.&nbsp;On&nbsp;utilise&nbsp;serialize()<br />//&nbsp;pour&nbsp;les&nbsp;stocker&nbsp;dans&nbsp;une&nbsp;base&nbsp;de&nbsp;données<br />
+								<br /></span><span style="color: #0000BB">$conn&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">odbc_connect</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"webdb"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"php"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"chicken"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$stmt&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">odbc_prepare</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span
+								style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #DD0000">"UPDATE&nbsp;sessions&nbsp;SET&nbsp;data&nbsp;=&nbsp;?&nbsp;WHERE&nbsp;id&nbsp;=&nbsp;?"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$sqldata&nbsp;</span><span
+								style="color: #007700">=&nbsp;array&nbsp;(</span><span
+								style="color: #0000BB">serialize</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$session_data</span><span
+								style="color: #007700">),&nbsp;</span><span
+								style="color: #0000BB">$_SERVER</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">'PHP_AUTH_USER'</span><span
+								style="color: #007700">]);<br />if&nbsp;(!
+							</span><span style="color: #0000BB">odbc_execute</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$sqldata</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$stmt&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">odbc_prepare</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span
+								style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;sessions&nbsp;(id,&nbsp;data)&nbsp;VALUES(?,&nbsp;?)"</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!
+							</span><span style="color: #0000BB">odbc_execute</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$sqldata</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">/*&nbsp;Un&nbsp;problème&nbsp;est&nbsp;survenu&nbsp;!&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">}<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.serialize-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.0.7</td>
+						<td>Le processus de linéarisation a été corrigé.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.serialize-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Notez que la plupart des objets internes de PHP ne peuvent être
+					linéarisés. Cependant, ceux qui le peuvent implémentent
+					l&#039;interface <span class="interfacename"><a
+						href="class.serializable.html" class="interfacename">Serializable</a></span>
+					ou définissent les méthodes magiques <a
+						href="language.oop5.magic.html#object.sleep" class="link">__sleep()</a>
+					et <a href="language.oop5.magic.html#object.wakeup" class="link">__wakeup()</a>.
+					Si une classe interne n&#039;utilise pas une de ces techniques,
+					alors elle ne peut être linéarisée de manière sûre.
+				</p>
+				<p class="para">
+					Il existe des exceptions historiques à cette règle, des objets
+					internes peuvent être linéarisés alors qu&#039;ils
+					n&#039;implémentent pas l&#039;interface ou n&#039;utilise pas les
+					méthodes magiques prévues à cet effet. On pourra citer <a
+						href="class.arrayobject.html" class="classname">ArrayObject</a>
+					avant PHP 5.2.0.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.serialize-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.unserialize.html" class="function"
+						rel="rdfs-seeAlso">unserialize()</a> - Cr&eacute;e une variable
+						PHP &agrave; partir d'une valeur lin&eacute;aris&eacute;e</span></li>
+				<li class="member"><a href="language.oop5.serialization.html"
+					class="link">La linéarisation d&#039;objets</a></li>
+				<li class="member"><a
+					href="language.oop5.magic.html#object.sleep" class="link">__sleep()</a></li>
+				<li class="member"><a
+					href="language.oop5.magic.html#object.wakeup" class="link">__wakeup()</a></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.print-r.html">print_r</a>
+		</div>
+		<div class="next">
+			<a href="function.settype.html">settype</a>
+		</div>
+		<div class="up">
+			<a href="ref.var.html">Fonctions de gestion des variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

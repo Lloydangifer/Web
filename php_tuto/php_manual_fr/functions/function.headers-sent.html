@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Indique si les en-t&ecirc;tes HTTP ont d&eacute;j&agrave;
+	&eacute;t&eacute; envoy&eacute;s</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.headers-list.html">headers_list</a>
+		</div>
+		<div class="next">
+			<a href="function.http-response-code.html">http_response_code</a>
+		</div>
+		<div class="up">
+			<a href="ref.network.html">Fonctions r&eacute;seaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.headers-sent" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">headers_sent</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">headers_sent</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Indique si les en-têtes HTTP ont déjà
+					été envoyés</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.headers-sent-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>headers_sent</strong></span>
+				([ <span class="methodparam"><span class="type">string</span>
+					<code class="parameter reference">&$file</code></span> [, <span
+					class="methodparam"><span class="type">int</span> <code
+						class="parameter reference">&$line</code></span> ]] )
+			</div>
+
+			<p class="para rdfs-comment">Vérifie si les en-têtes HTTP ont
+				déjà été envoyés.</p>
+			<p class="para">
+				Vous ne pouvez plus envoyer d&#039;en-têtes avec la fonction <span
+					class="function"><a href="function.header.html"
+					class="function">header()</a></span> une fois que le bloc d&#039;en-tête a
+				été fermé. En utilisant cette fonction, vous pouvez au moins éviter
+				de voir s&#039;afficher les erreurs HTTP reliées. Une autre option
+				consiste à utiliser le <a href="ref.outcontrol.html" class="link">contrôle
+					de sortie</a>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.headers-sent-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">file</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si les paramètres optionnels <em><code class="parameter">file</code></em>
+						et <em><code class="parameter">line</code></em> sont fournis, <span
+							class="function"><strong>headers_sent()</strong></span> va placer
+						le nom du fichier source et le numéro de ligne qui ont débuté
+						l&#039;affichage, dans les variables <em><code
+								class="parameter">file</code></em> et <em><code
+								class="parameter">line</code></em>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">line</code></em></span>
+				<dd>
+
+					<p class="para">Le numéro de la ligne où la sortie a eu lieu.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.headers-sent-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				<span class="function"><strong>headers_sent()</strong></span>
+				retourne <strong><code>FALSE</code></strong> si aucun en-tête
+				n&#039;a été envoyé, ou <strong><code>TRUE</code></strong> sinon.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.headers-sent-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.3.0</td>
+						<td>Ajout des paramètres optionnels <em><code
+									class="parameter">file</code></em> et <em><code
+									class="parameter">line</code></em>.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.headers-sent-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4153">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>headers_sent()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Si&nbsp;aucun&nbsp;en-tête&nbsp;n'a&nbsp;été&nbsp;envoyé,&nbsp;envoyons-en&nbsp;un<br /></span><span
+								style="color: #007700">if&nbsp;(!</span><span
+								style="color: #0000BB">headers_sent</span><span
+								style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">header</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'Location:&nbsp;http://www.example.com/'</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Voici&nbsp;un&nbsp;exemple&nbsp;d'utilisation&nbsp;des&nbsp;paramètres&nbsp;optionnels&nbsp;de&nbsp;fichier&nbsp;et&nbsp;de&nbsp;ligne<br />//&nbsp;disponibles&nbsp;depuis&nbsp;PHP&nbsp;4.3.0.&nbsp;Notez&nbsp;que&nbsp;$filename&nbsp;et&nbsp;$linenum&nbsp;sont<br />//&nbsp;transmis&nbsp;pour&nbsp;utilisation&nbsp;ultérieure.&nbsp;Ne&nbsp;les&nbsp;assignez&nbsp;pas&nbsp;avant&nbsp;de&nbsp;les&nbsp;utiliser.<br /></span><span
+								style="color: #007700">if&nbsp;(!</span><span
+								style="color: #0000BB">headers_sent</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$linenum</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">header</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'Location:&nbsp;http://www.example.com/'</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Vous&nbsp;allez&nbsp;probablement&nbsp;déclencher&nbsp;une&nbsp;erreur&nbsp;ici<br /></span><span
+								style="color: #007700">}&nbsp;else&nbsp;{<br />
+								<br />&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Les&nbsp;en-têtes&nbsp;ont&nbsp;déjà&nbsp;été&nbsp;envoyés,&nbsp;depuis&nbsp;le&nbsp;fichier&nbsp;</span><span
+								style="color: #0000BB">$filename</span><span
+								style="color: #DD0000">&nbsp;à&nbsp;la&nbsp;ligne&nbsp;</span><span
+								style="color: #0000BB">$linenum</span><span
+								style="color: #DD0000">\n"&nbsp;</span><span
+								style="color: #007700">.<br />&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #DD0000">"Il&nbsp;est&nbsp;donc&nbsp;impossible&nbsp;de&nbsp;vous&nbsp;rediriger&nbsp;automatiquement,&nbsp;aussi&nbsp;veuillez<br />&nbsp;&nbsp;&nbsp;cliquez&nbsp;&lt;a&nbsp;href=\"http://www.example.com\"&gt;ici&lt;/a&gt;.\n"
+							</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;exit;<br />}<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.headers-sent-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Les en-têtes ne seront accessibles et
+					s&#039;afficheront que lorsqu&#039;un SAPI qui les supportent sera
+					utilisé.
+			</blockquote>
+
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.headers-sent-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.ob-start.html" class="function" rel="rdfs-seeAlso">ob_start()</a>
+						- Enclenche la tamporisation de sortie</span></li>
+				<li class="member"><span class="function"><a
+						href="function.trigger-error.html" class="function"
+						rel="rdfs-seeAlso">trigger_error()</a> - D&eacute;clenche une
+						erreur utilisateur</span></li>
+				<li class="member"><span class="function"><a
+						href="function.headers-list.html" class="function"
+						rel="rdfs-seeAlso">headers_list()</a> - Retourne la liste des
+						en-t&ecirc;tes de r&eacute;ponse du script courant</span></li>
+				<li class="member"><span class="function"><a
+						href="function.header.html" class="function" rel="rdfs-seeAlso">header()</a>
+						- Envoie un en-t&ecirc;te HTTP</span>pour plus de détails sur les tenants
+					et aboutissants.</li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.headers-list.html">headers_list</a>
+		</div>
+		<div class="next">
+			<a href="function.http-response-code.html">http_response_code</a>
+		</div>
+		<div class="up">
+			<a href="ref.network.html">Fonctions r&eacute;seaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

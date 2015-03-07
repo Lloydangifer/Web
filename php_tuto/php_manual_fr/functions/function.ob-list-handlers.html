@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Liste les gestionnaires d'affichage utilis&eacute;s</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.ob-implicit-flush.html">ob_implicit_flush</a>
+		</div>
+		<div class="next">
+			<a href="function.ob-start.html">ob_start</a>
+		</div>
+		<div class="up">
+			<a href="ref.outcontrol.html">Fonctions de bufferisation de
+				sortie</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.ob-list-handlers" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">ob_list_handlers</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">ob_list_handlers</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Liste les gestionnaires
+					d&#039;affichage utilisés</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.ob-list-handlers-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>ob_list_handlers</strong></span>
+				( <span class="methodparam">void</span> )
+			</div>
+
+			<p class="para rdfs-comment">Liste les gestionnaires
+				d&#039;affichage utilisés.</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.ob-list-handlers-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne un tableau avec le gestionnaire d&#039;affichage en cours
+				d&#039;utilisation (s&#039;il existe). Si <a
+					href="outcontrol.configuration.html#ini.output-buffering"
+					class="link">output_buffering</a> est activé ou si une fonction
+				anonyme est utilisée avec <span class="function"><a
+					href="function.ob-start.html" class="function">ob_start()</a></span>, <span
+					class="function"><strong>ob_list_handlers()</strong></span>
+				retournera un tableau avec comme valeur d&#039;entrée : <em>&quot;default
+					output handler&quot;</em>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.ob-list-handlers-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-471">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>ob_list_handlers()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//Utilisation&nbsp;de&nbsp;output_buffering=On<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">ob_list_handlers</span><span
+								style="color: #007700">());<br /></span><span
+								style="color: #0000BB">ob_end_flush</span><span
+								style="color: #007700">();<br />
+								<br /></span><span style="color: #0000BB">ob_start</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"ob_gzhandler"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">ob_list_handlers</span><span
+								style="color: #007700">());<br /></span><span
+								style="color: #0000BB">ob_end_flush</span><span
+								style="color: #007700">();<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Fonctions&nbsp;anonymes<br /></span><span
+								style="color: #0000BB">ob_start</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">create_function</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'$string'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'return&nbsp;$string;'</span><span
+								style="color: #007700">));<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">ob_list_handlers</span><span
+								style="color: #007700">());<br /></span><span
+								style="color: #0000BB">ob_end_flush</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Array
+(
+    [0] =&gt; default output handler
+)
+
+Array
+(
+    [0] =&gt; ob_gzhandler
+)
+
+Array
+(
+    [0] =&gt; default output handler
+)
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.ob-list-handlers-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.ob-end-clean.html" class="function"
+						rel="rdfs-seeAlso">ob_end_clean()</a> - D&eacute;truit les
+						donn&eacute;es du tampon de sortie et &eacute;teint la
+						tamporisation de sortie</span></li>
+				<li class="member"><span class="function"><a
+						href="function.ob-end-flush.html" class="function"
+						rel="rdfs-seeAlso">ob_end_flush()</a> - Envoie les donn&eacute;es
+						du tampon de sortie et &eacute;teint la tamporisation de sortie</span></li>
+				<li class="member"><span class="function"><a
+						href="function.ob-get-flush.html" class="function"
+						rel="rdfs-seeAlso">ob_get_flush()</a> - Vide le tampon, le
+						retourne en tant que cha&icirc;ne et stoppe la tamporisation</span></li>
+				<li class="member"><span class="function"><a
+						href="function.ob-start.html" class="function" rel="rdfs-seeAlso">ob_start()</a>
+						- Enclenche la tamporisation de sortie</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.ob-implicit-flush.html">ob_implicit_flush</a>
+		</div>
+		<div class="next">
+			<a href="function.ob-start.html">ob_start</a>
+		</div>
+		<div class="up">
+			<a href="ref.outcontrol.html">Fonctions de bufferisation de
+				sortie</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

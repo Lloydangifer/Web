@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Introduction</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="book.mysqlnd-qc.html">mysqlnd_qc</a></div>
+ <div class="next"><a href="mysqlnd-qc.quickstart.html">D&eacute;marrage rapide et quelques exemples</a></div>
+ <div class="up"><a href="book.mysqlnd-qc.html">mysqlnd_qc</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="intro.mysqlnd-qc" class="preface">
+  <h1 class="title">Introduction</h1>
+  <p class="para">
+   Le plugin de cache des résultats de requêtes Mysqlnd ajoute
+   la possibilité de mettre en cache les requêtes côté client
+   pour toutes les extensions PHP MySQL en utilisant
+   <a href="book.mysqlnd.html" class="link">mysqlnd</a>.
+  </p>
+  <p class="para">
+   Depuis la version PHP 5.3.3, le driver natif MySQL pour PHP (
+   <em>mysqlnd</em>) dispose d&#039;un plugin interne de l&#039;API C.
+   Les plugins C, comme le plugin de mise en cache des requêtes,
+   peuvent étendre les fonctionnalités de
+   <a href="book.mysqlnd.html" class="link">mysqlnd</a>.
+  </p>
+  <p class="para">
+   Lesplugins Mysqlnd comme le plugin de mise en cache des requêtes
+   opère de façon transparente d&#039;un point de vue utilisateur. Le plugin
+   de cache supporte toutes les applications PHP ainsi que toutes les
+   extension PHP MySQL (<a href="ref.mysqli.html" class="link">mysqli</a>,
+   <a href="ref.mysql.html" class="link">mysql</a>,
+   <a href="ref.pdo-mysql.html" class="link">PDO_MYSQL</a>). Il ne modifie
+   pas les APIs existantes.
+  </p>
+  <p class="para">
+   Aucun modification significative n&#039;est nécessaire pour mettre
+   en cache une requête. Le cache a 2 modes de fonctionnement. Il
+   peut soit mettre en cache toutes les requêtes (non recommandé),
+   soit uniquement celles marquées avec une certaine astuce SQL
+   (recommandé).
+  </p>
+
+  <div class="section" id="mysqlnd-qc.key-features">
+   <h2 class="title">Principales caractéristiques</h2>
+   <p class="para">
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <p class="para">
+       Transparent et facile d&#039;utilisation.
+      </p>
+      <p class="para">
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <p class="para">
+          supporte toutes les extensions PHP MySQL
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          aucune modification d&#039;API
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          de très simples modifications des applications sont nécessaires
+         </p>
+        </li>
+       </ul>
+      </p>
+     </li>
+
+     <li class="listitem">
+      <p class="para">
+       Stratégie d&#039;invalidation flexible
+      </p>
+      <p class="para">
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <p class="para">
+          Time-to-Live (TTL)
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          défini par l&#039;utilisation
+         </p>
+        </li>
+       </ul>
+      </p>
+     </li>
+
+     <li class="listitem">
+      <p class="para">
+       Stockage avec différents scopes et durée de vie
+      </p>
+      <p class="para">
+       <ul class="itemizedlist">
+        <li class="listitem">
+         <p class="para">
+          Défaut (Hash, processus mémoire)
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          <a href="ref.apc.html" class="link">APC</a>
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          MEMCACHE
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          sqlite
+         </p>
+        </li>
+        <li class="listitem">
+         <p class="para">
+          défini par l&#039;utilisateur
+         </p>
+        </li>
+       </ul>
+      </p>
+     </li>
+     <li class="listitem">
+       <p class="para">
+        Défense slam interne pour prévenir les débordements du cache.
+       </p>
+     </li>
+    </ul>
+   </p>
+  </div>
+
+  <div class="section" id="mysqlnd-qc.limitations">
+   <h2 class="title">Limitations</h2>
+   <p class="para">
+    La version courante 1.0.1 de PECL mysqlnd_qc ne supporte pas
+    PHP 5.4. La version 1.1.0-alpha supprime cette limitation.
+   </p>
+   <p class="para">
+    Les requêtes préparées et bufferisées sont totalement
+    supportées. Ansi, le plugin est capable de mettre en cache
+    toutes les requêtes issues des extensions
+    <em>mysqli</em> et <em>PDO_MySQL</em>, qui
+    sont les deux seules API PHP MySQL à offrir le support des
+    requêtes préparées.
+   </p>
+  </div>
+
+  <div class="section" id="mysqlnd-qc.name">
+   <h2 class="title">Sur le nom</h2>
+   <p class="para">
+    Le raccourci <em>mysqlnd_qc</em>
+    signifie <em>mysqlnd query cache plugin</em>.
+    Le nom a été choisi pour une démonstration technologique.
+    Au début, les développeurs n&#039;avaient pas prévu de continuer
+    d&#039;utiliser le code de base. Quelques fois, PECL/mysqlnd_qc
+    était aussi appelé
+    <em>client-side query result set cache</em>.
+   </p>
+  </div>
+
+ </div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="book.mysqlnd-qc.html">mysqlnd_qc</a></div>
+ <div class="next"><a href="mysqlnd-qc.quickstart.html">D&eacute;marrage rapide et quelques exemples</a></div>
+ <div class="up"><a href="book.mysqlnd-qc.html">mysqlnd_qc</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

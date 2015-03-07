@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>R&eacute;cup&egrave;re une variable externe et la filtre</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.filter-input-array.html">filter_input_array</a>
+		</div>
+		<div class="next">
+			<a href="function.filter-list.html">filter_list</a>
+		</div>
+		<div class="up">
+			<a href="ref.filter.html">Filter Fonctions</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.filter-input" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">filter_input</h1>
+			<p class="verinfo">(PHP 5 &gt;= 5.2.0)</p>
+			<p class="refpurpose">
+				<span class="refname">filter_input</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Récupère une variable externe et la
+					filtre</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.filter-input-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><a
+					href="language.pseudo-types.html#language.types.mixed"
+					class="type mixed">mixed</a></span> <span class="methodname"><strong>filter_input</strong></span>
+				( <span class="methodparam"><span class="type">int</span> <code
+						class="parameter">$type</code></span> , <span class="methodparam"><span
+					class="type">string</span> <code class="parameter">$variable_name</code></span>
+				[, <span class="methodparam"><span class="type">int</span> <code
+						class="parameter">$filter</code><span class="initializer">
+						= FILTER_DEFAULT</span></span> [, <span class="methodparam"><span
+					class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$options</code></span>
+				]] )
+			</div>
+
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.filter-input-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">type</code></em></span>
+				<dd>
+
+					<p class="para">
+						Une constante parmi <strong><code>INPUT_GET</code></strong>, <strong><code>INPUT_POST</code></strong>,
+						<strong><code>INPUT_COOKIE</code></strong>, <strong><code>INPUT_SERVER</code></strong>
+						ou <strong><code>INPUT_ENV</code></strong>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">variable_name</code></em></span>
+				<dd>
+
+					<p class="para">Nom de la variable à récupérer.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">filter</code></em></span>
+				<dd>
+
+					<p class="para">
+						L&#039;ID du filtre à appliquer. La <a href="filter.filters.html"
+							class="xref">Types de filtres</a> page du manuel liste tous les
+						filtres disponibles.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">options</code></em></span>
+				<dd>
+
+					<p class="para">Tableau associatif d&#039;options ou des
+						drapeaux. Si le filtre accepte les options, les drapeaux peuvent
+						être fournis dans le champ &quot;flags&quot; du tableau.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.filter-input-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Valeur de la variable demandée en cas de succès, <strong><code>FALSE</code></strong>
+				si le filtre échoue, ou <strong><code>NULL</code></strong> si la
+				variable <em><code class="parameter">variable_name</code></em>
+				n&#039;est pas définie. Si le drapeau <strong><code>FILTER_NULL_ON_FAILURE</code></strong>
+				est utilisé, la fonction retournera <strong><code>FALSE</code></strong>
+				si la variable n&#039;est pas définie et <strong><code>NULL</code></strong>
+				si le filtre échoue.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.filter-input-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4745">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>filter_input()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$search_html&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">filter_input</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">INPUT_GET</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'search'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">FILTER_SANITIZE_SPECIAL_CHARS</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$search_url&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">filter_input</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">INPUT_GET</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'search'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">FILTER_SANITIZE_ENCODED</span><span
+								style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #DD0000">"Vous&nbsp;avez&nbsp;recherché&nbsp;</span><span
+								style="color: #0000BB">$search_html</span><span
+								style="color: #DD0000">.\n"</span><span style="color: #007700">;<br />echo&nbsp;
+							</span><span style="color: #DD0000">"&lt;a&nbsp;href='?search=</span><span
+								style="color: #0000BB">$search_url</span><span
+								style="color: #DD0000">'&gt;Nouvelle&nbsp;recherche.&lt;/a&gt;"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher quelque chose de
+						similaire à :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Vous avez recherché Me &amp;#38; son.
+&lt;a href=&#039;?search=Me%20%26%20son&#039;&gt;Nouvelle recherche.&lt;/a&gt;
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.filter-input-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.filter-var.html" class="function"
+						rel="rdfs-seeAlso">filter_var()</a> - Filtre une variable avec un
+						filtre sp&eacute;cifique</span></li>
+				<li class="member"><span class="function"><a
+						href="function.filter-input-array.html" class="function"
+						rel="rdfs-seeAlso">filter_input_array()</a> -
+						R&eacute;cup&egrave;re plusieurs valeurs externes et les filtre</span></li>
+				<li class="member"><span class="function"><a
+						href="function.filter-var-array.html" class="function"
+						rel="rdfs-seeAlso">filter_var_array()</a> - R&eacute;cup&egrave;re
+						plusieurs variables et les filtre</span></li>
+				<li class="member"><a href="filter.filters.html" class="xref">Types
+						de filtres</a></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.filter-input-array.html">filter_input_array</a>
+		</div>
+		<div class="next">
+			<a href="function.filter-list.html">filter_list</a>
+		</div>
+		<div class="up">
+			<a href="ref.filter.html">Filter Fonctions</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

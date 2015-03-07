@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>PHP et HTML</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="faq.passwords.html">Hashage de mots de passe</a>
+		</div>
+		<div class="next">
+			<a href="faq.com.html">PHP et COM</a>
+		</div>
+		<div class="up">
+			<a href="faq.html">FAQ</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="faq.html" class="chapter">
+		<h1>PHP et HTML</h1>
+
+
+
+		<p class="para">
+			PHP et HTML sont très interactifs : PHP peut générer du HTML et HTML
+			peut passer des informations à PHP. Avant de lire cette <em>faq</em>
+			(foire aux questions), il est important que vous appreniez comment <a
+				href="language.variables.external.html" class="link">récupérer
+				des variables externes à PHP</a>. La page du manuel correspondante
+			contient beaucoup d&#039;exemples. Faites particulièrement attention
+			à ce que signifie <em>register_globals</em>.
+		</p>
+
+		<div class="qandaset">
+			<ol class="qandaset_questions">
+				<li><a href="#faq.html.encoding"> Quel
+						encodage/d&eacute;codage ai-je besoin lors du passage d&#039;une
+						valeur via un formulaire/une URL ? </a></li>
+				<li><a href="#faq.html.form-image"> J&#039;essaye
+						d&#039;utiliser &lt;input type=&quot;image&quot;&gt; mais les
+						variables $foo.x et $foo.y ne sont pas disponibles.
+						$_GET[&#039;foo.x&#039;] n&#039;existe pas non plus. O&ugrave;
+						sont-elles ? </a></li>
+				<li><a href="#faq.html.arrays"> Comment cr&eacute;er un
+						tableau dans une balise &lt;form&gt; HTML ? </a></li>
+				<li><a href="#faq.html.select-multiple"> Comment puis-je
+						r&eacute;cup&eacute;rer le r&eacute;sultat d&#039;un champ HTML
+						SELECT multiple ? </a></li>
+				<li><a href="#faq.html.javascript-variable"> Comment
+						puis-je passer une variable de Javascript vers PHP ? </a></li>
+			</ol>
+		</div>
+		<dl class="qandaentry" id="faq.html.encoding">
+			<dt>
+				<strong> Quel encodage/décodage ai-je besoin lors du
+					passage d&#039;une valeur via un formulaire/une URL ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">
+					Il y a plusieurs étapes pour lesquelles le codage est important. En
+					supposant que vous avez une chaîne de caractères
+					<var class="varname">
+						<var class="varname">$data</var>
+					</var>
+					, qui contient la chaîne que vous voulez passer de manière
+					non-encodée, voici les étapes appropriées :
+				<ul class="itemizedlist">
+					<li class="listitem">
+						<p class="para">
+							Interprétation HTML. Afin d&#039;indiquer une chaîne aléatoire,
+							vous <em class="emphasis">devez</em> l&#039;inclure entre doubles
+							guillemets et utiliser la fonction <span class="function"><a
+								href="function.htmlspecialchars.html" class="function">htmlspecialchars()</a></span>
+							pour encoder la chaîne.
+						</p>
+					</li>
+					<li class="listitem">
+						<p class="para">
+							URL : une URL est constituée de plusieurs parties. Si vous voulez
+							que vos données soient interprétées comme un seul élément, vous <em
+								class="emphasis">devez</em> les encoder avec la fonction <span
+								class="function"><a href="function.urlencode.html"
+								class="function">urlencode()</a></span>.
+						</p>
+					</li>
+				</ul>
+				</p>
+				<p class="para">
+				<div class="example" id="example-5248">
+					<p>
+						<strong>Exemple #1 Un élément de formulaire HTML caché</strong>
+					</p>
+					<div class="example-contents">
+						<div class="phpcode">
+							<code>
+								<span style="color: #000000"> <span
+									style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp;&nbsp;
+								</span><span style="color: #007700">echo&nbsp;</span><span
+									style="color: #DD0000">'&lt;input&nbsp;type="hidden"&nbsp;value="'&nbsp;</span><span
+									style="color: #007700">.&nbsp;</span><span
+									style="color: #0000BB">htmlspecialchars</span><span
+									style="color: #007700">(</span><span style="color: #0000BB">$data</span><span
+									style="color: #007700">)&nbsp;.&nbsp;</span><span
+									style="color: #DD0000">'"&nbsp;/&gt;'</span><span
+									style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span
+									style="color: #007700">;<br /></span><span
+									style="color: #0000BB">?&gt;</span>
+								</span>
+							</code>
+						</div>
+					</div>
+
+				</div>
+				<blockquote class="note">
+					<p>
+						<strong class="note">Note</strong>: <span class="simpara">
+							Il n&#039;est pas correct d&#039;utiliser la fonction <span
+							class="function"><a href="function.urlencode.html"
+								class="function">urlencode()</a></span> pour vos données <var
+								class="varname">
+								<var class="varname">$data</var>
+							</var>, car il en est de la responsabilité du navigateur de les
+							encoder. Tous les navigateurs populaires le font correctement.
+							Notez que cela s&#039;effectue sans considération de la méthode
+							utilisée (c&#039;est-à-dire <em>GET</em> ou <em>POST</em>). Vous
+							devez uniquement noter ce cas pour les requêtes <em>GET</em>, car
+							les requêtes <em>POST</em> sont généralement cachées.
+						</span>
+					</p>
+				</blockquote>
+				<div class="example" id="example-5249">
+					<p>
+						<strong>Exemple #2 Données éditables par
+							l&#039;utilisateur</strong>
+					</p>
+					<div class="example-contents">
+						<div class="phpcode">
+							<code>
+								<span style="color: #000000"> <span
+									style="color: #0000BB">&lt;?php<br /></span><span
+									style="color: #007700">echo&nbsp;</span><span
+									style="color: #DD0000">"&lt;textarea&nbsp;name=\"mydata\"&gt;\n"</span><span
+									style="color: #007700">;<br />echo&nbsp;
+								</span><span style="color: #0000BB">htmlspecialchars</span><span
+									style="color: #007700">(</span><span style="color: #0000BB">$data</span><span
+									style="color: #007700">).</span><span style="color: #DD0000">"\n"</span><span
+									style="color: #007700">;<br />echo&nbsp;
+								</span><span style="color: #DD0000">'&lt;/textarea&gt;'</span><span
+									style="color: #007700">;<br /></span><span
+									style="color: #0000BB">?&gt;</span>
+								</span>
+							</code>
+						</div>
+					</div>
+
+				</div>
+				<blockquote class="note">
+					<p>
+						<strong class="note">Note</strong>: <span class="simpara">
+							Les données sont montrées dans le navigateur comme prévues, car
+							celui-ci interprétera les symboles HTML échappés. </span> <span
+							class="simpara"> Au moment de la validation, via la
+							méthode <em>GET</em> ou <em>POST</em>, les données devraient être
+							url-encodées par le navigateur avant le transfert et directement
+							url-décodées par PHP. Donc, finalement, vous n&#039;avez pas à
+							effectuer d&#039;url-encodage/url-decodage vous-même, tout est
+							effectué automatiquement.
+						</span>
+					</p>
+				</blockquote>
+				<div class="example" id="example-5250">
+					<p>
+						<strong>Exemple #3 Dans une URL</strong>
+					</p>
+					<div class="example-contents">
+						<div class="phpcode">
+							<code>
+								<span style="color: #000000"> <span
+									style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp;&nbsp;
+								</span><span style="color: #007700">echo&nbsp;</span><span
+									style="color: #DD0000">'&lt;a&nbsp;href="'&nbsp;</span><span
+									style="color: #007700">.&nbsp;</span><span
+									style="color: #0000BB">htmlspecialchars</span><span
+									style="color: #007700">(</span><span style="color: #DD0000">"/nextpage.php?stage=23&amp;data="&nbsp;</span><span
+									style="color: #007700">.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								</span><span style="color: #0000BB">urlencode</span><span
+									style="color: #007700">(</span><span style="color: #0000BB">$data</span><span
+									style="color: #007700">))&nbsp;.&nbsp;</span><span
+									style="color: #DD0000">'"&gt;'</span><span
+									style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span
+									style="color: #007700">;<br /></span><span
+									style="color: #0000BB">?&gt;</span>
+								</span>
+							</code>
+						</div>
+					</div>
+
+				</div>
+				<blockquote class="note">
+					<p>
+						<strong class="note">Note</strong>: <span class="simpara">
+							En fait, vous simulez une requête <em>GET</em> HTML, il est
+							nécessaire d&#039;utiliser manuellement la fonction <span
+							class="function"><a href="function.urlencode.html"
+								class="function">urlencode()</a></span> sur vos données.
+						</span>
+					</p>
+				</blockquote>
+				<blockquote class="note">
+					<p>
+						<strong class="note">Note</strong>: <span class="simpara">
+							Vous devez utiliser <span class="function"><a
+								href="function.htmlspecialchars.html" class="function">htmlspecialchars()</a></span>
+							sur l&#039;URL complète, car l&#039;URL se comporte comme la
+							valeur d&#039;un attribut HTML. Dans ce cas, le navigateur fera
+							un <span class="function"><a
+								href="function.htmlspecialchars.html" class="function">htmlspecialchars()</a></span>
+							sur la valeur et passera le résultat à l&#039;URL. PHP devrait
+							comprendre l&#039;URL correctement, car vous avez url-encodé les
+							données.
+						</span> <span class="simpara"> Vous devez noter que <em>&amp;</em>
+							dans l&#039;URL est remplacé par <em>&amp;amp;</em>. Bien que la
+							plupart des navigateurs devraient corriger cela si vous
+							l&#039;oubliez, ce n&#039;est pas toujours le cas. Donc, même si
+							votre URL n&#039;est pas dynamique, vous <em class="emphasis">devez</em>
+							utiliser la fonction <span class="function"><a
+								href="function.htmlspecialchars.html" class="function">htmlspecialchars()</a></span>
+							sur l&#039;URL.
+						</span>
+					</p>
+				</blockquote>
+				</p>
+
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.html.form-image">
+			<dt>
+				<strong> J&#039;essaye d&#039;utiliser &lt;input
+					type=&quot;image&quot;&gt; mais les variables <var class="varname">
+						<var class="varname">$foo.x</var>
+					</var> et <var class="varname">
+						<var class="varname">$foo.y</var>
+					</var> ne sont pas disponibles. <var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.get.html" class="classname">$_GET['foo.x']</a>
+						</var>
+					</var> n&#039;existe pas non plus. Où sont-elles ?
+
+				</strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">
+					Lorsque vous validez un formulaire, il est possible d&#039;utiliser
+					une image au lieu du bouton standard de type &quot;<em>submit</em>&quot;
+					avec une balise du type :
+				<div class="example-contents">
+					<div class="htmlcode">
+						<pre class="htmlcode">&lt;input type=&quot;image&quot; src=&quot;image.gif&quot; name=&quot;foo&quot; /&gt;</pre>
+					</div>
+				</div>
+
+				Lorsque l&#039;utilisateur clique sur l&#039;image, le formulaire
+				est transmis au serveur avec deux variables supplémentaires :
+				<var class="varname">
+					<var class="varname">foo.x</var>
+				</var>
+				et
+				<var class="varname">
+					<var class="varname">foo.y</var>
+				</var>
+				qui représentent les coordonnées du point cliqué.
+				</p>
+				<p class="para">
+					Comme
+					<var class="varname">
+						<var class="varname">foo.x</var>
+					</var>
+					et
+					<var class="varname">
+						<var class="varname">foo.y</var>
+					</var>
+					sont des noms de variables invalides en PHP, elles sont
+					automatiquement converties en
+					<var class="varname">
+						<var class="varname">foo_x</var>
+					</var>
+					et
+					<var class="varname">
+						<var class="varname">foo_y</var>
+					</var>
+					. Les points sont remplacés par des soulignés. Donc, vous devez
+					accéder à ces variables comme n&#039;importe quelle autre variable
+					tel que décrit dans la section &quot;<a
+						href="language.variables.external.html" class="link">Variables
+						provenant d&#039;autres sources</a>&quot;. Par exemple, en utilisant
+					<var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.get.html" class="classname">$_GET['foo_x']</a>
+						</var>
+					</var>
+					.
+				<blockquote class="note">
+					<p>
+						<strong class="note">Note</strong>:
+					<p class="para">Les espaces dans les noms de variables sont
+						également converties en un souligné bas.</p>
+					</p>
+				</blockquote>
+				</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.html.arrays">
+			<dt>
+				<strong> Comment créer un tableau dans une balise
+					&lt;form&gt; HTML ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">
+					Pour envoyer le résultat du &lt;form&gt; comme un <a
+						href="language.types.array.html" class="link">tableau</a> de
+					variables à votre script PHP, vous devez nommer, via
+					l&#039;attribut <em>name</em>, les balises &lt;input&gt;,
+					&lt;select&gt; ou &lt;textarea&gt; comme cela :
+				<div class="example-contents">
+					<div class="htmlcode">
+						<pre class="htmlcode">&lt;input name=&quot;MonTableau[]&quot; /&gt;
+&lt;input name=&quot;MonTableau[]&quot; /&gt;
+&lt;input name=&quot;MonTableau[]&quot; /&gt;
+&lt;input name=&quot;MonTableau[]&quot; /&gt;</pre>
+					</div>
+				</div>
+
+				Noter les crochets après le nom de la variable, c&#039;est ce qui
+				fait que celle-ci sera un tableau. Vous pouvez grouper les éléments
+				dans différents tableaux de variables en assignant le même nom à
+				différents éléments :
+				<div class="example-contents">
+					<div class="htmlcode">
+						<pre class="htmlcode">&lt;input name=&quot;MonTableau[]&quot; /&gt;
+&lt;input name=&quot;MonTableau[]&quot; /&gt;
+&lt;input name=&quot;MonAutreTableau[]&quot; /&gt;
+&lt;input name=&quot;MonAutreTableau[]&quot; /&gt;</pre>
+					</div>
+				</div>
+
+				Cela produira deux tableaux de variables, MonTableau et
+				MonAutreTableau, qui seront envoyés au script PHP. Il est également
+				possible d&#039;assigner des clés spécifiques à votre tableau :
+				<div class="example-contents">
+					<div class="htmlcode">
+						<pre class="htmlcode">&lt;input name=&quot;UnAutreTableau[]&quot; /&gt;
+&lt;input name=&quot;UnAutreTableau[]&quot; /&gt;
+&lt;input name=&quot;UnAutreTableau[email]&quot; /&gt;
+&lt;input name=&quot;UnAutreTableau[telephone]&quot; /&gt;</pre>
+					</div>
+				</div>
+
+				Le tableau UnAutreTableau contiendra les clés 0, 1, email et
+				telephone.
+				</p>
+				<p class="para">
+				<blockquote class="note">
+					<p>
+						<strong class="note">Note</strong>:
+					<p class="para">Le fait de spécifier une clé à un tableau est
+						optionnel en HTML. Si vous ne le faites pas, les clés du tableau
+						suiveront l&#039;ordre d&#039;apparition des éléments dans le
+						formulaire. Dans notre premier exemple, le tableau contient les
+						clés 0, 1, 2 et 3.</p>
+					</p>
+				</blockquote>
+				</p>
+				<p class="para">
+					Voir aussi les <a href="ref.array.html" class="link">fonctions
+						sur les tableaux de variables</a> et la section sur les <a
+						href="language.variables.external.html" class="link">variables
+						provenant d&#039;autres sources</a>.
+				</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.html.select-multiple">
+			<dt>
+				<strong> Comment puis-je récupérer le résultat d&#039;un
+					champ HTML <em>SELECT</em> multiple ?
+
+				</strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">
+					Le champ <em>SELECT</em> multiple en HTML permet à
+					l&#039;utilisateur de sélectionner plusieurs éléments d&#039;une
+					liste. Ces éléments seront transmis à la page pointée par
+					l&#039;attribut <em>action</em> de la balise <em>form</em>. Le
+					problème est que ces éléments sont tous passés avec le même nom de
+					variable.
+				<div class="example-contents">
+					<div class="htmlcode">
+						<pre class="htmlcode">&lt;select name=&quot;var&quot; multiple=&quot;yes&quot;&gt;</pre>
+					</div>
+				</div>
+
+				Chaque option sélectionnée arrivera au mécanisme de traitement sous
+				la forme :
+				<div class="example-contents">
+					<div class="cdata">
+						<pre>
+var=option1
+var=option2
+var=option3
+      </pre>
+					</div>
+				</div>
+
+				Chaque option effacera donc le contenu de la précédente variable
+				<var class="varname">
+					<var class="varname">$var</var>
+				</var>
+				. La solution consiste à utiliser un tableau de variables dans cet
+				élément de formulaire HTML, par exemple :
+				<div class="example-contents">
+					<div class="htmlcode">
+						<pre class="htmlcode">&lt;select name=&quot;var[]&quot; multiple=&quot;yes&quot;&gt;</pre>
+					</div>
+				</div>
+
+				Cela fera que PHP traitera
+				<var class="varname">
+					<var class="varname">$var</var>
+				</var>
+				comme un tableau de variables et que chaque assignement de valeur à
+				var[] ajoutera un index au tableau. La première option choisie sera
+				mise dans
+				<var class="varname">
+					<var class="varname">$var[0]</var>
+				</var>
+				, la suivante sera mise dans
+				<var class="varname">
+					<var class="varname">$var[1]</var>
+				</var>
+				, etc. La fonction <span class="function"><a
+					href="function.count.html" class="function">count()</a></span> peut être
+				utilisée pour déterminer combien d&#039;options ont été
+				sélectionnées, et la fonction <span class="function"><a
+					href="function.sort.html" class="function">sort()</a></span> peut être
+				utilisée pour trier le tableau, si nécessaire.
+				</p>
+				<p class="para">
+					Notez que si vous utilisez Javascript, <em>[]</em> dans le nom de
+					l&#039;élément peut vous poser problème lorsque vous tenterez
+					d&#039;accéder à celui-ci par son nom. Utilisez plutôt
+					l&#039;indice numérique de l&#039;élément dans ce cas, ou bien
+					utilisez les simples guillemets pour entourer cet élément, comme :
+				
+				<div class="example-contents">
+					<div class="cdata">
+						<pre>
+variable = documents.forms[0].elements[&#039;var[]&#039;];
+      </pre>
+					</div>
+				</div>
+
+				</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.html.javascript-variable">
+			<dt>
+				<strong> Comment puis-je passer une variable de Javascript
+					vers PHP ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">Javascript est (habituellement) une technologie
+					côté client et PHP est (habituellement) une technologie côté
+					serveur et sachant que HTTP est un protocole statique, les deux
+					langages ne peuvent pas directement partager des variables.</p>
+				<p class="para">Cependant, il est possible de faire passer des
+					variables entre les deux. Une des solutions pour cela est de
+					générer un code Javascript à l&#039;aide de PHP et de faire
+					rafraîchir le navigateur tout seul, passant ainsi des variables
+					spécifiques au script PHP. L&#039;exemple suivant montre
+					précisément comme réaliser cela -- il permet à PHP de récupérer les
+					dimensions de l&#039;écran du client, ce qui est normalement
+					possible qu&#039;en technologie coté client.</p>
+				<p class="para">
+				<div class="example" id="example-5251">
+					<p>
+						<strong>Exemple #4 Génération de Javascript avec PHP</strong>
+					</p>
+					<div class="example-contents">
+						<div class="phpcode">
+							<code>
+								<span style="color: #000000"> <span
+									style="color: #0000BB">&lt;?php<br /></span><span
+									style="color: #007700">if&nbsp;(isset(</span><span
+									style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span
+									style="color: #DD0000">'largeur'</span><span
+									style="color: #007700">])&nbsp;AND&nbsp;isset(</span><span
+									style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span
+									style="color: #DD0000">'hauteur'</span><span
+									style="color: #007700">]))&nbsp;{<br />&nbsp;&nbsp;
+								</span><span style="color: #FF8000">//&nbsp;Affichage&nbsp;des&nbsp;variables<br />&nbsp;&nbsp;
+								</span><span style="color: #007700">echo&nbsp;</span><span
+									style="color: #DD0000">'La&nbsp;largeur&nbsp;de&nbsp;l\'écran&nbsp;est&nbsp;:&nbsp;'&nbsp;</span><span
+									style="color: #007700">.&nbsp;</span><span
+									style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span
+									style="color: #DD0000">'largeur'</span><span
+									style="color: #007700">]&nbsp;.</span><span
+									style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span
+									style="color: #007700">;<br />&nbsp;&nbsp;echo&nbsp;
+								</span><span style="color: #DD0000">'La&nbsp;hauteur&nbsp;de&nbsp;l\'écran&nbsp;est&nbsp;:&nbsp;'&nbsp;</span><span
+									style="color: #007700">.&nbsp;</span><span
+									style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span
+									style="color: #DD0000">'hauteur'</span><span
+									style="color: #007700">]&nbsp;.&nbsp;</span><span
+									style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span
+									style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;
+								</span><span style="color: #FF8000">//&nbsp;passage&nbsp;des&nbsp;variables&nbsp;de&nbsp;dimensions<br />&nbsp;&nbsp;//&nbsp;(préservation&nbsp;de&nbsp;la&nbsp;requête&nbsp;d'origine<br />&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;--&nbsp;les&nbsp;variables&nbsp;par&nbsp;méthode&nbsp;POST&nbsp;doivent&nbsp;être&nbsp;traitées&nbsp;différemment)<br />
+									<br />&nbsp;&nbsp;
+								</span><span style="color: #007700">echo&nbsp;</span><span
+									style="color: #DD0000">"&lt;script&nbsp;type=\"text/javascript\"&gt;\n"</span><span
+									style="color: #007700">;<br />&nbsp;&nbsp;echo&nbsp;
+								</span><span style="color: #DD0000">"&nbsp;&nbsp;location.href=\"</span><span
+									style="color: #007700">${</span><span style="color: #0000BB">_SERVER</span><span
+									style="color: #007700">[</span><span style="color: #DD0000">'SCRIPT_NAME'</span><span
+									style="color: #007700">]}</span><span style="color: #DD0000">?</span><span
+									style="color: #007700">${</span><span style="color: #0000BB">_SERVER</span><span
+									style="color: #007700">[</span><span style="color: #DD0000">'QUERY_STRING'</span><span
+									style="color: #007700">]}</span><span style="color: #DD0000">"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								</span><span style="color: #007700">.&nbsp;</span><span
+									style="color: #DD0000">"&amp;largeur=\"&nbsp;+&nbsp;screen.width&nbsp;+&nbsp;\"&amp;hauteur=\"&nbsp;+&nbsp;screen.height;\n"</span><span
+									style="color: #007700">;<br />&nbsp;&nbsp;echo&nbsp;
+								</span><span style="color: #DD0000">"&lt;/script&gt;\n"</span><span
+									style="color: #007700">;<br />&nbsp;&nbsp;exit();<br />}<br /></span><span
+									style="color: #0000BB">?&gt;</span>
+								</span>
+							</code>
+						</div>
+					</div>
+
+				</div>
+				</p>
+			</dd>
+		</dl>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="faq.passwords.html">Hashage de mots de passe</a>
+		</div>
+		<div class="next">
+			<a href="faq.com.html">PHP et COM</a>
+		</div>
+		<div class="up">
+			<a href="faq.html">FAQ</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

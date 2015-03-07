@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Cherche la position de la premi&egrave;re occurrence dans
+	une cha&icirc;ne</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.strpbrk.html">strpbrk</a>
+		</div>
+		<div class="next">
+			<a href="function.strrchr.html">strrchr</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.strpos" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">strpos</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">strpos</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Cherche la position de la première
+					occurrence dans une chaîne</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.strpos-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">int</span> <span class="methodname"><strong>strpos</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$haystack</code></span> , <span
+					class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$needle</code></span>
+				[, <span class="methodparam"><span class="type">int</span> <code
+						class="parameter">$offset</code><span class="initializer">
+						= 0</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				Cherche la position numérique de la première occurrence de <em><code
+						class="parameter">needle</code></em> dans la <a
+					href="language.types.string.html" class="link">chaîne de
+					caractères</a> <em><code class="parameter">haystack</code></em>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.strpos-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">haystack</code></em></span>
+				<dd>
+
+					<p class="para">La chaîne dans laquelle on doit chercher.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">needle</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si <em><code class="parameter">needle</code></em> n&#039;est pas
+						une chaîne, il est converti en entier, et utilisé comme caractère
+						de code ASCII correspondant.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">offset</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si spécifié, la recherche commencera à partir de ce nombre de
+						caractères compté depuis le début de la chaîne. Contrairement aux
+						fonctions <span class="function"><a
+							href="function.strrpos.html" class="function">strrpos()</a></span> et <span
+							class="function"><a href="function.strripos.html"
+							class="function">strripos()</a></span>, ce paramètre ne peut être
+						négatif.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.strpos-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne la position numérique de l&#039;occurrence relativement au
+				début de la chaîne <em><code class="parameter">haystack</code></em>
+				(indépendamment de l&#039;offset). Notez également que la position
+				dans la chaîne commence à 0, et non pas à 1.
+			</p>
+			<p class="para">
+				Retourne <strong><code>FALSE</code></strong> si l&#039;occurrence
+				n&#039;a pas été trouvée.
+			</p>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="simpara">
+					Cette fonction peut retourner <strong><code>FALSE</code></strong>,
+					mais elle peut aussi retourner une valeur équivalent à <strong><code>FALSE</code></strong>.
+					Veuillez lire la section sur les <a
+						href="language.types.boolean.html" class="link">booléens</a> pour
+					plus d&#039;informations. Utilisez l&#039;<a
+						href="language.operators.comparison.html" class="link">opérateur
+						===</a> pour tester la valeur de retour exacte de cette fonction.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.strpos-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4553">
+				<p>
+					<strong>Exemple #1 Avec <em>===</em></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$mystring&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'abc'</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$findme&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'a'</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$pos&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">strpos</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$mystring</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$findme</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Notez&nbsp;notre&nbsp;utilisation&nbsp;de&nbsp;===.&nbsp;&nbsp;==&nbsp;ne&nbsp;fonctionnerait&nbsp;pas&nbsp;comme&nbsp;attendu<br />//&nbsp;car&nbsp;la&nbsp;position&nbsp;de&nbsp;'a'&nbsp;est&nbsp;la&nbsp;0-ième&nbsp;(premier)&nbsp;caractère.<br /></span><span
+								style="color: #007700">if&nbsp;(</span><span
+								style="color: #0000BB">$pos&nbsp;</span><span
+								style="color: #007700">===&nbsp;</span><span
+								style="color: #0000BB">false</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"La&nbsp;chaîne&nbsp;'</span><span
+								style="color: #0000BB">$findme</span><span
+								style="color: #DD0000">'&nbsp;ne&nbsp;se&nbsp;trouve&nbsp;pas&nbsp;dans&nbsp;la&nbsp;chaîne&nbsp;'</span><span
+								style="color: #0000BB">$mystring</span><span
+								style="color: #DD0000">'"</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"La&nbsp;chaine&nbsp;'</span><span
+								style="color: #0000BB">$findme</span><span
+								style="color: #DD0000">'&nbsp;a&nbsp;été&nbsp;trouvée&nbsp;dans&nbsp;la&nbsp;chaîne&nbsp;'</span><span
+								style="color: #0000BB">$mystring</span><span
+								style="color: #DD0000">'"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"&nbsp;et&nbsp;débute&nbsp;à&nbsp;la&nbsp;position&nbsp;</span><span
+								style="color: #0000BB">$pos</span><span style="color: #DD0000">"</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="example" id="example-4554">
+				<p>
+					<strong>Exemple #2 Avec !==</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$mystring&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'abc'</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$findme&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'a'</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$pos&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">strpos</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$mystring</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$findme</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Notez&nbsp;notre&nbsp;utilisation&nbsp;de&nbsp;!==.&nbsp;&nbsp;!=&nbsp;ne&nbsp;fonctionnerait&nbsp;pas&nbsp;comme&nbsp;attendu<br />//&nbsp;car&nbsp;la&nbsp;position&nbsp;de&nbsp;'a'&nbsp;est&nbsp;la&nbsp;0-ième&nbsp;(premier)&nbsp;caractère.<br /></span><span
+								style="color: #007700">if&nbsp;(</span><span
+								style="color: #0000BB">$pos&nbsp;</span><span
+								style="color: #007700">!==&nbsp;</span><span
+								style="color: #0000BB">false</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"La&nbsp;chaine&nbsp;'</span><span
+								style="color: #0000BB">$findme</span><span
+								style="color: #DD0000">'&nbsp;a&nbsp;été&nbsp;trouvée&nbsp;dans&nbsp;la&nbsp;chaîne&nbsp;'</span><span
+								style="color: #0000BB">$mystring</span><span
+								style="color: #DD0000">'"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"&nbsp;et&nbsp;débute&nbsp;à&nbsp;la&nbsp;position&nbsp;</span><span
+								style="color: #0000BB">$pos</span><span style="color: #DD0000">"</span><span
+								style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"La&nbsp;chaîne&nbsp;'</span><span
+								style="color: #0000BB">$findme</span><span
+								style="color: #DD0000">'&nbsp;ne&nbsp;se&nbsp;trouve&nbsp;pas&nbsp;dans&nbsp;la&nbsp;chaîne&nbsp;'</span><span
+								style="color: #0000BB">$mystring</span><span
+								style="color: #DD0000">'"</span><span style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="example" id="example-4555">
+				<p>
+					<strong>Exemple #3 Utiliser un offset</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Nous&nbsp;pouvons&nbsp;chercher&nbsp;le&nbsp;caractère,&nbsp;et&nbsp;ignorer&nbsp;tout&nbsp;ce&nbsp;qui&nbsp;est&nbsp;avant&nbsp;l'offset<br /></span><span
+								style="color: #0000BB">$newstring&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'abcdef&nbsp;abcdef'</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$pos&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">strpos</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$newstring</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'a'</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;$pos&nbsp;=&nbsp;7,&nbsp;non&nbsp;pas&nbsp;0<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.strpos-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Cette
+						fonction gère les chaînes binaires.</span>
+				</p>
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.strpos-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.stripos.html" class="function" rel="rdfs-seeAlso">stripos()</a>
+						- Recherche la position de la premi&egrave;re occurrence dans une
+						cha&icirc;ne, sans tenir compte de la casse</span></li>
+				<li class="member"><span class="function"><a
+						href="function.strrpos.html" class="function" rel="rdfs-seeAlso">strrpos()</a>
+						- Cherche la position de la derni&egrave;re occurrence d'une
+						sous-chaine dans une cha&icirc;ne</span></li>
+				<li class="member"><span class="function"><a
+						href="function.strripos.html" class="function" rel="rdfs-seeAlso">strripos()</a>
+						- Cherche la position de la derni&egrave;re occurrence d'une
+						cha&icirc;ne contenue dans une autre, de fa&ccedil;on insensible
+						&agrave; la casse</span></li>
+				<li class="member"><span class="function"><a
+						href="function.strstr.html" class="function" rel="rdfs-seeAlso">strstr()</a>
+						- Trouve la premi&egrave;re occurrence dans une cha&icirc;ne</span></li>
+				<li class="member"><span class="function"><a
+						href="function.strpbrk.html" class="function" rel="rdfs-seeAlso">strpbrk()</a>
+						- Recherche un ensemble de caract&egrave;res dans une cha&icirc;ne
+						de caract&egrave;res</span></li>
+				<li class="member"><span class="function"><a
+						href="function.substr.html" class="function" rel="rdfs-seeAlso">substr()</a>
+						- Retourne un segment de cha&icirc;ne</span></li>
+				<li class="member"><span class="function"><a
+						href="function.preg-match.html" class="function"
+						rel="rdfs-seeAlso">preg_match()</a> - Expression rationnelle
+						standard</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.strpbrk.html">strpbrk</a>
+		</div>
+		<div class="next">
+			<a href="function.strrchr.html">strrchr</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

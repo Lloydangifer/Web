@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Listes et menus</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function() {
+			top.FP.initPage();
+		}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>Les listes sont très souvent utilisées pour réaliser des menus
+			de tous types : verticaux, horizontaux, dynamiques, à un ou plusieurs
+			niveaux, etc.</p>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Menus à un seul niveau</h3>
+		<section>
+			<p>Les menus les plus simples à réaliser sont les menus à un seul
+				niveau car ils nécessitent l'utilisation d'une seule liste.</p>
+
+			<h4>Menu vertical</h4>
+			<section>
+				<p>Un menu vertical est réalisé dans problème en gardant la
+					disposition normale d'une liste.</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : menu vertical
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;ul class="menu-vertical"&gt;
+			&lt;li&gt;&lt;a href="p1.html"&gt;Yoda&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="p2.html"&gt;Luke&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="p3.html"&gt;Palpatine&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="p4.html"&gt;Vador&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+.menu-vertical {
+	margin: 0;
+	padding: 5px 0 5px 30px;
+	list-style: url(../exemples/img/star.png);
+	width: 100px;
+	border-radius: 5px;
+	border: 1px solid;
+}
+.menu-vertical a {
+	text-decoration: none;
+	color: black;
+}</textarea>
+				</form>
+			</section>
+
+			<h4>Toute la ligne cliquable</h4>
+			<section>
+				<p>
+					Le menu de l'exemple précédent peut être amélioré en rendant toute
+					la ligne de la liste cliquable, et pas seulement le lien.
+					<br>
+					L'astuce consiste à forcer l'affichage des liens <a
+						onclick="top.FP.Voir.showPageTech('elements', 'a')">a</a> comme si
+					c'était des éléments de type bloc. On utilise la propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'display')">display</a>
+					avec la valeur <code>block</code>.
+					<br>
+					Pour que les puces de la liste soient aussi cliquables, il faut les
+					enlever des lignes et les mettre par exemple comme image de fond
+					non répétée des liens. En procédant ainsi plutôt que d'ajouter les
+					images dans le code <abbr title="HyperText Markup Language">HTML</abbr>,
+					on rend les modifications bien plus faciles à faire car il suffira
+					de changer une ligne de la feuille de style si on veut changer la
+					pluce, plutôt que reprendre toutes les pages du site qui
+					utiliseraient le menu.
+				</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : menu vertical ligne cliquable
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML" data-hidden>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;ul class="menu-vertical"&gt;
+			&lt;li&gt;&lt;a href="p1.html"&gt;Yoda&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="p2.html"&gt;Luke&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="p3.html"&gt;Palpatine&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="p4.html"&gt;Vador&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+.menu-vertical {
+	margin: 0;
+	padding: 5px;
+	width: 100px;
+	list-style: none;
+	border-radius: 5px;
+	border: 1px solid;
+}
+.menu-vertical a {
+	display: block;
+	background: url(../exemples/img/star.png) no-repeat;
+	padding-left: 20px;
+	text-decoration: none;
+	color: black;
+}
+.menu-vertical a:hover {
+	background-color: lightcyan;
+}</textarea>
+				</form>
+			</section>
+
+			<a id="exo_menu_vertical"></a>
+			<h4 class="fp-exo">Réaliser un menu vertical</h4>
+			<section>
+				<div style="float: right; width: 180px; margin: 0 0 0 10px;">
+					<figure>
+						<img src="../exercices/exo_menu_vertical.png" width="158"
+							height="157">
+						<figcaption>menu à réaliser</figcaption>
+					</figure>
+					<figure>
+						<img src="../exercices/exo_menu_vertical_hover.png" width="158"
+							height="157">
+						<figcaption>ligne au survol de la souris</figcaption>
+					</figure>
+				</div>
+
+				<p>
+					Complétez le code <abbr title="Cascading Style Sheets">CSS</abbr>
+					pour obtenir le menu ci-contre.
+				</p>
+
+				<p>
+					La couleur de fond du menu est <code>#0A0D0A</code> et il est
+					entouré par une ombre de 2 pixels avec 2 pixels de renfort, jaune
+					avec une transparence de 0.7. La couleur des liens est <code>#6d6d00</code>.
+					Au survol de la souris, les liens deviennent <code>yellow</code> et
+					sont entourés avec la même ombre que le menu.
+				</p>
+
+				<p>
+					Toutes les images se trouvent dans le répertoire <code>../exemple/img/</code>
+					<br>
+					L'image de fond de page s'appelle <code>etoiles.jpg</code>, la puce
+					du menu s'appelle <code>starv.png</code> et quand elle est survolée
+					par la souris <code>starj.png</code>.
+				</p>
+
+				<p class="fp-completez fp-clear">
+					<a onclick="top.FP.Voir.showCompletez('exo_menu_vertical_comp')">Code
+						à compléter</a>
+				</p>
+
+				<div id="exo_menu_vertical_comp" class="BLOC-completez">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : réaliser un menu vertical
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;ul class="menu-vertical"&gt;
+			&lt;li&gt;&lt;a href="p1.html"&gt;Yoda&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="p2.html"&gt;Luke&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="p3.html"&gt;Palpatine&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="p4.html"&gt;Vador&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;
+</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+
+CODE CSS A COMPLETER 
+
+</textarea>
+					</form>
+				</div>
+
+				<p class="fp-solution">
+					<a onclick="top.FP.Voir.showSolution('exo_menu_vertical_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_menu_vertical_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : réaliser un menu vertical
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;ul class="menu-vertical"&gt;
+			&lt;li&gt;&lt;a href="p1.html"&gt;Yoda&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="p2.html"&gt;Luke&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="p3.html"&gt;Palpatine&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="p4.html"&gt;Vador&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+body { background: url(../exemples/img/etoiles.jpg); }
+
+.menu-vertical {
+	margin: 0;
+	padding: 5px;
+	width: 120px;
+	list-style: none;
+	border-radius: 5px;
+	background: #0A0D0A;
+	box-shadow: 0 0 2px 2px rgba(255, 255, 0, 0.7);			
+}
+.menu-vertical a {
+	display: block;
+	background: url(../exemples/img/starv.png) no-repeat;
+	padding-left: 20px;
+	text-decoration: none;
+	color: #6d6d00;
+	margin: 4px 0;
+}
+.menu-vertical a:hover {
+	background: rgba(255, 255, 255, 0.2) url(../exemples/img/starj.png) no-repeat;
+	border-radius: 2px;
+	box-shadow: 0 0 2px 2px rgba(255, 255, 0, 0.7);
+	color: yellow;
+}</textarea>
+					</form>
+				</div>
+			</section>
+
+			<h4>Menu horizontal</h4>
+			<section>
+				<p>
+					Pour réaliser un menu horizontal, la solution qui offre le plus de
+					liberté est de faire flotter les lignes de la liste avec la
+					propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'float')">float</a>,
+					valeur <code>left</code> (généralement) ou <code>right</code> (plus
+					rarement).
+				</p>
+
+				<p class="fp-bot0">
+					Comme les lignes sont flottantes, elles sortent du flux normal et
+					ne sont pas prises en compte pour le calcul de la hauteur de leur
+					conteneur (l'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'ul')">ul</a>) qui
+					se retrouve donc avec une valeur de 0 et ne peut pas être
+					éventuellement stylé. Pour résoudre ce problème il y a 2 solutions
+					:
+				</p>
+				<ul>
+					<li>on peut utiliser la propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'overflow')">overflow</a>
+						avec la valeur <code>auto</code> sur l'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'ul')">ul</a>. Cette
+						solution est adéquate pour un menu à un seul niveau.
+					</li>
+					<li>dans le cas d'un menu à plusieurs niveaux, il faut plutôt
+						donner une hauteur à l'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'ul')">ul</a> avec
+						la propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'height')">height</a>.
+						On évitera ainsi des effets non désirés lors de l'affichage
+						dynamique des sous-niveaux.
+					</li>
+				</ul>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : menu horizontal
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML" data-hidden>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;ul class="menu-horizontal"&gt;
+			&lt;li&gt;&lt;a href="p1.html"&gt;Yoda&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="p2.html"&gt;Luke&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="p3.html"&gt;Palpatine&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="p4.html"&gt;Vador&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+.menu-horizontal {
+	margin: 0;
+	padding: 5px;
+	list-style: none;
+	border-radius: 10px;
+	border: 1px solid;
+	overflow: auto;
+	background: #808080;
+}
+.menu-horizontal li {
+	float: left;	/* ligne flottante pour avoir un menu
+					horizontal */
+	width: 90px;
+}
+
+/* Le lien a l'apparence d'un bouton */
+.menu-horizontal a {
+	display: block;
+	text-decoration: none;
+	color: white;
+	text-align: center;
+	padding: 4px;
+	margin-right: 10px;
+	border: 1px solid #555;
+	border-radius: 5px;
+	background: linear-gradient(#b0b0b0, #808080);
+}
+.menu-horizontal a:hover {
+	background: linear-gradient(#f2ebd2, #fbdb6d);
+	color: black;
+}</textarea>
+				</form>
+			</section>
+
+			<a id="exo_menu_horizontal"></a>
+			<h4 class="fp-exo">Réaliser un menu horizontal</h4>
+			<section>
+				<p>
+					Complétez le code <abbr title="Cascading Style Sheets">CSS</abbr>
+					pour obtenir le menu ci-dessous.
+				</p>
+
+				<figure>
+					<img src="../exercices/exo_menu_horizontal.jpg" width="518"
+						height="105">
+					<figcaption>menu à réaliser</figcaption>
+				</figure>
+
+				<p>
+					La page a une image de fond : <code>../exemple/img/etoiles.jpg</code>.
+				</p>
+
+				<p>
+					La barre de menu a une hauteur de 60 pixels et la police est
+					Verdana ou Geneva ou sans-serif, à la taille de 15 pixels.
+					<br>
+					Le fond est un dégradé linéaire qui commence par la couleur <code>#AEBCBF</code>
+					et se termine par <code>#0A0809</code>. Il y a 2 autres points
+					d'arrêt : <code> #6E7774</code> à 45% et <code>#0A0E0A</code> à
+					65%.
+				</p>
+
+				<p>Les lignes ont une largeur de 130 pixels et sont séparées par
+					un espace de 10 pixels.</p>
+
+				<p>
+					Les liens ont une hauteur de 40 pixels avec une marge intérieure de
+					4 pixels et sont blancs.
+					<br>
+					Au survol de la souris ils deviennent <code>yellow</code> et sont
+					entourés par une ombre de 2 pixels avec 2 pixels de renfort, jaune
+					avec une transparence de 0.7. Le fond du lien est noir avec une
+					transparence de 0.2.
+				</p>
+
+				<figure>
+					<img src="../exercices/exo_menu_horizontal_hover.jpg" width="518"
+						height="105">
+					<figcaption>ligne au survol de la souris</figcaption>
+				</figure>
+
+				<p class="fp-completez fp-clear">
+					<a onclick="top.FP.Voir.showCompletez('exo_menu_horizontal_comp')">Code
+						à compléter</a>
+				</p>
+
+				<div id="exo_menu_horizontal_comp" class="BLOC-completez">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : réaliser un menu horizontal
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;ul class="menu-horizontal"&gt;
+			&lt;li&gt;&lt;a href="a.html"&gt;Accueil&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="lsda.html"&gt;Le Seigneur des Anneaux&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="lgde.html"&gt;La Guerre des Etoiles&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+
+CODE CSS A COMPLETER 
+
+</textarea>
+					</form>
+				</div>
+
+				<p class="fp-solution">
+					<a
+						onclick="top.FP.Voir.showSolution('exo_menu_horizontal_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_menu_horizontal_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : réaliser un menu horizontal
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;ul class="menu-horizontal"&gt;
+			&lt;li&gt;&lt;a href="a.html"&gt;Accueil&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="lsda.html"&gt;Le Seigneur des Anneaux&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="lgde.html"&gt;La Guerre des Etoiles&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+body { background: url(../exemples/img/etoiles.jpg); }
+	
+.menu-horizontal {
+	background: linear-gradient(to bottom, #AEBCBF 0%, #6E7774 45%, #0A0E0A 65%, #0A0809 100%);
+	color: #FFFFFF;
+	font: 15px Verdana,Geneva,sans-serif;
+	height: 60px;
+	list-style: none;
+	margin: 10px 0;
+	padding: 0;
+	border-radius: 5px;
+}
+
+.menu-horizontal li {
+	float: left;
+	margin: 5px;
+	padding: 0;
+	width: 130px;
+}
+
+.menu-horizontal li a {
+	color: white;
+	display: block;
+	height: 40px;
+	padding: 4px;
+	text-align: center;
+	text-decoration: none;
+	}
+
+.menu-horizontal li:hover a {
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 5px;
+	box-shadow: 0 0 2px 2px rgba(255, 255, 0, 0.5);
+	color: yellow;
+}</textarea>
+					</form>
+				</div>
+			</section>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Menus à plusieurs niveaux</h3>
+		<section>
+			<h4>Principes de fonctionnement</h4>
+			<section>
+				<p>Pour réaliser la structure d'un menu à plusieurs niveaux, une
+					solution simple est d'utiliser des listes imbriquées. Généralement
+					le 1er niveau est fait avec une liste horizontale et les niveaux
+					suivants (sous-niveaux) aves des listes verticales.</p>
+
+				<figure>
+					<img src="../cssimg/menu_2_niveaux.png" width="424" height="200">
+					<figcaption>un menu à 2 niveaux</figcaption>
+				</figure>
+
+				<p>
+					Les listes des sous-niveaux sont cachées par défaut avec la
+					propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'display')">display</a>
+					à laquelle on donne la valeur <code>none</code>.
+					<br>
+					La passage de la souris sur une ligne change la valeur de la
+					propriété pour <code>block</code> ce qui la rend visible.
+				</p>
+
+				<p>
+					Les sélecteurs à utiliser sont un peu plus complexes que ceux des
+					listes à un seul niveau car il faut cibler uniquement les enfants
+					directs d'un élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'ul')">ul</a> ou <a
+						onclick="top.FP.Voir.showPageTech('elements', 'li')">li</a> et non
+					pas tous les descendants.
+					<br>
+					On utilise pour cela le combinateur <strong>&gt;</strong> comme
+					nous l'avons vu dans <a class="fp-lientuto"
+						onclick="top.FP.Voir.showPageTuto('css02g3', '')">
+						Sélectionner &rtrif; Sélecteur d'enfants</a>
+				</p>
+
+				<p>
+					L'exemple suivant montre la réalisation d'un menu à 2 niveaux avec
+					les principes décrits. On remarquera que les éléments de 1er niveau
+					sont créés avec des liens <a
+						onclick="top.FP.Voir.showPageTech('elements', 'a')">a</a>, même si
+					ce ne sont pas des liens réels ( l'attribut <code>href</code> est
+					une ancre interne "inexistante" qui pointera de la sorte sur le
+					début de la page). En utilisant ces sortes de liens, il est plus
+					facile de styler le menu (et en particulier quand il y a plus de 2
+					niveaux).
+				</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : menu horizontal
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;ul class="menu-horizontal"&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Personnages &amp;dtrif;&lt;/a&gt;
+				&lt;ul class="menu-vertical"&gt;
+					&lt;li&gt;&lt;a href="p1.html"&gt;Yoda&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href="p2.html"&gt;Luke&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href="p3.html"&gt;Palpatine&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href="p4.html"&gt;Vador&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Vaisseaux &amp;dtrif;
+				&lt;ul class="menu-vertical"&gt;&lt;/a&gt;
+					&lt;li&gt;&lt;a href="v1.html"&gt;A Wing&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href="v2.html"&gt;B Wing&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href="v3.html"&gt;X	Wing&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;
+				</textarea>
+
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+/* propiétés communnes aux menus */
+.menu-horizontal,
+.menu-vertical {
+	margin: 0;
+	padding: 5px;
+	list-style: none;
+	background: white;
+	border-radius: 10px;
+	border: 1px solid;
+}
+
+.menu-horizontal {
+	height: 2em;
+	line-height: 2em;
+}
+
+/* tous les liens (enfants et descendants) */
+.menu-horizontal a {
+	display: block;
+	text-decoration: none;
+	color: black;
+}
+
+/* sélecteur d'enfant : uniquement les lignes du menu horizontal et pas celles des autres listes imbriquées */
+.menu-horizontal &gt; li {
+	float: left;
+	margin: 0 5px;
+	width: 100px;
+}
+	
+/* au survol de la souris sur une ligne 1er niveau on affiche le sous-menu correspondant */
+.menu-horizontal  &gt; li:hover .menu-vertical {
+	display: block;
+}
+
+/* les sous-menus sont cachés  par défaut */
+.menu-vertical { display: none; }
+
+/* survol des liens sous-menus */
+.menu-vertical a:hover { text-decoration: underline; }</textarea>
+				</form>
+
+				<div class="fp-puce">
+					<p class="fp-p-raz fp-bot0">Si on voulait positionner plus
+						précisément les sous-menus, il faudrait apporter les modifications
+						suivantes :</p>
+					<ul>
+						<li>la ligne conteneur d'un sous-menu devrait être
+							positionnée avec <code>position: relative</code> pour que le
+							sous-menu la prenne comme position de référence,
+						</li>
+						<li>le sous-menu devrait être positionné avec <code>position:
+								absolute</code> et on devrait lui donner une largeur,
+						</li>
+						<li>la position du sous-menu devrait être définie pas les
+							propriétés <a
+							onclick="top.FP.Voir.showPageTech('css_proprietes', 'top')">top</a>
+							et/ou <a
+							onclick="top.FP.Voir.showPageTech('css_proprietes', 'bottom')">bottom</a>
+							et/ou <a
+							onclick="top.FP.Voir.showPageTech('css_proprietes', 'left')">left</a>
+							et/ou <a
+							onclick="top.FP.Voir.showPageTech('css_proprietes', 'right')">right</a>
+						</li>
+					</ul>
+
+					<p>Avec l'exemple précédent on pourrait avoir quelque chose
+						comme :</p>
+					<pre data-code="CSS">
+.menu-horizontal &gt; li {
+	float: left;
+	margin: 0 5px;
+	width: 100px;
+	position: relative;
+}				
+.menu-vertical { 
+	display: none;
+	position: absolute;
+	left: -10px;
+	top: 1.5em;
+	width: 100px;
+}</pre>
+				</div>
+			</section>
+
+			<a id="exo_menu_3_niveaux"></a>
+			<h4 class="fp-exo">Menu à 3 niveaux</h4>
+			<section>
+				<p>
+					Complétez le code <abbr title="HyperText Markup Language">HTML</abbr>
+					et le code <abbr title="Cascading Style Sheets">CSS</abbr> pour
+					obtenir le menu à 3 niveaux ci-dessous.
+				</p>
+
+				<figure>
+					<img src="../exercices/exo_menu_3_niveaux_a.jpg" width="560"
+						height="170">
+					<figcaption>menu niveau 1</figcaption>
+				</figure>
+
+				<figure>
+					<img src="../exercices/exo_menu_3_niveaux_b.jpg" width="560"
+						height="170">
+					<figcaption>menu niveau 2</figcaption>
+				</figure>
+				<figure>
+					<img src="../exercices/exo_menu_3_niveaux_c.jpg" width="560"
+						height="170">
+					<figcaption>1er menu niveau 3</figcaption>
+				</figure>
+
+				<figure>
+					<img src="../exercices/exo_menu_3_niveaux_d.jpg" width="560"
+						height="170">
+					<figcaption>2éme menu niveau 3</figcaption>
+				</figure>
+
+				<p>
+					La page a une image de fond : <code>../exemple/img/etoiles.jpg</code>.
+				</p>
+
+				<p class="fp-p-raz fp-gras">Menu de niveau 1</p>
+				<p>
+					La barre de menu a une hauteur de 60 pixels et la police est
+					Verdana ou Geneva ou sans-serif, à la taille de 15 pixels.
+					<br>
+					Le fond est un dégradé linéaire qui commence par la couleur <code>#AEBCBF</code>
+					et se termine par <code>#0A0809</code>. Il y a 2 autres points
+					d'arrêt : <code> #6E7774</code> à 45% et <code>#0A0E0A</code> à
+					65%.
+				</p>
+
+				<p>Les lignes ont une largeur de 130 pixels et sont séparées par
+					un espace de 10 pixels.</p>
+
+				<p>
+					Les liens ont une hauteur de 40 pixels avec une marge intérieure de
+					4 pixels et sont blancs.
+					<br>
+					Au survol de la souris ils deviennent <code>yellow</code> et sont
+					entourés par une ombre de 2 pixels avec 2 pixels de renfort, jaune
+					avec une transparence de 0.5. Le fond du lien est noir avec une
+					transparence de 0.2.
+				</p>
+
+				<p class="fp-p-raz fp-gras">Menu de niveaux 2 et 3</p>
+				<p>
+					Les menus de niveaux 2 et 3 ont une fond de couleur <code>#0A0D0A</code>.
+					Ils ont une largeur de 150 pixels et des marges internes verticales
+					de 5 pixels et horizontales de 10 pixels. Ils sont entourés par par
+					une ombre de 2 pixels avec 2 pixels de renfort, jaune avec une
+					transparence de 0.5.
+				</p>
+
+				<p>
+					Au survol de la souris les liens deviennent <code>yellow</code> et
+					leur fond devient noir avec une transparence de 0.2.
+				</p>
+
+				<p class="fp-p-raz fp-gras">Conseil</p>
+				<p>Commencez déjà par la mise en place des listes, puis par le
+					fonctionnement de l'affichage des différents niveaux de menu. Quand
+					la gestion des survols et des affichages est correcte, stylez plus
+					précisément les éléments avec les couleurs, marges, ombres, etc.</p>
+
+				<p class="fp-completez fp-clear">
+					<a onclick="top.FP.Voir.showCompletez('exo_menu_3_niveaux_comp')">Code
+						à compléter</a>
+				</p>
+
+				<div id="exo_menu_3_niveaux_comp" class="BLOC-completez">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : Menu à 3 niveaux
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;a href="a.html"&gt;Accueil&lt;/a&gt;
+		&lt;a href="#"&gt;Le Seigneur des Anneaux &amp;dtrif;&lt;/a&gt;
+		&lt;a href="s1.html"&gt;&amp;#8751; Gandalf&lt;/a&gt;
+		&lt;a href="s2.html"&gt;&amp;#8751; Frodon&lt;/a&gt;
+		&lt;a href="s3.html"&gt;&amp;#8751; Sauron&lt;/a&gt;
+		&lt;a href="s4.html"&gt;&amp;#8751; Gollum&lt;/a&gt;
+		&lt;a href="#"&gt;La Guerre des Etoiles &amp;dtrif;&lt;/a&gt;
+		&lt;a href="#"&gt;Personnages &amp;rtrif;&lt;/a&gt;
+		&lt;a href="p1.html"&gt;&amp;#9734; Yoda&lt;/a&gt;
+		&lt;a href="p2.html"&gt;&amp;#9734; Luke&lt;/a&gt;
+		&lt;a href="p3.html"&gt;&amp;#9734; Palpatine&lt;/a&gt;
+		&lt;a href="p4.html"&gt;&amp;#9734; Dark Vador&lt;/a&gt;
+		&lt;a href="#"&gt;Vaisseaux &amp;rtrif;&lt;/a&gt;
+		&lt;a href="v1.html"&gt;&amp;#8982; A Wing&lt;/a&gt;
+		&lt;a href="v2.html"&gt;&amp;#8982; B Wing&lt;/a&gt;
+		&lt;a href="v3.html"&gt;&amp;#8982; X Wing&lt;/a&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+.menu-horizontal {
+
+}
+
+
+.menu-vertical {
+
+}</textarea>
+					</form>
+				</div>
+
+				<p class="fp-solution">
+					<a onclick="top.FP.Voir.showSolution('exo_menu_3_niveaux_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_menu_3_niveaux_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : Menu à 3 niveaux
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;ul class="menu-horizontal"&gt;
+			&lt;li&gt;&lt;a href="a.html"&gt;Accueil&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;Le Seigneur des Anneaux &amp;dtrif;&lt;/a&gt;
+				&lt;ul class="menu-vertical"&gt;
+					&lt;li&gt;&lt;a href="s1.html"&gt;&amp;#8751; Gandalf&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href="s2.html"&gt;&amp;#8751; Frodon&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href="s3.html"&gt;&amp;#8751; Sauron&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href="s4.html"&gt;&amp;#8751; Gollum&lt;/a&gt;&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#"&gt;La Guerre des Etoiles &amp;dtrif;&lt;/a&gt;
+				&lt;ul class="menu-vertical"&gt;
+					&lt;li&gt;&lt;a href="#"&gt;Personnages &amp;rtrif;&lt;/a&gt;
+						&lt;ul class="menu-vertical"&gt;
+							&lt;li&gt;&lt;a href="p1.html"&gt;&amp;#9734; Yoda&lt;/a&gt;&lt;/li&gt;
+							&lt;li&gt;&lt;a href="p2.html"&gt;&amp;#9734; Luke&lt;/a&gt;&lt;/li&gt;
+							&lt;li&gt;&lt;a href="p3.html"&gt;&amp;#9734; Palpatine&lt;/a&gt;&lt;/li&gt;
+							&lt;li&gt;&lt;a href="p4.html"&gt;&amp;#9734; Dark Vador&lt;/a&gt;&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/li&gt;
+					&lt;li&gt;&lt;a href="#"&gt;Vaisseaux &amp;rtrif;&lt;/a&gt;
+						&lt;ul class="menu-vertical"&gt;
+							&lt;li&gt;&lt;a href="v1.html"&gt;&amp;#8982; A Wing&lt;/a&gt;&lt;/li&gt;
+							&lt;li&gt;&lt;a href="v2.html"&gt;&amp;#8982; B Wing&lt;/a&gt;&lt;/li&gt;
+							&lt;li&gt;&lt;a href="v3.html"&gt;&amp;#8982; X Wing&lt;/a&gt;&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+body { background: url(../exemples/img/etoiles.jpg); }
+
+/* menu niveau 1 */
+.menu-horizontal {
+	background: linear-gradient(to bottom, #AEBCBF 0%, #6E7774 45%, #0A0E0A 65%, #0A0809 100%);
+	color: #FFFFFF;
+	font: 15px Verdana,Geneva,sans-serif;
+	height: 60px;
+	list-style: none;
+	margin: 10px 0;
+	padding: 0;
+	border-radius: 5px;
+}
+
+/* sélecteur d'enfant : uniquement les lignes du menu horizontal et pas celles des autres listes imbriquées */
+.menu-horizontal &gt; li {
+	float: left;
+	margin: 5px;
+	padding: 0;
+	width: 130px;
+}
+/* sélecteur d'enfant : uniquement les liens dans les lignes du menu horizontal et pas ceux des autres listes imbriquées */
+.menu-horizontal &gt; li &gt; a {
+	color: white;
+	display: block;
+	padding: 4px;
+	text-align: center;
+	text-decoration: none;
+	height: 40px;
+}
+
+/* survol des liens de niveau 1 */
+.menu-horizontal &gt; li:hover &gt; a {
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 5px;
+	box-shadow: 0 0 2px 2px rgba(255, 255, 0, 0.5);
+	color: yellow;
+}
+
+/* affichage du menu niveau 2 au survol de la ligne du menu niveau 1 */
+.menu-horizontal &gt; li:hover &gt; .menu-vertical {
+	display: block;
+}
+
+/* Menu de niveaux 2 et 3 */
+.menu-vertical {
+	display: none;
+	background: #0A0D0A;
+	border-radius: 5px;
+	box-shadow: 0 0 2px 2px rgba(255, 255, 0, 0.5);		
+	list-style: none;
+	margin: 10px 0 0 0;
+	padding: 5px 10px;
+	width: 150px;
+}
+	
+.menu-vertical a {
+	display: block;
+	text-decoration: none;
+	color: white;
+}
+	
+.menu-vertical a:hover {
+	background: rgba(255, 255, 255, 0.2);
+	color: yellow;
+}
+/* positionnement relatif des lignes pour pouvoir positionner en absolu les sous-menus du niveau */
+.menu-vertical &gt; li {
+	position: relative;
+}
+
+/* affichage du menu niveau 3 au survol de la ligne du menu niveau 2 */	
+.menu-vertical &gt; li:hover .menu-vertical {
+	display: block;
+}
+
+/* menu de niveau 3 */
+.menu-vertical .menu-vertical {
+	position: absolute;
+	left: 140px;
+	top: -0.7em;
+}</textarea>
+					</form>
+				</div>
+			</section>
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

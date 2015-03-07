@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Les boutons</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			Ces types de zones sont soit une spécialisation de l'élément <a
+				onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+			soit une utilisation de l'élément <a
+				onclick="top.FP.Voir.showPageTech('elements', 'button')">button</a>.
+		</p>
+
+		<p class="fp-bot0">
+			Quelque soit l'élément qui servira à créer un bouton, l'attribut <code>type</code>
+			définira quelle action exécute le bouton :
+		</p>
+		<ul>
+			<li>l'envoi du formulaire au serveur (soumission),</li>
+			<li>la réinitialisation des zones du formulaire,</li>
+			<li>l'exécution de code JavaScript.</li>
+		</ul>
+
+		<p>
+			Dans la suite, nous présenterons en détail les boutons fait avec
+			l'élément <a onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+			car pour des raisons historiques (bugs dans les navigateurs) c'est
+			celui qui était le plus utilisé. Les informations données
+			s'appliquent généralement de la même façon aux boutons fait avec
+			l'élément <a onclick="top.FP.Voir.showPageTech('elements', 'button')">button</a>.
+			La différence entre les 2 éléments tient avant tout à la structure <abbr
+				title="HyperText Markup Language">HTML</abbr> de leur composition.
+		</p>
+
+		<p>Parmi ces sortes de bouton, le bouton de soumission est de loin
+			le plus important et incontournable dans un formulaire.</p>
+
+
+		<h3>Avec la balise input</h3>
+		<section>
+			<a id="type_submit"></a>
+			<h4>Bouton de soumission</h4>
+			<section>
+				<p>
+					Dans une page uniquement en <abbr title="HyperText Markup Language">HTML</abbr>,
+					la présence d'au moins un bouton de soumission dans un formulaire
+					est indispensable pour que les informations saisies puissent être
+					envoyées au serveur.
+				</p>
+
+				<p class="fp-remarque">
+					Il est possibe d'inclure dans le code <abbr
+						title="HyperText Markup Language">HTML</abbr> du code JavaScript
+					qui donnera accès aux éléments du formulaire, permettra de faire
+					des validations et corrections, et d'envoyer les informations sans
+					qu'il y ait besoin de bouton de soumission.
+					<br>
+					La technique <abbr title="Asynchronous JavaScript and XML">AJAX</abbr>
+					est une dérivation de cette possibilité. Elle permet en utilisant
+					JavaScript d'envoyer des informations au serveur, d'attendre le
+					retour fait par celui-ci, puis d'afficher ce retour dans une partie
+					de la page Web sans que l'utilisateur ne change de page comme c'est
+					le cas avec la soumission classique d'un formulaire.
+				</p>
+
+				<p>
+					<strong>Un bouton de soumission est fait avec l'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+						dont l'attribut <code>type</code> a la valeur <code>submit</code>.
+					</strong> L'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+					est un élement vide (ie sans balise de fermeture).
+				</p>
+
+				<table class="TAB-zebre fp-petit">
+					<tr>
+						<td>Attribut possible</td>
+						<td>Utilité</td>
+					</tr>
+					<tr>
+						<td><code>autofocus</code></td>
+						<td>Activé à l'affichage de la page.</td>
+					</tr>
+					<tr>
+						<td><code>dirname</code></td>
+						<td>Direction du texte saisi.</td>
+					</tr>
+					<tr>
+						<td><code>disabled</code></td>
+						<td>Zone désactivée, non transmise au serveur. Aucune
+							interaction n'est possible avec la zone (pas de focus, pas de
+							copie, etc). Attribut booléen.</td>
+					</tr>
+					<tr>
+						<td><code>form</code></td>
+						<td><code>id</code> du formulaire associé si la zone n'est
+							pas un élément <code>form</code> ou concerne un autre formulaire
+							que celui dans lequel elle est imbriquée.</td>
+					</tr>
+
+					<tr>
+						<td><code>formaction</code></td>
+						<td><abbr title="Uniform Resource Locator">URL</abbr> à
+							laquelle le formulaire doit être soumis. Si cet attribut n'est
+							pas présent (c'est généralement le cas), <a class="fp-lientuto"
+							onclick="top.FP.Voir.showPageTuto('html08b1', 'form_action')">l'attribut
+								<strong>action</strong> de l'élément <code>form</code>
+						</a> conteneur du bouton est pris en compte.</td>
+					</tr>
+					<tr>
+						<td><code>formenctype</code></td>
+						<td>Définit le <a
+							href="http://fr.wikipedia.org/wiki/Type_MIME" target="_blanck">type
+								MIME</a> qui sera utilisée pour encoder les données envoyées au
+							serveur. Si cet attribut n'est pas présent (c'est généralement le
+							cas), <a class="fp-lientuto"
+							onclick="top.FP.Voir.showPageTuto('html08b1', 'form_enctype')">l'attribut
+								<strong>enctype</strong> de l'élément <code>form</code>
+						</a> conteneur du bouton est pris en compte.
+						</td>
+					</tr>
+					<tr>
+						<td><code>formmethod</code></td>
+						<td>Définit la méthode utilisée pour envoyer les données au
+							serveur. Si cet attribut n'est pas présent (c'est généralement le
+							cas), <a class="fp-lientuto"
+							onclick="top.FP.Voir.showPageTuto('html08b1', 'form_method')">l'attribut
+								<strong>method</strong> de l'élément <code>form</code>
+						</a> conteneur du bouton est pris en compte.
+						</td>
+					</tr>
+					<tr>
+						<td><code>formnovalidate</code></td>
+						<td>Attribut booléen qui indique si le formulaire doit être
+							validé au moment de sa soumission. Si cet attribut n'est pas
+							présent (c'est généralement le cas), l'attribut <strong>formnovalidate</strong>
+							de l'élément <code>form</code> conteneur du bouton est pris en
+							compte.
+						</td>
+					</tr>
+					<tr>
+						<td><code>name</code></td>
+						<td>Nom de la zone.</td>
+					</tr>
+					<tr>
+						<td><code>readonly</code></td>
+						<td>Zone en lecture seule, non transmise au serveur. La zone
+							peut avoir le focus et le contenu peut être copié. Attribut
+							booléen.</td>
+					</tr>
+					<tr>
+						<td><code>value</code></td>
+						<td>Libellé du bouton. Transmise au serveur.</td>
+					</tr>
+				</table>
+
+				<p>
+					L'attribut <code>value</code> permet de donner <strong>le
+						libellé</strong> qui apparaitra sur le bouton.
+					<br>
+					Si cet attribut n'a pas de valeur (ie une chaîne vide), le bouton
+					apparaitra mais sans libellé.
+					<br>
+					Si cet attribut n'est pas présent, le navigateur mettra un libellé
+					par défaut (dépendant de chaque navigateur).
+				</p>
+
+				<p>Cet élément est représenté par défaut sous la forme d'un
+					bouton tel que ceux de l'interface du système d'exploitation
+					utilisé.</p>
+
+				<p>Quand on clique sur ce bouton on déclenche l'envoi du contenu
+					du formulaire au serveur (on parle aussi de "soumission de
+					formulaire"). C'est le navigateur qui prend automatiquement en
+					charge la collecte des informations saisies, leur mise en forme
+					pour échange avec le serveur et leur transfert sur le réseau.</p>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : bouton de soumission
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Bouton de soumission&lt;/title&gt;
+		&lt;style&gt;
+			form {width: 300px; margin: 0 auto}
+			label {display:block; margin: 1em 0 0.2em 0}
+			input[name="btnEnvoi"] {
+				display:block; 
+				margin:2em auto
+			}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form action="dossier/reception.php" method="POST"&gt;
+			&lt;h3&gt;Bouton de soumission&lt;/h3&gt;
+		
+			&lt;label for="txtN"&gt;Nom&lt;/label&gt;
+			&lt;input type="text" name="txtN"
+				   size="27" id="txtN"&gt;
+					
+			&lt;label for="txtP"&gt;Prénom&lt;/label&gt;
+			&lt;input type="text" name="txtP"
+				   size="27" id="txtP"&gt;
+			
+			&lt;input type="submit" 
+				   value="Envoyer"
+				   name="btnEnvoi"&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<p>
+					Si on veut changer l'apparence du bouton de soumission (ou des
+					autres types de boutons), il faut utiliser des propriétés de style
+					<abbr title="Cascading Style Sheets">CSS</abbr> comme dans
+					l'exemple suivant.
+				</p>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : bouton de soumission
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Bouton de soumission&lt;/title&gt;
+		&lt;style&gt;
+			form {width: 300px; margin: 0 auto}
+			label {display:block; margin: 1em 0 0.2em 0}
+			.bouton {
+				background: url("../exemples/images/key.png")
+					no-repeat 40px center #B60A35;
+				border-radius: 16px;
+				color: #FFFFFF;
+				cursor: pointer;
+				display: block;
+				margin: 2em 0;
+				padding: 4px 0 4px 60px;
+				text-align: left;
+				width: 184px
+			}
+			.bouton:hover {
+				background-color: #31e016;
+				color: #000000;
+			}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form action="dossier/reception.php" method="POST"&gt;
+			&lt;h3&gt;Bouton de soumission&lt;/h3&gt;
+		
+			&lt;label for="txtL"&gt;Login&lt;/label&gt;
+			&lt;input type="text" name="txtL"
+				   size="27" id="txtL"&gt;
+					
+			&lt;label for="txtP"&gt;Mot de passe&lt;/label&gt;
+			&lt;input type="password" name="txtP"
+				   size="27" id="txtP"&gt;
+			
+			&lt;input type="submit" 
+				   value="S'authentifier"
+				   name="btnEnvoi"
+				   class="bouton"&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+
+				<p>
+					Dans certaines pages (ou applications), on peut avoir <strong>plusieurs
+						boutons de soumission</strong> qui enverront tous vers le même "programme"
+					sur le serveur, mais qui en fonction de <strong>leur nom</strong>
+					(attribut <code>name</code>) déclencheront des traitement
+					différents.
+					<br>
+					Le cas typique est une gestion de fiche dans une base de données ou
+					aura par exemple un bouton de soumission qui va déclencher un
+					traitement de mise à jour de la fiche (ie une requête <abbr
+						title="Structured Query Language">SQL</abbr> UPDATE), et un autre
+					bouton de soumission qui lui va déclencher un traitement de
+					suppression de la fiche (ie une requête <abbr
+						title="Structured Query Language">SQL</abbr> DELETE).
+				</p>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : plusieurs boutons de soumission
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Plusieurs boutons de soumission&lt;/title&gt;
+		&lt;style&gt;
+			form {width: 300px; margin: 0 auto}
+			label {display:block; margin: 1em 0 0.2em 0}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form action="dossier/reception.php" method="POST"&gt;
+			&lt;h3&gt;Mise à jour utilisateur&lt;/h3&gt;
+		
+			&lt;label for="txtN"&gt;Nom&lt;/label&gt;
+			&lt;input type="text" name="txtN" value="Vador"
+				   size="27" id="txtN"&gt;
+					
+			&lt;label for="txtP"&gt;Prénom&lt;/label&gt;
+			&lt;input type="text" name="txtP" value="Dark"
+				   size="27" id="txtP"&gt;
+					
+			&lt;label for="txtM"&gt;Mail&lt;/label&gt;
+			&lt;input type="email" name="txtM" 
+				   value="darkounet@etoile-noire.com"
+				   size="27" id="txtM"&gt;
+			
+			&lt;p&gt;
+				&lt;input type="submit" value="Abandon"
+					   name="btnAbandon"&gt;
+				&lt;input type="submit" value="Supprimer"
+					   name="btnSupprimer"&gt;
+				&lt;input type="submit" value="Modifier"
+					   name="btnModifier"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+			</section>
+
+			<a id="type_reset"></a>
+			<h4>Bouton de réinitialisation</h4>
+			<section>
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : bouton de réinitialisation
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire&lt;/title&gt;
+		&lt;style&gt;
+			form {width: 300px; margin: 0 auto}
+			label {display:block; margin: 1em 0 0.2em 0}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form action="dossier/reception.php" method="POST"&gt;
+			&lt;h3&gt;Bouton de réinitialisation&lt;/h3&gt;
+		
+			&lt;p&gt;Modifier les zones puis cliquez sur le bouton.
+			&lt;/p&gt;
+			
+			&lt;label for="txtN"&gt;Nom&lt;/label&gt;
+			&lt;input type="text" name="txtN" value="Vador"
+				   size="27" id="txtN"&gt;
+					
+			&lt;label for="txtP"&gt;Prénom&lt;/label&gt;
+			&lt;input type="text" name="txtP" value=""
+				   size="27" id="txtP"&gt;
+					
+			&lt;label for="txtM"&gt;Mail&lt;/label&gt;
+			&lt;input type="email" name="txtM" 
+				   value="darkounet@etoile-noire.com"
+				   size="27" id="txtM"&gt;
+			
+			&lt;p&gt;
+				&lt;input type="reset" value="Réinitialiser"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<p>
+					<strong>Un bouton de réinitialisation est fait avec
+						l'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+						dont l'attribut <code>type</code> a la valeur <code>reset</code>.
+					</strong> L'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+					est un élement vide (ie sans balise de fermeture).
+				</p>
+
+				<p>
+					Un bouton de réinitialisation n'est pas vraiment un bouton
+					d'effacement des zones du formulaires. <strong>Il remet
+						les zones dans l'état où elles étaient avant que l'utilisateur ne
+						les modifie.</strong> Bien sûr, si les zones étaient vides on aura
+					l'impression que l'action du bouton a été d'effacer leur contenu,
+					mais ce n'est pas ce qui est fait en réalité.
+					<br>
+					Vous pouvez constater dans l'exemple précédent que seule la zone
+					"Prénom" a été "effacée" car sa valeur initiale était une chaîne
+					vide.
+				</p>
+
+				<p>
+					Cet élément est représenté par défaut sous la forme d'un bouton tel
+					que ceux de l'interface du système d'exploitation utilisé.
+					<br>
+					Si on veut changer l'apparence du bouton, il faut utiliser des
+					propriétés de style <abbr title="Cascading Style Sheets">CSS</abbr>.
+				</p>
+
+				<p>
+					L'attribut <code>value</code> permet de donner <strong>le
+						libellé</strong> qui apparaitra sur le bouton.
+					<br>
+					Si cet attribut n'a pas de valeur (ie une chaîne vide), le bouton
+					apparaitra mais sans libellé.
+					<br>
+					Si cet attribut n'est pas présent, le navigateur mettra un libellé
+					par défaut (dépendant de chaque navigateur).
+				</p>
+
+				<p>
+					La zone n'a pas besoin d'être nommée avec un attribut <code>name</code>
+					car aucun couple nom / valeur la représentant ne sera envoyé au
+					serveur lors de la soumission du formulaire.
+				</p>
+
+				<table class="TAB-zebre fp-petit">
+					<tr>
+						<td>Attribut possible</td>
+						<td>Utilité</td>
+					</tr>
+					<tr>
+						<td><code>autofocus</code></td>
+						<td>Activé à l'affichage de la page.</td>
+					</tr>
+					<tr>
+						<td><code>dirname</code></td>
+						<td>Direction du texte saisi.</td>
+					</tr>
+					<tr>
+						<td><code>disabled</code></td>
+						<td>Zone désactivée, non transmise au serveur. Aucune
+							interaction n'est possible avec la zone (pas de focus, pas de
+							copie, etc). Attribut booléen.</td>
+					</tr>
+					<tr>
+						<td><code>form</code></td>
+						<td><code>id</code> du formulaire associé si la zone n'est
+							pas un élément <code>form</code> ou concerne un autre formulaire
+							que celui dans lequel elle est imbriquée.</td>
+					</tr>
+					<tr>
+						<td><code>name</code></td>
+						<td>Nom de la zone.</td>
+					</tr>
+					<tr>
+						<td><code>readonly</code></td>
+						<td>Zone en lecture seule, non transmise au serveur. La zone
+							peut avoir le focus et le contenu peut être copié. Attribut
+							booléen.</td>
+					</tr>
+					<tr>
+						<td><code>value</code></td>
+						<td>Libellé du bouton. Non transmis au serveur.</td>
+					</tr>
+				</table>
+			</section>
+
+			<a id="type_button"></a>
+			<h4>Bouton de script</h4>
+			<section>
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : bouton de script
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire&lt;/title&gt;
+		&lt;script&gt;
+function faireAction() {
+	document.getElementsByTagName('H3')[0]
+	.innerHTML = "La fonction faireAction a été exécutée";
+}		
+		&lt;/script&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Bouton de script&lt;/h3&gt;
+		
+		&lt;form method="POST" action="dossier/reception.php"&gt;
+			
+			&lt;input type="button" value="Pas d'action"&gt;
+
+			&lt;input type="button" value="Action"
+				   onclick="faireAction()"&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<p>
+					<strong>Un bouton script est fait avec l'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+						dont l'attribut <code>type</code> a la valeur <code>button</code>.
+					</strong> L'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+					est un élement vide (ie sans balise de fermeture).
+				</p>
+
+				<p>
+					Cet élément est prévu pour exécuter du code JavaScript lorsqu'il
+					est cliqué.
+					<br>
+					Si l'événement de cliquer sur le bouton n'est pas rattaché à du
+					code JavaScript, rien ne se passera (cas du 1er bouton de l'exemple
+					précédent).
+					<br>
+					L'événement clique du 2eme bouton est lui rattaché à du code
+					JavaScript : la fonction <code>faireAction()</code> va changer le
+					contenu du tag H3 de la page.
+				</p>
+
+				<p>
+					Cet élément est représenté par défaut sous la forme d'un bouton tel
+					que ceux de l'interface du système d'exploitation utilisé.
+					<br>
+					Si on veut changer l'apparence du bouton, il faut utiliser des
+					propriétés de style <abbr title="Cascading Style Sheets">CSS</abbr>.
+				</p>
+
+				<p>
+					L'attribut <code>value</code> permet de donner <strong>le
+						libellé</strong> qui apparaitra sur le bouton.
+					<br>
+					Si cet attribut n'a pas de valeur (ie une chaîne vide) ou s'il
+					n'est pas présent, le bouton apparaitra mais sans libellé.
+				</p>
+
+				<p>
+					La zone n'a pas besoin d'être nommée avec un attribut <code>name</code>
+					car aucun couple nom / valeur la représentant ne sera envoyé au
+					serveur lors de la soumission du formulaire.
+				</p>
+
+				<table class="TAB-zebre fp-petit">
+					<tr>
+						<td>Attribut possible</td>
+						<td>Utilité</td>
+					</tr>
+					<tr>
+						<td><code>autofocus</code></td>
+						<td>Activé à l'affichage de la page.</td>
+					</tr>
+					<tr>
+						<td><code>dirname</code></td>
+						<td>Direction du texte saisi.</td>
+					</tr>
+					<tr>
+						<td><code>disabled</code></td>
+						<td>Zone désactivée, non transmise au serveur. Aucune
+							interaction n'est possible avec la zone (pas de focus, pas de
+							copie, etc). Attribut booléen.</td>
+					</tr>
+					<tr>
+						<td><code>form</code></td>
+						<td><code>id</code> du formulaire associé si la zone n'est
+							pas un élément <code>form</code> ou concerne un autre formulaire
+							que celui dans lequel elle est imbriquée.</td>
+					</tr>
+					<tr>
+						<td><code>name</code></td>
+						<td>Nom de la zone.</td>
+					</tr>
+					<tr>
+						<td><code>readonly</code></td>
+						<td>Zone en lecture seule, non transmise au serveur. La zone
+							peut avoir le focus et le contenu peut être copié. Attribut
+							booléen.</td>
+					</tr>
+					<tr>
+						<td><code>value</code></td>
+						<td>Libellé du bouton. Non transmis au serveur.</td>
+					</tr>
+				</table>
+			</section>
+
+
+			<a id="type_image"></a>
+			<h4>Bouton image</h4>
+			<section>
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : bouton image
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire&lt;/title&gt;
+		&lt;style&gt;
+			form {width: 300px; margin: 0 auto}
+			label {display:block; margin: 1em 0 0.2em 0}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form action="dossier/reception.php" method="POST"&gt;
+			&lt;h3&gt;Bouton image&lt;/h3&gt;
+		
+			&lt;label for="txtN"&gt;Nom&lt;/label&gt;
+			&lt;input type="text" name="txtN" value="Vador"
+				   size="30" id="txtN"&gt;
+					
+			&lt;label for="txtP"&gt;Prénom&lt;/label&gt;
+			&lt;input type="text" name="txtP" value="Dark"
+				   size="30" id="txtP"&gt;
+					
+			&lt;label for="txtM"&gt;Mail&lt;/label&gt;
+			&lt;input type="email" name="txtM" 
+				   value="darkounet@etoile-noire.com"
+				   size="30" id="txtM"&gt;
+			
+			&lt;p&gt;
+				&lt;input type="image" 
+					   src="../exemples/images/btn_yoda.png"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<p>
+					<strong>Un bouton image est fait avec l'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+						dont l'attribut <code>type</code> a la valeur <code>image</code>.
+					</strong> L'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+					est un élement vide (ie sans balise de fermeture).
+				</p>
+
+				<p class="fp-bot0">Un bouton image est en réalité un bout de
+					soumission, avec les différences suivantes :</p>
+				<ul>
+					<li>aucun libellé ne sera affiché (l'attribut <code>value</code>
+						s'il est présent sera ignoré)
+					</li>
+					<li>il n'y a pas besoin de nom (pas d'attribut <code>name</code>)
+					</li>
+					<li>aucun couple nom / valeur représentant le bouton ne sera
+						envoyé au serveur lors de la soumission du formulaire.
+				</ul>
+
+				<p>
+					Dans les faits, ce type de bouton est très peu utilisé. Au début du
+					Web, il était concevable d'avoir un élément de ce type pour
+					améliorer graphiquement les formulaires. Actuellement, avec les
+					possibilités des feuilles de style <abbr
+						title="Cascading Style Sheets">CSS</abbr> il est devenu obsolète,
+					d'autant plus que rien n'est transmis au serveur le concernant.
+				</p>
+
+				<table class="TAB-zebre fp-petit">
+					<tr>
+						<td>Nom</td>
+						<td>Utilité</td>
+					</tr>
+					<tr>
+						<td><code>alt</code></td>
+						<td>Alternative textuelle à l'image.</td>
+					</tr>
+					<tr>
+						<td><code>autofocus</code></td>
+						<td>Activé à l'affichage de la page.</td>
+					</tr>
+					<tr>
+						<td><code>dirname</code></td>
+						<td>Direction du texte saisi ou affiché.</td>
+					</tr>
+					<tr>
+						<td><code>disabled</code></td>
+						<td>Zone désactivée, non transmise au serveur. Aucune
+							interaction n'est possible avec la zone (pas de focus, pas de
+							copie, etc). Attribut booléen.</td>
+					</tr>
+					<tr>
+						<td><code>form</code></td>
+						<td><code>id</code> du formulaire associé si la zone n'est
+							pas un élément <code>form</code> ou concerne un autre formulaire
+							que celui dans lequel elle est imbriquée.</td>
+					</tr>
+					<tr>
+						<td><code>formaction</code></td>
+						<td><abbr title="Uniform Resource Locator">URL</abbr> à
+							laquelle le formulaire doit être soumis. Si cet attribut n'est
+							pas présent (c'est généralement le cas), <a class="fp-lientuto"
+							onclick="top.FP.Voir.showPageTuto('html08b1', 'form_action')">l'attribut
+								<strong>action</strong> de l'élément <code>form</code>
+						</a> conteneur du bouton est pris en compte.</td>
+					</tr>
+					<tr>
+						<td><code>formenctype</code></td>
+						<td>Définit le <a
+							href="http://fr.wikipedia.org/wiki/Type_MIME" target="_blanck">type
+								MIME</a> qui sera utilisée pour encoder les données envoyées au
+							serveur. Si cet attribut n'est pas présent (c'est généralement le
+							cas), <a class="fp-lientuto"
+							onclick="top.FP.Voir.showPageTuto('html08b1', 'form_enctype')">l'attribut
+								<strong>enctype</strong> de l'élément <code>form</code>
+						</a> conteneur du bouton est pris en compte.
+						</td>
+					</tr>
+					<tr>
+						<td><code>formmethod</code></td>
+						<td>Définit la méthode utilisée pour envoyer les données au
+							serveur. Si cet attribut n'est pas présent (c'est généralement le
+							cas), <a class="fp-lientuto"
+							onclick="top.FP.Voir.showPageTuto('html08b1', 'form_method')">l'attribut
+								<strong>method</strong> de l'élément <code>form</code>
+						</a> conteneur du bouton est pris en compte.
+						</td>
+					</tr>
+					<tr>
+						<td><code>formnovalidate</code></td>
+						<td>Attribut booléen qui indique si le formulaire doit être
+							validé au moment de sa soumission. Si cet attribut n'est pas
+							présent (c'est généralement le cas), l'attribut <strong>formnovalidate</strong>
+							de l'élément <code>form</code> conteneur du bouton est pris en
+							compte.
+						</td>
+					</tr>
+
+					<tr>
+						<td><code>height</code></td>
+						<td>Hauteur de l'image.</td>
+					</tr>
+					<tr>
+						<td><code>name</code></td>
+						<td>Nom de la zone.</td>
+					</tr>
+					<tr>
+						<td><code>readonly</code></td>
+						<td>Zone en lecture seule, non transmise au serveur. La zone
+							peut avoir le focus et le contenu peut être copié. Attribut
+							booléen.</td>
+					</tr>
+					<tr>
+						<td><code>src</code></td>
+						<td>URL de l'image.</td>
+					</tr>
+					<tr>
+						<td><code>width</code></td>
+						<td>Largeur de l'image.</td>
+					</tr>
+				</table>
+			</section>
+
+			<a id="exo_input_submit"></a>
+			<h4 class="fp-exo">Noter</h4>
+			<section>
+				<figure style="float: right; width: 280px;">
+					<img src="../exercices/exo_input_submit.png" width="280"
+						height="239">
+					<figcaption>noter</figcaption>
+				</figure>
+
+
+				<p class="fp-p-raz">
+					Complétez le code <abbr title="HyperText Markup Language">HTML</abbr>
+					pour obtenir le résultat ci-contre.
+				</p>
+
+				<p class="fp-p-raz">
+					La feuille de style liée à l'exercice (<code>form05.css</code>)
+					fera automatiquement la mise en forme des éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'fieldset')">fieldset</a>
+					et <a onclick="top.FP.Voir.showPageTech('elements', 'legend')">legend</a>
+				</p>
+
+				<p class="fp-p-raz">
+					Le formulaire utilise la méthode <code>POST</code> pour envoyer les
+					informations saisies à <code>noter.php</code>.
+				</p>
+
+				<p class="fp-p-raz fp-bot0">
+					Les zones du formulaire s'appellent respectivement <code>txtNom</code>,
+					<code>nbrNote</code>, <code>btnNoter</code>, <code>btnInit</code>
+					et <code>btnAbsent</code>.
+				</p>
+				<ul>
+					<li><code>txtNom</code> est obligatoire, fait 40 de long et a
+						un texte d'aide.</li>
+					<li><code>nbrNote</code> varie de 0 à 20 avec un incrément de
+						1. La valeur par défaut est 10.</li>
+					<li><code>btnNoter</code> est un bouton de soumission.</li>
+					<li><code>btnInit</code> est un bouton de réinitialisation.</li>
+					<li><code>btnAbsent</code> est un bouton qui déclenche
+						l'exécution de la fonction JavaScript <code>ilEstAbsent</code>.</li>
+				</ul>
+
+
+				<p class="fp-completez">
+					<a onClick="top.FP.Voir.showCompletez('exo_input_submit_comp')">Code
+						à compléter</a>
+				</p>
+
+				<div id="exo_input_submit_comp" class="BLOC-completez">
+					<form action="" method="post" class="TEST-form">
+						<a class="TEST-lien-css" title="Afficher le fichier CSS"
+							onclick="top.FP.Voir.showPLUS('html08/styles/form05.css.html')"></a>
+						<div class="TEST-titre">
+							<strong>Exercice</strong> : hacking
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-wrap
+							data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Noter&lt;/title&gt;
+		&lt;link href="../html08/styles/form05.css" rel="stylesheet"&gt;
+		&lt;style&gt;
+			label {display: block; margin: 1em 0 0.2em 0;}
+		&lt;/style&gt;
+		&lt;script&gt;
+function ilEstAbsent() {
+	var Z = document.forms[0]["nbrNote"];
+	Z.type = "text";
+	Z.value = "ABSENT";
+}		
+		&lt;/script&gt;		
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form&gt;
+		
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+				</div>
+
+				<p class="fp-solution">
+					<a onClick="top.FP.Voir.showSolution('exo_input_submit_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_input_submit_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form">
+						<a class="TEST-lien-css" title="Afficher le fichier CSS"
+							onclick="top.FP.Voir.showPLUS('html08/styles/form05.css.html')"></a>
+						<div class="TEST-titre">
+							<strong>Exercice</strong> : hacking
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-wrap
+							data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Noter&lt;/title&gt;
+		&lt;link href="../html08/styles/form05.css" rel="stylesheet"&gt;
+		&lt;style&gt;
+			label {display: block; margin: 1em 0 0.2em 0;}
+		&lt;/style&gt;
+		&lt;script&gt;
+function ilEstAbsent() {
+	var Z = document.forms[0]["nbrNote"];
+	Z.type = "text";
+	Z.value = "ABSENT";
+}		
+		&lt;/script&gt;		
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form method="POST" action="noter.php"&gt;	
+			&lt;fieldset&gt;
+				&lt;legend&gt;Noter&lt;/legend&gt;
+				&lt;label for="txtNom"&gt;Nom étudiant&lt;/label&gt;
+				&lt;input type="text" name="txtNom" id="txtNom"
+					   size="40" required 
+					   placeholder="Obligatoire"&gt;
+				&lt;label for="nbrNote"&gt;Note&lt;/label&gt;
+				&lt;input type="number" name="nbrNote" value="10"
+					   id="nbrNote" min="0" max="20" step="1"&gt;
+			&lt;/fieldset&gt;
+			&lt;fieldset&gt;
+				&lt;input type="submit" name="btnNoter"
+					   value="Noter"&gt;
+				&lt;input type="reset" name="btnInit"
+					   value="Réinitialiser"&gt;
+				&lt;input type="button" name="btnAbsent"
+					   value="Absent" onclick="ilEstAbsent()"&gt;
+			&lt;/fieldset&gt;			
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+				</div>
+			</section>
+		</section>
+
+		<h3>Avec la balise button</h3>
+		<section>
+			<!-- 
+			<p class="fp-rappel" style="width: 280px;">
+				Les éléments de "contenu phrasé" sont essentiellement les élements
+				de texte, embarqués et de formulaire : <a onclick="top.FP.Voir.showPageTech('elements', 'abbr')">abbr</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'audio')">audio</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'b')">b</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'bdo')">bdo</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'br')">br</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'button')">button</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'canvas')">canvas</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'cite')">cite</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'code')">code</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'command')">command</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'datalist')">datalist</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'dfn')">dfn</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'em')">em</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'embed')">embed</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'i')">i</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'iframe')">iframe</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'img')">img</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'kbd')">kbd</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'keygen')">keygen</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'label')">label</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'mark')">mark</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'meter')">meter</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'noscript')">noscript</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'object')">object</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'output')">output</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'progress')">progress</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'q')">q</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'ruby')">ruby</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'samp')">samp</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'script')">script</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'select')">select</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'small')">small</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'span')">span</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'strong')">strong</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'sub')">sub</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'sup')">sup</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'textarea')">textarea</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'time')">time</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'var')">var</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'video')">video</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'wbr')">wbr</a>.
+			</p>
+			-->
+			<h4>Structure HTML</h4>
+			<section>
+				<p>
+					La principale différence entre les boutons faits avec l'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+					ou avec l'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'button')">button</a>
+					tient dans la structure <abbr title="HyperText Markup Language">HTML</abbr>
+					utilisée pour réaliser l'un ou l'autre : <strong>l'élément
+						<a onclick="top.FP.Voir.showPageTech('elements', 'button')">button</a>
+						peut contenir du texte et d'autres éléments
+					</strong>.
+					<br>
+					Les éléments qui peuvent être contenus sont des <a
+						href="http://www.w3.org/TR/2014/REC-html5-20141028/dom.html#phrasing-content-1"
+						target="_blanck">éléments de "contenu phrasé"</a> (essentiellement
+					des éléments de texte, des éléments embarqués et des éléments de
+					formulaire), à l'exclusion de tout élément interactif.
+				</p>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : button
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire&lt;/title&gt;
+		&lt;style&gt;
+			button img {vertical-align: middle;}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form action="dossier/reception.php" method="POST"&gt;
+			&lt;h3&gt;Boutons ...&lt;/h3&gt;
+		
+			&lt;button&gt;
+				Bouton avec du texte simple 
+			&lt;/button&gt;
+					
+			&lt;button&gt;
+				&lt;hr&gt;&lt;i&gt;Bouton&lt;/i&gt; avec&lt;br&gt;
+				&lt;strong&gt;balises&lt;/strong&gt; HTML&lt;hr&gt;
+			&lt;/button&gt;
+					
+			&lt;button&gt;
+				&lt;img src="../exemples/images/pen.png"
+					 width="32" height="32"&gt; 
+				Bouton avec texte et image				
+			&lt;/button&gt;
+			
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</section>
+
+			<h4>L'attribut type</h4>
+			<section>
+				<p class="fp-bot0">
+					C'est l'attribut <code>type</code> qui définit l'action réalisée
+					par le bouton :
+				</p>
+				<ul>
+					<li><code>type="submit"</code> crée un bouton d'envoi du
+						formulaire au serveur (soumission),</li>
+					<li><code>type="reset"</code> crée un bouton de
+						réinitialisation des zones du formulaire,</li>
+					<li><code>type="button"</code> crée un bouton d'exécution de
+						code JavaScript.</li>
+				</ul>
+
+				<p>
+					Si l'attribut <code>type</code> n'est pas défini, la valeur par
+					défaut sera <code>submit</code>.
+				</p>
+
+				<p>
+					Pour les boutons de type <code>submit</code> il est important de
+					bien préciser le nom du bouton (attribut <code>name</code>) et la
+					valeur associée (attribut <code>value</code>). C'est le couple qui
+					sera envoyé au serveur Web et qui permettra au "programme"
+					récupèrant les informations saisies dans le formulaire de définir
+					le traitement qu'il a à faire.
+				</p>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : attribut type
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire&lt;/title&gt;
+		&lt;style&gt;
+			button img {vertical-align: middle;}
+		&lt;/style&gt;	
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form action="dossier/rechercher.php" method="POST"&gt;
+			&lt;h3&gt;Rechercher&lt;/h3&gt;
+			
+			&lt;label for="txtMot"&gt;Mot clé : &lt;/label&gt;
+			&lt;input type="text" name="txtMot" id="txtMot" 
+				   size="47"&gt;
+			&lt;p&gt;
+				&lt;button type="reset"&gt;
+					&lt;img src="../exemples/images/gomme.png"
+						 width="50" height="51"&gt; 
+					&lt;strong&gt;&lt;i&gt;Effacer&lt;/i&gt;&lt;/strong&gt;	
+				&lt;/button&gt;
+				
+				&lt;button type="submit" name="btnValide"
+						value="1"&gt;
+					&lt;img src="../exemples/images/valider.png"
+						 width="58" height="51"&gt; 
+					&lt;strong&gt;&lt;i&gt;Valider&lt;/i&gt;&lt;/strong&gt;	
+				&lt;/button&gt;
+			
+				&lt;button type="button" onclick="alert('Un bon conseil ...')"&gt;
+					&lt;img src="../exemples/images/aide.png" 
+						 width="66" height="51"&gt; 
+					&lt;strong&gt;&lt;i&gt;Conseil&lt;/i&gt;&lt;/strong&gt;	
+				&lt;/button&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</section>
+
+			<h4>Tous les attributs</h4>
+			<section>
+				<table class="TAB-zebre fp-petit">
+					<tr>
+						<td>Attribut possible</td>
+						<td>Utilité</td>
+					</tr>
+					<tr>
+						<td><code>autofocus</code></td>
+						<td>Activé à l'affichage de la page.</td>
+					</tr>
+					<tr>
+						<td><code>disabled</code></td>
+						<td>Zone désactivée, non transmise au serveur. Aucune
+							interaction n'est possible avec la zone (pas de focus, pas de
+							copie, etc). Attribut booléen.</td>
+					</tr>
+					<tr>
+						<td><code>form</code></td>
+						<td><code>id</code> du formulaire associé si la zone n'est
+							pas un élément <code>form</code> ou concerne un autre formulaire
+							que celui dans lequel elle est imbriquée.</td>
+					</tr>
+
+					<tr>
+						<td><code>formaction</code></td>
+						<td><abbr title="Uniform Resource Locator">URL</abbr> à
+							laquelle le formulaire doit être soumis. Si cet attribut n'est
+							pas présent (c'est généralement le cas), <a class="fp-lientuto"
+							onclick="top.FP.Voir.showPageTuto('html08b1', 'form_action')">l'attribut
+								<strong>action</strong> de l'élément <code>form</code>
+						</a> conteneur du bouton est pris en compte.</td>
+					</tr>
+					<tr>
+						<td><code>formenctype</code></td>
+						<td>Définit le <a
+							href="http://fr.wikipedia.org/wiki/Type_MIME" target="_blanck">type
+								MIME</a> qui sera utilisée pour encoder les données envoyées au
+							serveur. Si cet attribut n'est pas présent (c'est généralement le
+							cas), <a class="fp-lientuto"
+							onclick="top.FP.Voir.showPageTuto('html08b1', 'form_enctype')">l'attribut
+								<strong>enctype</strong> de l'élément <code>form</code>
+						</a> conteneur du bouton est pris en compte.
+						</td>
+					</tr>
+					<tr>
+						<td><code>formmethod</code></td>
+						<td>Définit la méthode utilisée pour envoyer les données au
+							serveur. Si cet attribut n'est pas présent (c'est généralement le
+							cas), <a class="fp-lientuto"
+							onclick="top.FP.Voir.showPageTuto('html08b1', 'form_method')">l'attribut
+								<strong>method</strong> de l'élément <code>form</code>
+						</a> conteneur du bouton est pris en compte.
+						</td>
+					</tr>
+					<tr>
+						<td><code>formnovalidate</code></td>
+						<td>Attribut booléen qui indique si le formulaire doit être
+							validé au moment de sa soumission. Si cet attribut n'est pas
+							présent (c'est généralement le cas), l'attribut <strong>formnovalidate</strong>
+							de l'élément <code>form</code> conteneur du bouton est pris en
+							compte.
+						</td>
+					</tr>
+					<tr>
+						<td><code>name</code></td>
+						<td>Nom de la zone.</td>
+					</tr>
+					<tr>
+						<td><code>type</code></td>
+						<td>Définit quelle action est exécutée par le bouton : <code>submit</code>
+							pour la soumission du formulaire, <code>reset</code> pour la
+							réinitialisation des zones du formulaire, <code>button</code>
+							pour l'exécution de code JavaScript.
+						</td>
+					</tr>
+					<tr>
+						<td><code>value</code></td>
+						<td>Libellé du bouton. Transmise au serveur.</td>
+					</tr>
+				</table>
+			</section>
+
+			<a id="exo_button"></a>
+			<h4 class="fp-exo">Hacking</h4>
+			<section>
+				<figure style="float: right; width: 280px;">
+					<img src="../exercices/exo_button.png" width="280" height="362">
+					<figcaption>hacking</figcaption>
+				</figure>
+
+
+				<p class="fp-p-raz">
+					Complétez le code <abbr title="HyperText Markup Language">HTML</abbr>
+					pour obtenir le résultat ci-contre.
+				</p>
+
+				<p class="fp-p-raz">
+					La feuille de style liée à l'exercice (<code>form05.css</code>)
+					fera automatiquement la mise en forme des éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'fieldset')">fieldset</a>
+					et <a onclick="top.FP.Voir.showPageTech('elements', 'legend')">legend</a>
+				</p>
+
+				<p class="fp-p-raz">
+					Le formulaire utilise la méthode <code>POST</code> pour envoyer les
+					informations saisies à <code>hacker.php</code>.
+				</p>
+
+				<p class="fp-p-raz">
+					La zone de saisie s'appelle <code>urlSite</code>, elle est
+					obligatoire et affiche un texte d'aide.
+				</p>
+
+				<div class="fp-clear"></div>
+				<figure style="float: right; width: 280px;">
+					<img src="../exercices/exo_chap08_repert.png" width="150"
+						height="135">
+					<figcaption>arborescence de l'exercice</figcaption>
+				</figure>
+
+				<p class="fp-p-raz">
+					Tous les boutons soumettent le formulaire, mais à des <abbr
+						title="Uniform Resource Locator">URLs</abbr> différentes. Ils
+					contiennent tous 2 images. L'image principale s'appelle <code>pirate.png</code>,
+					fait 80 pixels sur 70 et se trouve (comme toutes les autres images)
+					dans le dossier <code>images</code> du dossier <code>exemples</code>.
+					Les boutons ont les caractèristiques suivantes :
+				</p>
+
+				<table>
+					<thead>
+						<tr>
+							<td>Nom</td>
+							<td>Valeur</td>
+							<td>Url soumission</td>
+							<td>2ème image</td>
+							<td>Dimensions</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>btnHaut</code></td>
+							<td>haut</td>
+							<td><code>haut.php</code></td>
+							<td><code>ciseaux.png</code></td>
+							<td>29 X 30</td>
+						</tr>
+						<tr>
+							<td><code>btnBas</code></td>
+							<td>bas</td>
+							<td><code>bas.php</code></td>
+							<td><code>scie.png</code></td>
+							<td>30 X 30</td>
+						</tr>
+						<tr>
+							<td><code>btnGauche</code></td>
+							<td>gauche</td>
+							<td><code>gauche.php</code></td>
+							<td><code>marteau.png</code></td>
+							<td>30 X 30</td>
+						</tr>
+						<tr>
+							<td><code>btnDroite</code></td>
+							<td>droite</td>
+							<td><code>droite.php</code></td>
+							<td><code>bug.png</code></td>
+							<td>29 X 30</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+				<p class="fp-completez">
+					<a onClick="top.FP.Voir.showCompletez('exo_button_comp')">Code
+						à compléter</a>
+				</p>
+
+				<div id="exo_button_comp" class="BLOC-completez">
+					<form action="" method="post" class="TEST-form">
+						<a class="TEST-lien-css" title="Afficher le fichier CSS"
+							onclick="top.FP.Voir.showPLUS('html08/styles/form05.css.html')"></a>
+						<div class="TEST-titre">
+							<strong>Exercice</strong> : hacking
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-wrap
+							data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Hacking&lt;/title&gt;
+		&lt;link href="../html08/styles/form05.css" rel="stylesheet"&gt;
+		&lt;style&gt;
+			input[type="url"] { width: 95%;}
+			button { width: 140px;}
+			button img {vertical-align: middle;};
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form&gt;
+		
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+				</div>
+
+				<p class="fp-solution">
+					<a onClick="top.FP.Voir.showSolution('exo_button_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_button_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form">
+						<a class="TEST-lien-css" title="Afficher le fichier CSS"
+							onclick="top.FP.Voir.showPLUS('html08/styles/form05.css.html')"></a>
+						<div class="TEST-titre">
+							<strong>Exercice</strong> : hacking
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-wrap
+							data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Hacking&lt;/title&gt;
+		&lt;link href="../html08/styles/form05.css" rel="stylesheet"&gt;
+		&lt;style&gt;
+			input[type="url"] { width: 95%;}
+			button { width: 140px;}
+			button img {vertical-align: middle;};
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form method="POST" action="hacker.php"&gt;	
+			&lt;fieldset&gt;
+				&lt;legend&gt;Hacking&lt;/legend&gt;
+				&lt;label for="urlSite"&gt;URL du site à hacker&lt;/label&gt;
+				&lt;br&gt;
+				&lt;input type="url" name="urlSite" 
+					   id="urlSite" required
+					   placeholder="Url complète SVP"&gt;
+			&lt;/fieldset&gt;
+			&lt;fieldset&gt;
+				&lt;button type="submit" formaction="haut.php"
+						name="btnHaut" value="haut"&gt;
+					&lt;img src="../exemples/images/pirate.png"
+						 width="80" height="70"&gt; 
+					&lt;br&gt;&lt;strong&gt;Hacker par le haut&lt;/strong&gt;
+					&lt;img src="../exemples/images/ciseaux.png" 
+						 width="29" height="30"&gt;
+				&lt;/button&gt;
+				&lt;button type="submit" formaction="bas.php"
+						name="btnBas" value="bas"&gt;
+					&lt;img src="../exemples/images/pirate.png"
+						 width="80" height="70"&gt; 
+					&lt;br&gt;&lt;strong&gt;Hacker par le bas&lt;/strong&gt;
+					&lt;img src="../exemples/images/scie.png" 
+						 width="30" height="30"&gt;
+				&lt;/button&gt;
+				&lt;button type="submit" formaction="gauche.php"
+						name="btngauche" value="gauche"&gt;
+					&lt;img src="../exemples/images/pirate.png"
+						 width="80" height="70"&gt; 
+					&lt;br&gt;&lt;strong&gt;Hacker par la gauche&lt;/strong&gt;
+					&lt;img src="../exemples/images/marteau.png" 
+						 width="30" height="30"&gt;
+				&lt;/button&gt;
+				&lt;button type="submit" formaction="droite.php"
+						name="btnDroite" value="droite"&gt;
+					&lt;img src="../exemples/images/pirate.png"
+						 width="80" height="70"&gt; 
+					&lt;br&gt;&lt;strong&gt;Hacker par la droite&lt;/strong&gt;
+					&lt;img src="../exemples/images/bug.png"
+						 width="29" height="30"&gt;
+				&lt;/button&gt;
+			&lt;/fieldset&gt;			
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+				</div>
+			</section>
+
+		</section>
+
+		<!--
+		
+		EXERCICE A TERMINER : FORMULAIRE COMPLET 
+
+
+		<a id="exo_form_complet"></a>
+		<h3 class="fp-exo">Formulaire complet</h3>
+		<section>
+
+			<p class="fp-solution">
+				<a onClick="top.FP.Voir.showSolution('exo_form_complet_solu', 1)">Une
+					solution possible</a>
+			</p>
+			<div id="exo_button_solu" class="BLOC-solution">
+				<form action="" method="post" class="TEST-form">
+					<a class="TEST-lien-css" title="Afficher le fichier CSS"
+						onclick="top.FP.Voir.showPLUS('html08/styles/form05.css.html')"></a>
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : formulaire complet
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire complet&lt;/title&gt;
+		&lt;link rel="stylesheet" 
+			  href="../html08/styles/form05.css"&gt;
+		&lt;style&gt;
+			legend {
+				width: 70px; }
+			label {
+				width: 82px;
+				text-align: right;
+				margin: 5px 0;
+			}
+			input[type="checkbox"] + label {
+				width: 110px;
+				text-align: left;
+			}
+			input[type="radio"] + label {
+				width: auto;
+			}
+			textarea,
+			input[type="text"] {
+				width: 190px;
+			}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form method="POST" action="script.php"&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Etat-civil&lt;/legend&gt;
+				&lt;div&gt;
+					&lt;label&gt;Genre&lt;/label&gt;
+					&lt;input type="radio" name="radGenre" value="F" 
+						   id="radMme" checked&gt;
+					&lt;label for="radMme"&gt;Madame&lt;/label&gt;
+					&lt;input type="radio" name="radGenre" value="H" 
+						   id="radMr"&gt;
+					&lt;label for="radMr"&gt;Monsieur&lt;/label&gt;					
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label for="txtNom"&gt;Nom&lt;/label&gt;
+					&lt;input type="text" name="txtNom" required
+						   id="txtNom" maxlength="60" 
+						   placeholder="Obligatoire"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label for="txtPrenom"&gt;Prénom&lt;/label&gt;
+					&lt;input type="text" name="txtPrenom"
+						   required id="txtPrenom"
+						   maxlength="40" 
+						   placeholder="Obligatoire"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label for="datNais"&gt;Né(e) le&lt;/label&gt;
+					&lt;input type="date" name="datNais" required
+						   id="datNais" min="1910-01-01" 
+						   max="2010-01-01"&gt;
+				&lt;/div&gt;
+			&lt;/fieldset&gt;	
+			
+			&lt;fieldset&gt;
+				&lt;legend&gt;Diplôme(s)&lt;/legend&gt;
+				&lt;input type="checkbox" name="chkBac" value="1"
+					   id="chkBac"&gt;
+				&lt;label for="chkBac"&gt;Baccalauréat&lt;/label&gt;
+				&lt;input type="checkbox" name="chkDUT" value="1"
+					   id="chkDUT"&gt;
+				&lt;label for="chkDUT"&gt;D. U. T.&lt;/label&gt;
+				&lt;input type="checkbox" name="chkLic" value="1"
+					   id="chkLic"&gt;
+				&lt;label for="chkLic"&gt;Licence&lt;/label&gt;	
+				&lt;input type="checkbox" name="chkMas" value="1"
+					   id="chkMas"&gt;
+				&lt;label for="chkMas"&gt;Master&lt;/label&gt;
+				&lt;input type="checkbox" name="chkIng" value="1"
+					   id="chkIng"&gt;
+				&lt;label for="chkIng"&gt;Ingénieur&lt;/label&gt;
+				&lt;input type="checkbox" name="chkDoc" value="1"
+					   id="chkDoc"&gt;
+				&lt;label for="chkDoc"&gt;Doctorat&lt;/label&gt;				
+			&lt;/fieldset&gt;
+			
+			&lt;fieldset&gt;
+				&lt;input type="reset" name="btnReset"
+					   value="J'efface"&gt;
+				&lt;input type="submit" name="btnSubmit"
+					   value="J'envoie"&gt;
+			&lt;/fieldset&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+		</section>
+		-->
+	</div>
+	<footer></footer>
+</body>
+</html>

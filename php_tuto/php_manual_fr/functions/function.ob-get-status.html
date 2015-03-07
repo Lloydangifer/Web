@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Lit le statut du tampon de sortie</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.ob-get-level.html">ob_get_level</a>
+		</div>
+		<div class="next">
+			<a href="function.ob-gzhandler.html">ob_gzhandler</a>
+		</div>
+		<div class="up">
+			<a href="ref.outcontrol.html">Fonctions de bufferisation de
+				sortie</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.ob-get-status" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">ob_get_status</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">ob_get_status</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Lit le statut du tampon de sortie</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.ob-get-status-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>ob_get_status</strong></span>
+				([ <span class="methodparam"><span class="type">bool</span> <code
+						class="parameter">$full_status</code> <span class="initializer">
+						= FALSE</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>ob_get_status()</strong></span>
+				retourne les informations sur le statut du tampon d&#039;affichage
+				de haut niveau ou de tous les tampons d&#039;affichage si <em><code
+						class="parameter">full_status</code></em> est défini à <strong><code>TRUE</code></strong>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.ob-get-status-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">full_status</code></em></span>
+				<dd>
+
+					<p class="para">
+						<strong><code>TRUE</code></strong> pour retourner tous les tampons
+						d&#039;affichage. Si vaut <strong><code>FALSE</code></strong> ou
+						non défini, seul le statut du tampon d&#039;affichage de haut
+						niveau sera retourné.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.ob-get-status-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Si la fonction est appelée sans le paramètre <em><code
+						class="parameter">full_status</code></em> ou avec le paramètre <em><code
+						class="parameter">full_status</code></em> = <strong><code>FALSE</code></strong>,
+				un tableau simple avec les éléments suivants sera retourné :
+			<div class="informalexample">
+				<div class="example-contents screen">
+					<div class="returnvaluescode">
+						<pre class="returnvaluescode">Array
+(
+    [level] =&gt; 2
+    [type] =&gt; 0
+    [status] =&gt; 0
+    [name] =&gt; URL-Rewriter
+    [del] =&gt; 1
+)</pre>
+					</div>
+				</div>
+			</div>
+			<div class="segmentedlist">
+				<strong class="title">Résultats simples pour la fonction <span
+					class="function"><strong>ob_get_status()</strong></span></strong>
+
+
+				<div class="seglistitem">
+					<div class="seg">
+						<strong><span class="segtitle">Clé:</span></strong>level
+					</div>
+					<div class="seg">
+						<strong><span class="segtitle">Valeur:</span></strong>Niveau de
+						sortie désiré
+					</div>
+				</div>
+				<div class="seglistitem">
+					<div class="seg">
+						<strong><span class="segtitle">Clé:</span></strong>type
+					</div>
+					<div class="seg">
+						<strong><span class="segtitle">Valeur:</span></strong><em>PHP_OUTPUT_HANDLER_INTERNAL
+							(0)</em> ou <em>PHP_OUTPUT_HANDLER_USER (1)</em>
+					</div>
+				</div>
+				<div class="seglistitem">
+					<div class="seg">
+						<strong><span class="segtitle">Clé:</span></strong>status
+					</div>
+					<div class="seg">
+						<strong><span class="segtitle">Valeur:</span></strong>Un parmi <em>PHP_OUTPUT_HANDLER_START</em>
+						(0), <em>PHP_OUTPUT_HANDLER_CONT</em> (1) ou <em>PHP_OUTPUT_HANDLER_END</em>
+						(2)
+					</div>
+				</div>
+				<div class="seglistitem">
+					<div class="seg">
+						<strong><span class="segtitle">Clé:</span></strong>name
+					</div>
+					<div class="seg">
+						<strong><span class="segtitle">Valeur:</span></strong>Nom du
+						gestionnaire de sortie actif ou &#039; default output
+						handler&#039; si aucun n&#039;est défini
+					</div>
+				</div>
+				<div class="seglistitem">
+					<div class="seg">
+						<strong><span class="segtitle">Clé:</span></strong>del
+					</div>
+					<div class="seg">
+						<strong><span class="segtitle">Valeur:</span></strong>Flag
+						d&#039;effacement tel que défini par <span class="function"><a
+							href="function.ob-start.html" class="function">ob_start()</a></span>
+					</div>
+				</div>
+			</div>
+			</p>
+			<p class="para">
+				Si la fonction est appelée avec le paramètre <em><code
+						class="parameter">full_status</code></em> défini à <strong><code>TRUE</code></strong>,
+				un tableau avec un élément par tampon de sortie actif est retourné.
+				Le niveau de sortie est utilisé en tant que clé du tableau de niveau
+				élevé et chaque élément du tableau est un autre tableau contenant
+				les informations sur le statut du niveau du tampon actif.
+			<div class="informalexample">
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Array
+(
+    [0] =&gt; Array
+        (
+            [chunk_size] =&gt; 0
+            [size] =&gt; 40960
+            [block_size] =&gt; 10240
+            [type] =&gt; 1
+            [status] =&gt; 0
+            [name] =&gt; default output handler
+            [del] =&gt; 1
+        )
+
+    [1] =&gt; Array
+        (
+            [chunk_size] =&gt; 0
+            [size] =&gt; 40960
+            [block_size] =&gt; 10240
+            [type] =&gt; 0
+            [buffer_size] =&gt; 0
+            [status] =&gt; 0
+            [name] =&gt; URL-Rewriter
+            [del] =&gt; 1
+        )
+
+)
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+			<p class="para">La sortie complète contient les éléments suivants
+				:
+			<div class="segmentedlist">
+				<strong class="title">Résultats complets pour la fonction <span
+					class="function"><strong>ob_get_status()</strong></span></strong>
+
+
+				<div class="seglistitem">
+					<div class="seg">
+						<strong><span class="segtitle">Clé:</span></strong>chunk_size
+					</div>
+					<div class="seg">
+						<strong><span class="segtitle">Valeur:</span></strong>Taille telle
+						que définie par la fonction <span class="function"><a
+							href="function.ob-start.html" class="function">ob_start()</a></span>
+					</div>
+				</div>
+				<div class="seglistitem">
+					<div class="seg">
+						<strong><span class="segtitle">Clé:</span></strong>size
+					</div>
+					<div class="seg">
+						<strong><span class="segtitle">Valeur:</span></strong>...
+					</div>
+				</div>
+				<div class="seglistitem">
+					<div class="seg">
+						<strong><span class="segtitle">Clé:</span></strong>blocksize
+					</div>
+					<div class="seg">
+						<strong><span class="segtitle">Valeur:</span></strong>...
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.ob-get-status-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.ob-get-level.html" class="function"
+						rel="rdfs-seeAlso">ob_get_level()</a> - Retourne le nombre de
+						niveaux d'imbrications du syst&egrave;me de tamporisation de
+						sortie</span></li>
+				<li class="member"><span class="function"><a
+						href="function.ob-list-handlers.html" class="function"
+						rel="rdfs-seeAlso">ob_list_handlers()</a> - Liste les
+						gestionnaires d'affichage utilis&eacute;s</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.ob-get-level.html">ob_get_level</a>
+		</div>
+		<div class="next">
+			<a href="function.ob-gzhandler.html">ob_gzhandler</a>
+		</div>
+		<div class="up">
+			<a href="ref.outcontrol.html">Fonctions de bufferisation de
+				sortie</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

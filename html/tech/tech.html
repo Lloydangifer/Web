@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Spécifications techniques</title>
+<style>
+html {
+	height: auto !important;
+	min-height: 100%;
+	margin: 0;
+	padding: 0
+	}
+
+body {
+	background: #FFF;
+	color: #000;
+	font: normal 15px/1.5 verdana, arial, sans-serif;
+	height: auto !important;
+	min-height: 100%;
+	margin: 0;
+	padding: 0;
+	-webkit-text-size-adjust: 15px;
+	-ms-text-size-adjust: 15px
+	}
+	
+#TOP {
+	background: url("../_core/images/tech.png") no-repeat 5px center #B60A36;
+	box-shadow: 0 0 6px -2px #000000;
+	font-weight: bold;
+	height: 26px;
+	overflow: hidden;
+	padding: 5px 2px 5px 27px;
+	width: 100%
+	}
+
+#TOP-titre {
+	color: #FFFFFF;
+	font-size: 18px;
+	font-weight: bold;
+	margin: 0;
+	padding: 0
+	}
+
+
+#TOP-liste {
+	font-size: 16px;
+	float: right;
+	width: 300px;
+	margin: 0 30px 0 0;
+	background: #B60a36;
+	color: #FFF;
+	border: 1px solid;
+	}
+#TOP-liste option {
+	background: #fff;
+	color: #000;
+	padding: 2px;
+	}
+	
+#iFrameVideo,#iFramePlus {
+	border: none;
+	display: none;
+	margin-bottom: 10px;
+	height: 0;
+	width: 100%
+	}
+
+#iFrameTech {
+	border: 0 none #FFF;
+	margin: 0;
+	height: 100%;
+	width: 100%
+	}
+	
+#TEST {
+	background: url("../_core/images/test24.png") no-repeat 2px center #B60A36;
+	box-shadow: 0 0 6px -2px #000000;
+	color: #FFF;
+	display: none;
+	font-size: 18px;
+	font-weight: bold;
+	height: 26px;
+	overflow: hidden;
+	padding: 5px 2px 5px 27px;
+	position: relative
+	}
+#TEST-close {
+	background: url(../_core/images/__cancel24.png) no-repeat;
+	cursor: pointer;
+	height: 24px;
+	position: absolute;
+	right: 10px;
+	top: 6px;
+	width: 24px
+	}
+#TEST-close:hover {
+	background: url(../_core/images/__cancel24_h.png) no-repeat;
+	}
+</style>
+<script>
+FPTech = {
+	listeFonctions: '',
+	
+	//-------------------------------------------------------------------------	
+	// Régle la hauteur du iFrame avec les spécifications techniques
+	setTechHauteur: function() {
+		var H = self.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+		//H -= document.getElementById('iFrameVideo').offsetHeight;
+		H -= document.getElementById('iFramePlus').offsetHeight;
+		H -= document.getElementById('TEST').offsetHeight;
+	    document.getElementById('iFrameTech').style.height = (H - 40) + 'px';
+	},
+	
+	//---------------------------------------------------------------------
+	// Sélection d'une page dans la liste déroulante
+	selectChange: function(oSel) {
+		if (oSel.selectedIndex != -1) {
+			top.FP.Voir.showPageTech(oSel.value, '');
+		}
+	},
+
+	//---------------------------------------------------------------------
+	// Soumission de la boîte de recherche
+	verifRecherche: function(oInput) {
+		nomFonction = oInput.value;
+		if (this.listeFonctions.indexOf('<option value="' + nomFonction + '">') != -1) {
+			oInput.value = '';
+			top.FP.Voir.showPageTech('elements', nomFonction);
+		}
+		return false;			
+	}
+};
+		
+window.addEventListener(
+		'load', 
+		FPTech.setTechHauteur, 
+		false);
+
+		
+window.addEventListener(
+		'resize', 
+		FPTech.setTechHauteur, 
+		false);
+
+</script>
+</head>
+<body>
+	<div id="TOP">
+		<select id="TOP-liste" onchange="FPTech.selectChange(this)">
+			<option value="elements" selected>Les éléments HTML</option>
+			<option value="entites_html_w3c">Entités HTML</option>
+			<option value="images">Images et formats graphiques</option>
+			<option value="videos">Video, audio, codecs, conteneurs</option>
+			<option value="types_mime">Types MIME</option>
+			<option value="url_caracteres">URL - caractères réservés</option>
+			<option value="zones_formulaire">Zones de formulaire</option>
+			<option value="liens_utiles">Liens utiles</option>
+			<!--  <option value="videos_youtube">Vidéos sur YouTube</option> -->
+		</select>
+		
+		<p id="TOP-titre">Spécifications techniques</p>
+	</div>
+	<!-- 
+	<iframe name="iFrameVideo" id="iFrameVideo" src="../_core/video.html"></iframe>
+	-->
+	<iframe name="iFrameTech" id="iFrameTech" src="elements.html"></iframe>
+	
+	<div id="TEST">
+		Résultat de l'exécution du code
+		<div id="TEST-close" onClick="top.FP.Voir.hidePLUS()"></div>
+	</div>
+	
+	<iframe name="iFramePlus" id="iFramePlus" src=""></iframe>
+</body>
+</html>

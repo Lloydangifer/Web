@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>&Eacute;crit un fichier en mode binaire</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.ftruncate.html">ftruncate</a>
+		</div>
+		<div class="next">
+			<a href="function.glob.html">glob</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.fwrite" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">fwrite</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">fwrite</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Écrit un fichier en mode binaire</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.fwrite-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">int</span> <span class="methodname"><strong>fwrite</strong></span>
+				( <span class="methodparam"><span class="type">resource</span>
+					<code class="parameter">$handle</code></span> , <span class="methodparam"><span
+					class="type">string</span> <code class="parameter">$string</code></span>
+				[, <span class="methodparam"><span class="type">int</span> <code
+						class="parameter">$length</code></span> ] )
+			</div>
+
+			<p class="simpara">
+				<span class="function"><strong>fwrite()</strong></span> écrit le
+				contenu de la chaîne <em><code class="parameter">string</code></em>
+				dans le fichier pointé par <em><code class="parameter">handle</code></em>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.fwrite-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">handle</code></em></span>
+				<dd>
+
+					<p class="para">
+						Un pointeur de système de fichiers de type <span class="type"><a
+							href="language.types.resource.html" class="type resource">resource</a></span>
+						qui est habituellement créé en utilisant la fonction <span
+							class="function"><a href="function.fopen.html"
+							class="function">fopen()</a></span>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">string</code></em></span>
+				<dd>
+
+					<p class="para">La chaîne à écrire.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">length</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si la longueur <em><code class="parameter">length</code></em> est
+						fournie, l&#039;écriture s&#039;arrêtera après <em><code
+								class="parameter">length</code></em> octets, ou à la fin de la chaîne
+						(le premier des deux).
+					</p>
+					<p class="para">
+						Notez que si <em><code class="parameter">length</code></em> est
+						fourni, alors l&#039;option de configuration <a
+							href="info.configuration.html#ini.magic-quotes-runtime"
+							class="link">magic_quotes_runtime</a> sera ignorée, et les slash
+						seront conservés.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.fwrite-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="simpara">
+				<span class="function"><strong>fwrite()</strong></span> retourne le
+				nombre d&#039;octets écrits, ou <strong><code>FALSE</code></strong>
+				si une erreur survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.fwrite-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Le fait d&#039;écrire dans un flux peut se termine avant que la
+					chaîne complète ne soit écrite. La valeur retournée par la fonction
+					<span class="function"><strong>fwrite()</strong></span> peut être
+					vérifiée comme ceci :
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">fwrite_stream</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$string</span><span
+								style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(
+							</span><span style="color: #0000BB">$written&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;</span><span
+								style="color: #0000BB">$written&nbsp;</span><span
+								style="color: #007700">&lt;&nbsp;</span><span
+								style="color: #0000BB">strlen</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$string</span><span
+								style="color: #007700">);&nbsp;</span><span
+								style="color: #0000BB">$written&nbsp;</span><span
+								style="color: #007700">+=&nbsp;</span><span
+								style="color: #0000BB">$fwrite</span><span
+								style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$fwrite&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">substr</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$string</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$written</span><span
+								style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(
+							</span><span style="color: #0000BB">$fwrite&nbsp;</span><span
+								style="color: #007700">===&nbsp;</span><span
+								style="color: #0000BB">false</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">$fwrite</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">$written</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Sur les systèmes qui font la différence entre les fichiers binaires
+					et les fichiers textes (par exemple, Windows), le fichier doit être
+					ouvert avec l&#039;option &#039;b&#039; inclus dans le paramètre de
+					mode de <span class="function"><a href="function.fopen.html"
+						class="function">fopen()</a></span>.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Si <em><code class="parameter">handle</code></em> est ouvert en
+					mode ajout (<em>append</em>), <span class="function"><strong>fwrite()</strong></span>
+					sera atomique (sauf si la taille de <em><code
+							class="parameter">string</code></em> excède la taille du bloc du
+					système de fichiers, sur quelques plates-formes, et tant que le
+					fichier se trouve sur le système de fichiers local). Ainsi, il
+					n&#039;est pas nécessaire d&#039;utiliser la fonction <span
+						class="function"><a href="function.flock.html"
+						class="function">flock()</a></span> sur une ressource avant
+					d&#039;appeler la fonction <span class="function"><strong>fwrite()</strong></span>
+					; toutes les données seront écrites sans interruption.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Si l&#039;on écrit 2 fois dans le fichier, les
+					données seront ajoutées à la fin du fichier ; cela signifie que
+					l&#039;exemple suivant ne donnera pas le résultat attendu :
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$fp&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'data.txt'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'w'</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'1'</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'23'</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$fp</span><span style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;le&nbsp;contenu&nbsp;de&nbsp;'data.txt'&nbsp;est&nbsp;maintenant&nbsp;123&nbsp;et&nbsp;non&nbsp;23&nbsp;!<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.fwrite-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2264">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>fwrite()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$filename&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'test.txt'</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$somecontent&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"Ajout&nbsp;de&nbsp;chaîne&nbsp;dans&nbsp;le&nbsp;fichier\n"</span><span
+								style="color: #007700">;<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Assurons&nbsp;nous&nbsp;que&nbsp;le&nbsp;fichier&nbsp;est&nbsp;accessible&nbsp;en&nbsp;écriture<br /></span><span
+								style="color: #007700">if&nbsp;(</span><span
+								style="color: #0000BB">is_writable</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span
+								style="color: #007700">))&nbsp;{<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;Dans&nbsp;notre&nbsp;exemple,&nbsp;nous&nbsp;ouvrons&nbsp;le&nbsp;fichier&nbsp;$filename&nbsp;en&nbsp;mode&nbsp;d'ajout<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Le&nbsp;pointeur&nbsp;de&nbsp;fichier&nbsp;est&nbsp;placé&nbsp;à&nbsp;la&nbsp;fin&nbsp;du&nbsp;fichier<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;c'est&nbsp;là&nbsp;que&nbsp;$somecontent&nbsp;sera&nbsp;placé<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">if&nbsp;(!</span><span
+								style="color: #0000BB">$handle&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$filename</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'a'</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Impossible&nbsp;d'ouvrir&nbsp;le&nbsp;fichier&nbsp;(</span><span
+								style="color: #0000BB">$filename</span><span
+								style="color: #DD0000">)"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;Ecrivons&nbsp;quelque&nbsp;chose&nbsp;dans&nbsp;notre&nbsp;fichier.<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">if&nbsp;(</span><span
+								style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$handle</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$somecontent</span><span
+								style="color: #007700">)&nbsp;===&nbsp;</span><span
+								style="color: #0000BB">FALSE</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Impossible&nbsp;d'écrire&nbsp;dans&nbsp;le&nbsp;fichier&nbsp;(</span><span
+								style="color: #0000BB">$filename</span><span
+								style="color: #DD0000">)"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"L'écriture&nbsp;de&nbsp;(</span><span
+								style="color: #0000BB">$somecontent</span><span
+								style="color: #DD0000">)&nbsp;dans&nbsp;le&nbsp;fichier&nbsp;(</span><span
+								style="color: #0000BB">$filename</span><span
+								style="color: #DD0000">)&nbsp;a&nbsp;réussi"</span><span
+								style="color: #007700">;<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">fclose</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span
+								style="color: #007700">);<br />
+								<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Le&nbsp;fichier&nbsp;</span><span
+								style="color: #0000BB">$filename</span><span
+								style="color: #DD0000">&nbsp;n'est&nbsp;pas&nbsp;accessible&nbsp;en&nbsp;écriture."</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.fwrite-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.fread.html" class="function" rel="rdfs-seeAlso">fread()</a>
+						- Lecture du fichier en mode binaire</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fopen.html" class="function" rel="rdfs-seeAlso">fopen()</a>
+						- Ouvre un fichier ou une URL</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fsockopen.html" class="function" rel="rdfs-seeAlso">fsockopen()</a>
+						- Ouvre un socket de connexion Internet ou Unix</span></li>
+				<li class="member"><span class="function"><a
+						href="function.popen.html" class="function" rel="rdfs-seeAlso">popen()</a>
+						- Cr&eacute;e un processus de pointeur de fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.file-get-contents.html" class="function"
+						rel="rdfs-seeAlso">file_get_contents()</a> - Lit tout un fichier
+						dans une cha&icirc;ne</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.ftruncate.html">ftruncate</a>
+		</div>
+		<div class="next">
+			<a href="function.glob.html">glob</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

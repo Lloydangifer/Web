@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>do-while</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="control-structures.while.html">while</a>
+		</div>
+		<div class="next">
+			<a href="control-structures.for.html">for</a>
+		</div>
+		<div class="up">
+			<a href="language.control-structures.html">Les structures de
+				contr&ocirc;le</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="control-structures.do.while" class="sect1">
+		<h2 class="title">
+			<em>do-while</em>
+		</h2>
+		<p class="verinfo">(PHP 4, PHP 5)</p>
+		<p class="simpara">
+			Les boucles <em>do-while</em> ressemblent beaucoup aux boucles <em>while</em>,
+			mais l&#039;expression est testée à la fin de chaque itération plutôt
+			qu&#039;au début. La principale différence par rapport à la boucle <em>while</em>
+			est que la première itération de la boucle <em>do-while</em> est
+			toujours exécutée (l&#039;expression n&#039;est testée qu&#039;à la
+			fin de l&#039;itération), ce qui n&#039;est pas le cas lorsque vous
+			utilisez une boucle <em>while</em> (la condition est vérifiée dès le
+			début de chaque itération, et si elle s&#039;avère <strong><code>FALSE</code></strong>
+			dès le début, la boucle sera immédiatement arrêtée).
+		</p>
+		<p class="para">
+			Il n&#039;y a qu&#039;une syntaxe possible pour les boucles <em>do-while</em>
+			:
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$i&nbsp;
+						</span><span style="color: #007700">=&nbsp;</span><span
+							style="color: #0000BB">0</span><span style="color: #007700">;<br />do&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #0000BB">$i</span><span style="color: #007700">;<br />}&nbsp;while&nbsp;(
+						</span><span style="color: #0000BB">$i&nbsp;</span><span
+							style="color: #007700">&gt;&nbsp;</span><span
+							style="color: #0000BB">0</span><span style="color: #007700">);<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<p class="simpara">
+			La boucle ci-dessus ne va être exécutée qu&#039;une seule fois, car
+			lorsque l&#039;expression est évaluée, elle vaut <strong><code>FALSE</code></strong>
+			(car la variable
+			<var class="varname">
+				<var class="varname">$i</var>
+			</var>
+			n&#039;est pas plus grande que 0) et l&#039;exécution de la boucle
+			s&#039;arrête.
+		</p>
+		<p class="para">
+			Les utilisateurs familiers du C sont habitués à une utilisation
+			différente des boucles <em>do-while</em> , qui permet de stopper
+			l&#039;exécution de la boucle au milieu des instructions, en
+			encapsulant dans un <em>do-while</em>(0) la fonction <a
+				href="control-structures.break.html" class="link"><em>break</em></a>.
+			Le code suivant montre une utilisation possible :
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">do&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(
+						</span><span style="color: #0000BB">$i&nbsp;</span><span
+							style="color: #007700">&lt;&nbsp;</span><span
+							style="color: #0000BB">5</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;n'est&nbsp;pas&nbsp;suffisamment&nbsp;grand"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #0000BB">$i&nbsp;</span><span
+							style="color: #007700">*=&nbsp;</span><span
+							style="color: #0000BB">$factor</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(
+						</span><span style="color: #0000BB">$i&nbsp;</span><span
+							style="color: #007700">&lt;&nbsp;</span><span
+							style="color: #0000BB">$minimum_limit</span><span
+							style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"i&nbsp;est&nbsp;bon"</span><span
+							style="color: #007700">;<br />
+							<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #FF8000">/*&nbsp;...traitement&nbsp;de&nbsp;i...&nbsp;*/<br />
+							<br /></span><span style="color: #007700">}&nbsp;while&nbsp;(</span><span
+							style="color: #0000BB">0</span><span style="color: #007700">);<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<p class="simpara">
+			Ne vous inquiétez pas si vous ne comprenez pas tout correctement.
+			Vous pouvez écrire des scripts très très puissants sans utiliser
+			cette fonctionnalité. Depuis PHP 5.3.0, il est possible
+			d&#039;utiliser l&#039;opérateur <a
+				href="control-structures.goto.html" class="link"><em>goto</em></a> à
+			l&#039;intérieur de cette fonctionnalité.
+		</p>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="control-structures.while.html">while</a>
+		</div>
+		<div class="next">
+			<a href="control-structures.for.html">for</a>
+		</div>
+		<div class="up">
+			<a href="language.control-structures.html">Les structures de
+				contr&ocirc;le</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

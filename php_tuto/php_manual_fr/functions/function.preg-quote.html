@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Protection des caract&egrave;res sp&eacute;ciaux des
+	expressions rationnelles</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.preg-match.html">preg_match</a>
+		</div>
+		<div class="next">
+			<a href="function.preg-replace-callback.html">preg_replace_callback</a>
+		</div>
+		<div class="up">
+			<a href="ref.pcre.html">Fonctions PCRE</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.preg-quote" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">preg_quote</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">preg_quote</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Protection des caractères spéciaux des
+					expressions rationnelles</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.preg-quote-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>preg_quote</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$str</code></span> [, <span class="methodparam"><span
+					class="type">string</span> <code class="parameter">$delimiter</code><span
+					class="initializer"> = <strong><code>NULL</code></strong></span></span> ]
+				)
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>preg_quote()</strong></span> ajoute
+				un antislash devant tous les caractères de la chaîne <em><code
+						class="parameter">str</code></em>. Cela est très utile si vous avez une
+				chaîne qui va servir de masque, mais qui est générée durant
+				l&#039;exécution.
+			</p>
+			<p class="para">
+				Les caractères spéciaux qui seront protégés sont les suivants : <em>.
+					\ + * ? [ ^ ] $ ( ) { } = ! &lt; &gt; | : -</em>
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.preg-quote-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">str</code></em></span>
+				<dd>
+
+					<p class="para">La chaîne d&#039;entrée.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">delimiter</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si l&#039;argument optionnel <em><code class="parameter">delimiter</code></em>
+						est fourni, il sera aussi échappé. Ceci est pratique pour échapper
+						le délimiteur requis par les fonctions PCRE. Le slash / est le
+						délimiteur le plus répandu.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.preg-quote-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Retourne la chaîne protégée.</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.preg-quote-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.3.0</td>
+						<td>Le caractère <em>-</em> est maintenant protégé.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.preg-quote-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4450">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>preg_quote()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$keywords&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'$40&nbsp;pour&nbsp;un&nbsp;g3/400'</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$keywords&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">preg_quote</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$keywords</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'/'</span><span style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #0000BB">$keywords</span><span
+								style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;retourne&nbsp;\$40&nbsp;pour&nbsp;un&nbsp;g3\/400<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="example-4451">
+				<p>
+					<strong>Exemple #2 Mise en italique d&#039;un mot dans un
+						texte</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Dans&nbsp;cet&nbsp;exemple,&nbsp;preg_quote($word)&nbsp;sert&nbsp;à&nbsp;éviter&nbsp;que&nbsp;les&nbsp;astérisques<br />//&nbsp;prennent&nbsp;une&nbsp;valeur&nbsp;particulière&nbsp;dans&nbsp;l'expression&nbsp;rationnelle.<br />
+								<br /></span><span style="color: #0000BB">$textbody&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"Ce&nbsp;livre&nbsp;est&nbsp;*très*&nbsp;difficile&nbsp;à&nbsp;trouver."</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$word&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"*très*"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$textbody&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">preg_replace&nbsp;</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"/"&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">preg_quote</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$word</span><span
+								style="color: #007700">)&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"/"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #DD0000">"&lt;i&gt;"&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">$word&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #DD0000">"&lt;/i&gt;"</span><span
+								style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$textbody</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.preg-quote-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Cette
+						fonction gère les chaînes binaires.</span>
+				</p>
+			</blockquote>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.preg-match.html">preg_match</a>
+		</div>
+		<div class="next">
+			<a href="function.preg-replace-callback.html">preg_replace_callback</a>
+		</div>
+		<div class="up">
+			<a href="ref.pcre.html">Fonctions PCRE</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

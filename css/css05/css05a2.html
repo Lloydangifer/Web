@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>La propriété display</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function() {
+			top.FP.initPage();
+		}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			La propriété <a
+				onclick="top.FP.Voir.showPageTech('css_proprietes', 'display')">display</a>
+			gére le mode d'affichage des boîtes des éléments <abbr
+				title="HyperText Markup Language">HTML</abbr>.
+		</p>
+		<p>CSS 2 définit plusieurs modes d'affichage (bloc, en-ligne,
+			liste, table et aucun) et CSS 3 ajoute des nouveaux modes (bloc
+			en-ligne et flexbox). Nous étudierons dans cette partie plus particulièrement les
+			modes bloc, en-ligne et bloc en-ligne.</p>
+
+		<!-- ################################################################################################## -->
+		<h3>Comment est défini le mode d'affichage</h3>
+		<section>
+
+
+			<div class="fp-puce">
+				<p>
+					La valeur par défaut de la propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'display')">display</a>
+					est définie de la façon suivante :
+				</p>
+				<p>
+					<span class="fp-rond">1</span> tous les élements sont considérés
+					comme des éléments en ligne (spécifications <abbr
+						title="Cascading Style Sheets">CSS</abbr>)
+				</p>
+				<p>
+					<span class="fp-rond">2</span> les navigateurs redéfinissent comme
+					des éléments de bloc : <code>address, article, aside,
+						blockquote, body, dd, div, dl, dt, fieldset, figcaption, figure,
+						footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, hr, html,
+						main, nav, ol, p, pre, section, ul</code>
+				</p>
+				<p>
+					<span class="fp-rond">3</span> les navigateurs redéfinissent comme
+					des éléments non affichés : <code>area, base, basefont,
+						datalist, head, link, meta, param, script, style, title</code>
+				</p>
+				<p>
+					<span class="fp-rond">4</span> les navigateurs redéfinissent les
+					lignes de lignes (<code>li</code>) avec un mode d'affichage
+					particulier (<code>list_item</code>)
+				</p>
+				<p>
+					<span class="fp-rond">5</span> les navigateurs redéfinissent les
+					éléments de tableau <code>table, caption, tr, col, colgroup,
+						tbody, thead, tfoot, td, th</code> avec un mode d'affichage particulier (<code>table-header-group
+						| table-footer-group | table | inline-table | table-caption |
+						table-cell | table-row | table-row-group | table-column |
+						table-column-group</code>).
+				</p>
+			</div>
+
+			<p>
+				En tant qu'auteur de feuille de style, nous pouvons modifier la
+				valeur par défaut de la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'display')">display</a>
+				et ainsi modifier le la façon dont sera affiché l'élément <abbr
+					title="HyperText Markup Language">HTML</abbr> de notre choix.
+			</p>
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Masquer/afficher un élément</h3>
+		<section>
+			<div>
+				<p>
+					La manipulation la plus souvent faite de la propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'display')">display</a>
+					consiste à utiliser alternativement les valeurs <code>none</code>
+					et <code>block</code> pour masquer ou afficher un élément.
+					<br>
+					Remarque : masquer un élément entraîne que tous les éléments
+					imbriqués dans cet éléments sont également masqué.
+				</p>
+
+				<p>Une utilisation typique est la réalisation d'un menu avec des
+					sous-menus comme dans l'exemple suivant. Les liens dans les listes
+					sont volontairement absents pour ne pas surcharger le code.</p>
+			</div>
+
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : masquage / affichage d'éléments
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Familles de véhicules en location&lt;/h3&gt;
+		&lt;div&gt;
+			&lt;img src="../exemples/img/x_wing.png"&gt;
+			&lt;ul&gt;
+				&lt;li&gt;A-wing&lt;/li&gt;
+				&lt;li&gt;B-wing&lt;/li&gt;
+				&lt;li&gt;X-wing&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/div&gt;
+		&lt;div&gt;
+			&lt;img src="../exemples/img/naboo_starfighter.png"&gt;
+			&lt;ul&gt;
+				&lt;li&gt;Naboo Starfighter&lt;/li&gt;
+				&lt;li&gt;Mandalorian Fighter&lt;/li&gt;
+				&lt;li&gt;Jedi Interceptor&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* Les listes sont cachées par défaut */
+ul {
+	display: none;
+	margin-bottom: 2em;
+}
+
+/* quand la souris survole un div, on affiche la liste
+	qu'il contient */
+div:hover ul { display: block; }
+
+/* Largeur des div */
+div { width: 250px; }
+
+/* Pour l'ambiance */
+body {
+	background: url(../exemples/img/etoiles.jpg);
+	color: lightyellow;
+}</textarea>
+			</form>
+
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Liste horizontale</h3>
+		<section>
+			<p class="fp-p-raz">
+				Un autre exemple d'utilisation de la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'display')">display</a>
+				permet d'afficher les lignes d'une liste horizontalement. Il suffit
+				de donner la valeur <code>inline</code> à la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'display')">display</a>
+				des éléments <a onclick="top.FP.Voir.showPageTech('elements', 'li')">li</a>.
+				Encore une fois cette manipulation est souvent utilisée pour la
+				réalisation de menus.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : liste horizontale
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Familles de véhicules en location&lt;/h3&gt;
+		&lt;div&gt;
+			&lt;img src="../exemples/img/x_wing.png"&gt;
+			&lt;ul&gt;
+				&lt;li&gt;A-wing&lt;/li&gt;
+				&lt;li&gt;B-wing&lt;/li&gt;
+				&lt;li&gt;X-wing&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/div&gt;
+		&lt;div&gt;
+			&lt;img src="../exemples/img/naboo_starfighter.png"&gt;
+			&lt;ul&gt;
+				&lt;li&gt;Naboo&lt;/li&gt;
+				&lt;li&gt;Mandalorian&lt;/li&gt;
+				&lt;li&gt;Interceptor&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* Les lignes des listes sont affichées horizontalement. On ajoute une marge intérieure et une bordure pour les repérer */
+li {
+	display: inline;
+	padding: 5px;
+	border: 1px solid;
+}
+/* Les lignes survolées changent de couleur */
+li:hover { color: red; }
+
+/* Les listes sont affichée à côté des images et pas en dessous */
+ul {
+	display: inline;
+	padding: 0;
+}
+
+/* Pour l'ambiance */
+body {
+	background: url(../exemples/img/etoiles.jpg);
+	color: lightyellow;
+}</textarea>
+			</form>
+
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Mode "bloc en ligne"</h3>
+		<section>
+			<p>
+				La valeur <code>inline-block</code> affectée à la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'display')">display</a>
+				permet d'associer les caractèristiques des affichages bloc et en
+				ligne.
+			</p>
+
+			<p class="fp-bot0">
+				En affichage <code>inline-block</code> on pourra :
+			</p>
+			<ul>
+				<li>afficher les une à côtés des autres des boîtes
+					originellement en bloc,</li>
+				<li>spécifier les dimensions (hauteur et largeur) et les marges
+					verticales des boîtes originellement en ligne.</li>
+			</ul>
+
+
+			<p class="fp-p-raz fp-bot0">
+				L'exemple suivant affiche les éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'figure')">figure</a>
+				en mode <code>inline-block</code>. Les boîtes adoptent les
+				caractèristiques suivante du mode en ligne :
+			</p>
+			<ul>
+				<li>elles sont placées les unes à côté des autres,</li>
+				<li>elles s'alignent sur leur bord inférieur et pas sur leur
+					bord gauche,</li>
+				<li>leur largeur est réduite à la largeur minimum pour leur
+					contenu et elles ne prennent plus toute la largeur de leur
+					conteneur.</li>
+			</ul>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : block changé en inline-block
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Véhicules à louer&lt;/h3&gt;
+		&lt;figure&gt;
+			&lt;img src="../exemples/img/vulture_droid.png"&gt;
+			&lt;figcaption&gt;1 - Vulture Droid&lt;/figcaption&gt;
+		&lt;/figure&gt;
+		&lt;figure&gt;
+			&lt;img src="../exemples/img/naboo_starfighter.png"&gt;
+			&lt;figcaption&gt;2 - Naboo Starfighter&lt;/figcaption&gt;
+		&lt;/figure&gt;
+		&lt;figure&gt;
+			&lt;img src="../exemples/img/v_wing.png"&gt;
+			&lt;figcaption&gt;3 - V-wing&lt;/figcaption&gt;
+		&lt;/figure&gt;		
+		&lt;figure&gt;
+			&lt;img src="../exemples/img/mandalorian_fighter.png"&gt;
+			&lt;figcaption&gt;4 - Mandalorian Fighter&lt;/figcaption&gt;
+		&lt;/figure&gt;
+		&lt;figure&gt;
+			&lt;img src="../exemples/img/x_wing.png"&gt;
+			&lt;figcaption&gt;5 - X-wing&lt;/figcaption&gt;
+		&lt;/figure&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+figure {
+	display: inline-block;	/* met les figures côte à côte 
+							alignées verticalement sur le
+							côté en bas */
+	margin: 0.2em;			/* marge tout autour */
+	border: 10px solid #fff;	/* bord blanc de 10 pixels */
+	box-shadow: 1px 1px 5px 1px #999;	/* ombre légére */
+}
+img {
+	background: #000;
+	padding: 5px;
+}</textarea>
+			</form>
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

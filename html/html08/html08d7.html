@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Zones diverses</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+
+<script src="../_local/has_js/has.js"></script>
+<script src="../_local/has_js/form.js"></script>
+
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			Ces types de zones sont tous une spécialisation de l'élément <a
+				onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>.
+		</p>
+
+		<a id="type_hidden"></a>
+		<h3>Zone cachée</h3>
+		<section>
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : zone de saisie cachée
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Zone de saisie cachée&lt;/h3&gt;
+		
+		&lt;form method="POST" action="dossier/reception.php"&gt;
+		
+			&lt;input type="hidden" name="txtX" value="secret"&gt;
+
+			&lt;p&gt;
+				&lt;input type="submit" value="Envoi" name="btn"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				<strong>La zone est faite avec l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+					dont l'attribut <code>type</code> a la valeur <code>hidden</code>.
+				</strong> L'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+				est un élement vide (ie sans balise de fermeture).
+			</p>
+
+			<p>Ce type de zone n'est pas affiché par le navigateur. Les zones
+				cachées sont très souvent utilisées car elles permettent de faire
+				passer des informations qui ont une importance uniquement pour le
+				programme qui va traiter les informations sur le serveur. On pourra
+				y trouver par exemple des variables d'état d'une application Web,
+				des identifiants de produits ou d'utilisateurs, des données
+				statistiques ou de navigation dans un site, etc.</p>
+
+			<p>
+				La zone doit avoir un attribut <code>name</code> dont la valeur doit
+				être <strong>unique</strong> parmi toutes les zones composant le
+				formulaire.
+			</p>
+
+			<p>
+				La zone doit avoir un attribut <code>value</code> sans lequel elle
+				ne sert à rien. Si vous voulez que cette valeur normalement cachée à
+				l'utilisateur reste vraiment secrète, je vous conseille de la
+				crypter.
+			</p>
+
+			<table class="TAB-zebre fp-petit">
+				<tr>
+					<td>Attribut possible</td>
+					<td>Utilité</td>
+				</tr>
+				<tr>
+					<td><code>dirname</code></td>
+					<td>Direction du texte saisi.</td>
+				</tr>
+				<tr>
+					<td><code>disabled</code></td>
+					<td>Zone désactivée, non transmise au serveur. Aucune
+						interaction n'est possible avec la zone (pas de focus, pas de
+						copie, etc). Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>form</code></td>
+					<td><code>id</code> du formulaire associé si la zone n'est pas
+						un élément <code>form</code> ou concerne un autre formulaire que
+						celui dans lequel elle est imbriquée.</td>
+				</tr>
+				<tr>
+					<td><code>readonly</code></td>
+					<td>Zone en lecture seule, non transmise au serveur. La zone
+						peut avoir le focus et le contenu peut être copié. Attribut
+						booléen.</td>
+				</tr>
+				<tr>
+					<td><code>value</code></td>
+					<td>Valeur initiale de la zone et valeur transmise au serveur.</td>
+				</tr>
+			</table>
+		</section>
+
+		<a id="type_range"></a>
+		<h3>Intervalle</h3>
+		<section>
+			<div id="input-type-range"></div>
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : zone de saisie intervalle
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Zone de saisie intervalle&lt;/h3&gt;
+		
+		&lt;form method="POST" action="dossier/reception.php"&gt;
+			&lt;label for="txtNbr"&gt;Valeur&lt;/label&gt;
+			
+			&lt;input type="range" name="txtNbr" id="txtNbr"&gt;
+
+			&lt;p&gt;
+				&lt;input type="submit" value="Envoi" name="btn"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				<strong>La zone est faite avec l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+					dont l'attribut <code>type</code> a la valeur <code>range</code>.
+				</strong> L'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+				est un élement vide (ie sans balise de fermeture).
+			</p>
+
+			<p>
+				Elle permet de <strong>saisir des nombres</strong>, mais sans que
+				l'utilisateur ne voit la valeur saisie (sauf avec <a
+					href="http://windows.microsoft.com/fr-fr/internet-explorer/download-ie"
+					target="_blank">Internet Explorer</a>) ce qui est finalement peu
+				pratique.
+				<br>
+				La figure ci-dessous montre le rendu du même <code>range</code> dans
+				3 navigateurs différents.
+			</p>
+
+			<figure>
+				<img src="../htmlimg/input_range.png" width="585" height="101">
+				<figcaption> range dans 3 navigateurs</figcaption>
+			</figure>
+
+			<p>
+				La zone doit avoir un attribut <code>name</code> dont la valeur doit
+				être <strong>unique</strong> parmi toutes les zones composant le
+				formulaire.
+			</p>
+
+			<table class="TAB-zebre fp-petit">
+				<tr>
+					<td>Attribut possible</td>
+					<td>Utilité</td>
+				</tr>
+				<tr>
+					<td><code>autocomplete</code></td>
+					<td>Autocomplétion. Les saisies précédemment faites dans la
+						zone sont proposées. Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>dirname</code></td>
+					<td>Direction du texte saisi.</td>
+				</tr>
+				<tr>
+					<td><code>disabled</code></td>
+					<td>Zone désactivée, non transmise au serveur. Aucune
+						interaction n'est possible avec la zone (pas de focus, pas de
+						copie, etc). Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>form</code></td>
+					<td><code>id</code> du formulaire associé si la zone n'est pas
+						un élément <code>form</code> ou concerne un autre formulaire que
+						celui dans lequel elle est imbriquée.</td>
+				</tr>
+				<tr>
+					<td><code>list</code></td>
+					<td><code>id</code> de la liste de suggestions associée à la
+						zone.</td>
+				</tr>
+				<tr>
+					<td><code>max</code></td>
+					<td>Valeur maximale. Nombre à virgule flottante.</td>
+				</tr>
+				<tr>
+					<td><code>min</code></td>
+					<td>Valeur minimale. Nombre à virgule flottante.</td>
+				</tr>
+				<tr>
+					<td><code>name</code></td>
+					<td>Nom de la zone.</td>
+				</tr>
+				<tr>
+					<td><code>readonly</code></td>
+					<td>Zone en lecture seule, non transmise au serveur. La zone
+						peut avoir le focus et le contenu peut être copié. Attribut
+						booléen.</td>
+				</tr>
+				<tr>
+					<td><code>required</code></td>
+					<td>Zone obligatoire. Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>step</code></td>
+					<td>Valeur du pas d'incrément/décrément. Nombre à virgule
+						flottante positif.</td>
+				</tr>
+				<tr>
+					<td><code>value</code></td>
+					<td>Valeur initiale de la zone et valeur transmise au serveur
+						après saisie.</td>
+				</tr>
+			</table>
+
+			<p>
+				Si les attributs <code>min</code> et <code>max</code> ne sont pas
+				précisé, l'intervalle sera par défaut de 0 à 100, et la valeur
+				initiale sera 50.
+			</p>
+
+			<p>
+				Aucun attribut ne permet de spécifier la longueur de la zone. Il
+				faut utiliser la propriété <abbr title="Cascading Style Sheets">CSS</abbr>
+				<code>width</code> comme le montre l'exemple suivant.
+			</p>
+
+			<form action=" " method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : zone de saisie intervalle
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Zone de saisie intervalle&lt;/title&gt;
+		&lt;style&gt;
+			form {width: 300px; margin: 0 auto}
+			label {display:block; margin: 1em 0 0.2em 0}
+			input[name="btn"] {display:block; margin:2em auto}
+			input[type="range"] {width: 300px}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form action="dossier/reception.php" method="POST"&gt;
+			&lt;h3&gt;Intervalle de 0 à 1 avec pas de 0.01&lt;/h3&gt;
+		
+			&lt;label for="txtR1"&gt;Augmentation de salaire&lt;/label&gt;
+			&lt;input type="range" name="txtR1" id="txtR1"
+				   min="0" max="1" step="0.01" value="0"&gt;
+
+			&lt;h3&gt;Intervalle de 35 à 45 avec pas de 0.5&lt;/h3&gt;
+		
+			&lt;label for="txtR2"&gt;Pointure&lt;/label&gt;
+			&lt;input type="range" name="txtR2" id="txtR2"
+				   min="35" max="45" step="0.5" value="39"&gt;
+
+			&lt;h3&gt;Intervalle de 0 à 20 avec pas de 5&lt;/h3&gt;
+		
+			&lt;label for="txtR3"&gt;Note&lt;/label&gt;
+			&lt;input type="range" name="txtR3" id="txtR3"
+				   min="0" max="20" step="5" value="10"&gt;
+			
+			&lt;input type="submit" value="Envoi" name="btn"&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+		</section>
+
+		<a id="type_file"></a>
+		<h3>Téléchargement de fichier</h3>
+		<section>
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : zone de saisie fichier
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Zone de saisie fichier&lt;/h3&gt;
+		
+		&lt;form method="POST" action="dossier/reception.php"
+		enctype="multipart/formdata"&gt;
+			&lt;label for="ficNom"&gt;Fichier&lt;/label&gt;
+			
+			&lt;input type="file" name="ficNom" id="ficNom"&gt;
+
+			&lt;p&gt;
+				&lt;input type="submit" value="Télécharger"
+					   name="btn"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				<strong>La zone est faite avec l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+					dont l'attribut <code>type</code> a la valeur <code>file</code>.
+				</strong> L'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+				est un élement vide (ie sans balise de fermeture).
+			</p>
+
+			<p>
+				La zone doit avoir un attribut <code>name</code> dont la valeur doit
+				être <strong>unique</strong> parmi toutes les zones composant le
+				formulaire.
+			</p>
+
+			<p>La forme que prend la zone est dépendante des navigateurs et
+				donne accès à une boîte de dialogue permettant de sélectionner un
+				fichier dans l'arborescence du disque dur de l'ordinateur client.</p>
+
+			<p>
+				Pour des raisons de sécurité, la valeur de cette zone ne peut pas
+				être initialisée ou fixée dans le code <abbr
+					title="HyperText Markup Language">HTML</abbr>. Elle est mise à jour
+				automatiquement par le navigateur quand un fichier a été
+				sélectionné.
+			</p>
+
+			<p>
+				Pour le fichier sélectionné puisse être envoyé dans de bonne
+				condition, <strong>l'attribut <code>enctype</code> du
+					formulaire contenant la zone doit avoir la valeur <code>multipart/formdata</code></strong>.
+			</p>
+
+			<table class="TAB-zebre fp-petit">
+				<tr>
+					<td>Attribut possible</td>
+					<td>Utilité</td>
+				</tr>
+				<tr>
+					<td><code>accept</code></td>
+					<td>Types MIME acceptés.</td>
+				</tr>
+				<tr>
+					<td><code>dirname</code></td>
+					<td>Direction du texte affiché.</td>
+				</tr>
+				<tr>
+					<td><code>disabled</code></td>
+					<td>Zone désactivée, non transmise au serveur. Aucune
+						interaction n'est possible avec la zone (pas de focus, pas de
+						copie, etc). Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>form</code></td>
+					<td><code>id</code> du formulaire associé si la zone n'est pas
+						un élément <code>form</code> ou concerne un autre formulaire que
+						celui dans lequel elle est imbriquée.</td>
+				</tr>
+				<tr>
+					<td><code>multiple</code></td>
+					<td>Possibilité de sélectionner plusieurs fichiers. Attribut
+						booléen.</td>
+				</tr>
+				<tr>
+					<td><code>name</code></td>
+					<td>Nom de la zone.</td>
+				</tr>
+				<tr>
+					<td><code>readonly</code></td>
+					<td>Zone en lecture seule, non transmise au serveur. La zone
+						peut avoir le focus et le contenu peut être copié. Attribut
+						booléen.</td>
+				</tr>
+				<tr>
+					<td><code>required</code></td>
+					<td>Zone obligatoire. Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>value</code></td>
+					<td>Valeur transmise au serveur après saisie.</td>
+				</tr>
+			</table>
+
+			<p>
+				L'attribut <code>accept</code> permet de définir quel seront les
+				types de fichiers sélectionnables. La valeur de cet attribut est
+				composée par un ou plusieur <a
+					onclick="top.FP.Voir.showPageTech('types_mime', '')">types MIME</a>
+				(séparés par des virgules). Cet attribut n'est pas supporté par <a
+					href="http://www.mozilla.org/fr/firefox/new/" target="_blank">Firefox</a>
+				et de toute façon n'est pas fiable car il semble que les navigateurs
+				se basent sur l'extension du fichier et pas sur son contenu réel. Un
+				simple renommage de fichier suffit donc à passer outre cette
+				barrière.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : zone de saisie fichier
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Zone de saisie fichier&lt;/title&gt;
+		&lt;style&gt;
+			form {width: 300px; margin: 0 auto}
+			label {display:block; margin: 1em 0 0.2em 0}
+			input[name="btn"] {display:block; margin:2em auto}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form action="dossier/reception.php" method="POST"&gt;
+			&lt;h3&gt;Saisie de fichier&lt;/h3&gt;
+			
+			&lt;p&gt;
+				Vous ne pouvez sélectionner que des fichiers
+				image gif ou png.
+			&lt;/p&gt;
+			
+			&lt;label for="ficNom"&gt;Fichier à télécharger&lt;/label&gt;
+			
+			&lt;input type="file" name="ficNom" id="ficNom"
+				   accept="image/gif,image/png"&gt;
+						
+			&lt;input type="submit" value="Télécharger"
+				   name="btn"&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+		</section>
+
+
+		<a id="type_color"></a>
+		<h3>Sélecteur de couleur</h3>
+		<section>
+			<div id="input-type-color"></div>
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : zone de saisie couleur
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Zone de saisie couleur&lt;/h3&gt;
+		
+		&lt;form method="POST" action="dossier/reception.php"&gt;
+			&lt;label for="txtCouleur"&gt;Couleur préférée&lt;/label&gt;
+			
+			&lt;input type="color" name="txtCouleur"
+				   id="txtCouleur"&gt;
+
+			&lt;p&gt;
+				&lt;input type="submit" value="Envoi" name="btn"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				<strong>La zone est faite avec l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+					dont l'attribut <code>type</code> a la valeur <code>color</code>.
+				</strong> L'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+				est un élement vide (ie sans balise de fermeture).
+			</p>
+
+			<p>
+				La zone doit avoir un attribut <code>name</code> dont la valeur doit
+				être <strong>unique</strong> parmi toutes les zones composant le
+				formulaire.
+			</p>
+
+			<table class="TAB-zebre fp-petit">
+				<tr>
+					<td>Attribut possible</td>
+					<td>Utilité</td>
+				</tr>
+				<tr>
+					<td><code>autocomplete</code></td>
+					<td>Autocomplétion. Les saisies précédemment faites dans la
+						zone sont proposées. Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>dirname</code></td>
+					<td>Direction du texte saisi.</td>
+				</tr>
+				<tr>
+					<td><code>disabled</code></td>
+					<td>Zone désactivée, non transmise au serveur. Aucune
+						interaction n'est possible avec la zone (pas de focus, pas de
+						copie, etc). Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>form</code></td>
+					<td><code>id</code> du formulaire associé si la zone n'est pas
+						un élément <code>form</code> ou concerne un autre formulaire que
+						celui dans lequel elle est imbriquée.</td>
+				</tr>
+				<tr>
+					<td><code>list</code></td>
+					<td><code>id</code> de la liste de suggestions associée à la
+						zone.</td>
+				</tr>
+				<tr>
+					<td><code>name</code></td>
+					<td>Nom de la zone.</td>
+				</tr>
+				<tr>
+					<td><code>readonly</code></td>
+					<td>Zone en lecture seule, non transmise au serveur. La zone
+						peut avoir le focus et le contenu peut être copié. Attribut
+						booléen.</td>
+				</tr>
+				<tr>
+					<td><code>value</code></td>
+					<td>Valeur initiale de la zone et valeur transmise au serveur
+						après saisie. Format hexadécimal : # suivi de 6 caractères
+						alphanumériques entre 0 et 9, A et F.</td>
+				</tr>
+			</table>
+			
+			<p>Il est possible de définir et de restreindre la liste des couleurs à choisir en associant un élément 
+			<a onclick="top.FP.Voir.showPageTech('elements', 'datalist')">datalist</a> à l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>. Toutefois, l'utilisateur 
+					a toujours accès avec un bouton au sélecteur complet. Tous les navigateurs n'implémentent pas 
+					cette liaison avec un élément 
+			<a onclick="top.FP.Voir.showPageTech('elements', 'datalist')">datalist</a>.</p>
+					
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : choix réduit de couleurs
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Zone de saisie couleur&lt;/h3&gt;
+		
+		&lt;form method="POST" action="dossier/reception.php"&gt;
+			&lt;label for="txtCouleur"&gt;Couleur préférée&lt;/label&gt;
+			
+			&lt;input type="color" name="txtCouleur"
+				   id="txtCouleur" list="lstCouleurs"&gt;
+			&lt;datalist id="lstCouleurs"&gt;
+				&lt;option&gt;#FF0000&lt;/option&gt;
+				&lt;option&gt;#00FF00&lt;/option&gt;
+				&lt;option&gt;#0000FF&lt;/option&gt;
+				&lt;option&gt;#FFFF00&lt;/option&gt;
+			&lt;/datalist&gt;
+			&lt;p&gt;
+				&lt;input type="submit" value="Envoi" name="btn"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>					
+		</section>
+
+	</div>
+	<footer></footer>
+
+	<script>
+[].forEach.call(
+				document.querySelectorAll('div[id^="input-type-"]'),
+				function(DIV) {
+					if (!has(DIV.id)) {
+						DIV.innerHTML = '<div class="fp-no-support" style="float: left; margin-top: 3px;"></div>'
+								+ '&nbsp;Cette zone n\'est pas supportée par le navigateur que vous utilisez.';
+					}
+				});
+	</script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Filtre les &eacute;l&eacute;ments d'un tableau
+	gr&acirc;ce &agrave; une fonction utilisateur</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.array-fill.html">array_fill</a>
+		</div>
+		<div class="next">
+			<a href="function.array-flip.html">array_flip</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.array-filter" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">array_filter</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.0.6, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">array_filter</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Filtre les éléments d&#039;un tableau
+					grâce à une fonction utilisateur</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.array-filter-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>array_filter</strong></span>
+				( <span class="methodparam"><span class="type">array</span> <code
+						class="parameter">$input</code></span> [, <span class="methodparam"><span
+					class="type"><a href="language.types.callable.html"
+						class="type callable">callable</a></span> <code class="parameter">$callback</code><span
+					class="initializer"> = &quot;&quot;</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				Évalue chaque valeur du tableau <em><code class="parameter">input</code></em>
+				en les passant à la fonction utilisateur. Si la fonction utilisateur
+				retourne <strong><code>TRUE</code></strong>, la valeur courante du
+				tableau <em><code class="parameter">input</code></em> est retournée
+				dans le tableau résultant. Les clés du tableau sont préservées.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.array-filter-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">input</code></em></span>
+				<dd>
+
+					<p class="para">Le tableau à évaluer</p>
+				</dd>
+
+				</dt>
+
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">callback</code></em></span>
+				<dd>
+
+					<p class="para">La fonction utilisateur à utiliser</p>
+					<p class="para">
+						Si aucune fonction utilisateur n&#039;est fournie, toutes les
+						entrées du tableau <em><code class="parameter">input</code></em>
+						valant <strong><code>FALSE</code></strong> (voir la <a
+							href="language.types.boolean.html#language.types.boolean.casting"
+							class="link">conversion en booléen</a>) seront effacées.
+					</p>
+				</dd>
+
+				</dt>
+
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.array-filter-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Retourne le tableau filtré.</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.array-filter-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4601">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>array_filter()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">odd</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$var</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;retourne&nbsp;lorsque&nbsp;l'entrée&nbsp;est&nbsp;impaire<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">return(</span><span
+								style="color: #0000BB">$var&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">);<br />}<br />
+								<br />function&nbsp;
+							</span><span style="color: #0000BB">even</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$var</span><span
+								style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;retourne&nbsp;lorsque&nbsp;l'entrée&nbsp;est&nbsp;paire<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">return(!(</span><span
+								style="color: #0000BB">$var&nbsp;</span><span
+								style="color: #007700">&amp;&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">));<br />}<br />
+								<br /></span><span style="color: #0000BB">$array1&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">"a"</span><span style="color: #007700">=&gt;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"b"</span><span style="color: #007700">=&gt;</span><span
+								style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"c"</span><span style="color: #007700">=&gt;</span><span
+								style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"d"</span><span style="color: #007700">=&gt;</span><span
+								style="color: #0000BB">4</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"e"</span><span style="color: #007700">=&gt;</span><span
+								style="color: #0000BB">5</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$array2&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #0000BB">6</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">7</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">8</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">9</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">10</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">11</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">12</span><span style="color: #007700">);<br />
+								<br />echo&nbsp;
+							</span><span style="color: #DD0000">"Ancien&nbsp;:\n"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">array_filter</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$array1</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"odd"</span><span style="color: #007700">));<br />echo&nbsp;
+							</span><span style="color: #DD0000">"Nouveau&nbsp;:\n"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">array_filter</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$array2</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"even"</span><span style="color: #007700">));<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Ancien :
+Array
+(
+    [a] =&gt; 1
+    [c] =&gt; 3
+    [e] =&gt; 5
+)
+Nouveau :
+Array
+(
+    [0] =&gt; 6
+    [2] =&gt; 8
+    [4] =&gt; 10
+    [6] =&gt; 12
+)
+</pre>
+					</div>
+				</div>
+			</div>
+			<div class="example" id="example-4602">
+				<p>
+					<strong>Exemple #2 Exemple avec <span class="function"><strong>array_filter()</strong></span>
+						sans fonction utilisateur
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br />$entry&nbsp;
+							</span><span style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">0&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">'foo'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">1&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #0000BB">false</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">2&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;-</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">3&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #0000BB">null</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">4&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">''<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">);<br />
+								<br /></span><span style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">array_filter</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$entry</span><span
+								style="color: #007700">));<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Array
+(
+    [0] =&gt; foo
+    [2] =&gt; -1
+)
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.array-filter-notes">
+			<h3 class="title">Notes</h3>
+			<div class="caution">
+				<strong class="caution">Attention</strong>
+				<p class="para">Si le tableau est modifié depuis la fonction
+					utilisateur (e.g. des éléments sont ajoutés, effacés ou
+					réinitialisés), le comportement de cette fonction est indéfini.</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.array-filter-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.array-map.html" class="function" rel="rdfs-seeAlso">array_map()</a>
+						- Applique une fonction sur les &eacute;l&eacute;ments d'un
+						tableau</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-reduce.html" class="function"
+						rel="rdfs-seeAlso">array_reduce()</a> - R&eacute;duit
+						it&eacute;rativement un tableau</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-walk.html" class="function"
+						rel="rdfs-seeAlso">array_walk()</a> - Ex&eacute;cute une fonction
+						sur chacun des &eacute;l&eacute;ments d'un tableau</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.array-fill.html">array_fill</a>
+		</div>
+		<div class="next">
+			<a href="function.array-flip.html">array_flip</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

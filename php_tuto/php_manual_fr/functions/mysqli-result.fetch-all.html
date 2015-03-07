@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Lit toutes les lignes de r&eacute;sultats dans un tableau</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="mysqli-result.data-seek.html">mysqli_result::data_seek</a></div>
+ <div class="next"><a href="mysqli-result.fetch-array.html">mysqli_result::fetch_array</a></div>
+ <div class="up"><a href="class.mysqli-result.html">mysqli_result</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="mysqli-result.fetch-all" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysqli_result::fetch_all</h1>
+  <h1 class="refname">mysqli_fetch_all</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.3.0)</p><p class="refpurpose"><span class="refname">mysqli_result::fetch_all</span> -- <span class="refname">mysqli_fetch_all</span> <span class="mdash">&mdash;</span> <span class="dc-title">Lit toutes les lignes de résultats dans un tableau</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-mysqli-result.fetch-all-description">
+  <h3 class="title">Description</h3>
+  <p class="para">Style orienté objet</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><strong>mysqli_result::fetch_all</strong></span>
+    ([ <span class="methodparam"><span class="type">int</span> <code class="parameter">$resulttype</code><span class="initializer"> = MYSQLI_NUM</span></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">Style procédural</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <span class="methodname"><strong>mysqli_fetch_all</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="class.mysqli-result.html" class="type mysqli_result">mysqli_result</a></span> <code class="parameter">$result</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$resulttype</code><span class="initializer"> = MYSQLI_NUM</span></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+    <span class="function"><strong>mysqli_fetch_all()</strong></span> lit tous les résultats
+   et retourne le résultat sous forme d&#039;un tableau associatif,
+   numérique, ou les deux.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-mysqli-result.fetch-all-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><em><code class="parameter">
+result</code></em></span><dd>
+<p class="para">Style procédural uniquement : Un
+identifiant de jeu de résultats retourné par la fonction  <span class="function"><a href="mysqli.query.html" class="function">mysqli_query()</a></span>,
+ <span class="function"><a href="mysqli.store-result.html" class="function">mysqli_store_result()</a></span> ou  <span class="function"><a href="mysqli.use-result.html" class="function">mysqli_use_result()</a></span>.
+</p></dd>
+</dt>
+
+    <dt>
+
+     <span class="term"><em><code class="parameter">resulttype</code></em></span>
+     <dd>
+
+      <p class="para">
+       Ce paramètre optionnel est une constante, qui indique le type de
+       tableau qui doit être produit à partir du résultat. Les valeurs
+       possibles sont les constantes <strong><code>MYSQLI_ASSOC</code></strong>,
+       <strong><code>MYSQLI_NUM</code></strong>, ou <strong><code>MYSQLI_BOTH</code></strong>.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-mysqli-result.fetch-all-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne un tableau associatif ou numérique contenant
+   les lignes de résultat.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 mysqlnd" id="refsect1-mysqli-result.fetch-all-mysqlnd">
+  <h3 class="title">Driver MySQL Natif uniquement</h3>
+  <p class="para">
+   Disponible uniquement avec <a href="book.mysqlnd.html" class="link">mysqlnd</a>.
+  </p>
+  <p class="para">
+   Vu que la fonction  <span class="function"><strong>mysqli_fetch_all()</strong></span> retourne toutes
+   les lignes dans un tableau en une seule fois, elle peut consommer plus
+   de mémoire que des fonctions comme  <span class="function"><a href="mysqli-result.fetch-array.html" class="function">mysqli_fetch_array()</a></span>,
+   qui ne font que récupérer une ligne à la fois depuis le jeu de résultats.
+   Par la suite, si vous devez parcourir le jeu de résultats, vous devez
+   construire une boucle qui aura un impact sur les performances. C&#039;est pour
+   cette raison que la fonction  <span class="function"><strong>mysqli_fetch_all()</strong></span> ne doit
+   être utilisée que dans ce genre de situation où le résultat récupéré doit
+   être envoyé vers une autre interface pour être analysé.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-mysqli-result.fetch-all-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"> <span class="function"><a href="mysqli-result.fetch-array.html" class="function" rel="rdfs-seeAlso">mysqli_fetch_array()</a> - Retourne une ligne de r&eacute;sultat sous la forme d'un tableau associatif, d'un tableau index&eacute;, ou les deux</span></li>
+    <li class="member"> <span class="function"><a href="mysqli.query.html" class="function" rel="rdfs-seeAlso">mysqli_query()</a> - Ex&eacute;cute une requ&ecirc;te sur la base de donn&eacute;es</span></li>
+   </ul>
+  </p>
+ </div>
+
+ 
+</div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="mysqli-result.data-seek.html">mysqli_result::data_seek</a></div>
+ <div class="next"><a href="mysqli-result.fetch-array.html">mysqli_result::fetch_array</a></div>
+ <div class="up"><a href="class.mysqli-result.html">mysqli_result</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

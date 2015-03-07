@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Couleurs</title>
+
+<link rel="stylesheet" href="tech.css">
+
+<style>
+/*==================================================
+	BLOCS POUR TEST RGB		
+==================================================*/
+.bcTest {
+	text-align: center;
+	visibility: hidden;
+	margin: 0 auto;
+	border: 1px solid #aaa;
+	border-radius: 10px;
+}
+
+.bcTest input[type="range"] {
+	margin: -7px auto 0;
+	width: 380px;
+}
+
+.bcTest label {
+	text-align: center;
+	width: 200px;
+	display: block;
+	margin: 0.3em auto 0 auto;
+	font-size: 13px;
+}
+
+.bcTest-couleur {
+	border: 1px solid #CCCCCC;
+	border-radius: 2px 2px 8px 8px;
+	display: inline-block;
+	height: 20px;
+	width: 380px;
+	/* fond en dégradé ou couleur généré par JavaScript */
+}
+
+.val-min-max {
+	display: inline-block;
+	width: 20px;
+	font-size: 10px;
+}
+
+.bcTest-resultat {
+	font-size: 16px;
+	padding: 1em 0;
+}
+
+/*==================================================
+	Autres		
+==================================================*/
+.texte-noir {
+	color: #000;
+}
+
+.texte-blanc {
+	color: #fff;
+}
+
+.ulMotCle {
+	overflow: auto;
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+}
+
+.ulMotCle li {
+	float: left;
+	font-size: 10px;
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	min-width: 94px;
+	text-align: center;
+}
+
+.ulSysteme {
+	overflow: auto;
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+}
+
+.ulSysteme li {
+	float: left;
+	font-size: 10px;
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	width: 94px;
+	text-align: center;
+}
+</style>
+
+<!-- fichier couleur.js lié en fin de code -->
+	
+<!--  Polyfill pour gestion type=interval dans firefox -->
+<script src="../_local/polyfill/html5slider.js"></script>
+
+<script>
+	if (!top.FP) {
+		location.replace('../index.html');
+	}
+</script>
+</head>
+<body>
+	<div id="PAGE-tech">
+		<h2>Les couleurs</h2>
+
+		<p class="fp-bot0">Une couleur peut être définie de nombreuses
+			façons différentes&nbsp;:</p>
+		<ul>
+			<li><a href="#hexa">notation hexadécimale</a></li>
+			<li><a href="#rgb">fonction <code>rgb()</code></a></li>
+			<li><a href="#rgba">fonction <code>rgba()</code></a></li>
+			<li><a href="#hsl">fonction <code>hsl()</code></a></li>
+			<li><a href="#hsla">fonction <code>hsla()</code></a></li>
+			<li><a href="#mot_cle">mot clé</a>,</li>
+			<li><a href="#systeme">couleur système</a></li>
+			<li>propriété <a
+				onclick="top.FP.Voir.showPageTech('css_proprietes', 'opacity')">opacity</a>
+			<li>valeur <code>transparent</code></li>
+			<li>valeur <code>currentColor</code></li>
+		</ul>
+
+		<a id="hexa"></a>
+		<h3>Notation hexadécimale</h3>
+		<section>
+			<figure>
+				<img src="../cssimg/rgb_hexa_v2.png" width="285" height="99">
+				<figcaption>notation hexadécimale</figcaption>
+			</figure>
+
+<!-- 
+			<pre data-code="CSS">
+p { color: #2B1705;	}  /* couleur du texte gris brun */
+h2 { border-color: #006400; }  /* bordures vertes */
+body { background-color: #FFFAB2; }  /* fond jaune claire */</pre>
+-->
+			<p>
+				La notation hexadécimale est basée sur le <strong>modèle
+					colorimétrique RGB</strong> (Red - Green - Blue). Chacune des couleurs est
+				réprésentée par une valeur de 0 à 255 exprimée en hexadécimal (00 à
+				FF). La valeur de la couleur ainsi obtenue doit être précédée par le
+				signe #.
+			</p>
+
+			<figure>
+				<img src="../cssimg/rvb.jpg" width="400" height="246">
+				<figcaption>modèle RVB</figcaption>
+			</figure>
+
+			<div class="TEST-widget">
+				<p>Tester la notation héxadécimale</p>
+				<div id="bcHEXTest" class="bcTest">
+					<div id="bcHEX1"></div>
+					<div id="bcHEX2"></div>
+					<div id="bcHEX3"></div>
+					<div id="bcHEX" class="bcTest-resultat"></div>
+				</div>
+			</div>
+		</section>
+
+
+			<p style="margin-top: 2em">
+				Quand les valeurs du rouge, du bleu et du vert sont toutes les 3
+				composées de doublons, on peut utiliser un raccourci. Par exemple <code>#FFCC00</code>
+				peut être raccourci en <code>#FC0</code>, <code>#000000</code> en <code>#000</code>,
+				<code>#EE5588</code> en <code>#E58</code>, etc.
+			</p>
+			
+		<a id="rgb"></a>
+		<h3>Fonction rgb()</h3>
+		<section>
+			<figure>
+				<img src="../cssimg/rgb_fonction_1_v2.png" width="336" height="99">
+				<figcaption>fonction rgb() avec valeurs entières</figcaption>
+			</figure>
+			<figure>
+				<img src="../cssimg/rgb_fonction_2_v2.png" width="428" height="99">
+				<figcaption>fonction rgb() avec valeurs en pourcentage</figcaption>
+			</figure>
+
+<!-- 
+			<pre data-code="CSS">
+p { color: rgb(25%, 18%, 2%); }  /* couleur du texte gris brun */
+h2 { border-color: rgb(0, 100, 0); }  /* bordures vertes */
+body { background-color: rgb(255,250,78); }  /* fond jaune claire */</pre>
+-->
+
+			<p>
+				La fonction <code>rbg()</code> est basée sur le <strong>modèle
+					colorimétrique RGB</strong> (Red - Green - Blue).
+			</p>
+
+			<p>La fonction accepte 3 paramètres définissant respectivement la
+				valeur du rouge, du vert et du bleu. Les valeurs peuvent être
+				exprimées sous la forme d'un nombre entier de 0 à 255, ou sous la
+				forme d'un pourcentage de 0 à 100. Les 3 paramètres doivent être du
+				même type (ie on ne peut pas mélanger des entiers et des
+				pourcentages).</p>
+
+			<div class="TEST-widget">
+				<p>Tester la function rgb()</p>
+				<div id="bcRGBTest" class="bcTest">
+					<div id="bcRGB1"></div>
+					<div id="bcRGB2"></div>
+					<div id="bcRGB3"></div>
+					<div id="bcRGB" class="bcTest-resultat"></div>
+				</div>
+			</div>
+
+		</section>
+
+		<a id="rgba"></a>
+		<h3>Fonction rgba()</h3>
+		<section>
+			<figure>
+				<img src="../cssimg/rgba_1_v2.png" width="391" height="99">
+				<figcaption>fonction rgba() avec valeurs entières</figcaption>
+			</figure>
+			<figure>
+				<img src="../cssimg/rgba_2_v2.png" width="438" height="91">
+				<figcaption>fonction rgba() avec valeurs en pourcentage</figcaption>
+			</figure>
+
+<!-- 
+			<pre data-code="CSS">
+p { color: rgba(25%, 18%, 2%, 0.5); }
+h2 { border-color: rgba(0, 100, 0, 0.2); } 
+body { background-color: rgba(255, 250, 78, 0.8); }</pre>
+-->
+
+			<p>
+				La fonction <code>rbga()</code> est basée sur le <strong>modèle
+					colorimétrique RGB</strong> (Red - Green - Blue) auquel on a ajouté la
+				gestion de la transparence de la couleur.
+			</p>
+
+			<p>La transparence est définie par le quatriéme paramètre de la
+				function. La valeur peut être une valeur décimale de 0 (complétement
+				transparent) à 1 (complétement opaque) ou un pourcentage de 0 à 100.</p>
+
+			<div class="TEST-widget">
+				<p>Tester la fonction rgba()</p>
+				<div class="bcTest"
+					style="background: url(../cssimg/genetique_fond.jpg); visibility: visible">
+					<div id="bcRGBATest" class="bcTest" style="padding-bottom: 2em;">
+						<div id="bcRGBA1"></div>
+						<div id="bcRGBA2"></div>
+						<div id="bcRGBA3"></div>
+					</div>
+					<div id="bcRGBA4"></div>
+					<div id="bcRGBA" class="bcTest-resultat"></div>
+				</div>
+			</div>
+		</section>
+
+		<a id="hsl"></a>
+		<h3>Fonction hsl()</h3>
+		<section>
+			<figure>
+				<img src="../cssimg/hsl_v2.png" width="362" height="99">
+				<figcaption>fonction hsl()</figcaption>
+			</figure>
+
+<!-- 
+			<pre data-code="CSS">
+p { color: hsl(13, 15%, 20%); }  /* couleur du texte gris brun */
+h2 { border-color: hsl(103, 72%, 28%); }  /* bordures vertes */ 
+body { background-color: hsl(56, 95%, 90%); }  /* fond jaune claire */</pre>
+-->
+
+			<figure style="float: right; margin: 0 0 0.5em 1em; width: 260px">
+				<img src="../cssimg/color_wheel.jpg" width="250" height="239">
+				<figcaption>roue des couleurs</figcaption>
+			</figure>
+
+			<p>
+				Le <strong>modèle colorimétrique HSL</strong> (Hue, Saturation,
+				Lightness) est basé sur une <strong>teinte</strong> (hue) exprimée
+				en degré (de 0 à 360) dans le spectre des couleurs symbolisé sous la
+				forme d'un cercle ou d'une roue.
+			</p>
+			<p>
+				La <strong>saturation</strong> représente l'intensité et la pureté
+				de la couleur. Elle est exprimée en pourcentage : 0 = pas
+				d'intensité (gris), 100 = couleur pure.
+			</p>
+			<p>
+				La <strong>luminosité</strong> (lightness) est exprimée en
+				pourcentage : 0 = pas de lumière, 100 = lumière blanche.
+			</p>
+
+			<div class="TEST-widget">
+				<p>Tester la fonction hsl()</p>
+				<div id="bcHSLTest" class="bcTest">
+					<div id="bcHSL1"></div>
+					<div id="bcHSL2"></div>
+					<div id="bcHSL3"></div>
+					<div id="bcHSL" class="bcTest-resultat"></div>
+				</div>
+			</div>
+
+		</section>
+
+		<a id="hsla"></a>
+		<h3>Fonction hsla()</h3>
+		<section>
+			<figure>
+				<img src="../cssimg/hsla_v2.png" width="408" height="91">
+				<figcaption>fonction hsla()</figcaption>
+			</figure>
+
+<!-- 
+			<pre data-code="CSS">
+p { color: hsl(13, 15%, 20%, 0.5); }
+h2 { border-color: hsl(103, 72%, 28%, 0.8); }
+body { background-color: hsl(56, 95%, 90%, 0.2); }</pre>
+-->
+			<p>
+				La fonction <code>hsla()</code> est basée sur le <strong>modèle
+					colorimétrique HSL</strong> (Hue, Saturation, Lightness) auquel on a ajouté
+				la gestion de la transparence de la couleur.
+			</p>
+
+			<p>La transparence est définie par le quatriéme paramètre de la
+				function. La valeur peut être une valeur décimale de 0 (complétement
+				transparent) à 1 (complétement opaque) ou un pourcentage de 0 à 100.</p>
+
+			<div class="TEST-widget">
+				<p>Tester la fonction hsla()</p>
+				<div class="bcTest"
+					style="background: url(../cssimg/genetique_fond.jpg); visibility: visible">
+					<div id="bcHSLATest" class="bcTest" style="padding-bottom: 2em;">
+						<div id="bcHSLA1"></div>
+						<div id="bcHSLA2"></div>
+						<div id="bcHSLA3"></div>
+					</div>
+					<div id="bcHSLA4"></div>
+					<div id="bcHSLA" class="bcTest-resultat"></div>
+				</div>
+			</div>
+
+		</section>
+
+
+		<a id="mot_cle"></a>
+		<h3>Mots clés</h3>
+		<section>
+			<p>Les mots clés suivants peuvent être utilisés pour référencer
+				147 couleurs prédéfinies.</p>
+
+			<p class="fp-clear">
+				<strong>Noir, gris, blanc</strong>
+			</p>
+
+			<ul class="ulMotCle">
+				<li class="texte-blanc" style="background: black">black<br>#000000<br>0,0,0
+				</li>
+				<li class="texte-blanc" style="background: dimgray">dimgray<br>#696969<br>105,105,105
+				</li>
+				<li class="texte-blanc" style="background: dimgrey">dimgrey<br>#696969<br>105,105,105
+				</li>
+				<li class="texte-blanc" style="background: gray">gray<br>#808080<br>128,128,128
+				</li>
+				<li class="texte-blanc" style="background: grey">grey<br>#808080<br>128,128,128
+				</li>
+				<li class="texte-blanc" style="background: lightslategray">lightslategray<br>#778899<br>119,136,153
+				</li>
+				<li class="texte-blanc" style="background: lightslategrey">lightslategrey<br>#778899<br>119,136,153
+				</li>
+				<li class="texte-blanc" style="background: slategray">slategray<br>#708090<br>112,128,144
+				</li>
+				<li class="texte-blanc" style="background: slategrey">slategrey<br>#708090<br>112,128,144
+				</li>
+				<li style="background: darkgray">darkgray<br>#a9a9a9<br>169,169,169
+				</li>
+				<li style="background: darkgrey">darkgrey<br>#a9a9a9<br>169,169,169
+				</li>
+				<li style="background: gainsboro">gainsboro<br>#dcdcdc<br>220,220,220
+				</li>
+				<li style="background: ghostwhite">ghostwhite<br>#f8f8ff<br>248,248,255
+				</li>
+				<li style="background: lightgray">lightgray<br>#d3d3d3<br>211,211,211
+				</li>
+				<li style="background: lightgrey">lightgrey<br>#d3d3d3<br>211,211,211
+				</li>
+				<li style="background: silver">silver<br>#c0c0c0<br>192,192,192
+				</li>
+				<li style="background: snow">snow<br>#fffafa<br>255,250,250
+				</li>
+				<li style="background: white">white<br>#ffffff<br>255,255,255
+				</li>
+				<li style="background: whitesmoke">whitesmoke<br>#f5f5f5<br>245,245,245
+				</li>
+			</ul>
+
+			<p class="fp-clear">
+				<strong>Jaune, beige</strong>
+			</p>
+			<ul class="ulMotCle">
+				<li style="background: antiquewhite">antiquewhite<br>#faebd7<br>250,235,215
+				</li>
+				<li style="background: beige">beige<br>#f5f5dc<br>245,245,220
+				</li>
+				<li style="background: bisque">bisque<br>#ffe4c4<br>255,228,196
+				</li>
+				<li style="background: blanchedalmond">blanchedalmond<br>#ffebcd<br>255,235,205
+				</li>
+				<li style="background: burlywood">burlywood<br>#deb887<br>222,184,135
+				</li>
+				<li style="background: cornsilk">cornsilk<br>#fff8dc<br>255,248,220
+				</li>
+				<li style="background: darkgoldenrod">darkgoldenrod<br>#b8860b<br>184,134,11
+				</li>
+				<li style="background: gold">gold<br>#fffff0<br>255,255,240
+				</li>
+				<li style="background: goldenrod">goldenrod<br>#fffacd<br>255,250,205
+				</li>
+				<li style="background: lightyellow">lightyellow<br>#ffffe0<br>255,255,224
+				</li>
+				<li style="background: linen">linen<br>#faf0e6<br>250,240,230
+				</li>
+				<li style="background: moccasin">moccasin<br>#ffe4b5<br>255,228,181
+				</li>
+				<li style="background: navajowhite">navajowhite<br>#ffdead<br>255,222,173
+				</li>
+				<li style="background: oldlace">oldlace<br>#fdf5e6<br>253,245,230
+				</li>
+				<li style="background: palegoldenrod">palegoldenrod<br>#eee8aa<br>238,232,170
+				</li>
+				<li style="background: papayawhip">papayawhip<br>#ffefd5<br>255,239,213
+				</li>
+				<li style="background: peachpuff">peachpuff<br>#ffdab9<br>255,218,185
+				</li>
+				<li style="background: seashell">seashell<br>#fff5ee<br>255,245,238
+				</li>
+				<li style="background: tan">tan<br>#d2b48c<br>210,180,140
+				</li>
+				<li style="background: wheat">wheat<br>#f5deb3<br>245,222,179
+				</li>
+				<li style="background: yellow">yellow<br>#ffff00<br>255,255,0
+				</li>
+				<li style="background: lightgoldenrodyellow">lightgoldenrodyellow<br>#fafad2<br>250,250,210
+				</li>
+				<li style="background: floralwhite">floralwhite<br>#fffaf0<br>255,250,240
+				</li>
+			</ul>
+
+			<p class="fp-clear">
+				<strong>Rouge, orange, marron</strong>
+			</p>
+
+			<ul class="ulMotCle">
+				<li class="texte-blanc" style="background: crimson">crimson<br>#dc143c<br>220,20,60
+				</li>
+				<li class="texte-blanc" style="background: brown">brown<br>#a52a2a<br>165,42,42
+				</li>
+				<li class="texte-blanc" style="background: coral">coral<br>#ff7f50<br>255,127,80
+				</li>
+				<li class="texte-blanc" style="background: chocolate">chocolate<br>#d2691e<br>210,105,30
+				</li>
+				<li class="texte-blanc" style="background: darkorange">darkorange<br>#ff8c00<br>255,140,0
+				</li>
+				<li class="texte-blanc" style="background: darkred">darkred<br>#8b0000<br>139,0,0
+				</li>
+				<li style="background: darksalmon">darksalmon<br>#e9967a<br>233,150,122
+				</li>
+				<li class="texte-blanc" style="background: firebrick">firebrick<br>#b22222<br>178,34,34
+				</li>
+				<li class="texte-blanc" style="background: indianred">indianred<br>#cd5c5c<br>205,92,92
+				</li>
+				<li style="background: lightcoral">lightcoral<br>#f08080<br>240,128,128
+				</li>
+				<li style="background: lightsalmon">lightsalmon<br>#ffa07a<br>255,160,122
+				</li>
+				<li class="texte-blanc" style="background: maroon">maroon<br>#800000<br>128,0,0
+				</li>
+				<li style="background: orange">orange<br>#ffa500<br>255,165,0
+				</li>
+				<li class="texte-blanc" style="background: orangered">orangered<br>#ff4500<br>255,69,0
+				</li>
+				<li class="texte-blanc" style="background: peru">peru<br>#cd853f<br>205,133,63
+				</li>
+				<li class="texte-blanc" style="background: red">red<br>#ff0000<br>255,0,0
+				</li>
+				<li style="background: rosybrown">rosybrown<br>#bc8f8f<br>188,143,143
+				</li>
+				<li class="texte-blanc" style="background: saddlebrown">saddlebrown<br>#8b4513<br>139,69,19
+				</li>
+				<li style="background: salmon">salmon<br>#fa8072<br>250,128,114
+				</li>
+				<li style="background: sandybrown">sandybrown<br>#f4a460<br>244,164,96
+				</li>
+				<li class="texte-blanc" style="background: sienna">sienna<br>#a0522d<br>160,82,45
+				</li>
+				<li style="background: tomato">tomato<br>#ff6347<br>255,99,71
+				</li>
+			</ul>
+
+			<p class="fp-clear">
+				<strong>Violet, rose, pourpre</strong>
+			</p>
+
+			<ul class="ulMotCle">
+				<li class="texte-blanc" style="background: blueviolet">blueviolet<br>#8a2be2<br>138,43,226
+				</li>
+				<li class="texte-blanc" style="background: darkmagenta">darkmagenta<br>#8b008b<br>139,0,139
+				</li>
+				<li class="texte-blanc" style="background: darkorchid">darkorchid<br>#9932cc<br>153,50,204
+				</li>
+				<li class="texte-blanc" style="background: darkslateblue">darkslateblue<br>#483d8b<br>72,61,139
+				</li>
+				<li class="texte-blanc" style="background: darkviolet">darkviolet<br>#9400d3<br>148,0,211
+				</li>
+				<li class="texte-blanc" style="background: deeppink">deeppink<br>#ff1493<br>255,20,147
+				</li>
+				<li style="background: fuchsia">fuchsia<br>#ff00ff<br>255,0,255
+				</li>
+				<li style="background: hotpink">hotpink<br>#ff69b4<br>255,105,180
+				</li>
+				<li class="texte-blanc" style="background: indigo">indigo<br>#4b0082<br>75,0,130
+				</li>
+				<li style="background: lightpink">lightpink<br>#ffb6c1<br>255,182,193
+				</li>
+				<li style="background: magenta">magenta<br>#ff00ff<br>255,0,255
+				</li>
+				<li class="texte-blanc" style="background: mediumorchid">mediumorchid<br>#ba55d3<br>186,85,211
+				</li>
+				<li class="texte-blanc" style="background: mediumpurple">mediumpurple<br>#9370db<br>147,112,219
+				</li>
+				<li class="texte-blanc" style="background: mediumvioletred">mediumvioletred<br>#c71585<br>199,21,133
+				</li>
+				<li style="background: mistyrose">mistyrose<br>#ffe4e1<br>255,228,225
+				</li>
+				<li style="background: orchid">orchid<br>#da70d6<br>218,112,214
+				</li>
+				<li style="background: palevioletred">palevioletred<br>#db7093<br>219,112,147
+				</li>
+				<li style="background: pink">pink<br>#ffc0cb<br>255,192,203
+				</li>
+				<li style="background: plum">plum<br>#dda0dd<br>221,160,221
+				</li>
+				<li class="texte-blanc" style="background: purple">purple<br>#800080<br>128,0,128
+				</li>
+				<li style="background: thistle">thistle<br>#d8bfd8<br>216,191,216
+				</li>
+				<li style="background: violet">violet<br>#ee82ee<br>238,130,238
+				</li>
+			</ul>
+
+			<p class="fp-clear">
+				<strong>Bleu, cyan, turquoise</strong>
+			</p>
+
+			<ul class="ulMotCle">
+				<li style="background: aliceblue">aliceblue<br>#f0f8ff<br>240,248,255
+				</li>
+				<li style="background: aqua">aqua<br>#00ffff<br>0,255,255
+				</li>
+				<li style="background: aquamarine">aquamarine<br>#7fffd4<br>127,255,212
+				</li>
+				<li style="background: azure">azure<br>#f0ffff<br>240,255,255
+				</li>
+				<li class="texte-blanc" style="background: blue">blue<br>#0000ff<br>0,0,255
+				</li>
+				<li class="texte-blanc" style="background: cadetblue">cadetblue<br>#5f9ea0<br>95,158,160
+				</li>
+				<li class="texte-blanc" style="background: cornflowerblue">cornflowerblue<br>#6495ed<br>100,149,237
+				</li>
+				<li style="background: cyan">cyan<br>#00ffff<br>0,255,255
+				</li>
+				<li class="texte-blanc" style="background: darkblue">darkblue<br>#00008b<br>0,0,139
+				</li>
+				<li class="texte-blanc" style="background: darkcyan">darkcyan<br>#008b8b<br>0,139,139
+				</li>
+				<li style="background: darkturquoise">darkturquoise<br>#00ced1<br>0,206,209
+				</li>
+				<li class="texte-blanc" style="background: deepskyblue">deepskyblue<br>#00bfff<br>0,191,255
+				</li>
+				<li class="texte-blanc" style="background: dodgerblue">dodgerblue<br>#1e90ff<br>30,144,255
+				</li>
+				<li style="background: lavender">lavender<br>#e6e6fa<br>230,230,250
+				</li>
+				<li style="background: lavenderblush">lavenderblush<br>#fff0f5<br>255,240,245
+				</li>
+				<li style="background: lightblue">lightblue<br>#add8e6<br>173,216,230
+				</li>
+				<li style="background: lightcyan">lightcyan<br>#e0ffff<br>224,255,255
+				</li>
+				<li class="texte-blanc" style="background: lightseagreen">lightseagreen<br>#20b2aa<br>32,178,170
+				</li>
+				<li style="background: lightskyblue">lightskyblue<br>#87cefa<br>135,206,250
+				</li>
+				<li style="background: lightsteelblue">lightsteelblue<br>#b0c4de<br>176,196,222
+				</li>
+				<li style="background: mediumaquamarine">mediumaquamarine<br>#66cdaa<br>102,205,170
+				</li>
+				<li class="texte-blanc" style="background: mediumblue">mediumblue<br>#0000cd<br>0,0,205
+				</li>
+				<li class="texte-blanc" style="background: mediumslateblue">mediumslateblue<br>#7b68ee<br>123,104,238
+				</li>
+				<li style="background: mediumturquoise">mediumturquoise<br>#48d1cc<br>72,209,204
+				</li>
+				<li class="texte-blanc" style="background: midnightblue">midnightblue<br>#191970<br>25,25,112
+				</li>
+				<li class="texte-blanc" style="background: navy">navy<br>#000080<br>0,0,128
+				</li>
+				<li style="background: paleturquoise">paleturquoise<br>#afeeee<br>175,238,238
+				</li>
+				<li style="background: powderblue">powderblue<br>#b0e0e6<br>176,224,230
+				</li>
+				<li class="texte-blanc" style="background: royalblue">royalblue<br>#4169e1<br>65,105,225
+				</li>
+				<li style="background: skyblue">skyblue<br>#87ceeb<br>135,206,235
+				</li>
+				<li class="texte-blanc" style="background: slateblue">slateblue<br>#6a5acd<br>106,90,205
+				</li>
+				<li class="texte-blanc" style="background: steelblue">steelblue<br>#4682b4<br>70,130,180
+				</li>
+				<li class="texte-blanc" style="background: teal">teal<br>#008080<br>0,128,128
+				</li>
+				<li style="background: turquoise">turquoise<br>#40e0d0<br>64,224,208
+				</li>
+			</ul>
+
+			<p class="fp-clear">
+				<strong>Vert</strong>
+			</p>
+
+			<ul class="ulMotCle">
+				<li style="background: chartreuse">chartreuse<br>#7fff00<br>127,255,0
+				</li>
+				<li class="texte-blanc" style="background: darkgreen">darkgreen<br>#006400<br>0,100,0
+				</li>
+				<li style="background: darkkhaki">darkkhaki<br>#bdb76b<br>189,183,107
+				</li>
+				<li class="texte-blanc" style="background: darkolivegreen">darkolivegreen<br>#556b2f<br>85,107,47
+				</li>
+				<li class="texte-blanc" style="background: darkseagreen">darkseagreen<br>#8fbc8f<br>143,188,143
+				</li>
+				<li class="texte-blanc" style="background: forestgreen">forestgreen<br>#228b22<br>34,139,34
+				</li>
+				<li class="texte-blanc" style="background: green">green<br>#008000<br>0,128,0
+				</li>
+				<li style="background: greenyellow">greenyellow<br>#adff2f<br>173,255,47
+				</li>
+				<li style="background: honeydew">honeydew<br>#f0fff0<br>240,255,240
+				</li>
+				<li style="background: khaki">khaki<br>#f0e68c<br>240,230,140
+				</li>
+				<li style="background: lawngreen">lawngreen<br>#7cfc00<br>124,252,0
+				</li>
+				<li style="background: lightgreen">lightgreen<br>#90ee90<br>144,238,144
+				</li>
+				<li style="background: lime">lime<br>#00ff00<br>0,255,0
+				</li>
+				<li style="background: limegreen">limegreen<br>#32cd32<br>50,205,50
+				</li>
+				<li class="texte-blanc" style="background: olive">olive<br>#808000<br>128,128,0
+				</li>
+				<li class="texte-blanc" style="background: olivedrab">olivedrab<br>#6b8e23<br>107,142,35
+				</li>
+				<li style="background: palegreen">palegreen<br>#98fb98<br>152,251,152
+				</li>
+				<li class="texte-blanc" style="background: seagreen">seagreen<br>#2e8b57<br>46,139,87
+				</li>
+				<li style="background: springgreen">springgreen<br>#00ff7f<br>0,255,127
+				</li>
+				<li style="background: yellowgreen">yellowgreen<br>#9acd32<br>154,205,50
+				</li>
+				<li class="texte-blanc" style="background: mediumseagreen">mediumseagreen<br>#3cb371<br>60,179,113
+				</li>
+				<li style="background: mediumspringgreen">mediumspringgreen<br>#00fa9a<br>0,250,154
+				</li>
+				<li class="texte-blanc" style="background: darkslategray">darkslategray<br>#2f4f4f<br>47,79,79
+				</li>
+				<li class="texte-blanc" style="background: darkslategrey">darkslategrey<br>#2f4f4f<br>47,79,79
+				</li>
+				<li style="background: mintcream">mintcream<br>#f5fffa<br>245,255,250
+				</li>
+			</ul>
+		</section>
+
+		<a id="systeme"></a>
+		<h3>Couleurs système</h3>
+		<section>
+			<p>Les mots clés suivants pouvaient être utilisés pour référencer
+				une couleur de l'interface du système d'exploitation dans lequel se
+				trouve le navigateur.</p>
+
+			<p>
+				<a href="http://dev.w3.org/csswg/css-color/#system-colors"
+					target="_blank">La dernière spécification du W3C</a> les a déprécié
+				et demande de ne plus les utiliser.
+			</p>
+
+			<ul class="ulMotCle">
+				<li style="background: ActiveBorder">&nbsp;<br>ActiveBorder<br>&nbsp;
+				</li>
+				<li style="background: ActiveCaption">&nbsp;<br>ActiveCaption<br>&nbsp;
+				</li>
+				<li style="background: AppWorkspace">&nbsp;<br>AppWorkspace<br>&nbsp;
+				</li>
+				<li style="background: Background" class="texte-blanc">&nbsp;<br>Background<br>&nbsp;
+				</li>
+				<li style="background: ButtonFace">&nbsp;<br>ButtonFace<br>&nbsp;
+				</li>
+				<li style="background: ButtonHighlight">&nbsp;<br>ButtonHighlight<br>&nbsp;
+				</li>
+				<li style="background: ButtonShadow">&nbsp;<br>ButtonShadow<br>&nbsp;
+				</li>
+				<li style="background: ButtonText" class="texte-blanc">&nbsp;<br>ButtonText<br>&nbsp;
+				</li>
+				<li style="background: CaptionText" class="texte-blanc">&nbsp;<br>CaptionText<br>&nbsp;
+				</li>
+				<li style="background: GrayText" class="texte-blanc">&nbsp;<br>GrayText<br>&nbsp;
+				</li>
+				<li style="background: Highlight">&nbsp;<br>Highlight<br>&nbsp;
+				</li>
+				<li style="background: HighlightText">&nbsp;<br>HighlightText<br>&nbsp;
+				</li>
+				<li style="background: InactiveBorder">&nbsp;<br>InactiveBorder<br>&nbsp;
+				</li>
+				<li style="background: InactiveCaption">&nbsp;<br>InactiveCaption<br>&nbsp;
+				</li>
+				<li style="background: InactiveCaptionText" class="texte-blanc">&nbsp;<br>InactiveCaptionText<br>&nbsp;
+				</li>
+				<li style="background: InfoBackground">&nbsp;<br>InfoBackground<br>&nbsp;
+				</li>
+				<li style="background: InfoText" class="texte-blanc">&nbsp;<br>InfoText<br>&nbsp;
+				</li>
+				<li style="background: Menu">&nbsp;<br>Menu<br>&nbsp;
+				</li>
+				<li style="background: MenuText" class="texte-blanc">&nbsp;<br>MenuText<br>&nbsp;
+				</li>
+				<li style="background: Scrollbar">&nbsp;<br>Scrollbar<br>&nbsp;
+				</li>
+				<li style="background: ThreeDDarkShadow">&nbsp;<br>ThreeDDarkShadow<br>&nbsp;
+				</li>
+				<li style="background: ThreeDFace">&nbsp;<br>ThreeDFace<br>&nbsp;
+				</li>
+				<li style="background: ThreeDHighlight">&nbsp;<br>ThreeDHighlight<br>&nbsp;
+				</li>
+				<li style="background: ThreeDLightShadow">&nbsp;<br>ThreeDLightShadow<br>&nbsp;
+				</li>
+				<li style="background: ThreeDShadow">&nbsp;<br>ThreeDShadow<br>&nbsp;
+				</li>
+				<li style="background: Window">&nbsp;<br>Window<br>&nbsp;
+				</li>
+				<li style="background: WindowFrame" class="texte-blanc">&nbsp;<br>WindowFrame<br>&nbsp;
+				</li>
+				<li style="background: WindowText" class="texte-blanc">&nbsp;<br>WindowText<br>&nbsp;
+				</li>
+			</ul>
+
+		</section>
+
+		<p>
+			<a href="http://dev.w3.org/csswg/css-color/" target="_blank">Spécifications
+				W3</a>
+		</p>
+
+
+	</div>
+
+	<script src="../tech/couleur.js"></script>
+</body>
+</html>

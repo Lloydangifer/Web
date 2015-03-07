@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Chargements de fichiers par m&eacute;thode POST</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="features.file-upload.html">Gestion des chargements de fichiers</a></div>
+ <div class="next"><a href="features.file-upload.errors.html">Explication sur les messages d'erreurs de chargement de fichiers</a></div>
+ <div class="up"><a href="features.file-upload.html">Gestion des chargements de fichiers</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="features.file-upload.post-method" class="sect1">
+  <h2 class="title">Chargements de fichiers par méthode POST </h2>
+  
+  <p class="simpara">
+   Cette fonctionnalité permet aux personnes de télécharger à la fois du texte
+   et des fichiers binaires. Avec les fonctions d&#039;identification et de
+   manipulation de fichiers de PHP, vous avez le contrôle total pour définir
+   qui a le droit de télécharger mais aussi ce qui sera fait du fichier une
+   fois qu&#039;il sera téléchargé.
+  </p>
+  <p class="simpara">
+   PHP est capable de recevoir des fichiers émis par
+   un navigateur conforme à la norme RFC-1867.
+  </p>
+  
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <strong>Notes de configuration</strong><br />
+   <p class="para">
+    Voir aussi les directives
+    <a href="ini.core.html#ini.file-uploads" class="link">file_uploads</a>,
+    <a href="ini.core.html#ini.upload-max-filesize" class="link">upload_max_filesize</a>,
+    <a href="ini.core.html#ini.upload-tmp-dir" class="link">upload_tmp_dir</a>,
+    <a href="ini.core.html#ini.post-max-size" class="link">post_max_size</a> et
+    <a href="info.configuration.html#ini.max-input-time" class="link">max_input_time</a> dans <var class="filename">php.ini</var>
+   </p>
+  </p></blockquote>
+  
+  <p class="para">
+   PHP supporte aussi le chargement par la méthode PUT comme dans le
+   navigateur <span class="productname">Netscape Composer</span>
+   et <span class="productname">Amaya</span> du W3C. Reportez-vous au chapitre sur le
+   <a href="features.file-upload.put-method.html" class="link">support de la
+    méthode PUT</a>.
+  </p>
+  
+  <p class="para">
+   <div class="example" id="example-356">
+    <p><strong>Exemple #1 Formulaire de chargement de fichier</strong></p>
+    <div class="example-contents"><p>
+     Un formulaire de téléchargement de fichiers peut être construit
+     en créant un formulaire spécifique comme ceci :
+    </p></div>
+    <div class="example-contents">
+<div class="htmlcode"><pre class="htmlcode">&lt;!-- Le type d&#039;encodage des données, enctype, DOIT être spécifié comme ce qui suit --&gt;
+&lt;form enctype=&quot;multipart/form-data&quot; action=&quot;_URL_&quot; method=&quot;post&quot;&gt;
+  &lt;!-- MAX_FILE_SIZE doit précéder le champ input de type file --&gt;
+  &lt;input type=&quot;hidden&quot; name=&quot;MAX_FILE_SIZE&quot; value=&quot;30000&quot; /&gt;
+  &lt;!-- Le nom de l&#039;élément input détermine le nom dans le tableau $_FILES --&gt;
+  Envoyez ce fichier : &lt;input name=&quot;userfile&quot; type=&quot;file&quot; /&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Envoyer le fichier&quot; /&gt;
+&lt;/form&gt;</pre>
+</div>
+    </div>
+
+    <div class="example-contents"><p>
+     <em>_URL_</em> dans l&#039;exemple précédent doit être remplacé et
+     pointé vers un fichier PHP.
+    </p></div>
+    <div class="example-contents"><p>
+     Le champ caché <em>MAX_FILE_SIZE</em> (mesuré en octets) doit
+     précéder le champ input de type file et sa valeur représente la taille
+     maximale acceptée du fichier par PHP.
+     Cet élément de formulaire doit toujours être utilisé car il permet
+     d&#039;informer l&#039;utilisateur que le transfert désiré est trop lourd
+     avant d&#039;atteindre la fin du téléchargement. Gardez à l&#039;esprit que
+     ce paramètre peut être &quot;trompé&quot; du côté du navigateur facilement, aussi
+     ne faîtes pas confiance à ce dernier, ne s&#039;agissant finalement que d&#039;une
+     fonctionnalité de convenance côté client. Le paramètre PHP (côté serveur)
+     à propos de la taille maximale d&#039;un fichier téléchargé,
+     ne peut, lui, être trompé.
+    </p></div>
+   </div>
+  </p>
+  
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Assurez-vous que votre formulaire de téléchargement de fichier contienne
+    <em>enctype=&quot;multipart/form-data&quot;</em>, sinon,
+    le fichier se sera pas téléchargé.
+   </p>
+  </p></blockquote>
+  
+  <p class="para">
+   La variable globale <var class="varname"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES</a></var></var> existe depuis
+   PHP 4.1.0 (utilisez <var class="varname"><var class="varname">$HTTP_POST_FILES</var></var> à la place
+   si vous utilisez une version plus ancienne).
+   Ces tableaux devraient contenir toutes les informations du
+   fichier téléchargé.
+  </p>
+  
+  <p class="para">
+   Le contenu du tableau <var class="varname"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES</a></var></var>
+   est détaillé dans notre exemple ci-dessous. Notez que l&#039;on suppose que le nom
+   de la variable du fichier téléchargé est <em class="emphasis">userfile</em>, tel que
+   défini dans le formulaire ci-dessus, mais peut être n&#039;importe quel nom.
+   <dl>
+
+    <dt>
+
+     <span class="term"><var class="varname"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES['userfile']['name']</a></var></var></span>
+     <dd>
+
+      <p class="para">
+       Le nom original du fichier, tel que sur la machine du client web.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><var class="varname"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES['userfile']['type']</a></var></var></span>
+     <dd>
+
+      <p class="para">
+       Le type MIME du fichier, si le navigateur a fourni cette information.
+       Par exemple, cela pourra être <em>&quot;image/gif&quot;</em>.
+       Ce type mime n&#039;est cependant pas vérifié du côté de PHP et, donc,
+       ne prend pas sa valeur pour se synchroniser.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><var class="varname"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES['userfile']['size']</a></var></var></span>
+     <dd>
+
+      <p class="para">
+       La taille, en octets, du fichier téléchargé.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><var class="varname"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES['userfile']['tmp_name']</a></var></var></span>
+     <dd>
+
+      <p class="para">
+       Le nom temporaire du fichier qui sera chargé sur la machine serveur.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><var class="varname"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES['userfile']['error']</a></var></var></span>
+     <dd>
+
+      <p class="para">
+       Le <a href="features.file-upload.errors.html" class="link">code d&#039;erreur</a>
+       associé au téléchargement de fichier.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+  <p class="para">
+   Le fichier téléchargé sera stocké temporairement dans le dossier
+   temporaire du système, à moins qu&#039;un autre dossier soit fourni avec
+   la directive <a href="ini.core.html#ini.upload-tmp-dir" class="link">upload_tmp_dir</a> du
+   <var class="filename">php.ini</var>. Le dossier par défaut du serveur peut être changé
+   dans l&#039;environnement via la variable <span class="envar">TMPDIR</span>.
+   Modifier la valeur de cette variable avec la fonction  <span class="function"><a href="function.putenv.html" class="function">putenv()</a></span>
+   dans un script PHP sera sans effet. Cette variable d&#039;environnement
+   peut aussi être utilisée pour s&#039;assurer que d&#039;autres opérations
+   fonctionnent aussi sur les fichiers téléchargés.
+   <div class="example" id="example-357">
+    <p><strong>Exemple #2 Validation de téléchargement de fichiers</strong></p>
+    <div class="example-contents"><p>
+     Voyez aussi les fonctions  <span class="function"><a href="function.is-uploaded-file.html" class="function">is_uploaded_file()</a></span> et
+      <span class="function"><a href="function.move-uploaded-file.html" class="function">move_uploaded_file()</a></span> pour plus d&#039;informations.
+     L&#039;exemple suivant va télécharger un fichier venant d&#039;un formulaire.
+    </p></div>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;Dans&nbsp;les&nbsp;versions&nbsp;de&nbsp;PHP&nbsp;antiéreures&nbsp;à&nbsp;4.1.0,&nbsp;la&nbsp;variable&nbsp;$HTTP_POST_FILES<br />//&nbsp;doit&nbsp;être&nbsp;utilisée&nbsp;à&nbsp;la&nbsp;place&nbsp;de&nbsp;la&nbsp;variable&nbsp;$_FILES.<br /><br /></span><span style="color: #0000BB">$uploaddir&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'/var/www/uploads/'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$uploadfile&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$uploaddir&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">basename</span><span style="color: #007700">(</span><span style="color: #0000BB">$_FILES</span><span style="color: #007700">[</span><span style="color: #DD0000">'userfile'</span><span style="color: #007700">][</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]);<br /><br />echo&nbsp;</span><span style="color: #DD0000">'&lt;pre&gt;'</span><span style="color: #007700">;<br />if&nbsp;(</span><span style="color: #0000BB">move_uploaded_file</span><span style="color: #007700">(</span><span style="color: #0000BB">$_FILES</span><span style="color: #007700">[</span><span style="color: #DD0000">'userfile'</span><span style="color: #007700">][</span><span style="color: #DD0000">'tmp_name'</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$uploadfile</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Le&nbsp;fichier&nbsp;est&nbsp;valide,&nbsp;et&nbsp;a&nbsp;été&nbsp;téléchargé<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;avec&nbsp;succès.&nbsp;Voici&nbsp;plus&nbsp;d'informations&nbsp;:\n"</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Attaque&nbsp;potentielle&nbsp;par&nbsp;téléchargement&nbsp;de&nbsp;fichiers.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Voici&nbsp;plus&nbsp;d'informations&nbsp;:\n"</span><span style="color: #007700">;<br />}<br /><br />echo&nbsp;</span><span style="color: #DD0000">'Voici&nbsp;quelques&nbsp;informations&nbsp;de&nbsp;débogage&nbsp;:'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">$_FILES</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #DD0000">'&lt;/pre&gt;'</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="simpara">
+   Le script PHP qui reçoit le fichier chargé doit pouvoir
+   gérer le fichier de manière appropriée. Vous
+   pouvez utiliser la variable <var class="varname"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES['userfile']['size']</a></var></var> pour recaler
+   tous les fichiers qui sont trop gros ou trop petits. Vous pouvez utiliser
+   la variable <var class="varname"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES['userfile']['type']</a></var></var> pour écarter
+   les fichiers qui n&#039;ont pas le bon type, mais l&#039;utiliser uniquement pour une série de
+   vérifications, car cette valeur est complètement sous le contrôle du client
+   et n&#039;est pas vérifiée du côté de PHP.
+   Depuis PHP 4.2.0, vous pouvez utiliser l&#039;information dans
+   <var class="varname"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES['userfile']['error']</a></var></var> et adapter votre politique
+   en fonction des <a href="features.file-upload.errors.html" class="link">codes d&#039;erreur</a>.
+   Quelle que soit votre politique, vous devriez soit effacer le fichier du
+   dossier temporaire, soit le déplacer.
+  </p>
+  <p class="simpara">
+   Si aucun fichier n&#039;est sélectionné dans le formulaire, PHP retournera
+   <em>0</em> dans <var class="varname"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES['userfile']['size']</a></var></var>
+   et rien du tout dans <var class="varname"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES['userfile']['tmp_name']</a></var></var>.
+  </p>
+  <p class="simpara">
+   Le fichier sera automatiquement effacé du dossier temporaire
+   à la fin du script, s&#039;il n&#039;a pas été déplacé ou renommé.
+  </p>
+  <div class="example" id="example-358">
+   <p><strong>Exemple #3 Envoi d&#039;un tableau de fichiers</strong></p>
+   <div class="example-contents"><p>
+    PHP supporte les <a href="faq.html.html#faq.html.arrays" class="link">tableaux en HTML</a>
+    ainsi qu&#039;avec les fichiers.
+   </p></div>
+   <div class="example-contents">
+<div class="htmlcode"><pre class="htmlcode">&lt;form action=&quot;&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
+&lt;p&gt;Images:
+&lt;input type=&quot;file&quot; name=&quot;pictures[]&quot; /&gt;
+&lt;input type=&quot;file&quot; name=&quot;pictures[]&quot; /&gt;
+&lt;input type=&quot;file&quot; name=&quot;pictures[]&quot; /&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Send&quot; /&gt;
+&lt;/p&gt;
+&lt;/form&gt;</pre>
+</div>
+   </div>
+
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">foreach&nbsp;(</span><span style="color: #0000BB">$_FILES</span><span style="color: #007700">[</span><span style="color: #DD0000">"pictures"</span><span style="color: #007700">][</span><span style="color: #DD0000">"error"</span><span style="color: #007700">]&nbsp;as&nbsp;</span><span style="color: #0000BB">$key&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$error</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$error&nbsp;</span><span style="color: #007700">==&nbsp;</span><span style="color: #0000BB">UPLOAD_ERR_OK</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$tmp_name&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$_FILES</span><span style="color: #007700">[</span><span style="color: #DD0000">"pictures"</span><span style="color: #007700">][</span><span style="color: #DD0000">"tmp_name"</span><span style="color: #007700">][</span><span style="color: #0000BB">$key</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$name&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$_FILES</span><span style="color: #007700">[</span><span style="color: #DD0000">"pictures"</span><span style="color: #007700">][</span><span style="color: #DD0000">"name"</span><span style="color: #007700">][</span><span style="color: #0000BB">$key</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">move_uploaded_file</span><span style="color: #007700">(</span><span style="color: #0000BB">$tmp_name</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"data/</span><span style="color: #0000BB">$name</span><span style="color: #DD0000">"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <p class="para">
+   La barre de progression de téléchargement peut être implémentée en utilisant <a href="session.upload-progress.html" class="link">la progression du chargement via les sessions</a>.
+  </p>
+ </div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="features.file-upload.html">Gestion des chargements de fichiers</a></div>
+ <div class="next"><a href="features.file-upload.errors.html">Explication sur les messages d'erreurs de chargement de fichiers</a></div>
+ <div class="up"><a href="features.file-upload.html">Gestion des chargements de fichiers</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

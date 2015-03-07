@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Ouvre la connexion &agrave; l'historique syst&egrave;me</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.long2ip.html">long2ip</a>
+		</div>
+		<div class="next">
+			<a href="function.pfsockopen.html">pfsockopen</a>
+		</div>
+		<div class="up">
+			<a href="ref.network.html">Fonctions r&eacute;seaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.openlog" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">openlog</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">openlog</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Ouvre la connexion à l&#039;historique
+					système</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.openlog-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>openlog</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$ident</code></span> , <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$option</code></span> , <span
+					class="methodparam"><span class="type">int</span> <code
+						class="parameter">$facility</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>openlog()</strong></span> ouvre la
+				connexion à l&#039;historique système.
+			</p>
+			<p class="para">
+				L&#039;utilisation de <span class="function"><strong>openlog()</strong></span>
+				est optionnelle. Cette fonction sera automatiquement appelée par la
+				fonction <span class="function"><a
+					href="function.syslog.html" class="function">syslog()</a></span> si
+				nécessaire, auquel cas <em><code class="parameter">ident</code></em>
+				vaudra par défaut <strong><code>FALSE</code></strong>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.openlog-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">ident</code></em></span>
+				<dd>
+
+					<p class="para">
+						La chaîne <em><code class="parameter">ident</code></em> sera
+						ajoutée à chaque message.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">option</code></em></span>
+				<dd>
+
+					<p class="para">
+						L&#039;argument <em><code class="parameter">option</code></em>
+						indique les options de journalisation utilisées pour générer le
+						message.
+					<table class="doctable table">
+						<caption>
+							<strong>Options pour la fonction <span class="function"><strong>openlog()</strong></span></strong>
+						</caption>
+
+						<thead>
+							<tr>
+								<th>Constante</th>
+								<th>Description</th>
+							</tr>
+
+						</thead>
+
+						<tbody class="tbody">
+							<tr>
+								<td><strong><code>LOG_CONS</code></strong></td>
+								<td>Si une erreur survient lors de l&#039;envoi des données
+									au gestionnaire d&#039;historique, écrire directement
+									l&#039;erreur sur la console.</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>LOG_NDELAY</code></strong></td>
+								<td>Ouvre immédiatement une connexion au gestionnaire
+									d&#039;historique.</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>LOG_ODELAY</code></strong></td>
+								<td>Retarde l&#039;ouverture de la connexion jusqu&#039;à
+									ce que le premier message soit enregistré (par défaut).</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>LOG_PERROR</code></strong></td>
+								<td>Envoie le message au gestionnaire standard.</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>LOG_PID</code></strong></td>
+								<td>Inclut le PID à chaque message.</td>
+							</tr>
+
+						</tbody>
+
+					</table>
+
+					Vous pouvez utiliser une ou plusieurs de ces options. Pour les
+					combiner, utiliser l&#039;opérateur <em>OR</em>. Par exemple, pour
+					ouvrir immédiatement la connexion, écrire sur la console et inclure
+					le PID de chaque message, utilisez : <em>LOG_CONS | LOG_NDELAY
+						| LOG_PID</em>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">facility</code></em></span>
+				<dd>
+
+					<p class="para">
+						L&#039;argument <em><code class="parameter">facility</code></em>
+						sert à indiquer quel programme enregistre ce message. Cela vous
+						permet de spécifier (sur la machine d&#039;historique) comment
+						traiter les messages venant de plusieurs serveurs.
+					<table class="doctable table">
+						<caption>
+							<strong>Paramètre <em><code class="parameter">facility</code></em>
+								d&#039; <span class="function"><strong>openlog()</strong></span></strong>
+						</caption>
+
+						<thead>
+							<tr>
+								<th>Constante</th>
+								<th>Description</th>
+							</tr>
+
+						</thead>
+
+						<tbody class="tbody">
+							<tr>
+								<td><strong><code>LOG_AUTH</code></strong></td>
+								<td>sécurité/messages d&#039;autorisation (utilisez <strong><code>LOG_AUTHPRIV</code></strong>,
+									pour remplacer cette constante sur les systèmes où elle est
+									définie).
+								</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>LOG_AUTHPRIV</code></strong></td>
+								<td>sécurité/messages d&#039;autorisation (privé)</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>LOG_CRON</code></strong></td>
+								<td>démon horloge (cron et at)</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>LOG_DAEMON</code></strong></td>
+								<td>autres démons système</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>LOG_KERN</code></strong></td>
+								<td>noyau (kernel)</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>LOG_LOCAL0</code></strong> ... <strong><code>LOG_LOCAL7</code></strong></td>
+								<td>réservé pour utilisation locale. Inutilisable sous
+									Windows</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>LOG_LPR</code></strong></td>
+								<td>imprimante (<em>line printer subsystem</em>)
+								</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>LOG_MAIL</code></strong></td>
+								<td>messagerie mail</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>LOG_NEWS</code></strong></td>
+								<td>USENET : groupes de news (newsgroup)</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>LOG_SYSLOG</code></strong></td>
+								<td>messages générés en interne par syslogd</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>LOG_USER</code></strong></td>
+								<td>messages utilisateurs génériques</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>LOG_UUCP</code></strong></td>
+								<td>sous-système UUCP</td>
+							</tr>
+
+						</tbody>
+
+					</table>
+
+					</p>
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>:
+						<p class="para">
+							<strong><code>LOG_USER</code></strong> est le seul type valide
+							sous les environnements Windows.
+					</blockquote>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.openlog-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.openlog-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.syslog.html" class="function" rel="rdfs-seeAlso">syslog()</a>
+						- G&eacute;n&egrave;re un message dans l'historique syst&egrave;me</span></li>
+				<li class="member"><span class="function"><a
+						href="function.closelog.html" class="function" rel="rdfs-seeAlso">closelog()</a>
+						- Ferme la connexion &agrave; l'historique syst&egrave;me</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.long2ip.html">long2ip</a>
+		</div>
+		<div class="next">
+			<a href="function.pfsockopen.html">pfsockopen</a>
+		</div>
+		<div class="up">
+			<a href="ref.network.html">Fonctions r&eacute;seaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

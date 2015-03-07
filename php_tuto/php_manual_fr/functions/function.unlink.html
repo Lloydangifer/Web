@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Efface un fichier</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.umask.html">umask</a>
+		</div>
+		<div class="next">
+			<a href="book.inotify.html">Inotify</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.unlink" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">unlink</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">unlink</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Efface un fichier</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.unlink-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>unlink</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$filename</code></span> [, <span
+					class="methodparam"><span class="type">resource</span> <code
+						class="parameter">$context</code></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				Efface <em><code class="parameter">filename</code></em>. Identique à
+				la fonction Unix C <em>unlink()</em>. En cas d&#039;échec, une
+				alerte de niveau <strong><code>E_WARNING</code></strong> sera
+				générée.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.unlink-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">filename</code></em></span>
+				<dd>
+
+					<p class="para">Chemin vers le fichier.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">context</code></em></span>
+				<dd>
+
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>: <span class="simpara">Le
+								support de contexte a été ajouté en PHP 5.0.0. Pour une
+								description des contextes, référez-vous à <a
+								href="book.stream.html" class="xref">Flux</a>.
+							</span>
+						</p>
+					</blockquote>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.unlink-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.unlink-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.0.0</td>
+						<td>Depuis PHP 5.0.0, <span class="function"><strong>unlink()</strong></span>
+							peut aussi être utilisée avec <em class="emphasis">quelques</em>
+							protocoles d&#039;URL. Voyez <a href="wrappers.html" class="xref">Liste
+								des protocoles et des gestionnaires support&eacute;s</a> pour une
+							liste des protocoles supportant <span class="function"><strong>unlink()</strong></span>.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.unlink-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2306">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>unlink()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$fh&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'test.html'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'a'</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$fh</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'&lt;h1&gt;Hello&nbsp;world!&lt;/h1&gt;'</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$fh</span><span style="color: #007700">);<br />
+								<br /></span><span style="color: #0000BB">unlink</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'test.html'</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.unlink-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.rmdir.html" class="function" rel="rdfs-seeAlso">rmdir()</a>
+						- Efface un dossier</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.umask.html">umask</a>
+		</div>
+		<div class="next">
+			<a href="book.inotify.html">Inotify</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

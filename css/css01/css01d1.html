@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>L'héritage</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<style>
+.TAB-zebre tr:first-child {
+	text-align: left;
+	font-weight: normal
+}
+
+.rarement,.parfois,.souvent,.tres-souvent {
+	width: 15px;
+	height: 15px;
+	background: url(../cssimg/like.png);
+}
+
+.parfois {
+	width: 30px;
+}
+
+.souvent {
+	width: 45px;
+}
+
+.tres-souvent {
+	width: 60px;
+}
+</style>
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function() {
+			top.FP.initPage();
+		}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+
+		<!-- ################################################################################################## -->
+		<h3>L'héritage</h3>
+		<section>
+			<img style="width: 300; height: 339; float: right"
+				src="../cssimg/genetique.jpg">
+			<p>
+				Les valeurs de certaines propriétés de style sont transmises par les
+				noeuds ancêtres à leurs descendants. On parle de <strong>propriétés
+					héritées</strong>.
+			</p>
+
+			<p>
+				Ce mécanisme d'héritage nous permet de ne pas avoir à spécifier
+				toujours les mêmes caractèristiques pour tous les éléments de la
+				page ou tous les descendants d'un élément. Par exemple, en
+				définissant une police de caractère et sa taille pour l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'body')">body</a>,
+				tous les éléments contenus dans le corps de la page hériterons de
+				cette police et de sa taille. De cette façon nous n'aurons pas à
+				reprendre cette mise en forme pour tous les textes individuellement.
+			</p>
+
+			<p>Toutes les propriétés ne sont pas héritées. Ce sont
+				principalement les propriétés concernant les textes qui sont
+				héritées et qui sont aussi les plus utiles.</p>
+
+			<table class="TAB-zebre" style="float: left; width: 290px;">
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'border-collapse')">border-collapse</a></td>
+					<td><div class="parfois"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'border-spacing')">border-spacing</a></td>
+					<td><div class="parfois"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'caption-side')">caption-side</a></td>
+					<td><div class="rarement"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'color')">color</a></td>
+					<td><div class="tres-souvent"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'cursor')">cursor</a></td>
+					<td><div class="souvent"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'direction')">direction</a></td>
+					<td><div class="rarement"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'empty-cells')">empty-cells</a></td>
+					<td><div class="rarement"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'font')">font</a></td>
+					<td><div class="tres-souvent"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'font-family')">font-family</a></td>
+					<td><div class="tres-souvent"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'font-size')">font-size</a></td>
+					<td><div class="tres-souvent"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'font-stretch')">font-stretch</a></td>
+					<td><div class="rarement"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'font-style')">font-style</a></td>
+					<td><div class="parfois"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'font-variant')">font-variant</a></td>
+					<td><div class="rarement"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'font-weight')">font-weight</a></td>
+					<td><div class="souvent"></div></td>
+				</tr>
+
+			</table>
+
+			<table class="TAB-zebre" style="float: right; width: 290px;">
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'letter-spacing')">letter-spacing</a></td>
+					<td><div class="rarement"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'line-height')">line-height</a></td>
+					<td><div class="parfois"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'list-style')">list-style</a></td>
+					<td><div class="parfois"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'list-style-image')">list-style-image</a></td>
+					<td><div class="souvent"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'list-style-position')">list-style-position</a></td>
+					<td><div class="souvent"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'list-style-type')">list-style-type</a></td>
+					<td><div class="souvent"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'quotes')">quotes</a></td>
+					<td><div class="rarement"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'text-align')">text-align</a></td>
+					<td><div class="souvent"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'text-indent')">text-indent</a></td>
+					<td><div class="rarement"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'text-transform')">text-transform</a></td>
+					<td><div class="rarement"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'white-space')">white-space</a></td>
+					<td><div class="rarement"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'word-break')">word-break</a></td>
+					<td><div class="rarement"></div></td>
+				</tr>
+				<tr>
+					<td><a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'word-spacing')">word-spacing</a></td>
+					<td><div class="rarement"></div></td>
+				</tr>
+			</table>
+
+			<p class="fp-p-raz fp-petit fp-clear fp-t-center">
+				<strong>Utilisation :</strong> rare <span class="rarement"
+					style="display: inline-block"></span>, &nbsp;&nbsp; parfois <span
+					class="parfois" style="display: inline-block"></span>, &nbsp;&nbsp;
+				souvent <span class="souvent" style="display: inline-block"></span>,
+				&nbsp;&nbsp; très souvent <span class="tres-souvent"
+					style="display: inline-block"></span>
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : héritage de couleur
+				</div>
+				<textarea name="txtCode" class="TEST-textarea">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Héritage de couleur&lt;/title&gt;
+		&lt;style&gt;
+			div {
+				color: red;
+			}	
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;
+			Paragraphe 1. En dehors du div. En noir, la
+			couleur par défaut.&lt;/p&gt;
+		
+		&lt;div&gt;
+			&lt;p&gt;
+				Paragraphe 2. Dans le div. En rouge à cause 
+				de l'héritage.&lt;/p&gt;
+			&lt;p&gt;
+				Paragraphe 3. Dans le div. En Rouge aussi 
+				à cause de l'héritage.&lt;/p&gt;
+		&lt;/div&gt;
+		
+		&lt;p&gt;
+			Paragraphe 4. En dehors du div. En noir, la
+			couleur par défaut.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+
+			<p>
+				Quand la valeur de la propriété est un nombre, il faut faire
+				attention à <a onclick="top.FP.Voir.showPageTech('longueur', '')">l'unité</a>
+				utilisée. Avec les <a
+					onclick="top.FP.Voir.showPageTech('longueur', '')">unités
+					relatives</a> on peut avoir des effets cumulés surprenants.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : héritage de valeurs relatives
+				</div>
+				<textarea name="txtCode" class="TEST-textarea">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Héritage de valeurs relatives&lt;/title&gt;
+		&lt;style&gt;
+			div {
+				font-size: 120%;
+			}	
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div&gt;
+			&lt;p&gt;Attention : héritage de valeur relative.
+			&lt;br&gt;Taille : 120%&lt;/p&gt;
+			
+			&lt;div&gt;
+				&lt;p&gt;Attention : héritage de valeur relative.
+				&lt;br&gt;Taille : 120% x 120%&lt;/p&gt;
+				
+				&lt;div&gt;
+					&lt;p&gt;Attention: héritage de valeur relative.
+					&lt;br&gt;Taille : 120% x 120% x 120%&lt;/p&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;	
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

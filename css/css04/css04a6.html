@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Alignement</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function(){top.FP.initPage();}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<!-- ################################################################################################## -->
+		<h3>Alignement horizontal</h3>
+		<section>
+			<img src="../cssimg/text_align.png" width="111" height="36"
+				class="fp-f-right">
+
+			<p>
+				C'est avec la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'text-align')">text-align</a>
+				que l'on peut définir l'alignement horizontal du texte dans son
+				conteneur.
+				<br>
+				Le texte peut être aligné à gauche (<code>left</code> - par défaut),
+				aligné à droite (<code>right</code>), centré (<code>center</code>)
+				ou justifié (<code>justify</code>).
+			</p>
+
+			<p>L'alignement à gauche est à privilégier pour les textes de
+				plusieurs phrases. L'alignement centré est à utiliser seulement pour
+				un texte court (une phrase de quelques mots) ou pour les libellés de
+				zones cliquables ou de boutons. La justification n'est pas toujours
+				bien réalisée par les moteurs de rendu des navigateurs qui peuvent
+				provoquer des espacements trop importants entre les mots et rendre
+				le texte peu lisible et peu agréable à l'oeil.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : alignement horizontal
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;article&gt;
+			&lt;h3&gt;La Guerre des Etoiles du Milieu&lt;br&gt;et le prince d'Azkaban&lt;/h3&gt;
+				
+			&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron. &lt;/p&gt;
+				
+			&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;
+				
+			&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+				
+			&lt;p&gt;De plus en plus portnawak les scénarios chez Disney.&lt;/p&gt;
+		&lt;/article&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+html { 
+	font: 13px Tahoma, Geneva, Verdana, sans-serif;
+}
+article { 
+	width: 350px;
+	border: 1px solid #ccc;
+}
+h3 { text-align: center; }
+p:nth-of-type(2) { text-align: right; }
+p:nth-of-type(3) { text-align: justify; }</textarea>
+			</form>
+
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Alignement vertical</h3>
+		<section>
+		<table class="TAB-sans-bord">
+		<tr><td style="vertical-align: middle">Etrangement, aligner verticalement un texte
+				(ou un bloc) à l'intérieur d'un bloc n'est pas une chose qui se fait
+				de façon naturelle et intuitive.
+				</td><td>
+			<img width="290" height="214" src="../cssimg/vertical_center.jpg">
+			</td></tr></table>
+			
+			<p class="fp-bot0 fp-clear">
+				La propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'vertical-align')">vertical-align</a>
+				permet d'aligner verticalement :
+			</p>
+			<ul>
+				<li>des élements de type en ligne,</li>
+				<li>des éléments à l'intérieur d'un élément de type <code>display:
+						table-cell</code>
+				</li>
+			</ul>
+
+			<p>
+				L'alignement d'éléments de type en ligne se fait par rapport à la
+				hauteur de ligne (<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'line-height')">line-height</a>)
+				du parent.
+			</p>
+
+			<p>
+				L'alignement d'éléments à l'intérieur d'un élément de type <code>display:
+					table-cell</code> se fait par rapport à la hauteur (<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'height')">height</a>)
+				de cet élément.
+			</p>
+
+			<p>
+				On peut forcer l'affichage des éléments de type bloc en affichage en
+				ligne avec la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'display')">display</a>
+				et les valeurs <code>inline</code> et <code>inline-block</code>.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : alignement vertical
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;article&gt;			
+			&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron. &lt;/p&gt;
+		&lt;/article&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+html { 
+	font-size: 16px;
+	font-family: Tahoma, Geneva, Verdana, sans-serif;
+}
+article {
+	border: 1px solid #aaa;
+	padding: 10px;
+	width: 400px;
+	height: 200px;		/* hauteur du bloc */
+	line-height: 200px;	/* hauteur de ligne égale à la 
+						hauteur	du bloc pour permettre
+						l'alignement vertical */
+}
+p {
+	display: inline-block;	/* forcer l'affichage en ligne */
+	vertical-align: middle;	/* alignement vertical au milieu*/
+	line-height: normal;	/* pour ne pas hériter du parent*/
+}</textarea>
+			</form>
+
+			<p class="fp-bot0">
+				Exemple des différentes valeurs possibles pour la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'vertical-align')">vertical-align</a>.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : valeurs de vertical-align
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;&lt;span&gt;Vertical-align&lt;/span&gt; 
+			&lt;span class="vertical1"&gt;top&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span&gt;Vertical-align&lt;/span&gt; 
+			&lt;span class="vertical2"&gt;super&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span&gt;Vertical-align&lt;/span&gt; 
+			&lt;span class="vertical3"&gt;sub&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span&gt;Vertical-align&lt;/span&gt; 
+			&lt;span class="vertical4"&gt;text-top&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span&gt;Vertical-align&lt;/span&gt; 
+			&lt;span class="vertical5"&gt;middle&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span&gt;Vertical-align&lt;/span&gt; 
+			&lt;span class="vertical6"&gt;bottom&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span&gt;Vertical-align&lt;/span&gt; 
+			&lt;span class="vertical7"&gt;20 pixels&lt;/span&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;span&gt;Vertical-align&lt;/span&gt; 
+			&lt;span class="vertical8"&gt;-20 pixels&lt;/span&gt;&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+html { 
+	font: 20px Tahoma, Geneva, Verdana, sans-serif;
+}
+span {border: 1px solid #aaa;}
+span + span {font-size: 13px;}
+.vertical1 { vertical-align: top; }
+.vertical2 { vertical-align: super; }
+.vertical3 { vertical-align: sub; }
+.vertical4 { vertical-align: text-top; }
+.vertical5 { vertical-align: middle; }
+.vertical6 { vertical-align: bottom; }
+.vertical7 { vertical-align: 20px; }
+.vertical8 { vertical-align: -20px; }</textarea>
+			</form>
+
+			<h4>Aligner image et texte</h4>
+			<section>
+				<p>
+					L'alignement vertical est très utile pour aligner une image sur du
+					texte, en particulier pour des éléments décoratifs comme des
+					pictogrammes. On utilisera le plus souvent la valeur <code>middle</code>.
+				</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : alignement texte / image
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;&lt;img src="../exemples/img/fleche_droite.png"&gt;Sans alignement&lt;/p&gt;
+		&lt;p&gt;&lt;img src="../exemples/img/fleche_droite.png" class="vertical"&gt;Alignement milieu&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+html { 
+	font: 18px Tahoma, Geneva, Verdana, sans-serif;
+}
+.vertical { vertical-align: middle; }</textarea>
+				</form>
+			</section>
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

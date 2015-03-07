@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Largeur et hauteur</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function() {
+			top.FP.initPage();
+		}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			Par défaut une boîte est dimensionnée automatiquement par la
+			navigateur : elle a pour largeur la largeur de son conteneur (élément
+			parent ou fenêtre du navigateur) et pour hauteur l'espace minimum
+			pour que leur contenu y tienne, ni plus, ni moins.
+			<br>
+			Il est toutefois possible de spécifier des autres dimensions et de
+			définir des tailles minimum ou maximum.
+		</p>
+
+		<p>
+			<strong>Les boîtes de type en ligne (<code>display:
+					inline;</code>) ne peuvent pas être dimensionnées.
+			</strong>
+		</p>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Largeur et hauteur</h3>
+		<section>
+
+			<p>
+				Les propriétés <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'width')">width</a>
+				et <a onclick="top.FP.Voir.showPageTech('css_proprietes', 'height')">height</a>
+				définissent la largeur et la hauteur d'une boîte.
+			</p>
+
+			<p>
+				Suivant la valeur de la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'box-sizing')">box-sizing</a>,
+				largeur et hauteur ne sont pas calculées de la même façon.
+			</p>
+
+
+
+			<table class="TAB-sans-bord">
+				<tr>
+					<td colspan="3">
+						<p>
+							Par défaut (<code>box-sizing: content-box;</code>), les largeurs
+							et hauteurs sont celles de <strong>de la zone
+								d'affichage</strong> de la boîte
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<figure>
+							<img src="../cssimg/width_height_1.png" width="200" height="138">
+							<figcaption>
+								largeur et hauteur
+								<br>
+								du modèle par défaut
+							</figcaption>
+						</figure>
+					</td>
+					<td><code class="fp-petit">&nbsp;&nbsp;margin-left<br>
+							+ border-left<br> + padding-left<br> + width<br> +
+							padding-right<br> + border-right<br> + margin-right<br>
+							----------------<br>largeur totale
+					</code></td>
+					<td><code class="fp-petit">&nbsp;&nbsp;margin-top<br>
+							+ border-top<br> + padding-top<br> + height<br> +
+							padding-bottom<br> + border-bottom<br> + margin-bottom<br>
+							----------------<br>hauteur totale
+					</code></td>
+				</tr>
+
+
+				<tr>
+					<td colspan="3"><p>
+							Si la valeur de la propriété <a
+								onclick="top.FP.Voir.showPageTech('css_proprietes', 'box-sizing')">box-sizing</a>
+							est <code>border-box</code>, les largeurs et hauteurs sont celles
+							de <strong>de la zone d'affichage</strong> de la boîte <strong>plus</strong>
+							les marges internes <strong>plus</strong> l'épaisseur des
+							bordures.
+						</p></td>
+				</tr>
+				<tr>
+					<td>
+						<figure>
+							<img src="../cssimg/width_height_2.png" width="200" height="138">
+							<figcaption>
+								largeur et hauteur
+								<br>
+								du modèle avec bords
+							</figcaption>
+						</figure>
+					</td>
+
+					<td><code class="fp-petit">&nbsp;&nbsp;margin-left<br>
+							+ width<br> + margin-right<br> ----------------<br>largeur
+							totale
+					</code></td>
+					<td><code class="fp-petit">&nbsp;&nbsp;margin-top<br>
+							+ height<br> + margin-bottom<br> ----------------<br>hauteur
+							totale
+					</code></td>
+				</tr>
+			</table>
+
+
+			<p>
+				la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'box-sizing')">box-sizing</a>
+				n'est pas connue des navigateurs d'anciennes générations et il est
+				donc déconseillé de l'utiliser si vous ciblez un maximum
+				d'utilisateurs.
+				<br>
+				Dans la suite du tutoriel, nous considérerons que nous travaillons
+				avec le modèle par défaut.
+			</p>
+
+
+			<div class="TEST-iframe">
+				<p>Tester les dimensions</p>
+				<iframe src="../exemples/boite_widget.html?1boite-widget"
+					id="boite-widget"
+					style="width: 100%; margin: 0 0 1em 0; border: 0 none; height: 600px; overflow: hidden"></iframe>
+			</div>
+
+			<p>
+				L'unité de taille pour définir la hauteur ou la largeur est à
+				choisir en fonction du dispositif d'affichage. Par exemple il ne
+				faut pas utiliser des centimètres pour afficher sur un écran pour
+				lequel on privilégiera le pixel CSS (<code>px</code>), le cadratin (<code>em</code>),
+				le pourcentage (<code>%</code>) ou la référence à la racine du
+				document (<code>rem</code>).
+				<br>
+				Les unités utilisées peuvent être différentes pour la hauteur et
+				pour la largeur d'un élément.
+			</p>
+
+			<p>
+				Si on utilise l'unité <code>em</code> pour définir la hauteur ou la
+				largeur, la valeur sera basée sur la taille de la police à
+				l'intérieur de la boîte.
+			</p>
+
+			<p>
+				Si on utilise l'unité <code>%</code> pour définir la hauteur ou la
+				largeur, le pourcentage sera calculé par rapport à l'élément parent
+				de la boîte. Si l'élément a pour parent <a
+					onclick="top.FP.Voir.showPageTech('elements', 'body')">body</a> le
+				pourcentage sera calculé par rapport à la fenêtre du navigateur. Un
+				redimensionnement de la fenêtre entraînera automatiquement un
+				redimensionnement de la boîte. Une telle mise en page est appelée
+				fluide (fluid layout) ou élastique (elastic layout).
+			</p>
+
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : mise en page fluide
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div id="page"&gt;
+			&lt;header&gt;Véhicules à vendre&lt;/header&gt;
+			&lt;nav&gt;
+				&lt;a href="#"&gt;Y-wing&lt;/a&gt;
+				&lt;a href="#"&gt;N-1 Naboo&lt;/a&gt;
+				&lt;a href="#"&gt;Chasseurs Sith&lt;/a&gt;
+				&lt;a href="#"&gt;B-wing&lt;/a&gt;
+				&lt;a href="#"&gt;X-wing T-65&lt;/a&gt;
+				&lt;a href="#"&gt;A-wing RZ-1&lt;/a&gt;
+			&lt;/nav&gt;
+			&lt;aside&gt;
+				&lt;p&gt;Les CSS sont l'arme secrète de la Force !
+				&lt;img src="../exemples/img/yoda.jpg"&gt; 
+				Tu veux savoir les utiliser ? Envoie CSS au 7 1718.&lt;/p&gt;			
+			&lt;/aside&gt;			
+			&lt;section&gt;
+				&lt;p&gt;Notre société achète et vend des "vaisseaux de collection" (mais en bon état de &lt;span class="barre"&gt;tir&lt;/span&gt; marche).&lt;br&gt;Le siège de la société est en Plein Milieu de la Galaxie. Des agences sont implantées sur presque tous les planètes (Yavin IV, Tatooine, Naboo, Dagobah, Hoth, ...)&lt;br&gt;Cette dispersion géographique nous permet de vous présenter une gamme très étendues, et de trouver les "vaisseaux de collection" désirés dans les meilleurs délais (et &lt;span class="barre"&gt;qui tirent bien&lt;/span&gt; en bon état de marche).&lt;/p&gt;
+				&lt;p&gt;Nous voulons que notre site Web attire les acheteurs et les vendeurs du monde entier qui pourront non seulement connaître les derniers modèles mis en vente, mais également prendre des contacts pour faire examiner et certifier leurs vaisseaux avec toutes les garanties de sérieux et de confidentialité.&lt;/p&gt;
+			&lt;/section&gt;
+
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS" data-test="POP">
+body { background: #111; color: white; }
+#page {
+	width: 80%;		/* 80% de la fenêtre du navigateur */
+	margin: 0 auto;	/* centrer */
+}
+header { 
+	font: bold 1.5em Verdana Geneva sans-serif;
+	background: url(../exemples/img/bandeau.jpg) no-repeat center #000;
+	margin-bottom: 1em;
+	height: 30px;
+	padding-top: 70px;	/* positionner le texte */
+	text-align: center;
+}
+nav { 
+	float: left;
+	width: 110px; 
+}
+section { 
+	padding-left: 120px;	/* laisse de la place pour nav */
+	padding-right: 100px;	/* laisse de la place pour aside*/
+}
+aside {
+	float: right;
+	width: 90px;
+	background: darkslategrey;
+	padding: 0 5px;
+	font-size: 0.85em;
+}
+img {
+	width: 100%;	/* occupe la largeur de son parent */
+	height: auto;	/* garder les proportions de l'image */
+}
+a { 
+	display: block;	/*force affichage type bloc */
+	padding: 2px 0 2px 4px;
+	margin: 0 0 2px 0;
+	text-decoration: none;	/* enlève le soulignement */
+	color: white;
+}	
+a:nth-child(2n) { background: firebrick; }
+a:nth-child(2n + 1) { background: crimson; }
+.barre { text-decoration: line-through; }</textarea>
+			</form>
+
+			<p class="fp-petit fp-p-raz">Redimensionnez la fenêtre de test
+				pour voir le changement de largeur de la mise en page.</p>
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Dimensions minimum et maximum</h3>
+		<section>
+			<p>
+				Il est possible de définir des dimensions minimum et maximum pour la
+				largeur et la hauteur d'une boîte avec les propriétés <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'min-width')">min-width</a>,
+				<a onclick="top.FP.Voir.showPageTech('css_proprietes', 'max-width')">max-width</a>,
+				<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'min-height')">min-height</a>
+				et <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'max-height')">max-height</a>
+			</p>
+
+			<p>
+				Si on reprend l'exemple précédent, on s'aperçoit que si la fenêtre
+				du navigateur fait moins de 600 pixels de large, l'image de fond du
+				bandeau n'est pas affichée entièrement. Si à l'inverse la largeur de
+				la fenêtre est très grande, le texte principale devient difficile à
+				lire car les lignes sont trop grandes.
+				<br>
+				Pour éviter ces problèmes, on peut utiliser <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'min-width')">min-width</a>
+				et <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'max-width')">max-width</a>
+				sur l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'div')">div</a>
+				identifié par <code>#page</code>.
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : mise en page fluide limitée
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div id="page"&gt;
+			&lt;header&gt;Véhicules à vendre&lt;/header&gt;
+			&lt;nav&gt;
+				&lt;a href="#"&gt;Y-wing&lt;/a&gt;
+				&lt;a href="#"&gt;N-1 Naboo&lt;/a&gt;
+				&lt;a href="#"&gt;Chasseurs Sith&lt;/a&gt;
+				&lt;a href="#"&gt;B-wing&lt;/a&gt;
+				&lt;a href="#"&gt;X-wing T-65&lt;/a&gt;
+				&lt;a href="#"&gt;A-wing RZ-1&lt;/a&gt;
+			&lt;/nav&gt;
+			&lt;aside&gt;
+				&lt;p&gt;Les CSS sont l'arme secrète de la Force !
+				&lt;img src="../exemples/img/yoda.jpg"&gt; 
+				Tu veux savoir les utiliser ? Envoie CSS au 7 1718.&lt;/p&gt;			
+			&lt;/aside&gt;			
+			&lt;section&gt;
+				&lt;p&gt;Notre société achète et vend des "vaisseaux de collection" (mais en bon état de &lt;span class="barre"&gt;tir&lt;/span&gt; marche).&lt;br&gt;Le siège de la société est en Plein Milieu de la Galaxie. Des agences sont implantées sur presque tous les planètes (Yavin IV, Tatooine, Naboo, Dagobah, Hoth, ...)&lt;br&gt;Cette dispersion géographique nous permet de vous présenter une gamme très étendues, et de trouver les "vaisseaux de collection" désirés dans les meilleurs délais (et &lt;span class="barre"&gt;qui tirent bien&lt;/span&gt; en bon état de marche).&lt;/p&gt;
+				&lt;p&gt;Nous voulons que notre site Web attire les acheteurs et les vendeurs du monde entier qui pourront non seulement connaître les derniers modèles mis en vente, mais également prendre des contacts pour faire examiner et certifier leurs vaisseaux avec toutes les garanties de sérieux et de confidentialité.&lt;/p&gt;
+			&lt;/section&gt;
+
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS" data-test="POP">
+body { background: #111; color: white; }
+#page {
+	width: 80%;		/* 80% de la fenêtre du navigateur */
+	margin: 0 auto;	/* centrer */
+	min-width: 600px;	/* largeur de l'image du bandeau */
+	max-width: 800px;	/* largeur maxi d'affichage */
+}
+header { 
+	font: bold 1.5em Verdana Geneva sans-serif;
+	background: url(../exemples/img/bandeau.jpg) no-repeat center #000;
+	margin-bottom: 1em;
+	height: 30px;
+	padding-top: 70px;	/* positionner le texte */
+	text-align: center;
+}
+nav { 
+	float: left;
+	width: 110px; 
+}
+section { 
+	padding-left: 120px;	/* laisse de la place pour nav */
+	padding-right: 100px;	/* laisse de la place pour aside*/
+}
+aside {
+	float: right;
+	width: 90px;
+	background: darkslategrey;
+	padding: 0 5px;
+	font-size: 0.85em;
+}
+img {
+	width: 100%;	/* occupe la largeur de son parent */
+	height: auto;	/* garder les proportions de l'image */
+}
+a { 
+	display: block;	/*force affichage type bloc */
+	padding: 2px 0 2px 4px;
+	margin: 0 0 2px 0;
+	text-decoration: none;	/* enlève le soulignement */
+	color: white;
+}	
+a:nth-child(2n) { background: firebrick; }
+a:nth-child(2n + 1) { background: crimson; }
+.barre { text-decoration: line-through; }</textarea>
+			</form>
+
+			<p class="fp-petit fp-p-raz">Redimensionnez la fenêtre de test
+				pour voir le changement de largeur de la mise en page et les valeurs
+				mini ou maxi qui stoppent la réduction ou l'agrandissement.</p>
+
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

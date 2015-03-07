@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Retourne les valeurs par d&eacute;faut des
+	propri&eacute;t&eacute;s d'une classe</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.get-class-methods.html">get_class_methods</a>
+		</div>
+		<div class="next">
+			<a href="function.get-class.html">get_class</a>
+		</div>
+		<div class="up">
+			<a href="ref.classobj.html">Fonctions Classes/Objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.get-class-vars" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">get_class_vars</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">get_class_vars</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Retourne les valeurs par défaut des
+					propriétés d&#039;une classe</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.get-class-vars-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>get_class_vars</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$class_name</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">Retourne les valeurs par défaut des
+				propriétés d&#039;une classe.</p>
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.get-class-vars-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">class_name</code></em></span>
+				<dd>
+
+					<p class="para">Le nom de la classe</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.get-class-vars-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne un tableau associatif contenant les nom/valeur des
+				propriétés visibles dans le scope courant, avec leurs valeurs par
+				défaut. Les éléments du tableau résultant sont sous la forme <em>varname
+					=&gt; value</em>. En cas d&#039;erreur, la fonction retournera <strong><code>FALSE</code></strong>.
+			</p>
+		</div>
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.get-class-vars-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.0.3</td>
+						<td>En fonction du contexte, <span class="function"><strong>get_class_vars()</strong></span>
+							ne retourne que les propriétés qui sont accessibles depuis ce
+							contexte.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.0.2</td>
+						<td>Appeler <span class="function"><strong>get_class_vars()</strong></span>
+							produit toutes les propriétés sous la forme d&#039;un tableau,
+							contrairement au comportement précédent où les propriétés privées
+							et publiques étaient préfixées par des caractères null.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.0.1</td>
+						<td>Appeler <span class="function"><strong>get_class_vars()</strong></span>
+							retourne toutes les propriétés, exactement comme convertir un
+							objet en un tableau.
+						</td>
+					</tr>
+
+					<tr>
+						<td>4.2.0</td>
+						<td>Les variables de classe non initialisées sont maintenant
+							aussi rapportées par la fonction <span class="function"><strong>get_class_vars()</strong></span>.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+		<div class="refsect1 examples"
+			id="refsect1-function.get-class-vars-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4704">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>get_class_vars()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br /></span><span style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">myclass&nbsp;</span><span
+								style="color: #007700">{<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;
+							</span><span style="color: #0000BB">$var1</span><span
+								style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;pas&nbsp;de&nbsp;valeur&nbsp;par&nbsp;défaut...<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">var&nbsp;</span><span
+								style="color: #0000BB">$var2&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"xyz"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;
+							</span><span style="color: #0000BB">$var3&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">100</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;
+							</span><span style="color: #0000BB">$var4</span><span
+								style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;PHP&nbsp;5<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;constructeur<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">myclass</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;changement&nbsp;de&nbsp;quelques&nbsp;propriétés<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">var1&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"foo"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">var2&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"bar"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">true</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />}<br />
+								<br /></span><span style="color: #0000BB">$my_class&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">myclass</span><span
+								style="color: #007700">();<br />
+								<br /></span><span style="color: #0000BB">$class_vars&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">get_class_vars</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">get_class</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$my_class</span><span
+								style="color: #007700">));<br />
+								<br />foreach&nbsp;(
+							</span><span style="color: #0000BB">$class_vars&nbsp;</span><span
+								style="color: #007700">as&nbsp;</span><span
+								style="color: #0000BB">$name&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #0000BB">$value</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$name</span><span
+								style="color: #DD0000">&nbsp;:&nbsp;</span><span
+								style="color: #0000BB">$value</span><span style="color: #DD0000">\n"</span><span
+								style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+// Avant PHP 4.2.0
+var2 : xyz
+var3 : 100
+
+// Depuis PHP 4.2.0
+var1 :
+var2 : xyz
+var3 : 100
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="example-4705">
+				<p>
+					<strong>Exemple #2 Exemple avec <span class="function"><strong>get_class_vars()</strong></span>
+						et les contextes
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">format</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$array</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">implode</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'|'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">array_keys</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$array</span><span
+								style="color: #007700">))&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"\r\n"</span><span style="color: #007700">;<br />}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">TestCase<br /></span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;
+							</span><span style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;
+							</span><span style="color: #0000BB">$b&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">2</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;
+							</span><span style="color: #0000BB">$c&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">3</span><span style="color: #007700">;<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">expose</span><span
+								style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #0000BB">format</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">get_class_vars</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">__CLASS__</span><span
+								style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #0000BB">TestCase</span><span
+								style="color: #007700">::</span><span style="color: #0000BB">expose</span><span
+								style="color: #007700">();<br />echo&nbsp;
+							</span><span style="color: #0000BB">format</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">get_class_vars</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'TestCase'</span><span
+								style="color: #007700">));<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+// 5.0.0
+a| * b| TestCase c
+a| * b| TestCase c
+
+// 5.0.1 - 5.0.2
+a|b|c
+a|b|c
+
+// 5.0.3 +
+a|b|c
+a
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.get-class-vars-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.get-class-methods.html" class="function"
+						rel="rdfs-seeAlso">get_class_methods()</a> - Retourne les noms des
+						m&eacute;thodes d'une classe</span></li>
+				<li class="member"><span class="function"><a
+						href="function.get-object-vars.html" class="function"
+						rel="rdfs-seeAlso">get_object_vars()</a> - Retourne les
+						propri&eacute;t&eacute;s d'un objet</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.get-class-methods.html">get_class_methods</a>
+		</div>
+		<div class="next">
+			<a href="function.get-class.html">get_class</a>
+		</div>
+		<div class="up">
+			<a href="ref.classobj.html">Fonctions Classes/Objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

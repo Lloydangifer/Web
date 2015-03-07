@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>V&eacute;rifie la syntaxe PHP (et ex&eacute;cute) d'un
+	fichier sp&eacute;cifique</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.pack.html">pack</a>
+		</div>
+		<div class="next">
+			<a href="function.php-strip-whitespace.html">php_strip_whitespace</a>
+		</div>
+		<div class="up">
+			<a href="ref.misc.html">Fonctions diverses</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.php-check-syntax" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">php_check_syntax</h1>
+			<p class="verinfo">(PHP 5 &lt;= 5.0.4)</p>
+			<p class="refpurpose">
+				<span class="refname">php_check_syntax</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title"> Vérifie la syntaxe PHP (et exécute)
+					d&#039;un fichier spécifique </span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.php-check-syntax-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>php_check_syntax</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$filename</code></span> [, <span
+					class="methodparam"><span class="type">string</span> <code
+						class="parameter reference">&$error_message</code></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				Effectue une vérification de la syntaxe du fichier <em><code
+						class="parameter">filename</code></em> pour y trouver des erreurs de
+				script.
+			</p>
+			<p class="para">
+				Ceci est similaire à utiliser la commande <strong class="command">php
+					-l</strong> depuis la <a href="features.commandline.html" class="link">ligne
+					de commande</a> mise à part que <span class="function"><strong>php_check_syntax()</strong></span>
+				exécutera (mais n&#039;affichera rien) le fichier <em><code
+						class="parameter">file_name</code></em> vérifié.
+			</p>
+			<p class="para">
+				Par exemple, si une fonction est définie dans <em><code
+						class="parameter">file_name</code></em>, cette fonction sera disponible
+				pour le fichier qui exécute <span class="function"><strong>php_check_syntax()</strong></span>,
+				mais l&#039;affichage depuis <em><code class="parameter">file_name</code></em>
+				sera supprimée.
+			</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Pour des raisons techniques, cette fonction est obsolète et
+					supprimée de PHP. Utilisez à la place <em>php -l somefile.php</em>
+					depuis la <a href="features.commandline.html" class="link">ligne
+						de commande</a>.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.php-check-syntax-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">filename</code></em></span>
+				<dd>
+
+					<p class="para">Le nom du fichier à vérifier.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">error_message</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si le paramètre <em><code class="parameter">error_message</code></em>
+						est utilisé, il contiendra le message d&#039;erreur généré par la
+						vérification de la syntaxe. <em><code class="parameter">error_message</code></em>
+						est passé par <a href="language.references.html" class="link">référence</a>.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.php-check-syntax-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne <strong><code>TRUE</code></strong> si la vérification a
+				réussie, et <strong><code>FALSE</code></strong> si la vérification
+				échoue ou si le fichier <em><code class="parameter">file_name</code></em>
+				n&#039;a pu être ouvert.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.php-check-syntax-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.0.5</td>
+						<td>Cette fonction a été supprimée de PHP.</td>
+					</tr>
+
+					<tr>
+						<td>5.0.3</td>
+						<td>Appel à <span class="function"><a
+								href="function.exit.html" class="function">exit()</a></span> après <span
+							class="function"><strong>php_check_syntax()</strong></span> cause
+							une erreur de segmentation.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.0.1</td>
+						<td><em><code class="parameter">error_message</code></em> est
+							passé par référence.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.php-check-syntax-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example-contents screen">
+				<div class="examplescode">
+					<pre class="examplescode">php -l somefile.php</pre>
+				</div>
+			</div>
+			</p>
+			<p class="para">L&#039;exemple ci-dessus va afficher quelque
+				chose de similaire à :</p>
+			<p class="para">
+			<div class="example-contents screen">
+				<div class="examplescode">
+					<pre class="examplescode">PHP Parse error: unexpected T_STRING in /tmp/somefile.php on line 81</pre>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.php-check-syntax-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.include.html" class="function" rel="rdfs-seeAlso">include</a>
+						- include</span></li>
+				<li class="member"><span class="function"><a
+						href="function.is-readable.html" class="function"
+						rel="rdfs-seeAlso">is_readable()</a> - Indique si un fichier
+						existe et est accessible en lecture</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.pack.html">pack</a>
+		</div>
+		<div class="next">
+			<a href="function.php-strip-whitespace.html">php_strip_whitespace</a>
+		</div>
+		<div class="up">
+			<a href="ref.misc.html">Fonctions diverses</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Formats pour les temps (Time)</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="datetime.formats.html">Formats support&eacute;s de temps et de dates</a></div>
+ <div class="next"><a href="datetime.formats.date.html">Formats de dates</a></div>
+ <div class="up"><a href="datetime.formats.html">Formats support&eacute;s de temps et de dates</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="datetime.formats.time" class="section">
+  <h2 class="title">Formats pour les temps (Time)</h2>
+  
+  <table class="doctable table">
+   <caption><strong>Symboles utilisés</strong></caption>
+   
+    <thead>
+     <tr>
+      <th>Description</th>
+      <th>Formats</th>
+      <th>Exemples</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td><em>frac</em></td>
+      <td>. [0-9]+</td>
+      <td>&quot;.21342&quot;, &quot;.85&quot;</td>
+     </tr>
+
+     <tr>
+      <td><em>hh</em></td>
+      <td>&quot;0&quot;?[1-9] | &quot;1&quot;[0-2]</td>
+      <td>&quot;04&quot;, &quot;7&quot;, &quot;12&quot;</td>
+     </tr>
+
+     <tr>
+      <td><em>HH</em></td>
+      <td>[01][0-9] | &quot;2&quot;[0-4]</td>
+      <td>&quot;04&quot;, &quot;7&quot;, &quot;19&quot;</td>
+     </tr>
+
+     <tr>
+      <td><em>méridien</em></td>
+      <td>[AaPp] .? [Mm] .? [\0\t ]</td>
+      <td>&quot;A.m.&quot;, &quot;pM&quot;, &quot;am.&quot;</td>
+     </tr>
+
+     <tr>
+      <td><em>MM</em></td>
+      <td>[0-5][0-9]</td>
+      <td>&quot;00&quot;, &quot;12&quot;, &quot;59&quot;</td>
+     </tr>
+
+     <tr>
+      <td><em>II</em></td>
+      <td>[0-5][0-9]</td>
+      <td>&quot;00&quot;, &quot;12&quot;, &quot;59&quot;</td>
+     </tr>
+
+     <tr>
+      <td><em>espace</em></td>
+      <td>[ \t]</td>
+      <td class="empty">&nbsp;</td>
+     </tr>
+
+     <tr>
+      <td><em>tz</em></td>
+      <td>&quot;(&quot;? [A-Za-z]{1,6} &quot;)&quot;? | [A-Z][a-z]+([_/][A-Z][a-z]+)+</td>
+      <td>&quot;CEST&quot;, &quot;Europe/Amsterdam&quot;, &quot;America/Indiana/Knox&quot;</td>
+     </tr>
+
+     <tr>
+      <td><em>tzcorrection</em></td>
+      <td>&quot;GMT&quot;? [+-] <em>hh</em> &quot;:&quot;? <em>MM</em>?</td>
+      <td>&quot;+0400&quot;, &quot;GMT-07:00&quot;, &quot;-07:00&quot;</td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+
+  <table class="doctable table">
+   <caption><strong>Notation 12 heures</strong></caption>
+   
+    <thead>
+     <tr>
+      <th>Description</th>
+      <th>Format</th>
+      <th>Examples</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>Heures seules, avec méridien</td>
+      <td><em>hh</em> <em>espace</em>? <em>méridien</em></td>
+      <td>&quot;4 am&quot;, &quot;5PM&quot;</td>
+     </tr>
+
+     <tr>
+      <td>Heures et minutes, avec méridien</td>
+      <td><em>hh</em> [.:] <em>MM</em> <em>space</em>? <em>méridien</em></td>
+      <td>&quot;4:08 am&quot;, &quot;7:19P.M.&quot;</td>
+     </tr>
+
+     <tr>
+      <td>Heures, minutes et secondes avec méridien</td>
+      <td><em>hh</em> [.:] <em>MM</em> [.:] <em>II</em> <em>espace</em>? <em>méridien</em></td>
+      <td>&quot;4:08:37 am&quot;, &quot;7:19:19P.M.&quot;</td>
+     </tr>
+
+     <tr>
+      <td>MS SQL (Heures, minutes, secondes et fraction avec méridien), PHP 5.3 et plus uniquement</td>
+      <td><em>hh</em> &quot;:&quot; <em>MM</em> &quot;:&quot; <em>II</em> [.:] [0-9]+ <em>meridian</em></td>
+      <td>&quot;4:08:39:12313am&quot;</td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+
+  <table class="doctable table">
+   <caption><strong>Notation 24 heures</strong></caption>
+   
+    <thead>
+     <tr>
+      <th>Description</th>
+      <th>Format</th>
+      <th>Exemples</th>
+     </tr>
+
+    </thead>
+
+    <tbody class="tbody">
+     <tr>
+      <td>Heures et minutes</td>
+      <td>&#039;t&#039;? <em>HH</em> [.:] <em>MM</em></td>
+      <td>&quot;04:08&quot;, &quot;19.19&quot;, &quot;T23:43&quot;</td>
+     </tr>
+
+     <tr>
+      <td>Heures et minutes, sans double-points</td>
+      <td>&#039;t&#039;? <em>HH</em> <em>MM</em></td>
+      <td>&quot;0408&quot;, &quot;t1919&quot;, &quot;T2343&quot;</td>
+     </tr>
+
+     <tr>
+      <td>Heures, minutes et secondes</td>
+      <td>&#039;t&#039;? <em>HH</em> [.:] <em>MM</em> [.:] <em>II</em></td>
+      <td>&quot;04.08.37&quot;, &quot;t19:19:19&quot;</td>
+     </tr>
+
+     <tr>
+      <td>Heures, minutes et secondes, sans double-points</td>
+      <td>&#039;t&#039;? <em>HH</em> <em>MM</em> <em>II</em></td>
+      <td>&quot;040837&quot;, &quot;T191919&quot;</td>
+     </tr>
+
+     <tr>
+      <td>Heures, minutes, secondes et fuseau</td>
+      <td>&#039;t&#039;? <em>HH</em> [.:] <em>MM</em> [.:] <em>II</em> <em>space</em>? ( <em>tzcorrection</em> | <em>tz</em> )</td>
+      <td>&quot;040837CEST&quot;, &quot;T191919-0700&quot;</td>
+     </tr>
+
+     <tr>
+      <td>Heures, minutes, secondes et fraction</td>
+      <td>&#039;t&#039;? <em>HH</em> [.:] <em>MM</em> [.:] <em>II</em> <em>frac</em></td>
+      <td>&quot;04.08.37.81412&quot;, &quot;19:19:19.532453&quot;</td>
+     </tr>
+
+     <tr>
+      <td>Information de fuseau horaire</td>
+      <td><em>tz</em> | <em>tzcorrection</em></td>
+      <td>&quot;CEST&quot;, &quot;Europe/Amsterdam&quot;, &quot;+0430&quot;, &quot;GMT-06:00&quot;</td>
+     </tr>
+
+    </tbody>
+   
+  </table>
+
+ </div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="datetime.formats.html">Formats support&eacute;s de temps et de dates</a></div>
+ <div class="next"><a href="datetime.formats.date.html">Formats de dates</a></div>
+ <div class="up"><a href="datetime.formats.html">Formats support&eacute;s de temps et de dates</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

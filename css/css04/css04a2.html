@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Taille des polices</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function(){top.FP.initPage();}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>Définir la taille de la police, c'est définir la hauteur du
+			corps des caractères.</p>
+
+		<figure>
+			<img src="../cssimg/anatomielettre.gif" width="599" height="209">
+			<figcaption>
+				<a
+					href="http://fr.wikipedia.org/wiki/Caract%C3%A8re_%28typographie%29"
+					target="_blank">Caractère typographique</a>
+			</figcaption>
+		</figure>
+
+
+		<!-- ################################################################################################## -->
+		<h3>La propriété font-size</h3>
+		<section>
+			<p>
+				La taille de la police est spécifiée par la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'font-size')">font-size</a>
+				dont la valeur est un nombre <a
+					onclick="top.FP.Voir.showPageTech('longueur', '')">d'unités</a>.
+			</p>
+			<pre data-code="CSS">
+html { font-size: 13px; }
+body { font-size: 1em; }
+h1 { font-size: 160%; }
+p { font-size: 1rem; }</pre>
+
+			<p>
+				L'unité de taille est à choisir en fonction du dispositif d'affichage.
+				Par exemple il ne faut pas utiliser des centimètres pour afficher
+				sur un écran pour lequel on privilégiera le pixel CSS (<code>px</code>),
+				le cadratin (<code>em</code>), le pourcentage (<code>%</code>) ou la
+				référence à la racine du document (<code>rem</code>).
+			</p>
+
+			<p>Par défaut les navigateurs utilisent une taille de caractères
+				de 16 pixels.</p>
+
+			<p>
+				La propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'font-size')">font-size</a>
+				est héritée : elles est transmise automatiquement de l'élément
+				parent à ses enfants, quelque soit le niveau de descendance.
+				<br>
+				On peut donc facilement gérer la taille de police d'une page en
+				mettant la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'font-size')">font-size</a>
+				sur l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'body')">body</a>,
+				ou sur l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'html')">html</a>.
+			</p>
+
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Taille en pixels</h3>
+		<section>
+			<p>
+				Spécifier une taille de police en <code>px</code> (pixels) définit
+				une taille dans une valeur absolue. Cela permet de s'affranchir de
+				la taille de base éventuellement choisie par l'utilisateur et peut
+				parfois poser des problèmes pour les personnes souffrant d'un
+				handicap visuel qui auront augmenté la taille par défaut.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : taille de polices
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;La Guerre des Etoiles du Milieu et le prince d'Azkaban&lt;/h3&gt;
+			
+		&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron. &lt;/p&gt;
+			
+		&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;
+			
+		&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+			
+		&lt;p&gt;De plus en plus portnawak les scénarios chez Disney.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+html { 
+	font-size: 13px;
+	font-family: Tahoma, Geneva, Verdana, sans-serif;
+}
+h3 { font-size: 22px; }
+p:nth-of-type(2) { font-size: 15px; }
+p:nth-of-type(3) { font-size: 17px; }
+p:last-of-type { font-size: 19px; }</textarea>
+			</form>
+
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Taille en em</h3>
+		<section>
+			<div class="fp-puce">
+				<p>
+					Spécifier une taille de police en <code>em</code> (ou <a
+						href="http://fr.wikipedia.org/wiki/Cadratin" target="_blank">cardatin</a>)
+					définit une taille relativement à la taille de l'élément parent.
+				</p>
+
+				<p>
+					La taille de l'élément parent, quelle qu'elle soit, représente 1 <code>em</code>.
+					Si on veut diminuer la taille de l'élément enfant on donne une
+					valeur inférieure à 1 et si on veut augmenter la taille de l'enfant
+					on donne une valeur supérieure à 1.
+					<br>
+					Par exemple, si la taille du parent est de 16 pixels, définir la
+					taille d'un enfant à 0.8125 <code>em</code> donnera 13 pixels (16 *
+					0.8125), et définir la taille à 1.25 <code>em</code> donnera 20
+					pixels (16 * 1.25).
+				</p>
+			</div>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : taille de polices
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;La Guerre des Etoiles du Milieu et le prince d'Azkaban&lt;/h3&gt;
+			
+		&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron. &lt;/p&gt;
+			
+		&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;
+			
+		&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+			
+		&lt;p&gt;De plus en plus portnawak les scénarios chez Disney.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body { 
+	font-size: 16px;
+	font-family: Tahoma, Geneva, Verdana, sans-serif;
+}
+h3 {
+	font-size: 2em;			/* 16px X 2 = 32px */
+}	
+p:first-of-type {
+	font-size: 1em;			/* 16px X 1 = 16px */
+}
+p:nth-of-type(2) {
+	font-size: 0.8125em;	/* 16px X 0.8125 = 13px */
+}
+p:nth-of-type(3) {
+	font-size: 0.6875em;	/* 16px X 0.6875 = 11px */
+}
+p:last-of-type {
+	font-size: 1.1875em;	/* 16px X 1.1875 = 19px */
+}	</textarea>
+			</form>
+
+			<p>
+				Utiliser l'unité <code>em</code> permet de modifier facilement les
+				différentes tailles utilisées dans une mise en page en modifiant
+				seulement la taille de l'élément parent de base.
+			</p>
+
+			<p>
+				Utiliser l'unité <code>em</code> permet de respecter la taille par
+				défaut choisie par l'utilisateur qui constituera l'unité de base.
+			</p>
+
+			<p>Il faut toutefois être très prudent car les imbrications
+				risquent de cumuler les diminutions (ou les augmentations) donnant
+				ainsi des résultats non souhaités et quelque fois difficiles à
+				maîtriser.</p>
+
+			<p class="fp-p-raz">
+				L'exemple suivant est une imbrication de listes (qui pourrait
+				constituer un menu). La taille de l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'li')">li</a> est
+				définie à 0.8125 <code>em</code> soit 13 pixels. Au fur et à mesure
+				de l'imbrication la taille des éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'li')">li</a> diminue
+				passant de 13 pixels à 11 pixels (13px X 0.8125) puis 9 (11 X
+				0.8125).
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : cumuls à éviter
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;ul&gt;
+			&lt;li&gt;Le Seigneur des Anneaux
+				&lt;ul&gt;
+					&lt;li&gt;Les gentils
+						&lt;ul&gt;
+							&lt;li&gt;Gandalf&lt;/li&gt;
+							&lt;li&gt;Frodon&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/li&gt;
+					&lt;li&gt;Les méchants
+						&lt;ul&gt;
+							&lt;li&gt;Sauron&lt;/li&gt;
+							&lt;li&gt;Saroumane&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/li&gt;						
+				&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li&gt;Star Wars
+				&lt;ul&gt;
+					&lt;li&gt;Les gentils
+						&lt;ul&gt;
+							&lt;li&gt;Yoda&lt;/li&gt;
+							&lt;li&gt;Luke Skywalker&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/li&gt;
+					&lt;li&gt;Les méchants
+						&lt;ul&gt;
+							&lt;li&gt;Palpatine&lt;/li&gt;
+							&lt;li&gt;Dark Vador&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/li&gt;						
+				&lt;/ul&gt;
+			&lt;/li&gt;						
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body { 
+	font-size: 16px;
+	font-family: Tahoma, Geneva, Verdana, sans-serif;
+}
+li { font-size: 0.8125em; }</textarea>
+			</form>
+
+			<a id="exo_arreter_em"></a>
+			<h4 class="fp-exo">Arrêter le cumul proportionnel</h4>
+			<section>
+				<p>
+					Reprenez l'exemple précédent et ajoutez la règle de style qui
+					permet d'arrêter le cumul des diminutions. Tous les éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'li')">li</a>,
+					quelque soit leur position dans la hiérarchie doivent avoir la même
+					taille, soit 16 pixels X 0.8125 <code>em</code>.
+				</p>
+
+				<p class="fp-solution">
+					<a onclick="top.FP.Voir.showSolution('exo_arreter_em_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_arreter_em_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : arrêter le cumul proportionnel
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;ul&gt;
+			&lt;li&gt;Le Seigneur des Anneaux
+				&lt;ul&gt;
+					&lt;li&gt;Les gentils
+						&lt;ul&gt;
+							&lt;li&gt;Gandalf&lt;/li&gt;
+							&lt;li&gt;Frodon&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/li&gt;
+					&lt;li&gt;Les méchants
+						&lt;ul&gt;
+							&lt;li&gt;Sauron&lt;/li&gt;
+							&lt;li&gt;Saroumane&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/li&gt;						
+				&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li&gt;Star Wars
+				&lt;ul&gt;
+					&lt;li&gt;Les gentils
+						&lt;ul&gt;
+							&lt;li&gt;Yoda&lt;/li&gt;
+							&lt;li&gt;Luke Skywalker&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/li&gt;
+					&lt;li&gt;Les méchants
+						&lt;ul&gt;
+							&lt;li&gt;Palpatine&lt;/li&gt;
+							&lt;li&gt;Dark Vador&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/li&gt;						
+				&lt;/ul&gt;
+			&lt;/li&gt;						
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+body { 
+	font-size: 16px;
+	font-family: Tahoma, Geneva, Verdana, sans-serif;
+}
+li { font-size: 0.8125em; }
+li li { font-size: 1em; }</textarea>
+					</form>
+				</div>
+			</section>
+
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Taille en rem</h3>
+		<section>
+			<p>
+				Pour éviter le problème des cumuls de tailles proportionnelles, une nouvelle unité a
+				été introduite par le <abbr title="World Wide Web Consortium">W3C</abbr>
+				: le <code>rem</code> permet de définir une taille relative à
+				l'élément racine du document, soit l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'html')">html</a>. On
+				peut ainsi respecter la taille par défaut choisie par l'utilisateur
+				et on a une taille de base invariante.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : cumuls à éviter
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;ul&gt;
+			&lt;li&gt;Le Seigneur des Anneaux
+				&lt;ul&gt;
+					&lt;li&gt;Les gentils
+						&lt;ul&gt;
+							&lt;li&gt;Gandalf&lt;/li&gt;
+							&lt;li&gt;Frodon&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/li&gt;
+					&lt;li&gt;Les méchants
+						&lt;ul&gt;
+							&lt;li&gt;Sauron&lt;/li&gt;
+							&lt;li&gt;Saroumane&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/li&gt;						
+				&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li&gt;Star Wars
+				&lt;ul&gt;
+					&lt;li&gt;Les gentils
+						&lt;ul&gt;
+							&lt;li&gt;Yoda&lt;/li&gt;
+							&lt;li&gt;Luke Skywalker&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/li&gt;
+					&lt;li&gt;Les méchants
+						&lt;ul&gt;
+							&lt;li&gt;Palpatine&lt;/li&gt;
+							&lt;li&gt;Dark Vador&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/li&gt;						
+				&lt;/ul&gt;
+			&lt;/li&gt;						
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+html { 
+	font-size: 16px;
+	font-family: Tahoma, Geneva, Verdana, sans-serif;
+}
+li { font-size: 0.8125rem;}</textarea>
+			</form>
+
+
+			<p>
+				Si une taille est définie pour l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'html')">html</a>
+				c'est elle qui servira de taille de référence.
+			</p>
+
+			<p>
+				Si aucune taille n'est définie pour l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'html')">html</a>
+				mais qu'une taille est définie pour l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'body')">body</a>,
+				c'est elle qui servira de taille de référence.
+			</p>
+
+			<p>
+				Si aucune taille n'est définie pour les éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'html')">html</a> et
+				<a onclick="top.FP.Voir.showPageTech('elements', 'body')">body</a>,
+				c'est la taille définie dans la configuration du navigateur qui sera
+				utilisée (généralement 16 pixels).
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : taille de polices
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;La Guerre des Etoiles du Milieu et le prince d'Azkaban&lt;/h3&gt;
+			
+		&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron. &lt;/p&gt;
+			
+		&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;
+			
+		&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+			
+		&lt;p&gt;De plus en plus portnawak les scénarios chez Disney.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body { 
+	font-size: 18px;
+	font-family: Tahoma, Geneva, Verdana, sans-serif;
+}
+h3 {
+	font-size: 1.5rem;		/* 18px X 1.5 = 24px */
+}	
+p:first-of-type {
+	font-size: 1rem;		/* 18px X 1 = 18px */
+}
+p:nth-of-type(2) {
+	font-size: 0.888889rem;	/* 18px X 0.088889 = 16px */
+}
+p:nth-of-type(3) {
+	font-size: 0.7222222em;	/* 18px X 0.722222 = 13px */
+}
+p:last-of-type {
+	font-size: 0.6111111em;	/* 18px X 0.611111 = 11px */
+}	</textarea>
+			</form>
+
+			<p>
+				Le seul frein à l'utilisation du <code>rem</code> est la persistance
+				des anciennes générations de navigateurs qui ne supportent pas cette
+				unité. Voir <a href="http://caniuse.com/#feat=rem" target="_blank">http://caniuse.com/#feat=rem</a>
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Taille en pourcentage</h3>
+		<section>
+			<p>
+				L'unité de taille <code>%</code> fonctionne de la même façon que
+				l'unité <code>em</code>.
+			</p>
+
+			<div class="fp-puce">
+				<p>Spécifier une taille de police en pourcentage définit une
+					taille relativement à la taille de l'élément parent.</p>
+
+				<p>
+					La taille de l'élément parent, quelle qu'elle soit, représente
+					100%. Si on veut diminuer la taille de l'élément enfant on donne
+					une valeur inférieure à 100 et si on veut augmenter la taille de
+					l'enfant on donne une valeur supérieure à 100.
+					<br>
+					Par exemple, si la taille du parent est de 16 pixels, définir la
+					taille d'un enfant à 81.25% donnera 13 pixels (16 * 81.25 / 100),
+					et définir la taille à 125% donnera 20 pixels (16 * 125 / 100).
+				</p>
+			</div>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : taille de polices
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;La Guerre des Etoiles du Milieu et le prince d'Azkaban&lt;/h3&gt;
+			
+		&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron. &lt;/p&gt;
+			
+		&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;
+			
+		&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+			
+		&lt;p&gt;De plus en plus portnawak les scénarios chez Disney.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body { 
+	font-size: 16px;
+	font-family: Tahoma, Geneva, Verdana, sans-serif;
+}
+h3 {
+	font-size: 200%;		/* 16px X 200 / 100 = 32px */
+}	
+p:first-of-type{
+	font-size: 100%;		/* 16px X 100 / 100 = 16px */
+}
+p:nth-of-type(2) {
+	font-size: 81.25%;		/* 16px X 81.25 / 100 = 13px */
+}
+p:nth-of-type(3) {
+	font-size: 68.75%;		/* 16px X 68.75 / 100 = 11px */
+}
+p:last-of-type {
+	font-size: 118.75%;		/* 16px X 118.75 / 100 = 19px */
+}	</textarea>
+			</form>
+
+			<p>
+				Comme le pourcentage fonctionne de la même façon que l'unité <code>em</code>,
+				on a les mêmes travers pour le cumul de diminutions ou
+				d'augmentations quand les éléments sont imbriqués trop profondément.
+			</p>
+
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

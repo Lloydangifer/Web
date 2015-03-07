@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Exemples et exercices de structure</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+
+		<p class="fp-bot0 fp-p-raz">Nous allons écrire le code <abbr title="HyperText Markup Language">HTML</abbr> de
+			structure pour composer l'exemple de page type suivant :</p>
+
+		<figure style="width: 300px; float: left">
+			<img src="../htmlimg/structure05.png" width="300" height="377">
+			<figcaption> page type exemple</figcaption>
+		</figure>
+
+		<p style="float: right; width: 280px; margin-top: 4em;">
+			Pour simuler l'encombrement des blocs, la hauteur et la couleur de
+			fond des éléments sont définies avec des règles de style <abbr
+				title="Cascading Style Sheets">CSS</abbr> dans un élément <a
+				onclick="top.FP.Voir.showPageTech('elements', 'style')">style</a>.
+			Pour le moment ne vous occupez pas trop du code <abbr
+				title="Cascading Style Sheets">CSS</abbr>, mais concentrez vous sur
+			les éléments <abbr title="HyperText Markup Language">HTML</abbr> et leur imbrication.
+		</p>
+
+		<p class="fp-clear">Pour réaliser des pages <abbr title="HyperText Markup Language">HTML</abbr>, je vous
+			conseille de toujours travailler par itérations : on définit la
+			structure de base avec les blocs principaux, puis on définit la
+			structure interne pour chacun des blocs.</p>
+
+		<h3>En-tête, principal et pied</h3>
+		<section>
+			<figure>
+				<img src="../htmlimg/structure06.png" width="300" height="260">
+				<figcaption> itération 1</figcaption>
+			</figure>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : En-tête, principal et pied
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Itération 1&lt;/title&gt;
+		&lt;style&gt;
+* {margin: 0; padding: 0.5em;}
+header {background: #ed8683; height: 3em; margin-bottom: 1em}
+main {background: #a9b9c5; height: 8em}
+footer {background: #ffff66; height: 3em; margin-top: 1em}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;header&gt;
+			En-tête
+		&lt;/header&gt;
+		&lt;main&gt;
+			Le contenu principal de la page.
+		&lt;/main&gt;
+		&lt;footer&gt;
+			Pied de page.
+		&lt;/footer&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+		</section>
+
+		<h3>Hors-texte, à côté</h3>
+		<section>
+
+			<figure>
+				<img src="../htmlimg/structure07.png" width="300" height="260">
+				<figcaption> itération 2</figcaption>
+			</figure>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : hors-texte à côté
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Itération 2&lt;/title&gt;
+		&lt;style&gt;
+* {margin: 0; padding: 0.5em}
+header {background: #ed8683; height: 3em; margin-bottom: 1em}
+main {background: #a9b9c5; height: 8em; margin-right: 8em;}
+footer {background: #ffff66; height: 3em; margin-top: 1em}
+aside {background: #ff9900; min-height: 8em; float: right; width: 6em;}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;header&gt;
+			En-tête
+		&lt;/header&gt;
+		&lt;aside&gt;
+			Hors-texte à côté
+		&lt;/aside&gt;
+		&lt;main&gt;
+			Le contenu principal de la page.
+		&lt;/main&gt;
+		&lt;footer&gt;
+			Pied de page.
+		&lt;/footer&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+		</section>
+
+		<a id="exo_en_tete"></a>
+		<h3 class="fp-exo">Contenu de l'en-tête</h3>
+		<section>
+
+			<figure style="float: right; width: 320px;">
+				<img src="../exercices/exo_en_tete.png" width="300" height="291">
+				<figcaption> itération 3 - contenu de l'en-tête</figcaption>
+			</figure>
+
+			<div style="margin: 0 320px 0 0">
+				<p class="fp-bot0 fp-p-raz">Complétez le code <abbr title="HyperText Markup Language">HTML</abbr> pour obtenir
+					le résultat ci-contre :</p>
+
+				<p style="margin: 2em 0 0 0">Le contenu de l'en-tête est fait
+					avec</p>
+				<ul class="fp-ul-puce">
+					<li>un élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'h1')">h1</a>,
+					</li>
+					<li>un élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'nav')">nav</a>.
+					</li>
+				</ul>
+			</div>
+
+			<p class="fp-completez">
+				<a onclick="top.FP.Voir.showCompletez('exo_en_tete_comp')">Code à
+					compléter</a>
+			</p>
+
+			<div id="exo_en_tete_comp" class="BLOC-completez">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : contenu de l'en-tête
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Itération 3&lt;/title&gt;
+		&lt;style&gt;
+* {margin: 0; padding: 0.5em}
+header {background: #ed8683; margin-bottom: 1em}
+main {background: #a9b9c5; height: 8em; margin-right: 8em;}
+footer {background: #ffff66; height: 3em; margin-top: 1em}
+aside {background: #ff9900; min-height: 8em; float: right; width: 6em;}
+h1 {background: #a3a334; font-size: 1.5em}
+nav {background: #74e8e5; margin-top: 0.5em}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;header&gt;
+			En-tête
+		&lt;/header&gt;
+		&lt;aside&gt;
+			Hors-texte à côté
+		&lt;/aside&gt;
+		&lt;main&gt;
+			Le contenu principal de la page.
+		&lt;/main&gt;
+		&lt;footer&gt;
+			Pied de page.
+		&lt;/footer&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+
+			<p class="fp-solution">
+				<a onclick="top.FP.Voir.showSolution('exo_en_tete_solu', 1)">Une
+					solution possible</a>
+			</p>
+			<div id="exo_en_tete_solu" class="BLOC-solution">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : contenu de l'en-tête
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Itération 3&lt;/title&gt;
+		&lt;style&gt;
+* {margin: 0; padding: 0.5em}
+header {background: #ed8683; margin-bottom: 1em}
+main {background: #a9b9c5; height: 8em; margin-right: 8em;}
+footer {background: #ffff66; height: 3em; margin-top: 1em}
+aside {background: #ff9900; min-height: 8em; float: right; width: 6em;}
+h1 {background: #a3a334; font-size: 1.5em}
+nav {background: #74e8e5; margin-top: 0.5em}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;header&gt;
+			&lt;h1&gt;Titre de la page&lt;/h1&gt;
+			&lt;nav&gt;Barre de navigation&lt;/nav&gt;
+		&lt;/header&gt;
+		&lt;aside&gt;
+			Hors-texte à côté
+		&lt;/aside&gt;
+		&lt;main&gt;
+			Le contenu principal de la page.
+		&lt;/main&gt;
+		&lt;footer&gt;
+			Pied de page.
+		&lt;/footer&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+		</section>
+
+		<a id="exo_hors_texte"></a>
+		<h3 class="fp-exo">Contenu du hors texte</h3>
+		<section>
+
+			<figure style="float: right; width: 320px;">
+				<img src="../exercices/exo_hors_texte.png" width="300" height="411">
+				<figcaption> itération 4 - contenu hors texte</figcaption>
+			</figure>
+
+			<div style="margin: 0 320px 0 0">
+				<p class="fp-bot0 fp-p-raz">Complétez le code <abbr title="HyperText Markup Language">HTML</abbr> pour obtenir
+					le résultat ci-contre :</p>
+
+				<p style="margin: 7em 0 0 0">Le contenu hors-texte est fait avec</p>
+				<ul class="fp-ul-puce">
+					<li>des éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'section')">section</a>,
+					</li>
+					<li>des éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'h2')">h2</a>.
+					</li>
+				</ul>
+			</div>
+
+			<p class="fp-completez">
+				<a onclick="top.FP.Voir.showCompletez('exo_hors_texte_comp')">Code à
+					compléter</a>
+			</p>
+
+			<div id="exo_hors_texte_comp" class="BLOC-completez">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : contenu du hors texte
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Itération 4&lt;/title&gt;
+		&lt;style&gt;
+* {margin: 0; padding: 0.5em}
+header {background: #ed8683; margin-bottom: 1em}
+main {background: #a9b9c5; height: 20em; margin-right: 8em;}
+footer {background: #ffff66; height: 3em; margin-top: 1em}
+aside {background: #ff9900; float: right; width: 6em;}
+h1 {background: #a3a334; font-size: 1.5em}
+nav {background: #74e8e5; margin-top: 0.5em}
+section {background: #9ee46e; min-height:5em; margin: 0.5em 0}
+h2 {background: #a3a334; font-size: 1.2em; padding: 0} 
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;header&gt;
+			&lt;h1&gt;Titre de la page&lt;/h1&gt;
+			&lt;nav&gt;Barre de navigation&lt;/nav&gt;
+		&lt;/header&gt;
+		&lt;aside&gt;
+			Hors-texte à côté
+		&lt;/aside&gt;
+		&lt;main&gt;
+			Le contenu principal de la page.
+		&lt;/main&gt;
+		&lt;footer&gt;
+			Pied de page.
+		&lt;/footer&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+
+			<p class="fp-solution">
+				<a onclick="top.FP.Voir.showSolution('exo_hors_texte_solu', 1)">Une
+					solution possible</a>
+			</p>
+			<div id="exo_hors_texte_solu" class="BLOC-solution">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : contenu du hors texte
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Itération 4&lt;/title&gt;
+		&lt;style&gt;
+* {margin: 0; padding: 0.5em}
+header {background: #ed8683; margin-bottom: 1em}
+main {background: #a9b9c5; height: 20em; margin-right: 8em;}
+footer {background: #ffff66; height: 3em; margin-top: 1em}
+aside {background: #ff9900; float: right; width: 6em;}
+h1 {background: #a3a334; font-size: 1.5em}
+nav {background: #74e8e5; margin-top: 0.5em}
+section {background: #9ee46e; min-height:5em; margin: 0.5em 0}
+h2 {background: #a3a334; font-size: 1.2em; padding: 0} 
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;header&gt;
+			&lt;h1&gt;Titre de la page&lt;/h1&gt;
+			&lt;nav&gt;Barre de navigation&lt;/nav&gt;
+		&lt;/header&gt;
+		&lt;aside&gt;
+			&lt;section&gt;
+				&lt;h2&gt;Titre&lt;/h2&gt;
+			&lt;/section&gt;
+			&lt;section&gt;
+			&lt;/section&gt;
+			&lt;section&gt;
+				&lt;h2&gt;Titre&lt;/h2&gt;
+			&lt;/section&gt;
+		&lt;/aside&gt;
+		&lt;main&gt;
+			Le contenu principal de la page.
+		&lt;/main&gt;
+		&lt;footer&gt;
+			Pied de page.
+		&lt;/footer&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+		</section>
+
+		<a id="exo_section_article"></a>
+		<h3 class="fp-exo">Sections et articles</h3>
+		<section>
+
+			<figure style="float: right; width: 320px;">
+				<img src="../exercices/exo_section_article.png" width="300" height="410">
+				<figcaption> itération 5 - sections et articles</figcaption>
+			</figure>
+
+			<div style="margin: 0 320px 0 0">
+				<p class="fp-bot0 fp-p-raz">Complétez le code <abbr title="HyperText Markup Language">HTML</abbr> pour obtenir
+					le résultat ci-contre :</p>
+
+				<p style="margin: 7em 0 0 0">La structure du bloc principal est
+					faite avec</p>
+				<ul class="fp-ul-puce">
+					<li>des éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'section')">section</a>,
+					</li>
+					<li>des éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'article')">article</a>.
+					</li>
+				</ul>
+			</div>
+
+			<p class="fp-completez">
+				<a onclick="top.FP.Voir.showCompletez('exo_section_article_comp')">Code
+					à compléter</a>
+			</p>
+
+			<div id="exo_section_article_comp" class="BLOC-completez">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : sections et articles
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Itération 5&lt;/title&gt;
+		&lt;style&gt;
+* {margin: 0; padding: 0.5em}
+header {background: #ed8683; margin-bottom: 1em}
+main {background: #a9b9c5; height: 20em; margin-right: 8em;}
+footer {background: #ffff66; height: 3em; margin-top: 1em}
+aside {background: #ff9900; float: right; width: 6em;}
+h1 {background: #a3a334; font-size: 1.5em}
+nav {background: #74e8e5; margin-top: 0.5em}
+section {background: #9ee46e; min-height:5em; margin: 0.5em 0}
+h2 {background: #a3a334; font-size: 1.2em; padding: 0} 
+article {background: #e3e3e3; min-height:4em; margin: 0.5em 0}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;header&gt;
+			&lt;h1&gt;Titre de la page&lt;/h1&gt;
+			&lt;nav&gt;Barre de navigation&lt;/nav&gt;
+		&lt;/header&gt;
+		&lt;aside&gt;
+			&lt;section&gt;
+				&lt;h2&gt;Titre&lt;/h2&gt;
+			&lt;/section&gt;
+			&lt;section&gt;
+			&lt;/section&gt;
+			&lt;section&gt;
+				&lt;h2&gt;Titre&lt;/h2&gt;
+			&lt;/section&gt;
+		&lt;/aside&gt;		
+		&lt;main&gt;
+			Le contenu principal de la page.
+		&lt;/main&gt;
+		&lt;footer&gt;
+			Pied de page.
+		&lt;/footer&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+
+			<p class="fp-solution">
+				<a onclick="top.FP.Voir.showSolution('exo_section_article_solu', 1)">Une
+					solution possible</a>
+			</p>
+			<div id="exo_section_article_solu" class="BLOC-solution">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : sections et articles
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Itération 5&lt;/title&gt;
+		&lt;style&gt;
+* {margin: 0; padding: 0.5em}
+header {background: #ed8683; margin-bottom: 1em}
+main {background: #a9b9c5; height: 20em; margin-right: 8em;}
+footer {background: #ffff66; height: 3em; margin-top: 1em}
+aside {background: #ff9900; float: right; width: 6em;}
+h1 {background: #a3a334; font-size: 1.5em}
+nav {background: #74e8e5; margin-top: 0.5em}
+section {background: #9ee46e; min-height:5em; margin: 0.5em 0}
+h2 {background: #a3a334; font-size: 1.2em; padding: 0} 
+article {background: #e3e3e3; min-height:4em; margin: 0.5em 0}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;header&gt;
+			&lt;h1&gt;Titre de la page&lt;/h1&gt;
+			&lt;nav&gt;Barre de navigation&lt;/nav&gt;
+		&lt;/header&gt;
+		&lt;aside&gt;
+			&lt;section&gt;
+				&lt;h2&gt;Titre&lt;/h2&gt;
+			&lt;/section&gt;
+			&lt;section&gt;
+			&lt;/section&gt;
+			&lt;section&gt;
+				&lt;h2&gt;Titre&lt;/h2&gt;
+			&lt;/section&gt;
+		&lt;/aside&gt;		
+		&lt;main&gt;
+			&lt;section&gt;
+				section 1 sans article
+			&lt;/section&gt;
+			&lt;section&gt;
+				&lt;article&gt;
+					article 1
+				&lt;/article&gt;
+				&lt;article&gt;
+					article 2
+				&lt;/article&gt;
+			&lt;/section&gt;
+		&lt;/main&gt;
+		&lt;footer&gt;
+			Pied de page.
+		&lt;/footer&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+		</section>
+
+
+		<a id="exo_principal"></a>
+		<h3 class="fp-exo">Contenu principal</h3>
+		<section>
+
+			<figure style="float: right; width: 320px;">
+				<img src="../exercices/exo_principal.png" width="300" height="511">
+				<figcaption> itération 6 - contenu principal</figcaption>
+			</figure>
+
+			<div style="margin: 0 320px 0 0">
+				<p class="fp-bot0 fp-p-raz">Complétez le code <abbr title="HyperText Markup Language">HTML</abbr> pour obtenir
+					le résultat ci-contre :</p>
+
+				<p style="margin: 7em 0 0 0">Le contenu est fait avec</p>
+				<ul class="fp-ul-puce">
+					<li>un élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'header')">header</a>,
+					</li>
+					<li>des éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'h2')">h2</a>,
+					</li>
+					<li>des éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'footer')">footer</a>,
+					</li>
+					<li>des éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'article')">article</a>.
+					</li>
+				</ul>
+			</div>
+
+			<p class="fp-completez">
+				<a onclick="top.FP.Voir.showCompletez('exo_principal_comp')">Code à
+					compléter</a>
+			</p>
+
+			<div id="exo_principal_comp" class="BLOC-completez">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : contenu principal
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Itération 6&lt;/title&gt;
+		&lt;style&gt;
+* {margin: 0; padding: 0.5em}
+header {background: #ed8683; margin-bottom: 1em}
+main {background: #a9b9c5; margin-right: 8em;}
+footer {background: #ffff66; height: 3em; margin-top: 1em}
+aside {background: #ff9900; float: right; width: 6em;}
+aside section {min-height: 8.3em}
+h1 {background: #a3a334; font-size: 1.5em}
+nav {background: #74e8e5; margin-top: 0.5em}
+section {background: #9ee46e; min-height:5em; margin: 0.5em 0}
+h2 {background: #a3a334; font-size: 1.2em; padding: 0; margin-bottom: 0.5em;} 
+article {background: #e3e3e3; min-height:5em; margin: 0.5em 0}
+section header {margin: 0 0 0.5em}
+section footer {height: 1em; clear: left}
+section aside {min-height: 2em; margin: 0 0.5em 0.5em 0; float: left}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;header&gt;
+			&lt;h1&gt;Titre de la page&lt;/h1&gt;
+			&lt;nav&gt;Barre de navigation&lt;/nav&gt;
+		&lt;/header&gt;
+		&lt;aside&gt;
+			&lt;section&gt;
+				&lt;h2&gt;Titre&lt;/h2&gt;
+			&lt;/section&gt;
+			&lt;section&gt;
+			&lt;/section&gt;
+			&lt;section&gt;
+				&lt;h2&gt;Titre&lt;/h2&gt;
+			&lt;/section&gt;
+		&lt;/aside&gt;		
+		&lt;main&gt;
+			&lt;section&gt;
+				section 1 sans article
+			&lt;/section&gt;
+			&lt;section&gt;
+				&lt;article&gt;
+					article 1
+				&lt;/article&gt;
+				&lt;article&gt;
+					article 2
+				&lt;/article&gt;
+			&lt;/section&gt;
+		&lt;/main&gt;
+		&lt;footer&gt;
+			Pied de page.
+		&lt;/footer&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+
+			<p class="fp-solution">
+				<a onclick="top.FP.Voir.showSolution('exo_principal_solu', 1)">Une
+					solution possible</a>
+			</p>
+			<div id="exo_principal_solu" class="BLOC-solution">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : contenu principal
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Itération 6&lt;/title&gt;
+		&lt;style&gt;
+* {margin: 0; padding: 0.5em}
+header {background: #ed8683; margin-bottom: 1em}
+main {background: #a9b9c5; margin-right: 8em;}
+footer {background: #ffff66; height: 3em; margin-top: 1em}
+aside {background: #ff9900; float: right; width: 6em;}
+aside section {min-height: 8.3em}
+h1 {background: #a3a334; font-size: 1.5em}
+nav {background: #74e8e5; margin-top: 0.5em}
+section {background: #9ee46e; min-height:5em; margin: 0.5em 0}
+h2 {background: #a3a334; font-size: 1.2em; padding: 0; margin-bottom: 0.5em;} 
+article {background: #e3e3e3; min-height:5em; margin: 0.5em 0}
+section header {margin: 0 0 0.5em}
+section footer {height: 1em; clear: left}
+section aside {min-height: 2em; margin: 0 0.5em 0.5em 0; float: left}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;header&gt;
+			&lt;h1&gt;Titre de la page&lt;/h1&gt;
+			&lt;nav&gt;Barre de navigation&lt;/nav&gt;
+		&lt;/header&gt;
+		&lt;aside&gt;
+			&lt;section&gt;
+				&lt;h2&gt;Titre&lt;/h2&gt;
+			&lt;/section&gt;
+			&lt;section&gt;
+			&lt;/section&gt;
+			&lt;section&gt;
+				&lt;h2&gt;Titre&lt;/h2&gt;
+			&lt;/section&gt;
+		&lt;/aside&gt;		
+		&lt;main&gt;
+			&lt;section&gt;
+				&lt;header&gt;
+					&lt;h2&gt;Titre section 1 &lt;/h2&gt;
+					En-tête section 1 .
+				&lt;/header&gt;
+				&lt;aside&gt;&lt;/aside&gt;
+				section 1 sans article
+				&lt;footer&gt;
+					Pied section 1
+				&lt;/footer&gt;
+			&lt;/section&gt;
+			&lt;section&gt;
+				&lt;article&gt;
+					&lt;h2&gt;Titre article 1&lt;/h2&gt;
+					&lt;aside&gt;&lt;/aside&gt;
+					article 1 de la section 2
+				&lt;/article&gt;
+				&lt;article&gt;
+					&lt;h2&gt;Titre article 2&lt;/h2&gt;
+					&lt;aside&gt;&lt;/aside&gt;
+					article 2 de la section 2
+					&lt;footer&gt;
+						Pied article 2
+					&lt;/footer&gt;
+				&lt;/article&gt;
+			&lt;/section&gt;
+		&lt;/main&gt;
+		&lt;footer&gt;
+			Pied de page.
+		&lt;/footer&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

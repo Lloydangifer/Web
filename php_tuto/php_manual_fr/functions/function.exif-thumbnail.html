@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>R&eacute;cup&egrave;re la miniature d'une image TIFF ou
+	JPEG</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.exif-tagname.html">exif_tagname</a>
+		</div>
+		<div class="next">
+			<a href="function.read-exif-data.html">read_exif_data</a>
+		</div>
+		<div class="up">
+			<a href="ref.exif.html">Fonctions Exif</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.exif-thumbnail" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">exif_thumbnail</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">exif_thumbnail</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Récupère la miniature d&#039;une image
+					TIFF ou JPEG</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.exif-thumbnail-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>exif_thumbnail</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$filename</code></span> [, <span
+					class="methodparam"><span class="type">int</span> <code
+						class="parameter reference">&$width</code></span> [, <span
+					class="methodparam"><span class="type">int</span> <code
+						class="parameter reference">&$height</code></span> [, <span
+					class="methodparam"><span class="type">int</span> <code
+						class="parameter reference">&$imagetype</code></span> ]]] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>exif_thumbnail()</strong></span> lit
+				la miniature de l&#039;image <acronym
+					title="Tagged Image File Format">TIFF</acronym> ou <acronym
+					title="Joint Photographic Experts Group">JPEG</acronym> dans le
+				fichier <em><code class="parameter">filename</code></em>.
+			</p>
+			<p class="para">
+				Si vous voulez afficher des miniatures avec cette fonction, vous
+				devez envoyer le bon type MIME avec la fonction <span
+					class="function"><a href="function.header.html"
+					class="function">header()</a></span>.
+			</p>
+			<p class="para">
+				Il est possible que la fonction <span class="function"><strong>exif_thumbnail()</strong></span>
+				n&#039;arrive pas à créer l&#039;image mais peut déterminer sa
+				taille. Dans ce cas, la fonction retourne <strong><code>FALSE</code></strong>
+				mais les paramètres <em><code class="parameter">width</code></em> et
+				<em><code class="parameter">height</code></em> sont définis.
+			</p>
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.exif-thumbnail-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">filename</code></em></span>
+				<dd>
+
+					<p class="para">Le nom du fichier image à lire. Cette image
+						contient une miniature.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">width</code></em></span>
+				<dd>
+
+					<p class="para">La largeur retournée de la miniature retournée.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">height</code></em></span>
+				<dd>
+
+					<p class="para">La hauteur retournée de la miniature retournée.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">imagetype</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le type de l&#039;image retourné de la miniature retournée. Peut
+						être soit <acronym title="Tagged Image File Format">TIFF</acronym>,
+						soit <acronym title="Joint Photographic Experts Group">JPEG</acronym>.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.exif-thumbnail-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne la miniature embarquée ou <strong><code>FALSE</code></strong>
+				si l&#039;image ne contient pas de miniature.
+			</p>
+		</div>
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.exif-thumbnail-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.3.0</td>
+						<td>Les paramètres optionnels <em><code
+									class="parameter">width</code></em>, <em><code
+									class="parameter">height</code></em> et <em><code
+									class="parameter">imagetype</code></em> deviennent disponibles.
+						</td>
+					</tr>
+
+					<tr>
+						<td>4.3.0</td>
+						<td>Les miniatures peuvent être retournées dans le format <acronym
+							title="Tagged Image File Format">TIFF</acronym>.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+		<div class="refsect1 examples"
+			id="refsect1-function.exif-thumbnail-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2990">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>exif_thumbnail()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">if&nbsp;(</span><span
+								style="color: #0000BB">array_key_exists</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'file'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$_REQUEST</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$image&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">exif_thumbnail</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$_REQUEST</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">'file'</span><span
+								style="color: #007700">],&nbsp;</span><span
+								style="color: #0000BB">$width</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$height</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$type</span><span style="color: #007700">);<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$image&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">false</span><span style="color: #007700">;<br />}<br />if&nbsp;(
+							</span><span style="color: #0000BB">$image</span><span
+								style="color: #007700">!==</span><span style="color: #0000BB">false</span><span
+								style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">header</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'Content-type:&nbsp;'&nbsp;</span><span
+								style="color: #007700">.</span><span style="color: #0000BB">image_type_to_mime_type</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$type</span><span
+								style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #0000BB">$image</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;aucune&nbsp;miniature&nbsp;de&nbsp;disponible,&nbsp;traitement&nbsp;de&nbsp;l'erreur&nbsp;ici<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">'No&nbsp;thumbnail&nbsp;available'</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.exif-thumbnail-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.exif-read-data.html" class="function"
+						rel="rdfs-seeAlso">exif_read_data()</a> - Lit les en-t&ecirc;tes
+						EXIF dans les images JPEG ou TIFF</span></li>
+				<li class="member"><span class="function"><a
+						href="function.image-type-to-mime-type.html" class="function"
+						rel="rdfs-seeAlso">image_type_to_mime_type()</a> - Lit le
+						Mime-Type d'un type d'image</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.exif-tagname.html">exif_tagname</a>
+		</div>
+		<div class="next">
+			<a href="function.read-exif-data.html">read_exif_data</a>
+		</div>
+		<div class="up">
+			<a href="ref.exif.html">Fonctions Exif</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

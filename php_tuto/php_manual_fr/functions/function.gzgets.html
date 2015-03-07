@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Lit une ligne dans un fichier compress&eacute;</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.gzgetc.html">gzgetc</a>
+		</div>
+		<div class="next">
+			<a href="function.gzgetss.html">gzgetss</a>
+		</div>
+		<div class="up">
+			<a href="ref.zlib.html">Fonctions Zlib</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.gzgets" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">gzgets</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">gzgets</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Lit une ligne dans un fichier
+					compressé</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.gzgets-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>gzgets</strong></span>
+				( <span class="methodparam"><span class="type">resource</span>
+					<code class="parameter">$zp</code></span> , <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$length</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>gzgets()</strong></span> retourne une
+				chaîne non compressée, de taille maximale <em><code
+						class="parameter">length</code></em> - 1 octets, lue dans le fichier
+				représenté par <em><code class="parameter">zp</code></em>. La
+				lecture s&#039;arrête lorsque <em><code class="parameter">length</code></em>
+				- 1 octets ont été lus, ou que la fonction a rencontré une nouvelle
+				ligne ou la fin du fichier (le premier des trois qui survient).
+			</p>
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.gzgets-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">zp</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le pointeur de fichier gz. Il doit être valide et doit pointer
+						vers un fichier ouvert avec succès grâce à la fonction <span
+							class="function"><a href="function.gzopen.html"
+							class="function">gzopen()</a></span>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">length</code></em></span>
+				<dd>
+
+					<p class="para">La longueur de données à lire.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.gzgets-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				La chaîne décompressée ou <strong><code>FALSE</code></strong> si une
+				erreur survient.
+			</p>
+		</div>
+
+		<div class="refsect1 examples" id="refsect1-function.gzgets-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-892">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>gzgets()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$handle&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">gzopen</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'somefile.gz'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'r'</span><span style="color: #007700">);<br />while&nbsp;(!
+							</span><span style="color: #0000BB">gzeof</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$buffer&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">gzgets</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$handle</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">4096</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #0000BB">$buffer</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">gzclose</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+		<div class="refsect1 seealso" id="refsect1-function.gzgets-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.gzopen.html" class="function" rel="rdfs-seeAlso">gzopen()</a>
+						- Ouvre un fichier compress&eacute; avec gzip</span></li>
+				<li class="member"><span class="function"><a
+						href="function.gzgetc.html" class="function" rel="rdfs-seeAlso">gzgetc()</a>
+						- Lit un caract&egrave;re dans un fichier compress&eacute;</span></li>
+				<li class="member"><span class="function"><a
+						href="function.gzwrite.html" class="function" rel="rdfs-seeAlso">gzwrite()</a>
+						- &Eacute;crit dans un fichier compress&eacute; gzip</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.gzgetc.html">gzgetc</a>
+		</div>
+		<div class="next">
+			<a href="function.gzgetss.html">gzgetss</a>
+		</div>
+		<div class="up">
+			<a href="ref.zlib.html">Fonctions Zlib</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

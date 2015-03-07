@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Op&eacute;rateurs de comparaison</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.operators.bitwise.html">Op&eacute;rateurs sur
+				les bits</a>
+		</div>
+		<div class="next">
+			<a href="language.operators.errorcontrol.html">Op&eacute;rateur
+				de contr&ocirc;le d'erreur</a>
+		</div>
+		<div class="up">
+			<a href="language.operators.html">Les op&eacute;rateurs</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.operators.comparison" class="sect1">
+		<h2 class="title">Opérateurs de comparaison</h2>
+		<p class="simpara">
+			Les opérateurs de comparaison, comme leur nom l&#039;indique, vous
+			permettent de comparer deux valeurs. Vous devriez également être
+			intéressés par les <a href="types.comparisons.html" class="link">tables
+				de comparaisons de types</a>, car ils montrent des exemples de beaucoup
+			de types de comparaisons.
+		</p>
+		<table class="doctable table">
+			<caption>
+				<strong>Opérateurs de comparaison</strong>
+			</caption>
+
+			<thead>
+				<tr>
+					<th>Exemple</th>
+					<th>Nom</th>
+					<th>Résultat</th>
+				</tr>
+
+			</thead>
+
+			<tbody class="tbody">
+				<tr>
+					<td>$a == $b</td>
+					<td>Egal</td>
+					<td><strong><code>TRUE</code></strong> si <var class="varname">
+							<var class="varname">$a</var>
+						</var> est égal à <var class="varname">
+							<var class="varname">$b</var>
+						</var> après le transtypage.</td>
+				</tr>
+
+				<tr>
+					<td>$a === $b</td>
+					<td>Identique</td>
+					<td><strong><code>TRUE</code></strong> si <var class="varname">
+							<var class="varname">$a</var>
+						</var> est égal à <var class="varname">
+							<var class="varname">$b</var>
+						</var> et qu&#039;ils sont de même type.</td>
+				</tr>
+
+				<tr>
+					<td>$a != $b</td>
+					<td>Différent</td>
+					<td><strong><code>TRUE</code></strong> si <var class="varname">
+							<var class="varname">$a</var>
+						</var> est différent de <var class="varname">
+							<var class="varname">$b</var>
+						</var> après le transtypage.</td>
+				</tr>
+
+				<tr>
+					<td>$a &lt;&gt; $b</td>
+					<td>Différent</td>
+					<td><strong><code>TRUE</code></strong> si <var class="varname">
+							<var class="varname">$a</var>
+						</var> est différent de <var class="varname">
+							<var class="varname">$b</var>
+						</var> après le transtypage.</td>
+				</tr>
+
+				<tr>
+					<td>$a !== $b</td>
+					<td>Différent</td>
+					<td><strong><code>TRUE</code></strong> si <var class="varname">
+							<var class="varname">$a</var>
+						</var> est différent de <var class="varname">
+							<var class="varname">$b</var>
+						</var> ou bien qu&#039;ils ne sont pas du même type.</td>
+				</tr>
+
+				<tr>
+					<td>$a &lt; $b</td>
+					<td>Plus petit que</td>
+					<td><strong><code>TRUE</code></strong> si <var class="varname">
+							<var class="varname">$a</var>
+						</var> est strictement plus petit que <var class="varname">
+							<var class="varname">$b</var>
+						</var>.</td>
+				</tr>
+
+				<tr>
+					<td>$a &gt; $b</td>
+					<td>Plus grand</td>
+					<td><strong><code>TRUE</code></strong> si <var class="varname">
+							<var class="varname">$a</var>
+						</var> est strictement plus grand que <var class="varname">
+							<var class="varname">$b</var>
+						</var>.</td>
+				</tr>
+
+				<tr>
+					<td>$a &lt;= $b</td>
+					<td>Inférieur ou égal</td>
+					<td><strong><code>TRUE</code></strong> si <var class="varname">
+							<var class="varname">$a</var>
+						</var> est plus petit ou égal à <var class="varname">
+							<var class="varname">$b</var>
+						</var>.</td>
+				</tr>
+
+				<tr>
+					<td>$a &gt;= $b</td>
+					<td>Supérieur ou égal</td>
+					<td><strong><code>TRUE</code></strong> si <var class="varname">
+							<var class="varname">$a</var>
+						</var> est plus grand ou égal à <var class="varname">
+							<var class="varname">$b</var>
+						</var>.</td>
+				</tr>
+
+			</tbody>
+
+		</table>
+
+		<p class="para">
+			Si vous comparez un nombre avec une chaîne ou bien que la comparaison
+			implique des chaînes numériques, alors chaque chaîne sera <a
+				href="language.types.string.html#language.types.string.conversion"
+				class="link">convertie en un nombre</a> et la comparaison sera
+			effectuée numériquement. Ces règles s&#039;appliquent également à
+			l&#039;instruction <a href="control-structures.switch.html"
+				class="link">switch</a>. La comparaison de type n&#039;a pas de
+			place lorsque la comparaison est === ou !== vu que ceci engendre
+			aussi bien une comparaison de type que de valeur.
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />var_dump
+						</span><span style="color: #007700">(</span><span style="color: #0000BB">0&nbsp;</span><span
+							style="color: #007700">==&nbsp;</span><span
+							style="color: #DD0000">"a"</span><span style="color: #007700">);&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;0&nbsp;==&nbsp;0&nbsp;-&gt;&nbsp;true<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #DD0000">"1"&nbsp;</span><span
+							style="color: #007700">==&nbsp;</span><span
+							style="color: #DD0000">"01"</span><span style="color: #007700">);&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;1&nbsp;==&nbsp;1&nbsp;-&gt;&nbsp;true<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #DD0000">"10"&nbsp;</span><span
+							style="color: #007700">==&nbsp;</span><span
+							style="color: #DD0000">"1e1"</span><span style="color: #007700">);&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;10&nbsp;==&nbsp;10&nbsp;-&gt;&nbsp;true<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">100&nbsp;</span><span
+							style="color: #007700">==&nbsp;</span><span
+							style="color: #DD0000">"1e2"</span><span style="color: #007700">);&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;100&nbsp;==&nbsp;100&nbsp;-&gt;&nbsp;true<br />
+							<br /></span><span style="color: #007700">switch&nbsp;(</span><span
+							style="color: #DD0000">"a"</span><span style="color: #007700">)&nbsp;{<br />case&nbsp;
+						</span><span style="color: #0000BB">0</span><span style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"0"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;break;<br />case&nbsp;
+						</span><span style="color: #DD0000">"a"</span><span
+							style="color: #007700">:&nbsp;</span><span style="color: #FF8000">//&nbsp;jamais&nbsp;évalué&nbsp;parce&nbsp;que&nbsp;"a"&nbsp;est&nbsp;déjà&nbsp;trouvé&nbsp;avec&nbsp;0<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">echo&nbsp;</span><span
+							style="color: #DD0000">"a"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;break;<br />}<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+
+		<p class="para">Pour les différents types, la comparaison est
+			faite en suivant la table suivante (dans l&#039;ordre).</p>
+		<table id="language.operators.comparison.types" class="doctable table">
+			<caption>
+				<strong>Comparaison avec plusieurs types</strong>
+			</caption>
+
+			<thead>
+				<tr>
+					<th>Type de l&#039;opérande 1</th>
+					<th>Type de l&#039;opérande 2</th>
+					<th>Résultat</th>
+				</tr>
+
+			</thead>
+
+			<tbody class="tbody">
+				<tr>
+					<td><span class="type"><a
+							href="language.types.null.html" class="type null">null</a></span> ou <span
+						class="type"><span class="type chaîne de caractères">chaîne
+								de caractères</span></span></td>
+					<td><span class="type"><a
+							href="language.types.string.html" class="type string">string</a></span></td>
+					<td>Convertit <strong><code>NULL</code></strong> en
+						&quot;&quot;, comparaison numérique ou lexicale
+					</td>
+				</tr>
+
+				<tr>
+					<td><span class="type"><span class="type booléen">booléen</span></span>
+						ou <span class="type"><a href="language.types.null.html"
+							class="type null">null</a></span></td>
+					<td>N&#039;importe quoi</td>
+					<td>Convertit en <span class="type"><span
+							class="type booléen">booléen</span></span>, <strong><code>FALSE</code></strong>
+						&lt; <strong><code>TRUE</code></strong></td>
+				</tr>
+
+				<tr>
+					<td><span class="type"><span class="type objet">objet</span></span></td>
+					<td><span class="type"><span class="type objet">objet</span></span></td>
+					<td>Les classes internes peuvent définir leur propre méthode
+						de comparaison; différentes classes ne sont pas comparables; entre
+						objets de même classe, PHP a son propre <a
+						href="language.oop5.object-comparison.html" class="link">comportement</a>
+					</td>
+				</tr>
+
+				<tr>
+					<td><span class="type"><span
+							class="type chaîne de caractères">chaîne de caractères</span></span>, <span
+						class="type"><span class="type ressource">ressource</span></span>
+						ou <span class="type"><span class="type nombre">nombre</span></span>
+					</td>
+					<td><span class="type"><span
+							class="type chaîne de caractères">chaîne de caractères</span></span>, <span
+						class="type"><span class="type ressource">ressource</span></span>
+						ou <span class="type"><span class="type nombre">nombre</span></span>
+					</td>
+					<td>Transforme les chaînes de caractères et les ressources en
+						nombres</td>
+				</tr>
+
+				<tr>
+					<td><span class="type"><span class="type tableaux">tableaux</span></span></td>
+					<td><span class="type"><span class="type tableaux">tableaux</span></span></td>
+					<td>Le tableau avec le moins de membres est plus petit, si la
+						clé de l&#039;opérande 1 n&#039;est pas trouvée dans
+						l&#039;opérande 2, alors les tableaux ne sont pas comparables,
+						sinon la comparaison se fait valeur par valeur (voir
+						l&#039;exemple suivant)</td>
+				</tr>
+
+				<tr>
+					<td><span class="type"><span class="type tableau">tableau</span></span></td>
+					<td>N&#039;importe quoi</td>
+					<td>Le <span class="type"><span class="type tableau">tableau</span></span>
+						est toujours plus grand
+					</td>
+				</tr>
+
+				<tr>
+					<td><span class="type"><span class="type objet">objet</span></span></td>
+					<td>N&#039;importe quoi</td>
+					<td>L&#039;<span class="type"><span class="type objet">objet</span></span>
+						est toujours plus grand
+					</td>
+				</tr>
+
+			</tbody>
+
+		</table>
+
+		<p class="para">
+		<div class="example" id="example-126">
+			<p>
+				<strong>Exemple #1 Transcription des comparaisons standards
+					des tableaux</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #FF8000">//&nbsp;Les&nbsp;tableaux&nbsp;sont&nbsp;comparés&nbsp;comme&nbsp;ceci&nbsp;avec&nbsp;les&nbsp;opérateurs&nbsp;standards&nbsp;de&nbsp;comparaison<br /></span><span
+							style="color: #007700">function&nbsp;</span><span
+							style="color: #0000BB">standard_array_compare</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$op1</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$op2</span><span
+							style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;if&nbsp;(
+						</span><span style="color: #0000BB">count</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$op1</span><span
+							style="color: #007700">)&nbsp;&lt;&nbsp;</span><span
+							style="color: #0000BB">count</span><span style="color: #007700">(</span><span
+							style="color: #0000BB">$op2</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;-
+						</span><span style="color: #0000BB">1</span><span style="color: #007700">;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;$op1&nbsp;&lt;&nbsp;$op2<br />&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">}&nbsp;elseif&nbsp;(</span><span
+							style="color: #0000BB">count</span><span style="color: #007700">(</span><span
+							style="color: #0000BB">$op1</span><span style="color: #007700">)&nbsp;&gt;&nbsp;</span><span
+							style="color: #0000BB">count</span><span style="color: #007700">(</span><span
+							style="color: #0000BB">$op2</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+						</span><span style="color: #0000BB">1</span><span style="color: #007700">;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;$op1&nbsp;&gt;&nbsp;$op2<br />&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">}<br />&nbsp;&nbsp;&nbsp;foreach&nbsp;(
+						</span><span style="color: #0000BB">$op1&nbsp;</span><span
+							style="color: #007700">as&nbsp;</span><span
+							style="color: #0000BB">$key&nbsp;</span><span
+							style="color: #007700">=&gt;&nbsp;</span><span
+							style="color: #0000BB">$val</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!
+						</span><span style="color: #0000BB">array_key_exists</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$key</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$op2</span><span
+							style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+						</span><span style="color: #0000BB">null</span><span
+							style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;incomparable<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">}&nbsp;elseif&nbsp;(</span><span
+							style="color: #0000BB">$val&nbsp;</span><span
+							style="color: #007700">&lt;&nbsp;</span><span
+							style="color: #0000BB">$op2</span><span style="color: #007700">[</span><span
+							style="color: #0000BB">$key</span><span style="color: #007700">])&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;-
+						</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;elseif&nbsp;(
+						</span><span style="color: #0000BB">$val&nbsp;</span><span
+							style="color: #007700">&gt;&nbsp;</span><span
+							style="color: #0000BB">$op2</span><span style="color: #007700">[</span><span
+							style="color: #0000BB">$key</span><span style="color: #007700">])&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+						</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;return&nbsp;
+						</span><span style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;$op1&nbsp;==&nbsp;$op2<br /></span><span
+							style="color: #007700">}<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+
+		<p class="para">
+			Voir aussi <span class="function"><a
+				href="function.strcasecmp.html" class="function">strcasecmp()</a></span>, <span
+				class="function"><a href="function.strcmp.html"
+				class="function">strcmp()</a></span> <a
+				href="language.operators.array.html" class="link">les opérateurs
+				de tableaux</a>, et le chapitre sur les <a href="language.types.html"
+				class="link">types</a>.
+		</p>
+
+		<div class="warning">
+			<strong class="warning">Avertissement</strong>
+			<h1 class="title">Comparaison de nombre à virgule flottante</h1>
+
+			<p class="para">
+				A cause de la façon dont les nombres à virgule flottante sont
+				représentés en interne, vous ne devriez pas tester l&#039;égalité
+				entre deux nombres de type <span class="type"><a
+					href="language.types.float.html" class="type float">float</a></span>.
+			</p>
+
+			<p class="para">
+				Voyez la documentation de <span class="type"><a
+					href="language.types.float.html" class="type float">float</a></span> pour
+				plus d&#039;informations.
+			</p>
+		</div>
+
+		<div class="sect2" id="language.operators.comparison.ternary">
+			<h3 class="title">L&#039;opérateur ternaire</h3>
+			<p class="para">Un autre opérateur conditionnel est
+				l&#039;opérateur ternaire (&quot;:?&quot;).
+			<div class="example" id="example-127">
+				<p>
+					<strong>Exemple #2 Assignation d&#039;une valeur par
+						défaut</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Exemple&nbsp;d'utilisation&nbsp;pour&nbsp;l'opérateur&nbsp;ternaire<br /></span><span
+								style="color: #0000BB">$action&nbsp;</span><span
+								style="color: #007700">=&nbsp;(empty(</span><span
+								style="color: #0000BB">$_POST</span><span style="color: #007700">[</span><span
+								style="color: #DD0000">'action'</span><span
+								style="color: #007700">]))&nbsp;?&nbsp;</span><span
+								style="color: #DD0000">'default'&nbsp;</span><span
+								style="color: #007700">:&nbsp;</span><span
+								style="color: #0000BB">$_POST</span><span style="color: #007700">[</span><span
+								style="color: #DD0000">'action'</span><span
+								style="color: #007700">];<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;La&nbsp;ligne&nbsp;ci-dessus&nbsp;est&nbsp;identique&nbsp;à&nbsp;la&nbsp;condition&nbsp;suivante&nbsp;:<br /></span><span
+								style="color: #007700">if&nbsp;(empty(</span><span
+								style="color: #0000BB">$_POST</span><span style="color: #007700">[</span><span
+								style="color: #DD0000">'action'</span><span
+								style="color: #007700">]))&nbsp;{<br />&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$action&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'default'</span><span
+								style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$action&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">$_POST</span><span style="color: #007700">[</span><span
+								style="color: #DD0000">'action'</span><span
+								style="color: #007700">];<br />}<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			L&#039;expression <em>(expr1) ? (expr2) : (expr3)</em> est évaluée à
+			<span class="replaceable">expr2</span> si <span class="replaceable">expr1</span>
+			est évaluée à <strong><code>TRUE</code></strong>, et <span
+				class="replaceable">expr3</span> si <span class="replaceable">expr1</span>
+			est évaluée à <strong><code>FALSE</code></strong>.
+			</p>
+			<p class="para">
+				Depuis PHP 5.3, il est possible d&#039;omettre la partie centrale de
+				l&#039;opérateur ternaire. L&#039;expression <em>expr1 ?: expr3</em>
+				retourne <span class="replaceable">expr1</span> si <span
+					class="replaceable">expr1</span> vaut <strong><code>TRUE</code></strong>,
+				et <span class="replaceable">expr3</span> sinon.
+			</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">
+						Notez que l&#039;opérateur ternaire est une instruction, et il
+						n&#039;est pas évalué en tant que variable, mais en tant que
+						résultat de l&#039;instruction. Il est important de savoir si vous
+						voulez retourner une variable par référence. L&#039;instruction <em>return
+							$var == 42 ? $a : $b;</em> dans une fonction retournée par référence
+						ne fonctionnera donc pas et une alerte est émise.
+					</span>
+				</p>
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Il est recommandé de ne pas &quot;empiler&quot;
+					les expressions ternaires. Le comportement de PHP lors de
+					l&#039;utilisation de plus d&#039;un opérateur ternaire dans une
+					seule instruction n&#039;est pas évident :
+				<div class="example" id="example-128">
+					<p>
+						<strong>Exemple #3 Comportement de PHP</strong>
+					</p>
+					<div class="example-contents">
+						<div class="phpcode">
+							<code>
+								<span style="color: #000000"> <span
+									style="color: #0000BB">&lt;?php<br /></span><span
+									style="color: #FF8000">//&nbsp;A&nbsp;première&nbsp;vue,&nbsp;ce&nbsp;qui&nbsp;suit&nbsp;devrait&nbsp;retourner&nbsp;'true'<br /></span><span
+									style="color: #007700">echo&nbsp;(</span><span
+									style="color: #0000BB">true</span><span style="color: #007700">?</span><span
+									style="color: #DD0000">'true'</span><span
+									style="color: #007700">:</span><span style="color: #0000BB">false</span><span
+									style="color: #007700">?</span><span style="color: #DD0000">'t'</span><span
+									style="color: #007700">:</span><span style="color: #DD0000">'f'</span><span
+									style="color: #007700">);<br />
+									<br /></span><span style="color: #FF8000">//&nbsp;cependant,&nbsp;l'expression&nbsp;ci-dessus&nbsp;retournera&nbsp;'t'<br />//&nbsp;car&nbsp;l'expression&nbsp;ternaire&nbsp;est&nbsp;évaluée&nbsp;de&nbsp;gauche&nbsp;à&nbsp;droite<br />
+									<br />//&nbsp;l'expression&nbsp;suivante&nbsp;est&nbsp;une&nbsp;version&nbsp;plus&nbsp;évidente&nbsp;du&nbsp;même&nbsp;code<br /></span><span
+									style="color: #007700">echo&nbsp;((</span><span
+									style="color: #0000BB">true&nbsp;</span><span
+									style="color: #007700">?&nbsp;</span><span
+									style="color: #DD0000">'true'&nbsp;</span><span
+									style="color: #007700">:&nbsp;</span><span
+									style="color: #0000BB">false</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span
+									style="color: #DD0000">'t'&nbsp;</span><span
+									style="color: #007700">:&nbsp;</span><span
+									style="color: #DD0000">'f'</span><span style="color: #007700">);<br />
+									<br /></span><span style="color: #FF8000">//&nbsp;ici,&nbsp;vous&nbsp;pouvez&nbsp;voir&nbsp;que&nbsp;la&nbsp;première&nbsp;expression&nbsp;est&nbsp;évaluée&nbsp;à&nbsp;'true',<br />//&nbsp;ce&nbsp;qui&nbsp;fait&nbsp;qu'elle&nbsp;est&nbsp;évaluée&nbsp;à&nbsp;(bool)true,&nbsp;ce&nbsp;qui&nbsp;retourne&nbsp;la&nbsp;branche<br />//&nbsp;'vraie'&nbsp;de&nbsp;la&nbsp;seconde&nbsp;expression&nbsp;ternaire.<br /></span><span
+									style="color: #0000BB">?&gt;</span>
+								</span>
+							</code>
+						</div>
+					</div>
+
+				</div>
+			</blockquote>
+		</div>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.operators.bitwise.html">Op&eacute;rateurs sur
+				les bits</a>
+		</div>
+		<div class="next">
+			<a href="language.operators.errorcontrol.html">Op&eacute;rateur
+				de contr&ocirc;le d'erreur</a>
+		</div>
+		<div class="up">
+			<a href="language.operators.html">Les op&eacute;rateurs</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

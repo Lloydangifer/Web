@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Retourner des r&eacute;f&eacute;rences</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.references.pass.html">Passage par
+				r&eacute;f&eacute;rence</a>
+		</div>
+		<div class="next">
+			<a href="language.references.unset.html">D&eacute;truire une
+				r&eacute;f&eacute;rence</a>
+		</div>
+		<div class="up">
+			<a href="language.references.html">Les r&eacute;f&eacute;rences</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.references.return" class="sect1">
+		<h2 class="title">Retourner des références</h2>
+		<p class="para">
+			Retourner des références est utile lorsque vous voulez utiliser une
+			fonction pour déterminer à quelle variable une référence devrait être
+			liée. N&#039;utilisez <em class="emphasis">pas</em> le retour par
+			référence pour améliorer les performances, le moteur est suffisamment
+			robuste pour optimiser cela en interne. Retournez des références
+			uniquement lorsque vous avez de bonnes raisons techniques de le faire
+			! Pour retourner des références, utilisez cette syntaxe :
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">class&nbsp;</span><span
+							style="color: #0000BB">foo&nbsp;</span><span
+							style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;
+						</span><span style="color: #0000BB">$value&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">42</span><span
+							style="color: #007700">;<br />
+							<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;&amp;
+						</span><span style="color: #0000BB">getValue</span><span
+							style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+						</span><span style="color: #0000BB">$this</span><span
+							style="color: #007700">-&gt;</span><span style="color: #0000BB">value</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+							<br /></span><span style="color: #0000BB">$obj&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">foo</span><span style="color: #007700">;<br /></span><span
+							style="color: #0000BB">$myValue&nbsp;</span><span
+							style="color: #007700">=&nbsp;&amp;</span><span
+							style="color: #0000BB">$obj</span><span style="color: #007700">-&gt;</span><span
+							style="color: #0000BB">getValue</span><span
+							style="color: #007700">();&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;$myValue&nbsp;est&nbsp;une&nbsp;référence&nbsp;de&nbsp;$obj-&gt;value,&nbsp;qui&nbsp;vaut&nbsp;42.<br /></span><span
+							style="color: #0000BB">$obj</span><span style="color: #007700">-&gt;</span><span
+							style="color: #0000BB">value&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">2</span><span
+							style="color: #007700">;<br />echo&nbsp;
+						</span><span style="color: #0000BB">$myValue</span><span
+							style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;affiche&nbsp;la&nbsp;nouvelle&nbsp;valeur&nbsp;de&nbsp;$obj-&gt;value,&nbsp;i.e.&nbsp;2.<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		Dans cet exemple, on affecte une valeur à la propriété de l&#039;objet
+		retourné par la fonction
+		<var class="varname">
+			<var class="varname">getValue</var>
+		</var>
+		, et non à sa copie, comme ce serait le cas si nous n&#039;avions pas
+		utilisé la syntaxe de référence.
+		</p>
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>: <span class="simpara">
+					Contrairement au passage de paramètre, ici, vous devez utiliser <em>&amp;</em>
+					aux deux endroits, à la fois pour indiquer que vous retournez par
+					référence (pas par copie), et pour indiquer que vous assignez aussi
+					par référence (pas par copie non plus) pour la variable <var
+						class="varname">
+						<var class="varname">$myValue</var>
+					</var>.
+				</span>
+			</p>
+		</blockquote>
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>: <span class="simpara"> Si
+					vous tentez de retourner une référence depuis une fonction avec la
+					syntaxe : <em>return ($this-&gt;value);</em>, cela ne fonctionnera
+					<em class="emphasis">pas</em> comme vous l&#039;attendez, et
+					retournera le résultat de l&#039;<em class="emphasis">expression</em>,
+					et pas de la variable, par référence. Vous ne pouvez retourner que
+					des variables par référence depuis une fonction - et rien
+					d&#039;autre. Depuis PHP 4.4.0 dans la branche PHP 4, et PHP 5.1.0
+					dans la branche PHP 5, une alerte <strong><code>E_NOTICE</code></strong>
+					est envoyée si le code tente de retourner une expression dynamique
+					ou un résultat de l&#039;opérateur <em>new</em>.
+				</span>
+			</p>
+		</blockquote>
+		<p class="para">Pour utiliser la référence retournée, vous devez
+			utiliser l&#039;assignement par référence :
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">function&nbsp;&amp;</span><span
+							style="color: #0000BB">collector</span><span
+							style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;static&nbsp;
+						</span><span style="color: #0000BB">$collection&nbsp;</span><span
+							style="color: #007700">=&nbsp;array();<br />&nbsp;&nbsp;return&nbsp;
+						</span><span style="color: #0000BB">$collection</span><span
+							style="color: #007700">;<br />}<br /></span><span
+							style="color: #0000BB">$collection&nbsp;</span><span
+							style="color: #007700">=&nbsp;&amp;</span><span
+							style="color: #0000BB">collector</span><span
+							style="color: #007700">();<br /></span><span
+							style="color: #0000BB">$collection</span><span
+							style="color: #007700">[]&nbsp;=&nbsp;</span><span
+							style="color: #DD0000">'foo'</span><span style="color: #007700">;<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		Pour passer la référence retournée à une autre fonction attendant une
+		référence, vous pouvez utiliser la syntaxe suivante :
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">function&nbsp;&amp;</span><span
+							style="color: #0000BB">collector</span><span
+							style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;static&nbsp;
+						</span><span style="color: #0000BB">$collection&nbsp;</span><span
+							style="color: #007700">=&nbsp;array();<br />&nbsp;&nbsp;return&nbsp;
+						</span><span style="color: #0000BB">$collection</span><span
+							style="color: #007700">;<br />}<br /></span><span
+							style="color: #0000BB">array_push</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">collector</span><span
+							style="color: #007700">(),&nbsp;</span><span
+							style="color: #DD0000">'foo'</span><span style="color: #007700">);<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>: <span class="simpara">
+					Notez que <em>array_push(&amp;collector(), &#039;foo&#039;);</em> <em
+					class="emphasis">ne fonctionnera pas</em>, et résultera en une
+					erreur fatale.
+				</span>
+			</p>
+		</blockquote>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.references.pass.html">Passage par
+				r&eacute;f&eacute;rence</a>
+		</div>
+		<div class="next">
+			<a href="language.references.unset.html">D&eacute;truire une
+				r&eacute;f&eacute;rence</a>
+		</div>
+		<div class="up">
+			<a href="language.references.html">Les r&eacute;f&eacute;rences</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

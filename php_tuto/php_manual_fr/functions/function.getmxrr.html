@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Retourne les enregistrements MX d'un h&ocirc;te</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.gethostname.html">gethostname</a>
+		</div>
+		<div class="next">
+			<a href="function.getprotobyname.html">getprotobyname</a>
+		</div>
+		<div class="up">
+			<a href="ref.network.html">Fonctions r&eacute;seaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.getmxrr" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">getmxrr</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">getmxrr</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Retourne les enregistrements MX
+					d&#039;un hôte</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.getmxrr-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>getmxrr</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$hostname</code></span> , <span
+					class="methodparam"><span class="type">array</span> <code
+						class="parameter reference">&$mxhosts</code></span> [, <span
+					class="methodparam"><span class="type">array</span> <code
+						class="parameter reference">&$weight</code></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				Effectue une recherche DNS pour obtenir les enregistrements MX de
+				l&#039;hôte <em><code class="parameter">hostname</code></em>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.getmxrr-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">hostname</code></em></span>
+				<dd>
+
+					<p class="para">Le nom d&#039;hôte Internet.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">mxhosts</code></em></span>
+				<dd>
+
+					<p class="para">
+						La liste des enregistrements MX est placée dans le tableau <em><code
+								class="parameter">mxhosts</code></em>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">weight</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si le tableau <em><code class="parameter">weight</code></em> est
+						fourni, il sera rempli par les informations de poids.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.getmxrr-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne <strong><code>TRUE</code></strong> si des enregistrements
+				sont trouvés, et <strong><code>FALSE</code></strong> si une erreur
+				est rencontrée, ou si la recherche échoue.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.getmxrr-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.3.0</td>
+						<td>Cette fonction est maintenant disponible sous Windows.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.getmxrr-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Cette fonction ne doit pas être utilisée à des fin de vérification
+					d&#039;adresses. Seuls les serveurs de mails trouvés dans les
+					enregistrements DNS sont retournés. Suivant la <a
+						href="http://www.faqs.org/rfcs/rfc2821" class="link external">&raquo;&nbsp;RFC
+						2821</a> lorsque aucun serveur de mail n&#039;est listé, <em><code
+							class="parameter">hostname</code></em> doit être utilisé comme serveur
+					de mail, avec la priorité <em>0</em>.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Pour une compatibilité avec les versions non supportées, utilisez
+					la classe <a href="http://pear.php.net/" class="link external">&raquo;&nbsp;PEAR</a>
+					: <a href="http://pear.php.net/package/Net_DNS"
+						class="link external">&raquo;&nbsp;Net_DNS</a>.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.getmxrr-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.checkdnsrr.html" class="function"
+						rel="rdfs-seeAlso">checkdnsrr()</a> - R&eacute;solution DNS d'une
+						adresse IP</span></li>
+				<li class="member"><span class="function"><a
+						href="function.dns-get-record.html" class="function"
+						rel="rdfs-seeAlso">dns_get_record()</a> - Lit les donn&eacute;es
+						DNS associ&eacute;es &agrave; un h&ocirc;te</span></li>
+				<li class="member"><span class="function"><a
+						href="function.gethostbyname.html" class="function"
+						rel="rdfs-seeAlso">gethostbyname()</a> - Retourne l'adresse IPv4
+						correspondant &agrave; un h&ocirc;te</span></li>
+				<li class="member"><span class="function"><a
+						href="function.gethostbynamel.html" class="function"
+						rel="rdfs-seeAlso">gethostbynamel()</a> - Retourne la liste d'IPv4
+						correspondante &agrave; un h&ocirc;te</span></li>
+				<li class="member"><span class="function"><a
+						href="function.gethostbyaddr.html" class="function"
+						rel="rdfs-seeAlso">gethostbyaddr()</a> - Retourne le nom
+						d'h&ocirc;te correspondant &agrave; une IP</span></li>
+				<li class="member">la page du manuel <em>named(8)</em></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.gethostname.html">gethostname</a>
+		</div>
+		<div class="next">
+			<a href="function.getprotobyname.html">getprotobyname</a>
+		</div>
+		<div class="up">
+			<a href="ref.network.html">Fonctions r&eacute;seaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

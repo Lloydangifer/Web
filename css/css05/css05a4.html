@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Bordure</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+
+
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function() {
+			top.FP.initPage();
+		}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<section>
+
+			<figure style="float: right; margin: 0 0 0 20px">
+				<img src="../cssimg/border_petit.png" width="200" height="138">
+				<figcaption>bordures</figcaption>
+			</figure>
+
+			<p>Toutes les boîtes, qu'elle que soit leur type, peuvent avoir
+				une bordure.</p>
+
+			<p class="fp-bot0">Les bordures sont faites avec 3 composants :</p>
+			<ul>
+				<li>une épaisseur : <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'border-width')">border-width</a>,
+				</li>
+				<li>un style : <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'border-style')">border-style</a>,
+				</li>
+				<li>une couleur : <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'border-color')">border-color</a>,
+				</li>
+			</ul>
+
+			<p>
+				Le raccourci <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'border')">border</a>
+				permet de définir en une seule fois épaisseur, style et couleur, de
+				façon identique pour les quatres bords.
+			</p>
+
+			<div class="TEST-iframe">
+			<p>Tester les bordures</p>
+				<iframe src="../exemples/border_widget.html?1boite-widget"
+					id="boite-widget"
+					style="width: 100%; margin: 0; border: 0 none; height: 600px;"></iframe>
+			</div>
+			
+			<p>
+				Si on veut définir un bord uniquement sur un côté on peut utiliser
+				les raccourcis <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'border-top')">border-top</a>,
+				<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'border-right')">border-right</a>,
+				<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'border-bottom')">border-bottom</a>
+				et <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'border-left')">border-left</a>
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : bordures individualisées
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;L'Arrière des Etoiles&lt;/h3&gt;
+		&lt;p class="p1"&gt;Les CSS sont l'arme secrète de la Force !&lt;/p&gt;
+		&lt;p class="p1"&gt;Tu veux savoir les utiliser ?  
+			Envoie CSS au 7 1718.&lt;/p&gt;
+		&lt;div&gt;
+			&lt;p&gt;&lt;img src="../exemples/img/yoda.jpg"&gt; 
+				Le côté obscur des CSS redouter tu dois.&lt;/p&gt;
+	    	&lt;p&gt;&lt;img src="../exemples/img/darkv.jpg"&gt; 
+				Les CSS ont vraiment transformé ma vie.&lt;/p&gt;
+	    	&lt;p&gt;&lt;img src="../exemples/img/gandalf.jpg"&gt; 
+				Bien sûr, moi aussi j'utilise les CSS !&lt;/p&gt;
+	  	&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+h3 {
+	border-bottom: 0.3em dotted red;
+	border-top: 0.3em dotted red;
+}
+.p1 {
+	border-left: 20px solid cyan;
+}
+div p {
+	border-left: 5px solid gold;
+	border-bottom: 5px solid gold;
+}
+img {
+	vertical-align: bottom;
+}</textarea>
+			</form>
+
+
+			<p>
+				Si la couleur des bords n'est pas précisée, ils prendront la couleur
+				de la police de caractère (<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'color')">color</a>).
+			</p>
+
+			<p>
+				L'unité de taille pour définir l'épaisseur est à choisir en fonction
+				du dispositif d'affichage. Par exemple il ne faut pas utiliser des
+				centimètres pour afficher sur un écran pour lequel on privilégiera
+				le pixel CSS (<code>px</code>), le cadratin (<code>em</code>) ou la référence à la racine du document
+				(<code>rem</code>).
+				<br>
+				Les unités utilisées peuvent être différentes pour chacune des
+				marges d'un élément.<br>
+				L'unité de taille pour définir l'épaisseur d'une bordure <strong>ne peut pas être le
+				pourcentage</strong> (<code>%</code>).</p>
+				
+			<a id="exo_bordure"></a>
+			<h4 class="fp-exo">Bordures individualisées</h4>
+			<section>
+				<p>
+					Complétez le code <abbr title="Cascading Style Sheets">CSS</abbr>
+					pour obtenir le résultat suivant :
+				</p>
+
+				<figure>
+					<img src="../exercices/exo_bordure.png" width="460"
+						height="326">
+					<figcaption>bordures à réaliser</figcaption>
+				</figure>
+
+				<p class="fp-completez">
+					<a onclick="top.FP.Voir.showCompletez('exo_bordure_comp')">Code
+						à compléter</a>
+				</p>
+
+				<div id="exo_bordure_comp" class="BLOC-completez">
+					<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : bordures individualisées
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;La Guerre des Etoiles du Milieu&lt;br&gt;et le prince d'Azkaban&lt;/h3&gt;
+			
+		&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron. &lt;/p&gt;
+			
+		&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;
+			
+		&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+			
+		&lt;p&gt;De plus en plus portnawak les scénarios chez Disney.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+
+/* CODE CSS A COMPLETER 
+la couleur est red
+la taille autour du h3 est de 2 pixels
+la taille autour des paragraphes est de 3 pixels */
+
+</textarea>
+					</form>
+				</div>
+
+				<p class="fp-solution">
+					<a onclick="top.FP.Voir.showSolution('exo_bordure_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_bordure_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : bordures individualisées
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;La Guerre des Etoiles du Milieu&lt;br&gt;et le prince d'Azkaban&lt;/h3&gt;
+			
+		&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron. &lt;/p&gt;
+			
+		&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;
+			
+		&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+			
+		&lt;p&gt;De plus en plus portnawak les scénarios chez Disney.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+h3 {
+	border-top: 2px dashed red;
+	border-right: 2em solid red;
+	border-left: 2em solid red;
+	border-bottom: 2px dashed red;
+	text-align: center;
+}
+p {
+	margin: 0;		/* pour que les bordures se touchent */
+}
+p:first-of-type {
+	border-left: 3px solid red;
+}
+p:nth-of-type(2) {
+	border-top: 3px solid red;
+	border-right: 3px solid red;
+}
+p:nth-of-type(3) {
+	border-top: 3px solid red;
+	border-left: 3px solid red;
+}
+p:last-of-type {
+	border-top: 3px solid red;
+	border-right: 3px solid red;
+	border-bottom: 3px solid red;
+}</textarea>
+					</form>
+				</div>
+			</section>
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

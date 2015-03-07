@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Les formulaires</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<!-- 
+		<ul id="MENU-page"></ul>
+		-->
+
+		<section>
+			<p>
+				Les formulaires sont un des éléments <strong>incontournables</strong>
+				des pages Web. En effet, c'est le seul moyen dont on dispose pour
+				que l'utilisateur puisse envoyer des informations non triviales au
+				serveur Web.
+			</p>
+
+			<figure>
+				<img src="../htmlimg/formulaire_sw.jpg" width="580" height="364">
+				<figcaption> le formulaire le plus connu de la
+					galaxie</figcaption>
+			</figure>
+
+<div class="fp-rond fp-f-left">1</div> 
+			<p class="fp-p-raz">
+				&nbsp;Un formulaire est constitué <strong>d'une ou plusieurs
+					zones de saisie</strong> dans une page <abbr
+					title="HyperText Markup Language">HTML</abbr>.
+			</p>
+			<div class="fp-rond fp-f-left">2</div> 
+			<p class="fp-p-raz">
+				&nbsp;L'utilisateur <strong>saisit</strong> des informations dans
+					des zones spécifiques du formulaire.</p>
+			<div class="fp-rond fp-f-left">3</div> 
+			<p class="fp-p-raz">
+				&nbsp;Ces informations <strong>sont transmises</strong> par le
+					navigateur à un serveur distant.</p>
+			<div class="fp-rond fp-f-left">4</div> 
+			<p class="fp-p-raz">
+				&nbsp;Les informations sont <strong>traitées</strong> par le
+					serveur.</p>
+			<div class="fp-rond fp-f-left">5</div> 
+			<p class="fp-p-raz">
+				&nbsp;Une réponse peut être retournée à l'utilisateur sous forme
+					d'une autre page <abbr title="HyperText Markup Language">HTML</abbr>,
+					d'un partie de page ou d'un message.
+			</p>
+			
+			<figure>
+				<img src="../htmlimg/form_processus.png" width="580" height="481">
+				<figcaption> processus de traitement d'un formulaire</figcaption>
+			</figure>
+			
+
+			<p>
+				<strong>Ce n'est pas <abbr
+					title="HyperText Markup Language">HTML</abbr> qui fera le
+					traitement des informations saisies
+				</strong> puisqu'il n'est pas un langage de traitement de données, mais de
+				structuration. Le traitement est fait <strong>sur le serveur</strong>, par un programme ou un script
+				écrit avec un langage capable de <strong>manipuler des données</strong> et la plupart
+				du temps d'effectuer des opérations avec <strong>une base de données</strong>.
+			</p>
+
+			<p>
+				Les types de zones de saisie disponibles sont <strong>peu
+					nombreux</strong>. Ce sont ceux que l'on trouve sur les interfaces
+				graphiques traditionnelles, avec des <strong>limitations</strong>
+				dûes au langage qui au départ n'était pas conçu pour permettre un
+				échange de données, mais pour fournir un flot uni-directionnel du serveur
+				vers le navigateur client.
+			</p>
+
+			<p>
+				Il y a <strong>peu d'éléments à connaître</strong> pour gérer les
+				formulaires car l'un d'eux (<a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>)
+				est un véritable couteau suisse.
+			</p>
+
+			<figure>
+				<img src="../htmlimg/formulaire.jpg" width="560" height="552">
+				<figcaption> un formulaire avec tous les types
+					de zones de saisie supportés sans restriction</figcaption>
+			</figure>
+
+			<figure style="float: right; width: 322px; margin: 0 0 1em 0">
+				<img src="../htmlimg/formulaire_html5.jpg" width="280" height="532">
+				<figcaption> nouvelles zones HTML5</figcaption>
+			</figure>
+
+			<div class="fp-puce">
+				<p>
+					<abbr title="HyperText Markup Language">HTML</abbr>5 apporte
+					beaucoup de nouveautés intéressantes, mais leur implémentation dans
+					les navigateurs est <strong>hétérogéne et lacunaire</strong> pour le moment.
+				</p>
+				<p>
+					Les distributeurs de navigateur sont beaucoup plus intéressés par
+					le développement des éléments multimédias (vidéo, audio, animations
+					CSS) que par les éléments d'interface de saisie. Pour le moment <a
+						href="http://www.google.fr/intl/fr/chrome/browser/"
+						target="_blank">Chrome</a> arrive très très nettement en tête
+					devant <a href="http://www.mozilla.org/fr/firefox/new/"
+						target="_blank">Firefox</a> et <a
+						href="http://windows.microsoft.com/fr-fr/internet-explorer/download-ie"
+						target="_blank">Internet Explorer</a>
+				</p>
+				<p>
+					En réalité, les nouveaux types de zones sont tous fait en étendant
+					l'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+					qui devient un super couteau suisse. De nouveaux attributs ont été
+					ajouté qui apportent entre autre une <strong>validation possible</strong> de ce qui
+					est saisi avant l'envoi vers le serveur.
+				</p>
+			</div>
+
+			<p class="fp-clear">
+				La page <a
+					onclick="top.FP.Voir.showPageTech('zones_formulaire', '')">Zones
+					de formulaire</a> dans les spécifications techniques vous montre toutes
+				les zones de saisie qu'il est possible d'utiliser. Suivant le
+				navigateur que vous utilisez, certaines zones ajoutées par <abbr
+					title="HyperText Markup Language">HTML</abbr>5 apparaîtront comme
+				des simples champs texte si elles ne sont pas implémentées.
+				N'hésitez pas à changer de navigateur pour voir l'état d'avancement
+				des développements.
+			</p>
+
+			<div class="fp-clear fp-puce">
+				<p class="fp-bot0">L'apparence des zones de saisie n'est <strong>pas
+					homogéne</strong> car elle dépend :</p>
+				<ul>
+					<li>du <strong>système d'exploitation</strong> sur lequel fonctionne le
+						navigateur,</li>
+					<li>du <strong>navigateur</strong> lui même qui ajoutera (ou pas) un effet 3D,
+						un ombrage, une taille de police particulière ...</li>
+				</ul>
+
+				<p>
+					L'utilisation de règles de style <abbr
+						title="Cascading Style Sheets">CSS</abbr> est nécessaire si on
+					veut présenter et structurer les formulaires pour que leur
+					utilisation soit agréable.
+				</p>
+
+				<figure>
+					<img src="../htmlimg/formulaire_diff.jpg" width="580" height="369">
+					<figcaption> différences de rendu</figcaption>
+				</figure>
+			</div>
+
+			<p>
+				Bien que <abbr title="HyperText Markup Language">HTML</abbr>5
+				apporte des éléments et des attributs permettant de faciliter la
+				saisie de données avec un certain format (nombre et dates), dans la
+				réalité il y a <strong>un seul type de données</strong> géré par les
+				formulaires : <strong>les chaînes de caractères</strong>.
+			</p>
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

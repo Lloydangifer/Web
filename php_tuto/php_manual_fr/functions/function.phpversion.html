@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Retourne le num&eacute;ro de la version courante de PHP</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.phpinfo.html">phpinfo</a>
+		</div>
+		<div class="next">
+			<a href="function.putenv.html">putenv</a>
+		</div>
+		<div class="up">
+			<a href="ref.info.html">Fonctions sur les options et les
+				informations de PHP</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.phpversion" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">phpversion</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">phpversion</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Retourne le numéro de la version
+					courante de PHP</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.phpversion-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>phpversion</strong></span>
+				([ <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$extension</code></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">Retourne le numéro de la version
+				courante de PHP.</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.phpversion-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">extension</code></em></span>
+				<dd>
+
+					<p class="para">Un nom d&#039;extension, optionnel.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.phpversion-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Si le paramètre optionnel <em><code class="parameter">extension</code></em>
+				est spécifié, la fonction <span class="function"><strong>phpversion()</strong></span>
+				retournera la version de cette extension ou <strong><code>FALSE</code></strong>
+				s&#039;il n&#039;y a aucune information sur la version associée ou
+				si cette extension n&#039;est pas disponible.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.phpversion-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-510">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>phpversion()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;affiche&nbsp;le&nbsp;numéro&nbsp;de&nbsp;version&nbsp;courante&nbsp;du&nbsp;PHP.<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">'Version&nbsp;PHP&nbsp;courante&nbsp;:&nbsp;'&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">phpversion</span><span
+								style="color: #007700">();<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;affiche&nbsp;e.g.&nbsp;'2.0'&nbsp;ou&nbsp;rien&nbsp;du&nbsp;tout&nbsp;si&nbsp;cette&nbsp;extension&nbsp;n'est&nbsp;pas&nbsp;active<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">phpversion</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'tidy'</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="example-511">
+				<p>
+					<strong>Exemple #2 Exemple avec <strong><code>PHP_VERSION_ID</code></strong></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;PHP_VERSION_ID&nbsp;est&nbsp;disponible&nbsp;depuis&nbsp;PHP&nbsp;5.2.7,&nbsp;<br />//&nbsp;si&nbsp;votre&nbsp;version&nbsp;est&nbsp;antérieure,&nbsp;émulez-le.<br /></span><span
+								style="color: #007700">if&nbsp;(!</span><span
+								style="color: #0000BB">defined</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'PHP_VERSION_ID'</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$version&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">explode</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'.'</span><span
+								style="color: #007700">,</span><span style="color: #0000BB">PHP_VERSION</span><span
+								style="color: #007700">);<br />
+								<br />&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">define</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'PHP_VERSION_ID'</span><span
+								style="color: #007700">,&nbsp;(</span><span
+								style="color: #0000BB">$version</span><span
+								style="color: #007700">[</span><span style="color: #0000BB">0</span><span
+								style="color: #007700">]&nbsp;*&nbsp;</span><span
+								style="color: #0000BB">10000&nbsp;</span><span
+								style="color: #007700">+&nbsp;</span><span
+								style="color: #0000BB">$version</span><span
+								style="color: #007700">[</span><span style="color: #0000BB">1</span><span
+								style="color: #007700">]&nbsp;*&nbsp;</span><span
+								style="color: #0000BB">100&nbsp;</span><span
+								style="color: #007700">+&nbsp;</span><span
+								style="color: #0000BB">$version</span><span
+								style="color: #007700">[</span><span style="color: #0000BB">2</span><span
+								style="color: #007700">]));<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;PHP_VERSION_ID&nbsp;est&nbsp;défini&nbsp;comme&nbsp;un&nbsp;nombre&nbsp;:&nbsp;plus&nbsp;il&nbsp;est&nbsp;grand,&nbsp;plus<br />//&nbsp;la&nbsp;version&nbsp;de&nbsp;PHP&nbsp;est&nbsp;récente.&nbsp;Il&nbsp;est&nbsp;défini&nbsp;comme&nbsp;illustré&nbsp;dans&nbsp;<br />//&nbsp;le&nbsp;code&nbsp;ci-dessous&nbsp;:&nbsp;<br />//<br />//&nbsp;$version_id&nbsp;=&nbsp;$major_version&nbsp;*&nbsp;10000&nbsp;+&nbsp;$minor_version&nbsp;*&nbsp;100&nbsp;+&nbsp;$release_version;<br />//<br />//&nbsp;Maintenant,&nbsp;avec&nbsp;PHP_VERSION_ID,&nbsp;il&nbsp;est&nbsp;possible&nbsp;de&nbsp;vérifier&nbsp;la&nbsp;disponibilité<br />//&nbsp;de&nbsp;fonctionnalités&nbsp;de&nbsp;PHP,&nbsp;sans&nbsp;passer&nbsp;par&nbsp;version_compare().<br />//<br />//&nbsp;Par&nbsp;exemple,&nbsp;on&nbsp;peut&nbsp;définir&nbsp;les&nbsp;constantes&nbsp;PHP_VERSION_*&nbsp;qui&nbsp;n'étaient&nbsp;pas<br />//&nbsp;disponibles&nbsp;avant&nbsp;5.2.7<br />
+								<br /></span><span style="color: #007700">if&nbsp;(</span><span
+								style="color: #0000BB">PHP_VERSION_ID&nbsp;</span><span
+								style="color: #007700">&lt;&nbsp;</span><span
+								style="color: #0000BB">50207</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">define</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'PHP_MAJOR_VERSION'</span><span
+								style="color: #007700">,&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #0000BB">$version</span><span
+								style="color: #007700">[</span><span style="color: #0000BB">0</span><span
+								style="color: #007700">]);<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">define</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'PHP_MINOR_VERSION'</span><span
+								style="color: #007700">,&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #0000BB">$version</span><span
+								style="color: #007700">[</span><span style="color: #0000BB">1</span><span
+								style="color: #007700">]);<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">define</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'PHP_RELEASE_VERSION'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$version</span><span
+								style="color: #007700">[</span><span style="color: #0000BB">2</span><span
+								style="color: #007700">]);<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;etc.<br />
+								<br /></span><span style="color: #007700">}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.phpversion-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Cette information est aussi disponible via la constante prédéfinie
+					<strong><code>PHP_VERSION</code></strong>. Plus d&#039;informations
+					sur les versions, avec les constantes <strong><code>PHP_VERSION_*</code></strong>.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.phpversion-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><a
+					href="reserved.constants.html#reserved.constants.core" class="link">les
+						constantes PHP_VERSION</a></li>
+				<li class="member"><span class="function"><a
+						href="function.version-compare.html" class="function"
+						rel="rdfs-seeAlso">version_compare()</a> - Compare deux
+						cha&icirc;nes de version au format des versions PHP</span></li>
+				<li class="member"><span class="function"><a
+						href="function.phpinfo.html" class="function" rel="rdfs-seeAlso">phpinfo()</a>
+						- Affiche de nombreuses informations sur la configuration de PHP</span></li>
+				<li class="member"><span class="function"><a
+						href="function.phpcredits.html" class="function"
+						rel="rdfs-seeAlso">phpcredits()</a> - Affiche les cr&eacute;dits
+						de PHP</span></li>
+				<li class="member"><span class="function"><a
+						href="function.php-logo-guid.html" class="function"
+						rel="rdfs-seeAlso">php_logo_guid()</a> - Retourne l'identifiant du
+						logo PHP</span></li>
+				<li class="member"><span class="function"><a
+						href="function.zend-version.html" class="function"
+						rel="rdfs-seeAlso">zend_version()</a> - Lit la version courante du
+						moteur Zend</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.phpinfo.html">phpinfo</a>
+		</div>
+		<div class="next">
+			<a href="function.putenv.html">putenv</a>
+		</div>
+		<div class="up">
+			<a href="ref.info.html">Fonctions sur les options et les
+				informations de PHP</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

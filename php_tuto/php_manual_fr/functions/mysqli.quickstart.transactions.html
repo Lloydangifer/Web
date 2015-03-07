@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Support API pour les transactions</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="mysqli.quickstart.multiple-statement.html">Requ&ecirc;tes multiples</a></div>
+ <div class="next"><a href="mysqli.quickstart.metadata.html">Les m&eacute;ta-donn&eacute;es</a></div>
+ <div class="up"><a href="mysqli.quickstart.html">Guide de d&eacute;marrage rapide</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="mysqli.quickstart.transactions" class="section">
+  <h2 class="title">Support API pour les transactions</h2>
+  <p class="para">
+   Le serveur MySQL supporte les transactions suivant le moteur de stockage utilisé.
+   Depuis MySQL 5.5, le moteur de stockage par défaut est InnoDB.
+   InnoDB a un support complet des transactions ACID.
+  </p>
+  <p class="para">
+   Les transactions peuvent soit être contrôlées en utilisant SQL, soit par des appels API.
+   Il est recommandé d&#039;utiliser les appels API pour activer ou désactiver
+   le mode auto-commit et pour valider et annuler les transactions.
+  </p>
+  <p class="para">
+   <div class="example" id="example-1630">
+    <p><strong>Exemple #1 Définir le mode auto-commit via SQL ou via l&#039;API</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"example.com"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect_errno</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Echec&nbsp;de&nbsp;la&nbsp;connexion&nbsp;à&nbsp;MySQL:&nbsp;("&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect_errno&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">")&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect_error</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">/*&nbsp;Recommandé&nbsp;:&nbsp;utilisation&nbsp;de&nbsp;l'API&nbsp;pour&nbsp;contrôler&nbsp;la&nbsp;configuration&nbsp;des&nbsp;transactions&nbsp;*/<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">autocommit</span><span style="color: #007700">(</span><span style="color: #0000BB">false</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Ne&nbsp;sera&nbsp;pas&nbsp;monitoré&nbsp;et&nbsp;reconnu&nbsp;par&nbsp;le&nbsp;plugin&nbsp;de&nbsp;réplication&nbsp;et&nbsp;de&nbsp;balance&nbsp;de&nbsp;charge&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">'SET&nbsp;AUTOCOMMIT&nbsp;=&nbsp;0'</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Echec&nbsp;de&nbsp;la&nbsp;requête&nbsp;:&nbsp;("&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">errno&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">")&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Les paquets de fonctionnalités additionnelles, comme les plugins de réplication
+   et de balance de charge peuvent monitorer les appels API. Le plugin de réplication
+   offre une sécurité sur les transactions lors de la balance de charge, si
+   les transactions sont contrôlées avec des appels API. La sécurité des
+   transactions lors de la balance de charge n&#039;est pas disponible si les requêtes
+   SQL sont utilisées pour définir le mode auto-commit, pour valider ou annuler
+   une transaction.
+  </p>
+  <p class="para">
+   <div class="example" id="example-1631">
+    <p><strong>Exemple #2 Validation et annulation d&#039;une transaction</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"example.com"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">autocommit</span><span style="color: #007700">(</span><span style="color: #0000BB">false</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;test(id)&nbsp;VALUES&nbsp;(1)"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">rollback</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;test(id)&nbsp;VALUES&nbsp;(2)"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">commit</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Veuillez noter que le serveur MySQL ne peut pas annuler toutes les requêtes.
+   Quelques requêtes requièrent une validation implicite.
+  </p>
+  <p class="para">
+   <em class="emphasis">Voir aussi</em>
+  </p>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"> <span class="methodname"><a href="mysqli.autocommit.html" class="methodname">mysqli::autocommit()</a></span></li>
+    <li class="member"> <span class="methodname"><strong>mysqli_result::commit()</strong></span></li>
+    <li class="member"> <span class="methodname"><strong>mysqli_result::rollback()</strong></span></li>
+   </ul>
+  </p>
+ </div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="mysqli.quickstart.multiple-statement.html">Requ&ecirc;tes multiples</a></div>
+ <div class="next"><a href="mysqli.quickstart.metadata.html">Les m&eacute;ta-donn&eacute;es</a></div>
+ <div class="up"><a href="mysqli.quickstart.html">Guide de d&eacute;marrage rapide</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

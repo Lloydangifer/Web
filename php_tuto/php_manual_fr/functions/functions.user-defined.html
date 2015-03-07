@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Les fonctions d&eacute;finies par l'utilisateur</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.functions.html">Les fonctions</a>
+		</div>
+		<div class="next">
+			<a href="functions.arguments.html">Les arguments de fonction</a>
+		</div>
+		<div class="up">
+			<a href="language.functions.html">Les fonctions</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="functions.user-defined" class="sect1">
+		<h2 class="title">Les fonctions définies par l&#039;utilisateur</h2>
+
+		<p class="para">Une fonction peut être définie en utilisant la
+			syntaxe suivante :</p>
+		<p class="para">
+		<div class="example" id="example-155">
+			<p>
+				<strong>Exemple #1 Pseudo code pour illustrer l&#039;usage
+					d&#039;une fonction</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">function&nbsp;</span><span
+							style="color: #0000BB">foo</span><span style="color: #007700">(</span><span
+							style="color: #0000BB">$arg_1</span><span style="color: #007700">,&nbsp;</span><span
+							style="color: #0000BB">$arg_2</span><span style="color: #007700">,&nbsp;</span><span
+							style="color: #FF8000">/*&nbsp;...,&nbsp;*/&nbsp;</span><span
+							style="color: #0000BB">$arg_n</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"Exemple&nbsp;de&nbsp;fonction.\n"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+						</span><span style="color: #0000BB">$retval</span><span
+							style="color: #007700">;<br />}<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+
+		<p class="simpara">
+			Tout code PHP, correct syntaxiquement, peut apparaître dans une
+			fonction et dans des définitions de <a href="keyword.class.html"
+				class="link">classe</a>.
+		</p>
+		<p class="para">
+			Les noms de fonctions suivent les mêmes règles que les autres labels
+			en PHP. Un nom de fonction valide commence par une lettre ou un
+			souligné, suivi par un nombre quelconque de lettres, de nombres ou de
+			soulignés. Ces règles peuvent être représentées par l&#039;expression
+			rationnelle suivante : <em>[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*</em>.
+		</p>
+		<div class="tip">
+			<strong class="tip">Astuce</strong>
+			<p class="simpara">
+				Vous pourriez également avoir besoin de jeter un oeil sur <a
+					href="userlandnaming.html" class="xref">Guide de nommage de
+					l'espace utilisateur</a>.
+			</p>
+		</div>
+		<p class="simpara">
+			Les fonctions n&#039;ont pas besoin d&#039;être définies avant
+			d&#039;être utilisées, <em class="emphasis">SAUF</em> lorsqu&#039;une
+			fonction est définie conditionnellement, comme montré dans les deux
+			exemples suivants.
+		</p>
+		<p class="para">
+			Lorsqu&#039;une fonction est définie de manière conditionnelle, comme
+			dans les exemples ci-dessous, leur définition doit <em
+				class="emphasis">précéder</em> leur utilisation.
+		</p>
+		<p class="para">
+		<div class="example" id="example-156">
+			<p>
+				<strong>Exemple #2 Fonctions conditionnelles</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+							<br />$makefoo&nbsp;
+						</span><span style="color: #007700">=&nbsp;</span><span
+							style="color: #0000BB">true</span><span style="color: #007700">;<br />
+							<br /></span><span style="color: #FF8000">/*&nbsp;Impossible&nbsp;d'appeler&nbsp;foo()&nbsp;ici,<br />&nbsp;&nbsp;&nbsp;car&nbsp;cette&nbsp;fonction&nbsp;n'existe&nbsp;pas.<br />&nbsp;&nbsp;&nbsp;Mais&nbsp;nous&nbsp;pouvons&nbsp;utiliser&nbsp;bar()&nbsp;*/<br />
+							<br /></span><span style="color: #0000BB">bar</span><span
+							style="color: #007700">();<br />
+							<br />if&nbsp;(
+						</span><span style="color: #0000BB">$makefoo</span><span
+							style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;function&nbsp;
+						</span><span style="color: #0000BB">foo</span><span
+							style="color: #007700">()<br />&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"Je&nbsp;n'existe&nbsp;pas&nbsp;tant&nbsp;que&nbsp;le&nbsp;programme&nbsp;n'est&nbsp;pas&nbsp;passé&nbsp;ici.\n"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;}<br />}<br />
+							<br /></span><span style="color: #FF8000">/*&nbsp;Maitenant,&nbsp;nous&nbsp;pouvons&nbsp;appeler&nbsp;foo()<br />&nbsp;&nbsp;&nbsp;car&nbsp;$makefoo&nbsp;est&nbsp;maintenant&nbsp;vrai&nbsp;*/<br />
+							<br /></span><span style="color: #007700">if&nbsp;(</span><span
+							style="color: #0000BB">$makefoo</span><span
+							style="color: #007700">)&nbsp;</span><span style="color: #0000BB">foo</span><span
+							style="color: #007700">();<br />
+							<br />function&nbsp;
+						</span><span style="color: #0000BB">bar</span><span
+							style="color: #007700">()<br />{<br />&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"J'existe&nbsp;dès&nbsp;de&nbsp;début&nbsp;du&nbsp;programme.\n"</span><span
+							style="color: #007700">;<br />}<br />
+							<br /></span><span style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<p class="para">
+		<div class="example" id="example-157">
+			<p>
+				<strong>Exemple #3 Fonctions dans une autre fonction</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">function&nbsp;</span><span
+							style="color: #0000BB">foo</span><span style="color: #007700">()&nbsp;<br />{<br />&nbsp;&nbsp;function&nbsp;
+						</span><span style="color: #0000BB">bar</span><span
+							style="color: #007700">()&nbsp;<br />&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"Je&nbsp;n'existe&nbsp;pas&nbsp;tant&nbsp;que&nbsp;foo()&nbsp;n'est&nbsp;pas&nbsp;appelé.\n"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;}<br />}<br />
+							<br /></span><span style="color: #FF8000">/*&nbsp;Impossible&nbsp;d'appeler&nbsp;bar()&nbsp;ici<br />&nbsp;&nbsp;&nbsp;car&nbsp;il&nbsp;n'existe&nbsp;pas.&nbsp;*/<br />
+							<br /></span><span style="color: #0000BB">foo</span><span
+							style="color: #007700">();<br />
+							<br /></span><span style="color: #FF8000">/*&nbsp;Maintenant,&nbsp;nous&nbsp;pouvons&nbsp;appeler&nbsp;bar(),<br />&nbsp;&nbsp;&nbsp;car&nbsp;l'utilisation&nbsp;de&nbsp;foo()&nbsp;l'a&nbsp;rendue<br />&nbsp;&nbsp;&nbsp;accessible.&nbsp;*/<br />
+							<br /></span><span style="color: #0000BB">bar</span><span
+							style="color: #007700">();<br />
+							<br /></span><span style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<p class="para">Toutes les fonctions et classes en PHP ont une
+			portée globale - elles peuvent être appelées à l&#039;extérieur
+			d&#039;une fonction si elles ont été définies à l&#039;intérieur et
+			vice-versa.</p>
+		<p class="simpara">PHP ne supporte pas le surchargement de
+			fonction, ni la destruction ou la redéfinition de fonctions déjà
+			déclarées.</p>
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>: <span class="simpara">
+					Les noms de fonctions sont insensibles à la casse, et il est
+					généralement admis que les fonctions doivent être appelées avec le
+					nom utilisé dans leur déclaration, y compris la casse. </span>
+			</p>
+		</blockquote>
+		<p class="simpara">
+			Les <a href="functions.arguments.html#functions.variable-arg-list"
+				class="link"> listes variables d&#039;arguments de fonction</a> et
+			les <a href="functions.arguments.html#functions.arguments.default"
+				class="link">valeurs par défaut d&#039;arguments</a> sont supportés
+			: voir les fonctions de références que sont <span class="function"><a
+				href="function.func-num-args.html" class="function">func_num_args()</a></span>,
+			<span class="function"><a href="function.func-get-arg.html"
+				class="function">func_get_arg()</a></span>, et <span class="function"><a
+				href="function.func-get-args.html" class="function">func_get_args()</a></span>
+			pour plus d&#039;informations.
+		</p>
+		<p class="para">Il est possible d&#039;appeler des fonctions
+			récursives en PHP. Cependant, les appels de méthodes/fonctions
+			récursives avec 100-200 degrés de récursivité peuvent remplir la pile
+			et ainsi, terminer le script courant.
+		<div class="example" id="example-158">
+			<p>
+				<strong>Exemple #4 Fonctions récursives</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">function&nbsp;</span><span
+							style="color: #0000BB">recursion</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$a</span><span
+							style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(
+						</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">&lt;&nbsp;</span><span
+							style="color: #0000BB">20</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$a</span><span
+							style="color: #DD0000">\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #0000BB">recursion</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">+&nbsp;</span><span style="color: #0000BB">1</span><span
+							style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+							<br /></span><span style="color: #0000BB">recursion</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">3</span><span
+							style="color: #007700">);<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.functions.html">Les fonctions</a>
+		</div>
+		<div class="next">
+			<a href="functions.arguments.html">Les arguments de fonction</a>
+		</div>
+		<div class="up">
+			<a href="language.functions.html">Les fonctions</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

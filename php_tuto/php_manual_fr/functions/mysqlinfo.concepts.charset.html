@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Jeux de caract&egrave;res</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="mysqlinfo.concepts.buffering.html">Requ&ecirc;tes mises ou non en m&eacute;moire tampon</a></div>
+ <div class="next"><a href="book.mysql.html">Mysql</a></div>
+ <div class="up"><a href="mysqlinfo.concepts.html">Concepts</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="mysqlinfo.concepts.charset" class="section">
+  <h2 class="title">Jeux de caractères</h2>
+
+  <p class="para">
+   Idéalement, un jeu de caractères propre doit être défini
+   au niveau du serveur, opération décrite dans la section
+   <a href="http://dev.mysql.com/doc/mysql/en/charset-configuration.html" class="link external">&raquo;&nbsp;Configuration du jeu de
+    caractères</a> du manuel MySQL Server. Alternativement, chaque API
+   MySQL offre une méthode pour définir le jeu de caractères lors de
+   l&#039;exécution.
+  </p>
+
+  <div class="caution"><strong class="caution">Attention</strong>
+   <h1 class="title"> Le jeu de caractères et l&#039;échappement des caractères</h1>
+   <p class="para">
+    Le jeu de caractères doit être compris et défini, sachant qu&#039;il a un
+    effet sur chaque action, et a des implications au niveau de la
+    sécurité. Par exemple, le mécanisme d&#039;échappement (i.e.
+     <span class="function"><a href="mysqli.real-escape-string.html" class="function">mysqli_real_escape_string()</a></span> pour mysqli,
+     <span class="function"><a href="function.mysql-real-escape-string.html" class="function">mysql_real_escape_string()</a></span> pour mysql, et
+     <span class="methodname"><a href="pdo.quote.html" class="methodname">PDO::quote()</a></span> pour PDO_MySQL) va utiliser
+    cette configuration. Il est important de garder en tête que ces fonctions
+    n&#039;utiliseront pas le jeu de caractères défini avec une requête, aussi,
+    l&#039;exemple suivant n&#039;aura aucun effet sur le jeu de caractères :
+   </p>
+  </div>
+
+  <div class="example" id="example-1546">
+   <p><strong>Exemple #1 Problèmes lors de la définition du jeu de caractères avec SQL</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"world"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;N'affectera&nbsp;pas&nbsp;$mysqli-&gt;real_escape_string();<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SET&nbsp;NAMES&nbsp;utf8"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;N'affectera&nbsp;pas&nbsp;$mysqli-&gt;real_escape_string();<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SET&nbsp;CHARACTER&nbsp;SET&nbsp;utf8"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;Mais,&nbsp;ceci&nbsp;va&nbsp;affecter&nbsp;$mysqli-&gt;real_escape_string();<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">set_charset</span><span style="color: #007700">(</span><span style="color: #DD0000">'utf8'</span><span style="color: #007700">))&nbsp;{<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <p class="para">
+   Ci-dessous les exemples qui démontrent la façon de modifier proprement
+   le jeu de caractères lors de l&#039;exécution en utilisant chacune des APIs.
+  </p>
+
+  <div class="example" id="example-1547">
+   <p><strong>Exemple #2 Exemple de définition du jeu de caractères : mysqli</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"world"</span><span style="color: #007700">);<br /><br />if&nbsp;(!</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">set_charset</span><span style="color: #007700">(</span><span style="color: #DD0000">'utf8'</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Erreur&nbsp;lors&nbsp;du&nbsp;chargement&nbsp;du&nbsp;jeu&nbsp;de&nbsp;caractères&nbsp;utf8&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">error</span><span style="color: #007700">);<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Jeu&nbsp;de&nbsp;caractères&nbsp;courant&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">character_set_name</span><span style="color: #007700">());<br />}<br /><br /></span><span style="color: #0000BB">print_r</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get_charset</span><span style="color: #007700">()&nbsp;);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <div class="example" id="example-1548">
+   <p><strong>Exemple #3 Exemple de définition du jeu de caractères : <a href="ref.pdo-mysql.connection.html" class="link">pdo_mysql</a></strong></p>
+   <div class="example-contents"><p>
+    Note : Ceci ne fonctionnera qu&#039;à partir de PHP 5.3.6.
+   </p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$pdo&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">(</span><span style="color: #DD0000">"mysql:host=localhost;dbname=world;charset=utf8"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'my_user'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'my_pass'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <div class="example" id="example-1549">
+   <p><strong>Exemple #4 Exemple de définition du jeu de caractères : mysql</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_pass"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$db&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_select_db</span><span style="color: #007700">(</span><span style="color: #DD0000">"world"</span><span style="color: #007700">);<br /><br />if&nbsp;(!</span><span style="color: #0000BB">mysql_set_charset</span><span style="color: #007700">(</span><span style="color: #DD0000">'utf8'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$conn</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Erreur&nbsp;:&nbsp;Impossible&nbsp;de&nbsp;définir&nbsp;le&nbsp;jeu&nbsp;de&nbsp;caractères.\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />}<br /><br />echo&nbsp;</span><span style="color: #DD0000">'Jeu&nbsp;de&nbsp;caractères&nbsp;courant&nbsp;:&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;&nbsp;</span><span style="color: #0000BB">mysql_client_encoding</span><span style="color: #007700">(</span><span style="color: #0000BB">$conn</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>  
+ </div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="mysqlinfo.concepts.buffering.html">Requ&ecirc;tes mises ou non en m&eacute;moire tampon</a></div>
+ <div class="next"><a href="book.mysql.html">Mysql</a></div>
+ <div class="up"><a href="mysqlinfo.concepts.html">Concepts</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Retourne le chemin canonique absolu</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.realpath-cache-size.html">realpath_cache_size</a>
+		</div>
+		<div class="next">
+			<a href="function.rename.html">rename</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.realpath" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">realpath</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">realpath</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Retourne le chemin canonique absolu</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.realpath-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>realpath</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$path</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>realpath()</strong></span> résout
+				tous les liens symboliques, et remplace toutes les références <em>/./</em>,
+				<em>/../</em> et <em>/</em> de <em><code class="parameter">path</code></em>
+				puis retourne le chemin canonique absolu ainsi trouvé.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.realpath-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">path</code></em></span>
+				<dd>
+
+					<p class="para">Le chemin à vérifier.
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>:
+						<p class="para">
+							Si un chemin d&#039;accès doit être fourni, la valeur peut être
+							vide ou <strong><code>NULL</code></strong>. Dans ces cas, la
+							valeur est interprétée comme étant le dossier courant.
+					</blockquote>
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.realpath-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne le chemin canonique absolu ainsi trouvé. Le résultat ne
+				contient aucun lien symbolique, <em>/./</em> ou <em>/../</em>.
+			</p>
+			<p class="para">
+				<span class="function"><strong>realpath()</strong></span> retourne <strong><code>FALSE</code></strong>
+				si une erreur survient, e.g. si le fichier n&#039;existe pas.
+			</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Le script qui s&#039;exécute doit avoir les permissions en
+					exécution sur tous les dossiers de la structure, sinon, la fonction
+					<span class="function"><strong>realpath()</strong></span>
+					retournera <strong><code>FALSE</code></strong>.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">
+						Comme le type entier de PHP est signé et que de nombreuses
+						plates-formes utilisent des entiers de 32 bits, certaines
+						fonctions relatives au système de fichiers peuvent retourner des
+						résultats étranges pour les fichiers de taille supérieure à 2 Go.
+					</span>
+				</p>
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.realpath-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.3.0</td>
+						<td>Avant cette version, si le dernier composant <em><code
+									class="parameter">path</code></em> n&#039;existe pas, <span
+							class="function"><strong>realpath()</strong></span>
+							n&#039;échouera pas sous les systèmes *BSD dans ce cas.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.0.0</td>
+						<td>Avant cette version, une valeur vide ou <strong><code>NULL</code></strong>
+							pour le paramètre <em><code class="parameter">path</code></em>
+							faisait que la fonction <span class="function"><strong>realpath()</strong></span>
+							retournait le nom du dossier du script.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.realpath-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2293">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>realpath()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />chdir
+							</span><span style="color: #007700">(</span><span style="color: #DD0000">'/var/www/'</span><span
+								style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #0000BB">realpath</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'./../../etc/passwd'</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+/etc/passwd
+</pre>
+					</div>
+				</div>
+			</div>
+			<div class="example" id="example-2294">
+				<p>
+					<strong>Exemple #2 Exemple avec <span class="function"><strong>realpath()</strong></span>
+						sous Windows
+					</strong>
+				</p>
+				<div class="example-contents">
+					<p>
+						Sous Windows, <span class="function"><strong>realpath()</strong></span>
+						changera les chemins de style Unix en chemins de style Windows.
+					</p>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">realpath</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'/windows/system32'</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+C:\WINDOWS\System32
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.realpath-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.basename.html" class="function" rel="rdfs-seeAlso">basename()</a>
+						- Retourne le nom du fichier dans un chemin</span></li>
+				<li class="member"><span class="function"><a
+						href="function.dirname.html" class="function" rel="rdfs-seeAlso">dirname()</a>
+						- Renvoie le nom du dossier parent</span></li>
+				<li class="member"><span class="function"><a
+						href="function.pathinfo.html" class="function" rel="rdfs-seeAlso">pathinfo()</a>
+						- Retourne des informations sur un chemin syst&egrave;me</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.realpath-cache-size.html">realpath_cache_size</a>
+		</div>
+		<div class="next">
+			<a href="function.rename.html">rename</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

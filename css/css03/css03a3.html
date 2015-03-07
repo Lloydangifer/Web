@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Bloc conteneur</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function(){top.FP.initPage();}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			Il existe 5 méthodes de positionnement des boîtes des éléments <abbr
+				title="HyperText Markup Language">HTML</abbr>&nbsp;: <strong>statique</strong>,
+			<strong>relatif</strong>, <strong>absolu</strong>, <strong>fixe</strong>
+			et <strong>flottant</strong>.
+		</p>
+		<p>Mais quelque soit la méthode utilisée, le positionnement se
+			fait toujours par rapport à un bloc conteneur.</p>
+
+		<!-- ################################################################################################## -->
+		<h3>Principe</h3>
+		<section>
+
+			<p class="fp-remarque" style="width: 428px; margin-left: 70px;">
+				Les notions de boîtes (<a class="fp-lientuto"
+					onclick="top.FP.Voir.showPageTuto('css03a1', '')">Positionner
+					des éléments -&gt; C'est dans la boîte</a>) et de relations
+				parents/enfants (<a class="fp-lientuto"
+					onclick="top.FP.Voir.showPageTuto('css01c1', '')"> Principes
+					généraux -&gt; Document Object Model</a>) vues précédemment doivent
+				être assimilées pour aborder cette partie.
+			</p>
+			<p>
+				Un document <abbr title="HyperText Markup Language">HTML</abbr> est
+				composé d'éléments qui contiennent d'autres éléments. On retrouve
+				donc des boîtes de type bloc qui contiennent d'autres boîtes (de
+				type bloc et/ou en ligne) et qui sont appelées <strong>des
+					blocs conteneurs</strong>.
+			</p>
+
+			<p>
+				Le bloc conteneur sert à déterminer <strong>le
+					positionnement</strong> et éventuellement <strong>les dimensions</strong>
+				des boîtes qu'il contient. Les propriétés de style avec une valeur
+				relative (pourcentage, em, etc.) sont calculées à partir de la
+				valeur correspondante du bloc conteneur.
+			</p>
+
+			<p class="fp-p-raz">L'exemple suivant montre l'effet d'une valeur
+				relative de la taille des polices de caractères et de la largeur des
+				boîtes des éléments imbriqués.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : bloc conteneur et valeurs relatives
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h2&gt;L'Arrière Des Etoiles&lt;/h2&gt;
+		&lt;div&gt;
+			&lt;p&gt;Les CSS sont &lt;strong&gt;l'arme &lt;em&gt;secrète&lt;/em&gt; de
+				la Force !&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;img src="../exemples/img/yoda1.png"&gt;
+				Télécharger &lt;a href="#"&gt;ce tutoriel&lt;/a&gt; 
+				tu dois.&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;p&gt;
+			La taille de la police de ce paragraphe n'est pas 
+			la même que celle des précédents.
+		&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {
+	font-size: 16px;	/* taille police : 16 pixels */
+}
+div {
+	font-size: 0.8em;	/* taille = taille conteneur x 0.8 */
+	width: 70%;		/* largeur = largeur conteneur x 70% */
+	border: 1px solid red;
+}
+p {
+	font-size: 0.8em;	/* taille = taille conteneur x 0.8 */
+	width: 50%;		/* largeur = largeur conteneur x 50% */
+	border: 1px solid red;
+}</textarea>
+			</form>
+
+			<p class="fp-p-raz">
+				La taille de la police de caractères dans les 2 premiers paragraphes
+				est de :
+				<br>
+				16 pixels (pour le body) * 0.8 (pour le div) * 0.8 (pour le
+				paragaphe) = 10 pixels
+			</p>
+			<p class="fp-p-raz">
+				La taille de la police de caractères dans le dernier paragraphe
+				n'est pas la même que dans les paragraphes précédents :
+				<br>
+				16 pixels (pour le body) * 0.8 (pour le paragaphe) = 13 pixels
+			</p>
+			<p>
+				On a les mêmes différences dans la largeur des paragraphes. Pour les
+				2 premiers on aura par exemple :
+				<br>
+				800 pixels (largeur de la fenêtre) * 70% * 50% = 280 pixels
+				<br>
+				alors que pour le dernier on aura :
+				<br>
+				800 pixels (largeur de la fenêtre) * 50% = 400 pixels
+			</p>
+
+			<p>Les valeurs relatives sont à manier avec précaution pour
+				éviter des cumuls qui peuvent amener à ce que des éléments de même
+				type (exemple des paragraphes) n'aient pas la taille de police ou la
+				même largeur dans la page.</p>
+
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Définition du bloc conteneur</h3>
+		<section>
+			<p>
+				<a
+					href="http://www.w3.org/TR/CSS2/visudet.html#containing-block-details"
+					target="_blank">Les spécifications CSS</a> expliquent comment est
+				défini un <strong>bloc conteneur</strong>.
+			</p>
+			<p>
+				Il existe <strong>un bloc conteneur initial</strong> dont les
+				dimensions sont celles de la zone d'affichage du navigateur (<i>viewport</i>).
+				C'est dans ce bloc conteneur initial que sont contenus tous les
+				blocs affichés à un moment donné par le navigateur. Quand
+				l'utilisateur redimensionne la fenêtre du navigateur, les dimensions
+				de ce bloc conteneur initial changent et tous les positionnements et
+				dimensions de son contenu doivent être recalculés pour que le
+				réaffichage tiennent compte de ces modifications.
+			</p>
+
+			<p>
+				Pour <strong>les éléments en positionnement statique (le
+					positionnement par défaut) ou relatif</strong>, le bloc conteneur est
+				constitué par l'ancêtre bloc le plus proche dans la hiérarchie.
+			</p>
+
+			<p>
+				Pour <strong>les éléments en positionnement fixe</strong>, le bloc
+				conteneur est constitué par le bloc conteneur initial (ie la zone
+				d'affichage de la fenêtre du navigateur - <i>viewport</i> -).
+			</p>
+
+			<div class="fp-puce">
+				<p>
+					Pour <strong>les éléments en positionnement absolu</strong>, le
+					bloc conteneur est l'ancêtre le plus proche en positionnement
+					relatif, absolu ou fixe. Le positionnement est calculé par rapport
+					à la bordure de l'ancêtre, soit le contenu plus la marge interne.
+				</p>
+
+				<p>S'il n'y a pas d'ancêtre correspondant, l'ancêtre est le bloc
+					conteneur initial.</p>
+			</div>
+
+
+			<p>Ces règles de définition du bloc conteneur d'un élément
+				deviennent très importantes à partir du moment où vous positionnez
+				des boîtes en absolu car si vous ne les avez pas bien assimilées
+				vous pouvez arriver à des résultats inattendus.</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : blocs conteneurs
+				</div>
+				<textarea name="txtCode" class="TEST-textarea">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h2&gt;L'Arrière Des Etoiles&lt;/h2&gt;
+		&lt;div&gt;
+			&lt;p&gt;Les CSS sont &lt;strong&gt;l'arme &lt;em&gt;secrète&lt;/em&gt; de
+				la Force !&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;img src="../exemples/img/yoda1.png"&gt;
+				Télécharger &lt;a href="#"&gt;ce tutoriel&lt;/a&gt; 
+				tu dois.&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<table class="TAB-sans-bord">
+				<tr>
+					<td style="width: 180px; vertical-align: bottom">L'arbre <abbr
+						title="Document Object Model">DOM</abbr> simplifié du code
+						précédent est le suivant :
+					</td>
+					<td style="width: 210px; vertical-align: bottom">Les
+						conteneurs des éléments sont les suivants&nbsp;:</td>
+					<td style="width: 210px; vertical-align: bottom">Si on
+						positionne <code>div</code> et <code>img</code> en absolu, les
+						conteneurs deviennent :
+					</td>
+				</tr>
+
+				<tr>
+					<td width="180"><img src="../cssimg/conteneur_rouge.png"
+						width="180" height="199"></td>
+					<td width="210">
+						<table class="TAB-zebre fp-t-center" style="width: auto">
+							<tr>
+								<td>Elément</td>
+								<td>Conteneur</td>
+							</tr>
+							<tr>
+								<td><code>html</code></td>
+								<td>Conteneur initial</td>
+							</tr>
+							<tr>
+								<td><code>body</code></td>
+								<td><code>html</code></td>
+							</tr>
+							<tr>
+								<td><code>h2</code></td>
+								<td><code>body</code></td>
+							</tr>
+							<tr>
+								<td><code>div</code></td>
+								<td><code>body</code></td>
+							</tr>
+							<tr>
+								<td><code>p</code></td>
+								<td><code>div</code></td>
+							</tr>
+							<tr>
+								<td><code>strong</code></td>
+								<td><code>p</code></td>
+							</tr>
+							<tr>
+								<td><code>em</code></td>
+								<td><code>p</code></td>
+							</tr>
+							<tr>
+								<td><code>p</code></td>
+								<td><code>div</code></td>
+							</tr>
+							<tr>
+								<td><code>img</code></td>
+								<td><code>p</code></td>
+							</tr>
+							<tr>
+								<td><code>a</code></td>
+								<td><code>p</code></td>
+							</tr>
+						</table>
+					</td>
+					<td width="210">
+						<table class="TAB-zebre fp-t-center" style="width: auto">
+							<tr>
+								<td>Elément</td>
+								<td>Conteneur</td>
+							</tr>
+							<tr>
+								<td><code>html</code></td>
+								<td>Conteneur initial</td>
+							</tr>
+							<tr>
+								<td><code>body</code></td>
+								<td><code>html</code></td>
+							</tr>
+							<tr>
+								<td><code>h2</code></td>
+								<td><code>body</code></td>
+							</tr>
+							<tr>
+								<td><code><strong>div</strong></code></td>
+								<td><code><strong>Conteneur initial</strong></code></td>
+							</tr>
+							<tr>
+								<td><code>p</code></td>
+								<td><code>div</code></td>
+							</tr>
+							<tr>
+								<td><code>strong</code></td>
+								<td><code>p</code></td>
+							</tr>
+							<tr>
+								<td><code>em</code></td>
+								<td><code>p</code></td>
+							</tr>
+							<tr>
+								<td><code>p</code></td>
+								<td><code>div</code></td>
+							</tr>
+							<tr>
+								<td><code><strong>img</strong></code></td>
+								<td><code><strong>div</strong></code></td>
+							</tr>
+							<tr>
+								<td><code>a</code></td>
+								<td><code>p</code></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<p>
+							Quand on positionne en absolu l'élément <code>div</code>, on
+							change son bloc conteneur de référence pour l'élément <code>html</code>
+							car <code>div</code> n'a aucun ancêtre positionné.
+						<p>
+						<p>
+							Quand on positionne en absolu l'élément <code>img</code>, on
+							change aussi son bloc conteneur de référence pour l'élément <code>div</code>
+							qui est son premier ancêtre positionné.
+						</p>
+					</td>
+				</tr>
+			</table>
+		</section>
+
+
+	</div>
+	<footer></footer>
+</body>
+</html>

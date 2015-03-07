@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Connexions</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="mysqli.quickstart.dual-interface.html">Interface proc&eacute;durale et orient&eacute;e objet</a></div>
+ <div class="next"><a href="mysqli.quickstart.statements.html">Ex&eacute;cution des requ&ecirc;tes</a></div>
+ <div class="up"><a href="mysqli.quickstart.html">Guide de d&eacute;marrage rapide</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="mysqli.quickstart.connections" class="section">
+  <h2 class="title">Connexions</h2>
+  <p class="para">
+   Le serveur MySQL supporte l&#039;utilisation de différentes couches de transport
+   pour les connexions. Les connexions peuvent utiliser TCP/IP, les sockets
+   de domaine Unix ou les pipes nommés Windows.
+  </p>
+  <p class="para">
+   Le nom d&#039;hôte <em>localhost</em> a une signification particulière.
+   Il est lié à l&#039;utilisation des sockets de domaine Unix. Il n&#039;est pas possible
+   d&#039;ouvrir une connexion TCP/IP en utilisant le nom d&#039;hôte <em>localhost</em> ;
+   vous devez utiliser <em>127.0.0.1</em> à la place.
+  </p>
+  <p class="para">
+   <div class="example" id="example-1608">
+    <p><strong>Exemple #1 Signification spéciale de localhost</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect_errno</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Echec&nbsp;lors&nbsp;de&nbsp;la&nbsp;connexion&nbsp;à&nbsp;MySQL&nbsp;:&nbsp;("&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect_errno&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">")&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect_error</span><span style="color: #007700">;<br />}<br />echo&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">host_info&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"127.0.0.1"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">3306</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect_errno</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Echec&nbsp;lors&nbsp;de&nbsp;la&nbsp;connexion&nbsp;à&nbsp;MySQL&nbsp;:&nbsp;("&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect_errno&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">")&nbsp;"&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect_error</span><span style="color: #007700">;<br />}<br /><br />echo&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">host_info&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Localhost via UNIX socket
+127.0.0.1 via TCP/IP
+</pre></div>
+    </div>
+   </div>
+  </p>
+  <p class="para">
+   <em class="emphasis">Paramètres par défaut d&#039;une connexion</em>
+  </p>
+  <p class="para">
+   Suivant la fonction de connexion utilisée, des paramètres peuvent être omis.
+   Si un paramètre n&#039;est pas fourni, alors l&#039;extension tentera d&#039;utiliser les valeurs
+   par défaut définies dans le fichier de configuration de PHP.
+  </p>
+  <p class="para">
+   <div class="example" id="example-1609">
+    <p><strong>Exemple #2 Paramètres par défaut</strong></p>
+    <div class="example-contents">
+<div class="inicode"><pre class="inicode">mysqli.default_host=192.168.2.27
+mysqli.default_user=root
+mysqli.default_pw=&quot;&quot;
+mysqli.default_port=3306
+mysqli.default_socket=/tmp/mysql.sock</pre>
+</div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Ces valeurs de paramètres sont alors passées à la bibliothèque cliente
+   utilisée par l&#039;extension. Si la bibliothèque cliente détecte un paramètre
+   vide ou non défini, alors elle utilisera les valeurs par défaut internes à
+   la bibliothèque.
+  </p>
+  <p class="para">
+   <em class="emphasis">Valeurs par défaut internes à la bibliothèque pour la connexion</em>
+  </p>
+  <p class="para">
+   Si la valeur de l&#039;hôte n&#039;est pas définie ou est vide, alors la bibliothèque cliente
+   utilisera par défaut une connexion de type socket Unix sur <em>localhost</em>.
+   Si le socket n&#039;est pas défini ou vide, et qu&#039;une connexion de type socket Unix est
+   demandée, alors une connexion au socket par défaut <em>/tmp/mysql.sock</em>
+   sera tentée.
+  </p>
+  <p class="para">
+   Sous les systèmes Windows, le nom d&#039;hôte <em>.</em> est interprété
+   par la bibliothèque cliente comme une tentative d&#039;ouvrir un pipe nommé Windows
+   pour la connexion. Dans ce cas, le paramètre socket est interprété comme
+   un nom de pipe. S&#039;il n&#039;est pas fourni ou vide, alors le socket (nom du pipe)
+   vaudra par défaut <em>\\.\pipe\MySQL</em>.
+  </p>
+  <p class="para">
+   Si ni un socket de domaine Unix, ni un pipe nommé Windows n&#039;est fourni, une connexion
+   de base sera établit et si la valeur du port n&#039;est pas défini, la bibliothèque
+   utilisera le port <em>3306</em>.
+  </p>
+  <p class="para">
+   La bibliothèque <a href="mysqlnd.overview.html" class="link">mysqlnd</a> et la bibliothèque
+   cliente MySQL (libmysql) implémentent la même logique pour déterminer les valeurs
+   par défaut.
+  </p>
+  <p class="para">
+   <em class="emphasis">Options de connexion</em>
+  </p>
+  <p class="para">
+   Des options de connexion sont disponibles pour, par exemple, définir
+   des commandes d&#039;initialisation à exécuter lors de la connexion, ou
+   pour démander l&#039;utilisation d&#039;un jeu de caractères particulier. Les options
+   de connexion doivent être définies avant la connexion au réseau.
+  </p>
+  <p class="para">
+   Pour définir une option de connexion, l&#039;opération de connexion doit
+   être effectuée en 3 étapes : création d&#039;un gestionnaire de connexion avec
+    <span class="function"><a href="mysqli.init.html" class="function">mysqli_init()</a></span>, définission des options demandées en utilisant
+    <span class="function"><a href="mysqli.options.html" class="function">mysqli_options()</a></span>, et connexion au réseau avec
+    <span class="function"><a href="mysqli.real-connect.html" class="function">mysqli_real_connect()</a></span>.
+  </p>
+  <p class="para">
+   <em class="emphasis">File d&#039;attente de connexion</em>
+  </p>
+  <p class="para">
+   L&#039;extension mysqli supporte les connexions persistentes au base de données,
+   qui sont des connexions spéciales. Par défaut, chaque connexion à une
+   base de données ouverte par un script est soit explicitement close par
+   l&#039;utilisateur durant l&#039;exécution, ou soit libérée automatiquement à la fin
+   du script. Ce n&#039;est pas le cas d&#039;une connexion persistente. En effet,
+   elle sera placée dans une file d&#039;attente pour une ré-utilisation future,
+   si une connexion au même serveur, utilisant le même nom d&#039;utilisateur, le
+   même mot de passe, le même socket, le même port, ainsi que la même base de données
+   est ouverte. Cette ré-utilisation permet d&#039;alléger la charge indue par les
+   connexions.
+  </p>
+  <p class="para">
+   Chaque processus PHP utilise sa propre file d&#039;attente de connexions mysqli.
+   Suivant le modèle de déploiement du serveur web, un processus PHP peut
+   servir une ou plusieurs requêtes. Toutefois, une connexion mise en file d&#039;attente
+   peut être utilisée par un ou plusieurs scripts par la suite.
+  </p>
+  <p class="para">
+   <em class="emphasis">Les connexions persistentes</em>
+  </p>
+  <p class="para">
+   Si une connexion persistente pour une combinaison d&#039;hôte, de nom d&#039;utilisateur,
+   de mot de passe, de socket, de port et de base de données inutilisée ne peut
+   être trouvée dans la file d&#039;attente de connexion, alors mysqli ouvrira une nouvelle
+   connexion. L&#039;utilisation des connexions persistentes peut être activée ou désactivée
+   en utilisant la directive PHP
+   <a href="mysqli.configuration.html#ini.mysqli.allow-persistent" class="link">mysqli.allow_persistent</a>.
+   Le nombre total de connexions ouvertes par un script peut être limité avec
+   la directive <a href="mysqli.configuration.html#ini.mysqli.max-links" class="link">mysqli.max_links</a>.
+   Le nombre maximal de connexions persistentes par processus PHP peut être
+   restreint avec la directive <a href="mysqli.configuration.html#ini.mysqli.max-persistent" class="link">mysqli.max_persistent</a>.
+   Veuillez noter que le serveur web peut engendrer plusieurs processus PHP.
+  </p>
+  <p class="para">
+   Une plainte courante contre les connexions persistentes est que leurs
+   statuts n&#039;est pas ré-initialisés avant la ré-utilisation. Par exemple,
+   les transactions ouvertes et non terminées ne sont pas automatiquement
+   annulées. Mais aussi, les modifications autorisées survenant entre le moment
+   où la connexion est mise en file d&#039;attente et sa ré-utilisation ne seront
+   pas prises en compte. Ce comportement peut être vu comme un effet de
+   bord non désiré. Au contraire, le nom <em>persistent</em>
+   peut être compris comme une promesse sur le fait que le statut persiste
+   réellement.
+  </p>
+  <p class="para">
+   L&#039;extension mysqli supporte deux interprétations d&#039;une connexion persistente :
+   statut persistant, et un statut réinitialisé avant ré-utilisation. Par
+   défaut, il sera réinitialisé. Avant qu&#039;une connexion persistente ne soit
+   réutilisée, l&#039;extension mysqli appelle implicitement la fonction
+    <span class="function"><a href="mysqli.change-user.html" class="function">mysqli_change_user()</a></span> pour réinitialiser le statut.
+   La connexion persistente apparaît à l&#039;utilisateur comme si elle venait
+   juste d&#039;être ouverte. Aucune trace d&#039;une utilisation précédente ne
+   sera visible.
+  </p>
+  <p class="para">
+   La fonction  <span class="function"><a href="mysqli.change-user.html" class="function">mysqli_change_user()</a></span> est une opération couteuse.
+   Pour de meilleures performances, les utilisateurs peuvent vouloir re-compiler
+   l&#039;extension avec le drapeau de compilation <strong><code>MYSQLI_NO_CHANGE_USER_ON_PCONNECT</code></strong>.
+  </p>
+  <p class="para">
+   Ainsi, il sera laissé à l&#039;utilisateur le choix entre un comportement sécurisé
+   et une performance optimisée. Les deux ont comme but l&#039;optimisation. Pour
+   une utilisation plus simple, le comportement sécurisé a été placé
+   par défaut au détriment d&#039;une performance maximale.
+  </p>
+  <p class="para">
+   <em class="emphasis">Voir aussi</em>
+  </p>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"> <span class="methodname"><a href="mysqli.construct.html" class="methodname">mysqli::__construct()</a></span></li>
+    <li class="member"> <span class="methodname"><a href="mysqli.init.html" class="methodname">mysqli::init()</a></span></li>
+    <li class="member"> <span class="methodname"><a href="mysqli.options.html" class="methodname">mysqli::options()</a></span></li>
+    <li class="member"> <span class="methodname"><a href="mysqli.real-connect.html" class="methodname">mysqli::real_connect()</a></span></li>
+    <li class="member"> <span class="methodname"><a href="mysqli.change-user.html" class="methodname">mysqli::change_user()</a></span></li>
+    <li class="member"><a href="mysqli.get-host-info.html" class="link">$mysqli::host_info</a></li>
+    <li class="member"><a href="mysqli.configuration.html" class="link">Les options de configuration MySQLi</a></li>
+    <li class="member"><a href="features.persistent-connections.html" class="link">Les connexions persistentes aux bases de données</a></li>
+   </ul>
+  </p>
+ </div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="mysqli.quickstart.dual-interface.html">Interface proc&eacute;durale et orient&eacute;e objet</a></div>
+ <div class="next"><a href="mysqli.quickstart.statements.html">Ex&eacute;cution des requ&ecirc;tes</a></div>
+ <div class="up"><a href="mysqli.quickstart.html">Guide de d&eacute;marrage rapide</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

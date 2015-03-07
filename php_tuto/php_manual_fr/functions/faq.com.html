@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>PHP et COM</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="faq.html.html">PHP et HTML</a>
+		</div>
+		<div class="next">
+			<a href="faq.languages.html">PHP et les autres langages</a>
+		</div>
+		<div class="up">
+			<a href="faq.html">FAQ</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="faq.com" class="chapter">
+		<h1>PHP et COM</h1>
+
+
+
+		<p class="para">PHP peut être utilisé pour accéder à des objets
+			COM et DCOM sur les plates-formes Win32.</p>
+
+		<div class="qandaset">
+			<ol class="qandaset_questions">
+				<li><a href="#faq.com.q1"> J&#039;ai compil&eacute; une DLL
+						pour calculer quelque chose. Y a-t-il un moyen d&#039;utiliser
+						cette DLL sous PHP ? </a></li>
+				<li><a href="#faq.com.q2"> Que signifie &#039;Unsupported
+						variant type: xxxx (0xxxxx)&#039; ? </a></li>
+				<li><a href="#faq.com.q3"> Est-il possible de manipuler des
+						objets visuels en PHP ? </a></li>
+				<li><a href="#faq.com.q4"> Puis-je stocker un objet COM
+						dans une session ? </a></li>
+				<li><a href="#faq.com.q5"> Comment puis-je intercepter des
+						erreurs COM ? </a></li>
+				<li><a href="#faq.com.q6"> Puis-je g&eacute;n&eacute;rer
+						des fichiers DLL &agrave; partir de PHP comme je le fais avec Perl
+						? </a></li>
+				<li><a href="#faq.com.q7"> Que signifie &#039;Unable to
+						obtain IDispatch interface for CLSID
+						{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}&#039; ? </a></li>
+				<li><a href="#faq.com.q8"> Comment puis-je utiliser des
+						objets COM &agrave; partir d&#039;un serveur distant ? </a></li>
+				<li><a href="#faq.com.q9"> J&#039;obtiens &#039;DCOM is
+						disabled in C:\path...\scriptname.php on line 6&#039;, que dois-je
+						faire ? </a></li>
+				<li><a href="#faq.com.q10"> Est-il possible de
+						charger/manipuler des objets ActiveX dans une page en PHP ? </a></li>
+				<li><a href="#faq.com.q11"> Est-il possible d&#039;obtenir
+						une instance fonctionnelle d&#039;un composant ? </a></li>
+				<li><a href="#faq.com.q12"> Y a-t-il moyen de manipuler un
+						&eacute;v&eacute;nement envoy&eacute; par un objet COM ? </a></li>
+				<li><a href="#faq.com.q13"> J&#039;ai des probl&egrave;mes
+						quand j&#039;invoque une m&eacute;thode d&#039;un objet COM qui
+						expose plus d&#039;une interface. Que puis-je faire ? </a></li>
+				<li><a href="#faq.com.q14"> Bon, PHP fonctionne avec COM,
+						mais qu&#039;en est-il de COM+ ? </a></li>
+				<li><a href="#faq.com.q15"> Si PHP peut manipuler des
+						objets COM, peut-on imaginer d&#039;utiliser des ressources de
+						composants, en conjonction avec PHP ? </a></li>
+			</ol>
+		</div>
+		<dl class="qandaentry" id="faq.com.q1">
+			<dt>
+				<strong> J&#039;ai compilé une DLL pour calculer quelque
+					chose. Y a-t-il un moyen d&#039;utiliser cette DLL sous PHP ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">Si c&#039;est une DLL simple, il n&#039;y a
+					aucun moyen pour le moment de l&#039;utiliser avec PHP. Si la DLL
+					contient un serveur COM, vous pourrez l&#039;utiliser si elle
+					implémente l&#039;interface IDispatch.</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.com.q2">
+			<dt>
+				<strong> Que signifie &#039;Unsupported variant type: xxxx
+					(0xxxxx)&#039; ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">Il y a des dizaines de types de VARIANT et de
+					combinaisons entre elles. La plupart d&#039;entre elles sont déjà
+					supportées, mais quelques une ne sont toujours pas implémentées.
+					Les tableaux ne sont pas complètement supportés. Seuls le tableaux
+					unidimensionnels indexés peuvent être transmis entre PHP et COM. Si
+					vous trouvez d&#039;autres types qui ne sont pas supportés,
+					reportez-les nous comme un bogue (si ce n&#039;est pas déjà fait)
+					et fournissez le plus d&#039;informations possibles.</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.com.q3">
+			<dt>
+				<strong> Est-il possible de manipuler des objets visuels en
+					PHP ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">Généralement, c&#039;est possible, mais comme
+					PHP est utilisé le plus souvent en tant que langage de script web
+					et dans un environnement de serveur web, les objets visuels
+					n&#039;apparaîtront jamais sur le bureau du serveur. Si vous voulez
+					utiliser PHP pour scripter des applications, par exemple avec
+					PHP-GTK, il n&#039;y a aucune limitation à accéder et manipuler des
+					objets visuels via COM.</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.com.q4">
+			<dt>
+				<strong> Puis-je stocker un objet COM dans une session ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">Non, vous ne pouvez pas. Les instances COM sont
+					traitées comme des ressources, ce qui signifie qu&#039;elles ne
+					sont disponibles que dans un seul contexte de script.</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.com.q5">
+			<dt>
+				<strong> Comment puis-je intercepter des erreurs COM ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">
+					En PHP 5, l&#039;extension COM envoie des exceptions <em>com_exception</em>,
+					que vous pouvez intercepter en inspectant le membre <em>code</em>
+					pour déterminer que faire.
+				</p>
+				<p class="para">En PHP 4, il n&#039;est pas possible
+					d&#039;intercepter des erreurs COM en dehors de la façon dont elles
+					sont fournies par PHP lui-même (@, track_errors, ..).</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.com.q6">
+			<dt>
+				<strong> Puis-je générer des fichiers DLL à partir de PHP
+					comme je le fais avec Perl ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">Non, il n&#039;y a malheureusement pas
+					d&#039;outil disponible pour le faire en PHP.</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.com.q7">
+			<dt>
+				<strong> Que signifie &#039;Unable to obtain IDispatch
+					interface for CLSID {xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}&#039; ?
+
+				</strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">Cette erreur peut avoir plusieurs causes :
+				<ul class="itemizedlist">
+					<li class="listitem"><span class="simpara"> le CLSID
+							est incorrect </span></li>
+					<li class="listitem"><span class="simpara"> la DLL
+							demandée est introuvable </span></li>
+					<li class="listitem"><span class="simpara"> le
+							composant demandé n&#039;implémente pas l&#039;interface
+							IDispatch </span></li>
+				</ul>
+				</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.com.q8">
+			<dt>
+				<strong> Comment puis-je utiliser des objets COM à partir
+					d&#039;un serveur distant ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">Exactement de la même manière qu&#039;avec des
+					objets locaux. Vous devez juste passer l&#039;adresse IP de la
+					machine distante en deuxième paramètre du constructeur COM.</p>
+				<p class="para">
+					Assurez-vous que vous avez spécifié <a
+						href="com.configuration.html#ini.com.allow-dcom" class="link">com.allow_dcom</a><em>=</em><strong><code>TRUE</code></strong>
+					dans votre
+					<var class="filename">php.ini</var>
+					.
+				</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.com.q9">
+			<dt>
+				<strong> J&#039;obtiens &#039;DCOM is disabled in
+					C:\path...\scriptname.php on line 6&#039;, que dois-je faire ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">
+					Éditez votre
+					<var class="filename">php.ini</var>
+					et mettez <a href="com.configuration.html#ini.com.allow-dcom"
+						class="link">com.allow_dcom</a><em>=</em><strong><code>TRUE</code></strong>.
+				</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.com.q10">
+			<dt>
+				<strong> Est-il possible de charger/manipuler des objets
+					ActiveX dans une page en PHP ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">Cela n&#039;a rien à voir avec PHP. Les objets
+					ActiveX sont chargés côté client s&#039;ils sont demandés par le
+					document HTML. Il n&#039;y a aucune relation avec le script PHP et
+					il n&#039;y a pas d&#039;interaction directe possible avec le
+					serveur.</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.com.q11">
+			<dt>
+				<strong> Est-il possible d&#039;obtenir une instance
+					fonctionnelle d&#039;un composant ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">C&#039;est possible avec l&#039;aide de
+					monikers. Si vous voulez des références multiples au même mot
+					d&#039;instance, vous pouvez créer une instance de la façon
+					suivante :</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$word&nbsp;
+							</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">COM</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"C:\docs\word.doc"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<p class="para">Cela créera une nouvelle instance s&#039;il
+					n&#039;y en a aucune disponible ou retournera un descripteur vers
+					l&#039;instance courante, si elle est disponible.</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.com.q12">
+			<dt>
+				<strong> Y a-t-il moyen de manipuler un événement envoyé
+					par un objet COM ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">
+					Vous pouvez définir un moniteur d&#039;événement (sink) et le lier
+					en utilisant <span class="function"><a
+						href="function.com-event-sink.html" class="function">com_event_sink()</a></span>.
+					Vous pouvez utiliser <span class="function"><a
+						href="function.com-print-typeinfo.html" class="function">com_print_typeinfo()</a></span>
+					pour que PHP génère un squelette pour la classe du moniteur
+					d&#039;événement.
+				</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.com.q13">
+			<dt>
+				<strong> J&#039;ai des problèmes quand j&#039;invoque une
+					méthode d&#039;un objet COM qui expose plus d&#039;une interface.
+					Que puis-je faire ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">
+					La réponse est aussi simple que non satisfaisante. Je ne sais pas
+					exactement, mais je pense que vous ne pouvez rien faire. Si
+					quelqu&#039;un a des informations spécifiques sur ce sujet,
+					faites-le <a href="mailto:harald.radi@nme.at" class="link external">&raquo;&nbsp;moi</a>
+					savoir :)
+				</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.com.q14">
+			<dt>
+				<strong> Bon, PHP fonctionne avec COM, mais qu&#039;en
+					est-il de COM+ ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">COM+ étend COM avec un canevas pour gérer des
+					composants via MTS et MSMQ mais il n&#039;y a rien de particulier
+					que PHP doit supporter pour utiliser de tels composants.</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.com.q15">
+			<dt>
+				<strong> Si PHP peut manipuler des objets COM, peut-on
+					imaginer d&#039;utiliser des ressources de composants, en
+					conjonction avec PHP ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">PHP ne supporte pas encore les transactions.
+					Ainsi, si une erreur se produit, aucun rollback n&#039;est initié.
+					Si vous utilisez des composants qui supportent les transactions,
+					vous devrez implémenter le gestionnaire de transactions par
+					vous-même.</p>
+			</dd>
+		</dl>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="faq.html.html">PHP et HTML</a>
+		</div>
+		<div class="next">
+			<a href="faq.languages.html">PHP et les autres langages</a>
+		</div>
+		<div class="up">
+			<a href="faq.html">FAQ</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

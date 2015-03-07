@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>V&eacute;rifie si un objet ou une classe poss&egrave;de
+	une propri&eacute;t&eacute;</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.method-exists.html">method_exists</a>
+		</div>
+		<div class="next">
+			<a href="function.trait-exists.html">trait_exists</a>
+		</div>
+		<div class="up">
+			<a href="ref.classobj.html">Fonctions Classes/Objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.property-exists" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">property_exists</h1>
+			<p class="verinfo">(PHP 5 &gt;= 5.1.0)</p>
+			<p class="refpurpose">
+				<span class="refname">property_exists</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title"> Vérifie si un objet ou une classe
+					possède une propriété </span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.property-exists-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>property_exists</strong></span>
+				( <span class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$class</code></span>
+				, <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$property</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				Cette fonction vérifie si la propriété <em><code
+						class="parameter">property</code></em> existe dans la classe spécifiée.
+			</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					<span class="function"><strong>property_exists()</strong></span>
+					retourne <strong><code>TRUE</code></strong> même si la propriété a
+					une valeur <strong><code>NULL</code></strong>, contrairement à la
+					fonction <span class="function"><a
+						href="function.isset.html" class="function">isset()</a></span>.
+			</blockquote>
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.property-exists-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">class</code></em></span>
+				<dd>
+
+					<p class="para">Le nom de la classe ou un objet de la classe à
+						tester</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">property</code></em></span>
+				<dd>
+
+					<p class="para">Le nom de la propriété</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.property-exists-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne <strong><code>TRUE</code></strong> si la propriété existe,
+				<strong><code>FALSE</code></strong> si elle n&#039;existe pas et <strong><code>NULL</code></strong>
+				si une erreur survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes"
+			id="refsect1-function.property-exists-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					L&#039;usage de cette fonction utilisera toutes les <a
+						href="language.oop5.autoload.html" class="link">autoloaders</a>
+					enregistrés si la classe n&#039;est pas encore connue.
+				</p>
+				</p>
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					La fonction <span class="function"><strong>property_exists()</strong></span>
+					ne peut pas détecter les propriétés qui sont accessibles en
+					utilisant la méthode <a
+						href="language.oop5.overloading.html#language.oop5.overloading.members"
+						class="link"><em>__get</em></a>.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.property-exists-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.3.0</td>
+						<td>Cette fonction vérifie l&#039;existence d&#039;une
+							propriété indépendamment de l&#039;accessibilité.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.property-exists-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4718">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>property_exists()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br /></span><span style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">myClass&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;
+							</span><span style="color: #0000BB">$mine</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;
+							</span><span style="color: #0000BB">$xpto</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;protected&nbsp;
+							</span><span style="color: #0000BB">$test</span><span
+								style="color: #007700">;<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">test</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">property_exists</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'myClass'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'xpto'</span><span style="color: #007700">));&nbsp;</span><span
+								style="color: #FF8000">//true<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">}<br />}<br />
+								<br /></span><span style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">property_exists</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'myClass'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'mine'</span><span style="color: #007700">));&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//true<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">property_exists</span><span
+								style="color: #007700">(new&nbsp;</span><span
+								style="color: #0000BB">myClass</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'mine'</span><span style="color: #007700">));&nbsp;</span><span
+								style="color: #FF8000">//true<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">property_exists</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'myClass'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'xpto'</span><span style="color: #007700">));&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//true,&nbsp;depuis&nbsp;PHP&nbsp;5.3.0<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">property_exists</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'myClass'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'bar'</span><span style="color: #007700">));&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//false<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">property_exists</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'myClass'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'test'</span><span style="color: #007700">));&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//true,&nbsp;depuis&nbsp;PHP&nbsp;5.3.0<br /></span><span
+								style="color: #0000BB">myClass</span><span
+								style="color: #007700">::</span><span style="color: #0000BB">test</span><span
+								style="color: #007700">();<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.property-exists-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.method-exists.html" class="function"
+						rel="rdfs-seeAlso">method_exists()</a> - V&eacute;rifie que la
+						m&eacute;thode existe pour une classe</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.method-exists.html">method_exists</a>
+		</div>
+		<div class="next">
+			<a href="function.trait-exists.html">trait_exists</a>
+		</div>
+		<div class="up">
+			<a href="ref.classobj.html">Fonctions Classes/Objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

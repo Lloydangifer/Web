@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Ouvre le module de l'algorithme et du mode &agrave; utiliser</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="function.mcrypt-module-is-block-mode.html">mcrypt_module_is_block_mode</a></div>
+ <div class="next"><a href="function.mcrypt-module-self-test.html">mcrypt_module_self_test</a></div>
+ <div class="up"><a href="ref.mcrypt.html">Fonctions Mcrypt</a></div><div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="function.mcrypt-module-open" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mcrypt_module_open</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.2, PHP 5)</p><p class="refpurpose"><span class="refname">mcrypt_module_open</span> <span class="mdash">&mdash;</span> <span class="dc-title">Ouvre le module de l&#039;algorithme et du mode à utiliser</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.mcrypt-module-open-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">resource</span> <span class="methodname"><strong>mcrypt_module_open</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$algorithm</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$algorithm_directory</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$mode</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$mode_directory</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+    <span class="function"><strong>mcrypt_module_open()</strong></span> ouvre le module de l&#039;algorithme
+   et du mode à utiliser. Le nom de l&#039;algorithme est spécifié par le paramètre
+   <em><code class="parameter">algorithm</code></em> (par exemple : <em>&quot;twofish&quot;</em>),
+   ou bien une des constantes <strong><code>MCRYPT_ciphername</code></strong>. La bibliothèque est refermée
+   en appelant  <span class="function"><a href="function.mcrypt-module-close.html" class="function">mcrypt_module_close()</a></span>.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-function.mcrypt-module-open-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><em><code class="parameter">algorithm</code></em></span>
+     <dd>
+
+      <p class="para">
+       L&#039;algorithme à utiliser.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><em><code class="parameter">algorithm_directory</code></em></span>
+     <dd>
+
+      <p class="para">
+       Le paramètre  <em><code class="parameter">algorithm_directory</code></em> est utilisé
+       pour localiser le module de cryptage. Lorsque vous spécifiez un
+       nom de dossier, il sera utilisé. Si vous spécifiez une chaîne vide
+       (<em>&quot;&quot;</em>), la valeur définie dans la directive
+       <em>mcrypt.algorithms_dir</em> du fichier <var class="filename">php.ini</var> sera
+       utilisée. Lorsqu&#039;elle n&#039;est pas définie, le dossier par défaut utilisé
+       sera celui dans lequel se trouve la bibliothèque libmcrypt
+       (habituellement, <var class="filename">/usr/local/lib/libmcrypt</var>).
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><em><code class="parameter">mode</code></em></span>
+     <dd>
+
+      <p class="para">
+       Le mode à utiliser.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><em><code class="parameter">mode_directory</code></em></span>
+     <dd>
+
+      <p class="para">
+       Le paramètre <em><code class="parameter">mode_directory</code></em> est utilisé pour localiser
+       le module de cryptage. Si un nom de dossier est spécifié, il sera utilisé.
+       Lorsque vous spécifiez une chaîne vide (<em>&quot;&quot;</em>), la valeur
+       de la directive <em>mcrypt.modes_dir</em> du fichier <var class="filename">php.ini</var>
+       sera utilisée. Si elle n&#039;est pas définie, le dossier par défaut utilisé
+       sera celui dans lequel se trouve la bibliothèque libmcrypt
+       (habituellement <var class="filename">/usr/local/lib/libmcrypt</var>).
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.mcrypt-module-open-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Normalement, cette fonction retourne un descripteur de cryptage, ou
+   <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+ 
+
+ <div class="refsect1 examples" id="refsect1-function.mcrypt-module-open-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-925">
+    <p><strong>Exemple #1 Exemple avec  <span class="function"><strong>mcrypt_module_open()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$td&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mcrypt_module_open</span><span style="color: #007700">(</span><span style="color: #0000BB">MCRYPT_DES</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">MCRYPT_MODE_ECB</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'/usr/lib/mcrypt-modes'</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$td&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mcrypt_module_open</span><span style="color: #007700">(</span><span style="color: #DD0000">'rijndael-256'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ofb'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   La première ligne de l&#039;exemple ci-dessus va essayer d&#039;ouvrir le chiffrement
+   <em>DES</em>, dans le dossier par défaut, et le mode <em>ECB</em> dans le dossier
+   <var class="filename">/usr/lib/mcrypt-modes</var>. Le second exemple utilise
+   les chaînes comme nom pour le chiffrement et le mode. Cela ne fonctionne
+   que si l&#039;extension est compilée avec libmcrypt 2.4.x or 2.5.x.
+  </p>
+  <p class="para">
+   <div class="example" id="example-926">
+    <p><strong>Exemple #2 Utilisation de  <span class="function"><strong>mcrypt_module_open()</strong></span> pour chiffrer</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Charge&nbsp;un&nbsp;chiffrement&nbsp;*/<br /></span><span style="color: #0000BB">$td&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mcrypt_module_open</span><span style="color: #007700">(</span><span style="color: #DD0000">'rijndael-256'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ofb'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Crée&nbsp;le&nbsp;VI&nbsp;et&nbsp;détermine&nbsp;la&nbsp;taille&nbsp;de&nbsp;la&nbsp;clé&nbsp;*/<br /></span><span style="color: #0000BB">$iv&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mcrypt_create_iv</span><span style="color: #007700">(</span><span style="color: #0000BB">mcrypt_enc_get_iv_size</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">MCRYPT_DEV_RANDOM</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$ks&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mcrypt_enc_get_key_size</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Crée&nbsp;la&nbsp;clé&nbsp;*/<br /></span><span style="color: #0000BB">$key&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #0000BB">md5</span><span style="color: #007700">(</span><span style="color: #DD0000">'very&nbsp;secret&nbsp;key'</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$ks</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Intialise&nbsp;le&nbsp;chiffrement&nbsp;*/<br /></span><span style="color: #0000BB">mcrypt_generic_init</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$key</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$iv</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Chiffre&nbsp;les&nbsp;données&nbsp;*/<br /></span><span style="color: #0000BB">$encrypted&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mcrypt_generic</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'This&nbsp;is&nbsp;very&nbsp;important&nbsp;data'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Libère&nbsp;le&nbsp;gestionnaire&nbsp;de&nbsp;chiffrement&nbsp;*/<br /></span><span style="color: #0000BB">mcrypt_generic_deinit</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Initialise&nbsp;le&nbsp;module&nbsp;de&nbsp;chiffrement&nbsp;pour&nbsp;le&nbsp;déchiffrement&nbsp;*/<br /></span><span style="color: #0000BB">mcrypt_generic_init</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$key</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$iv</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Déchiffre&nbsp;les&nbsp;données&nbsp;*/<br /></span><span style="color: #0000BB">$decrypted&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mdecrypt_generic</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$encrypted</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Libère&nbsp;le&nbsp;gestionnaire&nbsp;de&nbsp;déchiffrement,&nbsp;et&nbsp;ferme&nbsp;le&nbsp;module&nbsp;*/<br /></span><span style="color: #0000BB">mcrypt_generic_deinit</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">mcrypt_module_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Affiche&nbsp;la&nbsp;chaîne&nbsp;*/<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">trim</span><span style="color: #007700">(</span><span style="color: #0000BB">$decrypted</span><span style="color: #007700">).</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.mcrypt-module-open-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"> <span class="function"><a href="function.mcrypt-module-close.html" class="function" rel="rdfs-seeAlso">mcrypt_module_close()</a> - D&eacute;charge le module de chiffrement</span></li>
+    <li class="member"> <span class="function"><a href="function.mcrypt-generic.html" class="function" rel="rdfs-seeAlso">mcrypt_generic()</a> - Chiffre les donn&eacute;es</span></li>
+    <li class="member"> <span class="function"><a href="function.mdecrypt-generic.html" class="function" rel="rdfs-seeAlso">mdecrypt_generic()</a> - D&eacute;chiffre les donn&eacute;es</span></li>
+    <li class="member"> <span class="function"><a href="function.mcrypt-generic-init.html" class="function" rel="rdfs-seeAlso">mcrypt_generic_init()</a> - Initialise tous les buffers n&eacute;cessaires</span></li>
+    <li class="member"> <span class="function"><a href="function.mcrypt-generic-deinit.html" class="function" rel="rdfs-seeAlso">mcrypt_generic_deinit()</a> - Pr&eacute;pare le module pour le d&eacute;chargement</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="function.mcrypt-module-is-block-mode.html">mcrypt_module_is_block_mode</a></div>
+ <div class="next"><a href="function.mcrypt-module-self-test.html">mcrypt_module_self_test</a></div>
+ <div class="up"><a href="ref.mcrypt.html">Fonctions Mcrypt</a></div>
+<div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

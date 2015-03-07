@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Nombres d&eacute;cimaux</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.types.integer.html">Les entiers</a>
+		</div>
+		<div class="next">
+			<a href="language.types.string.html">Les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="up">
+			<a href="language.types.html">Les types</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.types.float" class="sect1">
+		<h2 class="title">Nombres décimaux</h2>
+
+		<p class="para">
+			Les nombres décimaux, (aussi connus comme nombres à virgule
+			flottante, <em>&quot;floats&quot;</em>, <em>&quot;doubles&quot;</em>,
+			ou <em>&quot;real numbers&quot;</em>) peuvent être spécifiés en
+			utilisant les syntaxes suivantes :
+		</p>
+
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$a&nbsp;
+						</span><span style="color: #007700">=&nbsp;</span><span
+							style="color: #0000BB">1.234</span><span style="color: #007700">;<br /></span><span
+							style="color: #0000BB">$b&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1.2e3</span><span
+							style="color: #007700">;<br /></span><span
+							style="color: #0000BB">$c&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">7E-10</span><span
+							style="color: #007700">;<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+
+		<p class="para">Formellement :</p>
+
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="cdata">
+					<pre>
+LNUM          [0-9]+
+DNUM          ([0-9]*[\.]{LNUM}) | ({LNUM}[\.][0-9]*)
+EXPONENT_DNUM [+-]?(({LNUM} | {DNUM}) [eE][+-]? {LNUM})
+</pre>
+				</div>
+			</div>
+
+		</div>
+
+		<p class="para">
+			La taille d&#039;un <a href="language.types.float.html" class="link">nombre
+				décimal</a> est dépendant de la plate-forme, cependant, un nombre
+			maximal de ~1.8e308 avec une précision sur 14 chiffres est une valeur
+			commune (format 64 bits IEEE).
+		</p>
+
+		<div class="warning">
+			<strong class="warning">Avertissement</strong>
+			<h1 class="title">Précision des nombres décimaux</h1>
+
+			<p class="para">Les nombres décimaux ont une précision limitée.
+				Même s&#039;ils dépendent du système, PHP utilise le format de
+				précision des décimaux IEEE 754, qui donnera une erreur maximale
+				relative de l&#039;ordre de 1.11e-16 (dûe aux arrondis). Les
+				opérations arithmétiques non-élémentaires peuvent donner des erreurs
+				plus importantes et bien sûr les erreurs doivent être prises en
+				compte lorsque plusieurs opérations sont liées.</p>
+
+			<p class="para">
+				Aussi, les nombres rationnels exactement représentables sous forme
+				de nombre à virgule flottante en base 10, comme <em>0.1</em> ou <em>0.7</em>,
+				n&#039;ont pas de représentation exacte comme nombres à virgule
+				flottante en base 2, utilisée en interne, et ce quelle que soit la
+				taille de la mantisse. De ce fait, ils ne peuvent être convertis
+				sans une petite perte de précision. Ceci peut mener à des résultats
+				confus: par exemple, <em>floor((0.1+0.7)*10)</em> retournera
+				normalement <em>7</em> au lieu de <em>8</em> attendu, car la
+				représentation interne sera quelque chose comme <em>7.9999999999999991118...</em>.
+			</p>
+
+			<p class="para">
+				Ainsi, ne faites jamais confiance aux derniers chiffres d&#039;un
+				nombre décimal, mais aussi, ne comparez pas l&#039;égalité de 2
+				nombres décimaux directement. Si vous avez besoin d&#039;une haute
+				précision, les <a href="ref.bc.html" class="link">fonctions
+					mathématiques de précision</a> et les fonctions <a href="ref.gmp.html"
+					class="link">gmp</a> sont disponibles.
+			</p>
+
+		</div>
+
+		<div class="sect2" id="language.types.float.casting">
+			<h3 class="title">Conversion en un nombre décimal</h3>
+
+			<p class="para">
+				Pour plus d&#039;informations sur la conversion de chaînes en
+				nombres décimaux, voir la section sur la <a
+					href="language.types.string.html#language.types.string.conversion"
+					class="link">conversion de chaînes en nombres décimaux</a>. Pour
+				les valeurs d&#039;autres types, la conversion est effectuée en
+				convertissant tout d&#039;abord la valeur en un entier, puis, en <a
+					href="language.types.float.html" class="link">nombre décimal</a>.
+				Voir la section sur la <a
+					href="language.types.integer.html#language.types.integer.casting"
+					class="link">conversion en entier</a> pour plus
+				d&#039;informations. Une notice est émise si un <a
+					href="language.types.object.html" class="link">objet</a> est
+				converti en <a href="language.types.float.html" class="link">nombre
+					décimal</a>.
+			</p>
+
+		</div>
+
+		<div class="sect2" id="language.types.float.comparison">
+			<h3 class="title">Comparing floats</h3>
+
+			<p class="para">Comme dit dans la note ci-dessus, le test
+				d&#039;égalité des valeurs de nombres décimaux est problématique, en
+				raison de la façon dont ils sont représentés en interne. Cependant,
+				il existe des façons de réaliser cette comparaison.</p>
+
+			<p class="para">
+				Pour tester l&#039;égalité de valeurs de nombres décimaux, une borne
+				supérieure de l&#039;erreur relative à l&#039;arrondi est utilisée.
+				Cette valeur est connue comme étant l&#039;epsilon de la machine, ou
+				le <em>unit roundoff</em>, et est la différence la plus petite
+				acceptable dans les calculs.
+			</p>
+
+			<div class="informalexample">
+				<p class="simpara">
+					<var class="varname">
+						<var class="varname">$a</var>
+					</var>
+					et
+					<var class="varname">
+						<var class="varname">$b</var>
+					</var>
+					sont égaux sur 5 nombres après la virgule.
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$a&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">1.23456789</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$b&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">1.23456780</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$epsilon&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">0.00001</span><span
+								style="color: #007700">;<br />
+								<br />if(
+							</span><span style="color: #0000BB">abs</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">-</span><span style="color: #0000BB">$b</span><span
+								style="color: #007700">)&nbsp;&lt;&nbsp;</span><span
+								style="color: #0000BB">$epsilon</span><span
+								style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"true"</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="sect2" id="language.types.float.nan">
+			<h3 class="title">NaN</h3>
+			<p class="para">
+				Quelques opérations numériques peuvent donner comme résultat une
+				valeur représentée par la constante <strong><code>NAN</code></strong>.
+				Ce résultat représente une valeur indéfinie ou non représentable
+				lors de calculs avec des nombres à virgule flottante. Toute
+				comparaison, même stricte de cette valeur avec une autre valeur, y
+				compris cette constante elle-même, donnera une valeur de <strong><code>FALSE</code></strong>.
+			</p>
+			<p class="para">
+				En raison du fait que <strong><code>NAN</code></strong> représente
+				tout nombre de valeur différente, <strong><code>NAN</code></strong>
+				ne doit pas être comparé à d&#039;autres valeurs, y compris cette
+				constante elle-même, et à la place, elle doit être vérifiée en
+				utilisant la fonction <span class="function"><a
+					href="function.is-nan.html" class="function">is_nan()</a></span>.
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.types.integer.html">Les entiers</a>
+		</div>
+		<div class="next">
+			<a href="language.types.string.html">Les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="up">
+			<a href="language.types.html">Les types</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

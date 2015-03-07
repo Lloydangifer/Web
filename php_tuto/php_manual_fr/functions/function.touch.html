@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Modifie la date de modification et de dernier
+	acc&egrave;s d'un fichier</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.tmpfile.html">tmpfile</a>
+		</div>
+		<div class="next">
+			<a href="function.umask.html">umask</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.touch" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">touch</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">touch</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Modifie la date de modification et de
+					dernier accès d&#039;un fichier</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.touch-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>touch</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$filename</code></span> [, <span
+					class="methodparam"><span class="type">int</span> <code
+						class="parameter">$time</code><span class="initializer"> =
+						time()</span></span> [, <span class="methodparam"><span class="type">int</span>
+					<code class="parameter">$atime</code></span> ]] )
+			</div>
+
+			<p class="para rdfs-comment">
+				Tente de forcer la date de modification du fichier désigné par le
+				paramètre <em><code class="parameter">filename</code></em> à la date
+				de spécifiée par le paramètre <em><code class="parameter">time</code></em>.
+				Notez bien que la date de dernier accès est modifiée, quelque soit
+				le nombre de paramètres.
+			</p>
+			<p class="para">Si le fichier n&#039;existe pas, PHP tentera de
+				le créer.</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.touch-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">filename</code></em></span>
+				<dd>
+
+					<p class="para">Le nom du fichier à créer.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">time</code></em></span>
+				<dd>
+
+					<p class="para">
+						La date de création. Si <em><code class="parameter">time</code></em>
+						est omis, c&#039;est l&#039;heure courante qui est utilisée.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">atime</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si présent, l&#039;heure d&#039;accès au fichier fourni sera
+						défini à la valeur du paramètre <em><code class="parameter">atime</code></em>.
+						Sinon, l&#039;heure d&#039;accès sera défini à la valeur passée au
+						paramètre <em><code class="parameter">time</code></em>. S&#039;il
+						n&#039;est pas présent non plus, l&#039;heure courant du système
+						sera utilisé.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.touch-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog" id="refsect1-function.touch-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.3.0</td>
+						<td>Il devient possible de changer la date et heure de
+							modification d&#039;un dossier sous Windows.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.touch-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2303">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>touch()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">if&nbsp;(</span><span
+								style="color: #0000BB">touch</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$FileName</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"La&nbsp;date&nbsp;de&nbsp;modification&nbsp;de&nbsp;</span><span
+								style="color: #0000BB">$FileName</span><span
+								style="color: #DD0000">&nbsp;a&nbsp;été&nbsp;modifié&nbsp;à&nbsp;la&nbsp;date&nbsp;courante"</span><span
+								style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Désolé,&nbsp;il&nbsp;est&nbsp;impossible&nbsp;de&nbsp;changer&nbsp;la&nbsp;date&nbsp;de&nbsp;modification&nbsp;de&nbsp;</span><span
+								style="color: #0000BB">$FileName</span><span
+								style="color: #DD0000">"</span><span style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="example-2304">
+				<p>
+					<strong>Exemple #2 Exemple avec <span class="function"><strong>touch()</strong></span>
+						en utilisant le paramètre <em><code class="parameter">time</code></em></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">/*<br />&nbsp;*&nbsp;Ceci&nbsp;est&nbsp;la&nbsp;date&nbsp;et&nbsp;heure&nbsp;du&nbsp;dernier&nbsp;accès,&nbsp;nous&nbsp;y&nbsp;ajoutons&nbsp;1&nbsp;heure<br />&nbsp;*&nbsp;dans&nbsp;le&nbsp;passé.<br />&nbsp;*/<br /></span><span
+								style="color: #0000BB">$time&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">time</span><span style="color: #007700">()&nbsp;-&nbsp;</span><span
+								style="color: #0000BB">3600</span><span style="color: #007700">;<br />
+								<br /></span><span style="color: #FF8000">/*&nbsp;Touchons&nbsp;le&nbsp;fichier&nbsp;!&nbsp;*/<br /></span><span
+								style="color: #007700">if&nbsp;(!</span><span
+								style="color: #0000BB">touch</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'some_file.txt'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$time</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'Whoops,&nbsp;une&nbsp;erreur&nbsp;est&nbsp;survenue...'</span><span
+								style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'L\'appel&nbsp;à&nbsp;la&nbsp;fonction&nbsp;touch()&nbsp;a&nbsp;réussi'</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.touch-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Notez que la précision temporelle peut varier
+					selon le système de fichiers utilisé.</p>
+				</p>
+			</blockquote>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">Avant la version 5.3.0 de PHP, il n&#039;était
+					pas possible de changer la date et heure de modification d&#039;un
+					dossier avec cette fonction sous Windows.</p>
+			</div>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.tmpfile.html">tmpfile</a>
+		</div>
+		<div class="next">
+			<a href="function.umask.html">umask</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

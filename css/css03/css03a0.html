@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Principes généraux de positionnement</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function(){top.FP.initPage();}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+
+		<p>Positionner des éléments avec précision se révèle une tâche
+			difficile, voir impossible avec HTML. Les feuilles de style
+			permettent de passer outre ces limitations et apportent de nouvelles
+			possibilités pour disposer les divers éléments d'une page comme nous
+			l'entendons.</p>
+
+		<p>Nous commencerons pas étudier de quelle manière le contenu de
+			la page est disposé en fonction de deux types de tags HTML : les tags
+			de type bloc (block) et les tags de type en ligne (inline).</p>
+
+
+
+
+		<!-- ################################################################################################## -->
+		<h3>Boîtes bloc ou boîtes en ligne ?</h3>
+
+		<section>
+			<p>Les tags HTML peuvent être séparés en deux grands types : les
+				tags de type bloc et les tags de type en ligne (ou inline, en
+				ligne). Du type du tag va dépendre le comportement de la boîte
+				utilisée par CSS pour gérer le positionnements, l'affichage, les
+				imbrications, etc.</p>
+
+			<p>Rappel : nous avons vue dans la leçon sur les boîtes que TOUS
+				les tags compris entre body et body inclus sont affichés à
+				l'intérieur d'une boîte.</p>
+
+			<p>Les éléments de bloc définissent la structure des informations
+				: paragraphes de textes, tableaux, listes, formulaires, etc.</p>
+
+			<p>Les éléments en ligne définissent l'enrichissement de
+				l'information : renforcement, liens, zones de saisie, etc.</p>
+
+			<p class="fp-remarque"
+				style="margin: 1em 0 4em 230px; min-height: 0; width: 270px;">
+				Le détail des boîtes de bloc ou en ligne se trouve dans <a
+					onclick="top.FP.Voir.showPageTech('elements', '')">les éléments
+					HTML</a>
+			</p>
+
+			<p>Les boîtes de type bloc sont disposées les unes sous les
+				autres, alignées sur leur bord gauche (disposition verticale). Par
+				défaut, une boîte de type bloc ne peut pas être à côté d'une autre
+				boîte à sa droite ou à sa gauche : elle est précédée et suivie d'une
+				sorte de saut de ligne.</p>
+
+			<p>Les boîtes de type en ligne sont disposées les unes à côté des
+				autres, alignées sur leur bord inférieur (disposition horizontale).
+				Par défaut, une boîte en ligne n'est ni précédée, ni suivie d'un
+				saut de ligne.</p>
+
+			<p>L'exemple suivant affiche une page où toutes les boîtes des
+				tags sont entourées d'une bordure verte, à part pour la boîte du tag
+				body entouré en rouge.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h1&gt;Tag bloc&lt;/h1&gt;
+		&lt;p&gt;Tag bloc positionné sous le premier&lt;/p&gt;
+		&lt;p&gt;Tag bloc &lt;b&gt;contenant&lt;/b&gt; &lt;i&gt;des tags en 
+		lignes&lt;/i&gt; positionnés les uns à côté des autres&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+* {border: 1px solid green}
+body {border: 2px solid red}</textarea>
+			</form>
+
+		</section>
+
+
+
+		<!-- ################################################################################################## -->
+		<h3>Blocs conteneurs</h3>
+		<section>
+			<p>Un document HTML est composé de blocs conteneurs : les boîtes
+				de type bloc sont des conteneurs pour les boites qu'elles
+				contiennent (blocs ou en ligne).</p>
+
+			<p>Les boîtes de type bloc peuvent contenir d'autres boîtes de
+				type bloc et/ou en ligne. Elles peuvent avoir des dimensions
+				définies (hauteur, largeur), posséder des marges externes (margin)
+				et en ligne (padding), des bords (border) et être positionnées pour
+				définir la mise en page du document. Par défaut, la plupart des
+				éléments bloc possèdent des marges internes et externes non nulles,
+				souvent différentes selon les navigateurs.</p>
+
+			<p>
+				Les boîtes de type en ligne ne peuvent contenir que d'autres boites
+				de type en ligne. Seules les boîtes les éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'img')">img</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>,
+				<a onClick="top.FP.Voir.showPageTech('elements', 'textarea')">textarea</a>
+				et <a onClick="top.FP.Voir.showPageTech('elements', 'select')">select</a>
+				peuvent avoir des dimensions définies. Les boîtes des autres tags en
+				ligne occupent la place minimum nécessaire à leur contenu. Les
+				boîtes en ligne ont des marges en ligne et externes nulles par
+				défaut. Bien que l'on puisse les positionner, on ne devrait pas
+				utiliser cette possibilité puisque ces boîtes affichent des éléments
+				dans le flot normal du texte.
+
+			</p>
+
+			<p class="fp-bot0">L'imbrication des balises HTML est traduite
+				par des relations ancêtre / descendants, parent / enfants et fréres
+				:</p>
+			<ul>
+				<li>un ancêtre est un élément qui contient un élément ou une
+					hiérarchie d'éléments</li>
+				<li>un parent est un élément contenant directement un autre
+					élément. Un parent est un ancêtre immédiat. un enfant est l'élément
+					directement contenu par un autre élément</li>
+				<li>les frères sont les éléments ayant le même parent.</li>
+			</ul>
+
+			<p>Le code suivant met en évidence les différentes boîtes en
+				coloriant leur fond.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h1&gt;L'Hagard des Etoiles&lt;/h1&gt;
+		&lt;p&gt;Beaucoup de choses &lt;b&gt;sur les CSS &lt;i&gt;tu 
+		dois encore&lt;/i&gt;&lt;/b&gt; apprendre !&lt;/p&gt;
+	&lt;/body&gt; 
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body, h1, p {border: 1px solid;
+      margin: 10px;
+      padding: 2px;}
+body {background-color: #cfc;}
+h1 {background-color: #fc9;}
+p {background-color: #fcc;}
+b {background-color: yellow;}
+i {background-color: red;}</textarea>
+			</form>
+
+			<p class="fp-bot0">Dans les spécifications CSS, un bloc conteneur
+				est défini de la façon suivante :</p>
+			<ul>
+				<li>le bloc conteneur initial, tout en haut de la hiérarchie,
+					est à la discrétion du navigateur : c'est soit l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'body')">body</a>,
+					soit l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'html')">html</a>.
+				</li>
+				<li>pour les éléments en positionnement relatif ou statique
+					(par défaut), le bloc conteneur est constitué par l'ancêtre bloc le
+					plus proche dans la hiérarchie (le parent)</li>
+				<li>pour les éléments en positionnement fixe, le bloc conteneur
+					est constitué par la zone visible de la fenêtre,</li>
+				<li>pour les éléments en positionnement absolu, le bloc
+					conteneur est constitué par l'ancêtre le plus proche en
+					positionnement relatif, absolu ou fixe, de cette manière :
+					<ul>
+						<li>si l'ancêtre est de type bloc, le bloc conteneur est
+							constitué par la bordure de cet ancêtre (soit le contenu plus la
+							marge interne ou padding),</li>
+						<li>si l'ancêtre est de type en ligne, le bloc conteneur
+							dépend de la propriété direction de l'ancêtre</li>
+						<li>s'il n'y a pas d'ancêtre correspondant, l'ancêtre est le
+							bloc conteneur initial.</li>
+					</ul>
+				</li>
+			</ul>
+
+
+			<p>
+				Le bloc conteneur sert à déterminer le positionnement et
+				éventuellement les dimensions des boîtes qu'il contient. Les
+				propriétés de style avec une valeur relative (pourcentage, em, etc.)
+				sont calculées à partir de la valeur correspondante du bloc
+				conteneur. Dans l'exemple suivant nous définissons la police des
+				tags <a onClick="top.FP.Voir.showPageTech('elements', 'p')">p</a>
+				avec une taille de 16 pixels de haut. Nous définissons aussi une
+				classe avec une police de taille relative de 70% et une autre classe
+				avec une police relative de 130%.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;L'Hagard des Etoiles&lt;/p&gt;
+		&lt;p&gt;Beaucoup de choses &lt;span class="petit"&gt;sur les CSS&lt;/span&gt;
+		&lt;span class="grand"&gt; tu dois encore &lt;/span&gt;apprendre !&lt;/p&gt;
+		&lt;p class="grand"&gt;Te méfier &lt;span class="grand"&gt;des cumuls &lt;
+		span class="grand"&gt; dans les héritages &lt;span class="grand"&gt;tu dois.
+		&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+p {font: 16px Verdana #000; }
+.petit {font-size: 70%; }
+.grand {font-size: 130%; }</textarea>
+			</form>
+
+
+			<p>Héritage (rappel). Certaines propriétés sont transmises d'un
+				élément parent à ses éléments enfants (héritage). Il y a
+				relativement peu de propriétés d'héritage et un grand nombre d'entre
+				elles sont des propriétés peu utilisées. Les propriétés qui
+				héritent, les plus souvent utilisées sont les suivantes : voir les
+				propriétés de style</p>
+
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Comment se fait le positionnement</h3>
+		<section>
+			<p>Il existe 4 modes de positionnement CSS : normal, relatif,
+				flottant et absolu.</p>
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Positionnement normal</h3>
+		<section>
+			<p>Le positionnement normal, ou flux normal, est le mode de
+				positionnement par défaut.</p>
+			<p>Les boîtes de type bloc sont placées les unes en dessous des
+				autres à partir du haut de leur bloc conteneur.</p>
+			<p>Les boîtes de type en ligne sont placées les unes à côté des
+				autres, de gauche à droite.</p>
+
+			<p>Dans l'exemple suivant, le conteneur avec un fond jaune
+				contient deux blocs paragraphes, positionnés normalement l'un en
+				dessous de l'autre.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div class="conteneur"&gt;
+		Je suis ton père &lt;img src="mvador.gif"&gt;
+		&lt;p class="enfant"&gt;Je suis Luke son fils&lt;img src="mluke.gif"&gt; &lt;/p&gt;
+		&lt;p class="enfant"&gt;Et moi je suis Leia sa fille&lt;img src="mleia.gif"&gt;&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+.conteneur {margin: 10px; 
+            border: 1px solid #000; 
+            padding: 5px;  
+            background-color: yellow; }
+.enfant {margin: 10px; 
+         border: 1px solid #000; 
+         padding: 10px; 
+         background-color: cyan; }</textarea>
+			</form>
+
+			<p>Si 2 boîtes de type bloc se suivent, la marge inférieure de la
+				première et la marge supérieure de la seconde ne s'ajoutent pas :
+				seule la marge la plus grande est conservée.</p>
+
+			<p>Les marges horizontales (gauche et droite) ne sont jamais
+				imbriquées.</p>
+
+			<p>Dans l'exemple suivant, la marge séparant les deux boîtes
+				n'est pas de 60 pixels (30 + 30) mais seulement de 30 pixels.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p class="b1"&gt;Première boîte&lt;/p&gt;
+		&lt;p class="b2"&gt;Deuxième boîte&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+.b1 {margin: 30px; 
+     border: 1px solid #000; 
+     padding: 10px;  
+     background-color: yellow; }
+.b2 {margin: 30px; 
+     border: 1px solid #000; 
+     padding: 10px; 
+     background-color: cyan; }</textarea>
+			</form>
+
+
+			<p>Les boîtes de type en ligne sont placées les une à côté des
+				autres, de gauche à droite et peuvent déborder sur la ligne
+				suivante, si leur longueur est plus grande que l'espace disponible.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		Il y a bien &lt;b&gt;longtemps&lt;/b&gt;&lt;i&gt; dans une très 
+		lointaine galaxie&lt;/i&gt;&lt;u&gt; des boîtes en ligne se 
+		suivaient les unes à côtés des autres&lt;/u&gt;.
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+b {background-color: red; 
+   border: 1px solid; }
+i {background-color: yellow; 
+   border: 1px solid; }
+u {background-color: cyan; 
+   border: 1px solid; }</textarea>
+			</form>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Le positionnement relatif</h3>
+		<section>
+			<p>Pour qu'une boîte soit positionnée de façon relative, il faut
+				définir la propriété position avec la valeur relative.</p>
+			<p>La boîte est d'abord positionnée selon les règles du flux
+				normal qui s'appliquent à son type (bloc ou en ligne). La boîte est
+				ensuite repositionnée suivant la valeur de ses propriétés left, top,
+				right et bottom. Les unités utilisables sont le pouce (in), le
+				centimètre (cm), le millimètre (mm), le point (pt), le picas (pc),
+				le pixel (px) et la distance (em). Le contenu suivant n'est pas
+				affecté par ce déplacement, qui peut donc entraîner des
+				chevauchements.</p>
+			<p>Remarque : pour que les propriétés left et top soient prises
+				en compte, la propriété position (quelque soit sa valeur) doit être
+				explicitement définie dans la règle de style.</p>
+			<p>L'exemple suivant affiche trois paragraphes. le deuxième est
+				affichée relativement au premier, avec un décalage de 50 pixels à
+				gauche et 30 pixel en haut.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div class="conteneur"&gt;
+		Je suis ton père &lt;img src="mvador.gif"&gt;
+		&lt;p class="enfant"&gt;Je suis Luke&lt;img src="mluke.gif"&gt; &lt;/p&gt;
+		&lt;p class="relatif"&gt;Tout est relatif&lt;img src="myoda.gif"&gt;&lt;/p&gt;
+		&lt;p class="enfant"&gt;Et je suis Leia&lt;img src="mleia.gif"&gt;&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+.conteneur {border: 1px solid #000; 
+            padding: 5px;  
+            background-color: #cfc; }
+.enfant {border: 1px solid #000; 
+         padding: 2px; 
+         background-color: #fc9; }
+.relatif {position: relative; 
+          left: 50px; 
+          top: 30px; 
+          border: 1px solid #000; 
+          padding: 2px; 
+          background-color: #fcc; }</textarea>
+			</form>
+
+			<p>Le positionnement initial peut générer une imbrication des
+				marges verticales. Le repositionnement en fonction des propriétés de
+				décalage peut faire en sorte que des éléments soient superposés.</p>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Le positionnement flottant</h3>
+		<section>
+			<p>Pour faire flotter une boîte, il faut utiliser la propriété
+				float et lui assigner une des deux valeurs possibles : left ou
+				right.</p>
+
+			<p>La boîte est d'abord placée normallement dans le flux. Elle
+				est ensuite poussée le plus à gauche possible des on conteneur
+				(float: left) ou le plus à droite possible de son conteneur (float:
+				right). Les éléments qui suivent la boîte flottante dans le
+				conteneur se placent ensuite autour d'elle.</p>
+
+			<p>Une boîte flottante doit posséder une propriété width,
+				indiquant sa largeur, sinon la boîte occupera toute la largeur de
+				son conteneur. Une boîte flottante est toujours considérée comme une
+				boîte de type bloc même si son contenu est de type en ligne.</p>
+
+			<p>Les marges verticales d'une boîte flottante ne sont jamais
+				combinées avec celles les boîtes supérieure ou inférieure comme dans
+				le flux normal.</p>
+
+			<p>L'exemple suivant affiche un paragraphe contenant une boîte
+				flottante à droite.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;&lt;span class="flottant"&gt;L'Hagard des Etoiles&lt;/span&gt;
+		Il y a bien lointaine galaxie, dans un très longtemps, la Fédération de 
+		l'Empire du Commerce de la République des Joyeux Rebelles avec les
+		 Gentils Jedi et les Méchants Siths qui en plus sont même pas bô mais 
+		 alors très très méchants, même qu'ils se battent tout le temps avec 
+		 tout le monde ...&lt;/p&gt;
+	&lt;/body&gt; 
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+.flottant {float: right;
+    width: 100px;
+    border: 1px solid;
+    margin: 5px;
+    padding: 2px;
+    background-color: #fc9;}
+p {border: 1px solid;
+   margin: 20px;
+   padding: 10px;
+   background-color: #cfc;}</textarea>
+			</form>
+
+			<p>Comme une boîte flottante sort du flux normal, sa hauteur
+				n'est pas comptée dans le calcul de la hauteur du conteneur. Une
+				boîte flottante peut donc déborder en hauteur et s'étendre sur
+				plusieurs boîtes comme dans l'exemple suivant. Les règles de styles
+				sont les mêmes que dans l'exemple précédent, nous enlevons
+				simplement du texte dans le paragraphe et en ajoutons dans la boîte
+				flottante. Un second paragraphe est affiché en dessous du premier
+				pour bien montrer le chevauchement.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;&lt;span class="flottant"&gt;L'Hagard des Etoiles (je trouve le 
+		scénario de plus en plus n'importe nawak)&lt;/span&gt;Il y a bien lointaine 
+		galaxie, dans un très longtemps, la Fédération de l'Empire du Commerce de 
+		la République des Joyeux Rebelles&lt;/p&gt;
+		&lt;p&gt;(ça continue ici) avec les Gentils Jedi et les Méchants Siths qui 
+		en plus sont même pas bô mais alors très très méchants, même qu'ils se 
+		battent tout le temps avec tout le monde ...&lt;/p&gt;
+	&lt;/body&gt; 
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+.flottant {float: right;
+    width: 100px;
+    border: 1px solid;
+    margin: 5px;
+    padding: 2px;
+    background-color: #fc9;}
+p {border: 1px solid;
+   margin: 20px;
+   padding: 10px;
+   background-color: #cfc;}</textarea>
+			</form>
+
+			<p>Pour éviter le débordement, la propriété clear peut être
+				utilisée dans la boîte suivant la boîte flottante.</p>
+
+			<p>La propriété clear a pour effet d'agrandir la marge du haut de
+				la boîte suivant la boîte flottante, pour qu'elle se positionne
+				juste sous la boîte flottante. Cette propriété peut prendre les
+				valeurs left (pour les boîtes avec float: left), right (pour les
+				boîtes avec float: right), both (les deux côtés), none (aucun) ou
+				inherit (hérite).</p>
+
+			<p>Nous pouvons modifier le code de la façon suivante :</p>
+			<pre>
+p {border: 1px solid;
+    margin: 20px;
+    padding: 10px;
+    background-color: #cfc;
+    clear: right; }</pre>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+		&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;&lt;span class="flottant"&gt;L'Hagard des Etoiles (je trouve 
+		le scénario de plus en plus n'importe nawak)&lt;/span&gt;Il y a bien 
+		lointaine galaxie, dans un très longtemps, la Fédération de l'Empire 
+		du Commerce de la République des Joyeux Rebelles&lt;/p&gt;
+		&lt;p&gt;(ça continue ici) avec les Gentils Jedi et les Méchants Siths 
+		qui en plus sont même pas bô mais alors très très méchants, même 
+		qu'ils se battent tout le temps avec tout le monde ...&lt;/p&gt;
+	&lt;/body&gt; 
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+.flottant {float: right;
+    width: 100px;
+    border: 1px solid;
+    margin: 5px;
+    padding: 2px;
+    background-color: #fc9; }
+p {border: 1px solid;
+   margin: 20px;
+   padding: 10px;
+   background-color: #cfc;
+   clear: right; }</textarea>
+			</form>
+
+			<h4>Boîtes flottantes adjacentes</h4>
+			<section>
+				<p>Lorsque 2 boîtes adjacentes (côte à côte) ou plus sont
+					flottantes, leur bord haut est positionné sur la même ligne si il y
+					a assez de place. Si il n'y a pas assez de place, la ou les
+					dernières boîtes flottantes sont déplacées plus bas dans la
+					première position où il y a assez de place.</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : positionnement
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;&lt;span class="flottant"&gt;L'Hagard des Etoiles&lt;/span&gt;
+		&lt;span class="flottant"&gt;Je trouve le scénario de plus en plus 
+		n'importe nawak&lt;/span&gt;Il y a bien lointaine galaxie, dans un 
+		très longtemps, la Fédération de l'Empire du Commerce de la République
+		 des Joyeux Rebelles avec les Gentils Jedi et les Méchants Siths qui 
+		 en plus sont même pas bô mais alors très très méchants, même qu'ils 
+		 se battent tout le temps avec tout le monde ...&lt;/p&gt;
+	&lt;/body&gt; 
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+.flottant {float: right;
+           width: 100px;
+           border: 1px solid;
+           margin: 5px;
+           padding: 2px;
+           background-color: #fc9;}
+p {border: 1px solid;
+   margin: 20px;
+   padding: 10px;
+   background-color: #cfc;}</textarea>
+				</form>
+
+				<p>Pour forcer les boîtes flottantes à s'afficher les unes en
+					dessous des autres, il faut utiliser la propriété clear :</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : positionnement
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;&lt;span class="flottant"&gt;L'Hagard des Etoiles&lt;/span&gt;
+		&lt;span class="flottant"&gt;Je trouve le scénario de plus en plus 
+		n'importe nawak&lt;/span&gt;Il y a bien lointaine galaxie, dans un très 
+		longtemps, la Fédération de l'Empire du Commerce de la République des 
+		Joyeux Rebelles avec les Gentils Jedi et les Méchants Siths qui en 
+		plus sont même pas bô mais alors très très méchants, même qu'ils se 
+		battent tout le temps avec tout le monde ...&lt;/p&gt;
+	&lt;/body&gt; 
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+.flottant {float: right;
+           width: 100px;
+           border: 1px solid;
+           margin: 5px;
+           padding: 2px;
+           background-color: #fc9;
+           clear: right;}
+p {border: 1px solid;
+   margin: 20px;
+   padding: 10px;
+   background-color: #cfc;}</textarea>
+				</form>
+
+				<p>Le positionnement flottant de plusieurs boîte adjacentes peut
+					être utilisé pour réaliser des mises en page avec des colonnes.</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : positionnement
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div class="menu"&gt;Episode 1&lt;br&gt;Episode 2&lt;br&gt;Episode 3&lt;/div&gt;
+		&lt;div class="contenu"&gt;Il y a bien lointaine galaxie, dans un très 
+		longtemps, la Fédération de l'Empire du Commerce de la République 
+		des Joyeux Rebelles avec les Gentils Jedi et les Méchants Siths qui 
+		en plus sont même pas bô mais alors très très méchants, même qu'ils 
+		se battent tout le temps avec tout le monde ...&lt;/div&gt;
+	&lt;/body&gt; 
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+body {margin: 10px;
+      background-color: #cfc}
+.menu {float: left;
+       width: 150px;
+       border: 1px solid;
+       margin: 0px;
+       padding: 2px;
+       background-color: #fc9;}
+.contenu {float: right;
+          border: 1px solid;
+          margin: 0px 10px;
+          padding: 10px;
+          background-color: #fcc;}</textarea>
+				</form>
+			</section>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Le positionnement absolu</h3>
+		<section>
+			<p>Pour qu'une boîte ait un positionnement absolu, il faut
+				utiliser la propriété position avec la valeur absolute ou fixed.</p>
+
+			<p>Quand une boîte est positionnée en absolu, elle est retirée du
+				flux normal qui n'en tient pas compte pour gérer son affichage. La
+				position de la boîte à l'écran sera la même, quelle que soit
+				l'emplacement de la balise dans le code HTML. Les boîtes
+				positionnées en absolu sont toujours considérées comme des boîtes de
+				type bloc et sont le conteneur de leurs éléments descendants.</p>
+
+			<p>La position d'une boîte absolue à l'intérieur de son conteneur
+				est déterminée par les propriétés top, right, bottom et left. Les
+				unités utilisables sont le pouce (in), le centimètre (cm), le
+				millimètre (mm), le point (pt), le picas (pc), le pixel (px) et la
+				distance (em). La position est calculée en référence au point
+				supérieur gauche du bloc conteneur de la boîte (à la différence du
+				positionnement relatif où le décalage est caclulé par rapport au
+				flux normal). La marge interne (padding) éventuelle du bloc
+				conteneur n'est pas prise en compte.</p>
+
+			<p class="fp-bot0">Le bloc conteneur d'un élément en
+				positionnement absolu est défini par son parent le plus proche :</p>
+			<ul>
+				<li>une boîte elle-même positionnée avec une propriété position
+					relative ou absolue</li>
+				<li>- le bloc conteneur initial (la fenêtre du navigateur).</li>
+			</ul>
+			<p>Remarque : quand le conteneur est en flux normal ou en float,
+				il suffit de lui donner une propriété position: relative sans
+				préciser de top et de left pour le positionner. Il sera placé là où
+				il est déjà, mais pourra servir de conteneur à un bloc en
+				positionnement absolu.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div class="contenu"&gt;Je suis un paragraphe avec du contenu, 
+		du contenu, du contenu, du contenu, du contenu, du contenu, du 
+		contenu, du contenu, du contenu, du contenu, du contenu, du contenu, 
+		du contenu, du contenu, du contenu, du contenu.
+		&lt;div class="absolu"&gt;Absolu par rapport au bloc&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class="absolu"&gt;Absolu par rapport à la fenêtre&lt;/div&gt;
+	&lt;/body&gt; 
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {margin: 0px;
+      padding: 0px;
+      background-color: #cfc}
+.absolu {position: absolute;
+         left:60px; 
+         top:30px; 
+         width:200px; 
+         padding:5px;
+         border: 1px black solid;
+         background-color: #fc9;}
+.contenu {position: relative;
+          margin: 50px;
+          padding: 10px;
+          background-color: #fcc;}</textarea>
+			</form>
+
+			<p>Les blocs en positionnement absolu peuvent se superposer à
+				d'autres blocs (non positionnés ou aussi en positionnement absolu).
+				Chaque bloc en positionnement absolu appartient à un contexte de
+				superposition. Le contexte de superposition initial est défini par
+				le bloc conteneur initial (la fenêtre du navigateur) et ensuite
+				chaque bloc conteneur définit son contexte de superposition. Pour
+				gérer l'ordre de superposition à l'intérieur d'un contexte on
+				utilise la propriété z-index dont la valeur est un nombre. Plus le
+				nombre est élevé, plus le bloc est mis au dessus de la
+				superposition. Si dans un même contexte, plusieurs blocs en
+				positionnement absolu n'ont pas de z-index, c'est leur ordre
+				d'apparition dans le code HTML qui détermine leur ordre de
+				superposition.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div class="devant"&gt;&lt;h1&gt;L'Hagard des Etoiles&lt;/h1&gt;&lt;/div&gt;
+		&lt;div class="derriere"&gt;Beaucoup de choses sur les CSS tu dois encore apprendre !&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+.derriere {position: absolute; 
+           left: 10px;
+           top: 50px;
+           width: 150px;
+           z-index: 1;
+           background-color: #fc9; }
+.devant {position: absolute;
+         left: 70px;
+         top: 90px;
+         z-index: 2;
+         border: 1px solid;
+         background-color: #cfc; }</textarea>
+			</form>
+
+			<p>L'affichage montre que l'élément ""L'Hagard des Etoiles"" est
+				affiché au dessus de l'élément suivant bien qu'il apparaissent avant
+				dans le code HTML.</p>
+
+			<p>Le positionnement absolu peut être utilisé comme le
+				positionnement flottant pour réaliser des mises en page avec des
+				colonnes.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div class="menu"&gt;Episode 1&lt;br&gt;Episode 2&lt;br&gt;Episode 3&lt;/div&gt;
+		&lt;div class="contenu"&gt;Il y a bien lointaine galaxie, dans un très longtemps, 
+		la Fédération de l'Empire du Commerce de la République des Joyeux Rebelles avec 
+		les Gentils Jedi et les Méchants Siths qui en plus sont même pas bô mais alors 
+		très très méchants, même qu'ils se battent tout le temps avec tout le monde ...&lt;/div&gt;
+	&lt;/body&gt; 
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {margin: 10px;
+      background-color: #cfc}
+.menu {position: absolute;
+       left: 10px;
+       top: 10px;
+       width: 150px;
+       border: 1px solid;
+       margin: 0px;
+       padding: 2px;
+       background-color: #fc9;}
+.contenu {padding: 10px;
+          background-color: #fcc;}</textarea>
+			</form>
+
+			<p>Pour laisser de la place au bloc de menu de 150 pixels de
+				large, il faut créer une marge externe gauche dans le bloc de
+				contenu :</p>
+
+
+
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>La propriété display</h3>
+		<section>
+			<p>La propriété display permet de forcer une boîte à se comporter
+				en boîte de type bloc (display: block) ou en boîte de type en ligne
+				(display: inline). La propriété display permet aussi à une boîte
+				d'être retirée du flot, c'est à dire de na pas être affichée
+				(display: none). Cette dernière valeur est surtout utilisée en
+				conjonction avec JavaScript pour réaliser des éléments d'interface
+				comme des menus déroulants.</p>
+
+			<p>La transformation d'une boîte bloc en boîte ligne est
+				intéressante avec les listes. Par défaut chaque ligne d'une liste
+				est considérée comme une boîte de type bloc, ce qui fait que les
+				lignes de la liste sont affichées les une en dessous des autres.</p>
+
+			<p>Soit la liste :</p>
+
+			<pre>
+Vaisseaux
+&lt;ul&gt;
+&lt;li&gt;X-Wing&lt;/li&gt;
+&lt;li&gt;Y-Wing&lt;/li&gt;
+&lt;li&gt;Tie Def&lt;/li&gt;
+&lt;li&gt;Tie Adv&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+
+			<p>Attention, ça devient très technique. Les X-Wing et autres Tie
+				Adv sont des chasseurs utilisés dans les épisodes 4, 5 et 6 de la
+				Guerre des Etoiles (les chasseurs n'étant pas des gugusses avec des
+				fusils et un ouahouah, mais des vaisseaux spaciaux - un peu de
+				sérieux siouplait).</p>
+
+			<p>Pour que les boîtes des lignes de la liste soient bien
+				visibles, appliquons les règles suivantes :</p>
+
+			<pre>
+li {border: 1px solid;
+    margin: 2px;
+    padding: 2px;
+    background-color: #cfc;}
+</pre>
+
+			<p>En utilisant la propriété display avec la valeur inline nous
+				transformons la liste verticale en liste horizontale.</p>
+
+			<pre>
+li {display: inline;
+    border: 1px solid;
+    margin: 2px;
+    padding: 2px;
+    background-color: #cfc;} 
+</pre>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+		&lt;/head&gt;
+	&lt;body&gt;
+		Vaisseaux
+		&lt;ul&gt;
+			&lt;li&gt;X-Wing&lt;/li&gt;
+			&lt;li&gt;Y-Wing&lt;/li&gt;
+			&lt;li&gt;Tie Def&lt;/li&gt;
+			&lt;li&gt;Tie Adv&lt;/li&gt;
+		&lt;/ul&gt; 
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+li {display: inline;
+    border: 1px solid;
+    margin: 2px;
+    padding: 2px;
+    background-color: #cfc;}</textarea>
+			</form>
+
+			<p>Nous pouvons aussi utiliser la propriété display avec la
+				valeur inline sur l'élément ul pour que le libellé menu soit sur la
+				même ligne que les choix, et nous pouvons donner la même dimension
+				aux boîtes.</p>
+
+			<pre>
+ul {display: inline;
+    margin: 0px;}
+li {width: 70px;
+    display: inline;
+    border: 1px solid;
+    margin: 2px;
+    padding: 2px;
+    background-color: #cfc;} 
+</pre>
+
+			<p>La transformation d'une boîte en ligne en boîte bloc peut être
+				fait par exemple pour un lien. Reprenons le menu précédent en
+				mettant des liens sur les divers éléments de la liste.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		Menu
+		&lt;ul&gt;
+			&lt;li&gt;&lt;a href="wing_x.jpg"&gt;X-Wing&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="wing_y.jpg"&gt;Y-Wing&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="tie_d.jpg"&gt;Tie Def&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="tie_a.jpg"&gt;Tie Adv&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+ul {display: inline;
+    margin: 0px;}
+li {width: 70px;
+    display: inline;
+    border: 1px solid;
+    margin: 2px;
+    padding: 2px;
+    background-color: #cfc;}</textarea>
+			</form>
+
+			<p>En testant nous voyons que la zone réactive du lien s'arrête
+				avec le texte. Si nous changeons le type de la boîte d'un lien, qui
+				est de type en ligne par défaut, en type bloc et que nous lui
+				donnons une largeur, c'est tout le bloc qui deviendra réactif et qui
+				se comportera alors comme un bouton.</p>
+
+			<pre>
+a {display: block;
+   width: 70px;
+   text-decoration: none;
+   text-align: center; } 
+</pre>
+
+			<p>Pour montrer une utilisation de la propriété display avec la
+				valeur none nous prendrons l'exemple de bulle d'aide affichée au
+				passage de la souris sur un lien.</p>
+
+			<p>Attention, un peu de concentration, et rendez-vous après le
+				test pour les explications.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		Je n'reconnais plus personne en &lt;a class="bulle" href="page.htm"&gt;Faucon Millenium
+		&lt;span&gt;Pour ceux qui dormaient au cours des 30 dernières années, le Faucon Millenium 
+		est le vaisseau de Han Solo&lt;/span&gt;&lt;/a&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+a.bulle {position: relative;}
+
+a.bulle span {display: none;}
+
+a.bulle:hover { background: none;
+                z-index: 9999;}
+
+a.bulle:hover span { display: inline;
+                     position: absolute;
+                     top: 2em;
+                     left: 1em;
+                     width: 10em;
+                     background: yellow;
+                     border: 1px solid;
+                     padding: 2px;   
+                     text-decoration: none;
+                     color: black;}</textarea>
+			</form>
+
+			<p>D'abord le code HTML pour le lien :</p>
+
+			<pre>Je n'reconnais plus personne en &lt;a class="bulle" href="page.htm"&gt;Faucon Millenium&lt;span&gt;Pour ceux qui dormaient au cours des 30 dernières années, le Faucon Millenium est le vaisseau de Han Solo&lt;/span&gt;&lt;/a&gt;
+</pre>
+
+			<p>On voit que le texte de la bulle d'aide est entouré de tag
+				&lt;span&gt; et imbriqué dans un lien stylé avec la classe bulle.</p>
+			<p>Commençons donc par la règle pour les liens de classe "bulle"
+				:</p>
+			<pre>a.bulle {position: relative;}</pre>
+
+			<p>Nous forçons une position relative pour que la bulle puisse
+				être affichée de façon absolue par rapport au lien (rappel : le
+				parent d'un élément affiché en absolu doit avoir une propriété
+				position explicitement définie).</p>
+
+			<p>Nous définissons ensuite une règle pour les tags span contenu
+				dans des tags a de classe "bulle"</p>
+			<pre>a.bulle span {display: none;}</pre>
+
+			<p>Cette règle spécifie que le contenu du tag span n'est pas
+				affiché, et pas pris en compte dans les calculs de positionnement
+				des boîte de contenu.</p>
+
+			<p>Nous définissons ensuite ce qui se passe quand la souris
+				survole un lien de classe "bulle".</p>
+
+			<pre>
+a.bulle:hover { background: none;
+                z-index: 9999;}
+</pre>
+
+			<p>La propriété background-color est là uniquement pour résoudre
+				un bug de Internet Explorer. La propriété z-index garanti que le
+				texte du lien sera toujours au premier plan.</p>
+
+			<p>Finalement tout se passe dans les règles concernant
+				l'affichage du tag span (contenant le texte de la bulle d'aide)
+				quand la souris survole un lien de classe "bulle".</p>
+
+			<pre>
+a.bulle:hover span { display: inline;
+                     position: absolute;
+                     top: 2em;
+                     left: 1em;
+                     width: 10em;
+                     background: yellow;
+                     text-align: center;
+                     border: 1px solid;
+                     padding: 2px;
+                     text-decoration: none;
+                     color: black;}
+</pre>
+
+			<p>Nous changeons le type de la boîte de aucun à en ligne. Nous
+				définissons une position absolue par rapport à son parent (le lien),
+				en utilisant un déclage de 2 em en bas et 1 em à droite. Avec
+				l'unité em, proportionnelle à la taille de la police, nous sommes
+				sûrs de toujours bien positionner la bulle d'aide. Le reste des
+				règles ne pose pas de problème. Il ne faut pas oublier d'enlever le
+				soulignement du texte (text-decoration: none;) et de lui donner une
+				couleur noire (color: black;) car la bulle d'aide est imbriquée dans
+				un lien, et donc son texte sera souligné et bleu.</p>
+
+			<p>Et encore plus fort (si c'est possible !)</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		Je n'reconnais plus personne en &lt;a class="bulle" href="page.htm"&gt;Faucon Millenium
+		&lt;span&gt;Pour ceux qui dormaient au cours des 30 dernières années, le Faucon Millenium 
+		est le vaisseau de Han Solo&lt;/span&gt;&lt;/a&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+a.bulle {position: relative;}
+
+a.bulle span {display: none;}
+
+a.bulle:hover { background: none;
+                z-index: 9999;}
+
+a.bulle:hover span { display: inline;
+          position: absolute;
+          top: 2em;
+          left: 1em;
+          width: 160px;
+          background: url(faucon_m.jpg) black no-repeat;
+          border: 1px solid;
+          padding: 100px 2px 2px 2px;   
+          text-decoration: none;
+          color: white;}</textarea>
+			</form>
+
+
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

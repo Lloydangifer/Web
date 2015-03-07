@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Charge une extension PHP &agrave; la vol&eacute;e</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.assert.html">assert</a>
+		</div>
+		<div class="next">
+			<a href="function.extension-loaded.html">extension_loaded</a>
+		</div>
+		<div class="up">
+			<a href="ref.info.html">Fonctions sur les options et les
+				informations de PHP</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.dl" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">dl</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">dl</span> <span class="mdash">&mdash;</span> <span
+					class="dc-title">Charge une extension PHP à la volée</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.dl-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>dl</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$library</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				Charge l&#039;extension PHP <em><code class="parameter">library</code></em>
+				à la volée.
+			</p>
+			<p class="para">
+				Utilisez la fonction <span class="function"><a
+					href="function.extension-loaded.html" class="function">extension_loaded()</a></span>
+				pour vérifier qu&#039;une extension est chargée ou non. Cette
+				fonction travaille aussi bien avec les extensions natives
+				qu&#039;avec les extensions dynamiquement chargées (via le
+				<var class="filename">php.ini</var>
+				ou <span class="function"><strong>dl()</strong></span>).
+			</p>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="simpara">Cette fonction a été supprimée du SAPI en PHP
+					5.3.</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 parameters" id="refsect1-function.dl-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">library</code></em></span>
+				<dd>
+
+					<p class="para">
+						Ce paramètre est <em class="emphasis">seulement</em> le nom de
+						fichier de l&#039;extension, qui dépend de votre plate-forme. Par
+						exemple l&#039;extension <a href="ref.sockets.html" class="link">sockets</a>
+						(si compilée comme module partagé, et non par défaut), sera
+						appelée
+						<var class="filename">sockets.so</var>
+						sous Unix, et
+						<var class="filename">php_sockets.dll</var>
+						sous Windows.
+					</p>
+					<p class="para">Le dossier à partir duquel sont chargées vos
+						extensions dépend de votre plate-forme :</p>
+					<p class="para">
+						Windows - S&#039;il n&#039;est pas explicitement indiqué dans le
+						fichier
+						<var class="filename">php.ini</var>
+						, le dossier des extensions est
+						<var class="filename">c:\php4\extensions\</var>
+						(PHP 4) ou
+						<var class="filename">C:\php5\</var>
+						(PHP 5) par défaut.
+					</p>
+					<p class="para">
+						Unix - S&#039;il n&#039;est pas explicitement indiqué dans le
+						fichier
+						<var class="filename">php.ini</var>
+						, le dossier des extensions dépend de
+					<ul class="itemizedlist">
+						<li class="listitem"><span class="simpara"> Si PHP a
+								été compilé avec l&#039;option <em>--enable-debug</em> ou non
+						</span></li>
+						<li class="listitem"><span class="simpara"> Si PHP a
+								été compilé avec le support (expérimental) de ZTS (<em>Zend
+									Thread Safety</em>) ou non
+						</span></li>
+						<li class="listitem"><span class="simpara"> de la
+								constante interne <em>ZEND_MODULE_API_NO</em> (version interne
+								de module d&#039;API Zend, qui est en réalité la date à laquelle
+								une modification importante de l&#039;API a été faite, par
+								exemple <em>20010901</em>)
+						</span></li>
+					</ul>
+					En prenant ces paramètres en considération, le dossier des
+					extensions vaut alors <em>&lt;install-dir&gt;/lib/php/extensions/
+						&lt;debug-or-not&gt;-&lt;zts-or-not&gt;-ZEND_MODULE_API_NO</em>, e.g.
+					<var class="filename">/usr/local/php/lib/php/extensions/debug-non-zts-20010901</var>
+					ou
+					<var class="filename">/usr/local/php/lib/php/extensions/no-debug-zts-20010901</var>
+					.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.dl-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient. Si la fonctionnalité de chargement de module n&#039;est
+				pas disponible, ou a été désactivée (soit en désactivant la
+				directive <a href="info.configuration.html#ini.enable-dl"
+					class="link">enable_dl</a> ou en activant le <a
+					href="ini.sect.safe-mode.html#ini.safe-mode" class="link">safe
+					mode</a> dans le
+				<var class="filename">php.ini</var>
+				) une <strong><code>E_ERROR</code></strong> sera émise et
+				l&#039;exécution du script sera stoppée. Si la fonction <span
+					class="function"><strong>dl()</strong></span> échoue parce que la
+				bibliothèque n&#039;a pu être trouvée, <span class="function"><strong>dl()</strong></span>
+				retournera <strong><code>FALSE</code></strong> et émettra un message
+				d&#039;alerte <strong><code>E_WARNING</code></strong>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.dl-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-477">
+				<p>
+					<strong>Exemple #1 Exemples avec <span class="function"><strong>dl()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Chargement&nbsp;pour&nbsp;toutes&nbsp;plates-formes<br /></span><span
+								style="color: #007700">if&nbsp;(!</span><span
+								style="color: #0000BB">extension_loaded</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'sqlite'</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(
+							</span><span style="color: #0000BB">strtoupper</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">substr</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">PHP_OS</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">3</span><span style="color: #007700">))&nbsp;===&nbsp;</span><span
+								style="color: #DD0000">'WIN'</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">dl</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'php_sqlite.dll'</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">dl</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'sqlite.so'</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Mais&nbsp;la&nbsp;constante&nbsp;PHP_SHLIB_SUFFIX&nbsp;est&nbsp;disponible&nbsp;depuis&nbsp;PHP&nbsp;4.3.0<br /></span><span
+								style="color: #007700">if&nbsp;(!</span><span
+								style="color: #0000BB">extension_loaded</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'sqlite'</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$prefix&nbsp;</span><span
+								style="color: #007700">=&nbsp;(</span><span
+								style="color: #0000BB">PHP_SHLIB_SUFFIX&nbsp;</span><span
+								style="color: #007700">===&nbsp;</span><span
+								style="color: #DD0000">'dll'</span><span style="color: #007700">)&nbsp;?&nbsp;</span><span
+								style="color: #DD0000">'php_'&nbsp;</span><span
+								style="color: #007700">:&nbsp;</span><span
+								style="color: #DD0000">''</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">dl</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$prefix&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #DD0000">'sqlite.'&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">PHP_SHLIB_SUFFIX</span><span
+								style="color: #007700">);<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog" id="refsect1-function.dl-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.3.0</td>
+						<td><span class="function"><strong>dl()</strong></span> est
+							maintenant désactivé dans quelques SAPIs en raison de son
+							instabilité. Le seul SAPI qui active <span class="function"><strong>dl()</strong></span>
+							sont CLI et Embed. Utilisez les <a
+							href="ini.core.html#ini.extension" class="link">directives de
+								chargement d&#039;extension</a> à la place.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.dl-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					<span class="function"><strong>dl()</strong></span> <em
+						class="emphasis">n&#039;est pas</em> supporté lorsque PHP est
+					compilé avec le support ZTS. Utilisez les <a
+						href="ini.core.html#ini.extension" class="link">directives de
+						chargement d&#039;extension</a> à la place.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					<span class="function"><strong>dl()</strong></span> est sensible à
+					la casse sur les plates-formes Unix.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Cette
+						fonction est désactivée par le <a href="features.safe-mode.html"
+						class="link">safe-mode</a>
+					</span>
+				</p>
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.dl-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><a href="ini.core.html#ini.extension"
+					class="link">Directives de chargement d&#039;extensions</a></li>
+				<li class="member"><span class="function"><a
+						href="function.extension-loaded.html" class="function"
+						rel="rdfs-seeAlso">extension_loaded()</a> - D&eacute;termine si
+						une extension est charg&eacute;e ou non</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.assert.html">assert</a>
+		</div>
+		<div class="next">
+			<a href="function.extension-loaded.html">extension_loaded</a>
+		</div>
+		<div class="up">
+			<a href="ref.info.html">Fonctions sur les options et les
+				informations de PHP</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

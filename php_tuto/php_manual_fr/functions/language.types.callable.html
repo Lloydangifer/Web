@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Fonctions de rappel</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.types.null.html">NULL</a>
+		</div>
+		<div class="next">
+			<a href="language.pseudo-types.html">Variables et pseudo-types
+				utilis&eacute;s dans cette documentation</a>
+		</div>
+		<div class="up">
+			<a href="language.types.html">Les types</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.types.callable" class="sect1">
+		<h2 class="title">Fonctions de rappel</h2>
+
+		<p class="para">
+			Les fonctions de rappel peuvent être identifiées via le type <span
+				class="type"><a href="language.types.callable.html"
+				class="type callable">callable</a></span> depuis PHP 5.4. Cette
+			documentation utilise le type <span class="type"><a
+				href="language.pseudo-types.html#language.types.callback"
+				class="type callback">callback</a></span> qui revient exactement au même.
+		</p>
+
+		<p class="para">
+			Certaines fonctions, comme <span class="function"><a
+				href="function.call-user-func.html" class="function">call_user_func()</a></span>
+			ou <span class="function"><a href="function.usort.html"
+				class="function">usort()</a></span>, acceptent comme paramètre des
+			fonctions de rappel définies par l&#039;utilisateur. Les fonctions de
+			rappel peuvent être de simples fonctions, mais aussi des méthodes
+			d&#039;<span class="type"><span class="type objets">objets</span></span>,
+			y compris des méthodes statiques de classe.
+		</p>
+
+		<div class="sect2" id="language.types.callable.passing">
+			<h3 class="title">Passage d&#039;une fonction de rappel</h3>
+
+			<p class="para">
+				Une fonction PHP est passée par son nom, sous la forme d&#039;une
+				chaîne de caractères. Toute fonction interne ou définie par
+				l&#039;utilisateur peut être utilisée, sauf les constructions de
+				langage comme : <span class="function"><a
+					href="function.array.html" class="function">array()</a></span>, <span
+					class="function"><a href="function.echo.html"
+					class="function">echo</a></span>, <span class="function"><a
+					href="function.empty.html" class="function">empty()</a></span>, <span
+					class="function"><a href="function.eval.html"
+					class="function">eval()</a></span>, <span class="function"><a
+					href="function.exit.html" class="function">exit()</a></span>, <span
+					class="function"><a href="function.isset.html"
+					class="function">isset()</a></span>, <span class="function"><a
+					href="function.list.html" class="function">list()</a></span>, <span
+					class="function"><a href="function.print.html"
+					class="function">print</a></span>, ou <span class="function"><a
+					href="function.unset.html" class="function">unset()</a></span>.
+			</p>
+
+			<p class="para">Une méthode d&#039;un objet instancié est passée
+				comme un tableau contenant un objet à l&#039;index 0, et le nom de
+				la méthode à l&#039;index 1.</p>
+
+			<p class="para">
+				Les méthodes statiques de classe peuvent aussi être passées sans
+				instancier d&#039;objet de cette classe, en passant le nom de la
+				classe au lieu d&#039;un objet à l&#039;index 0. Depuis PHP 5.2.3,
+				il est également possible de passer <em>&#039;NomDeLaClasse::NomDeLaMethode&#039;</em>.
+			</p>
+
+			<p class="para">
+				En dehors des fonctions définies normalement par l&#039;utilisateur,
+				la fonction <span class="function"><a
+					href="function.create-function.html" class="function">create_function()</a></span>
+				peut également être utilisée pour créer une fonction de rappel
+				anonyme. Depuis PHP 5.3.0, il est également possible de passer une <a
+					href="functions.anonymous.html" class="link">closure</a> comme
+				paramètre de type callback.
+			</p>
+
+			<p class="para">
+			<div class="example" id="example-99">
+				<p>
+					<strong>Exemple #1 Exemples de fonctions de rappel </strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php&nbsp;<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Un&nbsp;exemple&nbsp;de&nbsp;fonction&nbsp;de&nbsp;rappel<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">my_callback_function</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'hello&nbsp;world!'</span><span
+								style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Un&nbsp;exemple&nbsp;de&nbsp;méthode&nbsp;de&nbsp;rappel<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">MyClass&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">myCallbackMethod</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'Hello&nbsp;World!'</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Type&nbsp;1&nbsp;:&nbsp;Fonction&nbsp;de&nbsp;rappel&nbsp;simple<br /></span><span
+								style="color: #0000BB">call_user_func</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'my_callback_function'</span><span
+								style="color: #007700">);&nbsp;<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Type&nbsp;2&nbsp;:&nbsp;Appel&nbsp;d'une&nbsp;méthode&nbsp;statique&nbsp;de&nbsp;classe<br /></span><span
+								style="color: #0000BB">call_user_func</span><span
+								style="color: #007700">(array(</span><span
+								style="color: #DD0000">'MyClass'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'myCallbackMethod'</span><span
+								style="color: #007700">));&nbsp;<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Type&nbsp;3&nbsp;:&nbsp;Appel&nbsp;d'une&nbsp;méthode&nbsp;objet<br /></span><span
+								style="color: #0000BB">$obj&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">MyClass</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">call_user_func</span><span
+								style="color: #007700">(array(</span><span
+								style="color: #0000BB">$obj</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'myCallbackMethod'</span><span
+								style="color: #007700">));<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Type&nbsp;4&nbsp;:&nbsp;Appel&nbsp;d'une&nbsp;méthode&nbsp;statique&nbsp;de&nbsp;classe&nbsp;(depuis&nbsp;PHP&nbsp;5.2.3)<br /></span><span
+								style="color: #0000BB">call_user_func</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'MyClass::myCallbackMethod'</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Type&nbsp;5&nbsp;:&nbsp;Appel&nbsp;à&nbsp;une&nbsp;méthode&nbsp;statique&nbsp;de&nbsp;classe&nbsp;relative&nbsp;(depuis&nbsp;PHP&nbsp;5.3.0)<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">A&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">who</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"A\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">B&nbsp;</span><span
+								style="color: #007700">extends&nbsp;</span><span
+								style="color: #0000BB">A&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">who</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"B\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #0000BB">call_user_func</span><span
+								style="color: #007700">(array(</span><span
+								style="color: #DD0000">'B'</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'parent::who'</span><span
+								style="color: #007700">));&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;A<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="example-100">
+				<p>
+					<strong>Exemple #2 Exemple d&#039;une fonction de rappel
+						utilisant une closure </strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Notre&nbsp;closure<br /></span><span
+								style="color: #0000BB">$double&nbsp;</span><span
+								style="color: #007700">=&nbsp;function(</span><span
+								style="color: #0000BB">$a</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">*&nbsp;</span><span
+								style="color: #0000BB">2</span><span style="color: #007700">;<br />};<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Ceci&nbsp;est&nbsp;notre&nbsp;intervalle&nbsp;de&nbsp;nombres<br /></span><span
+								style="color: #0000BB">$numbers&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">range</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">5</span><span style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Utilisation&nbsp;de&nbsp;la&nbsp;closure&nbsp;comme&nbsp;fonction&nbsp;de&nbsp;rappel.<br />//&nbsp;Ici,&nbsp;pour&nbsp;doubler&nbsp;la&nbsp;taille&nbsp;de&nbsp;chaque&nbsp;élément&nbsp;de&nbsp;notre&nbsp;intervalle<br /></span><span
+								style="color: #0000BB">$new_numbers&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">array_map</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$double</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$numbers</span><span
+								style="color: #007700">);<br />
+								<br />print&nbsp;
+							</span><span style="color: #0000BB">implode</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'&nbsp;'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$new_numbers</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+2 4 6 8 10
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">
+						En PHP 4, il était nécessaire d&#039;utiliser une référence pour
+						créer une fonction de rappel qui pointe vers un objet, et non une
+						copie de celui-ci. Pour plus de détails, reportez-vous à <a
+						href="language.references.html" class="link">l&#039;explication
+							sur les références</a>.
+					</span>
+				</p>
+			</blockquote>
+
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Notez que les fonctions de rappel enregistrées avec des fonctions
+					comme <span class="function"><a
+						href="function.call-user-func.html" class="function">call_user_func()</a></span>
+					et <span class="function"><a
+						href="function.call-user-func-array.html" class="function">call_user_func_array()</a></span>
+					ne seront pas appelées si une exception n&#039;est pas interceptée
+					alors qu&#039;elle a été lancée dans une précédente fonction de
+					rappel.
+				</p>
+				</p>
+			</blockquote>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.types.null.html">NULL</a>
+		</div>
+		<div class="next">
+			<a href="language.pseudo-types.html">Variables et pseudo-types
+				utilis&eacute;s dans cette documentation</a>
+		</div>
+		<div class="up">
+			<a href="language.types.html">Les types</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

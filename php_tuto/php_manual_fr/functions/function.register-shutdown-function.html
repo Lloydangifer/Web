@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Enregistre une fonction de rappel pour ex&eacute;cution
+	&agrave; l'extinction</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.get-defined-functions.html">get_defined_functions</a>
+		</div>
+		<div class="next">
+			<a href="function.register-tick-function.html">register_tick_function</a>
+		</div>
+		<div class="up">
+			<a href="ref.funchand.html">Fonctions sur la gestion des
+				fonctions</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.register-shutdown-function" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">register_shutdown_function</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">register_shutdown_function</span> <span
+					class="mdash">&mdash;</span> <span class="dc-title">Enregistre
+					une fonction de rappel pour exécution à l&#039;extinction</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.register-shutdown-function-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><span class="type void">void</span></span> <span
+					class="methodname"><strong>register_shutdown_function</strong></span>
+				( <span class="methodparam"><span class="type"><a
+						href="language.types.callable.html" class="type callable">callable</a></span>
+					<code class="parameter">$callback</code></span> [, <span
+					class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$parameter</code></span>
+				[, <span class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$...</code></span>
+				]] )
+			</div>
+
+			<p class="para rdfs-comment">
+				Enregistre une fonction de rappel <em><code class="parameter">callback</code></em>
+				pour exécution à l&#039;extinction ou lorsque <span class="function"><a
+					href="function.exit.html" class="function">exit()</a></span> est appelé.
+			</p>
+			<p class="para">
+				Plusieurs appels à <span class="function"><strong>register_shutdown_function()</strong></span>
+				sont possibles dans le même script, et les fonctions seront appelées
+				dans le même ordre que celui dans lequel elles sont enregistrées. Si
+				vous appelez <span class="function"><a
+					href="function.exit.html" class="function">exit()</a></span> durant
+				l&#039;une des fonctions d&#039;extinction, le processus sera
+				définitivement arrêté, sans que les autres fonctions soient
+				appelées.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.register-shutdown-function-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">callback</code></em></span>
+				<dd>
+
+					<p class="para">La fonction de rappel à enregistrer.</p>
+					<p class="para">La fonction de rappel est exécuté comme faisant
+						parti de la requête, aussi, il est possible d&#039;envoyer quelque
+						à la sortie depuis cette dernière, puis d&#039;accéder aux buffers
+						de sortie.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">parameter</code></em></span>
+				<dd>
+
+					<p class="para">Il est possible de passer des paramètres aux
+						fonctions d&#039;extinction en configurant ces paramètres
+						supplémentaires.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">...</code></em></span>
+				<dd>
+
+					<p class="para"></p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.register-shutdown-function-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Aucune valeur n&#039;est retournée.</p>
+		</div>
+
+
+		<div class="refsect1 errors"
+			id="refsect1-function.register-shutdown-function-errors">
+			<h3 class="title">Erreurs / Exceptions</h3>
+			<p class="para">
+				Si la fonction de rappel ne peut être appelée pour diverses raisons,
+				une alerte de niveau <strong><code>E_WARNING</code></strong> sera
+				émise.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.register-shutdown-function-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.1.0</td>
+						<td>Les fonctions d&#039;extinction font maintenant partie de
+							la requête. Dans les versions précédentes, et sous Apache, les
+							fonctions enregistrées étaient appelée une fois que la requête
+							était complètement terminée. (y compris lorsque les buffers ont
+							été vidés) ce qui fait qu&#039;il n&#039;était pas possible
+							d&#039;envoyer de contenu au navigateur avec <span
+							class="function"><a href="function.echo.html"
+								class="function">echo</a></span> ou <span class="function"><a
+								href="function.print.html" class="function">print</a></span>, ou encore
+							lire le contenu avec les fonctions <span class="function"><a
+								href="function.ob-get-contents.html" class="function">ob_get_contents()</a></span>.
+							Les en-têtes étaient également toujours envoyés.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.register-shutdown-function-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4772">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>register_shutdown_function()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">shutdown</span><span
+								style="color: #007700">()<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;Voici&nbsp;notre&nbsp;fonction&nbsp;shutdown<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;dans&nbsp;laquelle&nbsp;nous&nbsp;pouvons&nbsp;faire<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;toutes&nbsp;les&nbsp;dernières&nbsp;opérations<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;avant&nbsp;la&nbsp;fin&nbsp;du&nbsp;script.<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">'Script&nbsp;exécuté&nbsp;avec&nbsp;succès'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">PHP_EOL</span><span
+								style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #0000BB">register_shutdown_function</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'shutdown'</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes"
+			id="refsect1-function.register-shutdown-function-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Le dossier de travail du script peut changer
+					dans la fonction d&#039;extinction sous quelques serveurs web, e.g.
+					Apache.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.register-shutdown-function-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><a href="ini.core.html#ini.auto-append-file"
+					class="link">auto_append_file</a></li>
+				<li class="member"><span class="function"><a
+						href="function.exit.html" class="function" rel="rdfs-seeAlso">exit()</a>
+						- Affiche un message et termine le script courant</span></li>
+				<li class="member">La section sur la <a
+					href="features.connection-handling.html" class="link">gestion
+						des connexions</a></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.get-defined-functions.html">get_defined_functions</a>
+		</div>
+		<div class="next">
+			<a href="function.register-tick-function.html">register_tick_function</a>
+		</div>
+		<div class="up">
+			<a href="ref.funchand.html">Fonctions sur la gestion des
+				fonctions</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

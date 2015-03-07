@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Renomme un fichier ou un dossier</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.realpath.html">realpath</a>
+		</div>
+		<div class="next">
+			<a href="function.rewind.html">rewind</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.rename" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">rename</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">rename</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Renomme un fichier ou un dossier</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.rename-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>rename</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$oldname</code></span> , <span class="methodparam"><span
+					class="type">string</span> <code class="parameter">$newname</code></span>
+				[, <span class="methodparam"><span class="type">resource</span>
+					<code class="parameter">$context</code></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				Tente de renommer <em><code class="parameter">oldname</code></em> en
+				<em><code class="parameter">newname</code></em>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.rename-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">oldname</code></em></span>
+				<dd>
+
+					<p class="para"></p>
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>:
+						<p class="para">
+							L&#039;ancien nom. Le gestionnaire utilisé dans le paramètre <em><code
+									class="parameter">oldname</code></em> <em class="emphasis">DOIT</em>
+							être le même que celui utilisé dans <em><code
+									class="parameter">newname</code></em>.
+					</blockquote>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">newname</code></em></span>
+				<dd>
+
+					<p class="para">Le nouveau nom.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">context</code></em></span>
+				<dd>
+
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>: <span class="simpara">Le
+								support de contexte a été ajouté en PHP 5.0.0. Pour une
+								description des contextes, référez-vous à <a
+								href="book.stream.html" class="xref">Flux</a>.
+							</span>
+						</p>
+					</blockquote>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.rename-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.rename-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.3.1</td>
+						<td><span class="function"><strong>rename()</strong></span>
+							peut maintenant renommer des fichiers entre différents lecteurs
+							Windows.</td>
+					</tr>
+
+					<tr>
+						<td>5.0.0</td>
+						<td><span class="function"><strong>rename()</strong></span>
+							peut aussi être utilisée avec <em class="emphasis">certains</em>
+							gestionnaires d&#039;URL. Reportez vous à <a href="wrappers.html"
+							class="xref">Liste des protocoles et des gestionnaires
+								support&eacute;s</a> pour une liste des gestionnaires qui supportent
+							<span class="function"><strong>rename()</strong></span>.</td>
+					</tr>
+
+					<tr>
+						<td>4.3.3</td>
+						<td><span class="function"><strong>rename()</strong></span>
+							peut maintenant renommer des fichiers entre différentes
+							partitions Unix, si les permissions le permettent. Des Warnings
+							peuvent être émis si la destination ne supporte pas les appels
+							systèmes <em>chown()</em> ou <em>chmod()</em> sur les fichiers ;
+							par exemple les systèmes de fichier FAT.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.rename-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2295">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>rename()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />rename
+							</span><span style="color: #007700">(</span><span style="color: #DD0000">"/tmp/tmp_file.txt"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"/home/user/login/docs/my_file.txt"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.rename-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.copy.html" class="function" rel="rdfs-seeAlso">copy()</a>
+						- Copie un fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.unlink.html" class="function" rel="rdfs-seeAlso">unlink()</a>
+						- Efface un fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.move-uploaded-file.html" class="function"
+						rel="rdfs-seeAlso">move_uploaded_file()</a> - D&eacute;place un
+						fichier t&eacute;l&eacute;charg&eacute;</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.realpath.html">realpath</a>
+		</div>
+		<div class="next">
+			<a href="function.rewind.html">rewind</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

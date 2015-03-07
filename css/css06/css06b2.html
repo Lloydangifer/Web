@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Image de fond</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function() {
+			top.FP.initPage();
+		}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			Tous les éléments <abbr title="HyperText Markup Language">HTML</abbr>
+			(qu'ils soient de type bloc ou en ligne) peuvent avoir <strong>une
+				ou plusieurs images de fond</strong> et de nombreuses propriétés leur sont
+			associées : provenance de l'image, position, répétition, taille, etc.
+		</p>
+
+		<p>
+			La propriété raccourci <a
+				onclick="top.FP.Voir.showPageTech('css_proprietes', 'background')">background</a>
+			est généralement utilisée car elle permet de condenser en une seule
+			déclaration toutes ces propriétés.
+		</p>
+
+		<!-- ################################################################################################## -->
+		<h3>Définir l'image source</h3>
+		<section>
+
+			<p>
+				Pour définir l'image source du fond, on utilise la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-image')">background-image</a>.
+			</p>
+			<p>
+				La valeur de cette propriété est l'<abbr
+					title="Uniform Resource Locator">URL</abbr> du fichier source,
+				spécifiée en utilisant la fonction CSS <a
+					onclick="top.FP.Voir.showPageTech('fonctions', '')">url()</a>.
+			</p>
+
+			<pre data-code="CSS">
+body { background-image: url(fond.png); }
+#logo { background-image: url("../deco/logo.jpg"); }
+div { background-image: url('images/papier.gif'); }</pre>
+
+			<p>
+				L'<abbr title="Uniform Resource Locator">URL</abbr> passée en
+				paramètre peut être une <abbr title="Uniform Resource Locator">URL</abbr>
+				relative ou une <abbr title="Uniform Resource Locator">URL</abbr>
+				absolue. Elle peut être entourée avec des guillements doubles, des
+				guillemets simples ou ne pas être entourée.
+			</p>
+
+			<table class="TAB-sans-bord">
+				<tr>
+					<td colspan="2">Dans l'exemple suivant on utilise 2 images de
+						fond :</td>
+				</tr>
+				<tr>
+					<td class="fp-t-center">fond de la page<br> <img
+						src="../exemples/img/etoiles.jpg">
+					</td>
+					<td class="fp-t-center">fond du titre<br> <img
+						src="../exemples/img/force.gif"></td>
+				</tr>
+				<tr>
+					<td colspan="2">Pour mettre les textes en relief, on leur
+						affecte une couleur de fond transparente avec la fonction de
+						couleur <a onClick="top.FP.Voir.showPageTech('couleur', 'rgba')">rgba()</a>.
+					</td>
+				</tr>
+			</table>
+
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : images de fond
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;section&gt;
+			&lt;h2&gt;La Guerre des Etoiles du Milieu&lt;/h2&gt;
+			&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron.&lt;/p&gt;
+			&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;		
+			&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+		&lt;/section&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {
+	background-image: url(../exemples/img/etoiles.jpg);
+	color: white;
+}
+section {
+	width: 400px;
+	margin: 1em auto;
+}
+h2 {
+	background-image: url(../exemples/img/force.gif);
+	padding: 0.4em 0;
+	text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
+}
+p {
+	background-color: rgba(255, 255, 236, 0.20);
+	margin: 1em 0;
+	padding: 1em;
+	border-radius: 1em;
+}</textarea>
+			</form>
+
+			<p>
+				Une astuce souvent utilisée en particulier avec les éléments
+				d'interface (icônes, menus, liens) est de mettre une image de fond
+				et de changer cette image lorque la souris survole l'élément (ie
+				rollover). Une technique simple est de changer la valeur de la
+				propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-image')">background-image</a>
+				en utilisant le sélecteur de pseudo-classe <code>:hover</code>.
+			</p>
+
+			<!-- 			
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : images de fond
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;nav&gt;
+			&lt;a id="btn-home"&gt;&lt;/a&gt;
+			&lt;a id="btn-video"&gt;&lt;/a&gt;
+			&lt;a id="btn-audio"&gt;&lt;/a&gt;
+			&lt;a id="btn-sear"&gt;&lt;/a&gt;
+		&lt;/nav&gt;
+		&lt;section&gt;
+			&lt;h2&gt;La Guerre des Etoiles du Milieu&lt;/h2&gt;
+		&lt;/section&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {
+	background-image: url(../exemples/img/etoiles.jpg);
+	color: white;
+}
+nav {
+	position: absolute;
+	right: 10px;
+}
+nav a {
+	width: 32px;
+	height: 32px;
+	display: block;
+	margin-top: 10px;
+	cursor: pointer;
+}
+#btn-home {background-image: url(../exemples/img/btn03.png);}
+#btn-home:hover {
+	background-image: url(../exemples/img/btn03_v.png);
+}
+#btn-video {background-image: url(../exemples/img/btn04.png);}
+#btn-video:hover {
+	background-image: url(../exemples/img/btn04_v.png);
+}
+#btn-audio {background-image: url(../exemples/img/btn05.png);}
+#btn-audio:hover {
+	background-image: url(../exemples/img/btn05_v.png);
+}
+#btn-sear {background-image: url(../exemples/img/btn06.png);}
+#btn-sear:hover {
+	background-image: url(../exemples/img/btn06_v.png);
+}
+section {
+	width: 400px;
+	margin: 1em auto;
+}
+h2 {
+	background-image: url(../exemples/img/force.gif);
+	padding: 0.4em 0;
+	text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
+}
+</textarea>
+			</form>		
+-->
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : images de fond
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;nav&gt;
+			&lt;h3&gt;Choisissez un film&lt;/h3&gt;
+			&lt;a id="s1"&gt;&lt;/a&gt;
+			&lt;a id="s2"&gt;&lt;/a&gt;
+			&lt;a id="s3"&gt;&lt;/a&gt;
+			&lt;a id="s4"&gt;&lt;/a&gt;
+		&lt;/nav&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {
+	background-image: url(../exemples/img/etoiles.jpg);
+	color: white;
+}
+nav {
+	margin: 10px auto;
+	width: 260px;
+}
+nav a {
+	width: 128px;
+	height: 102px;
+	cursor: pointer;
+	float: left;
+}
+#s1 { background-image: url(../exemples/img/f1.png); }
+#s1:hover { background-image: url(../exemples/img/f1_h.png); }
+
+#s2 { background-image: url(../exemples/img/f2.png); }
+#s2:hover { background-image: url(../exemples/img/f2_h.png); }
+
+#s3 { background-image: url(../exemples/img/f3.png); }
+#s3:hover { background-image: url(../exemples/img/f3_h.png); }
+
+#s4 { background-image: url(../exemples/img/f4.png); }
+#s4:hover { background-image: url(../exemples/img/f4_h.png); }</textarea>
+			</form>
+
+			<p class="fp-p-raz fp-petit">Pour une autre technique plus
+				performante voir Sprite CSS</p>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Répétition de l'image de fond</h3>
+		<section>
+
+			<p class="fp-bot0">
+				Si une image est trop petite pour remplir entièrement le fond d'un
+				élément, par défaut elle est automatiquement répétée horizontalement
+				et verticalement pour couvrir toute la surface du fond.
+				<br>
+				On peut intervenir sur la répétition avec la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-repeat')">background-repeat</a>
+				qui peut avoir les valeurs :
+			</p>
+			<ul>
+				<li><code>repeat</code> : la répétition est horizontale et
+					verticale (valeur par défaut),</li>
+				<li><code>repeat-x</code> : la répétition est seulement
+					horizontale,</li>
+				<li><code>repeat-y</code> : la répétition est seulement
+					verticale,</li>
+				<li><code>no-repeat</code> : pas de répétition.</li>
+			</ul>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : répétition des images de fond
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;section&gt;
+			&lt;h2&gt;La Guerre des Etoiles du Milieu&lt;/h2&gt;
+			&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron.&lt;/p&gt;
+			&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;		
+			&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+		&lt;/section&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {
+	background-image: url(../exemples/img/etoiles.jpg);
+	color: white;
+}
+section {
+	background-image: url(../exemples/img/potter_jedi.png);
+	background-repeat: no-repeat; /* pas de répétition */
+	width: 410px;
+	margin: 1em auto;
+}
+h2 {
+	background-image: url(../exemples/img/force.gif);
+	background-repeat: no-repeat; /* pas de répétition */
+	padding: 0.4em 0;
+	text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
+}
+p {
+	background-image: url(../exemples/img/star.png);
+	background-repeat: repeat-y; /* répétition verticale */
+	background-color: rgba(255, 255, 236, 0.20);
+	margin: 1em 0;
+	padding: 1em 1em 1em 1.5em;
+	border-radius: 1em;
+}</textarea>
+			</form>
+
+
+			<p class="fp-bot0">
+				Il existe 2 autres valeurs possibles pour la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-repeat')">background-repeat</a>
+				:
+			</p>
+			<ul>
+				<li><code>space</code> : l'image est répétée autant de fois que
+					possible sans être coupée, puis des espaces égaux sont ajoutés
+					entre les différentes images,</li>
+				<li><code>round</code> : l'image est répétée autant de fois que
+					possible sans être coupée, puis les images sont redimensionnées
+					pour occuper tout l'espace.</li>
+			</ul>
+
+			<p class="fp-p-raz">
+				Tous les navigateurs n'implémentent pas ses 2 valeurs. Si votre
+				navigateur n'afficha pas correctement l'exemple qui suit, essayez le
+				avec <a href="http://www.google.fr/intl/fr/chrome/browser/"
+					target="_blank">Chrome</a>.
+			</p>
+
+			<figure>
+				<img src="../exemples/img/globe.png" width="104" height="104">
+				<figcaption>image de fond (104 pixels X 104 pixels)</figcaption>
+			</figure>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : répétition des images de fond
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div id="space"&gt;&lt;/div&gt;
+		&lt;div id="round"&gt;&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+div {
+	background-image: url(../exemples/img/globe.png);
+	width: 500px;
+	height: 150px;
+	border: 1px solid black;
+	margin: 10px auto;
+}
+#space { background-repeat: space; }
+#round { background-repeat: round; }</textarea>
+			</form>
+
+			<p class="fp-p-raz">Le test de l'exemple devrait donner
+				l'affichage suivant :</p>
+			<figure>
+				<img src="../cssimg/background_space_round.png" width="520"
+					height="330">
+				<figcaption>background-repetition space et round</figcaption>
+			</figure>
+
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Zone couverte par l'image de fond</h3>
+		<section>
+			<p class="fp-bot0">
+				Par défaut, l'image de fond s'applique sur la zone de contenu, les
+				marges internes et sous les bordures. Avec la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-clip')">background-clip</a>
+				nous pouvons rédéfinir la zone ou s'applique l'image de fond :
+			</p>
+			<ul>
+				<li><code>content-box</code> : l'image de fond s'applique
+					uniquement sur la zone de contenu,</li>
+				<li><code>padding-box</code> : l'image de fond s'applique sur
+					la zone de contenu et les marges internes,</li>
+				<li><code>border-box</code> (par défaut) : l'image de fond
+					s'applique sur la zone de contenu, les marges internes et les
+					bordures.</li>
+			</ul>
+			<table class="TAB-sans-bord fp-top0">
+				<tr>
+					<td>
+						<figure class="fp-top0">
+							<img src="../cssimg/content_box.png" width="186" height="137">
+							<figcaption>content-box</figcaption>
+						</figure>
+					</td>
+					<td>
+						<figure class="fp-top0">
+							<img src="../cssimg/padding_box.png" width="186" height="137">
+							<figcaption>padding-box</figcaption>
+						</figure>
+					</td>
+					<td>
+						<figure class="fp-top0">
+							<img src="../cssimg/border_box.png" width="186" height="137">
+							<figcaption>border-box</figcaption>
+						</figure>
+					</td>
+				</tr>
+			</table>
+
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : zone de fond
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Test content-box&lt;/p&gt;
+		&lt;p&gt;Test padding-box&lt;/p&gt;
+		&lt;p&gt;Test border-box&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+p {
+	margin: 10px auto;
+	padding: 20px;
+	border: 10px double #ccc;
+	background-image: url(../exemples/img/globe.png);
+	height: 80px;
+	width: 400px;
+	font-size: 2em;
+}
+
+p:nth-of-type(1) { background-clip: content-box; }
+p:nth-of-type(2) { background-clip: padding-box; }
+p:nth-of-type(3) { background-clip: border-box;}</textarea>
+			</form>
+
+			<p>
+				Le test de l'exemple montre que quelque soit la valeur de <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-clip')">background-clip</a>,
+				le point de base servant à la répétition de l'image est situé en
+				haut à gauche de la marge interne (<code>padding</code>).
+			</p>
+
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Position de l'image de fond</h3>
+		<section>
+
+			<p>
+				Quand l'image de fond ne se répéte pas (<code>background-repeat:
+					no-repeat</code>), la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-position')">background-position</a>
+				permet de positionner l'image dans le fond de la boîte par rapport à
+				son origine de positionnement (<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-origin')">background-origin</a>).
+			</p>
+
+			<p>
+				La valeur de <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-position')">background-position</a>
+				est généralement un couple de valeurs permettant de définir les
+				coordonnées horizontale et verticale de l'image.
+				<br>
+				Ces coordonnées peuvent être exprimées par des longueurs, des
+				pourcentages et des mot-clés.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : position des images de fond
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;section&gt;
+			&lt;h2&gt;La Guerre des Etoiles du Milieu&lt;/h2&gt;
+			&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron.&lt;/p&gt;
+			&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;		
+			&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+		&lt;/section&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {
+	background-image: url(../exemples/img/etoiles.jpg);
+	color: white;
+}
+section {
+	background-image: url(../exemples/img/potter_jedi.png);
+	background-repeat: no-repeat;
+	background-position: bottom right; /* en bas à droite */
+	width: 410px;
+	margin: 1em auto;
+	padding-right: 80px; /* la marge interne à droite permet
+							le décalage de l'image par
+							rapport au contenu */
+}
+h2 {
+	background-image: url(../exemples/img/force.gif);
+	background-repeat: no-repeat;
+	padding: 0.4em 0;
+	text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
+}
+p {
+	background-image: url(../exemples/img/star.png);
+	background-repeat: no-repeat;
+	background-position: 0.2em 1em; /* gauche et haut */
+	background-color: rgba(255, 255, 236, 0.20);
+	margin: 1em 0;
+	padding: 1em 1em 1em 1.5em;
+	border-radius: 1em;
+}</textarea>
+			</form>
+
+
+			<p class="fp-bot0">
+				Les combinaisons possibles entre longueurs, pourcentages et mot-clés
+				sont assez étendues (<a
+					href="http://dev.w3.org/csswg/css-backgrounds/#the-background-position"
+					target="_blank">spécifications du <abbr
+					title="World Wide Web Consortium">W3C</abbr></a>).
+			</p>
+			<ul>
+				<li>quand on ne donne qu'une seule valeur, en pourcentage ou en
+					longueur, celle-ci ne concerne que la position horizontale, la
+					position verticale sera 50% (centrée) ;</li>
+				<li>quand on donne deux valeurs, la première concerne la
+					position horizontale. Les combinaisons de longueurs, pourcentages
+					et mot-clés sont possibles ;
+				<li>quand on donne trois ou quatre valeurs, chaque pourcentage
+					ou longueur est une valeur relative et doit être précédée par un
+					mot-clé définissant le bord concerné. Si on donne trois valeurs, la
+					valeur relative manquante est égale à 0.</li>
+			</ul>
+
+			<figure>
+				<img src="../cssimg/background_position.png" width="408"
+					height="340">
+				<figcaption>différents nombres de valeurs pour
+					background-position</figcaption>
+			</figure>
+
+			<p class=fp-bot0>
+				Les valeurs de la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-position')">background-position</a>
+				peuvent être négatives.
+			</p>
+
+
+			<figure style="float: left; width: 290px;">
+				<img src="../cssimg/background_position_plus.png" width="283"
+					height="281">
+				<figcaption>déclalage avec valeurs positives</figcaption>
+			</figure>
+
+			<figure style="float: right; width: 290px;">
+				<img src="../cssimg/background_position_moins.png" width="283"
+					height="281">
+				<figcaption>déclalage avec valeurs négatives</figcaption>
+			</figure>
+
+			<h4>Sprites CSS</h4>
+			<section>
+				<p>
+					La propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-position')">background-position</a>
+					est à la base de la <strong>technique des "sprites CSS"</strong> :
+					on utilise un seul fichier graphique pour stocker plusieurs images
+					positionnées les unes à côté des autres, comme dans une grille
+					d'images.
+					<br>
+					Chaque image de la grille est utilisée comme fond d'une boîte, en
+					particulier pour les boîtes représentant des éléments d'interface
+					comme les icônes, les barres de navigation, des décorations de
+					liens, etc.
+				</p>
+
+				<figure style="float: left; width: auto; margin-right: 20px">
+					<a href="../cssimg/sprites_google.png" target="_blank"> <img
+						src="../cssimg/sprites_google_reduit.png" width="56" height="628"></a>
+					<figcaption>sprites google.fr</figcaption>
+				</figure>
+				<figure style="float: left; width: auto; margin-right: 20px">
+					<img src="../cssimg/sprites_facebook.png" width="104" height="684">
+					<figcaption>sprites facebook.fr</figcaption>
+				</figure>
+				<figure style="float: left; width: auto;">
+					<a href="../cssimg/sprites_youtube.png" target="_blank"> <img
+						src="../cssimg/sprites_youtube_reduit.png" width="132"
+						height="608"></a>
+					<figcaption>sprite youtube.com</figcaption>
+				</figure>
+
+				<p class="fp-clear">
+					L'avantage de cette technique est un meilleur temps de chargement
+					des pages car les appels au serveur Web sont limités : les requêtes
+					<abbr title="HyperText Transfert Protocol">HTTP</abbr> sont
+					réduites au strict minimum ainsi que le nombre de fichiers envoyés
+					par le serveur et reçus par le navigateur. De plus la taille d'un
+					grand fichier sera moins grande que la somme des tailles des petits
+					fichiers qu'il réunit.
+				</p>
+
+				<p class="fp-p-raz">Dans l'exemple suivant on utilise une seule
+					image pour en regrouper huit autres.</p>
+				<figure>
+					<img src="../exemples/img/films.png" width="512" height="204">
+					<figcaption>sprites des films</figcaption>
+				</figure>
+
+				<p class="fp-p-raz">
+					Le poids de l'image est de 49.9ko, alors que le poids total des
+					huits images indépendantes est de 76.4ko. En plus du nombre
+					d'octets moindre à transférer, il y aura une seule requête <abbr
+						title="HyperText Transfert Protocol">HTTP</abbr> plutôt que huit,
+					donc une charge bien moindre pour le serveur.
+				</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : sprites CSS
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;nav&gt;
+			&lt;h3&gt;Choisissez un film&lt;/h3&gt;
+			&lt;a id="s1"&gt;&lt;/a&gt;
+			&lt;a id="s2"&gt;&lt;/a&gt;
+			&lt;a id="s3"&gt;&lt;/a&gt;
+			&lt;a id="s4"&gt;&lt;/a&gt;
+		&lt;/nav&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+body {
+	background-image: url(../exemples/img/etoiles.jpg);
+	color: white;
+}
+nav {
+	margin: 10px auto;
+	width: 260px;
+}
+nav a {
+	background-image: url(../exemples/img/films.png);
+	width: 128px;
+	height: 102px;
+	cursor: pointer;
+	float: left;
+}
+#s1 { background-position: 0 0; }
+#s1:hover { background-position: 0 -102px; }
+
+#s2 { background-position: -128px 0; }
+#s2:hover { background-position: -128px -102px; }
+
+#s3 { background-position: -256px 0;}
+#s3:hover { background-position: -256px -102px; }
+
+#s4 { background-position: -384px 0; }
+#s4:hover { background-position: -384px -102px; }</textarea>
+				</form>
+
+			</section>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Attachement du fond</h3>
+		<section>
+			<p class="fp-bot0">
+				La propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-attachment')">background-attachment</a>
+				définit comment l'image se déplace quand la page est déplacée avec
+				les ascenceurs verticaux ou horizontaux :
+			</p>
+			<ul>
+				<li><code>scroll</code> (par défaut) : le fond se déplace en
+					même temps que l'élément,</li>
+				<li><code>fixed</code> : le fond reste toujours à la même place
+					par rapport à la fenêtre du navigateur,</li>
+				<li><code>local</code> : le fond se dépalec en même temps que
+					le contenu de l'élément..</li>
+			</ul>
+
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : sprites CSS
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div&gt;Premier bloc de contenu&lt;/div&gt;
+		&lt;div&gt;Deuxième bloc de contenu&lt;/div&gt;
+		&lt;div&gt;Troisième bloc de contenu&lt;/div&gt;
+		&lt;div&gt;Quatrième bloc de contenu&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {
+	background-image: url(../exemples/img/etoiles.jpg);
+	/* changez fixed par scroll pour voir la différence */
+	background-attachment: fixed;
+	color: white;
+}
+div {
+	margin: 10px auto;
+	width: 400px;
+	height: 250px;
+	border: 1px solid;
+	font-size: 2em;
+}</textarea>
+			</form>
+		</section>
+
+
+
+		<!-- ################################################################################################## -->
+		<h3>Taille de l'image de fond</h3>
+		<section>
+			<p>
+				On peut définir la taille de l'image de fond avec la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-size')">background-size</a>.
+				<br>
+				Les valeurs de cette propriété peuvent être des longueurs (avec
+				n'importe quelle unité) ou des mots-clés.
+			</p>
+
+			<figure>
+				<img src="../cssimg/background_size.png" width="458" height="364">
+				<figcaption>définition de la largeur et de la hauteur</figcaption>
+			</figure>
+
+			<p class="fp-bot0">
+				On peut aussi utiliser les mots-clés <code>cover</code> et pour <code>contain</code>
+				à la place des dimensions de largeur et hauteur. Dans ce cas l'image
+				est redimensionnée sans déformation :
+			</p>
+			<ul>
+				<li>avec <code>cover</code> c'est la proportion entre la plus
+					petite dimension de l'image et la plus grande dimension de la boîte
+					qui sert de base au redimensionnement,
+				</li>
+				<li>avec <code>contain</code> c'est la proporion entre la plus
+					grande dimension de l'image et la plus petite dimension de la boîte
+					qui sert de base au redimensionnement.
+				</li>
+			</ul>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : taille de l'image de fond
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div&gt;Par défaut&lt;/div&gt;
+		&lt;div&gt;Largeur : 80px, hauteur 480px
+			&lt;br&gt;Redimensionnement avec déformation&lt;/div&gt;	
+		&lt;div&gt;Largeur : 50%, hauteur : auto
+			&lt;br&gt;Redimensionnement proportionnel&lt;/div&gt;
+		&lt;div&gt;Largeur : auto, hauteur : 40px
+			&lt;br&gt;Redimensionnement proportionnel&lt;/div&gt;
+		&lt;div&gt;Cover
+			&lt;br&gt;L'image est redimensionnée pour couvrir un maximum de surface sans être répétée.&lt;/div&gt;
+		&lt;div&gt;Contain
+			&lt;br&gt;L'image est redimensionnée pour apparaître au moins une fois en entier.&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {
+	background-image: url(../exemples/img/etoiles.jpg);
+	color: white;
+}
+div {
+	background-image: url(../exemples/img/star.png);
+	float: left;
+	width: 200px;
+	height: 150px;
+	border: 1px solid;
+	margin: 0 10px 10px 0;
+	padding: 10px;
+}
+
+div:nth-of-type(2) { background-size: 80px 40px;}
+div:nth-of-type(3) { background-size: 50% auto; }
+div:nth-of-type(4) { background-size: auto 40px; }
+div:nth-of-type(5) { background-size: cover; }
+div:nth-of-type(6) { background-size: contain; }</textarea>
+			</form>
+
+			<p class="fp-bot0">
+				L'exemple suivant présente une page avec une image de fond qui
+				occupe automatiquement toute la surface de la page et qui se
+				rédimenssionne en même temps que la page (testez de préférence avec
+				le bouton 'Tester dans pop-up' et redimenseionnez la fenêtre de test
+				pour voir l'effet).
+				<br>
+				On utilisera pour cette réalisation les propriétés :
+			</p>
+			<ul>
+				<li><a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-image')">background-image</a>,</li>
+				<li><a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-size')">background-size</a>
+					avec la valeur <code>cover</code>,</li>
+				<li><a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-position')">background-position</a>
+					avec la valeur <code>center center</code>,</li>
+				<li><a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-attachment')">background-attachment</a>
+					avec la valeur <code>fixed</code>.</li>
+			</ul>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : image de fond
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div&gt;L'image couvre toute le fond de la page sans être répétée et elle est redimensionnée en même temps que la fenêtre du navigateur.&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {
+	background-image: url(../exemples/img/metal_rivets.jpg);
+	background-size: cover;
+	background-position: center center;
+	background-attachment: fixed;
+}
+
+div {
+	background: rgba(119, 136, 153, 0.7);
+	margin: 30px auto;
+	padding: 10px;
+	width: 300px;
+	color: white;
+}</textarea>
+			</form>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Raccourci background</h3>
+		<section>
+			<p class="fp-bot0">
+				La propriété-raccourci <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background')">background</a>
+				permet de définir en une fois :
+			</p>
+			<ul>
+				<li>la source de l'image de fond (ie <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-image')">background-image</a>)
+				</li>
+				<li>la position de l'image de fond (ie <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-position')">background-position</a>)
+				</li>
+				<li>la taille de l'image de fond (ie <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-size')">background-size</a>)
+				</li>
+				<li>la répétition (ie <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-repeat')">background-repeat</a>)
+				</li>
+				<li>l'attachement (ie <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-attachment')">background-attachment</a>)
+				</li>
+				<li>le point de départ de l'image (ie <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-origin')">background-origin</a>)
+				</li>
+				<li>la couleur de fond (ie <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-color')">background-color</a>)
+				</li>
+
+			</ul>
+
+			<figure>
+				<img src="../cssimg/background.png" width="588" height="109">
+				<figcaption>Propriété raccourci background</figcaption>
+			</figure>
+
+			<p>Le plus souvent on trouvera ces sortes de raccourcis :</p>
+			<pre data-code="CSS">
+/* Uniquement une couleur de fond */
+background: rgb(146, 35, 240);
+/* Uniquement une image avec répétition horizontale et verticale */
+background: url(images/fond.png);
+/* Une image sans répétition */
+background: url(images/logo.png) no-repeat;
+/* Une image positionnée et une couleur de fond */
+background: url(images/icone.png) 10px center no-repeat #FF45A9;</pre>
+
+		</section>
+
+
+	</div>
+	<footer></footer>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Op&eacute;rateurs de tableaux</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.operators.string.html">Op&eacute;rateurs de
+				cha&icirc;nes</a>
+		</div>
+		<div class="next">
+			<a href="language.operators.type.html">Op&eacute;rateurs de types</a>
+		</div>
+		<div class="up">
+			<a href="language.operators.html">Les op&eacute;rateurs</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.operators.array" class="sect1">
+		<h2 class="title">Opérateurs de tableaux</h2>
+		<table class="doctable table">
+			<caption>
+				<strong>Opérateurs de tableaux</strong>
+			</caption>
+
+			<thead>
+				<tr>
+					<th>Exemple</th>
+					<th>Nom</th>
+					<th>Résultat</th>
+				</tr>
+
+			</thead>
+
+			<tbody class="tbody">
+				<tr>
+					<td>$a + $b</td>
+					<td>Union</td>
+					<td>Union de <var class="varname">
+							<var class="varname">$a</var>
+						</var> et <var class="varname">
+							<var class="varname">$b</var>
+						</var>.
+					</td>
+				</tr>
+
+				<tr>
+					<td>$a == $b</td>
+					<td>Egalité</td>
+					<td><strong><code>TRUE</code></strong> si <var class="varname">
+							<var class="varname">$a</var>
+						</var> et <var class="varname">
+							<var class="varname">$b</var>
+						</var> contiennent les mêmes paires clés/valeurs.</td>
+				</tr>
+
+				<tr>
+					<td>$a === $b</td>
+					<td>Identique</td>
+					<td><strong><code>TRUE</code></strong> si <var class="varname">
+							<var class="varname">$a</var>
+						</var> et <var class="varname">
+							<var class="varname">$b</var>
+						</var> contiennent les mêmes paires clés/valeurs dans le même ordre et
+						du même type.</td>
+				</tr>
+
+				<tr>
+					<td>$a != $b</td>
+					<td>Inégalité</td>
+					<td><strong><code>TRUE</code></strong> si <var class="varname">
+							<var class="varname">$a</var>
+						</var> n&#039;est pas égal à <var class="varname">
+							<var class="varname">$b</var>
+						</var>.</td>
+				</tr>
+
+				<tr>
+					<td>$a &lt;&gt; $b</td>
+					<td>Inégalité</td>
+					<td><strong><code>TRUE</code></strong> si <var class="varname">
+							<var class="varname">$a</var>
+						</var> n&#039;est pas égal à <var class="varname">
+							<var class="varname">$b</var>
+						</var>.</td>
+				</tr>
+
+				<tr>
+					<td>$a !== $b</td>
+					<td>Non-identique</td>
+					<td><strong><code>TRUE</code></strong> si <var class="varname">
+							<var class="varname">$a</var>
+						</var> n&#039;est pas identique à <var class="varname">
+							<var class="varname">$b</var>
+						</var>.</td>
+				</tr>
+
+			</tbody>
+
+		</table>
+
+		<p class="para">
+			L&#039;opérateur <em>+</em> retourne le tableau de gauche auquel sont
+			ajoutés les éléments du tableau de droite. Pour les clés présentes
+			dans les 2 tableaux, les éléments du tableau de gauche seront
+			utilisés alors que les éléments correspondants dans le tableau de
+			droite seront ignorés.
+		</p>
+		<p class="para">
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$a&nbsp;
+						</span><span style="color: #007700">=&nbsp;array(</span><span
+							style="color: #DD0000">"a"&nbsp;</span><span
+							style="color: #007700">=&gt;&nbsp;</span><span
+							style="color: #DD0000">"pomme"</span><span style="color: #007700">,&nbsp;</span><span
+							style="color: #DD0000">"b"&nbsp;</span><span
+							style="color: #007700">=&gt;&nbsp;</span><span
+							style="color: #DD0000">"banane"</span><span
+							style="color: #007700">);<br /></span><span
+							style="color: #0000BB">$b&nbsp;</span><span
+							style="color: #007700">=&nbsp;array(</span><span
+							style="color: #DD0000">"a"&nbsp;</span><span
+							style="color: #007700">=&gt;</span><span style="color: #DD0000">"poire"</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"b"&nbsp;</span><span
+							style="color: #007700">=&gt;&nbsp;</span><span
+							style="color: #DD0000">"fraise"</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"c"&nbsp;</span><span
+							style="color: #007700">=&gt;&nbsp;</span><span
+							style="color: #DD0000">"cerise"</span><span
+							style="color: #007700">);<br />
+							<br /></span><span style="color: #0000BB">$c&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">+&nbsp;</span><span style="color: #0000BB">$b</span><span
+							style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;Union&nbsp;de&nbsp;$a&nbsp;et&nbsp;$b<br /></span><span
+							style="color: #007700">echo&nbsp;</span><span
+							style="color: #DD0000">"Union&nbsp;de&nbsp;\$a&nbsp;et&nbsp;\$b&nbsp;:&nbsp;\n"</span><span
+							style="color: #007700">;<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$c</span><span
+							style="color: #007700">);<br />
+							<br /></span><span style="color: #0000BB">$c&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$b&nbsp;</span><span
+							style="color: #007700">+&nbsp;</span><span style="color: #0000BB">$a</span><span
+							style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;Union&nbsp;de&nbsp;$b&nbsp;et&nbsp;$a<br /></span><span
+							style="color: #007700">echo&nbsp;</span><span
+							style="color: #DD0000">"Union&nbsp;de&nbsp;\$b&nbsp;et&nbsp;\$a&nbsp;:&nbsp;\n"</span><span
+							style="color: #007700">;<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$c</span><span
+							style="color: #007700">);<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		À l&#039;exécution, le script affichera :
+		<div class="example-contents screen">
+			<div class="cdata">
+				<pre>
+Union de $a et $b :
+array(3) {
+  [&quot;a&quot;]=&gt;
+  string(5) &quot;pomme&quot;
+  [&quot;b&quot;]=&gt;
+  string(6) &quot;banane&quot;
+  [&quot;c&quot;]=&gt;
+  string(6) &quot;cerise&quot;
+}
+Union de $b et $a :
+array(3) {
+  [&quot;a&quot;]=&gt;
+  string(5) &quot;poire&quot;
+  [&quot;b&quot;]=&gt;
+  string(6) &quot;fraise&quot;
+  [&quot;c&quot;]=&gt;
+  string(6) &quot;cerise&quot;
+}
+</pre>
+			</div>
+		</div>
+		</p>
+		<p class="para">Les éléments d&#039;un tableau sont égaux en terme
+			de comparaison s&#039;ils ont la même clé et la même valeur.</p>
+		<p class="para">
+		<div class="example" id="example-133">
+			<p>
+				<strong>Exemple #1 Comparer des tableaux</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$a&nbsp;
+						</span><span style="color: #007700">=&nbsp;array(</span><span
+							style="color: #DD0000">"pomme"</span><span style="color: #007700">,&nbsp;</span><span
+							style="color: #DD0000">"banane"</span><span
+							style="color: #007700">);<br /></span><span
+							style="color: #0000BB">$b&nbsp;</span><span
+							style="color: #007700">=&nbsp;array(</span><span
+							style="color: #0000BB">1&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span
+							style="color: #DD0000">"banane"</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"0"&nbsp;</span><span
+							style="color: #007700">=&gt;&nbsp;</span><span
+							style="color: #DD0000">"pomme"</span><span style="color: #007700">);<br />
+							<br /></span><span style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">==&nbsp;</span><span
+							style="color: #0000BB">$b</span><span style="color: #007700">);&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;bool(true)<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">===&nbsp;</span><span
+							style="color: #0000BB">$b</span><span style="color: #007700">);&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;bool(false)<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<p class="para">
+			Voyez aussi le manuel aux sections <a
+				href="language.types.array.html" class="link">Tableaux</a> et <a
+				href="ref.array.html" class="link">fonctions de tableaux</a>.
+		</p>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.operators.string.html">Op&eacute;rateurs de
+				cha&icirc;nes</a>
+		</div>
+		<div class="next">
+			<a href="language.operators.type.html">Op&eacute;rateurs de types</a>
+		</div>
+		<div class="up">
+			<a href="language.operators.html">Les op&eacute;rateurs</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

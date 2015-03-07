@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Les sélecteurs simples de pseudo classes</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+<link rel="stylesheet" href="../_local/selecteurs.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function(){top.FP.initPage();}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+
+<script>
+	(function() {
+		var Sheet = document.styleSheets[document.styleSheets.length - 1], Rules = Sheet.cssRules
+				|| Sheet.rules;
+		var numRegles = [];
+
+		var i;
+
+		for (i = 0; i < Rules.length; i++) {
+			if (Rules[i].selectorText == '#nth1 div:nth-child(5)') {
+				numRegles[1] = i;
+				continue;
+			}
+			if (Rules[i].selectorText == '#nth2 div:nth-child(2n+1)') { // odd
+				numRegles[2] = i;
+				continue;
+			}
+			if (Rules[i].selectorText == '#nth3 div:nth-child(3n)') {
+				numRegles[3] = i;
+				continue;
+			}
+			if (Rules[i].selectorText == '#nth4 div:nth-child(3n+2)') {
+				numRegles[4] = i;
+				continue;
+			}
+			if (Rules[i].selectorText == '#nth5 div:nth-child(-2n+6)') {
+				numRegles[5] = i;
+				continue;
+			}
+		}
+
+		fp_child = function(oZone, idx) {
+			var val = oZone.value, selecteur, declaration = 'background: #b30a38;';
+
+			if (idx == 4) {
+				val = document.getElementById('sel4a').value + '+'
+						+ document.getElementById('sel4b').value;
+			}
+
+			if (idx == 5) {
+				val = document.getElementById('sel5a').value + '+'
+						+ document.getElementById('sel5b').value;
+			}
+
+			selecteur = '#nth' + idx + ' div:nth-child(' + val + ')';
+
+			if (Sheet.deleteRule) {
+				Sheet.deleteRule(numRegles[idx]);
+				Sheet.insertRule(selecteur + '{' + declaration + '}',
+						numRegles[idx]);
+
+			} else if (Sheet.removeRule) {
+				Sheet.removeRule(numRegles[idx]);
+				Sheet.addRule(selecteur, declaration, numRegles[idx]);
+			}
+		};
+	})();
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			Les pseudo classes vont permettre de sélectionner des éléments à
+			partir d'informations qui ne se trouve pas directement dans le <abbr
+				title="Document Object Model">DOM</abbr>.
+		</p>
+
+		<p>
+			Les pseudo classes d'attibuts sont des sélecteurs simples qui peuvent
+			être utilisées telle que, sans être reliées à un élément particulier
+			(voir <a onclick="top.FP.Voir.showPartie('remarques', true)">Remarques</a>
+			en fin de page).
+		</p>
+
+		<p>
+			Toutefois, comme pour les sélecteurs d'attributs, dans 99.99% des cas
+			les pseudo classes sont utilisées avec un sélecteur principal et
+			fonctionnent comme une <strong>spécialisation de ce
+				sélecteur</strong> : le moteur <abbr title="Cascading Style Sheets">CSS</abbr>
+			va d'abord cibler tous les éléments qui répondent au sélecteur
+			principal, puis parmi ce groupe sélectionner uniquement ceux
+			répondant aux caractèristiques de la pseudo classe.
+		</p>
+
+		<section>
+			<div class="fp-puce">
+				<p>
+					<strong>La syntaxe</strong> utilisée pour les pseudo classes repose
+					sur un selecteur suivi du caractère deux points <code><strong>:</strong></code>
+					suivi du nom de la pseudo classe.
+				</p>
+
+				<figure>
+					<img src="../cssimg/sel_pseudo_classe_syntaxe.png" width="336"
+						height="121">
+					<figcaption>syntaxe sélecteur pseudo classe</figcaption>
+				</figure>
+
+				<p>
+					Il ne doit pas y avoir d'espaces avant ou après le caractère <code><strong>:</strong></code>.
+				</p>
+
+				<!-- <p>
+					Exemple : <code>a:first-of-type</code>
+					<br>
+					<a onClick="top.FP.Voir.showPageTech('elements', 'a')">a</a> est un
+					sélecteur de type et <code>first-of-type</code> est le nom de la
+					pseudo classe.
+				</p>
+				-->
+			</div>
+
+			<p>Certaines pseudo classes sont dynamiques dans le sens où elles
+				réagissent aux actions de l'utilisateur. C'est le navigateur qui
+				prend en compte automatiquement le traitement de ses changements
+				d'état.</p>
+
+		</section>
+
+		<a id="sel_pc_interaction"></a>
+		<h3>Interaction : hover, active, focus</h3>
+
+		<section>
+			<div class="bloc-syntaxe">
+				<p>
+					<span class="lib-syntaxe">Syntaxe </span><strong><code>:hover</code></strong>
+					<br>
+					<span class="lib-syntaxe">&nbsp; </span><strong><code>:active</code></strong>
+					<br>
+					<span class="lib-syntaxe">&nbsp; </span><strong><code>:focus</code></strong>
+				</p>
+				<pre data-code="CSS">
+input:focus {
+	outline: 1px solid red;
+	}
+</pre>
+			</div>
+
+			<p class="fp-p-raz">On a ici des pseudo classes d'interaction.</p>
+
+			<p>
+				<code>:hover</code> sélectionne les éléments survolés par la souris.
+			
+			<p>
+			<p>
+				<code>:active</code> sélectionne les éléments sur lequels le bouton
+				de la souris est enfoncé
+			</p>
+
+			<p>
+				<code>:focus</code> sélectionne les éléments qui deviennent la cible
+				des événements souris ou clavier
+			</p>
+
+
+			<p class="fp-p-raz">
+				L'exemple suivant affiche un halo jaune autour des éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+				d'un formulaire quand ils obtiennent le focus (par clique dedans, ou
+				par tabulation). C'est la pseudo classe <code>:focus</code> qui est
+				utilisée. Quand la souris survole le bouton (<code>:hover</code>),
+				le texte est modifié.
+				<br>
+				Remarque : l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'form')">form</a>
+				dans le code <abbr title="HyperText Markup Language">HTML</abbr> a
+				été volontairement "oublié" pour simplifier l'exemple.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : pseudo classes d'interaction
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Pénétrage dans l'Etoile Noire&lt;/h3&gt;
+		
+		&lt;label for="zDroid"&gt;dro-ID&lt;/label&gt;
+		&lt;input type="text" id="zDroid" name="txtDroid"&gt;
+
+		&lt;label for="zPasse"&gt;Mot de passe&lt;/label&gt;
+		&lt;input type="password" id="zPasse" name="txtPasse"&gt;
+
+		&lt;label&gt;&lt;input type="checkbox" id="zCnx" name="chkCnx"&gt;
+			Restez connecté&lt;/label&gt;
+
+		&lt;input type="submit" value="Entrage" name="btnEntrer"&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* Sélection des élément input quand ils ont le focus */	
+input:focus {
+	box-shadow: 0 1px 9px 2px red;
+}
+
+/* Selection du bouton quand il est survolé */
+input[type="submit"]:hover {
+	font-weight: bold;
+	letter-spacing: 5px;
+}
+
+/* Décoration, sans importance pour l'exemple */
+label {display: block; margin-top: 1em; width: 150px;}
+input[type="submit"] {margin-top: 2em; width: 144px;}
+body {background: #43515B; color: lightyellow;}</textarea>
+			</form>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<a id="sel_pc_lien"></a>
+		<h3>Liens : link, visited</h3>
+
+		<section>
+			<div class="bloc-syntaxe">
+				<p>
+					<span class="lib-syntaxe">Syntaxe </span><strong><code>a:link</code></strong>
+					<br>
+					<span class="lib-syntaxe">&nbsp; </span><strong><code>a:visited</code></strong>
+				</p>
+				<pre data-code="CSS">
+a:link {
+	text-decoration: none;
+	}
+</pre>
+			</div>
+
+			<p class="fp-p-raz">
+				Ces pseudo classes fonctionnent uniquement avec des liens (élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'a')">a</a>) et quand
+				ils ont un attribut <code>href</code>.
+			</p>
+
+			<p>
+				<code>a:link</code> sélectionne les éléments <a
+					onClick="top.FP.Voir.showPageTech('elements', 'a')">a</a> qui n'ont
+				jamais été visités.
+			</p>
+			<p>
+				<code>a:visited</code>qui ont déjà été visités.
+			</p>
+
+			<p class="fp-p-raz">L'exemple suivant supprime le soulignement du
+				texte du lien et rend sa couleur identique qu'il ait été visité ou
+				pas. Comme souvent avec les liens, on ajoute aussi un sélecteur
+				d'interaction survolé.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : pseudo classes de lien
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;L'Hagard des Etoiles&lt;/h3&gt;
+		
+		&lt;img src="../exemples/img/darkv2.png" align="left"&gt;
+		
+		&lt;p&gt;&lt;a href="luke.html" target="new"&gt;Luke&lt;/a&gt;, on a
+			été racheté par &lt;a href="http://disney.com"&gt;
+			Disney&lt;/a&gt;.&lt;/p&gt;
+		
+		&lt;p&gt;Rejoint nous, et ensemble nous régnerons sur 
+			&lt;a href="http://www.disneylandparis.com/"
+			   target="new"&gt;Disneyland Paris&lt;/a&gt;.
+		&lt;/p&gt;		
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* Sélection des liens non visités */	
+a:link {
+	text-decoration: none;
+	color: #00E;
+}
+/* Sélection des liens visités */	 
+a:visited {
+	color: #00E;
+}
+/* Sélection des liens survolés */	
+a:hover {
+	color: red;
+	text-decoration: underline;
+}</textarea>
+			</form>
+
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<a id="sel_pc_child"></a>
+		<h3>Position : first-child, last-child, only-child</h3>
+
+		<section>
+			<div class="bloc-syntaxe">
+				<p>
+					<span class="lib-syntaxe">Syntaxe </span><strong><code>:first-child</code></strong>
+					<br>
+					<span class="lib-syntaxe">&nbsp; </span><strong><code>:last-child</code></strong>
+					<br>
+					<span class="lib-syntaxe">&nbsp; </span><strong><code>:only-child</code></strong>
+				</p>
+				<pre data-code="CSS">
+p:first-child {
+	text-indent: 3em;
+	}
+li:last-child {
+	border-bottom: 1px solid;
+	}
+</pre>
+			</div>
+
+			<p class="fp-p-raz">
+				On a ici des pseudo classes structurelles. Elles travaillent sur <strong>la
+					position</strong> des éléments au sein d'un ensemble d'enfants.
+			</p>
+
+			<p>
+				<code>:first-child</code> sélectionne le premier élément d'un
+				ensemble d'enfants.
+			</p>
+			<p>
+				<code>:last-child</code> sélectionne le dernier élément d'un
+				ensemble d'enfants.
+			</p>
+			<p>
+				<code>:only-child</code> selectionne un élément qui est le seul enfant
+				dans une imbrication.
+			</p>
+
+			<p class="fp-p-raz">
+				L'exemple suivant sélectionne les premières et dernières lignes des
+				listes.
+				<br>
+				On cible d'abord tous les éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'li')">li</a> et on
+				obtiendra 2 ensembles, l'un dont le parent est un élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'ul')">ul</a> et
+				l'autre dont le parent est l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'ol')">ol</a>.
+				<br>
+				On spécialise ensuite en demandant <a
+					onclick="top.FP.Voir.showPageTech('elements', 'li')">li</a> les
+				premiers éléments du groupe et les derniers.
+			</p>
+
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : pseudo classes structurelles
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+	&lt;h3&gt;Star Wars - ze prélogie&lt;/h3&gt;
+	&lt;h4&gt;Personnages&lt;/h4&gt;
+	&lt;ul&gt;
+		&lt;li&gt;Anakin Webwalker&lt;/li&gt;
+		&lt;li&gt;Padmé Amidala&lt;/li&gt;
+		&lt;li&gt;Yoda&lt;/li&gt;
+		&lt;li&gt;Obi Span Kenobi&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;h4&gt;Films&lt;/h4&gt;
+	&lt;ol&gt;
+		&lt;li&gt;Le DOM fantôme&lt;/li&gt;
+		&lt;li&gt;L'attaque des .com&lt;/li&gt;
+		&lt;li&gt;La Revanche des Siths Web&lt;/li&gt;
+	&lt;/ol&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<div class="dom-schema" id="dom_sel_child_01">
+				<div class="dom-legende">Seule la partie body de la page est
+					représentée. Les feuilles texte ne sont pas représentées.</div>
+				<img src="../cssimg/dom_sel_child_01.png" width="339" height="95">
+			</div>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a class="TEST-lien-dom" title="Afficher le DOM"
+					onclick="top.FP.Voir.showDOM('dom_sel_child_01')"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* Sélection des premieres lignes des listes */	
+li:first-child {
+	background: red;
+}
+
+/* Sélection des dernières lignes des listes */
+li:last-child {
+	border: 2px solid red;
+}</textarea>
+			</form>
+
+			<div class="fp-puce">
+				Il est important de comprendre que les selecteurs de pseudo classes
+				d'enfants font correspondre l'élément sélectionné principal et sa
+				postion.
+				<br>
+				Dans l'exemple précédent, la règle :
+
+				<pre data-code="CSS">
+h4:first-child {
+	background: red;
+	}
+</pre>
+
+				ne sélectionnera pas le 1er élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'h4')">h4</a> car si
+				cet élément est bien le premier de ce type dans le document, il
+				n'est pas le 1er enfant de son parent (l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'body')">body</a>).
+
+				<figure>
+					<img src="../cssimg/dom_sel_child_02.png" width="339" height="95">
+					<figcaption>groupe des enfants avec h4</figcaption>
+				</figure>
+
+				<p>
+					Si vous avez une telle sélection à faire, il faut utiliser <a
+						onclick="top.FP.Voir.showPartie('sel_pc_type', true)"><code>first-of-type</code>,
+						<code>last-of-type</code> ou <code>only-of-type</code></a>
+				</p>
+			</div>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<a id="sel_pc_nchild"></a>
+		<h3>Position : nth-child(), nth-last-child()</h3>
+
+		<section>
+			<div class="bloc-syntaxe">
+				<p>
+					<span class="lib-syntaxe">Syntaxe </span><strong><code>:nth-child()</code></strong>
+					<br>
+					<span class="lib-syntaxe">&nbsp; </span><strong><code>:nth-last-child()</code></strong>
+				</p>
+				<pre data-code="CSS">
+li:nth-child(5) {
+	font-weight: bold;
+	}
+li:nth-child(3n) {
+	color: green;
+	}
+</pre>
+			</div>
+
+			<p class="fp-p-raz">
+				On a ici des pseudo classes structurelles qui travaillent sur la
+				position des éléments au sein d'un ensemble d'enfants.
+				<br>
+				Elles sont un peu particulières car ce sont <strong>des
+					fonctions</strong> qui acceptent un argument.
+			</p>
+
+			<p>
+				La différence entre les deux sélecteurs tient uniquement dans le
+				sens ou le comptage de la position se fait : du début à la fin pour
+				<code>nth-child()</code>, de la fin vers le début pour <code>nth-last-child()</code>.
+			</p>
+
+			<a id="sel_pc_ntype_param"></a>
+			<p class="fp-p-raz">
+				<strong>Les sélections réalisées sont trés différentes
+					selon la valeur de l'argument.</strong>
+			</p>
+
+			<p>Un nombre entier positif sélectionne l'élément à la position
+				donnée.</p>
+
+			<div style="text-align: right">
+				<div id="nth1">
+					<div>1</div>
+					<div>2</div>
+					<div>3</div>
+					<div>4</div>
+					<div>5</div>
+					<div>6</div>
+					<div>7</div>
+					<div>8</div>
+					<div>9</div>
+					<div>10</div>
+					<div>11</div>
+					<div>12</div>
+				</div>
+
+				<code>:nth-child(<select onChange="fp_child(this, 1)">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5" selected>5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+				</select>)
+				</code>
+			</div>
+
+
+			<p class="fp-clear">
+				Le mot clé <code>odd</code> sélectionne les éléments impaires et le
+				mot clé <code>even</code> les éléments paires.
+			</p>
+
+			<div style="text-align: right">
+				<div id="nth2">
+					<div>1</div>
+					<div>2</div>
+					<div>3</div>
+					<div>4</div>
+					<div>5</div>
+					<div>6</div>
+					<div>7</div>
+					<div>8</div>
+					<div>9</div>
+					<div>10</div>
+					<div>11</div>
+					<div>12</div>
+				</div>
+
+				<code>:nth-child(<select onChange="fp_child(this, 2)">
+						<option value="even">even</option>
+						<option value="odd" selected>odd</option>
+				</select>)
+				</code>
+			</div>
+
+
+
+			<p class="fp-clear">Une formule sélectionne tous les n-ièmes
+				éléments.</p>
+
+			<div style="text-align: right">
+				<div id="nth3">
+					<div>1</div>
+					<div>2</div>
+					<div>3</div>
+					<div>4</div>
+					<div>5</div>
+					<div>6</div>
+					<div>7</div>
+					<div>8</div>
+					<div>9</div>
+					<div>10</div>
+					<div>11</div>
+					<div>12</div>
+				</div>
+
+				<code>:nth-child(<select onChange="fp_child(this, 3)">
+						<option value="1n">1n</option>
+						<option value="2n">2n</option>
+						<option value="3n" selected>3n</option>
+						<option value="4n">4n</option>
+						<option value="5n">5n</option>
+						<option value="6n">6n</option>
+						<option value="7n">7n</option>
+				</select>)
+				</code>
+			</div>
+
+
+
+			<p class="fp-clear">
+				Une formule sélectionne tous les x-ièmes éléments dans des groupes
+				de n éléments. Par exemple <code>:nth-child(3n+2)</code>
+				sélectionnera tous les 2ème éléments dans des groupes de 3 éléments.
+			</p>
+
+			<div style="text-align: right">
+				<div id="nth4">
+					<div>1</div>
+					<div>2</div>
+					<div>3</div>
+					<div>4</div>
+					<div>5</div>
+					<div>6</div>
+					<div>7</div>
+					<div>8</div>
+					<div>9</div>
+					<div>10</div>
+					<div>11</div>
+					<div>12</div>
+				</div>
+				<code>:nth-child(<select onChange="fp_child(this, 4)"
+					id="sel4a">
+						<option value="1n">1n</option>
+						<option value="2n">2n</option>
+						<option value="3n" selected>3n</option>
+						<option value="4n">4n</option>
+						<option value="5n">5n</option>
+						<option value="6n">6n</option>
+						<option value="7n">7n</option>
+				</select>+<select onChange="fp_child(this, 4)" id="sel4b">
+						<option value="1">1</option>
+						<option value="2" selected>2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+				</select>)
+				</code>
+			</div>
+
+
+
+			<p class="fp-clear">
+				Dans la formule <code>(xn + y)</code>, si le premier membre est
+				négatif, on obtient encore une autre méthode de sélection : <code>y</code>
+				représente la limite des éléments sur lesquels vont porter <code>xn</code>.
+				Par exemple <code>:nth-child(-2n+6)</code> limitera l'application du
+				style aux 6 premiers éléments. Dans ce groupe, un élément sur 2 sera
+				sélectionné.
+			</p>
+
+			<div style="text-align: right">
+				<div id="nth5">
+					<div>1</div>
+					<div>2</div>
+					<div>3</div>
+					<div>4</div>
+					<div>5</div>
+					<div>6</div>
+					<div>7</div>
+					<div>8</div>
+					<div>9</div>
+					<div>10</div>
+					<div>11</div>
+					<div>12</div>
+				</div>
+
+				<code>:nth-child(<select onChange="fp_child(this, 5)"
+					id="sel5a">
+						<option value="-1n">-1n</option>
+						<option value="-2n" selected>-2n</option>
+						<option value="-3n">-3n</option>
+						<option value="-4n">-4n</option>
+						<option value="-5n">-5n</option>
+						<option value="-6n">-6n</option>
+						<option value="-7n">-7n</option>
+				</select>+<select onChange="fp_child(this, 5)" id="sel5b">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6" selected>6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+				</select>)
+				</code>
+			</div>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : pseudo classes structurelles
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Véhicules de prêt&lt;/h3&gt;
+		&lt;p&gt;1 Y-wing&lt;/p&gt;
+		&lt;p&gt;2 N-1 Naboo&lt;/p&gt;
+		&lt;p&gt;3 Chasseurs Sith&lt;/p&gt;
+		&lt;p&gt;4 B-wing&lt;/p&gt;
+		&lt;p&gt;5 X-wing T-65&lt;/p&gt;
+		&lt;p&gt;6 A-wing RZ-1&lt;/p&gt;
+		&lt;p&gt;7 Tie Avenger&lt;/p&gt;
+		&lt;p&gt;8 Tie Droïde&lt;/p&gt;
+		&lt;p&gt;9 Chasseurs tie&lt;/p&gt;
+		&lt;p&gt;10 Intercepteurs Tie&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* Les paragraphes paires : 2n est l'équivalent de even */	
+p:nth-child(2n) {
+	background: aqua;
+}
+
+/* Les paragraphes impaires : 2n+1 est l'équivalent de odd */
+p:nth-child(2n+1) {
+	background:darkturquoise;
+}
+
+/* Tous les paragraphes */
+p {
+	padding: 4px;
+	text-align: center;
+	margin: 0.2em;
+}
+/* Paragraphe survolé */
+p:hover {
+	background: orangered;
+	color: white;
+}</textarea>
+			</form>
+
+
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<a id="sel_pc_type"></a>
+		<h3>Type : first-of-type, last-of-type, only-of-type</h3>
+
+		<section>
+			<div class="bloc-syntaxe">
+				<p>
+					<span class="lib-syntaxe">Syntaxe </span><strong><code>:first-of-type</code></strong>
+					<br>
+					<span class="lib-syntaxe">&nbsp; </span><strong><code>:last-cof-type</code></strong>
+					<br>
+					<span class="lib-syntaxe">&nbsp; </span><strong><code>:only-of-type</code></strong>
+				</p>
+				<pre data-code="CSS">
+p:first-of-type {
+	background: azure;
+	}
+li:only-of-type {
+	margin: 0;
+	}
+</pre>
+			</div>
+
+			<p class="fp-p-raz">On a ici des pseudo classes structurelles qui
+				travaillent sur la position et le type des éléments au sein d'un
+				ensemble d'enfants.</p>
+
+
+			<p>
+				<code>:first-of-type</code> sélectionne le premier élément d'un
+				certain type dans un ensemble d'enfants.
+			</p>
+			<p>
+				<code>:last-of-type</code> sélectionne le dernier élément d'un
+				certain type dans un ensemble d'enfants.
+			</p>
+			<p>
+				<code>:only-of-type</code> sélectionne un élément d'un certain type
+				qui est le seul enfant de ce type dans une hiérarchie.
+			</p>
+
+
+			<p class="fp-p-raz">
+				L'exemple suivant sélectionne le premier élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'h4')">h4</a> et le
+				dernier élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'ul')">ul</a> du
+				document.
+			</p>
+
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : pseudo classes structurelles
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+	&lt;h3&gt;Star Wars - ze prélogie&lt;/h3&gt;
+	&lt;h4&gt;Personnages&lt;/h4&gt;
+	&lt;ul&gt;
+		&lt;li&gt;Anakin Webwalker&lt;/li&gt;
+		&lt;li&gt;Padmé Amidala&lt;/li&gt;
+		&lt;li&gt;Yoda&lt;/li&gt;
+		&lt;li&gt;Obi Span Kenobi&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;h4&gt;Films&lt;/h4&gt;
+	&lt;ul&gt;
+		&lt;li&gt;Le DOM fantôme&lt;/li&gt;
+		&lt;li&gt;L'attaque des .com&lt;/li&gt;
+		&lt;li&gt;La Revanche des Siths Web&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<div class="dom-schema" id="dom_sel_type_01">
+				<div class="dom-legende">Seule la partie body de la page est
+					représentée. Les feuilles texte ne sont pas représentées.</div>
+				<img src="../cssimg/dom_sel_type_01.png" width="339" height="95">
+			</div>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a class="TEST-lien-dom" title="Afficher le DOM"
+					onclick="top.FP.Voir.showDOM('dom_sel_type_01')"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* Sélection des premiers éléments h4 */	
+h4:first-of-type {
+	background: red;
+}
+
+/* Sélection des derniers éléments ul */
+ul:last-of-type {
+	border: 2px solid red;
+}</textarea>
+			</form>
+
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<a id="sel_pc_ntype"></a>
+		<h3>Type : nth-of-type(), nth-last-of-type()</h3>
+
+		<section>
+			<div class="bloc-syntaxe">
+				<p>
+					<span class="lib-syntaxe">Syntaxe </span><strong><code>:nth-of-type()</code></strong>
+					<br>
+					<span class="lib-syntaxe">&nbsp; </span><strong><code>:nth-last-of-type()</code></strong>
+				</p>
+				<pre data-code="CSS">
+p:nth-last-of-type(2) {
+	font-variant: italic;
+	}
+img:nth-of-type(2n) {
+	border: 2px solid red;
+	}
+</pre>
+			</div>
+
+			<p class="fp-p-raz">
+				On a ici des pseudo classes structurelles qui travaillent sur la
+				position et le type des éléments au sein d'un ensemble d'enfants.
+				<br>
+				Elles sont un peu particulières car ce sont <strong>des
+					fonctions</strong> qui acceptent un argument.
+			</p>
+
+			<p>
+				La différence entre les deux sélecteurs tient uniquement dans le
+				sens ou le comptage de la position se fait : du début à la fin pour
+				<code>nth-of-type()</code>, de la fin vers le début pour <code>nth-last-of-type()</code>.
+			</p>
+
+			<p>
+				<strong>Les sélections réalisées sont trés différentes
+					selon la valeur de l'argument.</strong>
+				<br>
+				Elles fonctionnent exactement de la même façon que pour les pseudo
+				classes <code>nth-child()</code> et <code>nth-last-child()</code>.
+				Reportez vous aux <a
+					onclick="top.FP.Voir.showPartie('sel_pc_ntype_param', true)">explications
+					précédentes</a> pour voir comment utiliser le paramètre de la fonction.
+			</p>
+
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<a id="sel_pc_interface"></a>
+		<h3>Formulaire : enabled, disabled, checked</h3>
+
+		<section>
+			<div class="bloc-syntaxe">
+				<p>
+					<span class="lib-syntaxe">Syntaxe </span><strong><code>:enabled</code></strong>
+					<br>
+					<span class="lib-syntaxe">&nbsp; </span><strong><code>:disabled</code></strong>
+					<br>
+					<span class="lib-syntaxe">&nbsp; </span><strong><code>:checked</code></strong>
+				</p>
+				<pre data-code="CSS">
+p:first-of-type {
+	background: azure;
+	}
+li:only-of-type {
+	margin: 0;
+	}
+</pre>
+			</div>
+
+			<p class="fp-p-raz">On a ici des pseudo classes d'interface qui
+				travaillent sur les éléments de formulaire et permettent de
+				sélectionner des zones de saisie en fonction de leur état.</p>
+
+			<p>
+				<code>:enabled</code> sélectionne les zones pour lesquelles la
+				saisie ou le click sont possibles.
+			</p>
+
+			<p>
+				<code>:disabled</code> sélectionne les zones qui sont désactivées.
+			</p>
+
+			<p>
+				<code>:checked</code> sélectionne les zones qui sont cochées
+				(boutons radio ou cases à cocher).
+			</p>
+
+			<p class="fp-bot0">
+				A noter 2 autres pseudo classes qu'on ne trouve pas encore dans les
+				spécifications du <abbr title="World Wide Web Consortium">W3C</abbr>,
+				mais déjà prises en compte par certains navigateurs :
+			</p>
+
+			<p>
+				<code>:valid</code> sélectionne les zone pour lesquelles la saisie
+				est valide d'après les contraintes définies.
+			</p>
+			<p>
+				<code>:invalid</code> sélectionne les zone pour lesquelles une
+				erreur de saisie a été détectée.
+			</p>
+
+			<p class="fp-p-raz">
+				L'exemple suivant gère les éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+				desactivés et ceux qui sont cochés.
+			</p>
+
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : pseudo classes d'interface
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Pénétrage dans l'Etoile Noire&lt;/h3&gt;
+		
+		&lt;label for="zDroid"&gt;dro-ID&lt;/label&gt;
+		&lt;input type="text" id="zDroid" name="txtDroid"&gt;
+		
+		&lt;label for="zNom"&gt;Nom&lt;/label&gt;
+		&lt;input type="text" id="zNom" name="txtNom" disabled&gt;
+
+		&lt;label for="zPasse"&gt;Mot de passe&lt;/label&gt;
+		&lt;input type="password" id="zPasse" name="txtPasse"&gt;
+
+		&lt;label&gt;&lt;input type="checkbox" id="zCnx" name="chkCnx"&gt;
+			S'en souvenir&lt;/label&gt;
+
+		&lt;p&gt;Restez connecté
+		&lt;label&gt;&lt;input type="radio" name="radC"&gt; Oui&lt;/label&gt;
+		&lt;label&gt;&lt;input type="radio" name="radC"&gt; Non&lt;/label&gt;
+		&lt;/p&gt;
+		
+		&lt;input type="submit" value="Entrage" name="btnEntrer"&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* Sélection des éléments input désactivés */	
+input:disabled {
+	background: grey;
+	border: 2px solid maroon;
+}
+
+/* Selection des éléments input cochés */
+input:checked {
+	outline: 2px solid red;
+}
+
+/* Décoration, sans importance pour l'exemple */
+label {display: block; margin-top: 0.5em; width: 150px;}
+input[type="submit"] {width: 144px;}
+body {background: #43515B; color: lightyellow;}</textarea>
+			</form>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<a id="sel_pc_interface"></a>
+		<h3>Négation : not</h3>
+
+		<section>
+			<div class="bloc-syntaxe">
+				<p>
+					<span class="lib-syntaxe">Syntaxe </span><strong><code>:not(S)</code></strong>
+				</p>
+				<pre data-code="CSS">
+input:not([type="text"]) {
+	width: 300px;
+	}
+:not(p) {
+	margin: 0;
+	}
+</pre>
+			</div>
+
+			<p class="fp-p-raz">Cette pseudo classe est une fonction qui
+				accepte comme argument un autre sélecteur simple.</p>
+
+			<p>Elle permet de sélectionner tous les éléments qui ne sont pas
+				sélectionné par le sélecteur en argument</p>
+
+			<div class="fp-puce">
+				<p>
+					Par exemple <code>:not(p)</code> sélectionnera tous les éléments du
+					document HTML qui ne sont pas des éléments de type <a
+						onclick="top.FP.Voir.showPageTech('elements', 'p')">p</a>, c'est à
+					dire tout sauf les paragraphes.
+				</p>
+				<p>
+					<code>input:not([type="text"])</code> sélectionnera tous les
+					éléments <a onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+					dont la valeur de l'attribut <code>type</code> est différente de <code>text</code>
+				</p>
+				<p>
+					<code>.commentaire:not(:first-child)</code> sélectionnera tous les
+					éléments de la classe <code>commentaire</code> qui ne sont pas le
+					premier enfant de leur parent.
+				</p>
+			</div>
+
+			<p>
+				L'exemple suivant affiche en ligne les éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'label')">label</a>
+				qui n'ont pas d'attribut <code>for</code>.
+			</p>
+
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : pseudo classes de négation
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Pénétrage dans l'Etoile Noire&lt;/h3&gt;
+		
+		&lt;label for="zDroid"&gt;dro-ID&lt;/label&gt;
+		&lt;input type="text" id="zDroid" name="txtDroid"&gt;
+	
+		&lt;label for="zPasse"&gt;Mot de passe&lt;/label&gt;
+		&lt;input type="password" id="zPasse" name="txtPasse"&gt;
+
+		&lt;label&gt;&lt;input type="checkbox" id="zCnx" name="chkCnx"&gt;
+			S'en souvenir&lt;/label&gt;
+
+		&lt;p&gt;Restez connecté
+		&lt;label&gt;&lt;input type="radio" name="radC"&gt; Oui&lt;/label&gt;
+		&lt;label&gt;&lt;input type="radio" name="radC"&gt; Non&lt;/label&gt;
+		&lt;/p&gt;
+		
+		&lt;input type="submit" value="Entrage" name="btnEntrer"&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* Sélection des éléments label sans attribut for */	
+label:not([for]) {
+	display: inline;
+}
+
+
+/* Décoration, sans importance pour l'exemple */
+label {display: block; margin-top: 0.5em; width: 150px;}
+input[type="submit"] {width: 144px;}
+body {background: #43515B; color: lightyellow;}</textarea>
+			</form>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<a id="remarques"></a>
+		<h3>Remarques</h3>
+
+		<section>
+
+			<div class="fp-puce">
+				<p>Les pseudo classes sont des sélecteurs simples car ils
+					peuvent être utilisés seuls.</p>
+
+				<p>Dans l'exemple suivant tous les éléments qui sont le 1er
+					enfant d'un parent quelconque sont entourés en rouge.</p>
+			</div>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : simple pseudo classe
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;L'Arrière des Etoiles&lt;/h3&gt;
+		&lt;p&gt;Les CSS sont l'arme secrète de la Force !&lt;/p&gt;
+		&lt;p&gt;Tu veux savoir les utiliser ?  
+			Envoie CSS au 7 1718.&lt;/p&gt;
+		&lt;div&gt;
+			&lt;p&gt;&lt;img src="../exemples/img/yoda.jpg"&gt; 
+				Le côté obscur des CSS redouter tu dois.&lt;/p&gt;
+	    	&lt;p&gt;&lt;img src="../exemples/img/darkv.jpg"&gt; 
+				Les CSS ont vraiment transformé ma vie.&lt;/p&gt;
+	    	&lt;p&gt;&lt;img src="../exemples/img/gandalf.jpg"&gt; 
+				Bien sûr, moi aussi j'utilise les CSS !&lt;/p&gt;
+	  	&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* Sélection de n'importe quel élément 
+	qui est le premier enfnat d'un autre */
+
+:first-child {
+	border: 3px solid red;
+}</textarea>
+			</form>
+
+
+			<p>On peut appliquer plusieurs pseudo classes à un même élément
+				en les enchaînant comme dans l'exemple suivant qui génére un
+				changement de couleur de fond quand la souris survole la première
+				ligne d'une liste.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : pseudo classes enchaînées
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+	&lt;h3&gt;Star Wars - ze prélogie&lt;/h3&gt;
+	&lt;h4&gt;Personnages&lt;/h4&gt;
+	&lt;ul&gt;
+		&lt;li&gt;Anakin Webwalker&lt;/li&gt;
+		&lt;li&gt;Padmé Amidala&lt;/li&gt;
+		&lt;li&gt;Yoda&lt;/li&gt;
+		&lt;li&gt;Obi Span Kenobi&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;h4&gt;Films&lt;/h4&gt;
+	&lt;ol&gt;
+		&lt;li&gt;Le DOM fantôme&lt;/li&gt;
+		&lt;li&gt;L'attaque des .com&lt;/li&gt;
+		&lt;li&gt;La Revanche des Siths Web&lt;/li&gt;
+	&lt;/ol&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* Sélection des premieres lignes des listes et survol */	
+li:first-child:hover {
+	background: red;
+}
+</textarea>
+			</form>
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

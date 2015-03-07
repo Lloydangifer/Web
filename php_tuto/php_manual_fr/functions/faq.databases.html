@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Consid&eacute;rations sur les bases de donn&eacute;es</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="faq.obtaining.html">Obtenir PHP</a>
+		</div>
+		<div class="next">
+			<a href="faq.installation.html">Installation</a>
+		</div>
+		<div class="up">
+			<a href="faq.html">FAQ</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="faq.databases" class="chapter">
+		<h1>Considérations sur les bases de données</h1>
+
+
+
+		<p class="para">Cette section traite de questions relatives aux
+			relations entre PHP et les bases de données. Oui, PHP peut accéder
+			virtuellement à n&#039;importe quelle base de données disponible
+			aujourd&#039;hui.</p>
+
+		<div class="qandaset">
+			<ol class="qandaset_questions">
+				<li><a href="#faq.databases.mssql"> J&#039;ai entendu dire
+						qu&#039;il &eacute;tait possible d&#039;acc&eacute;der &agrave;
+						Microsoft SQL Server &agrave; partir de PHP. Comment est-ce
+						possible ? </a></li>
+				<li><a href="#faq.databases.access"> Puis-je acc&eacute;der
+						&agrave; des bases Microsoft Access ? </a></li>
+				<li><a href="#faq.databases.mysql.deprecated"> Pourquoi
+						m&#039;encourage-t-on &agrave; ne plus utiliser l&#039;extension
+						MySQL (ext/mysql) que j&#039;utilise depuis 10 ans ? Est-elle
+						obsol&egrave;te ? Que dois-je utiliser &agrave; la place ? Comment
+						dois-je migrer ? </a></li>
+				<li><a href="#faq.databases.mysql.php5"> PHP 5
+						n&#039;inclut plus les biblioth&egrave;ques clientes MySQL,
+						qu&#039;est ce que &ccedil;a implique pour moi ? Puis-je toujours
+						utiliser MySQL avec PHP ? J&#039;essaie d&#039;utiliser MySQL,
+						mais j&#039;obtiens des erreurs &quot;undefined function&quot;. </a></li>
+				<li><a href="#faq.databases.shared-mysql"> Apr&egrave;s
+						avoir ajout&eacute; le support partag&eacute; de MySQL, Apache
+						plante d&egrave;s que libphp4.so est charg&eacute;. Comment
+						r&eacute;soudre ce probl&egrave;me ? </a></li>
+				<li><a href="#faq.databases.mysqlresource"> Pourquoi est ce
+						que j&#039;obtiens une erreur comme celle-ci : &quot;Warning: 0 is
+						not a MySQL result index in &lt;file&gt; on line &lt;x&gt;&quot;
+						ou &quot;Warning: Supplied argument is not a valid MySQL result
+						resource in &lt;file&gt; on line &lt;x&gt;&quot; ? </a></li>
+			</ol>
+		</div>
+		<dl class="qandaentry" id="faq.databases.mssql">
+			<dt>
+				<strong> J&#039;ai entendu dire qu&#039;il était possible
+					d&#039;accéder à Microsoft SQL Server à partir de PHP. Comment
+					est-ce possible ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">Sur une machine Windows, vous pouvez tout
+					simplement utiliser le support ODBC inclus avec le pilote ODBC
+					adéquat.</p>
+				<p class="para">
+					Sur des machines Unix, vous pouvez utiliser le pilote Sybase-CT
+					pour accéder à Microsoft SQL Server car il est (en grande partie)
+					compatible. Sybase a fourni une <a
+						href="http://www.php.net/extra/ctlib-linux-elf.tar.gz"
+						class="link external">&raquo;&nbsp;version libre des
+						bibliothèques nécessaires pour Linux</a>. Pour les autres systèmes
+					Unix, vous devez contacter Sybase pour obtenir les bibliothèques
+					adéquates. Jetez aussi un oeil à la réponse à la question suivante.
+				</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.databases.access">
+			<dt>
+				<strong> Puis-je accéder à des bases Microsoft Access ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">Oui. Vous avez déjà tous les outils nécessaires
+					si vous utilisez uniquement Windows 9x/Me, ou NT/2000, et que vous
+					utilisez ODBC avec les pilotes ODBC pour Microsoft Access.</p>
+				<p class="para">
+					Si vous utilisez PHP sur une machine Unix et que vous voulez vous
+					connecter à une base Access sur une machine Windows, vous aurez
+					besoin des pilotes ODBC Unix. <a href="http://www.openlinksw.com/"
+						class="link external">&raquo;&nbsp;OpenLink Software</a> fournit
+					des pilotes ODBC pour Unix qui peuvent le faire.
+				</p>
+				<p class="para">Une autre solution consiste à utiliser un
+					serveur SQL qui a des pilotes ODBC Windows et l&#039;utiliser pour
+					stocker les données, que vous pouvez utiliser à partir de Microsoft
+					Access (en utilisant ODBC) et PHP (en utilisant les pilotes
+					inclus), ou bien utiliser un format de fichier intermédiaire que
+					Access et PHP peuvent traiter tous les deux, comme des fichier
+					bruts ou des bases de données dBase. À ce sujet, Tim Hayes de
+					Openlink software écrit :
+				<blockquote class="blockquote">
+					<p class="para">
+						Utiliser une autre base de données comme intermédiaire n&#039;est
+						pas une bonne idée lorsque vous pouvez utiliser ODBC de PHP
+						directement vers vos bases de données - par exemple avec les
+						pilotes Openlink. Si vous avez besoin d&#039;un format de fichier
+						intermédiaire, Openlink a publié Virtuoso (un moteur de base de
+						données virtuel) pour NT, Linux et d&#039;autres plates-formes
+						Unix. Visitez notre <a href="http://www.openlinksw.com/"
+							class="link external">&raquo;&nbsp;site</a> pour un
+						téléchargement gratuit.
+					</p>
+				</blockquote>
+				</p>
+				<p class="para">Une solution qui a fait ses preuves est
+					d&#039;utiliser MySQL et ses pilotes ODBC sous Windows et de
+					synchroniser les bases de données. Steve Lawrence écrit :</p>
+				<p class="para">
+				<ul class="itemizedlist">
+					<li class="listitem"><span class="simpara"> Installez
+							MySQL sur votre plate-forme conformément aux instructions de
+							MySQL. Vous pouvez l&#039;obtenir sur <a
+							href="http://www.mysql.com/" class="link external">&raquo;&nbsp;http://www.mysql.com/</a>.
+							Aucune configuration particulière n&#039;est nécessaire, mis à
+							part que lorsque vous configurez une base de données et un compte
+							utilisateur, il faille spécifier % dans le champ host, ou bien le
+							nom de la machine Windows avec laquelle vous voulez accéder à
+							MySQL. Notez bien votre nom de serveur, d&#039;utilisateur et
+							votre mot de passe.
+					</span></li>
+					<li class="listitem"><span class="simpara"> Téléchargez
+							les pilotes MyODBC pour Windows à partir du site de MySQL.
+							Installez les sur votre machine Windows. Vous pouvez tester votre
+							installation avec les utilitaires fournis avec les pilotes. </span></li>
+					<li class="listitem"><span class="simpara"> Créez un
+							utilisateur ou une source de données système dans votre
+							administration ODBC, dans le panneau de configuration. Donnez un
+							nom de source de données dsn, entrez votre nom d&#039;hôte,
+							identifiant, mot de passe, port, etc. pour la base de données
+							configurée à l&#039;étape 1. </span></li>
+					<li class="listitem"><span class="simpara"> Installez
+							Access avec une installation complète pour être sûr d&#039;avoir
+							tous les composants nécessaires... Vous aurez besoin d&#039;au
+							moins le support ODBC et le gestionnaire de tables liées. </span></li>
+					<li class="listitem"><span class="simpara"> Maintenant,
+							la partie amusante ! Créez un accès à une base de données. Dans
+							la fenêtre de la table, cliquez droit et sélectionner Lier les
+							Tables, ou, dans le menu Fichier, sélectionnez Obtenir des
+							données externes et alors Lier les Tables. Quand la fenêtre de
+							gestion de fichiers apparaît, sélectionnez les fichiers de type :
+							ODBC. Sélectionnez dsn Système et le nom de votre dsn créée à
+							l&#039;étape 3. Sélectionnez la table à lier, cliquez sur OK, et
+							voilà ! Vous pouvez maintenant ouvrir la table et
+							ajouter/supprimer/éditer des données sur votre serveur MySQL !
+							Vous pouvez ainsi exécuter des requêtes, importer/exporter des
+							tables vers MySQL, construire des formulaires et des rapports,
+							etc. </span></li>
+				</ul>
+				</p>
+				<p class="para">Trucs et astuces :
+				<ul class="itemizedlist">
+					<li class="listitem"><span class="simpara"> Vous pouvez
+							construire vos tables dans Access et les exporter dans MySQL,
+							puis les lier de nouveau. Cela rend la création de table très
+							rapide. </span></li>
+					<li class="listitem"><span class="simpara"> Lorsque
+							vous créez des tables dans Access, vous devez avoir une clé
+							primaire définie pour avoir accès en écriture à la table.
+							Assurez-vous que vous avez bien créé une clé primaire dans MySQL
+							avant de lier le tout à Access. </span></li>
+					<li class="listitem"><span class="simpara"> Si vous
+							changez une table dans MySQL, vous devez la lier de nouveau à
+							Access. Allez dans Outils&gt;suppléments&gt;gestionnaire de
+							tables liées, cherchez votre DSN ODBC, et sélectionnez la table à
+							lier de nouveau. Vous pouvez aussi changer votre source dsn à
+							partir de là, en cliquant sur l&#039;option toujours demander
+							pour un nouvel emplacement avant de presser OK. </span></li>
+				</ul>
+				</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.databases.mysql.deprecated">
+			<dt>
+				<strong> Pourquoi m&#039;encourage-t-on à ne plus utiliser
+					l&#039;extension MySQL (ext/mysql) que j&#039;utilise depuis 10 ans
+					? Est-elle obsolète ? Que dois-je utiliser à la place ? Comment
+					dois-je migrer ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">
+					Il y a 3 extensions MySQL, tel que décrit dans la section <a
+						href="mysqlinfo.api.choosing.html" class="link">Choisir une
+						API MySQL</a>. L&#039;ancienne API ne doit plus être utilisée, et un
+					jour, elle devriendra obsolète et, éventuellement, sera supprimée
+					de PHP. C&#039;est une extension populaire, aussi, ce sera un long
+					processus, mais vous être vivement encouragé à écrire vos nouvelles
+					lignes de code en utilisant l&#039;extension <a
+						href="book.mysqli.html" class="link">mysqli</a> ou <a
+						href="ref.pdo-mysql.html" class="link">PDO_MySQL</a>.
+				</p>
+				<p class="para">Les scripts de migration ne sont pas disponibles
+					actuellement, bien que l&#039;API mysqli contient à la fois une API
+					procédurale et orientée objet, dont la version procédurale est très
+					similaire à ext/mysql.</p>
+				<p class="para">Il n&#039;est pas possible de mixer les
+					extensions. Aussi, par exemple, le fait de passer une connexion
+					mysqli à PDO_MySQL ou ext/mysql ne fonctionnera pas.</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.databases.mysql.php5">
+			<dt>
+				<strong> PHP 5 n&#039;inclut plus les bibliothèques
+					clientes MySQL, qu&#039;est ce que ça implique pour moi ? Puis-je
+					toujours utiliser MySQL avec PHP ? J&#039;essaie d&#039;utiliser
+					MySQL, mais j&#039;obtiens des erreurs &quot;undefined
+					function&quot;. </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">Oui. PHP supportera toujours MySQL, d&#039;une
+					façon ou d&#039;une autre. Le seul changement avec PHP 5 est que
+					nous ne compilons plus la bibliothèque cliente en elle-même. En
+					voici en vrac quelques justifications :</p>
+				<ul class="itemizedlist">
+					<li class="listitem">
+						<p class="para">La plupart des systèmes incluent maintenant
+							les bibliothèques clientes.</p>
+					</li>
+					<li class="listitem">
+						<p class="para">Ainsi, avoir plusieurs versions des
+							bibliothèques peut être gênant. Par exemple, si vous liez
+							mod_auth_mysql à une version et PHP à une autre, et que vous les
+							activez tous les deux dans Apache, vous obtenez un joli plantage.
+							Ainsi, la bibliothèque cliente incluse avec PHP ne fonctionnait
+							pas toujours bien. Le symptôme le plus gênant était que le chemin
+							vers le socket Unix mysql.sock n&#039;était pas le bon.</p>
+					</li>
+					<li class="listitem">
+						<p class="para">La maintenance en était lourde et le devenait
+							de plus en plus au fur et à mesure des versions.</p>
+					</li>
+					<li class="listitem">
+						<p class="para">Les versions futures de la bibliothèque seront
+							publiées sous licence GPL et nous ne pouvons pas inclure une
+							telle bibliothèque car sa licence n&#039;est pas compatible avec
+							un projet sous licence de type BSD/Apache. Un tel changement dans
+							PHP 5 semble être la meilleure solution.</p>
+					</li>
+				</ul>
+				<p class="para">
+					Ceci n&#039;affectera pas tant que ça les utilisateurs. Les
+					utilisateurs d&#039;Unix, au moins ceux qui savent ce qu&#039;ils
+					font, ont tendance à compiler PHP avec les bibliothèques déjà
+					installées sur leur système, simplement en spécifiant <strong
+						class="option configure">--with-mysql=/usr</strong> lors de la
+					configuration de PHP. Les utilisateurs de Windows peuvent activer
+					l&#039;extension
+					<var class="filename">php_mysql.dll</var>
+					dans leur
+					<var class="filename">php.ini</var>
+					. Pour plus de détails, lisez la <a href="ref.mysql.html"
+						class="link">référence MySQL</a> sur les instructions
+					d&#039;installation. Assurez-vous également que
+					<var class="filename">libmysql.dll</var>
+					est disponible dans le PATH du système. Pour plus de détails sur
+					cela, lisez la FAQ sur <a
+						href="faq.installation.html#faq.installation.addtopath"
+						class="link">la configuration du PATH sur les systèmes Windows</a>.
+					Comme
+					<var class="filename">libmysql.dll</var>
+					(et plusieurs fichiers relatifs à PHP) existe dans le dossier de
+					PHP, il est recommandé d&#039;ajouter le dossier de PHP à votre
+					PATH système.
+				</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.databases.shared-mysql">
+			<dt>
+				<strong> Après avoir ajouté le support partagé de MySQL,
+					Apache plante dès que libphp4.so est chargé. Comment résoudre ce
+					problème ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">Ceci arrive quand vos bibliothèques MySQL sont
+					liées à pthreads. Vérifiez en utilisant ldd. Sinon, téléchargez les
+					sources de MySQL et compilez-les ou bien refaites un paquet RPM à
+					partir des sources en enlevant l&#039;option qui active le client
+					threadé dans le fichier de spec. L&#039;une ou l&#039;autre de ces
+					solutions corrigera le problème. Recompilez alors PHP avec les
+					nouvelles bibliothèques MySQL.</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.databases.mysqlresource">
+			<dt>
+				<strong> Pourquoi est ce que j&#039;obtiens une erreur
+					comme celle-ci : &quot;Warning: 0 is not a MySQL result index in
+					&lt;file&gt; on line &lt;x&gt;&quot; ou &quot;Warning: Supplied
+					argument is not a valid MySQL result resource in &lt;file&gt; on
+					line &lt;x&gt;&quot; ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">Vous essayez d&#039;utiliser un identifiant de
+					résultat qui vaut 0. Le 0 indique que votre requête a échoué pour
+					une quelconque raison. Vous devez alors chercher les erreurs après
+					avoir exécuté une requête et avant même de vouloir traiter le
+					résultat. Une façon propre de le faire est de coder comme ceci :
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br />$result&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">mysql_query</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;*&nbsp;FROM&nbsp;tables_priv"</span><span
+								style="color: #007700">);<br />if&nbsp;(!
+							</span><span style="color: #0000BB">$result</span><span
+								style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #0000BB">mysql_error</span><span
+								style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				ou
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br />$result&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">mysql_query</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;*&nbsp;FROM&nbsp;tables_priv"</span><span
+								style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;die(
+							</span><span style="color: #DD0000">"Bad&nbsp;query:&nbsp;"&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">mysql_error</span><span
+								style="color: #007700">());<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				</p>
+			</dd>
+		</dl>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="faq.obtaining.html">Obtenir PHP</a>
+		</div>
+		<div class="next">
+			<a href="faq.installation.html">Installation</a>
+		</div>
+		<div class="up">
+			<a href="faq.html">FAQ</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

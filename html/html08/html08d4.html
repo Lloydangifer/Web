@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Zones de listes</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			Les zones de saisie liste sont une structure <abbr
+				title="HyperText Markup Language">HTML</abbr> faite avec 2 éléments
+			dont l'un fournit le nom de la zone et l'autre sa valeur.
+		</p>
+
+		<a id="type_select"></a>
+		<h3>Structure d'une liste</h3>
+		<section>
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : zone liste
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Zone de liste&lt;/h3&gt;
+		
+		&lt;form method="POST" action="dossier/reception.php"&gt;
+			&lt;label for="selHeros"&gt;Héros préféré&lt;/label&gt;
+			
+			&lt;select name="selHeros" id="selHeros"&gt;
+				&lt;option value="moi"&gt;Moi&lt;/option&gt;
+				&lt;option value="piat"&gt;François Piat&lt;/option&gt;
+				&lt;option value="yoda"&gt;Yoda&lt;/option&gt;
+				&lt;option value="vador"&gt;Dark Vador&lt;/option&gt;
+				&lt;option value="gandalf"&gt;Gandalf&lt;/option&gt;
+				&lt;option value="legolas"&gt;Legolas&lt;/option&gt;
+			&lt;/select&gt;
+
+			&lt;p&gt;
+				&lt;input type="submit" value="Envoi" name="btn"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				Les listes se construisent avec 2 éléments : <strong>l'élément
+					<a onclick="top.FP.Voir.showPageTech('elements', 'select')">select</a>
+					est le conteneur des lignes de la liste qui sont faites avec des
+					éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'option')">option</a>
+				</strong>.
+				<br>
+				Il doit y avoir une balise d'ouverture <code>&lt;select&gt;</code>
+				et une balise de fermeture <code>&lt;/select&gt;</code>.
+			</p>
+
+			<p>
+				L'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'select')">select</a>
+				doit avoir un attribut <code>name</code> et la valeur de cet
+				attribut doit être <strong>unique</strong> parmi toutes les zones
+				composant le formulaire.
+				<br>
+				L'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'select')">select</a>
+				n'a pas d'attribut <code>value</code>.
+			</p>
+
+			<p>
+				<strong>Les lignes de la liste</strong> sont faites avec des
+				éléments <a onclick="top.FP.Voir.showPageTech('elements', 'option')">option</a>
+				qui contiennent le texte affiché pour la ligne.
+				<br>
+				Les éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'option')">option</a>
+				doivent avoir un attribut <code>value</code>.
+				<br>
+				Quand le formulaire sera envoyé au serveur pour traiement,
+				l'attribut <code>value</code> de l'<a
+					onclick="top.FP.Voir.showPageTech('elements', 'option')">option</a>
+				sélectionnée sera associé à l'attribut <code>name</code> du <a
+					onclick="top.FP.Voir.showPageTech('elements', 'select')">select</a>
+				pour contituer un couple nom / valeur.
+			</p>
+
+			<p>Si aucune ligne n'apparait comme sélectionnée dans la liste,
+				c'est la première ligne de la liste qui sera choisie comme valeur
+				pour le couple nom / valeur envoyé au serveur.</p>
+
+			<p>
+				Une ligne peut être sélectionnée par défaut : il suffit qu'elle ait
+				<strong>l'attribut <code>selected</code>
+				</strong>.
+				<br>
+				<code>selected</code> est un attribut <strong>booléen</strong> qui
+				n'a pas de valeur : sa présence ou son absence dans la balise
+				d'ouverture définit la valeur <code>true</code> (présence) ou <code>false</code>
+				(absence). Le piège est d'écrire :
+				<br>
+				<code>&lt;option selected="false"...</code>
+				<br>
+				Comme <code>selected</code> est présent, la valeur sera <code>true</code>
+				et le navigateur ne tiendra pas compte de l'égalité faite dans le
+				code <abbr title="HyperText Markup Language">HTML</abbr>.
+			</p>
+
+			<p>
+				Attributs de l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'select')">select</a>
+			</p>
+
+			<table class="TAB-zebre fp-petit">
+				<tr>
+					<td>Attribut possible</td>
+					<td>Utilité</td>
+				</tr>
+				<tr>
+					<td><code>autofocus</code></td>
+					<td>1er élément activé dans le formulaire. Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>dirname</code></td>
+					<td>Direction du texte saisi.</td>
+				</tr>
+				<tr>
+					<td><code>disabled</code></td>
+					<td>Zone désactivée, non transmise au serveur. Aucune
+						interaction n'est possible avec la zone (pas de focus, pas de
+						copie, etc). Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>form</code></td>
+					<td><code>id</code> du formulaire associé si la zone n'est pas
+						un élément <code>form</code> ou concerne un autre formulaire que
+						celui dans lequel elle est imbriquée.</td>
+				</tr>
+				<tr>
+					<td><code>multiple</code></td>
+					<td>Sélection possible de plusieurs lignes. Attribut booléen.</td>
+				</tr>
+
+				<tr>
+					<td><code>name</code></td>
+					<td>Nom de la zone. Tous les boutons d'un même groupe DOIVENT
+						avoir le même.</td>
+				</tr>
+				<tr>
+					<td><code>required</code></td>
+					<td>Zone obligatoire. Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>size</code></td>
+					<td>Nombre de lignes visibles directement. Si l'attribut est
+						absent, la valeur est 1.</td>
+				</tr>
+			</table>
+
+			<p>
+				Attributs de l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'option')">option</a>
+			</p>
+
+			<table class="TAB-zebre fp-petit">
+				<tr>
+					<td>Attribut possible</td>
+					<td>Utilité</td>
+				</tr>
+				<tr>
+					<td><code>disabled</code></td>
+					<td>Zone désactivée, non transmise au serveur. Aucune
+						interaction n'est possible avec la zone (pas de focus, pas de
+						copie, etc). Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>selected</code></td>
+					<td>Ligne sélectionnée par défaut dans une liste.</td>
+				</tr>
+				<tr>
+					<td><code>value</code></td>
+					<td>Valeur initiale de la zone et qui sera transmise au
+						serveur si la ligne est sélectionnée dans la liste.</td>
+				</tr>
+			</table>
+		</section>
+
+
+		<h3>Déroulante ou défilante ?</h3>
+		<section>
+
+			<figure style="float: right; margin: 0 0 0.5em 1em; width: auto">
+				<img src="../htmlimg/liste_deroulante.png" width="289" height="177">
+				<figcaption>liste déroulante</figcaption>
+			</figure>
+
+			<p>Une liste est dite déroulante si une seule ligne est affichée
+				et que les autres lignes de la liste apparaissent quand on clique
+				sur la fléche à droite.</p>
+
+			<figure style="float: right; margin: 0 0 0.5em 1em; width: auto">
+				<img src="../htmlimg/liste_defilante.png" width="264" height="141">
+				<figcaption>liste défilante</figcaption>
+			</figure>
+
+			<p>Une liste est dite défilante si plusieurs lignes sont
+				affichées et qu'une barre de défilement verticale permet de faire
+				apparaitre les autres lignes de la liste.</p>
+
+			<p>
+				C'est <strong>l'attribut <code>size</code></strong> de l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'select')">select</a>
+				qui permet de définir le nombre de lignes affichées.
+				<br>
+				Si l'attribut <code>size</code> est absent ou égal à 1 on obtient
+				une liste déroulante, sinon on obtient une liste défilante.
+			</p>
+
+			<p>
+				Si on peut choisir la hauteur de la liste avec l'attribut <code>size</code>,
+				aucun attribut ne permet de définir sa largeur qui est déterminée <strong>par
+					la plus longue ligne</strong>. Pour uniformiser la largeur des listes entre
+				elles et avec les autres zones de saisie du formulaire, on utilise
+				des règles de style <abbr title="Cascading Style Sheets">CSS</abbr>.
+				A part la largeur, les autres éléments d'une liste (lignes, marges
+				interne et externe, soulignement, zone interactive
+				d'affichage/masquage, etc.) sont très difficiles à styler de façon
+				homogènes dans les navigateurs (de pratiquement impossible avec
+				Internet Explorer et Chrome à mieux pour Firefox).
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : liste défilante et liste déroulante
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Liste défilante et liste déroulante&lt;/title&gt;
+		&lt;style&gt;
+			form {width: 200px; margin: 0 auto}
+			label {display:block; margin: 1em 0 0.2em 0}
+			input[name="btn"] {float:right; margin: 1.5em 0}
+			select {width: 200px}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form method="POST" action="dossier/reception.php"&gt;
+			&lt;h3&gt;Liste déroulante&lt;/h3&gt;
+			
+			&lt;label for="selDeroule"&gt;Héros préféré&lt;/label&gt;
+			
+			&lt;select name="selDeroule" id="selDeroule"&gt;
+				&lt;option value="moi"&gt;Moi&lt;/option&gt;
+				&lt;option value="piat"&gt;François Piat&lt;/option&gt;
+				&lt;option value="yoda"&gt;Yoda&lt;/option&gt;
+				&lt;option value="vador"&gt;Dark Vador&lt;/option&gt;
+				&lt;option value="gandalf"&gt;Gandalf&lt;/option&gt;
+				&lt;option value="legolas"&gt;Legolas&lt;/option&gt;
+			&lt;/select&gt;
+			
+			&lt;h3&gt;Liste défilante&lt;/h3&gt;
+			
+			&lt;label for="selDefile"&gt;Film préféré&lt;/label&gt;
+			
+			&lt;select size="5" name="selDefile" id="selDefile"&gt;
+				&lt;option value="SW1"&gt;La Menace fantôme&lt;/option&gt;
+				&lt;option value="SW2"&gt;L'Attaque des Clones
+				&lt;/option&gt;
+				&lt;option value="SW3"&gt;La Revanche des Sith
+				&lt;/option&gt;
+				&lt;option value="SW4"&gt;Un nouvel espoir&lt;/option&gt;
+				&lt;option value="SW5"&gt;L'Empire contre-attaque
+				&lt;/option&gt;
+				&lt;option value="SW6"&gt;Le Retour du Jedi&lt;/option&gt;
+				&lt;option value="LR1"&gt;La Communauté de l'anneau
+				&lt;/option&gt;
+				&lt;option value="LR2"&gt;Les Deux Tours&lt;/option&gt;
+				&lt;option value="LR3"&gt;Le Retour du roi&lt;/option&gt;
+			&lt;/select&gt;
+
+			&lt;p&gt;
+				&lt;input type="submit" value="Envoi" name="btn"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<a id="exo_select_01"></a>
+			<h4 class="fp-exo">Listes de sélection</h4>
+			<section>
+				<figure style="float: right; width: 280px;">
+					<img src="../exercices/exo_select_01.png" width="280" height="291">
+					<figcaption>Ajouter à mes amis</figcaption>
+				</figure>
+
+				<p class="fp-p-raz">
+					Complétez le code <abbr title="HyperText Markup Language">HTML</abbr>
+					pour obtenir le résultat ci-contre.
+				</p>
+
+				<p class="fp-p-raz">
+					La feuille de style liée à l'exercice (<code>form05.css</code>)
+					fera automatiquement la mise en forme des éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'fieldset')">fieldset</a>
+					et <a onclick="top.FP.Voir.showPageTech('elements', 'legend')">legend</a>
+				</p>
+
+				<p class="fp-p-raz">
+					Le formulaire utilise la méthode <code>POST</code> pour envoyer les
+					informations saisies à <code>informatique.php</code>.
+				</p>
+
+				<p class="fp-p-raz">
+					Les listes s'appellent respectivement <code>slcEdit</code> et <code>slcPref</code>.
+				</p>
+
+				<p class="fp-p-raz">
+					Les lignes de <code>slcEdit</code> affichent : NetBeans, Eclipse,
+					Scite, Notepad ++. La liste n'affiche qu'une ligne et la ligne
+					Eclipse est sélectionnée par défaut. Les valeurs des lignes sont le
+					texte affiché par la ligne.
+				</p>
+
+				<p class="fp-p-raz">
+					Les lignes de <code>txtPref</code> affichent : C, C#, C++, CSS,
+					HTML, JavaScript, Java, Perl, PHP, Python, Ruby. La liste affiche 6
+					lignes et la ligne HTML est sélectionnée par défaut. Les valeurs
+					des lignes sont le texte affiché par la ligne.
+				</p>
+
+				<p class="fp-p-raz">
+					Les boutons s'appellent <code>btnReset</code> et <code>btnSubmit</code>.
+				</p>
+
+
+				<p class="fp-completez">
+					<a onClick="top.FP.Voir.showCompletez('exo_select_01_comp')">Code
+						à compléter</a>
+				</p>
+
+				<div id="exo_select_01_comp" class="BLOC-completez">
+					<form action="" method="post" class="TEST-form">
+						<a class="TEST-lien-css" title="Afficher le fichier CSS"
+							onclick="top.FP.Voir.showPLUS('html08/styles/form05.css.html')"></a>
+						<div class="TEST-titre">
+							<strong>Exercice</strong> : liste de sélection
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-wrap
+							data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Liste de sélection&lt;/title&gt;
+		&lt;link href="../html08/styles/form05.css" rel="stylesheet"&gt;
+		&lt;style&gt;
+			label {display:block; margin: 1em 0 0.2em 0;}
+			select {width: 200px;}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form&gt;
+		
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+				</div>
+
+				<p class="fp-solution">
+					<a onClick="top.FP.Voir.showSolution('exo_select_01_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_select_01_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form">
+						<a class="TEST-lien-css" title="Afficher le fichier CSS"
+							onclick="top.FP.Voir.showPLUS('html08/styles/form05.css.html')"></a>
+						<div class="TEST-titre">
+							<strong>Exercice</strong> : ajouter à mes amis
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-wrap
+							data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Liste de sélection&lt;/title&gt;
+		&lt;link href="../html08/styles/form05.css" rel="stylesheet"&gt;
+		&lt;style&gt;
+			label {display:block; margin: 1em 0 0.2em 0;}
+			select {width: 200px;}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form method="POST" action="informatique.php"&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Informatique&lt;/legend&gt;
+				&lt;label for="slcEdit"&gt;Editeur de code&lt;/label&gt;
+				&lt;select id="slcEdit" name="slcEdit"&gt;
+					&lt;option value="NetBeans"&gt;NetBeans&lt;/option&gt;
+					&lt;option selected value="Eclipse"&gt;Eclipse&lt;/option&gt;
+					&lt;option value="Scite"&gt;Scite&lt;/option&gt;
+					&lt;option value="Notepad ++"&gt;
+						Notepad ++&lt;/option&gt;
+					&lt;option value="Autre"&gt;Autre&lt;/option&gt;
+				&lt;/select&gt;
+				
+				&lt;label for="slcPref"&gt;Langage préféré&lt;/label&gt;
+				&lt;select size="6" id="slcPref" name="slcPref"&gt;
+					&lt;option value="C"&gt;C&lt;/option&gt;
+					&lt;option value="C#"&gt;C#&lt;/option&gt;
+					&lt;option value="C++"&gt;C++&lt;/option&gt;
+					&lt;option value="CSS"&gt;CSS&lt;/option&gt;
+					&lt;option selected value="HTML"&gt;HTML&lt;/option&gt;
+					&lt;option value="JavaScript"&gt;
+						JavaScript&lt;/option&gt;
+					&lt;option value="Java"&gt;Java&lt;/option&gt;
+					&lt;option value="Perl"&gt;Perl&lt;/option&gt;
+					&lt;option value="PHP"&gt;PHP&lt;/option&gt;
+					&lt;option value="Python"&gt;Python&lt;/option&gt;
+					&lt;option value="Ruby"&gt;Ruby&lt;/option&gt;
+				&lt;/select&gt;
+			&lt;/fieldset&gt;
+			&lt;fieldset&gt;
+				&lt;input type="reset" value="J'efface" name="btnReset"&gt;
+				&lt;input type="submit" value="J'envoie" name="btnSubmit"&gt;
+			&lt;/fieldset&gt;			
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+				</div>
+			</section>
+
+		</section>
+
+		<h3>Sélections multiples</h3>
+		<section>
+			<p>
+				<strong>L'attribut <code>multiple</code> de l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'select')">select</a>
+					permet de sélectionner plusieurs lignes dans la liste.
+				</strong>
+				<br>
+				<code>multiple</code> est un attribut <strong>booléen</strong> qui
+				n'a pas de valeur : sa présence ou son absence dans la balise
+				d'ouverture définit la valeur <code>true</code> (présence) ou <code>false</code>
+				(absence). Le piège est d'écrire :
+				<br>
+				<code>&lt;select multiple="false"...</code>
+				<br>
+				Comme <code>multiple</code> est présent, la valeur sera <code>true</code>
+				et le navigateur ne tiendra pas compte de l'égalité faite dans le
+				code <abbr title="HyperText Markup Language">HTML</abbr>.
+			</p>
+
+			<p>
+				Avec <code>multiple</code>, la sélection des lignes peut se faire en
+				appuyant sur la touche Ctrl du clavier ou sur la touche Maj.
+			</p>
+
+			<p>
+				Si <code>multiple</code> est utilisé, <strong>la liste
+					créée doit être obligatoirement une liste défilante</strong>, le seul type
+				permettant une saisie multiple effective. Si <code>size</code> n'est
+				pas précisé ou égal à 1, le navigateur créera automatiquement une
+				liste défilante affichant 4 lignes.
+			</p>
+
+			<p>
+				Pour que les ligne sélectionnées puissent être traitées correctement
+				sur le serveur par un script PHP, il faut que le nom de l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'select')">select</a>
+				soit terminé par <code>[]</code> de façon à définir un tableau pour
+				le script de traitement PHP.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : sélections multiples
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Sélections multiples&lt;/title&gt;
+		&lt;style&gt;
+			form {width: 200px; margin: 0 auto}
+			label {display:block; margin: 1em 0 0.2em 0}
+			input[name="btn"] {float:right; margin: 1.5em 0}
+			select {width: 200px}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;	
+		&lt;form method="POST" action="dossier/reception.php"&gt;
+			&lt;h3&gt;Sélections multiples&lt;/h3&gt;
+
+			&lt;label for="selDeroule"&gt;Héros préféré&lt;/label&gt;
+			&lt;!-- cette liste n'a pas d'attribut size et sera
+			automatiquement transformée en liste défilante --&gt;
+			&lt;select multiple name="selDeroule[]"
+					id="selDeroule" &gt;
+				&lt;option value="moi"&gt;Moi&lt;/option&gt;
+				&lt;option value="piat"&gt;François Piat&lt;/option&gt;
+				&lt;option value="yoda"&gt;Yoda&lt;/option&gt;
+				&lt;option value="vador"&gt;Dark Vador&lt;/option&gt;
+				&lt;option value="gandalf"&gt;Gandalf&lt;/option&gt;
+				&lt;option value="legolas"&gt;Legolas&lt;/option&gt;
+			&lt;/select&gt;
+
+			&lt;label for="selDefile"&gt;Film préféré&lt;/label&gt;
+			
+			&lt;select size="5" multiple
+					name="selDefile[]" id="selDefile" &gt;
+				&lt;option value="SW1"&gt;La Menace fantôme&lt;/option&gt;
+				&lt;option value="SW2"&gt;L'Attaque des Clones
+				&lt;/option&gt;
+				&lt;option value="SW3"&gt;La Revanche des Sith
+				&lt;/option&gt;
+				&lt;option value="SW4"&gt;Un nouvel espoir&lt;/option&gt;
+				&lt;option value="SW5"&gt;L'Empire contre-attaque
+				&lt;/option&gt;
+				&lt;option value="SW6"&gt;Le Retour du Jedi&lt;/option&gt;
+				&lt;option value="LR1"&gt;La Communauté de l'anneau
+				&lt;/option&gt;
+				&lt;option value="LR2"&gt;Les Deux Tours&lt;/option&gt;
+				&lt;option value="LR3"&gt;Le Retour du roi&lt;/option&gt;
+			&lt;/select&gt;
+
+			&lt;p&gt;
+				&lt;input type="submit" value="Envoi" name="btn"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+		</section>
+
+
+		<h3>Groupement de lignes</h3>
+		<section>
+			<p>
+				On peut regrouper les lignes d'une liste par catégories. C'est
+				particulièrement utile quand les listes ont beaucoup de lignes. On
+				utilise l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'optgroup')">optgroup</a>
+				comme conteneur des <a
+					onclick="top.FP.Voir.showPageTech('elements', 'option')">option</a>
+				à regrouper.
+			</p>
+
+			<p>
+				Le libellé du regroupement est contenu dans <strong>l'attribut
+					<code>label</code>
+				</strong> de la balise ouvrante <a
+					onclick="top.FP.Voir.showPageTech('elements', 'optgroup')">optgroup</a>.
+				Ce libellé constituera une ligne dans la liste, mais cette ligne ne
+				sera pas sélectionnable.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : groupement de lignes
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Groupement de lignes&lt;/title&gt;
+		&lt;style&gt;
+			form {width: 200px; margin: 0 auto}
+			label {display:block; margin: 1em 0 0.2em 0}
+			input[name="btn"] {float:right; margin: 1.5em 0}
+			select {width: 200px}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form method="POST" action="dossier/reception.php"&gt;
+			&lt;h3&gt;Groupement de lignes&lt;/h3&gt;
+			
+			&lt;label for="selDeroule"&gt;Héros préféré&lt;/label&gt;
+
+			&lt;select name="selDeroule" id="selDeroule" &gt;
+				&lt;optgroup label="V d M"&gt;
+					&lt;option value="moi"&gt;Moi&lt;/option&gt;
+					&lt;option value="piat"&gt;François Piat
+					&lt;/option&gt;
+				&lt;/optgroup&gt;	
+				&lt;optgroup label="Star Wars"&gt;
+					&lt;option value="yoda"&gt;Yoda&lt;/option&gt;
+					&lt;option value="vador"&gt;Dark Vador&lt;/option&gt;
+				&lt;/optgroup&gt;
+				&lt;optgroup label="Le seigneur des anneaux"&gt;
+					&lt;option value="gandalf"&gt;Gandalf&lt;/option&gt;
+					&lt;option value="legolas"&gt;Legolas&lt;/option&gt;
+				&lt;/optgroup&gt;
+			&lt;/select&gt;
+			
+			&lt;p&gt;
+				&lt;input type="submit" value="Envoi" name="btn"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : groupement de lignes
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Groupement de lignes&lt;/title&gt;
+		&lt;style&gt;
+			form {width: 200px; margin: 0 auto}
+			label {display:block; margin: 1em 0 0.2em 0}
+			input[name="btn"] {float:right; margin: 1.5em 0}
+			select {width: 200px}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form method="POST" action="dossier/reception.php"&gt;
+			&lt;h3&gt;Groupement de lignes&lt;/h3&gt;
+			
+			&lt;label for="selDefile"&gt;Film préféré&lt;/label&gt;
+			
+			&lt;select size="5" name="selDefile" id="selDefile"&gt;
+				&lt;optgroup label="Star Wars trilogie 1"&gt;
+					&lt;option value="SW1"&gt;La Menace fantôme
+					&lt;/option&gt;
+					&lt;option value="SW2"&gt;L'Attaque des Clones
+					&lt;/option&gt;
+					&lt;option value="SW3"&gt;La Revanche des Sith
+					&lt;/option&gt;
+				&lt;/optgroup&gt;
+				&lt;optgroup label="Star Wars trilogie 2"&gt;
+					&lt;option value="SW4"&gt;Un nouvel espoir
+					&lt;/option&gt;
+					&lt;option value="SW5"&gt;L'Empire contreattaque
+					&lt;/option&gt;
+					&lt;option value="SW6"&gt;Le Retour du Jedi
+					&lt;/option&gt;
+				&lt;/optgroup&gt;
+				&lt;optgroup label="Le seigneur des anneaux"&gt;
+					&lt;option value="LR1"&gt;Communauté de l'anneau
+					&lt;/option&gt;
+					&lt;option value="LR2"&gt;Les Deux Tours
+					&lt;/option&gt;
+					&lt;option value="LR3"&gt;Le Retour du roi
+					&lt;/option&gt;
+				&lt;/optgroup&gt;
+			&lt;/select&gt;
+
+			&lt;p&gt;
+				&lt;input type="submit" value="Envoi" name="btn"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+		</section>
+
+		<a id="exo_select_02"></a>
+		<h3 class="fp-exo">Voyages-sncf.com</h3>
+		<section>
+			<figure style="float: right; width: 280px;">
+				<img src="../exercices/exo_select_02a.png" width="280" height="250">
+				<figcaption>Voyages-sncf.com</figcaption>
+			</figure>
+
+			<p class="fp-p-raz">
+				Complétez le code <abbr title="HyperText Markup Language">HTML</abbr>
+				pour obtenir le résultat ci-contre.
+			</p>
+
+			<p class="fp-p-raz">
+				La feuille de style liée à l'exercice (<code>form05.css</code>) fera
+				automatiquement la mise en forme des éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'fieldset')">fieldset</a>
+				et <a onclick="top.FP.Voir.showPageTech('elements', 'legend')">legend</a>
+			</p>
+
+			<p class="fp-p-raz">
+				Le formulaire utilise la méthode <code>POST</code> pour envoyer les
+				informations saisies à <code>voyages-sncf.php</code>.
+			</p>
+
+			<p class="fp-p-raz">
+				Les listes s'appellent respectivement <code>slcDepart</code>, <code>slcArrivee</code>,
+				<code>slcAdulte</code> et <code>slcEnfant</code>. Les listes
+				affichent une seule ligne. Les valeurs des lignes sont le numéro de
+				la ligne (1, 2, 3, etc), sauf pour la liste <code>slcEnfant</code>
+				où la numérotation commence à 0.
+			</p>
+
+			<div>
+				<figure style="float: left; width: 280px;">
+					<img src="../exercices/exo_select_02b.png" width="188" height="169">
+					<figcaption>liste des points de départ</figcaption>
+				</figure>
+				<figure style="float: right; width: 280px;">
+					<img src="../exercices/exo_select_02c.png" width="188" height="215">
+					<figcaption>liste des points d'arrivée</figcaption>
+				</figure>
+			</div>
+
+			<p class="fp-p-raz fp-clear">
+				Les boutons s'appellent <code>btnReset</code> et <code>btnSubmit</code>.
+			</p>
+
+
+			<p class="fp-completez">
+				<a onClick="top.FP.Voir.showCompletez('exo_select_02_comp')">Code
+					à compléter</a>
+			</p>
+
+			<div id="exo_select_02_comp" class="BLOC-completez">
+				<form action="" method="post" class="TEST-form">
+					<a class="TEST-lien-css" title="Afficher le fichier CSS"
+						onclick="top.FP.Voir.showPLUS('html08/styles/form05.css.html')"></a>
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : Voyages-sncf.com
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Voyages-sncf.com&lt;/title&gt;
+		&lt;link href="../html08/styles/form05.css" rel="stylesheet"&gt;
+		&lt;style&gt;
+			select {width: 160px;}
+			select[name="slcAdulte"], 
+			select[name="slcEnfant"] { width: auto;}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form&gt;
+		
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+
+			<p class="fp-solution">
+				<a onClick="top.FP.Voir.showSolution('exo_select_02_solu', 1)">Une
+					solution possible</a>
+			</p>
+			<div id="exo_select_02_solu" class="BLOC-solution">
+				<form action="" method="post" class="TEST-form">
+					<a class="TEST-lien-css" title="Afficher le fichier CSS"
+						onclick="top.FP.Voir.showPLUS('html08/styles/form05.css.html')"></a>
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : Voyages-sncf.com
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Voyages-sncf.com&lt;/title&gt;
+		&lt;link href="../html08/styles/form05.css" rel="stylesheet"&gt;
+		&lt;style&gt;
+			select {width: 160px;}
+			select[name="slcAdulte"], 
+			select[name="slcEnfant"] { width: auto;}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form method="POST" action="voyages-sncf.php"&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Mon billet&lt;/legend&gt;
+				&lt;div&gt;
+					&lt;label for="slcDepart"&gt;Départ&lt;/label&gt;
+					&lt;select id="slcDepart" name="slcDepart"&gt;
+						&lt;optgroup label="La Comté"&gt;
+							&lt;option value="1"&gt;
+								Hobbitebourg&lt;/option&gt;
+							&lt;option value="2"&gt;
+								Vieille forêt&lt;/option&gt;
+						&lt;/optgroup&gt;
+						&lt;optgroup label="Rohan"&gt;
+							&lt;option value="3"&gt;
+								Isengard&lt;/option&gt;
+							&lt;option value="4"&gt;
+								Gouffre de Helm&lt;/option&gt;
+							&lt;option value="5"&gt;Edoras&lt;/option&gt;
+						&lt;/optgroup&gt;
+						&lt;optgroup label="Mordor"&gt;
+							&lt;option value="6"&gt;
+								Minas Morgul&lt;/option&gt;
+							&lt;option value="7"&gt;
+								Barad-Dûr&lt;/option&gt;
+						&lt;/optgroup&gt;					
+					&lt;/select&gt;
+				&lt;/div&gt;
+				
+				&lt;div&gt;
+					&lt;label for="slcArrivee"&gt;Arrivée&lt;/label&gt;
+					&lt;select id="slcArrivee" name="slcArrivee"&gt;
+						&lt;optgroup label="Bordure extérieur"&gt;
+							&lt;option value="1"&gt;
+								Tatooine&lt;/option&gt;
+							&lt;option value="2"&gt;Bespin&lt;/option&gt;
+							&lt;option value="3"&gt;Dagobah&lt;/option&gt;
+							&lt;option value="4"&gt;Endor&lt;/option&gt;
+							&lt;option value="5"&gt;Hoth&lt;/option&gt;
+							&lt;option value="6"&gt;Yavin&lt;/option&gt;
+						&lt;/optgroup&gt;
+						&lt;optgroup label="Bordure médiane"&gt;
+							&lt;option value="2"&gt;Naboo&lt;/option&gt;
+						&lt;/optgroup&gt;
+						&lt;optgroup label="Hors de la galaxie"&gt;
+							&lt;option value="7"&gt;Kamino&lt;/option&gt;
+						&lt;/optgroup&gt;
+						&lt;optgroup label="Mondes du Noyau"&gt;
+							&lt;option value="8"&gt;
+								Alderaan&lt;/option&gt;
+							&lt;option value="9"&gt;
+								Coruscant&lt;/option&gt;
+						&lt;/optgroup&gt;					
+					&lt;/select&gt;
+				&lt;/div&gt;
+				
+				&lt;div&gt;
+					&lt;input type="radio" name="radAR" id="r1"
+						   value="aller simple" checked&gt;
+					&lt;label for="r1"&gt;Aller simple&lt;/label&gt;
+					&lt;input type="radio" name="radAR" id="r2"
+						   value="aller retour"&gt;
+					&lt;label for="r2"&gt;Aller-retour&lt;/label&gt;
+				&lt;/div&gt;
+				
+				&lt;div&gt;
+					&lt;select id="slcAdulte" name="slcAdulte"&gt;
+						&lt;option value="1"&gt;1&lt;/option&gt;
+						&lt;option value="2"&gt;2&lt;/option&gt;
+						&lt;option value="3"&gt;3&lt;/option&gt;
+						&lt;option value="4"&gt;4&lt;/option&gt;
+						&lt;option value="5"&gt;5&lt;/option&gt;
+					&lt;/select&gt;
+					&lt;label for="slcAdulte"&gt;adulte(s)&lt;/label&gt;
+
+					&lt;select id="slcEnfant" name="slcEnfant"&gt;
+						&lt;option value="0"&gt;0&lt;/option&gt;
+						&lt;option value="1"&gt;1&lt;/option&gt;
+						&lt;option value="2"&gt;2&lt;/option&gt;
+						&lt;option value="3"&gt;3&lt;/option&gt;
+						&lt;option value="4"&gt;4&lt;/option&gt;
+						&lt;option value="5"&gt;5&lt;/option&gt;
+					&lt;/select&gt;
+					&lt;label for="slcEnfant"&gt;enfant(s)&lt;/label&gt;
+				&lt;/div&gt;				
+			&lt;/fieldset&gt;
+			
+			&lt;fieldset&gt;
+				&lt;input type="reset" value="J'efface"
+					   name="btnReset"&gt;
+				&lt;input type="submit" value="Je réserve"
+					   name="btnSubmit"&gt;
+			&lt;/fieldset&gt;			
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Widget text-shadow</title>
+
+<link rel="stylesheet" href="text_shadow_widget.css">
+<link rel="stylesheet" href="../_local/codemirror.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+
+<!--  Polyfill pour gestion type=interval dans firefox -->
+<script src="../_local/polyfill/html5slider.js"></script>
+<!--  Polyfill pour gestion type=color dans firefox -->
+<script src="../_local/polyfill/jscolor/jscolor.js"></script>
+
+<script src="text_shadow_widget.js"></script>
+</head>
+
+<body>
+	<div class="TRUC">
+		<div class="TRUC-param">
+			<div id="TRUC-param-1">
+				<div>
+					<label class="TRUC-label3" id="label-font-size">font-size</label><input
+						type="range" min="0" max="60" step="1" value="20"
+						id="TRUC-rng-font" onchange="FPL.fontChange(this.value)"
+						oninput="FPL.fontChange(this.value)">
+				</div>
+
+				<div>
+					<label class="TRUC-label2">font-weight</label> <label><input
+						type="checkbox" id="TRUC-chk-weight"
+						onchange="FPL.weightChange(this.checked)"> bold</label>
+				</div>
+
+				<div>
+					<label class="TRUC-label2">color</label><input
+						class="color {pickerClosable:true, 
+						pickerCloseText:'Fermer', onImmediateChange:'FPL.colorChange(this);'}"
+						value="000000" id="TRUC-sel-color">
+				</div>
+
+				<div>
+					<label class="TRUC-label2">background-color</label><input
+						class="color {pickerClosable:true, 
+						pickerCloseText:'Fermer', onImmediateChange:'FPL.backgroundColorChange(this);'}"
+						value="FFFFFF" id="TRUC-sel-background-color">
+				</div>
+			</div>
+
+			<fieldset id="TRUC-param-2">
+				<legend>text-shadow</legend>
+				<div>
+					<label class="TRUC-label1">décalage horizontal</label><input
+						type="range" min="-40" max="40" step="1" value="4"
+						id="TRUC-rng-horiz" onchange="FPL.horizChange(this.value)"
+						oninput="FPL.horizChange(this.value)"> <span
+						id="TRUC-span-horiz"></span>
+				</div>
+
+				<div>
+					<label class="TRUC-label1">décalage vertical</label><input
+						type="range" min="-40" max="40" step="1" value="4"
+						id="TRUC-rng-vertic" onchange="FPL.verticChange(this.value)"
+						oninput="FPL.verticChange(this.value)"> <span
+						id="TRUC-span-vertic"></span>
+				</div>
+
+				<div>
+					<label class="TRUC-label1">adoucissement</label><input type="range"
+						min="0" max="40" step="1" value="3" id="TRUC-rng-adouci"
+						onchange="FPL.adouciChange(this.value)"
+						oninput="FPL.adouciChange(this.value)"> <span
+						id="TRUC-span-adouci"></span>
+				</div>
+
+				<div>
+					<label class="TRUC-label1">couleur</label><input
+						class="color {pickerClosable:true, 
+						pickerCloseText:'Fermer', onImmediateChange:'FPL.couleurOmbreChange(this);'}"
+						value="03B8CF" id="TRUC-sel-couleur-ombre">
+				</div>
+
+			</fieldset>
+
+			<!-- 
+			<div style="clear: both"">
+				<label class="TRUC-label2">text-align</label> <label><input
+					type="radio" name="TRUC-rad-align"
+					onchange="FPL.alignChange('left')" checked>left</label> <label><input
+					type="radio" name="TRUC-rad-align"
+					onchange="FPL.alignChange('center')">center</label> <label><input
+					type="radio" name="TRUC-rad-align"
+					onchange="FPL.alignChange('right')">right</label> <label><input
+					type="radio" name="TRUC-rad-align"
+					onchange="FPL.alignChange('justify')">justify</label>
+			</div>
+			-->
+		</div>
+
+		<div style="display: table; width: 100%">
+			<div id="TRUC-resultat" contenteditable="true">Cliquez pour
+				changer le texte</div>
+		</div>
+		<div>
+			<pre id="TRUC-code" class="cm-s-default"></pre>
+		</div>
+	</div>
+
+</body>
+</html>

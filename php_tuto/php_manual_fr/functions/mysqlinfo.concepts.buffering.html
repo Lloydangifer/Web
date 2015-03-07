@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Requ&ecirc;tes mises ou non en m&eacute;moire tampon</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="mysqlinfo.concepts.html">Concepts</a></div>
+ <div class="next"><a href="mysqlinfo.concepts.charset.html">Jeux de caract&egrave;res</a></div>
+ <div class="up"><a href="mysqlinfo.concepts.html">Concepts</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="mysqlinfo.concepts.buffering" class="section">
+  <h2 class="title">Requêtes mises ou non en mémoire tampon</h2>
+  
+  <p class="para">
+   Les requêtes utilisent par défaut le mode Mémoire tampon.
+   Cela signifie que le résultat des requêtes est immédiatement
+   transféré du serveur MySQL à PHP et conservé dans la mémoire
+   du processus PHP. Cela permet des opérations complémentaires
+   comme compter le nombre de résultat, et déplacer le
+   pointeur de résultat actuel. Il permet également d&#039;exécuter des
+   requêtes supplémentaires sur la même connexion tout en travaillant
+   sur le jeu de résultats. L&#039;inconvénient de la mise en mémoire
+   tampon est que des jeux de résultats importants peuvent demander
+   beaucoup plus de mémoire. La mémoire restera occupée jusqu&#039;à ce 
+   que toutes les références sur les jeux de résultats soient
+   désactivées ou que les jeux de résultats soient explicitement
+   libérés, ce qui arrive de manière automatique à la fin du
+   processus. La terminologie &quot;store result&quot; est également utilisée
+   avec le mode mémoire tampon, vu que la totalité des résultats
+   est stocké à la fois.
+  </p>
+
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Lorsque vous utilisez libmysql comme bibliothèque, la limite
+    mémoire de PHP ne comptera pas la mémoire utilisée pour les
+    jeux de résultats à moins que les données sont lues dans les
+    variables PHP. Avec mysqlnd, la mémoire utilisée comprendra
+    le jeu de résultats complet.
+   </p>
+  </p></blockquote>
+  
+  <p class="para">
+   Les requêtes n&#039;utilisant pas la mémoire tampon, les requêtes
+   MySQL exécutent leur requête et retournent une
+   <span class="type"><span class="type ressource">ressource</span></span> tandis que les données sont toujours
+   en attente sur le serveur MySQL pour être récupérées. Cela
+   utilise moins de mémoire côté PHP, mais peut augmenter la charge
+   sur le serveur. À moins que le jeu de résultats complet ait été
+   récupéré depuis le serveur, aucune autre requête peut être
+   envoyée sur la même connexion. Les requêtes n&#039;utilisant pas la
+   mémoire tampon peuvent également faire référence à un 
+   &quot;use result&quot;.
+  </p>
+
+  <p class="para">
+   Suivant ces caractéristiques, les requêtes utilisant la mémoire
+   tampon devraient être utilisées dans les cas où vous attendez
+   seulement un jeu de résultats limité ou avez besoin de savoir la
+   quantité de lignes retournées avant de lire toutes les lignes.
+   Le mode sans mémoire tampon doit être utilisé lorsque vous
+   attendez plus de résultats.
+  </p>
+  
+  <p class="para">
+   En raison du fait que les requêtes sont mises en mémoire tampon
+   par défaut, les exemples ci-dessous vont vous montrer comment
+   exécuter des requêtes, avec chaque API, sans mise en mémoire
+   tampon.
+  </p>
+
+  <div class="example" id="example-1543">
+   <p><strong>Exemple #1 Exemple de requêtes n&#039;utilisant pas la mémoire tampon : mysqli</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"world"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$uresult&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;Name&nbsp;FROM&nbsp;City"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MYSQLI_USE_RESULT</span><span style="color: #007700">);<br /><br />if&nbsp;(</span><span style="color: #0000BB">$uresult</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$uresult</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_assoc</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'Name'</span><span style="color: #007700">]&nbsp;.&nbsp;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">$uresult</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <div class="example" id="example-1544">
+   <p><strong>Exemple #2 Exemple de requêtes n&#039;utilisant pas la mémoire tampon : pdo_mysql</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$pdo&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">(</span><span style="color: #DD0000">"mysql:host=localhost;dbname=world"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'my_user'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'my_pass'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$pdo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setAttribute</span><span style="color: #007700">(</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">MYSQL_ATTR_USE_BUFFERED_QUERY</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">TRUE</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$uresult&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$pdo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;Name&nbsp;FROM&nbsp;City"</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">$uresult</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$uresult</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch</span><span style="color: #007700">(</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">FETCH_ASSOC</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'Name'</span><span style="color: #007700">]&nbsp;.&nbsp;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+
+  <div class="example" id="example-1545">
+   <p><strong>Exemple #3 Exemple de requêtes n&#039;utilisant pas la mémoire tampon: mysql</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"localhost"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"my_pass"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$db&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_select_db</span><span style="color: #007700">(</span><span style="color: #DD0000">"world"</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$uresult&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_unbuffered_query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;Name&nbsp;FROM&nbsp;City"</span><span style="color: #007700">);<br />if&nbsp;(</span><span style="color: #0000BB">$uresult</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;while&nbsp;(</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_fetch_assoc</span><span style="color: #007700">(</span><span style="color: #0000BB">$uresult</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'Name'</span><span style="color: #007700">]&nbsp;.&nbsp;</span><span style="color: #0000BB">PHP_EOL</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+ </div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="mysqlinfo.concepts.html">Concepts</a></div>
+ <div class="next"><a href="mysqlinfo.concepts.charset.html">Jeux de caract&egrave;res</a></div>
+ <div class="up"><a href="mysqlinfo.concepts.html">Concepts</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

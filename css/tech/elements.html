@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Eléments HTML</title>
+
+
+<!-- ATENTION : PAS DE CTRL - MAJ - F DANS ECLIPSE -->
+
+
+<style>
+html {
+	height: auto !important;
+	min-height: 100%;
+	font-size: 15px
+	}
+
+body {
+	background: #FFF; /*none repeat scroll 0 0 #F6F6F6;*/
+	color: #000000;
+	font: 15px/1.5 verdana, arial, sans-serif;
+	height: auto !important;
+	margin: 0 0 1em 0;
+	min-height: 100%;
+	padding: 0;
+	-webkit-text-size-adjust: 15px;
+	-ms-text-size-adjust: 15px
+	}
+
+h2 {
+	background: #CCC;
+	border-radius: 12px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+	clear: both;
+	color: #111111;
+	font-size: 1.13333em;
+	font-weight: bold;
+	margin: 1em auto 0;
+	padding: 0.2em 1em;
+	position: relative;
+	width: 480px;
+	}
+
+code {
+	font-family: Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console',
+		Monaco, 'Courier New', Courier, monospace;
+	font-size: 1.15385em; /* 15px : 0.866667em du dl * 1.15285 */
+	}
+
+/*------------------------------------------------------*/
+/* 		TABLE DES ELEMENTS 								*/
+/*------------------------------------------------------*/
+#ELT-table {
+	border-collapse: collapse;
+	margin: 1em auto 0;
+	border-spacing: 0;
+	empty-cells: show;
+	font-size: inherit
+	}
+
+#ELT-table td {
+	border: 0;
+	margin: 0;
+	padding: 1px
+	}
+
+.ELT-bloc {
+	background-image: url("../_core/images/type_bloc_2.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	}
+	
+/*------------------------------------------------------*/
+/* 		BLOCS DE CATEGORIE DES ELEMENTS					*/
+/*------------------------------------------------------*/
+.CAT-root,
+.CAT-doc,
+.CAT-texte,
+.CAT-groupe,
+.CAT-form,
+.CAT-section,
+.CAT-inter,
+.CAT-table,
+.CAT-inclus {
+	border-radius: 5px;
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.6) inset;
+	cursor: pointer;
+	font-size: 10px;
+	height: 38px;
+	line-height: 38px;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	width: 46px
+	}
+
+.CAT-root {
+	background-color: #B60A36;
+	color: #fff
+	}
+
+.CAT-doc {background-color: #4CC0FF}
+.CAT-texte {background-color: #F9F}
+.CAT-groupe {background-color: #F96}
+.CAT-form {background-color: #47ed47}
+.CAT-section {background-color: #6FF}
+.CAT-inter {background-color: #798bf2}
+.CAT-table {background-color: #FC8149}
+.CAT-inclus {background-color: #FC0}
+
+.CAT-root:hover,
+.CAT-doc:hover,
+.CAT-texte:hover,
+.CAT-groupe:hover,
+.CAT-form:hover,
+.CAT-section:hover,
+.CAT-inter:hover,
+.CAT-table:hover,
+.CAT-inclus:hover {
+	box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.6);
+	font-weight: bold;
+	z-index: 2
+	}
+
+/*------------------------------------------------------*/
+/*		BLOC INFO SUR UN TAG							*/
+/*------------------------------------------------------*/
+#ELT-info {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #CCCCCC;
+	box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.6);
+	display: none;
+	font-size: 11px;
+	left: 0;
+	padding: 5px;
+	position: absolute;
+	top: 0;
+	width: 400px;
+	z-index: 10
+	}
+
+#ELT-info li a {margin: 0}
+
+#ELT-btn-close {
+	background: url(../_core/images/close.png) no-repeat;
+	float: right;
+	cursor: pointer;
+	width: 16px;
+	height: 16px;
+	margin: 0 0 5px 5px
+		}
+
+/*------------------------------------------------------*/
+/* 		TABLE DE LA LEGENDE								*/
+/*------------------------------------------------------*/
+#LGD-table {
+	font-size: 10px;
+	border-collapse: collapse;
+	margin: 10px auto 30px auto;
+	border-spacing: 0;
+	empty-cells: show
+}
+
+#LGD-table td:nth-child(odd) {
+	width: 15px;
+	padding-bottom: 5px
+	}
+
+#LGD-table td:nth-child(even) {
+	width: 80px;
+	padding-bottom: 5px
+	}
+
+#LGD-table .CAT-root,
+#LGD-table .CAT-doc,
+#LGD-table .CAT-texte,
+#LGD-table .CAT-groupe,
+#LGD-table .CAT-form,
+#LGD-table .CAT-section,
+#LGD-table .CAT-inter,
+#LGD-table .CAT-table,
+#LGD-table .CAT-inclus {
+	border-radius: 3px;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.6) inset;
+	cursor: default;
+	font-size: 10px;
+	height: 15px;
+	width: 15px
+	}
+
+#LGD-type-bloc {
+	background: url("../_core/images/type_bloc_2.png") no-repeat -6px -9px;
+	float: left;
+	height: 10px;
+	margin: 5px 2px 0 0;
+	width: 20px;
+	}
+
+/*------------------------------------------------------*/
+/* 		LISTES DE TAGS									*/
+/*------------------------------------------------------*/
+#elts_alphabet a {margin: 0 0.28em}
+
+#ELT-listes {
+	margin: 0 auto;
+	width: 480px
+	}
+
+.alphabet {
+	font-size: 1.333333em;
+	font-weight: bold;
+	color: #f00;
+	margin-bottom: 0
+	}
+
+dl {
+	margin: 0;
+	padding: 0;
+	font-size: 0.866667em /*13px */
+	}
+
+dt {
+	background: none repeat scroll 0 0 #DDDDDD;
+	border-radius: 5px;
+	font-weight: bold;
+	margin: 0;
+	padding: 3px
+	}
+
+dd {
+	margin: 0 0 0.8em 3em;
+	padding: 0
+	}
+
+.LIEN-spec { /* liens dans barre nom du tag dans liste alpha des éléments */
+	float: right;
+	font-size: 10px;
+	line-height: 20px;
+	margin: 0 0 0 15px
+	}
+
+.LIEN-top-page {
+	background: url(../_core/images/__arrow_up24.png) no-repeat;
+	display: block;
+	float: right;
+	height: 24px;
+	margin: -1px 0 0 12px;
+	width: 24px
+	}
+
+.LIEN-top-page:hover {background: url(../_core/images/__arrow_up24_h.png) no-repeat}
+
+ul {
+	margin: 0;
+	padding: 0
+	}
+
+li {
+	margin: 0;
+	padding: 0;
+	list-style: none
+	}
+
+.ATTR-plus,.ATTR-moins {
+	display: block;
+	width: 7em
+	}
+
+.ATTR-plus:after {
+	content: ' +';
+	font-size: 1.2em;
+	font-weight: bold
+	}
+
+.ATTR-moins:after {
+	content: ' -';
+	font-size: 1.2em;
+	font-weight: bold
+	}
+
+.ATTR-liste {
+	display: none;
+	margin: 0 0 1em 2em
+	}
+
+.ATTR-liste-nom,.ATTR-glob-plus,.ATTR-glob-moins {
+	font-family: Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console',
+		Monaco, 'Courier New', Courier, monospace;
+	font-size: 1.15385em; /* 15px : 0.866667em du dl * 1.15285 */
+	font-weight: bold;
+	color: #000 !important
+	}
+
+.ATTR-liste-val { /* liens sur les types de valeurs */
+	color: #000 !important;
+	background: none !important;
+	padding: 0 !important
+	}
+
+.ATTR-glob-plus:after {
+	content: ' +';
+	font-size: 1.2em;
+	font-weight: bold
+	}
+
+.ATTR-glob-moins:after {
+	content: ' -';
+	font-size: 1.2em;
+	font-weight: bold
+		}
+/*------------------------------------------------------*/
+a {
+	color: #0000EE;
+	cursor: pointer
+}
+
+a:active,
+a:focus {outline: 0}
+
+a:hover {
+	color: #AA0026;
+	outline: 0
+	}
+
+a:visited {color: #0000EE}
+
+a[href ^='http'] {	/* Liens externes au tutoriel */
+	background: url(../_core/images/lien_www_12.png) no-repeat right center;
+	padding-right: 14px
+	}
+</style>
+
+<script src="html_elements_bd.js"></script>
+<script>
+	//___________________________________________________________________
+	//
+	//Singleton FPL : objet local
+	//___________________________________________________________________
+	var FPL = {
+		nomTag : '--',
+		BlocInfo : null,
+		BlocTexteInfo : null,
+
+		//-----------------------------------------------------
+		// Composition de la liste alphabétiques des éléments
+		initListesTags : function() {
+			var H = '', HAlpha = '', nomTag, rupLettre = '', B = document
+					.getElementById('ELT-listes'), i, iMax, Tag;
+
+			for (nomTag in oTags) {
+				if (rupLettre != nomTag.substring(0, 1)) {
+					if (rupLettre != '') {
+						H += '</dl>';
+						H = B.innerHTML + H;
+						B.innerHTML = H;
+						H = '';
+					}
+
+					rupLettre = nomTag.substring(0, 1);
+
+					HAlpha += '<a href="#alpha_' + rupLettre + '">'
+							+ rupLettre.toUpperCase() + '</a>';
+
+					H += '<p id="alpha_' + rupLettre + '" class="alphabet">'
+							+ rupLettre.toUpperCase() + '</p><dl>';
+				}
+
+				Tag = oTags[nomTag];
+
+				H += '<dt id="' + nomTag + '">'
+						+ '<a class="LIEN-top-page" href="#top" title="Haut de page"></a>'
+						+ this.makeLiensExternes(nomTag)
+						+ '<code>&lt'
+						+ nomTag
+						+ '&gt;</code></dt>'
+						+ '<dd>'
+						+ oTags[nomTag].def
+						+ ' Type : '
+						+ oTagTypes[oTags[nomTag]['type']]
+						+ '<a class="ATTR-plus" id="attr_' + nomTag + '">Attributs</a>'
+						+ '</dd>';
+			}
+
+			if (rupLettre != '') {
+				H += '</dl>';
+				H = B.innerHTML + H;
+				B.innerHTML = H;
+			}
+
+			document.getElementById('elts_alphabet').innerHTML = HAlpha;
+		},
+
+		//-----------------------------------------------------
+		// Affichage / masquage de la fenêtre info d'un élément
+		// Target : node cliquée
+		showTagInfos : function(Target) {
+			var Rect, H, ViewP, bcInfoW, bcInfoH;
+
+			if (Target.tagName != 'DIV') {
+				return;
+			}
+			if (!oTags[Target.textContent]) {
+				return;
+			}
+
+			// Click sur le tag précédent => cache le bloc info
+			if (this.nomTag == Target.textContent) {
+				this.closeTagInfo();
+				return;
+			}
+
+			// Click sur un tag => affiche le bloc info
+			this.nomTag = Target.textContent;
+
+			if (this.BlocInfo == null) {
+				this.BlocInfo = document.getElementById('ELT-info');
+				this.BlocTexteInfo = document.getElementById('bcTexteInfoTag');
+			}
+
+			// Contenu du bloc d'informations
+			H = '<code>&lt' + this.nomTag + '&gt;</code> '
+					+ oTags[this.nomTag].def + ' Type : '
+					+ oTagTypes[oTags[this.nomTag]['type']] + '<p>'
+					+ this.makeLiensExternes(this.nomTag)
+					+ '<div onclick="FPL.showTagAttributs(event)">'
+					+ this.makeListeAttributs(this.nomTag, true) + '</div>';
+
+			FPL.BlocTexteInfo.innerHTML = H;
+			FPL.BlocInfo.style.display = 'block';
+
+			// Positionnement		
+			Rect = Target.getBoundingClientRect();
+			ViewP = top.FP.getViewportSize(self);
+
+			bcInfoW = this.BlocInfo.scrollWidth;
+			bcInfoH = this.BlocInfo.scrollHeight;
+
+			this.BlocInfo.style.left = (Rect.left + bcInfoW < ViewP.X - 30) ? Rect.left
+					+ 'px'
+					: (ViewP.W - bcInfoW - 30) + 'px';
+
+			this.BlocInfo.style.top = (Rect.bottom + bcInfoH < ViewP.Y) ? Rect.bottom
+					+ ViewP.T + 'px'
+					: (Rect.bottom + ViewP.T - bcInfoH) + 'px';
+		},
+
+		//-----------------------------------------------------	
+		// Fermeture de la fenêtre d'info d'un élément
+		closeTagInfo : function() {
+			this.BlocInfo.style.display = 'none';
+			this.nomTag = '';
+		},
+
+		//-----------------------------------------------------
+		// Gestionnaire du click sur la liste des éléments
+		// affichage / masquage de la liste des attributs d'un élément
+		showTagAttributs : function(event) {
+			var Target, UL;
+
+			event = event || window.event;
+			Target = event.target || event.srcElement;
+
+			if (Target.className == 'ATTR-plus') {
+				if (!Target.nextSibling) {
+					// Génération de la liste des attributs du tag
+					UL = document.createElement('UL');
+					UL.className = 'ATTR-liste';
+					UL.innerHTML = FPL.makeListeAttributs(Target.id
+							.substring(5), false);
+					Target.parentNode.appendChild(UL);
+				}
+				Target.nextSibling.style.display = 'block';
+				Target.className = 'ATTR-moins';
+				return;
+			}
+
+			if (Target.className == 'ATTR-moins') {
+				Target.nextSibling.style.display = 'none';
+				Target.className = 'ATTR-plus';
+				return;
+			}
+
+			if (Target.className == 'ATTR-glob-plus') {
+				Target.nextSibling.style.display = 'block';
+				Target.className = 'ATTR-glob-moins';
+				return;
+			}
+
+			if (Target.className == 'ATTR-glob-moins') {
+				Target.nextSibling.style.display = 'none';
+				Target.className = 'ATTR-glob-plus';
+				return;
+			}
+		},
+
+		//-----------------------------------------------------	
+		// Génére les liens externes d'un élement
+		makeLiensExternes : function(nomTag) {
+			var H = '';
+
+			if (oTags[nomTag].what != '') {
+				H += '<a class="LIEN-spec" href="'
+						+ oLiens.what
+						+ ((oTags[nomTag].what != '=') ? oTags[nomTag].what
+								: oTags[nomTag].w3c) + '#the-' + nomTag
+						+ '-element" target="_blanc">Wwg</a>';
+			}
+
+			if (oTags[nomTag].w3c != '') {
+				H += '<a class="LIEN-spec" href="' 
+				+ oLiens.w3c + oTags[nomTag].w3c 
+				+ '#the-' + nomTag + '-element" target="_blank">w3c</a>';
+			}
+
+			H += '<a class="LIEN-spec" href="' 
+			+ oLiens.mdn + nomTag 
+			+ '" target="_blank">MDN</a>';
+
+			return H;
+		},
+
+		//-----------------------------------------------------	
+		// Génére la liste des attributs d'un élément
+		makeListeAttributs : function(nomTag, AvecLien) {
+			var H = '', Tag = oTags[nomTag], TAttr = Tag.attr, i, iMax = TAttr.length, nomAttr, ExpReg = /<a href="/g, cleVal;
+
+			if (iMax == 0) {
+				return H;
+			}
+
+			if (AvecLien) {
+				// Lien pour afficher / masquer la liste des attributs
+				H = '<a class="ATTR-plus">Attributs</a>';
+				H += '<ul class="ATTR-liste">';
+			}
+
+			// Liste des attributs			
+			for (i = 0; i < iMax; i++) {
+				// Si attributs globaux
+				if (TAttr[i] == 'glob') {
+					H += this.makeListeAttrGlobaux();
+					continue;
+				}
+
+				// Autre attribut
+				nomAttr = TAttr[i].substring(TAttr[i].lastIndexOf('-') + 1);
+
+				H += '<li><a href="' + oLiens.w3c;
+
+				if (TAttr[i].substring(0, 1) != '-') {
+					H += TAttr[i] + '" ';
+				} else {
+					H += Tag.w3c + '#attr' + TAttr[i] + '" ';
+				}
+
+				H += 'target="_blank" class="ATTR-liste-nom">' + nomAttr
+						+ '</a>'
+
+				if (oAttrs[nomAttr]) {
+					// Info attribut
+					H += ' : ' + oAttrs[nomAttr];
+
+					// Types de valeurs possibles
+					cleVal = nomAttr + ' ' + nomTag;
+					if (!oAttrVals[cleVal]) {
+						cleVal = nomAttr;
+					}
+					if (oAttrVals[cleVal]) {
+						H += ' '
+								+ oAttrVals[cleVal].replace(ExpReg,
+										'<a target="_blank" class="ATTR-liste-val" href="'
+												+ oLiens.w3c);
+					}
+				}
+
+				H += '</li>';
+			}
+
+			if (AvecLien) {
+				return H + '</ul>';
+			}
+
+			return H;
+		},
+
+		//-----------------------------------------------------	
+		// Génére la liste des attributs globaux
+		makeListeAttrGlobaux : function() {
+			var nomAttr, ExpReg = /<a href="/g, H,
+
+			H = '<li><a class="ATTR-glob-plus">Attributs globaux</a>'
+					+ '<ul class="ATTR-liste">';
+
+			for (nomAttr in oAttrGlobaux) {
+				H += '<li><a href="' + oLiens.w3c + oAttrGlobaux[nomAttr] + '" target="_blank" class="ATTR-liste-nom">'
+						+ nomAttr + '</a> : ' + oAttrs[nomAttr];
+
+				// Types de valeurs possibles
+				if (oAttrVals[nomAttr]) {
+					H += ' '
+							+ oAttrVals[nomAttr].replace(ExpReg,
+									'<a target="_blank" class="ATTR-liste-val" href="'
+											+ oLiens.w3c);
+				}
+
+				H += '</li>';
+			}
+			return H + '</ul>';
+		}
+	};
+</script>
+
+</head>
+<body>
+	<h2 id="table_elts">Les éléments HTML</h2>
+	<table id="ELT-table">
+		<tbody>
+			<tr>
+				<td><div class="CAT-root">html</div></td>
+				<td><div class="CAT-doc">head</div></td>
+				<td><div class="CAT-doc">base</div></td>
+				<td><div class="CAT-doc">link</div></td>
+				<td><div class="CAT-doc">meta</div></td>
+				<td><div class="CAT-doc">noscript</div></td>
+				<td><div class="CAT-doc">script</div></td>
+				<td><div class="CAT-doc">style</div></td>
+				<td><div class="CAT-doc">title</div></td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<td><div class="CAT-section ELT-bloc">body</div></td>
+				<td><div class="CAT-section ELT-bloc">article</div></td>
+				<td><div class="CAT-section ELT-bloc">aside</div></td>
+				<td><div class="CAT-section ELT-bloc">footer</div></td>
+				<td><div class="CAT-section ELT-bloc">header</div></td>
+				<td><div class="CAT-groupe ELT-bloc">address</div></td>
+				<td><div class="CAT-groupe ELT-bloc">blockquote</div></td>
+				<td><div class="CAT-groupe ELT-bloc">dd</div></td>
+				<td><div class="CAT-groupe ELT-bloc">div</div></td>
+				<td><div class="CAT-groupe ELT-bloc">dl</div></td>
+			</tr>
+
+			<tr>
+				<td><div class="CAT-section ELT-bloc">h1</div></td>
+				<td><div class="CAT-section ELT-bloc">h2</div></td>
+				<td><div class="CAT-section ELT-bloc">h3</div></td>
+				<td><div class="CAT-section ELT-bloc">h4</div></td>
+				<td><div class="CAT-texte">a</div></td>
+				<td><div class="CAT-texte">abbr</div></td>
+				<td><div class="CAT-groupe ELT-bloc">dt</div></td>
+				<td><div class="CAT-groupe ELT-bloc">figcaption</div></td>
+				<td><div class="CAT-groupe ELT-bloc">figure</div></td>
+				<td><div class="CAT-groupe ELT-bloc">hr</div></td>
+			</tr>
+
+			<tr>
+				<td><div class="CAT-section ELT-bloc">h5</div></td>
+				<td><div class="CAT-section ELT-bloc">h6</div></td>
+				<td><div class="CAT-section ELT-bloc">main</div></td>
+				<td><div class="CAT-texte">b</div></td>
+				<td><div class="CAT-texte">bdi</div></td>
+				<td><div class="CAT-texte">bdo</div></td>
+				<td><div class="CAT-texte">br</div></td>
+				<td><div class="CAT-groupe ELT-bloc">li</div></td>
+				<td><div class="CAT-groupe ELT-bloc">ol</div></td>
+				<td><div class="CAT-groupe ELT-bloc">p</div></td>
+			</tr>
+
+			<tr>
+				<td><div class="CAT-section ELT-bloc">nav</div></td>
+				<td><div class="CAT-section ELT-bloc">section</div></td>
+				<td><div class="CAT-texte">cite</div></td>
+				<td><div class="CAT-texte">code</div></td>
+				<td><div class="CAT-texte">del</div></td>
+				<td><div class="CAT-texte">dfn</div></td>
+				<td><div class="CAT-texte">em</div></td>
+				<td><div class="CAT-texte">i</div></td>
+				<td><div class="CAT-groupe ELT-bloc">pre</div></td>
+				<td><div class="CAT-groupe ELT-bloc">ul</div></td>
+			</tr>
+
+			<tr>
+				<td><div class="CAT-inclus">audio</div></td>
+				<td><div class="CAT-inclus">area</div></td>
+				<td><div class="CAT-texte">ins</div></td>
+				<td><div class="CAT-texte">kbd</div></td>
+				<td><div class="CAT-texte">mark</div></td>
+				<td><div class="CAT-texte">q</div></td>
+				<td><div class="CAT-texte">rp</div></td>
+				<td><div class="CAT-texte">ruby</div></td>
+				<td><div class="CAT-inter ELT-bloc">dialog</div></td>
+				<td><div class="CAT-inter">details</div></td>
+			</tr>
+
+			<tr>
+				<td><div class="CAT-inclus">canvas</div></td>
+				<td><div class="CAT-inclus">embed</div></td>
+				<td><div class="CAT-inclus">iframe</div></td>
+				<td><div class="CAT-texte">rt</div></td>
+				<td><div class="CAT-texte">s</div></td>
+				<td><div class="CAT-texte">samp</div></td>
+				<td><div class="CAT-texte">small</div></td>
+				<td><div class="CAT-form ELT-bloc">form</div></td>
+				<td><div class="CAT-form">button</div></td>
+				<td><div class="CAT-inter">summary</div></td>
+			</tr>
+
+			<tr>
+				<td><div class="CAT-inclus">img</div></td>
+				<td><div class="CAT-inclus">map</div></td>
+				<td><div class="CAT-inclus">object</div></td>
+				<td><div class="CAT-texte">span</div></td>
+				<td><div class="CAT-texte">strong</div></td>
+				<td><div class="CAT-texte">sub</div></td>
+				<td><div class="CAT-texte">sup</div></td>
+				<td><div class="CAT-form">datalist</div></td>
+				<td><div class="CAT-form ELT-bloc">fieldset</div></td>
+				<td><div class="CAT-form">input</div></td>
+			</tr>
+
+			<tr>
+				<td><div class="CAT-inclus">param</div></td>
+				<td><div class="CAT-inclus">source</div></td>
+				<td><div class="CAT-inclus">track</div></td>
+				<td><div class="CAT-inclus">video</div></td>
+				<td><div class="CAT-texte">time</div></td>
+				<td><div class="CAT-texte">var</div></td>
+				<td><div class="CAT-form">keygen</div></td>
+				<td><div class="CAT-form">label</div></td>
+				<td><div class="CAT-form">legend</div></td>
+				<td><div class="CAT-form">meter</div></td>
+			</tr>
+
+			<tr>
+				<td><div class="CAT-table ELT-bloc">table</div></td>
+				<td><div class="CAT-table">caption</div></td>
+				<td><div class="CAT-table">col</div></td>
+				<td><div class="CAT-table">colgroup</div></td>
+				<td><div class="CAT-table ELT-bloc">tbody</div></td>
+				<td><div class="CAT-texte">wbr</div></td>
+				<td><div class="CAT-form">optgroup</div></td>
+				<td><div class="CAT-form">option</div></td>
+				<td><div class="CAT-form">output</div></td>
+				<td><div class="CAT-form">progress</div></td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<td><div class="CAT-table">td</div></td>
+				<td><div class="CAT-table ELT-bloc">tfoot</div></td>
+				<td><div class="CAT-table ELT-bloc">th</div></td>
+				<td><div class="CAT-table ELT-bloc">thead</div></td>
+				<td><div class="CAT-table ELT-bloc">tr</div></td>
+				<td></td>
+				<td></td>
+				<td><div class="CAT-form">select</div></td>
+				<td><div class="CAT-form">textarea</div></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div id="ELT-info">
+		<div id="ELT-btn-close" onClick="FPL.closeTagInfo()"></div>
+		<div id="bcTexteInfoTag"></div>
+	</div>
+
+	<table id="LGD-table">
+		<tbody>
+			<tr>
+				<td><div class="CAT-root"></div></td>
+				<td>Racine</td>
+				<td><div class="CAT-doc"></div></td>
+				<td>En-tête</td>
+				<td><div class="CAT-section"></div></td>
+				<td>Structure</td>
+				<td><div class="CAT-groupe"></div></td>
+				<td>Groupement</td>
+				<td><div class="CAT-inter"></div></td>
+				<td>Interactif</td>
+			</tr>
+			<tr>
+				<td><div class="CAT-inclus"></div></td>
+				<td>Embarqué</td>
+				<td><div class="CAT-texte"></div></td>
+				<td>Texte</td>
+				<td><div class="CAT-form"></div></td>
+				<td>Formulaire</td>
+				<td><div class="CAT-table"></div></td>
+				<td>Tableau</td>
+				<td colspan="2"><div id="LGD-type-bloc"></div>Aff.
+					bloc</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h2 id="elts_alphabet"></h2>
+	<div id="ELT-listes"></div>
+
+	<script>
+		(function() {
+			FPL.initListesTags();
+
+			//-----------------------------------------------------
+			// Gestionnaire du click sur la table des éléments
+			// affichage / masquage de la fenêtre info d'un élément
+			document.getElementById('ELT-table').addEventListener('click',
+					function(event) {
+						var Target;
+
+						event = event || window.event;
+						Target = event.target || event.srcElement;
+
+						FPL.showTagInfos(Target);
+					}, false);
+
+			//-----------------------------------------------------
+			// Gestionnaire du click sur la liste des éléments
+			// affichage / masquage de la liste des attributs d'un élément
+			document.getElementById('ELT-listes').addEventListener('click',
+					FPL.showTagAttributs, false);
+
+		})();
+	</script>
+</body>
+</html>

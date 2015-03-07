@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>T&eacute;l&eacute;charger plusieurs fichiers simultan&eacute;ment</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="features.file-upload.common-pitfalls.html">Erreurs classiques</a></div>
+ <div class="next"><a href="features.file-upload.put-method.html">Chargement par m&eacute;thode PUT</a></div>
+ <div class="up"><a href="features.file-upload.html">Gestion des chargements de fichiers</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="features.file-upload.multiple" class="sect1">
+  <h2 class="title">Télécharger plusieurs fichiers simultanément</h2>
+  <p class="simpara">
+   Le téléchargement de plusieurs fichiers est possible
+   en utilisant des noms différents dans l&#039;attribut
+   <em>name</em> de la balise <em>input</em>.
+  </p>
+  <p class="simpara">
+   Il est aussi possible de télécharger plusieurs fichiers simultanément
+   et d&#039;obtenir les informations sous forme de tableau. Pour cela, vous
+   devez utiliser la syntaxe de tableau dans les noms de balises
+   HTML, comme vous l&#039;avez fait avec les sélections multiples
+   et les boîtes à cocher.
+  </p>
+  <p class="para">
+   <div class="example" id="example-359">
+    <p><strong>Exemple #1 Télécharger plusieurs fichiers simultanément</strong></p>
+    <div class="example-contents">
+<div class="htmlcode"><pre class="htmlcode">&lt;form action=&quot;file-upload.php&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
+  Envoyez plusieurs fichiers : &lt;br /&gt;
+  &lt;input name=&quot;userfile[]&quot; type=&quot;file&quot; /&gt;&lt;br /&gt;
+  &lt;input name=&quot;userfile[]&quot; type=&quot;file&quot; /&gt;&lt;br /&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Envoyer les fichiers&quot; /&gt;
+&lt;/form&gt;</pre>
+</div>
+    </div>
+
+   </div>
+  </p>
+  <p class="simpara">
+   Lorsque le formulaire ci-dessus a été envoyé, les
+   tableaux <var class="varname"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES['userfile']</a></var></var>,
+   <var class="varname"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES['userfile']['name']</a></var></var>, et
+   <var class="varname"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES['userfile']['size']</a></var></var> seront initialisés
+   (tout comme <var class="varname"><var class="varname">$HTTP_POST_FILES</var></var> pour les versions PHP
+   antérieures à 4.1.0).
+   Lorsque <a href="ini.core.html#ini.register-globals" class="link">register_globals</a>
+   est activé, les variables
+   globales concernant les fichiers téléchargés sont aussi
+   initialisées. Chacune d&#039;entre elles contiendra un tableau
+   numériquement indexé, avec les valeurs décrivant les fichiers
+   téléchargés.
+  </p>
+  <p class="simpara">
+   Par exemple, supposons que les fichiers
+   <var class="filename">/home/test/review.html</var> et
+   <var class="filename">/home/test/xwp.out</var> ont été téléchargés. Dans ce cas,
+   <var class="varname"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES['userfile']['name'][0]</a></var></var>
+   contient <var class="filename">review.html</var> et
+   <var class="varname"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES['userfile']['name'][1]</a></var></var> contient
+   <var class="filename">xwp.out</var>. Similairement,
+   <var class="varname"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES['userfile']['size'][0]</a></var></var> va contenir
+   la taille du fichier <var class="filename">review.html</var>, etc.
+  </p>
+  <p class="simpara">
+   <var class="varname"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES['userfile']['name'][0]</a></var></var>,
+   <var class="varname"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES['userfile']['tmp_name'][0]</a></var></var>,
+   <var class="varname"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES['userfile']['size'][0]</a></var></var> et
+   <var class="varname"><var class="varname"><a href="reserved.variables.files.html" class="classname">$_FILES['userfile']['type'][0]</a></var></var> sont aussi
+   créées.
+  </p>
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="simpara">
+    Depuis PHP 5.2.12, le paramètre
+    <a href="ini.core.html#ini.max-file-uploads" class="link">max_file_uploads</a> limite le nombre
+    de fichiers qui peuvent être envoyés en une requête. Vous devrez vérifier que
+    votre formulaire ne tente pas d&#039;envoyer plus de fichiers dans la requête que ne
+    le tolère cette limite.
+   </p>
+  </div>
+ </div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="features.file-upload.common-pitfalls.html">Erreurs classiques</a></div>
+ <div class="next"><a href="features.file-upload.put-method.html">Chargement par m&eacute;thode PUT</a></div>
+ <div class="up"><a href="features.file-upload.html">Gestion des chargements de fichiers</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

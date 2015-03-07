@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Les op&eacute;rateurs logiques</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.operators.increment.html">Op&eacute;rateurs
+				d'incr&eacute;mentation et d&eacute;cr&eacute;mentation</a>
+		</div>
+		<div class="next">
+			<a href="language.operators.string.html">Op&eacute;rateurs de
+				cha&icirc;nes</a>
+		</div>
+		<div class="up">
+			<a href="language.operators.html">Les op&eacute;rateurs</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.operators.logical" class="sect1">
+		<h2 class="title">Les opérateurs logiques</h2>
+
+		<table class="doctable table">
+			<caption>
+				<strong>Les opérateurs logiques</strong>
+			</caption>
+
+			<thead>
+				<tr>
+					<th>Exemple</th>
+					<th>Nom</th>
+					<th>Résultat</th>
+				</tr>
+
+			</thead>
+
+			<tbody class="tbody">
+				<tr>
+					<td>$a and $b</td>
+					<td>And (Et)</td>
+					<td><strong><code>TRUE</code></strong> si <var class="varname">
+							<var class="varname">$a</var>
+						</var> ET <var class="varname">
+							<var class="varname">$b</var>
+						</var> valent <strong><code>TRUE</code></strong>.</td>
+				</tr>
+
+				<tr>
+					<td>$a or $b</td>
+					<td>Or (Ou)</td>
+					<td><strong><code>TRUE</code></strong> si <var class="varname">
+							<var class="varname">$a</var>
+						</var> OU <var class="varname">
+							<var class="varname">$b</var>
+						</var> valent <strong><code>TRUE</code></strong>.</td>
+				</tr>
+
+				<tr>
+					<td>$a xor $b</td>
+					<td>XOR</td>
+					<td><strong><code>TRUE</code></strong> si <var class="varname">
+							<var class="varname">$a</var>
+						</var> OU <var class="varname">
+							<var class="varname">$b</var>
+						</var> est <strong><code>TRUE</code></strong>, mais pas les deux en même
+						temps.</td>
+				</tr>
+
+				<tr>
+					<td>! $a</td>
+					<td>Not (Non)</td>
+					<td><strong><code>TRUE</code></strong> si <var class="varname">
+							<var class="varname">$a</var>
+						</var> n&#039;est pas <strong><code>TRUE</code></strong>.</td>
+				</tr>
+
+				<tr>
+					<td>$a &amp;&amp; $b</td>
+					<td>And (Et)</td>
+					<td><strong><code>TRUE</code></strong> si <var class="varname">
+							<var class="varname">$a</var>
+						</var> ET <var class="varname">
+							<var class="varname">$b</var>
+						</var> sont <strong><code>TRUE</code></strong>.</td>
+				</tr>
+
+				<tr>
+					<td>$a || $b</td>
+					<td>Or (Ou)</td>
+					<td><strong><code>TRUE</code></strong> si <var class="varname">
+							<var class="varname">$a</var>
+						</var> OU <var class="varname">
+							<var class="varname">$b</var>
+						</var> est <strong><code>TRUE</code></strong>.</td>
+				</tr>
+
+			</tbody>
+
+		</table>
+
+		<p class="simpara">
+			La raison pour laquelle il existe deux types de &quot;ET&quot; et de
+			&quot;OU&quot; est qu&#039;ils ont des priorités différentes. Voir le
+			paragraphe <a href="language.operators.precedence.html" class="link">précédence
+				d&#039;opérateurs</a>.
+		</p>
+		<div class="example" id="example-131">
+			<p>
+				<strong>Exemple #1 Illustration des opérateurs logiques</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;--------------------<br />//&nbsp;foo()&nbsp;ne&nbsp;sera&nbsp;jamais&nbsp;appelée&nbsp;car&nbsp;ces&nbsp;opérateurs&nbsp;s'annulent<br />
+							<br /></span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">=&nbsp;(</span><span
+							style="color: #0000BB">false&nbsp;</span><span
+							style="color: #007700">&amp;&amp;&nbsp;</span><span
+							style="color: #0000BB">foo</span><span style="color: #007700">());<br /></span><span
+							style="color: #0000BB">$b&nbsp;</span><span
+							style="color: #007700">=&nbsp;(</span><span
+							style="color: #0000BB">true&nbsp;&nbsp;</span><span
+							style="color: #007700">||&nbsp;</span><span
+							style="color: #0000BB">foo</span><span style="color: #007700">());<br /></span><span
+							style="color: #0000BB">$c&nbsp;</span><span
+							style="color: #007700">=&nbsp;(</span><span
+							style="color: #0000BB">false&nbsp;</span><span
+							style="color: #007700">and&nbsp;</span><span
+							style="color: #0000BB">foo</span><span style="color: #007700">());<br /></span><span
+							style="color: #0000BB">$d&nbsp;</span><span
+							style="color: #007700">=&nbsp;(</span><span
+							style="color: #0000BB">true&nbsp;&nbsp;</span><span
+							style="color: #007700">or&nbsp;&nbsp;</span><span
+							style="color: #0000BB">foo</span><span style="color: #007700">());<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;--------------------<br />//&nbsp;"||"&nbsp;a&nbsp;un&nbsp;précédence&nbsp;supérieure&nbsp;à&nbsp;"or"<br />
+							<br />//&nbsp;Le&nbsp;résultat&nbsp;de&nbsp;l'expression&nbsp;(false&nbsp;||&nbsp;true)&nbsp;est&nbsp;assigné&nbsp;à&nbsp;$e<br />//&nbsp;Agit&nbsp;comme&nbsp;:&nbsp;($e&nbsp;=&nbsp;(false&nbsp;||&nbsp;true))<br /></span><span
+							style="color: #0000BB">$e&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">false&nbsp;</span><span
+							style="color: #007700">||&nbsp;</span><span
+							style="color: #0000BB">true</span><span style="color: #007700">;<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;La&nbsp;constante&nbsp;false&nbsp;est&nbsp;assignée&nbsp;à&nbsp;$f,&nbsp;puis,&nbsp;true&nbsp;est&nbsp;ignoré<br />//&nbsp;Agit&nbsp;comme&nbsp;:&nbsp;(($f&nbsp;=&nbsp;false)&nbsp;or&nbsp;true)<br /></span><span
+							style="color: #0000BB">$f&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">false&nbsp;</span><span
+							style="color: #007700">or&nbsp;</span><span
+							style="color: #0000BB">true</span><span style="color: #007700">;<br />
+							<br /></span><span style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$e</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$f</span><span
+							style="color: #007700">);<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;--------------------<br />//&nbsp;"&amp;&amp;"&nbsp;a&nbsp;un&nbsp;précédence&nbsp;supérieure&nbsp;à&nbsp;"and"<br />
+							<br />//&nbsp;Le&nbsp;résultat&nbsp;de&nbsp;l'expression&nbsp;(true&nbsp;&amp;&amp;&nbsp;false)&nbsp;est&nbsp;assigné&nbsp;à&nbsp;$g<br />//&nbsp;Agit&nbsp;comme&nbsp;:&nbsp;($g&nbsp;=&nbsp;(true&nbsp;&amp;&amp;&nbsp;false))<br /></span><span
+							style="color: #0000BB">$g&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">true&nbsp;</span><span
+							style="color: #007700">&amp;&amp;&nbsp;</span><span
+							style="color: #0000BB">false</span><span style="color: #007700">;<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;La&nbsp;constante&nbsp;true&nbsp;est&nbsp;assignée&nbsp;à&nbsp;$h,&nbsp;puis,&nbsp;false&nbsp;est&nbsp;ignoré<br />//&nbsp;Agit&nbsp;comme&nbsp;:&nbsp;(($h&nbsp;=&nbsp;true)&nbsp;and&nbsp;false)<br /></span><span
+							style="color: #0000BB">$h&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">true&nbsp;</span><span
+							style="color: #007700">and&nbsp;</span><span
+							style="color: #0000BB">false</span><span style="color: #007700">;<br />
+							<br /></span><span style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$g</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$h</span><span
+							style="color: #007700">);<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+			<div class="example-contents">
+				<p>L&#039;exemple ci-dessus va afficher quelque chose de
+					similaire à :</p>
+			</div>
+			<div class="example-contents screen">
+				<div class="cdata">
+					<pre>
+bool(true)
+bool(false)
+bool(false)
+bool(true)
+</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.operators.increment.html">Op&eacute;rateurs
+				d'incr&eacute;mentation et d&eacute;cr&eacute;mentation</a>
+		</div>
+		<div class="next">
+			<a href="language.operators.string.html">Op&eacute;rateurs de
+				cha&icirc;nes</a>
+		</div>
+		<div class="up">
+			<a href="language.operators.html">Les op&eacute;rateurs</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

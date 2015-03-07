@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Combine plusieurs tableaux ensemble, r&eacute;cursivement</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.array-map.html">array_map</a>
+		</div>
+		<div class="next">
+			<a href="function.array-merge.html">array_merge</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.array-merge-recursive" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">array_merge_recursive</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.0.1, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">array_merge_recursive</span> <span
+					class="mdash">&mdash;</span> <span class="dc-title">Combine
+					plusieurs tableaux ensemble, récursivement</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.array-merge-recursive-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>array_merge_recursive</strong></span>
+				( <span class="methodparam"><span class="type">array</span> <code
+						class="parameter">$array1</code></span> [, <span class="methodparam"><span
+					class="type">array</span> <code class="parameter">$...</code></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>array_merge_recursive()</strong></span>
+				rassemble les éléments de deux ou plusieurs tableaux ensemble, en
+				ajoutant les éléments de l&#039;un à la suite des éléments du
+				précédent.
+			</p>
+			<p class="para">Si les tableaux passés en arguments ont les mêmes
+				clés (chaînes de caractères), les valeurs sont alors rassemblées
+				dans un tableau, de manière récursive, de façon à ce que, si
+				l&#039;une de ces valeurs est un tableau elle-même, la fonction la
+				rassemblera avec les valeurs de l&#039;entrée courante. Cependant,
+				si deux tableaux ont la même clé numérique, la dernière valeur
+				n&#039;écrasera pas la précédente, mais sera ajoutée à la fin du
+				tableau.</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.array-merge-recursive-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">array1</code></em></span>
+				<dd>
+
+					<p class="para">Tableau initial à rassembler.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">...</code></em></span>
+				<dd>
+
+					<p class="para">Liste variable de tableaux à rassembler
+						récursivement.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.array-merge-recursive-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Un tableau de valeurs résultantes de la fusion
+				des arguments.</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.array-merge-recursive-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4618">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>array_merge_recursive()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$ar1&nbsp;
+							</span><span style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">"color"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;array(</span><span
+								style="color: #DD0000">"favorite"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">"red"</span><span style="color: #007700">),&nbsp;</span><span
+								style="color: #0000BB">5</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$ar2&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #0000BB">10</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"color"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;array(</span><span
+								style="color: #DD0000">"favorite"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">"green"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"blue"</span><span style="color: #007700">));<br /></span><span
+								style="color: #0000BB">$result&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">array_merge_recursive</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$ar1</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$ar2</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$result</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Array
+(
+    [color] =&gt; Array
+        (
+            [favorite] =&gt; Array
+                (
+                    [0] =&gt; red
+                    [1] =&gt; green
+                )
+
+            [0] =&gt; blue
+        )
+
+    [0] =&gt; 5
+    [1] =&gt; 10
+)
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.array-merge-recursive-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.array-merge.html" class="function"
+						rel="rdfs-seeAlso">array_merge()</a> - Fusionne plusieurs tableaux
+						en un seul</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.array-map.html">array_map</a>
+		</div>
+		<div class="next">
+			<a href="function.array-merge.html">array_merge</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

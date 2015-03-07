@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Foire aux questions : ce que vous devez savoir des
+	espaces de noms</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.namespaces.rules.html">R&egrave;gles de
+				r&eacute;solutions de noms</a>
+		</div>
+		<div class="next">
+			<a href="language.exceptions.html">Les exceptions</a>
+		</div>
+		<div class="up">
+			<a href="language.namespaces.html">Les espaces de noms</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.namespaces.faq" class="sect1">
+		<h2 class="title">Foire aux questions : ce que vous devez savoir
+			des espaces de noms</h2>
+		<p class="verinfo">(PHP 5 &gt;= 5.3.0)</p>
+		<p class="para">Cette FAQ est décomposée en deux sections : les
+			questions courantes, et les points particuliers de
+			l&#039;implémentation, qui peuvent être utiles à la compréhension
+			globale.</p>
+		<p class="para">D&#039;abord, les questions courantes.
+		<ol type="1">
+			<li class="listitem"><span class="simpara"> <a
+					href="language.namespaces.faq.html#language.namespaces.faq.shouldicare"
+					class="link">Si je n&#039;utilise pas d&#039;espaces de noms,
+						est-ce que je dois m&#039;en soucier ?</a>
+			</span></li>
+			<li class="listitem"><span class="simpara"> <a
+					href="language.namespaces.faq.html#language.namespaces.faq.globalclass"
+					class="link">Comment utiliser une classe globale ou interne
+						depuis un espace de noms ?</a>
+			</span></li>
+			<li class="listitem"><span class="simpara"> <a
+					href="language.namespaces.faq.html#language.namespaces.faq.innamespace"
+					class="link">Comment utiliser les classes d&#039;espaces de
+						noms, les fonctions ou les constantes dans leur propre espace ? </a>
+			</span></li>
+			<li class="listitem"><span class="simpara"> <a
+					href="language.namespaces.faq.html#language.namespaces.faq.full"
+					class="link"> Comment est-ce qu&#039;un nom comme <em>\mon\nom</em>
+						ou <em>\nom</em> est résolu ?
+				</a>
+			</span></li>
+			<li class="listitem"><span class="simpara"> <a
+					href="language.namespaces.faq.html#language.namespaces.faq.qualified"
+					class="link">Comment est-ce qu&#039;un nom tel que <em>mon\nom</em>
+						est résolu ?
+				</a>
+			</span></li>
+			<li class="listitem"><span class="simpara"> <a
+					href="language.namespaces.faq.html#language.namespaces.faq.shortname1"
+					class="link">Comment un nom de classe sans qualification, tel
+						que <em>nom</em>, est résolu ?
+				</a>
+			</span></li>
+			<li class="listitem"><span class="simpara"> <a
+					href="language.namespaces.faq.html#language.namespaces.faq.shortname2"
+					class="link">Comment une fonction sans qualification ou une
+						constante de nom <em>nom</em> est résolue ?
+				</a>
+			</span></li>
+		</ol>
+		</p>
+		<p class="para">Voici les points particuliers de
+			l&#039;implémentation, qui peuvent être utiles à la compréhension
+			globale.
+		<ol type="1">
+			<li class="listitem"><span class="simpara"> <a
+					href="language.namespaces.faq.html#language.namespaces.faq.conflict"
+					class="link">Les noms importés ne doivent pas entrer en conflit
+						avec les classes définies dans le même fichier</a>
+			</span></li>
+			<li class="listitem"><span class="simpara"> <a
+					href="language.namespaces.faq.html#language.namespaces.faq.nested"
+					class="link">Les espaces de noms imbriqués sont interdits</a>
+			</span></li>
+			<li class="listitem"><span class="simpara"> <a
+					href="language.namespaces.faq.html#language.namespaces.faq.nofuncconstantuse"
+					class="link">Ni les fonctions, ni les constantes ne peuvent
+						être importées avec la commande <em>use</em>
+				</a>
+			</span></li>
+			<li class="listitem"><span class="simpara"> <a
+					href="language.namespaces.faq.html#language.namespaces.faq.quote"
+					class="link">Les noms d&#039;espaces de noms dynamiques doivent
+						protéger l&#039;anti-slash</a>
+			</span></li>
+			<li class="listitem"><span class="simpara"> <a
+					href="language.namespaces.faq.html#language.namespaces.faq.constants"
+					class="link">Des constantes indéfinies référencées avec un
+						anti-slash produisent une erreur fatale</a>
+			</span></li>
+			<li class="listitem"><span class="simpara"> <a
+					href="language.namespaces.faq.html#language.namespaces.faq.builtinconst"
+					class="link">Impossible de remplacer des constantes spéciales
+						comme NULL, TRUE, FALSE, ZEND_THREAD_SAFE ou ZEND_DEBUG_BUILD</a>
+			</span></li>
+		</ol>
+		</p>
+		<div class="sect2" id="language.namespaces.faq.shouldicare">
+			<h3 class="title">Si je n&#039;utilise pas d&#039;espaces de
+				noms, est-ce que je dois m&#039;en soucier ?</h3>
+			<p class="para">Non, les espaces de noms n&#039;affectent pas le
+				code existant, d&#039;une manière ou d&#039;une autre, ni le code
+				qui sera produit et qui n&#039;utilise pas les espaces de noms. Vous
+				pouvez écrire ceci si vous voulez :</p>
+			<p class="para">
+			<div class="example" id="example-261">
+				<p>
+					<strong>Exemple #1 Accès à une classe globale de
+						l&#039;extérieur d&#039;un espace de noms</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$a&nbsp;
+							</span><span style="color: #007700">=&nbsp;new&nbsp;\</span><span
+								style="color: #0000BB">stdClass</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">C&#039;est une fonctionnalité équivalente à :</p>
+			<p class="para">
+			<div class="example" id="example-262">
+				<p>
+					<strong>Exemple #2 Accéder à des classes globales hors
+						d&#039;un espace de noms</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$a&nbsp;
+							</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">stdClass</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+		<div class="sect2" id="language.namespaces.faq.globalclass">
+			<h3 class="title">Comment utiliser une classe globale ou interne
+				depuis un espace de noms ?</h3>
+			<p class="para">
+			<div class="example" id="example-263">
+				<p>
+					<strong>Exemple #3 Accès aux classes internes depuis un
+						espace de noms</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">namespace&nbsp;</span><span
+								style="color: #0000BB">foo</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;\</span><span
+								style="color: #0000BB">stdClass</span><span
+								style="color: #007700">;<br />
+								<br />function&nbsp;
+							</span><span style="color: #0000BB">test</span><span
+								style="color: #007700">(\</span><span style="color: #0000BB">ArrayObject&nbsp;$typehintexample&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">null</span><span style="color: #007700">)&nbsp;{}<br />
+								<br /></span><span style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;\</span><span
+								style="color: #0000BB">DirectoryIterator</span><span
+								style="color: #007700">::</span><span style="color: #0000BB">CURRENT_AS_FILEINFO</span><span
+								style="color: #007700">;<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;extension&nbsp;d'une&nbsp;classe&nbsp;interne&nbsp;ou&nbsp;globale<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">MyException&nbsp;</span><span
+								style="color: #007700">extends&nbsp;\</span><span
+								style="color: #0000BB">Exception&nbsp;</span><span
+								style="color: #007700">{}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+		<div class="sect2" id="language.namespaces.faq.innamespace">
+			<h3 class="title">Comment utiliser les classes d&#039;espaces de
+				noms, les fonctions ou les constantes dans leur propre espace ?</h3>
+			<p class="para">
+			<div class="example" id="example-264">
+				<p>
+					<strong>Exemple #4 Accès aux classes, fonctions et
+						constantes internes dans un espace de noms</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">namespace&nbsp;</span><span
+								style="color: #0000BB">foo</span><span style="color: #007700">;<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">MaClasse&nbsp;</span><span
+								style="color: #007700">{}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;utilisation&nbsp;d'une&nbsp;classe&nbsp;dans&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;courant,&nbsp;sous&nbsp;forme&nbsp;de&nbsp;type&nbsp;d'argument<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">test</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">MaClasse&nbsp;$typehintexample&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">null</span><span style="color: #007700">)&nbsp;{}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;une&nbsp;autre&nbsp;manière&nbsp;d'utiliser&nbsp;une&nbsp;classe&nbsp;dans&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;courant<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">test</span><span style="color: #007700">(\</span><span
+								style="color: #0000BB">foo</span><span style="color: #007700">\</span><span
+								style="color: #0000BB">MaClasse&nbsp;$typehintexample&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">null</span><span style="color: #007700">)&nbsp;{}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;extension&nbsp;d'une&nbsp;classe&nbsp;dans&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;courant<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">Extended&nbsp;</span><span
+								style="color: #007700">extends&nbsp;</span><span
+								style="color: #0000BB">MaClasse&nbsp;</span><span
+								style="color: #007700">{}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;accès&nbsp;à&nbsp;une&nbsp;fonction&nbsp;globale<br /></span><span
+								style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;\</span><span
+								style="color: #0000BB">globalfunc</span><span
+								style="color: #007700">();<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;accès&nbsp;à&nbsp;une&nbsp;constante&nbsp;globale<br /></span><span
+								style="color: #0000BB">$b&nbsp;</span><span
+								style="color: #007700">=&nbsp;\</span><span
+								style="color: #0000BB">INI_ALL</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+		<div class="sect2" id="language.namespaces.faq.full">
+			<h3 class="title">
+				Comment est-ce qu&#039;un nom comme <em>\mon\nom</em> ou <em>\nom</em>
+				est résolu ?
+			</h3>
+			<p class="para">
+				Les noms qui commencent par <em>\</em> sont toujours résolus en ce à
+				quoi ils ressemblent, ce qui fait que <em>\mon\nom</em> est en fait
+				<em>mon\nom</em>, et <em>\Exception</em> est <em>Exception</em>.
+			<div class="example" id="example-265">
+				<p>
+					<strong>Exemple #5 Noms d&#039;espaces absolus</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">namespace&nbsp;</span><span
+								style="color: #0000BB">foo</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;\</span><span
+								style="color: #0000BB">mon</span><span style="color: #007700">\</span><span
+								style="color: #0000BB">nom</span><span style="color: #007700">();&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;instantie&nbsp;la&nbsp;classe&nbsp;"mon\nom"<br /></span><span
+								style="color: #007700">echo&nbsp;\</span><span
+								style="color: #0000BB">strlen</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'hi'</span><span style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;appelle&nbsp;la&nbsp;fonction&nbsp;"strlen"<br /></span><span
+								style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;\</span><span
+								style="color: #0000BB">INI_ALL</span><span
+								style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;$a&nbsp;reçoit&nbsp;la&nbsp;valeur&nbsp;de&nbsp;la&nbsp;constante&nbsp;"INI_ALL"<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+		<div class="sect2" id="language.namespaces.faq.qualified">
+			<h3 class="title">
+				Comment est-ce qu&#039;un nom tel que <em>mon\nom</em> est résolu ?
+			</h3>
+			<p class="para">
+				Les noms qui contiennent un anti-slash mais ne commencent par par un
+				anti-slash, comme <em>mon\nom</em> peuvent être résolus de deux
+				manières différentes.
+			</p>
+			<p class="para">
+				S&#039;il y a eu une commande d&#039;importation qui fait un alias
+				de <em>mon</em>, alors l&#039;alias importé est appliqué à la place
+				de <em>mon</em>, et l&#039;espace de noms devient <em>mon\nom</em>.
+			</p>
+			<p class="para">
+				Sinon, l&#039;espace de noms courant est ajouté avant le chemin de
+				la classe <em>mon\nom</em>.
+			</p>
+			<p class="para">
+			<div class="example" id="example-266">
+				<p>
+					<strong>Exemple #6 Noms qualifiés</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">namespace&nbsp;</span><span
+								style="color: #0000BB">foo</span><span style="color: #007700">;<br />use&nbsp;
+							</span><span style="color: #0000BB">blah</span><span
+								style="color: #007700">\</span><span style="color: #0000BB">blah&nbsp;</span><span
+								style="color: #007700">as&nbsp;</span><span
+								style="color: #0000BB">foo</span><span style="color: #007700">;<br />
+								<br /></span><span style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">mon</span><span style="color: #007700">\</span><span
+								style="color: #0000BB">nom</span><span style="color: #007700">();&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;instantie&nbsp;la&nbsp;classe&nbsp;"foo\mon\nom"<br /></span><span
+								style="color: #0000BB">foo</span><span style="color: #007700">\</span><span
+								style="color: #0000BB">bar</span><span style="color: #007700">::</span><span
+								style="color: #0000BB">name</span><span style="color: #007700">();&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;appelle&nbsp;la&nbsp;méthode&nbsp;statique&nbsp;"name"&nbsp;dans&nbsp;la&nbsp;classe&nbsp;"blah\blah\bar"<br /></span><span
+								style="color: #0000BB">mon</span><span style="color: #007700">\</span><span
+								style="color: #0000BB">bar</span><span style="color: #007700">();&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;appelle&nbsp;la&nbsp;fonction&nbsp;"foo\mon\bar"<br /></span><span
+								style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">mon</span><span style="color: #007700">\</span><span
+								style="color: #0000BB">BAR</span><span style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;affecte&nbsp;à&nbsp;$a&nbsp;la&nbsp;valeur&nbsp;de&nbsp;la&nbsp;constante&nbsp;"foo\mon\BAR"<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+		<div class="sect2" id="language.namespaces.faq.shortname1">
+			<h3 class="title">
+				Comment un nom de classe sans qualification, tel que <em>nom</em>,
+				est résolu ?
+			</h3>
+			<p class="para">
+				Les noms de classes qui ne contiennent pas d&#039;anti-slash comme <em>nom</em>
+				peuvent être résolus de deux manières différentes.
+			</p>
+			<p class="para">
+				S&#039;il y a une instruction d&#039;importation qui définit un
+				alias pour <em>nom</em>, alors l&#039;alias est appliqué.
+			</p>
+			<p class="para">
+				Sinon, l&#039;espace de noms courant est utilisé et préfixé à <em>nom</em>.
+			</p>
+			<p class="para">
+			<div class="example" id="example-267">
+				<p>
+					<strong>Exemple #7 Classes sans qualification</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">namespace&nbsp;</span><span
+								style="color: #0000BB">foo</span><span style="color: #007700">;<br />use&nbsp;
+							</span><span style="color: #0000BB">blah</span><span
+								style="color: #007700">\</span><span style="color: #0000BB">blah&nbsp;</span><span
+								style="color: #007700">as&nbsp;</span><span
+								style="color: #0000BB">foo</span><span style="color: #007700">;<br />
+								<br /></span><span style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">nom</span><span style="color: #007700">();&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;instantie&nbsp;la&nbsp;classe&nbsp;"foo\nom"<br /></span><span
+								style="color: #0000BB">foo</span><span style="color: #007700">::</span><span
+								style="color: #0000BB">nom</span><span style="color: #007700">();&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;appelle&nbsp;la&nbsp;méthode&nbsp;statique&nbsp;"nom"&nbsp;dans&nbsp;la&nbsp;classe&nbsp;"blah\blah"<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+		<div class="sect2" id="language.namespaces.faq.shortname2">
+			<h3 class="title">
+				Comment une fonction sans qualification ou une constante de nom <em>nom</em>
+				est résolue ?
+			</h3>
+			<p class="para">
+				Les fonctions et constantes qui n&#039;ont pas d&#039;anti-slash
+				dans leur nom comme <em>nom</em> sont résolues de deux manières
+				différentes :
+			</p>
+			<p class="para">
+				D&#039;abord, l&#039;espace de noms courant est préfixé à <em>nom</em>.
+			</p>
+			<p class="para">
+				Ensuite, si la constante ou la fonction <em>nom</em> n&#039;existe
+				pas dans l&#039;espace de nom courant, la version globale de la
+				constante ou la fonction <em>nom</em> est utilisée.
+			</p>
+			<p class="para">
+			<div class="example" id="example-268">
+				<p>
+					<strong>Exemple #8 Fonctions et constantes sans espace de
+						noms</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">namespace&nbsp;</span><span
+								style="color: #0000BB">foo</span><span style="color: #007700">;<br />use&nbsp;
+							</span><span style="color: #0000BB">blah</span><span
+								style="color: #007700">\</span><span style="color: #0000BB">blah&nbsp;</span><span
+								style="color: #007700">as&nbsp;</span><span
+								style="color: #0000BB">foo</span><span style="color: #007700">;<br />
+								<br />const&nbsp;
+							</span><span style="color: #0000BB">FOO&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">;<br />
+								<br />function&nbsp;
+							</span><span style="color: #0000BB">mon</span><span
+								style="color: #007700">()&nbsp;{}<br />function&nbsp;
+							</span><span style="color: #0000BB">foo</span><span
+								style="color: #007700">()&nbsp;{}<br />function&nbsp;
+							</span><span style="color: #0000BB">sort</span><span
+								style="color: #007700">(&amp;</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">sort</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">array_flip</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #0000BB">mon</span><span
+								style="color: #007700">();&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;appelle&nbsp;"foo\mon"<br /></span><span
+								style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">strlen</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'hi'</span><span style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;appelle&nbsp;la&nbsp;fonction&nbsp;globale&nbsp;"strlen"&nbsp;car&nbsp;"foo\strlen"&nbsp;n'existe&nbsp;pas<br /></span><span
+								style="color: #0000BB">$arr&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,</span><span
+								style="color: #0000BB">3</span><span style="color: #007700">,</span><span
+								style="color: #0000BB">2</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$b&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">sort</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$arr</span><span style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;appelle&nbsp;la&nbsp;fonction&nbsp;"foo\sort"<br /></span><span
+								style="color: #0000BB">$c&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">foo</span><span style="color: #007700">();&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;appelle&nbsp;la&nbsp;fonction&nbsp;"foo\foo"&nbsp;:&nbsp;l'importation&nbsp;n'est&nbsp;pas&nbsp;appliquée<br />
+								<br /></span><span style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">FOO</span><span style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;assigne&nbsp;à&nbsp;$a&nbsp;la&nbsp;valeur&nbsp;de&nbsp;la&nbsp;constante&nbsp;"foo\FOO"&nbsp;:&nbsp;l'importation&nbsp;n'est&nbsp;pas&nbsp;appliquée<br /></span><span
+								style="color: #0000BB">$b&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">INI_ALL</span><span
+								style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;assigne&nbsp;à&nbsp;$b&nbsp;la&nbsp;valeur&nbsp;de&nbsp;la&nbsp;constante&nbsp;"INI_ALL"<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+		<div class="sect2" id="language.namespaces.faq.conflict">
+			<h3 class="title">Les noms importés ne doivent pas entrer en
+				conflit avec les classes définies dans le même fichier</h3>
+			<p class="para">La combinaison de scripts suivante est valide :
+			<div class="informalexample">
+				<p class="simpara">file1.php</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">namespace&nbsp;</span><span
+								style="color: #0000BB">mes</span><span style="color: #007700">\</span><span
+								style="color: #0000BB">trucs</span><span style="color: #007700">;<br />class&nbsp;
+							</span><span style="color: #0000BB">MaClasse&nbsp;</span><span
+								style="color: #007700">{}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<p class="simpara">another.php</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">namespace&nbsp;</span><span
+								style="color: #0000BB">another</span><span
+								style="color: #007700">;<br />class&nbsp;
+							</span><span style="color: #0000BB">untruc&nbsp;</span><span
+								style="color: #007700">{}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<p class="simpara">file2.php</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">namespace&nbsp;</span><span
+								style="color: #0000BB">mes</span><span style="color: #007700">\</span><span
+								style="color: #0000BB">trucs</span><span style="color: #007700">;<br />include&nbsp;
+							</span><span style="color: #DD0000">'file1.php'</span><span
+								style="color: #007700">;<br />include&nbsp;
+							</span><span style="color: #DD0000">'another.php'</span><span
+								style="color: #007700">;<br />
+								<br />use&nbsp;
+							</span><span style="color: #0000BB">another</span><span
+								style="color: #007700">\</span><span style="color: #0000BB">untruc&nbsp;</span><span
+								style="color: #007700">as&nbsp;</span><span
+								style="color: #0000BB">MaClasse</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">MaClasse</span><span
+								style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;instantie&nbsp;la&nbsp;classe&nbsp;"untruc"&nbsp;de&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;another<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">
+				Il n&#039;y a pas de conflit de noms, même si la classe <em>MaClasse</em>
+				existe dans l&#039;espace de noms <em>mes\trucs</em>, car la
+				définition de <em>MaClasse</em> est dans un fichier séparé.
+				Cependant, l&#039;exemple suivant produit une erreur fatale à cause
+				d&#039;un conflit de noms, car <em>MaClasse</em> est définie dans le
+				même fichier que l&#039;instruction <em>use</em>.
+			<div class="informalexample">
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">namespace&nbsp;</span><span
+								style="color: #0000BB">mes</span><span style="color: #007700">\</span><span
+								style="color: #0000BB">trucs</span><span style="color: #007700">;<br />use&nbsp;
+							</span><span style="color: #0000BB">another</span><span
+								style="color: #007700">\</span><span style="color: #0000BB">untruc&nbsp;</span><span
+								style="color: #007700">as&nbsp;</span><span
+								style="color: #0000BB">MaClasse</span><span
+								style="color: #007700">;<br />class&nbsp;
+							</span><span style="color: #0000BB">MaClasse&nbsp;</span><span
+								style="color: #007700">{}&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;erreur&nbsp;fatale:&nbsp;MaClasse&nbsp;est&nbsp;en&nbsp;conflit&nbsp;avec&nbsp;la&nbsp;commande&nbsp;d'importation<br /></span><span
+								style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">MaClasse</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+		<div class="sect2" id="language.namespaces.faq.nested">
+			<h3 class="title">Les espaces de noms imbriqués sont interdits</h3>
+			<p class="para">PHP ne permet pas d&#039;imbriquer des espaces de
+				noms.
+			<div class="informalexample">
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">namespace&nbsp;</span><span
+								style="color: #0000BB">mes</span><span style="color: #007700">\</span><span
+								style="color: #0000BB">trucs&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;namespace&nbsp;
+							</span><span style="color: #0000BB">nested&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;
+							</span><span style="color: #0000BB">foo&nbsp;</span><span
+								style="color: #007700">{}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			Cependant, il est facile de simuler des espaces de noms imbriqués,
+			comme ceci :
+			<div class="informalexample">
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">namespace&nbsp;</span><span
+								style="color: #0000BB">mes</span><span style="color: #007700">\</span><span
+								style="color: #0000BB">trucs</span><span style="color: #007700">\</span><span
+								style="color: #0000BB">nested&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;
+							</span><span style="color: #0000BB">foo&nbsp;</span><span
+								style="color: #007700">{}<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+		<div class="sect2" id="language.namespaces.faq.nofuncconstantuse">
+			<h3 class="title">
+				Ni les fonctions, ni les constantes ne peuvent être importées avec
+				la commande <em>use</em>
+			</h3>
+			<p class="para">
+				Les seuls éléments qui sont affectés par la commande <em>use</em>
+				sont les espaces de noms et les classes. Afin de réduire le nom
+				d&#039;une constante ou d&#039;une fonction, il faut l&#039;importer
+				dans un espace de noms.
+			<div class="informalexample">
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">namespace&nbsp;</span><span
+								style="color: #0000BB">mine</span><span style="color: #007700">;<br />use&nbsp;
+							</span><span style="color: #0000BB">ultra</span><span
+								style="color: #007700">\</span><span style="color: #0000BB">long</span><span
+								style="color: #007700">\</span><span style="color: #0000BB">ns</span><span
+								style="color: #007700">\</span><span style="color: #0000BB">nom</span><span
+								style="color: #007700">;<br />
+								<br /></span><span style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">nom</span><span style="color: #007700">\</span><span
+								style="color: #0000BB">CONSTANT</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">nom</span><span style="color: #007700">\</span><span
+								style="color: #0000BB">func</span><span style="color: #007700">();<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+		<div class="sect2" id="language.namespaces.faq.quote">
+			<h3 class="title">Les noms d&#039;espaces de noms dynamiques
+				doivent protéger l&#039;anti-slash</h3>
+			<p class="para">Il est très important de réaliser que, comme les
+				anti-slash sont utilisés comme caractères de protection dans les
+				chaînes, il faut toujours les doubler pour pouvoir les utiliser dans
+				une chaîne. Sinon, il y a un risque d&#039;utilisation inattendue :
+			
+			<div class="example" id="example-269">
+				<p>
+					<strong>Exemple #9 Dangers de l&#039;utilisation des
+						espaces de noms dans une chaîne</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$a&nbsp;
+							</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #DD0000">"dangereux\nom"</span><span
+								style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;\n&nbsp;est&nbsp;une&nbsp;nouvelle&nbsp;ligne&nbsp;dans&nbsp;une&nbsp;chaîne!<br /></span><span
+								style="color: #0000BB">$obj&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">$a</span><span style="color: #007700">;<br />
+								<br /></span><span style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #DD0000">'pas\vraiment\dangereux'</span><span
+								style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;aucun&nbsp;problème&nbsp;ici<br /></span><span
+								style="color: #0000BB">$obj&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">$a</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			Dans une chaîne à double guillemets, la séquence de protection est
+			beaucoup plus sécuritaire à utiliser, mais il est quand même
+			recommandé de toujours protéger les anti-slashs dans une chaîne qui
+			contient un espace de noms.
+			</p>
+		</div>
+		<div class="sect2" id="language.namespaces.faq.constants">
+			<h3 class="title">Des constantes indéfinies référencées avec un
+				anti-slash produisent une erreur fatale</h3>
+			<p class="para">
+				Toute constante indéfinie qui est sans qualificatif telle que <em>FOO</em>
+				va produite une alerte : PHP supposait que <em>FOO</em> était la
+				valeur de la constante. Toute constante, qualifiée partiellement ou
+				totalement, qui contient un anti-slash, produite une erreur fatale
+				si indéfinie.
+			<div class="example" id="example-270">
+				<p>
+					<strong>Exemple #10 Constantes indéfinies</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">namespace&nbsp;</span><span
+								style="color: #0000BB">bar</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">FOO</span><span style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;produit&nbsp;une&nbsp;alerte&nbsp;:&nbsp;constante&nbsp;indéfinie&nbsp;"FOO",&nbsp;qui&nbsp;prend&nbsp;la&nbsp;valeur&nbsp;de&nbsp;"FOO";<br /></span><span
+								style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;\</span><span
+								style="color: #0000BB">FOO</span><span style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;erreur&nbsp;fatale,&nbsp;constante&nbsp;d'espace&nbsp;de&nbsp;noms&nbsp;indéfinie&nbsp;FOO<br /></span><span
+								style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">Bar</span><span style="color: #007700">\</span><span
+								style="color: #0000BB">FOO</span><span style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;erreur&nbsp;fatale,&nbsp;constante&nbsp;d'espace&nbsp;de&nbsp;noms&nbsp;indéfinie&nbsp;bar\Bar\FOO<br /></span><span
+								style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;\</span><span
+								style="color: #0000BB">Bar</span><span style="color: #007700">\</span><span
+								style="color: #0000BB">FOO</span><span style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;erreur&nbsp;fatale,&nbsp;constante&nbsp;d'espace&nbsp;de&nbsp;noms&nbsp;indéfinie&nbsp;Bar\FOO<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+		<div class="sect2" id="language.namespaces.faq.builtinconst">
+			<h3 class="title">Impossible de remplacer des constantes
+				spéciales comme NULL, TRUE, FALSE, ZEND_THREAD_SAFE ou
+				ZEND_DEBUG_BUILD</h3>
+			<p class="para">Toute tentative dans un espace de noms de
+				remplacer les constantes natives ou spéciales, engendre une erreur
+				fatale.
+			<div class="example" id="example-271">
+				<p>
+					<strong>Exemple #11 Constantes qui ne peuvent être
+						redéfinies</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">namespace&nbsp;</span><span
+								style="color: #0000BB">bar</span><span style="color: #007700">;<br />const&nbsp;
+							</span><span style="color: #0000BB">NULL&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;erreur&nbsp;fatale;<br /></span><span
+								style="color: #007700">const&nbsp;</span><span
+								style="color: #0000BB">true&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'stupid'</span><span
+								style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;encore&nbsp;une&nbsp;erreur&nbsp;fatale;<br />//&nbsp;etc.<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.namespaces.rules.html">R&egrave;gles de
+				r&eacute;solutions de noms</a>
+		</div>
+		<div class="next">
+			<a href="language.exceptions.html">Les exceptions</a>
+		</div>
+		<div class="up">
+			<a href="language.namespaces.html">Les espaces de noms</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

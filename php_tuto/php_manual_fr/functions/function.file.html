@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Lit le fichier et renvoie le r&eacute;sultat dans un
+	tableau</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.file-put-contents.html">file_put_contents</a>
+		</div>
+		<div class="next">
+			<a href="function.fileatime.html">fileatime</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.file" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">file</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">file</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Lit le fichier et renvoie le résultat
+					dans un tableau</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.file-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>file</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$filename</code></span> [, <span
+					class="methodparam"><span class="type">int</span> <code
+						class="parameter">$flags</code><span class="initializer"> =
+						0</span></span> [, <span class="methodparam"><span class="type">resource</span>
+					<code class="parameter">$context</code></span> ]] )
+			</div>
+
+			<p class="para rdfs-comment">Lit le fichier et renvoie le
+				résultat dans un tableau.</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Vous pouvez utiliser la fonction <span class="function"><a
+						href="function.file-get-contents.html" class="function">file_get_contents()</a></span>
+					pour retourner le contenu d&#039;un fichier dans une <a
+						href="language.types.string.html" class="link">chaîne de
+						caractères</a>.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.file-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">filename</code></em></span>
+				<dd>
+
+					<p class="para">Chemin vers le fichier.</p>
+					<div class="tip">
+						<strong class="tip">Astuce</strong>
+						<p class="simpara">
+							Vous pouvez utiliser une URL comme nom de fichier avec cette
+							fonction, si le <a
+								href="filesystem.configuration.html#ini.allow-url-fopen"
+								class="link">gestionnaire fopen</a> a été activé. Voyez <span
+								class="function"><a href="function.fopen.html"
+								class="function">fopen()</a></span> pour plus de détails sur la façon
+							de spécifier le nom du fichier. Reportez-vous aux <a
+								href="wrappers.html" class="xref">Liste des protocoles et
+								des gestionnaires support&eacute;s</a> pour plus d&#039;informations
+							sur les capacités des différents gestionnaires, les notes sur
+							leur utilisation, ainsi que les informations sur leurs variables
+							prédéfinies fournies.
+						</p>
+					</div>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">flags</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le paramètre optionnel <em><code class="parameter">flags</code></em>
+						peut être une ou plusieurs des constantes suivantes :
+					<dl>
+
+						<dt>
+
+							<span class="term"> <strong><code>FILE_USE_INCLUDE_PATH</code></strong>
+							</span>
+						<dd>
+
+							<span class="simpara"> Recherche le fichier dans l&#039;<a
+								href="ini.core.html#ini.include-path" class="link">include_path</a>.
+							</span>
+						</dd>
+
+						</dt>
+
+						<dt>
+
+							<span class="term"> <strong><code>FILE_IGNORE_NEW_LINES</code></strong>
+							</span>
+						<dd>
+
+							<span class="simpara"> N&#039;ajoute pas de nouvelle ligne
+								à la fin de chaque élément du tableau. </span>
+						</dd>
+
+						</dt>
+
+						<dt>
+
+							<span class="term"> <strong><code>FILE_SKIP_EMPTY_LINES</code></strong>
+							</span>
+						<dd>
+
+							<span class="simpara"> Ignore les lignes vides. </span>
+						</dd>
+
+						</dt>
+
+
+					</dl>
+
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">context</code></em></span>
+				<dd>
+
+					<p class="para">
+						Une ressource de contexte valide, créée avec la fonction <span
+							class="function"><a
+							href="function.stream-context-create.html" class="function">stream_context_create()</a></span>.
+					</p>
+					<p class="para">
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>: <span class="simpara">Le
+								support de contexte a été ajouté en PHP 5.0.0. Pour une
+								description des contextes, référez-vous à <a
+								href="book.stream.html" class="xref">Flux</a>.
+							</span>
+						</p>
+					</blockquote>
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.file-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne le fichier dans un tableau. Chaque élément du tableau
+				correspond à une ligne du fichier, et les retours-chariot sont
+				placés en fin de ligne. Si une erreur survient, <span
+					class="function"><strong>file()</strong></span> retournera <strong><code>FALSE</code></strong>.
+			</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Chaque ligne du tableau résultant inclura la fin de ligne, à moins
+					que <strong><code>FILE_IGNORE_NEW_LINES</code></strong> ne soit
+					utilisé, donc, vous avez toujours besoin d&#039;utiliser la
+					fonction <span class="function"><a
+						href="function.rtrim.html" class="function">rtrim()</a></span> si vous ne
+					voulez pas de fin de lignes.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Si
+						vous avez des problèmes avec PHP qui ne reconnaît pas certaines
+						lignes lors de la lecture de fichiers qui ont été créés ou lus sur
+						un MacIntosh, vous pouvez activer l&#039;option de configuration <a
+						href="filesystem.configuration.html#ini.auto-detect-line-endings"
+						class="link">auto_detect_line_endings</a>.
+					</span>
+				</p>
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 changelog" id="refsect1-function.file-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+
+					<tr>
+						<td>5.0.0</td>
+						<td>Le paramètre <em><code class="parameter">context</code></em>
+							a été ajouté.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.0.0</td>
+						<td>Avant PHP 5.0.0, le paramètre<em><code
+									class="parameter">flags</code></em> ne couvre que l&#039;<a
+							href="ini.core.html#ini.include-path" class="link">include_path</a>
+							et est activé s&#039;il vaut <em>1</em>.
+						</td>
+					</tr>
+
+					<tr>
+						<td>4.3.0</td>
+						<td><span class="function"><strong>file()</strong></span>
+							devient compatible avec les données binaires.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.file-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2238">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>file()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Lit&nbsp;une&nbsp;page&nbsp;web&nbsp;dans&nbsp;un&nbsp;tableau.<br /></span><span
+								style="color: #0000BB">$lines&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">file</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'http://www.example.com/'</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Affiche&nbsp;toutes&nbsp;les&nbsp;lignes&nbsp;du&nbsp;tableau&nbsp;comme&nbsp;code&nbsp;HTML,&nbsp;avec&nbsp;les&nbsp;numéros&nbsp;de&nbsp;ligne<br /></span><span
+								style="color: #007700">foreach&nbsp;(</span><span
+								style="color: #0000BB">$lines&nbsp;</span><span
+								style="color: #007700">as&nbsp;</span><span
+								style="color: #0000BB">$line_num&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #0000BB">$line</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Line&nbsp;#&lt;b&gt;</span><span
+								style="color: #007700">{</span><span style="color: #0000BB">$line_num</span><span
+								style="color: #007700">}</span><span style="color: #DD0000">&lt;/b&gt;&nbsp;:&nbsp;"&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">htmlspecialchars</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$line</span><span
+								style="color: #007700">)&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"&lt;br&nbsp;/&gt;\n"</span><span
+								style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Un&nbsp;autre&nbsp;exemple,&nbsp;pour&nbsp;obtenir&nbsp;une&nbsp;page&nbsp;web&nbsp;dans&nbsp;une&nbsp;chaîne.&nbsp;Voir&nbsp;aussi&nbsp;la&nbsp;fonction&nbsp;file_get_contents().<br /></span><span
+								style="color: #0000BB">$html&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">implode</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">''</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">file</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'http://www.example.com/'</span><span
+								style="color: #007700">));<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Utilisation&nbsp;de&nbsp;drapeau,&nbsp;depuis&nbsp;PHP&nbsp;5<br /></span><span
+								style="color: #0000BB">$trimmed&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">file</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'somefile.txt'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">FILE_IGNORE_NEW_LINES&nbsp;</span><span
+								style="color: #007700">|&nbsp;</span><span
+								style="color: #0000BB">FILE_SKIP_EMPTY_LINES</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.file-notes">
+			<h3 class="title">Notes</h3>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">
+					Lorsque vous utilisez SSL, le serveur IIS de Microsoft violera le
+					protocole en fermant la connexion sans envoyer l&#039;indicateur <em>close_notify</em>.
+					PHP le reportera en tant que &quot;SSL: Fatal Protocol Error&quot;
+					quand vous arrivez à la fin des données. L&#039;astuce est de
+					baisser le niveau de la directive <a
+						href="errorfunc.configuration.html#ini.error-reporting"
+						class="link">error_reporting</a> pour ne pas inclure les alertes.
+					À partir de PHP 4.3.7, le bogue est détecté automatiquement lors de
+					l&#039;ouverture du flux en utilisant <em>https://</em> et
+					supprimera cet avertissement pour vous. Si vous utilisez <span
+						class="function"><a href="function.fsockopen.html"
+						class="function">fsockopen()</a></span> pour créer un socket <em>ssl://</em>,
+					vous devez vous occuper vous-même de supprimer l&#039;erreur.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.file-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.readfile.html" class="function" rel="rdfs-seeAlso">readfile()</a>
+						- Affiche un fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fopen.html" class="function" rel="rdfs-seeAlso">fopen()</a>
+						- Ouvre un fichier ou une URL</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fsockopen.html" class="function" rel="rdfs-seeAlso">fsockopen()</a>
+						- Ouvre un socket de connexion Internet ou Unix</span></li>
+				<li class="member"><span class="function"><a
+						href="function.popen.html" class="function" rel="rdfs-seeAlso">popen()</a>
+						- Cr&eacute;e un processus de pointeur de fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.file-get-contents.html" class="function"
+						rel="rdfs-seeAlso">file_get_contents()</a> - Lit tout un fichier
+						dans une cha&icirc;ne</span></li>
+				<li class="member"><span class="function"><a
+						href="function.include.html" class="function" rel="rdfs-seeAlso">include</a>
+						- include</span></li>
+				<li class="member"><span class="function"><a
+						href="function.stream-context-create.html" class="function"
+						rel="rdfs-seeAlso">stream_context_create()</a> - Cr&eacute;e un
+						contexte de flux</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.file-put-contents.html">file_put_contents</a>
+		</div>
+		<div class="next">
+			<a href="function.fileatime.html">fileatime</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

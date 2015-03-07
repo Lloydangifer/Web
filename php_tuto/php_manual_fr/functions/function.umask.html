@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Change le &quot;umask&quot; courant</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.touch.html">touch</a>
+		</div>
+		<div class="next">
+			<a href="function.unlink.html">unlink</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.umask" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">umask</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">umask</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Change le &quot;umask&quot; courant</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.umask-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">int</span> <span class="methodname"><strong>umask</strong></span>
+				([ <span class="methodparam"><span class="type">int</span> <code
+						class="parameter">$mask</code></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>umask()</strong></span> change le
+				umask de PHP et le remplace par <em><code class="parameter">mask</code></em>
+				: <em>mask &amp; 0777</em> puis, retourne le vieux umask. Lorsque
+				PHP est utilisé comme module de serveur, le umask reprend sa valeur
+				à la fin de chaque script.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.umask-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">mask</code></em></span>
+				<dd>
+
+					<p class="para">Le nouvel umask.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.umask-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				<span class="function"><strong>umask()</strong></span>, appelée sans
+				arguments, retourne simplement le umask courant, sinon, ce sera
+				l&#039;ancien umask qui sera retourné.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.umask-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2305">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>umask()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$old&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">umask</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">chmod</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"/path/some_dir/some_file.txt"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0755</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">umask</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$old</span><span style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Vérification<br /></span><span
+								style="color: #007700">if&nbsp;(</span><span
+								style="color: #0000BB">$old&nbsp;</span><span
+								style="color: #007700">!=&nbsp;</span><span
+								style="color: #0000BB">umask</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(
+							</span><span style="color: #DD0000">'Une&nbsp;erreur&nbsp;est&nbsp;survenue&nbsp;lors&nbsp;de&nbsp;la&nbsp;modification&nbsp;des&nbsp;droits'</span><span
+								style="color: #007700">);<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.umask-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Évitez d&#039;utiliser cette fonction sur un serveur Web
+					multithreadé. Il vaut mieux changer les droits d&#039;un dossier
+					avec la fonction <span class="function"><a
+						href="function.chmod.html" class="function">chmod()</a></span>, après la
+					création du dossier. En utilisant <span class="function"><strong>umask()</strong></span>,
+					vous risquez de rencontrer des comportements indéfinis au niveau
+					des autres scripts et du serveur, car ils utilisent tous le même
+					umask.
+			</blockquote>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.touch.html">touch</a>
+		</div>
+		<div class="next">
+			<a href="function.unlink.html">unlink</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

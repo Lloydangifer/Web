@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Exemples</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="mcrypt.ciphers.html">Modes de chiffrement Mcrypt</a></div>
+ <div class="next"><a href="ref.mcrypt.html">Fonctions Mcrypt</a></div>
+ <div class="up"><a href="book.mcrypt.html">Mcrypt</a></div><div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="mcrypt.examples" class="appendix">
+ <h1>Exemples</h1>
+
+ <p class="para">
+  Mcrypt permet de chiffrer et de déchiffrer en utilisant les méthodes
+  mentionnées ci-dessus. Si vous utilisez <em>libmcrypt-2.2.x</em>,
+  les 4 commandes importantes
+  ( <span class="function"><a href="function.mcrypt-cfb.html" class="function">mcrypt_cfb()</a></span>,  <span class="function"><a href="function.mcrypt-cbc.html" class="function">mcrypt_cbc()</a></span>,
+   <span class="function"><a href="function.mcrypt-ecb.html" class="function">mcrypt_ecb()</a></span> et  <span class="function"><a href="function.mcrypt-ofb.html" class="function">mcrypt_ofb()</a></span>)
+  peuvent toutes opérer en mode <strong><code>MCRYPT_ENCRYPT</code></strong> et
+  <strong><code>MCRYPT_DECRYPT</code></strong>.
+  <div class="example" id="example-912">
+   <p><strong>Exemple #1 Chiffre une valeur avec un <em>TripleDES</em>, en mode
+    <em>ECB</em>, sous 2.2.x</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$key&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"Cette&nbsp;clé&nbsp;est&nbsp;ultra-secrète"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$input&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"Rencontrons-nous&nbsp;dans&nbsp;notre&nbsp;place&nbsp;secrète&nbsp;à&nbsp;9&nbsp;h&nbsp;00."</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$encrypted_data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mcrypt_ecb&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">MCRYPT_3DES</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$key</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$input</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MCRYPT_ENCRYPT</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  Cet exemple va retourner les données chiffrées dans la variable
+  <em>$encrypted_data</em>.
+ </p>
+ <p class="para">
+  Si vous avez compilé PHP avec libmcrypt 2.4.x ou 2.5.x, ces fonctions sont toujours
+  disponibles, mais il est vivement conseillé d&#039;utiliser les nouvelles
+  fonctions avancées.
+  <div class="example" id="example-913">
+   <p><strong>Exemple #2 Chiffrement d&#039;une valeur avec <em>TripleDES</em> sous 2.4.x et supérieur,
+    en mode <em>ECB</em></strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$key&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"Ceci&nbsp;est&nbsp;une&nbsp;vraie&nbsp;clé&nbsp;secrète"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$input&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"Rendez-vous&nbsp;à&nbsp;9&nbsp;heures,&nbsp;dans&nbsp;notre&nbsp;planque."</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$td&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mcrypt_module_open</span><span style="color: #007700">(</span><span style="color: #DD0000">'tripledes'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ecb'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$iv&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mcrypt_create_iv&nbsp;</span><span style="color: #007700">(</span><span style="color: #0000BB">mcrypt_enc_get_iv_size</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">MCRYPT_RAND</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">mcrypt_generic_init</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$key</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$iv</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$encrypted_data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mcrypt_generic</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$input</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">mcrypt_generic_deinit</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">mcrypt_module_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  Cet exemple va retourner les données cryptées dans la variable
+  <em>$encrypted_data</em>. Pour un exemple complet,
+  voyez  <span class="function"><a href="function.mcrypt-module-open.html" class="function">mcrypt_module_open()</a></span>.
+ </p>
+</div>
+<hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="mcrypt.ciphers.html">Modes de chiffrement Mcrypt</a></div>
+ <div class="next"><a href="ref.mcrypt.html">Fonctions Mcrypt</a></div>
+ <div class="up"><a href="book.mcrypt.html">Mcrypt</a></div>
+<div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

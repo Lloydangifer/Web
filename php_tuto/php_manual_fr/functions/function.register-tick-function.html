@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Enregistre une fonction ex&eacute;cut&eacute;e &agrave;
+	chaque tick</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.register-shutdown-function.html">register_shutdown_function</a>
+		</div>
+		<div class="next">
+			<a href="function.unregister-tick-function.html">unregister_tick_function</a>
+		</div>
+		<div class="up">
+			<a href="ref.funchand.html">Fonctions sur la gestion des
+				fonctions</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.register-tick-function" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">register_tick_function</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.0.3, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">register_tick_function</span> <span
+					class="mdash">&mdash;</span> <span class="dc-title">Enregistre
+					une fonction exécutée à chaque tick</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.register-tick-function-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>register_tick_function</strong></span>
+				( <span class="methodparam"><span class="type"><a
+						href="language.types.callable.html" class="type callable">callable</a></span>
+					<code class="parameter">$function</code></span> [, <span
+					class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$arg</code></span>
+				[, <span class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$...</code></span>
+				]] )
+			</div>
+
+			<p class="simpara">
+				<span class="function"><strong>register_tick_function()</strong></span>
+				enregistre la fonction <em><code class="parameter">function</code></em>
+				pour être exécutée à chaque fois qu&#039;un <a
+					href="control-structures.declare.html#control-structures.declare.ticks"
+					class="link">tick</a> survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.register-tick-function-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">function</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le nom de la fonction, sous la forme d&#039;une <a
+							href="language.types.string.html" class="link">chaîne de
+							caractères</a> ou d&#039;un <a href="language.types.array.html"
+							class="link">tableau</a> d&#039;objets et de méthodes.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">arg</code></em></span>
+				<dd>
+
+					<p class="para"></p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">...</code></em></span>
+				<dd>
+
+					<p class="para"></p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.register-tick-function-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.register-tick-function-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4773">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>register_tick_function()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">declare(</span><span
+								style="color: #0000BB">ticks</span><span style="color: #007700">=</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Utilisation&nbsp;d'une&nbsp;fonction&nbsp;de&nbsp;callback<br /></span><span
+								style="color: #0000BB">register_tick_function</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'my_function'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Utilisation&nbsp;d'une&nbsp;méthode&nbsp;d'objet<br /></span><span
+								style="color: #0000BB">$object&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">my_class</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">register_tick_function</span><span
+								style="color: #007700">(array(&amp;</span><span
+								style="color: #0000BB">$object</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'my_method'</span><span
+								style="color: #007700">),&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.register-tick-function-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.3.0</td>
+						<td>Les ticks sont maintenant supportés sur les serveurs Web
+							threadés.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes"
+			id="refsect1-function.register-tick-function-notes">
+			<h3 class="title">Notes</h3>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">
+					<span class="function"><strong>register_tick_function()</strong></span>
+					ne doit pas être utilisé avec les serveurs web threadé, en PHP 5.2
+					et plus anciens.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.register-tick-function-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><a href="control-structures.declare.html"
+					class="link">declare</a></li>
+				<li class="member"><span class="function"><a
+						href="function.unregister-tick-function.html" class="function"
+						rel="rdfs-seeAlso">unregister_tick_function()</a> - Annule la
+						fonction ex&eacute;cut&eacute;e &agrave; chaque tick</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.register-shutdown-function.html">register_shutdown_function</a>
+		</div>
+		<div class="next">
+			<a href="function.unregister-tick-function.html">unregister_tick_function</a>
+		</div>
+		<div class="up">
+			<a href="ref.funchand.html">Fonctions sur la gestion des
+				fonctions</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

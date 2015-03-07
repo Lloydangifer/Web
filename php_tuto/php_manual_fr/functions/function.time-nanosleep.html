@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Attendre pendant un nombre de secondes et de nanosecondes</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.sys-getloadavg.html">sys_getloadavg</a>
+		</div>
+		<div class="next">
+			<a href="function.time-sleep-until.html">time_sleep_until</a>
+		</div>
+		<div class="up">
+			<a href="ref.misc.html">Fonctions diverses</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.time-nanosleep" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">time_nanosleep</h1>
+			<p class="verinfo">(PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">time_nanosleep</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Attendre pendant un nombre de secondes
+					et de nanosecondes</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.time-nanosleep-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><a
+					href="language.pseudo-types.html#language.types.mixed"
+					class="type mixed">mixed</a></span> <span class="methodname"><strong>time_nanosleep</strong></span>
+				( <span class="methodparam"><span class="type">int</span> <code
+						class="parameter">$seconds</code></span> , <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$nanoseconds</code></span>
+				)
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="methodname"><strong>time_nanosleep()</strong></span>
+				impose un délai d&#039;exécution de <em><code class="parameter">seconds</code></em>
+				secondes et <em><code class="parameter">nanoseconds</code></em>
+				nanosecondes.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.time-nanosleep-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">seconds</code></em></span>
+				<dd>
+
+					<p class="para">Doit être un entier non-négatif.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">nanoseconds</code></em></span>
+				<dd>
+
+					<p class="para">Doit être un entier non-négatif, inférieur à 1
+						milliard.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.time-nanosleep-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+			<p class="para">Si le délai est interrompu par un signal, un
+				tableau associatif sera retourné avec les éléments :
+			<ul class="itemizedlist">
+				<li class="listitem"><span class="simpara"> <em>seconds</em>
+						: nombre de secondes restantes dans le délai
+				</span></li>
+				<li class="listitem"><span class="simpara"> <em>nanoseconds</em>
+						: nombre de nanosecondes restantes dans le délai
+				</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.time-nanosleep-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.3.0</td>
+						<td>Cette fonction est maintenant disponible sous Windows.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.time-nanosleep-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-3514">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>time_nanosleep()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Attention&nbsp;!&nbsp;Cela&nbsp;ne&nbsp;fonctionnera&nbsp;pas&nbsp;comme&nbsp;prévu&nbsp;si&nbsp;un&nbsp;tableau&nbsp;est&nbsp;retourné<br /></span><span
+								style="color: #007700">if&nbsp;(</span><span
+								style="color: #0000BB">time_nanosleep</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">0</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">500000000</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Dors&nbsp;pendant&nbsp;une&nbsp;demie&nbsp;seconde.\n"</span><span
+								style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Ceci&nbsp;est&nbsp;meilleur&nbsp;:<br /></span><span
+								style="color: #007700">if&nbsp;(</span><span
+								style="color: #0000BB">time_nanosleep</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">0</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">500000000</span><span
+								style="color: #007700">)&nbsp;===&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Dors&nbsp;pendant&nbsp;une&nbsp;demie&nbsp;seconde.\n"</span><span
+								style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Et&nbsp;ceci&nbsp;est&nbsp;la&nbsp;meilleur&nbsp;façon&nbsp;:<br /></span><span
+								style="color: #0000BB">$nano&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">time_nanosleep</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">2</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">100000</span><span style="color: #007700">);<br />
+								<br />if&nbsp;(
+							</span><span style="color: #0000BB">$nano&nbsp;</span><span
+								style="color: #007700">===&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Dors&nbsp;pendant&nbsp;2&nbsp;secondes&nbsp;et&nbsp;100&nbsp;microsecondes.\n"</span><span
+								style="color: #007700">;<br />}&nbsp;elseif&nbsp;(
+							</span><span style="color: #0000BB">$nano&nbsp;</span><span
+								style="color: #007700">===&nbsp;</span><span
+								style="color: #0000BB">false</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Le&nbsp;délai&nbsp;a&nbsp;échoué.\n"</span><span
+								style="color: #007700">;<br />}&nbsp;elseif&nbsp;(
+							</span><span style="color: #0000BB">is_array</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$nano</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$seconds&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">$nano</span><span style="color: #007700">[</span><span
+								style="color: #DD0000">'seconds'</span><span
+								style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$nanoseconds&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">$nano</span><span style="color: #007700">[</span><span
+								style="color: #DD0000">'nanoseconds'</span><span
+								style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Interrompu&nbsp;par&nbsp;un&nbsp;signal.\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Temps&nbsp;restant&nbsp;:&nbsp;</span><span
+								style="color: #0000BB">$seconds</span><span
+								style="color: #DD0000">&nbsp;secondes,&nbsp;</span><span
+								style="color: #0000BB">$nanoseconds</span><span
+								style="color: #DD0000">&nbsp;nanosecondes."</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.time-nanosleep-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.sleep.html" class="function" rel="rdfs-seeAlso">sleep()</a>
+						- Arr&ecirc;te l'ex&eacute;cution durant quelques secondes</span></li>
+				<li class="member"><span class="function"><a
+						href="function.usleep.html" class="function" rel="rdfs-seeAlso">usleep()</a>
+						- Arr&ecirc;te l'ex&eacute;cution durant quelques microsecondes</span></li>
+				<li class="member"><span class="function"><a
+						href="function.time-sleep-until.html" class="function"
+						rel="rdfs-seeAlso">time_sleep_until()</a> - Arr&ecirc;te le script
+						pendant une dur&eacute;e sp&eacute;cifi&eacute;e</span></li>
+				<li class="member"><span class="function"><a
+						href="function.set-time-limit.html" class="function"
+						rel="rdfs-seeAlso">set_time_limit()</a> - Fixe le temps maximum
+						d'ex&eacute;cution d'un script</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.sys-getloadavg.html">sys_getloadavg</a>
+		</div>
+		<div class="next">
+			<a href="function.time-sleep-until.html">time_sleep_until</a>
+		</div>
+		<div class="up">
+			<a href="ref.misc.html">Fonctions diverses</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

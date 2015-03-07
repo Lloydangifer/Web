@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Cr&eacute;e un dossier</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.lstat.html">lstat</a>
+		</div>
+		<div class="next">
+			<a href="function.move-uploaded-file.html">move_uploaded_file</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.mkdir" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">mkdir</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">mkdir</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Crée un dossier</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.mkdir-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>mkdir</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$pathname</code></span> [, <span
+					class="methodparam"><span class="type">int</span> <code
+						class="parameter">$mode</code><span class="initializer"> =
+						0777</span></span> [, <span class="methodparam"><span class="type">bool</span>
+					<code class="parameter">$recursive</code><span class="initializer">
+						= false</span></span> [, <span class="methodparam"><span class="type">resource</span>
+					<code class="parameter">$context</code></span> ]]] )
+			</div>
+
+			<p class="para rdfs-comment">Tente de créer un dossier.</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.mkdir-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">pathname</code></em></span>
+				<dd>
+
+					<p class="para">Le chemin du dossier.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">mode</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le mode par défaut est le mode 0777, ce qui correspond au maximum
+						de droits possible. Pour plus d&#039;informations sur les modes,
+						lisez en détail la documentation de la fonction <span
+							class="function"><a href="function.chmod.html"
+							class="function">chmod()</a></span>.
+					</p>
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>:
+						<p class="para">
+							<em><code class="parameter">mode</code></em> est ignoré sous
+							Windows.
+					</blockquote>
+					<p class="para">
+						Notez que vous aurez à préciser le mode en base octale, ce qui
+						signifie que vous aurez probablement un 0 comme premier chiffre.
+						Le mode sera aussi modifié par le umask courant, que vous pouvez
+						modifier avec la fonction <span class="function"><a
+							href="function.umask.html" class="function">umask()</a></span>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">recursive</code></em></span>
+				<dd>
+
+					<p class="para">
+						Permet la création de répertoires imbriqués spécifiés dans le <em><code
+								class="parameter">pathname</code></em>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">context</code></em></span>
+				<dd>
+
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>: <span class="simpara">Le
+								support de contexte a été ajouté en PHP 5.0.0. Pour une
+								description des contextes, référez-vous à <a
+								href="book.stream.html" class="xref">Flux</a>.
+							</span>
+						</p>
+					</blockquote>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.mkdir-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog" id="refsect1-function.mkdir-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.0.0</td>
+						<td>Le paramètre <em><code class="parameter">recursive</code></em>
+							a été ajouté
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.0.0</td>
+						<td>Depuis PHP 5.0.0, la fonction <span class="function"><strong>mkdir()</strong></span>
+							peut aussi être utilisée avec <em class="emphasis">certains</em>
+							gestionnaires d&#039;URL. Reportez-vous à <a href="wrappers.html"
+							class="xref">Liste des protocoles et des gestionnaires
+								support&eacute;s</a>, pour une liste des gestionnaires qui
+							supportent <span class="function"><strong>mkdir()</strong></span>.
+						</td>
+					</tr>
+
+					<tr>
+						<td>4.2.0</td>
+						<td>Le paramètre <em><code class="parameter">mode</code></em>
+							est devenu optionnel.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.mkdir-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2278">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>mkdir()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />mkdir
+							</span><span style="color: #007700">(</span><span style="color: #DD0000">"/path/to/my/dir"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0700</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="example-2279">
+				<p>
+					<strong>Exemple #2 <span class="function"><strong>mkdir()</strong></span>
+						utilisant le paramètre <em><code class="parameter">recursive</code></em>
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Structure&nbsp;de&nbsp;répertoire&nbsp;désirée<br /></span><span
+								style="color: #0000BB">$structure&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'./depth1/depth2/depth3/'</span><span
+								style="color: #007700">;<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Pour&nbsp;créer&nbsp;une&nbsp;stucture&nbsp;imbriquée,&nbsp;le&nbsp;paramètre&nbsp;$recursive&nbsp;<br />//&nbsp;doit&nbsp;être&nbsp;spécifié.<br />
+								<br /></span><span style="color: #007700">if&nbsp;(!</span><span
+								style="color: #0000BB">mkdir</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$structure</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(
+							</span><span style="color: #DD0000">'Echec&nbsp;lors&nbsp;de&nbsp;la&nbsp;création&nbsp;des&nbsp;répertoires...'</span><span
+								style="color: #007700">);<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;...<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.mkdir-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Lorsque
+						le <a href="features.safe-mode.html" class="link">safe-mode</a>
+						est activé, PHP vérifie si le fichier/dossier que vous allez
+						utiliser a le même UID que le script qui est actuellement exécuté.
+					</span>
+				</p>
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.mkdir-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.is-dir.html" class="function" rel="rdfs-seeAlso">is_dir()</a>
+						- Indique si le fichier est un dossier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.rmdir.html" class="function" rel="rdfs-seeAlso">rmdir()</a>
+						- Efface un dossier</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.lstat.html">lstat</a>
+		</div>
+		<div class="next">
+			<a href="function.move-uploaded-file.html">move_uploaded_file</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

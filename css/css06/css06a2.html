@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Couleur du texte</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function() {
+			top.FP.initPage();
+		}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<!-- ################################################################################################## -->
+		<h3>La propriété color</h3>
+		<section>
+
+			<p>
+				La propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'color')">color</a>
+				permet de définir la couleur utilisée pour afficher le texte d'une
+				boîte.
+			</p>
+
+			<p>
+				N'importe quelle façon de <a
+					onclick="top.FP.Voir.showPageTech('couleur', '')">spécifier une
+					couleur</a> peut être utilisée avec cette propriété.
+			</p>
+
+			<pre data-code="CSS">
+h1 { color: #212C19; }
+h2 { color: rgb(77, 47, 113); }
+h3 { color: rgb(30%, 18%, 44%); }
+h4 { color: rgba(47, 38, 30, 0.75); }
+h5 { color: rgba(18%, 14%, 11%, 75%); }
+h6 { color: hsl(351, 26%, 23%); }
+p { color: hsla(104, 15%, 8%, 0.7); }
+div {color: darkred; }</pre>
+
+			<p>
+				La propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'color')">color</a>
+				est héritée : elles est transmise automatiquement de l'élément
+				parent à ses enfants, quelque soit le niveau de descendance.
+				<br>
+				On peut donc facilement gérer la couleur de tous les textes d'une
+				page en mettant la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'color')">color</a>
+				sur l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'body')">body</a>, ou
+				sur l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'html')">html</a>.
+				<br>
+				Par défaut la couleur des textes est le noir (<code>#000000</code>).
+			</p>
+
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : couleur du texte
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;L'Arrière des Etoiles&lt;/h3&gt;
+		&lt;p&gt;Les CSS sont l'arme secrète de la Force !&lt;/p&gt;
+		&lt;p&gt;Tu veux savoir les utiliser ?  
+			Envoie CSS au 7 1718.&lt;/p&gt;
+		&lt;div&gt;
+			&lt;p&gt;&lt;img src="../exemples/img/yoda.jpg"&gt; 
+				Le côté obscur des CSS redouter tu dois.&lt;/p&gt;
+	    	&lt;p&gt;&lt;img src="../exemples/img/darkv.jpg"&gt; 
+				Les CSS ont vraiment transformé ma vie.&lt;/p&gt;
+	    	&lt;p&gt;&lt;img src="../exemples/img/gandalf.jpg"&gt; 
+				Bien sûr, moi aussi j'utilise les CSS !&lt;/p&gt;
+	  	&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+html { 
+	font-size: 20px;	/* pour bien voir les couleurs */
+	color: darkred; 	/* par défaut textes en rouge foncé */
+}
+h3 { 
+	color: #044106;		/* vert */
+}
+div p:first-of-type { 
+	color: rgb(49, 150, 19);  /* vert clair */
+}
+div p:nth-of-type(2) { 
+	color: hsl(208, 100%, 37%);  /* bleu */
+}
+/* même bleu que précédent mais avec transparence */
+div p:nth-of-type(3) { 
+	color: hsla(208, 100%, 37%, 0.5);  
+}</textarea>
+			</form>
+
+			<p>
+				Si la couleur d'une bordure n'est pas spécifiée (propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'border-color')">border-color</a>
+				ou raccourci <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'border')">border</a>),
+				elle aura la couleur du texte de la boîte qu'elle entoure.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : couleur de bordure non spécifiée
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;L'Arrière des Etoiles&lt;/h3&gt;
+		&lt;p&gt;Les CSS sont l'arme secrète de la Force !&lt;/p&gt;
+		&lt;p&gt;Tu veux savoir les utiliser ?  
+			Envoie CSS au 7 1718.&lt;/p&gt;
+		&lt;div&gt;
+			&lt;p&gt;&lt;img src="../exemples/img/yoda.jpg"&gt; 
+				Le côté obscur des CSS redouter tu dois.&lt;/p&gt;
+	    	&lt;p&gt;&lt;img src="../exemples/img/darkv.jpg"&gt; 
+				Les CSS ont vraiment transformé ma vie.&lt;/p&gt;
+	    	&lt;p&gt;&lt;img src="../exemples/img/gandalf.jpg"&gt; 
+				Bien sûr, moi aussi j'utilise les CSS !&lt;/p&gt;
+	  	&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+html { color: darkred; }/* par défaut textes en rouge foncé */
+
+h3 { 
+	color: #044106;		/* vert */
+	border: 2px solid;
+}
+
+/* tous les paragraphes avec une bordure pointillée */
+p { border: 2px dotted; }	
+
+div p:first-of-type { 
+	color: rgb(49, 150, 19);  /* vert clair */
+}
+div p:nth-of-type(2) { 
+	color: hsl(208, 100%, 37%);  /* bleu */
+}
+/* même bleu que précédent mais avec transparence */
+div p:nth-of-type(3) { 
+	color: hsla(208, 100%, 37%, 0.5);  
+}</textarea>
+			</form>
+
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Ombrage du texte</h3>
+		<section>
+
+			<p>
+				La propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'text-shadow')">text-shadow</a>
+				permet de définir une ou plusieurs ombres sous du texte.
+			</p>
+
+			<pre data-code="CSS">
+h2 {
+	text-shadow: 10px 8px 5px #044106;
+}</pre>
+
+			<p>Une ombre est définie avec 3 valeurs de longueur et une valeur
+				de couleur.</p>
+
+			<figure>
+				<img src="../cssimg/text_shadow_v2.png" width="579" height="246">
+				<figcaption>4 valeurs pour définir une ombre</figcaption>
+			</figure>
+
+			<p>
+				Le décalage horizontal place l'ombre du texte à sa droite (valeur
+				positive) ou à sa gauche (valeur négative).
+				<br>
+				Le décalage vertical place l'ombre du texte en bas (valeur positive)
+				ou en haut (valeur négative).
+				<br>
+				La 3éme valeur permet d'adoucir le contour de l'ombre en le rendant
+				flou. Plus la valeur est élevée et plus l'ombre est adoucie.
+				<br>
+				Pour avoir des ombres réalistes, l'utilisation des fonctions de
+				couleur avec transparence (<code>rgba()</code> ou <code>hsla()</code>)
+				donne les meilleurs résultats.
+			</p>
+
+			<div class="TEST-iframe">
+				<p>Tester les ombres de texte</p>
+				<iframe src="../exemples/text_shadow_widget.html?1boite-widget"
+					id="boite-widget"
+					style="width: 100%; margin: 0; border: 0 none; height: 600px;"></iframe>
+			</div>
+
+			<p>
+				Les valeurs de décalage horizontal et vertical sont obligatoires.
+				Les valeurs de flou et de couleur sont facultatitves. Si la valeur
+				de flou n'est pas précisée elle sera par défaut de 0. Si la couleur
+				n'est pas précisée, c'est la couleur du texte qui sera utilisée
+				(propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'color')">color</a>).
+			</p>
+
+			<p>On peut mettre plusieurs ombres sur du texte en séparant les
+				groupes de 4 valeurs par une virgule :</p>
+
+			<pre data-code="CSS">
+/* 3 ombres pour le texte des éléments h2 */
+h2 {
+	text-shadow: 10px 8px 5px #044106,
+				 -5px -8px 2px rgba(255, 240, 136, 0.5),
+				 12px -10px 8px #03C842;
+}</pre>
+
+			<p>Les ombres sont appliquées par ordre de déclaration : la 1ère
+				ombre déclarée est au dessus, la 2ème est sous la 1ère, la 3ème sous
+				la 2ème, etc.</p>
+
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : plusieurs ombres - flammes
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p class="flammes"&gt;La Gare des Etoiles&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {
+	background: black;
+	text-align: center;
+	font-size: 80px;
+}
+.flammes { 
+	text-shadow: 0 0 4px white,
+                 0 -5px 4px #FFFF33,
+				2px -10px 6px #FFDD33,
+				-2px -15px 11px #FF8800,
+				2px -25px 18px #FF2200;
+}
+</textarea>
+			</form>
+
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : plusieurs ombres - silhouette
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p class="autour"&gt;La Gare des Etoiles&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {
+	background: black;
+	text-align: center;
+	font: bold 80px/0.9 verdana;
+}
+.autour {
+	color: #000;
+	text-shadow: 0 1px 2px gold,
+				 1px 0 2px gold,
+				 -1px 0 2px gold,
+				 0 -1px 2px gold,
+				 1px 1px 2px gold,
+				 -1px 1px 2px gold,
+				 -1px 1px 2px gold,
+				 -1px -1px 2px gold;
+}</textarea>
+			</form>
+
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : plusieurs ombres - 3D
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p class="trois-d"&gt;La Gare des Etoiles&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {
+	background: black;
+	text-align: center;
+	font-size: 80px;
+}
+.trois-d {
+	color: white;
+	text-shadow: 1px 1px 0 #AAA,
+				 1px 2px 0 #999,
+				 1px 3px 0 #888,
+				 1px 4px 0 #777,
+				 1px 5px 0 #666;
+}</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : plusieurs ombres - bosse - embouti
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p class="bosse"&gt;Effet de bosse&lt;/p&gt;
+		&lt;p class="embouti"&gt;Emboutissage&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {
+	background: grey;
+	text-align: center;
+	font-size: 80px;
+	color: grey;
+}
+.bosse {
+	text-shadow: -1px -1px white, 
+				 1px 1px #333;
+}
+.embouti {
+	text-shadow: 1px 1px white, 
+				 -1px -1px #444;
+}</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : plusieurs ombres - néon
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p class="neon"&gt;Néon&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {
+	background: black;
+	text-align: center;
+	font-size: 80px;
+	color: grey;
+}
+.neon {
+	color: #f5f5f5;
+	text-shadow: 0 0 5px #fff,
+				0 0 10px #fff,
+				0 0 15px #fff,
+				0 0 20px #3FF,
+				0 0 30px #3FF,
+				0 0 40px #3FF,
+				0 0 50px #3FF,
+				0 0 75px #3FF;
+}</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : plusieurs ombres - rétro
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p class="retro"&gt;RETRO&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body {
+	background: black;
+	text-align: center;
+	font-size: 80px;
+	color: grey;
+}
+.retro {
+	color: #FC9;
+	text-shadow: 3px 3px 0px #333, 
+				5px 5px 0px #999;
+}
+</textarea>
+			</form>
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

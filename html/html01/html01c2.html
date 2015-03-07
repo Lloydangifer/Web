@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Jamais d'erreurs</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p style="text-align: center; margin-bottom: -2em">
+			<img src="../htmlimg/erreur02.png" width="167" height="200">
+		</p>
+
+		<h3>Imbrication incorrecte</h3>
+		<section>
+			<p class="fp-p-raz">Que se passe-t-il si l'imbrication des
+				éléments n'est pas correcte ?</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : mauvaise imbrication d'éléments
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Exemple de page&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Je suis un exemple de document HTML.&lt;/p&gt;
+		&lt;ul&gt;
+			&lt;li&gt;On utilise &lt;strong&gt;des balises&lt;/strong&gt; pour
+				marquer la structure du	document.&lt;/li&gt;
+			&lt;li&gt;Les balises ont une &lt;strong&gt;syntaxe 
+				particulière&lt;/strong&gt;.&lt;/li&gt;
+			&lt;li&gt;Elles permettent de donner du sens aux 
+				informations en	définissant par exemple ici
+				un paragraphe et une liste.
+		&lt;/ul&gt;
+		&lt;/li&gt;
+		&lt;p&gt;&lt;img src="info.png"&gt;C'est le 
+			&lt;a href="http://w3.org"&gt;W3C qui définit 
+			les balises.&lt;/p&gt;&lt;/a&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p class="fp-p-raz">
+				On a ici 2 imbrications incorrectes : le dernier élément <code>li</code>
+				est fermé après l'élément <code>ul</code> (ligne 17) et l'élément <code>a</code>
+				du dernier paragraphe est fermé après l'élément <code>p</code> qui
+				le contient.
+				<br>
+				Quand on affiche la page, on s'aperçoit que ce code mal formé ne
+				provoque pas d'erreur dans le navigateur qui ne s'arrête pas dans
+				son travail, mais fait le rendu comme il le peut. La mauvaise
+				imbrication <code>li</code> et <code>ul</code> est tout simplement
+				ignorée, et la mauvaise imbrication <code>a</code> et <code>p</code>
+				fait que le lien continue jusqu'à la fin du paragaphe.
+			</p>
+		</section>
+
+		<h3>Element non fermé</h3>
+		<section>
+			<p class="fp-p-raz">Que se passe-t-il si on oublie de fermer un
+				élément ?</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : éléments non fermés
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Exemple de page&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Je suis un exemple de document HTML.&lt;/p&gt;
+		&lt;ul&gt;
+			&lt;li&gt;On utilise &lt;strong&gt;des balises pour
+				marquer la structure du	document.&lt;/li&gt;
+			&lt;li&gt;Les balises ont une &lt;strong&gt;syntaxe 
+				particulière&lt;/strong&gt;.&lt;/li&gt;
+			&lt;li&gt;Elles permettent de donner du sens aux 
+				informations en	définissant par exemple ici
+				un paragraphe et une liste.&lt;/li&gt;		
+		&lt;p&gt;&lt;img src="info.png"&gt;C'est le 
+			&lt;a href="http://w3.org"&gt;W3C&lt;/a&gt; qui définit 
+			les balises.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p class="fp-p-raz">
+				On a ici 2 éléments qui ne sont pas fermés.
+				<br>
+				La première balise <code>&lt;strong&gt;</code> (ligne 9) n'est pas
+				fermée. Là encore, le navigateur n'arrête pas son travail (ie
+				n'affiche pas de message d'erreur), mais considère que la balise de
+				fermeture &lt;/strong&gt; se trouve à la fin du code. Le résultat
+				est donc que tout le texte qui suit cette balise est rendu en gras.
+				<br>
+				La deuxième balise non fermée est la balise <code>&lt;ul&gt;</code>.
+				Le navigateur dans ce cas considère que la fin de la liste se trouve
+				avant le dernier paragraphe (ce qui est exact ici). Encore une fois
+				aucun message ne signale une erreur quelconque.
+			</p>
+
+		</section>
+
+		<h3>Erreur de syntaxe</h3>
+		<section>
+			<p class="fp-p-raz">Que se passe-t-il si on fait une erreur de
+				syntaxe dans un nom de balise ou dans un nom d'attribut ?</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : erreur de syntaxe
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Exemple de page&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Je suis un exemple de document HTML.&lt;/p&gt;
+		&lt;ul&gt;
+			&lt;il&gt;On utilise &lt;strong&gt;des balises&lt;/strong&gt; pour
+				marquer la structure du	document.&lt;/li&gt;
+			&lt;li&gt;Les balises ont une &lt;strong&gt;syntaxe 
+				particulière&lt;/strong&gt;.&lt;/li&gt;
+			&lt;ligne&gt;Elles permettent de donner du sens aux 
+				informations en	définissant par exemple ici
+				un paragraphe et une liste.&lt;/li&gt;		
+		&lt;p&gt;&lt;img src="info.png"&gt;C'est le 
+			&lt;a hrf="http://w3.org"&gt;W3C&lt;/a&gt; qui définit 
+			les balises.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p class="fp-p-raz">
+				On a ici 3 erreurs de syntaxe.
+				<br>
+				A la ligne 9 la balise est <code>il</code> à la place de <code>li</code>.
+				<br>
+				A la ligne 13 la balise est <code>ligne</code> à la place de <code>li</code>.
+				<br>
+				A la ligne 17 l'attribut est <code>hrf</code> à la place de <code>href</code>.
+				Comme précédemment, les erreurs ne provoquent pas l'arrêt du travail
+				du navigateur qui affiche la page comme il le peut. Ici il ignore
+				purement et simplement les balises et les attributs qu'il ne connait
+				pas. Bien sûr le résultat affiché n'est pas celui que l'on attend,
+				mais le navigateur essayera toujours de faire un rendu du code <abbr
+					title="HyperText Markup Language">HTML</abbr>.
+			</p>
+
+			<div
+				style="border: 2px solid #B60A36; padding: 5px; margin: 1em 0; font-weight: bold">
+				<img class="fp-f-right" src="../htmlimg/erreur01.png" width="180"
+					height="181"> Quelles que soient les erreurs dans le code <abbr
+					title="HyperText Markup Language">HTML</abbr> (syntaxe,
+				imbrication, balise manquante, etc) le navigateur n'affichera jamais
+				de message d'erreur.
+				<br>
+				Il fera son travail d'analyse syntaxique jusqu'au bout en essayant
+				de corriger les erreurs éventuelles. Dans ce cas le rendu obtenu ne
+				sera pas forcément celui attendu.
+
+			</div>
+
+			<p class="fp-bot0 fp-p-raz">
+				Extrait d'un <a
+					href="http://www.w3.org/TR/2009/WD-html5-20090212/tree-construction.html">document
+					du <abbr title="World Wide Web Consortium">W3C</abbr>
+				</a> qui décrit la façon dont doit être construit l'arbre <abbr
+					title="HyperText Markup Language">HTML</abbr> :
+			</p>
+			<pre class="fp-petit" style="background: transparent; margin-top: 0">
+When the insertion mode is "after head", tokens must be handled as follows:
+...
+A start tag whose tag name is "image"
+        Parse error. Change the token's tag name to "img" and reprocess it. 
+        (Don't ask.)
+...
+An end tag whose tag name is "sarcasm"
+        Take a deep breath, then act as described in the "any other end tag" 
+        entry below.
+</pre>
+
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

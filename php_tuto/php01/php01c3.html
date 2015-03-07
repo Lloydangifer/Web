@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Les opérateurs</title>
+<link rel="stylesheet" href="../_local/codemirror.css">
+<script src="../_local/codemirror_pour_php.js"></script>
+
+<link rel="stylesheet" href="../_core/def.css">
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+
+</head>
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<h3>Opérateurs de comparaison</h3>
+		<section>
+
+			<p>
+				Ces opérateurs comparent des opérandes de n'importe quel type et
+				renvoient la valeur <span class="fp-code">true</span> ou la valeur <span
+					class="fp-code">false</span>.
+			</p>
+
+			<ul class="fp-ul-1em">
+				<li><span class="fp-code">&nbsp;==&nbsp;</span> : égalité (les
+					opérandes ont la même valeur, avec transtypage automatique pour la
+					comparaison si les opérandes ne sont pas de même type)</li>
+				<li><span class="fp-code">&nbsp;===&nbsp;</span> : identité
+					(les opérandes sont du même type et ont la même valeur).
+				<li><span class="fp-code">&nbsp;!=&nbsp;</span> ou <span
+					class="fp-code">&lt;&gt;&nbsp;</span> : différence (les opérandes
+					n'ont pas la même valeur, avec transtypage automatique pour la
+					comparaison si les opérandes ne sont pas de même type)</li>
+				<li><span class="fp-code">&nbsp;!==&nbsp;</span> : non
+					identique (les opérandes ne sont pas du même type ou ont une valeur
+					différente).</li>
+				<li><span class="fp-code">&nbsp;&gt;&nbsp;</span> : plus grand
+					que (le premier opérande est strictement plus grand que le second,
+					avec transtypage automatique pour la comparaison si les opérandes
+					ne sont pas de même type)</li>
+				<li><span class="fp-code">&nbsp;&gt;=&nbsp;</span> : plus grand
+					ou égal (le premier opérande est plus grand ou égal au second, avec
+					transtypage automatique pour la comparaison si les opérandes ne
+					sont pas de même type)</li>
+				<li><span class="fp-code">&nbsp;&lt;</span> : plus petit que
+					(le premier opérande est strictement plus petit que le second, avec
+					transtypage automatique pour la comparaison si les opérandes ne
+					sont pas de même type)</li>
+				<li><span class="fp-code">&nbsp;&lt;=&nbsp;</span> : plus petit
+					ou égal (le premier opérande est plus petit ou égal au second, avec
+					transtypage automatique pour la comparaison si les opérandes ne
+					sont pas de même type)</li>
+			</ul>
+
+			<table>
+				<tr>
+					<td>
+						<p>
+							<b>Premier opérateur</b>
+						</p>
+					</td>
+					<td>
+						<p>
+							<b>Second opérateur</b>
+						</p>
+					</td>
+					<td>
+						<p>
+							<b>Type de comparaison</b>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>Numérique</p>
+					</td>
+					<td>
+						<p>Numérique</p>
+					</td>
+					<td>
+						<p>Numérique</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>Chaîne entiérement numérique</p>
+					</td>
+					<td>
+						<p>Chaîne entiérement numérique</p>
+					</td>
+					<td>
+						<p>Numérique</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>Chaîne entiérement numérique</p>
+					</td>
+					<td>
+						<p>Numérique</p>
+					</td>
+					<td>
+						<p>Numérique</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>Chaîne non entiérement numérique</p>
+					</td>
+					<td>
+						<p>Numérique</p>
+					</td>
+					<td>
+						<p>Lexicale</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>Chaîne non entiérement numérique</p>
+					</td>
+					<td>
+						<p>Chaîne entiérement numérique</p>
+					</td>
+					<td>
+						<p>Lexicale</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>Chaîne non entiérement numérique</p>
+					</td>
+					<td>
+						<p>Chaîne non entiérement numérique</p>
+					</td>
+					<td>
+						<p>Lexicale</p>
+					</td>
+				</tr>
+			</table>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : opérateur de comparaison - égalité et
+					identité
+				</div>
+				<textarea name="txtCode" class="TEST-textarea">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Opérateur de comparaison&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;?php
+comparerVariables(1, 1);
+comparerVariables(2.0, 2);
+comparerVariables("3", 3);
+comparerVariables("4 rue des alouettes", 4);
+comparerVariables(1, true);
+comparerVariables('true', true);
+comparerVariables('false', false);
+
+//------------------------------------------------------
+function comparerVariables($x, $y) {
+  echo '&lt;hr&gt;x contient ', $x, ' et y contient ', $y;
+
+  if ($x == $y) {
+	echo '&lt;br&gt;x est égal à y';
+  } else {
+	echo '&lt;br&gt;x est différent de y';
+  }
+
+  if ($x === $y) {
+    echo '&lt;br&gt;x est identique à y';
+  } else {
+    echo '&lt;br&gt;x n\'est pas identique à y',
+	  	'&lt;br&gt;x est du type ' ,gettype($x),
+	  	'&lt;br&gt;y est du type ', gettype($y);
+  }
+}
+?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				Comme vous pouvez le remarquer certaines égalités peuvent sembler
+				étranges quand on est habitué à travailler avec des langages
+				fortement typé. <br>On notera par exemple que la chaîne 'true'
+				est égale au booléen <span class="fp-code">true</span>, mais que la
+				chaîne 'false' n'est pas égale au booléen <span class="fp-code">false</span>.
+				Si on peut admettre que la chaîne '3' soit égale au nombre 3, il est
+				plus difficile de se figurer que la chaîne '4 rue des alouettes" est
+				égale au nombre 4. <br>Soyez donc attentif quand vous faites
+				des tests aux transtypages automatiques qui sont faits par PHP pour
+				comparer des valeurs.<br>Si vous voulez faire des test "forts",
+				utilisez les opérateurs d'indentité et pas simplement les opérateurs
+				d'égalité.
+			</p>
+
+		</section>
+
+		<h3>Opérateurs logiques</h3>
+		<section>
+			<ul class="fp-ul-1em">
+				<li><span class="fp-code">&nbsp;AND&nbsp;</span> ou <span
+					class="fp-code">&nbsp;&amp;&amp;&nbsp;</span> : le résultat est <span
+					class="fp-code">true</span> si les 2 opérandes sont évalués comme <span
+					class="fp-code">true</span>. A partir du moment o&ugrave; un des
+					opérandes est évalué à <span class="fp-code">false</span>, les
+					opérandes suivants ne sont pas évalués, et le résultat est <span
+					class="fp-code">false</span>.
+					<p>
+						Dans <span class="fp-code">$r = $a AND $b</span> $r sera égal à <span
+							class="fp-code">true</span> si $a ET $b sont évalués comme <span
+							class="fp-code">true</span>.
+					</p>
+					<p>
+						Dans <span class="fp-code">if ( $a = 0 &amp;&amp; $b &gt;
+							1) ...</span> le test sera vrai si $a est égal à 0 ET $b est supérieur à
+						1.
+					</p></li>
+				<li><span class="fp-code">&nbsp;OR&nbsp;</span> ou <span
+					class="fp-code">&nbsp;||&nbsp;</span> : le résultat est <span
+					class="fp-code">true</span> si un des 2 opérandes est évalué comme
+					<span class="fp-code">true</span>. A partir du moment o&ugrave; un
+					des opérandes est évalué comme <span class="fp-code">true</span>,
+					les opérandes suivants ne sont pas évalués, et le résultat est <span
+					class="fp-code">true</span>.
+					<p>
+						Dans <span class="fp-code">$r = $a OR $b</span> $r sera égal à <span
+							class="fp-code">true</span> si $a est évalué comme <span
+							class="fp-code">true</span>, OU si $b est évalués comme <span
+							class="fp-code">true</span>.
+					</p>
+					<p>
+						Dans <span class="fp-code">if ( $a = 0 || $b &gt; 1) ...</span> le
+						test sera vrai si $a est égal à 0 OU si $b est supérieur à 1.
+					</p></li>
+				<li><span class="fp-code">&nbsp;XOR&nbsp;</span> : le résultat
+					est <span class="fp-code">true</span> si seulement un des opérandes
+					est évalué comme <span class="fp-code">true</span>.</li>
+				<li><span class="fp-code">&nbsp;!&nbsp;</span> : négation (le
+					résultat est <span class="fp-code">true</span> si l'opérande est
+					évalué comme <span class="fp-code">false</span>).</li>
+			</ul>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : opérateurs logiques
+				</div>
+				<textarea name="txtCode" class="TEST-textarea">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Opérateurs logiques&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;?php
+$x = 1;
+$y = 2;
+//------------------------------------------------------
+echo '&lt;h3&gt;Opérateur AND&lt;/h3&gt;';
+if ($x == 1 && $y == 2) {
+  echo 'vrai';
+} else {
+  echo 'faux';
+}
+//------------------------------------------------------
+echo '&lt;h3&gt;Opérateur OR&lt;/h3&gt;';
+if ($x == 1 || $y == 3) {
+  echo 'vrai';
+} else {
+  echo 'faux';
+}
+//------------------------------------------------------
+echo '&lt;h3&gt;Opérateur XOR&lt;/h3&gt;';
+if ($x == 1 XOR $y == 3) {
+  echo 'vrai';
+} else {
+  echo 'faux';
+}
+//------------------------------------------------------
+echo '&lt;h3&gt;Opérateur !&lt;/h3&gt;';
+if (!$x) {
+  echo 'vrai';
+} else {
+  echo 'faux';
+}
+?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

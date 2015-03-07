@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Lit les donn&eacute;es de session</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="sessionhandler.open.html">SessionHandler::open</a></div>
+ <div class="next"><a href="sessionhandler.write.html">SessionHandler::write</a></div>
+ <div class="up"><a href="class.sessionhandler.html">SessionHandler</a></div><div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="sessionhandler.read" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SessionHandler::read</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.4.0)</p><p class="refpurpose"><span class="refname">SessionHandler::read</span> <span class="mdash">&mdash;</span> <span class="dc-title">Lit les données de session</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-sessionhandler.read-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">public</span> <span class="type">string</span> <span class="methodname"><strong>SessionHandler::read</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$session_id</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Lit les données de session depuis son lieu de stockage,
+   et retourne le résultat pour que PHP le traite. Cette fonction est appelée par PHP lorsque
+   la session est démarrée automatiquement ou au moyen de  <span class="function"><a href="function.session-start.html" class="function">session_start()</a></span>,
+   elle est précédée d&#039;un appel à  <span class="function"><a href="sessionhandler.open.html" class="function">SessionHandler::open()</a></span>.
+  </p>
+  <p class="para">
+   Cette méthode se substitue au gestionnaire interne de sauvegarde de PHP, défini via
+   l&#039;option de configuration <a href="session.configuration.html#ini.session.save-handler" class="link">session.save_handler</a>
+   qui a été définie avant que ce gestionnaire ne soit modifié via la fonction
+    <span class="function"><a href="function.session-set-save-handler.html" class="function">session_set_save_handler()</a></span>.
+  </p>
+  <p class="para">
+   Si cette classe est étendue par héritage, l&#039;appel de la méthode parente
+   <em><code class="parameter">read</code></em> invoquera ce gestionnaire pour cette méthode, mais
+   aussi, la fonction de rappel interne associée. Ce mécanisme permet à cette méthode
+   de surcharger, intercepter et/ou filtrer les données (par exemple,
+   le décryptage de la valeur <em><code class="parameter">$data</code></em> retournée par la méthode parente
+   <em><code class="parameter">read</code></em>).
+  </p>
+  <p class="para">
+   Pour plus d&#039;informations sur cette méthode, référez-vous à la documentation
+   sur la fonction  <span class="function"><a href="sessionhandlerinterface.read.html" class="function">SessionHandlerInterface::read()</a></span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-sessionhandler.read-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <dl>
+
+   <dt>
+
+    <span class="term"><em><code class="parameter">session_id</code></em></span>
+    <dd>
+
+     <p class="para">
+      L&#039;ID de la session depuis laquelle les données seront lues.
+     </p>
+    </dd>
+
+   </dt>
+
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-sessionhandler.read-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne les données lues sous forme encodée. Si rien n&#039;a été lu, une chaine vide doit être retournée.
+   Cette valeur est utilisée en interne par PHP.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-sessionhandler.read-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">
+     La directive de configuration <a href="session.configuration.html#ini.session.serialize-handler" class="link">session.serialize_handler</a>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="sessionhandler.open.html">SessionHandler::open</a></div>
+ <div class="next"><a href="sessionhandler.write.html">SessionHandler::write</a></div>
+ <div class="up"><a href="class.sessionhandler.html">SessionHandler</a></div>
+<div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

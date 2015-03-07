@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>D&eacute;conditionne des donn&eacute;es depuis une
+	cha&icirc;ne binaire</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.uniqid.html">uniqid</a>
+		</div>
+		<div class="next">
+			<a href="function.usleep.html">usleep</a>
+		</div>
+		<div class="up">
+			<a href="ref.misc.html">Fonctions diverses</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.unpack" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">unpack</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">unpack</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Déconditionne des données depuis une
+					chaîne binaire</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.unpack-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>unpack</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$format</code></span> , <span class="methodparam"><span
+					class="type">string</span> <code class="parameter">$data</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				Déconditionne les données <em><code class="parameter">data</code></em>
+				depuis une chaîne binaire avec le format <em><code
+						class="parameter">format</code></em>.
+			</p>
+			<p class="para">Les données déconditionnées sont stockées dans un
+				tableau. Pour cela, il faut donner un nom à chaque format utilisé et
+				les séparer par des slash (/). Si un argument de répétition est
+				présent, alors chacune des clés du tableau aura un numéro de
+				séquence derrière le nom fourni.</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.unpack-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">format</code></em></span>
+				<dd>
+
+					<p class="para">
+						Voir la fonction <span class="function"><a
+							href="function.pack.html" class="function">pack()</a></span> pour une
+						explication des codes de format.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">data</code></em></span>
+				<dd>
+
+					<p class="para">Les données conditionnées.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.unpack-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Retourne un tableau associatif contenant les
+				éléments déconditionnés d&#039;une chaîne binaire.</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.unpack-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-3517">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>unpack()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$binarydata&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"\x04\x00\xa0\x00"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$array&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">unpack</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"cchars/nint"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$binarydata</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>
+						Le tableau résultant contiendra les entrées <em>&quot;chars&quot;</em>
+						avec les valeurs <em>4</em> et <em>&quot;int&quot;</em> avec <em>160</em>.
+					</p>
+				</div>
+			</div>
+			</p>
+
+			<p class="para">
+			<div class="example" id="example-3518">
+				<p>
+					<strong>Exemple #2 Exemple avec <span class="function"><strong>unpack()</strong></span>
+						et un argument de répétition
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$binarydata&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"\x04\x00\xa0\x00"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$array&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">unpack</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"c2chars/nint"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$binarydata</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>Le tableau résultant contiendra les entrées
+						&quot;chars1&quot;, &quot;chars2&quot; et &quot;int&quot;.</p>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.unpack-notes">
+			<h3 class="title">Notes</h3>
+			<div class="caution">
+				<strong class="caution">Attention</strong>
+				<p class="para">
+					Il faut noter que PHP gère les valeurs en interne sous forme
+					signée. Si vous déconditionnez une valeur qui est aussi grande que
+					la taille utilisée en interne par PHP, le résultat se trouvera être
+					un nombre négatif, même s&#039;il a été déconditionné avec
+					l&#039;option <em>&quot; non signé &quot;</em>.
+				</p>
+			</div>
+			<div class="caution">
+				<strong class="caution">Attention</strong>
+				<p class="para">Attention, si vous ne nommez pas un élément, une
+					chaîne vide sera utilisée. Si vous ne nommez pas plus d&#039;un
+					élément, cela signifie que quelques données seront écrasées lorsque
+					les clés sont identiques, comme ceci :</p>
+				<p class="para">
+				<div class="example" id="example-3519">
+					<p>
+						<strong>Exemple #3 Exemple avec <span class="function"><strong>unpack()</strong></span>
+							avec des clés non nommées
+						</strong>
+					</p>
+					<div class="example-contents">
+						<div class="phpcode">
+							<code>
+								<span style="color: #000000"> <span
+									style="color: #0000BB">&lt;?php<br />$binarydata&nbsp;
+								</span><span style="color: #007700">=&nbsp;</span><span
+									style="color: #DD0000">"\x32\x42\x00\xa0"</span><span
+									style="color: #007700">;<br /></span><span
+									style="color: #0000BB">$array&nbsp;</span><span
+									style="color: #007700">=&nbsp;</span><span
+									style="color: #0000BB">unpack</span><span
+									style="color: #007700">(</span><span style="color: #DD0000">"c2/n"</span><span
+									style="color: #007700">,&nbsp;</span><span
+									style="color: #0000BB">$binarydata</span><span
+									style="color: #007700">);<br /></span><span
+									style="color: #0000BB">var_dump</span><span
+									style="color: #007700">(</span><span style="color: #0000BB">$array</span><span
+									style="color: #007700">);<br /></span><span
+									style="color: #0000BB">?&gt;</span>
+								</span>
+							</code>
+						</div>
+					</div>
+
+					<div class="example-contents">
+						<p>
+							Le tableau résultant contiendra les entrées &quot;1&quot; avec la
+							valeur <em>160</em> et &quot;2&quot; avec <em>66</em>. La
+							première valeur depuis le spécificateur <em>c</em> est écrasé par
+							la première valeur depuis le spécificateur <em>n</em>.
+						</p>
+					</div>
+				</div>
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.unpack-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.pack.html" class="function" rel="rdfs-seeAlso">pack()</a>
+						- Compacte des donn&eacute;es dans une cha&icirc;ne binaire</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.uniqid.html">uniqid</a>
+		</div>
+		<div class="next">
+			<a href="function.usleep.html">usleep</a>
+		</div>
+		<div class="up">
+			<a href="ref.misc.html">Fonctions diverses</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

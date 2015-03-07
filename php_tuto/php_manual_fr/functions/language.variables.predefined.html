@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Variables pr&eacute;-d&eacute;finies</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.variables.basics.html">Essentiel</a>
+		</div>
+		<div class="next">
+			<a href="language.variables.scope.html">Port&eacute;e des
+				variables</a>
+		</div>
+		<div class="up">
+			<a href="language.variables.html">Les variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.variables.predefined" class="sect1">
+		<h2 class="title">Variables pré-définies</h2>
+
+		<p class="simpara">
+			PHP fournit un grand nombre de variables pré-définies. Cependant,
+			beaucoup de ces variables ne peuvent pas être présentées ici, car
+			elles dépendent du serveur sur lequel elles tournent, de la version
+			et de la configuration du serveur ou encore d&#039;autres facteurs.
+			Certaines de ces variables ne seront pas accessibles lorsque PHP
+			fonctionne en <a href="features.commandline.html" class="link">ligne
+				de commande</a>. Pour une liste de ces variables, lisez la section sur
+			les <a href="reserved.variables.html" class="link">variables
+				réservées prédéfinies</a>.
+		</p>
+
+		<div class="warning">
+			<strong class="warning">Avertissement</strong>
+			<p class="simpara">
+				Depuis la version PHP 4.2.0, la valeur par défaut de la directive
+				PHP <a href="ini.core.html#ini.register-globals" class="link">register_globals</a>
+				est <em class="emphasis">off</em>. Ceci est une évolution majeure de
+				PHP. Avoir la directive <strong class="option unknown">register_globals</strong>
+				à <em class="emphasis">off</em> affecte les variables pré-définies
+				du contexte global. Par exemple, pour lire
+				<var class="varname">
+					<var class="varname">DOCUMENT_ROOT</var>
+				</var>
+				vous devez utiliser
+				<var class="varname">
+					<var class="varname">
+						<a href="reserved.variables.server.html" class="classname">$_SERVER['DOCUMENT_ROOT']</a>
+					</var>
+				</var>
+				au lieu de
+				<var class="varname">
+					<var class="varname">$DOCUMENT_ROOT</var>
+				</var>
+				ou bien, il faut lire
+				<var class="varname">
+					<var class="varname">
+						<a href="reserved.variables.get.html" class="classname">$_GET['id']</a>
+					</var>
+				</var>
+				dans l&#039;URL <em>http://www.example.com/test.php?id=3</em> au
+				lieu de
+				<var class="varname">
+					<var class="varname">$id</var>
+				</var>
+				ou encore
+				<var class="varname">
+					<var class="varname">
+						<a href="reserved.variables.environment.html" class="classname">$_ENV['HOME']</a>
+					</var>
+				</var>
+				au lieu de
+				<var class="varname">
+					<var class="varname">$HOME</var>
+				</var>
+				.
+			</p>
+			<p class="simpara">
+				Pour des informations liées à cette évolution, lisez la
+				documentation de la directive <a
+					href="ini.core.html#ini.register-globals" class="link"><strong
+					class="option unknown">register_globals</strong> </a>, le chapitre sur
+				la sécurité, à propos de l&#039;<a href="security.globals.html"
+					class="link">utilisation des variables superglobales</a>, ainsi que
+				les annonces de PHP <a href="http://www.php.net/releases/4_1_0.php"
+					class="link external">&raquo;&nbsp;4.1.0</a> et <a
+					href="http://www.php.net/releases/4_2_0.php" class="link external">&raquo;&nbsp;4.2.0</a>.
+			</p>
+			<p class="simpara">
+				L&#039;utilisation des variables pré-définies de PHP, comme les <a
+					href="language.variables.superglobals.html" class="link">tableaux
+					superglobaux</a>, est recommandée.
+			</p>
+		</div>
+
+		<p class="simpara">
+			Depuis la version 4.1.0, PHP fournit un jeu de tableaux pré-définis,
+			contenant les variables du serveur (si possible), les variables
+			d&#039;environnement et celles d&#039;entrées. Ces nouveaux tableaux
+			sont un peu particuliers, car ils sont automatiquement globaux : ils
+			sont automatiquement disponibles dans tous les environnements
+			d&#039;exécution. Pour cette raison, ils sont dits
+			&#039;superglobaux&#039; (il n&#039;y a pas de mécanisme PHP pour
+			créer de telles variables. Les superglobales sont listées ci-dessous.
+			Cependant, pour connaître le détail de leur contenu et une
+			présentation approfondie sur les variables pré-définies PHP et leur
+			nature, reportez-vous à la section <a href="reserved.variables.html"
+				class="link">variables pré-définies</a>. De plus, vous noterez que
+			les anciennes variables pré-définies (
+			<var class="varname">
+				<var class="varname">$HTTP_*_VARS</var>
+			</var>
+			) existent toujours. Depuis PHP 5.0.0, les <a
+				href="language.variables.predefined.html" class="link">tableaux
+				prédéfinis</a> PHP peuvent être désactivés avec l&#039;option de
+			configuration <a href="ini.core.html#ini.register-long-arrays"
+				class="link">register_long_arrays</a>.
+		</p>
+
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>: <strong>Variables
+					variables</strong><br />
+			<p class="para">
+				Les superglobales ne peuvent pas être utilisées comme <a
+					href="language.variables.variable.html" class="link">variables
+					dynamiques</a> dans les fonctions ou les méthodes des classes.
+		</blockquote>
+
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>:
+			<p class="para">
+				Même si les superglobales et <em>HTTP_*_VARS</em> peuvent exister en
+				même temps, elles ne sont pas identiques, donc, le changement
+				d&#039;une ne changera pas l&#039;autre.
+		</blockquote>
+
+		<p class="para">
+			Si certaines variables de <a href="ini.core.html#ini.variables-order"
+				class="link"><strong class="option unknown">variables_order</strong>
+			</a> ne sont pas définies, leur tableau pré-défini PHP correspondant est
+			laissé vide.
+		</p>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.variables.basics.html">Essentiel</a>
+		</div>
+		<div class="next">
+			<a href="language.variables.scope.html">Port&eacute;e des
+				variables</a>
+		</div>
+		<div class="up">
+			<a href="language.variables.html">Les variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Affiche de nombreuses informations sur la configuration
+	de PHP</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.phpcredits.html">phpcredits</a>
+		</div>
+		<div class="next">
+			<a href="function.phpversion.html">phpversion</a>
+		</div>
+		<div class="up">
+			<a href="ref.info.html">Fonctions sur les options et les
+				informations de PHP</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.phpinfo" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">phpinfo</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">phpinfo</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Affiche de nombreuses informations sur
+					la configuration de PHP</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.phpinfo-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>phpinfo</strong></span>
+				([ <span class="methodparam"><span class="type">int</span> <code
+						class="parameter">$what</code><span class="initializer"> =
+						INFO_ALL</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">Affiche de nombreuses informations
+				sur PHP, concernant sa configuration courante : options de
+				compilation, extensions, version, informations sur le serveur, et
+				l&#039;environnement (lorsqu&#039;il est compilé comme module),
+				environnement PHP, informations sur le système, chemins, valeurs
+				générales et locales de configuration, en-têtes HTTP et la licence
+				PHP.</p>
+			<p class="para">
+				Comme tous les systèmes sont configurés différemment, <span
+					class="function"><strong>phpinfo()</strong></span> sert
+				généralement à vérifier la <a href="configuration.html" class="link">configuration</a>
+				ainsi que les <a href="language.variables.predefined.html"
+					class="link">variables prédéfinies</a>, pour une plate-forme
+				donnée.
+			</p>
+			<p class="para">
+				<span class="function"><strong>phpinfo()</strong></span> est un bon
+				outil de débogage, car il affiche le contenu de toutes les variables
+				EGPCS (Environnement, GET, POST, Cookie, Serveur).
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.phpinfo-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">what</code></em></span>
+				<dd>
+
+					<p class="para">
+						L&#039;affichage peut être personnalisé en utilisant une ou
+						plusieurs des <em class="emphasis">constantes suivantes</em>.
+						Elles sont combinables avec l&#039;opérateur <a
+							href="language.operators.bitwise.html" class="link">or</a>, et
+						doivent être passées dans le paramètre <em><code
+								class="parameter">what</code></em>. Vous pouvez aussi additionner ces
+						constantes.
+					</p>
+					<p class="para">
+					<table class="doctable table">
+						<caption>
+							<strong>Options de <span class="function"><strong>phpinfo()</strong></span></strong>
+						</caption>
+
+						<thead>
+							<tr>
+								<th>Nom de la constante</th>
+								<th>Valeur</th>
+								<th>Description</th>
+							</tr>
+
+						</thead>
+
+						<tbody class="tbody">
+							<tr>
+								<td>INFO_GENERAL</td>
+								<td>1</td>
+								<td>La ligne de configuration, le chemin du <var
+										class="filename">php.ini</var>, la date de compilation, le
+									serveur web, le système, etc.
+								</td>
+							</tr>
+
+							<tr>
+								<td>INFO_CREDITS</td>
+								<td>2</td>
+								<td>Les crédits de PHP. Voir aussi <span class="function"><a
+										href="function.phpcredits.html" class="function">phpcredits()</a></span>.
+								</td>
+							</tr>
+
+							<tr>
+								<td>INFO_CONFIGURATION</td>
+								<td>4</td>
+								<td>Valeurs courantes locales et générales des directives
+									PHP. Voyez aussi la fonction <span class="function"><a
+										href="function.ini-get.html" class="function">ini_get()</a></span>.
+								</td>
+							</tr>
+
+							<tr>
+								<td>INFO_MODULES</td>
+								<td>8</td>
+								<td>Modules chargés et leur configuration spécifique. Voir
+									aussi la fonction <span class="function"><a
+										href="function.get-loaded-extensions.html" class="function">get_loaded_extensions()</a></span>.
+								</td>
+							</tr>
+
+							<tr>
+								<td>INFO_ENVIRONMENT</td>
+								<td>16</td>
+								<td>Informations sur les variables d&#039;environnement,
+									qui sont disponibles dans la variable <var class="varname">
+										<var class="varname">
+											<a href="reserved.variables.environment.html"
+												class="classname">$_ENV</a>
+										</var>
+									</var>.
+								</td>
+							</tr>
+
+							<tr>
+								<td>INFO_VARIABLES</td>
+								<td>32</td>
+								<td>Affiche toutes les <a
+									href="language.variables.predefined.html" class="link">variables
+										prédéfinies</a>, issues de l&#039;environnement, la méthode GET,
+									la méthode POST, les cookies et le serveur.
+								</td>
+							</tr>
+
+							<tr>
+								<td>INFO_LICENSE</td>
+								<td>64</td>
+								<td>La licence PHP. Voir aussi <a
+									href="http://www.php.net/license/" class="link external">&raquo;&nbsp;la
+										FAQ de la licence</a>.
+								</td>
+							</tr>
+
+							<tr>
+								<td>INFO_ALL</td>
+								<td>-1</td>
+								<td>Affiche toutes les informations suscitées.</td>
+							</tr>
+
+						</tbody>
+
+					</table>
+
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.phpinfo-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.phpinfo-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.2.2</td>
+						<td>L&#039;information &quot;Loaded Configuration File&quot;
+							a été ajoutée, alors qu&#039;avant, seule l&#039;information
+							&quot;Configuration File (php.ini) Path&quot; existée.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.phpinfo-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-509">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>phpinfo()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Affiche&nbsp;toutes&nbsp;les&nbsp;informations,&nbsp;comme&nbsp;le&nbsp;ferait&nbsp;INFO_ALL<br /></span><span
+								style="color: #0000BB">phpinfo</span><span
+								style="color: #007700">();<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Affiche&nbsp;uniquement&nbsp;le&nbsp;module&nbsp;d'information.<br />//&nbsp;phpinfo(8)&nbsp;fournirait&nbsp;les&nbsp;mêmes&nbsp;informations.<br /></span><span
+								style="color: #0000BB">phpinfo</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">INFO_MODULES</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.phpinfo-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Une partie des informations affichées sont désactivées si la
+					directive <a href="ini.core.html#ini.expose-php" class="link">expose_php</a>
+					est configurée avec la valeur <em>off</em>. Cela inclus les logos
+					PHP et Zend, ainsi que les crédits.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					<span class="function"><strong>phpinfo()</strong></span> affiche du
+					texte au lieu de HTML lorsque vous utilisez la version CLI.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.phpinfo-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.phpversion.html" class="function"
+						rel="rdfs-seeAlso">phpversion()</a> - Retourne le num&eacute;ro de
+						la version courante de PHP</span></li>
+				<li class="member"><span class="function"><a
+						href="function.phpcredits.html" class="function"
+						rel="rdfs-seeAlso">phpcredits()</a> - Affiche les cr&eacute;dits
+						de PHP</span></li>
+				<li class="member"><span class="function"><a
+						href="function.php-logo-guid.html" class="function"
+						rel="rdfs-seeAlso">php_logo_guid()</a> - Retourne l'identifiant du
+						logo PHP</span></li>
+				<li class="member"><span class="function"><a
+						href="function.ini-get.html" class="function" rel="rdfs-seeAlso">ini_get()</a>
+						- Lit la valeur d'une option de configuration</span></li>
+				<li class="member"><span class="function"><a
+						href="function.ini-set.html" class="function" rel="rdfs-seeAlso">ini_set()</a>
+						- Modifie la valeur d'une option de configuration</span></li>
+				<li class="member"><span class="function"><a
+						href="function.get-loaded-extensions.html" class="function"
+						rel="rdfs-seeAlso">get_loaded_extensions()</a> - Retourne la liste
+						de tous les modules compil&eacute;s et charg&eacute;s</span></li>
+				<li class="member"><a href="language.variables.predefined.html"
+					class="link">les variables prédéfinies</a></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.phpcredits.html">phpcredits</a>
+		</div>
+		<div class="next">
+			<a href="function.phpversion.html">phpversion</a>
+		</div>
+		<div class="up">
+			<a href="ref.info.html">Fonctions sur les options et les
+				informations de PHP</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

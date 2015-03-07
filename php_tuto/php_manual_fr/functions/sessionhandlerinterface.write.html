@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Ecrit les donn&eacute;es de session</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="sessionhandlerinterface.read.html">SessionHandlerInterface::read</a></div>
+ <div class="next"><a href="book.session-pgsql.html">Session PgSQL</a></div>
+ <div class="up"><a href="class.sessionhandlerinterface.html">SessionHandlerInterface</a></div><div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="sessionhandlerinterface.write" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">SessionHandlerInterface::write</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.4.0)</p><p class="refpurpose"><span class="refname">SessionHandlerInterface::write</span> <span class="mdash">&mdash;</span> <span class="dc-title">Ecrit les données de session</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-sessionhandlerinterface.write-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="modifier">abstract</span> <span class="modifier">public</span> <span class="type">bool</span> <span class="methodname"><strong>SessionHandlerInterface::write</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$session_id</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$session_data</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Ecrit les données de session dans le support de stockage. Appelé par
+    <span class="function"><a href="function.session-write-close.html" class="function">session_write_close()</a></span>, lorsque  <span class="function"><a href="function.session-register-shutdown.html" class="function">session_register_shutdown()</a></span> échoue, et aussi
+   durant la phase de terminaison de la requête.
+   Note:  <span class="function"><a href="sessionhandlerinterface.close.html" class="function">SessionHandlerInterface::close()</a></span> est appelée immediatement après.
+  </p>
+  <p class="para">
+   PHP appelera cette fonction lorsque la session est sur le point d&#039;être sauvegardée et fermée.
+   Il encode les données issues de <var class="varname"><var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var></var> vers une chaine sérialisée et la passe avec l&#039;ID de
+   session au support de stockage. La fonction de sérialisation est fournie dans
+   <a href="session.configuration.html#ini.session.serialize-handler" class="link">session.serialize_handler</a>.
+  </p>
+  <p class="para">
+   Cette méthode est appelée par PHP après qu&#039;il ait fermé les tampons de sortie, sauf si vous
+   l&#039;invoquez vous-même au moyen de  <span class="function"><a href="function.session-write-close.html" class="function">session_write_close()</a></span>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-sessionhandlerinterface.write-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <dl>
+
+   <dt>
+
+    <span class="term"><em><code class="parameter">session_id</code></em></span>
+    <dd>
+
+     <p class="para">
+      L&#039;identifiant de session.
+     </p>
+    </dd>
+
+   </dt>
+
+   <dt>
+
+    <span class="term"><em><code class="parameter">session_data</code></em></span>
+    <dd>
+
+     <p class="para">
+      Les données de session encodées. Elles sont issues du codage du contenu
+      de <var class="varname"><var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var></var> et représentées sous forme de chaine
+      sérialisée.
+     </p>
+    </dd>
+
+   </dt>
+
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-sessionhandlerinterface.write-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   La valeur retournée (habituellement <strong><code>TRUE</code></strong> en cas de succès, <strong><code>FALSE</code></strong> si une erreur survient).
+Notez que cette valeur est retournée en interne à PHP pour analyse.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-sessionhandlerinterface.write-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member">
+     La directive de configuration
+     <a href="session.configuration.html#ini.session.serialize-handler" class="link">session.serialize_handler</a>
+    </li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="sessionhandlerinterface.read.html">SessionHandlerInterface::read</a></div>
+ <div class="next"><a href="book.session-pgsql.html">Session PgSQL</a></div>
+ <div class="up"><a href="class.sessionhandlerinterface.html">SessionHandlerInterface</a></div>
+<div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

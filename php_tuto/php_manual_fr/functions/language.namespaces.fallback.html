@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Utilisation des espaces de noms : retour &agrave;
+	l'espace global</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.namespaces.global.html">Espace de noms global</a>
+		</div>
+		<div class="next">
+			<a href="language.namespaces.rules.html">R&egrave;gles de
+				r&eacute;solutions de noms</a>
+		</div>
+		<div class="up">
+			<a href="language.namespaces.html">Les espaces de noms</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.namespaces.fallback" class="sect1">
+		<h2 class="title">Utilisation des espaces de noms : retour à
+			l&#039;espace global</h2>
+		<p class="verinfo">(PHP 5 &gt;= 5.3.0)</p>
+		<p class="para">Dans un espace de noms, lorsque PHP rencontre un
+			nom sans qualification, que ce soit une classe, une fonction ou une
+			constante, il le résout avec différentes priorités. Les noms de
+			classes sont toujours résolus avec l&#039;espace de noms courant.
+			Pour accéder à des classes internes ou à des classes qui ne sont pas
+			dans un espace de noms, il faut les représenter avec leur nom absolu,
+			tel que :
+		<div class="example" id="example-258">
+			<p>
+				<strong>Exemple #1 Accès aux classes globales depuis un
+					espace de noms</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">namespace&nbsp;</span><span
+							style="color: #0000BB">A</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">B</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">C</span><span style="color: #007700">;<br />class&nbsp;
+						</span><span style="color: #0000BB">Exception&nbsp;</span><span
+							style="color: #007700">extends&nbsp;\</span><span
+							style="color: #0000BB">Exception&nbsp;</span><span
+							style="color: #007700">{}<br />
+							<br /></span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">Exception</span><span
+							style="color: #007700">(</span><span style="color: #DD0000">'hi'</span><span
+							style="color: #007700">);&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;$a&nbsp;est&nbsp;un&nbsp;objet&nbsp;de&nbsp;la&nbsp;classe&nbsp;A\B\C\Exception<br /></span><span
+							style="color: #0000BB">$b&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;\</span><span
+							style="color: #0000BB">Exception</span><span
+							style="color: #007700">(</span><span style="color: #DD0000">'hi'</span><span
+							style="color: #007700">);&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;$b&nbsp;est&nbsp;un&nbsp;objet&nbsp;de&nbsp;la&nbsp;classe&nbsp;Exception<br />
+							<br /></span><span style="color: #0000BB">$c&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">ArrayObject</span><span
+							style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;erreur&nbsp;fatale,&nbsp;classe&nbsp;A\B\C\ArrayObject&nbsp;non&nbsp;trouvée<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<p class="para">Pour les fonctions et constantes, PHP va aller les
+			chercher dans l&#039;espace global s&#039;il ne peut les trouver dans
+			l&#039;espace de noms courant.
+		<div class="example" id="example-259">
+			<p>
+				<strong>Exemple #2 Accès aux fonctions et constantes
+					globales dans un espace de noms</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">namespace&nbsp;</span><span
+							style="color: #0000BB">A</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">B</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">C</span><span style="color: #007700">;<br />
+							<br />const&nbsp;
+						</span><span style="color: #0000BB">E_ERROR&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">45</span><span
+							style="color: #007700">;<br />function&nbsp;
+						</span><span style="color: #0000BB">strlen</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$str</span><span
+							style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;\
+						</span><span style="color: #0000BB">strlen</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$str</span><span
+							style="color: #007700">)&nbsp;-&nbsp;</span><span
+							style="color: #0000BB">1</span><span style="color: #007700">;<br />}<br />
+							<br />echo&nbsp;
+						</span><span style="color: #0000BB">E_ERROR</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"\n"</span><span
+							style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;affiche&nbsp;"45"<br /></span><span
+							style="color: #007700">echo&nbsp;</span><span
+							style="color: #0000BB">INI_ALL</span><span style="color: #007700">,&nbsp;</span><span
+							style="color: #DD0000">"\n"</span><span style="color: #007700">;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;affiche&nbsp;"7"&nbsp;:&nbsp;accès&nbsp;dans&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;global&nbsp;INI_ALL<br />
+							<br /></span><span style="color: #007700">echo&nbsp;</span><span
+							style="color: #0000BB">strlen</span><span style="color: #007700">(</span><span
+							style="color: #DD0000">'hi'</span><span style="color: #007700">),&nbsp;</span><span
+							style="color: #DD0000">"\n"</span><span style="color: #007700">;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;affiche&nbsp;"1"<br /></span><span
+							style="color: #007700">if&nbsp;(</span><span
+							style="color: #0000BB">is_array</span><span
+							style="color: #007700">(</span><span style="color: #DD0000">'hi'</span><span
+							style="color: #007700">))&nbsp;{&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;affiche&nbsp;"n'est&nbsp;pas&nbsp;un&nbsp;tableau"<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">echo&nbsp;</span><span
+							style="color: #DD0000">"est&nbsp;un&nbsp;tableau\n"</span><span
+							style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"n'est&nbsp;pas&nbsp;un&nbsp;tableau\n"</span><span
+							style="color: #007700">;<br />}<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.namespaces.global.html">Espace de noms global</a>
+		</div>
+		<div class="next">
+			<a href="language.namespaces.rules.html">R&egrave;gles de
+				r&eacute;solutions de noms</a>
+		</div>
+		<div class="up">
+			<a href="language.namespaces.html">Les espaces de noms</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

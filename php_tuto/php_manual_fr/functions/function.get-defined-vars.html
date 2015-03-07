@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Liste toutes les variables d&eacute;finies</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.floatval.html">floatval</a>
+		</div>
+		<div class="next">
+			<a href="function.get-resource-type.html">get_resource_type</a>
+		</div>
+		<div class="up">
+			<a href="ref.var.html">Fonctions de gestion des variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.get-defined-vars" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">get_defined_vars</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.0.4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">get_defined_vars</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title"> Liste toutes les variables définies </span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.get-defined-vars-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>get_defined_vars</strong></span>
+				( <span class="methodparam">void</span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>get_defined_vars()</strong></span>
+				retourne un tableau multidimensionnel contenant la liste de toutes
+				les variables définies, qu&#039;elles soient des variables
+				d&#039;environnement, de serveur ou définies par l&#039;utilisateur
+				dans la portée d&#039;appel de la fonction <span class="function"><strong>get_defined_vars()</strong></span>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.get-defined-vars-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Un tableau multidimensionnel contenant toutes les
+				variables.</p>
+		</div>
+
+		<div class="refsect1 examples"
+			id="refsect1-function.get-defined-vars-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4902">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>get_defined_vars()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$b&nbsp;
+							</span><span style="color: #007700">=&nbsp;array(</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">5</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">8</span><span style="color: #007700">);<br />
+								<br /></span><span style="color: #0000BB">$arr&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">get_defined_vars</span><span
+								style="color: #007700">();<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Affiche&nbsp;$b<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$arr</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">"b"</span><span
+								style="color: #007700">]);<br />
+								<br /></span><span style="color: #FF8000">/*&nbsp;Affiche&nbsp;le&nbsp;chemin&nbsp;vers&nbsp;l'interpréteur&nbsp;PHP&nbsp;(Si&nbsp;utilisé&nbsp;en&nbsp;tant&nbsp;que&nbsp;CGI)<br />&nbsp;*&nbsp;e.g.&nbsp;/usr/local/bin/php&nbsp;*/<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">$arr</span><span style="color: #007700">[</span><span
+								style="color: #DD0000">"_"</span><span style="color: #007700">];<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Affiche&nbsp;les&nbsp;paramètres&nbsp;de&nbsp;la&nbsp;ligne&nbsp;de&nbsp;commande&nbsp;s'il&nbsp;y&nbsp;en&nbsp;a<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$arr</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">"argv"</span><span
+								style="color: #007700">]);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Affiche&nbsp;toutes&nbsp;les&nbsp;variables&nbsp;serveur<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$arr</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">"_SERVER"</span><span
+								style="color: #007700">]);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Affiche&nbsp;toutes&nbsp;les&nbsp;clés&nbsp;disponibles&nbsp;du&nbsp;tableau&nbsp;de&nbsp;variables<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">array_keys</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">get_defined_vars</span><span
+								style="color: #007700">()));<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.get-defined-vars-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.0.0</td>
+						<td>La variable <var class="varname">
+								<var class="varname">
+									<a href="reserved.variables.globals.html" class="classname">$GLOBALS</a>
+								</var>
+							</var> est incluse dans le tableau retourné.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.get-defined-vars-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.isset.html" class="function" rel="rdfs-seeAlso">isset()</a>
+						- D&eacute;termine si une variable est d&eacute;finie et est
+						diff&eacute;rente de NULL</span></li>
+				<li class="member"><span class="function"><a
+						href="function.get-defined-functions.html" class="function"
+						rel="rdfs-seeAlso">get_defined_functions()</a> - Liste toutes les
+						fonctions d&eacute;finies</span></li>
+				<li class="member"><span class="function"><a
+						href="function.get-defined-constants.html" class="function"
+						rel="rdfs-seeAlso">get_defined_constants()</a> - Retourne la liste
+						des constantes et leurs valeurs</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.floatval.html">floatval</a>
+		</div>
+		<div class="next">
+			<a href="function.get-resource-type.html">get_resource_type</a>
+		</div>
+		<div class="up">
+			<a href="ref.var.html">Fonctions de gestion des variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

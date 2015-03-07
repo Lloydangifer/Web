@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Late Static Bindings (R&eacute;solution statique &agrave;
+	la vol&eacute;e)</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.oop5.typehinting.html">Typage objet</a>
+		</div>
+		<div class="next">
+			<a href="language.oop5.references.html">Objets et
+				r&eacute;f&eacute;rences</a>
+		</div>
+		<div class="up">
+			<a href="language.oop5.html">Les classes et les objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.oop5.late-static-bindings" class="sect1">
+		<h2 class="title">Late Static Bindings (Résolution statique à la
+			volée)</h2>
+		<p class="para">
+			Depuis PHP 5.3.0, PHP implémente une fonctionnalité appelée <em>late
+				static binding</em>, en français la résolution statique à la volée, qui
+			peut être utilisée pour référencer la classe appelée dans un contexte
+			d&#039;héritage statique.
+		</p>
+
+		<p class="para">
+			Plus précisément, les résolutions statiques à la volée fonctionnent
+			en enregistrant le nom de la classe dans le dernier &quot;appel non
+			transmis&quot;. Dans le cas des appels de méthodes statiques, il
+			s&#039;agit de la classe explicitement nommée (générallement, celle à
+			gauche de l&#039;opérateur <a
+				href="language.oop5.paamayim-nekudotayim.html" class="link"><em>::</em></a>)
+			; dans le cas de méthodes non statiques, il s&#039;agit de la classe
+			de l&#039;objet. Un &quot;appel transmis&quot; est un appel statique
+			déclenché par <em>self::</em>, <em>parent::</em>, <em>static::</em>,
+			ou, tout en haut de la hierarchie des classes, <span class="function"><a
+				href="function.forward-static-call.html" class="function">forward_static_call()</a></span>.
+
+
+			La fonction <span class="function"><a
+				href="function.get-called-class.html" class="function">get_called_class()</a></span>
+			peut être utilisée pour récupérer une chaine contenant le nom de la
+			classe appelée, et <em>static::</em> introduit son espace.
+		</p>
+
+		<p class="para">
+			Cette fonctionnalité a été baptisée <em>&quot;late static
+				bindings&quot;</em>, avec un point de vue interne. <em>&quot;Late
+				binding&quot;</em>, littéralement résolution tardive, vient du fait que
+			les éléments <em>static::</em> ne seront pas résolus en utilisant la
+			classe où la méthode a été définie, mais celle qui est active durant
+			l&#039;exécution. L&#039;adjectif statique a été ajouté car ce
+			problème s&#039;applique (sans y être limité) aux méthodes statiques.
+		</p>
+
+		<div class="sect2" id="language.oop5.late-static-bindings.self">
+			<h3 class="title">
+				Limitations de <em>self::</em>
+			</h3>
+			<p class="para">
+				Les références statiques à la classe courante, avec <em>self::</em>
+				ou <em>__CLASS__</em>, sont résolues en utilisant la classe à
+				laquelle appartiennent les fonctions, celle où elles ont été
+				définies :
+			</p>
+			<div class="example" id="example-231">
+				<p>
+					<strong>Exemple #1 Utilisation de <em>self::</em></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">A&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">qui</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #0000BB">__CLASS__</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">test</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">self</span><span
+								style="color: #007700">::</span><span style="color: #0000BB">qui</span><span
+								style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">B&nbsp;</span><span
+								style="color: #007700">extends&nbsp;</span><span
+								style="color: #0000BB">A&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">qui</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #0000BB">__CLASS__</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #0000BB">B</span><span
+								style="color: #007700">::</span><span style="color: #0000BB">test</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+A
+</pre>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="sect2" id="language.oop5.late-static-bindings.usage">
+			<h3 class="title">Utilisation de la résolution statique à la
+				volée</h3>
+
+			<p class="para">
+				La résolution statique à la volée essaie de dépasser cette
+				limitation en introduisant un mot clé qui fait référence à la classe
+				qui a été appelée durant l&#039;exécution. Pour faire simple, ce
+				mot-clé vous permet de faire référence à <em>B</em> depuis <em>test()</em>,
+				dans l&#039;exemple précédent. Il a été décidé de ne pas introduire
+				de nouveau mot clé, mais plutôt d&#039;utiliser le mot <em>static</em>
+				qui était déjà réservé.
+			</p>
+
+			<div class="example" id="example-232">
+				<p>
+					<strong>Exemple #2 Utilisation simple de <em>static::</em></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">A&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">qui</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #0000BB">__CLASS__</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">test</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;static::
+							</span><span style="color: #0000BB">qui</span><span
+								style="color: #007700">();&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;Ici,&nbsp;résolution&nbsp;à&nbsp;la&nbsp;volée<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">}<br />}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">B&nbsp;</span><span
+								style="color: #007700">extends&nbsp;</span><span
+								style="color: #0000BB">A&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">qui</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #0000BB">__CLASS__</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #0000BB">B</span><span
+								style="color: #007700">::</span><span style="color: #0000BB">test</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+B
+</pre>
+					</div>
+				</div>
+			</div>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Dans les contextes non statiques, la classe appelée sera celle de
+					l&#039;objet. Comme <em>$this-&gt;</em> essayera d&#039;appeler des
+					méthodes privées depuis le même contexte, utiliser <em>static::</em>
+					pourrait donner des résultats différents. Notez aussi que <em>static::</em>
+					ne peut faire référence qu&#039;à des attributs/méthodes statiques.
+			</blockquote>
+			<div class="example" id="example-233">
+				<p>
+					<strong>Exemple #3 Utilisation de <em>static::</em> dans
+						un contexte non statique
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">A&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">foo</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"success!\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">test</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">foo</span><span
+								style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;static::
+							</span><span style="color: #0000BB">foo</span><span
+								style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">B&nbsp;</span><span
+								style="color: #007700">extends&nbsp;</span><span
+								style="color: #0000BB">A&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">/*&nbsp;foo()&nbsp;sera&nbsp;copiée&nbsp;dans&nbsp;B,&nbsp;par&nbsp;conséquent&nbsp;son&nbsp;contexte&nbsp;sera&nbsp;toujours&nbsp;A<br />&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;et&nbsp;l'appel&nbsp;se&nbsp;fera&nbsp;sans&nbsp;problème&nbsp;*/<br /></span><span
+								style="color: #007700">}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">C&nbsp;</span><span
+								style="color: #007700">extends&nbsp;</span><span
+								style="color: #0000BB">A&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">foo</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">/*&nbsp;La&nbsp;méthode&nbsp;originale&nbsp;est&nbsp;remplacée;&nbsp;le&nbsp;contexte&nbsp;est&nbsp;celui&nbsp;de&nbsp;C&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">}<br />}<br />
+								<br /></span><span style="color: #0000BB">$b&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">B</span><span style="color: #007700">();<br /></span><span
+								style="color: #0000BB">$b</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">test</span><span style="color: #007700">();<br /></span><span
+								style="color: #0000BB">$c&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">C</span><span style="color: #007700">();<br /></span><span
+								style="color: #0000BB">$c</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">test</span><span style="color: #007700">();&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//échoue<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+success!
+success!
+success!
+
+
+Fatal error:  Call to private method C::foo() from context &#039;A&#039; in /tmp/test.php on line 9
+</pre>
+					</div>
+				</div>
+			</div>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					La résolution des statiques à la volée va s&#039;arrêter à un appel
+					statique complètement résolu. D&#039;un autre coté, les appels
+					statiques en utilisant un mot-clé comme <em>parent::</em> ou <em>self::</em>
+					vont transmettre l&#039;information appelante.
+				</p>
+				<div class="example" id="example-234">
+					<p>
+						<strong>Exemple #4 Appel avec ou sans transmission</strong>
+					</p>
+					<div class="example-contents">
+						<div class="phpcode">
+							<code>
+								<span style="color: #000000"> <span
+									style="color: #0000BB">&lt;?php<br /></span><span
+									style="color: #007700">class&nbsp;</span><span
+									style="color: #0000BB">A&nbsp;</span><span
+									style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;
+								</span><span style="color: #0000BB">foo</span><span
+									style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;static::
+								</span><span style="color: #0000BB">qui</span><span
+									style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+									<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;
+								</span><span style="color: #0000BB">qui</span><span
+									style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+								</span><span style="color: #0000BB">__CLASS__</span><span
+									style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span
+									style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+									<br />class&nbsp;
+								</span><span style="color: #0000BB">B&nbsp;</span><span
+									style="color: #007700">extends&nbsp;</span><span
+									style="color: #0000BB">A&nbsp;</span><span
+									style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;
+								</span><span style="color: #0000BB">test</span><span
+									style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								</span><span style="color: #0000BB">A</span><span
+									style="color: #007700">::</span><span style="color: #0000BB">foo</span><span
+									style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								</span><span style="color: #0000BB">parent</span><span
+									style="color: #007700">::</span><span style="color: #0000BB">foo</span><span
+									style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								</span><span style="color: #0000BB">self</span><span
+									style="color: #007700">::</span><span style="color: #0000BB">foo</span><span
+									style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+									<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;
+								</span><span style="color: #0000BB">qui</span><span
+									style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+								</span><span style="color: #0000BB">__CLASS__</span><span
+									style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span
+									style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />class&nbsp;
+								</span><span style="color: #0000BB">C&nbsp;</span><span
+									style="color: #007700">extends&nbsp;</span><span
+									style="color: #0000BB">B&nbsp;</span><span
+									style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;
+								</span><span style="color: #0000BB">qui</span><span
+									style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+								</span><span style="color: #0000BB">__CLASS__</span><span
+									style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span
+									style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+									<br /></span><span style="color: #0000BB">C</span><span
+									style="color: #007700">::</span><span style="color: #0000BB">test</span><span
+									style="color: #007700">();<br /></span><span
+									style="color: #0000BB">?&gt;</span>
+								</span>
+							</code>
+						</div>
+					</div>
+
+					<div class="example-contents">
+						<p>L&#039;exemple ci-dessus va afficher :</p>
+					</div>
+					<div class="example-contents screen">
+						<div class="cdata">
+							<pre>
+A
+C
+C
+</pre>
+						</div>
+					</div>
+				</div>
+				</p>
+			</blockquote>
+		</div>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.oop5.typehinting.html">Typage objet</a>
+		</div>
+		<div class="next">
+			<a href="language.oop5.references.html">Objets et
+				r&eacute;f&eacute;rences</a>
+		</div>
+		<div class="up">
+			<a href="language.oop5.html">Les classes et les objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

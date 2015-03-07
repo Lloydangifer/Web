@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Supprime les antislashs d'une cha&icirc;ne</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.stripos.html">stripos</a>
+		</div>
+		<div class="next">
+			<a href="function.stristr.html">stristr</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.stripslashes" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">stripslashes</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">stripslashes</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Supprime les antislashs d&#039;une
+					chaîne</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.stripslashes-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>stripslashes</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$str</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">Supprime les antislashs d&#039;une
+				chaîne.</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Si <a href="sybase.configuration.html#ini.magic-quotes-sybase"
+						class="link">magic_quotes_sybase</a> est activée, aucun antislash
+					n&#039;est supprimé, mais deux apostrophes sont remplacées par une
+					seule à la place.
+			</blockquote>
+			<p class="para">
+				Un exemple d&#039;utilisation de <span class="function"><strong>stripslashes()</strong></span>
+				est lorsque la directive PHP <a
+					href="info.configuration.html#ini.magic-quotes-gpc" class="link"><strong
+					class="option unknown">magic_quotes_gpc</strong> </a> est à <em>on</em>
+				(valeur par défaut avant PHP 5.4) et que vous insérez des données
+				dans une base de données qui requiert la protection des valeurs. Par
+				exemple, si vous affichez simplement et directement des données
+				provenant d&#039;un formulaire HTML.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.stripslashes-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">str</code></em></span>
+				<dd>
+
+					<p class="para">La chaîne d&#039;entrée.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.stripslashes-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne une chaîne dont les antislashs on été supprimés. <em>\&#039;</em>
+				devient <em>&#039;</em>, etc. Les doubles antislashs (<em>\\</em>)
+				sont réduits à un seul antislash (<em>\</em>).
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.stripslashes-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4546">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>stripslashes()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$str&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"Avez-vous&nbsp;l\'oreille&nbsp;dure?"</span><span
+								style="color: #007700">;<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Affiche&nbsp;:&nbsp;Avez-vous&nbsp;l'oreille&nbsp;dure?<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">stripslashes</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$str</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					<span class="function"><strong>stripslashes()</strong></span>
+					n&#039;est pas récursif. Si vous voulez appliquer cette fonction à
+					un tableau multidimensionnel, vous devez utiliser une fonction
+					récursive.
+			</blockquote>
+			<p class="para">
+			<div class="example" id="example-4547">
+				<p>
+					<strong>Exemple #2 Utilisation de <span class="function"><strong>stripslashes()</strong></span>
+						sur un tableau
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">stripslashes_deep</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$value</span><span
+								style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$value&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">is_array</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$value</span><span
+								style="color: #007700">)&nbsp;?<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">array_map</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'stripslashes_deep'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$value</span><span style="color: #007700">)&nbsp;:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">stripslashes</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$value</span><span
+								style="color: #007700">);<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">$value</span><span
+								style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Exemple<br /></span><span
+								style="color: #0000BB">$array&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">"f\\'oo"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"b\\'ar"</span><span
+								style="color: #007700">,&nbsp;array(</span><span
+								style="color: #DD0000">"fo\\'o"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"b\\'ar"</span><span
+								style="color: #007700">));<br /></span><span
+								style="color: #0000BB">$array&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">stripslashes_deep</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$array</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Affiche<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$array</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Array
+(
+    [0] =&gt; f&#039;oo
+    [1] =&gt; b&#039;ar
+    [2] =&gt; Array
+        (
+            [0] =&gt; fo&#039;o
+            [1] =&gt; b&#039;ar
+        )
+
+)
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.stripslashes-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.addslashes.html" class="function"
+						rel="rdfs-seeAlso">addslashes()</a> - Ajoute des antislashs dans
+						une cha&icirc;ne</span></li>
+				<li class="member"><span class="function"><a
+						href="function.get-magic-quotes-gpc.html" class="function"
+						rel="rdfs-seeAlso">get_magic_quotes_gpc()</a> - Retourne la
+						configuration actuelle de l'option magic_quotes_gpc</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.stripos.html">stripos</a>
+		</div>
+		<div class="next">
+			<a href="function.stristr.html">stristr</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

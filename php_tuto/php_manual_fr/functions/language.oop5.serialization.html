@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>S&eacute;rialisation d'objets</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.oop5.references.html">Objets et
+				r&eacute;f&eacute;rences</a>
+		</div>
+		<div class="next">
+			<a href="language.oop5.changelog.html">Modifications en POO
+				(Programmation orient&eacute;e objet)</a>
+		</div>
+		<div class="up">
+			<a href="language.oop5.html">Les classes et les objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.oop5.serialization" class="sect1">
+		<h2 class="title">Sérialisation d&#039;objets</h2>
+		<h2 class="title">Sérialiser des objets - des objets en session</h2>
+
+		<p class="para">
+			<span class="function"><a href="function.serialize.html"
+				class="function">serialize()</a></span> retourne une chaîne de caractères
+			contenant une représentation linéaire de n&#039;importe quelle valeur
+			qui peut être stockée en PHP. <span class="function"><a
+				href="function.unserialize.html" class="function">unserialize()</a></span>
+			peut utiliser cette chaîne de caractères pour recréer la valeur
+			originale de la variable à partir de sa représentation linéaire.
+			Utiliser <span class="function"><a
+				href="function.serialize.html" class="function">serialize()</a></span> pour
+			sauvegarder un objet conservera toutes ses variables. Ses méthodes ne
+			seront pas conservées, seul le nom de la classe le sera.
+		</p>
+
+		<p class="para">
+			Afin de pouvoir désérialiser ( <span class="function"><a
+				href="function.unserialize.html" class="function">unserialize()</a></span>)
+			un objet, la classe de l&#039;objet doit être définie, pour permettre
+			sa reconstruction. En d&#039;autres termes, si vous avez un objet de
+			la classe A et le sérialisez, la représentation linéaire obtenue fera
+			référence à la classe A et contiendra toutes ses variables. Si vous
+			voulez pouvoir désérialiser cette représentation linéaire dans un
+			endroit où la classe A n&#039;est pas définie (dans un autre fichier
+			par exemple), alors vous devrez redéclarer la classe A avant de
+			procéder à la désérialisation de sa représentation linéaire. Cela
+			peut-être fait, par exemple, en incluant le fichier de définition de
+			la classe, ou en utilisant la fonction <span class="function"><a
+				href="function.spl-autoload-register.html" class="function">spl_autoload_register()</a></span>.
+		</p>
+
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #FF8000">//&nbsp;class_a.inc.php&nbsp;:<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">class&nbsp;</span><span
+							style="color: #0000BB">A&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;
+						</span><span style="color: #0000BB">$one&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+						</span><span style="color: #0000BB">show_one</span><span
+							style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #0000BB">$this</span><span
+							style="color: #007700">-&gt;</span><span style="color: #0000BB">one</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;}<br />&nbsp;&nbsp;<br /></span><span
+							style="color: #FF8000">//&nbsp;page1.php&nbsp;:<br />
+							<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">include(</span><span
+							style="color: #DD0000">"class_a.inc.php"</span><span
+							style="color: #007700">);<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;
+						</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">A</span><span style="color: #007700">;<br />&nbsp;&nbsp;
+						</span><span style="color: #0000BB">$s&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">serialize</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$a</span><span
+							style="color: #007700">);<br />&nbsp;&nbsp;
+						</span><span style="color: #FF8000">//&nbsp;enregistre&nbsp;$s&nbsp;quelque&nbsp;part&nbsp;où&nbsp;page2.php&nbsp;peut&nbsp;le&nbsp;retrouver<br />&nbsp;&nbsp;
+						</span><span style="color: #0000BB">file_put_contents</span><span
+							style="color: #007700">(</span><span style="color: #DD0000">'store'</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$s</span><span
+							style="color: #007700">);<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;page2.php&nbsp;:<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;//&nbsp;nous&nbsp;avons&nbsp;besoin&nbsp;de&nbsp;la&nbsp;définition&nbsp;de&nbsp;la&nbsp;classe<br />&nbsp;&nbsp;//&nbsp;pour&nbsp;qu'unserialize()&nbsp;fonctionne<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">include(</span><span
+							style="color: #DD0000">"class_a.inc.php"</span><span
+							style="color: #007700">);<br />
+							<br />&nbsp;&nbsp;
+						</span><span style="color: #0000BB">$s&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">file_get_contents</span><span
+							style="color: #007700">(</span><span style="color: #DD0000">'store'</span><span
+							style="color: #007700">);<br />&nbsp;&nbsp;
+						</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">unserialize</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$s</span><span
+							style="color: #007700">);<br />
+							<br />&nbsp;&nbsp;
+						</span><span style="color: #FF8000">//&nbsp;appel&nbsp;de&nbsp;show_one()&nbsp;sur&nbsp;l'objet&nbsp;$a,&nbsp;affiche&nbsp;1<br />&nbsp;&nbsp;
+						</span><span style="color: #0000BB">$a</span><span style="color: #007700">-&gt;</span><span
+							style="color: #0000BB">show_one</span><span
+							style="color: #007700">();<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+
+		<p class="para">
+			Si une application utilise le système de sessions et enregistre des
+			objets à l&#039;aide de <span class="function"><a
+				href="function.session-register.html" class="function">session_register()</a></span>,
+			ces objets sont sérialisés automatiquement à la fin de chaque page
+			PHP, et sont désérialisés automatiquement à chaque page suivante.
+			Cela signifie qu&#039;une fois mis en session, ces objets peuvent
+			apparaître dans n&#039;importe quelle page de l&#039;application où
+			la session est démarrée. Notez cependant que la fonction <span
+				class="function"><a href="function.session-register.html"
+				class="function">session_register()</a></span> est supprimée depuis PHP
+			5.4.0
+		</p>
+
+		<p class="para">
+			Si une application sérialise des objets, il est fortement recommandé,
+			pour son usage futur, que l&#039;application inclut les définitions
+			des classes des objets sérialisés à chaque page. Ne pas faire ainsi
+			pourrait aboutir à un objet désérialisé sans sa définition de classe.
+			PHP donnerait alors à cet objet une classe de type <strong
+				class="classname">__PHP_Incomplete_Class_Name</strong>, qui n&#039;a
+			pas de méthode, et produirait un objet inutile.
+		</p>
+
+		<p class="para">
+			Ainsi, dans l&#039;exemple ci-dessus, si
+			<var class="varname">
+				<var class="varname">$a</var>
+			</var>
+			était enregistré dans la session en exécutant <em>session_register(&quot;a&quot;)</em>,
+			vous devriez inclure le fichier <em>class_a.inc.php</em> dans toutes
+			vos pages, et pas seulement dans
+			<var class="filename">page1.php</var>
+			et
+			<var class="filename">page2.php</var>
+		</p>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.oop5.references.html">Objets et
+				r&eacute;f&eacute;rences</a>
+		</div>
+		<div class="next">
+			<a href="language.oop5.changelog.html">Modifications en POO
+				(Programmation orient&eacute;e objet)</a>
+		</div>
+		<div class="up">
+			<a href="language.oop5.html">Les classes et les objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

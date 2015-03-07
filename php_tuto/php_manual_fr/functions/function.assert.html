@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>V&eacute;rifie si une assertion est fausse</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.assert-options.html">assert_options</a>
+		</div>
+		<div class="next">
+			<a href="function.dl.html">dl</a>
+		</div>
+		<div class="up">
+			<a href="ref.info.html">Fonctions sur les options et les
+				informations de PHP</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.assert" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">assert</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">assert</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Vérifie si une assertion est fausse</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.assert-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>assert</strong></span>
+				( <span class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$assertion</code></span>
+				)
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>assert()</strong></span> va vérifier
+				l&#039;assertion <em><code class="parameter">assertion</code></em>
+				et prendre la mesure appropriée si le résultat est <strong><code>FALSE</code></strong>.
+			</p>
+			<p class="para">
+				Si <em><code class="parameter">assertion</code></em> est donnée sous
+				la forme d&#039;une chaîne, elle sera évaluée comme un code PHP par
+				la fonction <span class="function"><strong>assert()</strong></span>.
+				Les avantages de ce type d&#039;assertion sont d&#039;être moins
+				lourd si la vérification d&#039;assertion est désactivée, et les
+				messages contenant l&#039;assertion lorsque l&#039;assertion échoue.
+				Cela signifie que si vous passez une condition booléenne en tant
+				qu&#039;assertion, cette condition ne sera pas considérée comme un
+				paramètre par la fonction d&#039;assertion que vous avez définie
+				avec la fonction <span class="function"><a
+					href="function.assert-options.html" class="function">assert_options()</a></span>,
+				la condition est convertie en <a href="language.types.string.html"
+					class="link">chaîne de caractères</a> avant l&#039;appel à ce
+				gestionnaire de fonction, et le booléen <strong><code>FALSE</code></strong>
+				sera converti en <a href="language.types.string.html" class="link">chaîne
+					de caractères</a> vide.
+			</p>
+			<p class="para">Il est recommandé de n&#039;utiliser les
+				assertions que comme outil de déboguage. Vous pouvez les utiliser
+				pour les vérifications d&#039;usage : ces conditions doivent
+				normalement être vraies, et indiquer une erreur de programmation si
+				ce n&#039;est pas le cas. Vous pouvez aussi vérifier la présence de
+				certaines extensions ou limitations du système.</p>
+			<p class="para">Les assertions ne doivent pas être utilisées pour
+				faire des opérations de vérifications en production, comme des
+				vérifications de valeur d&#039;argument. En conditions normales,
+				votre code doit être en état de fonctionner si la vérification
+				d&#039;assertion est désactivée.</p>
+			<p class="para">
+				Le comportement de <span class="function"><strong>assert()</strong></span>
+				peut être configuré par <span class="function"><a
+					href="function.assert-options.html" class="function">assert_options()</a></span>
+				ou par les directives de configuration décrites dans la page de
+				manuel de cette fonction.
+			</p>
+			<p class="para">
+				La fonction <span class="function"><a
+					href="function.assert-options.html" class="function">assert_options()</a></span>
+				et la directive ASSERT_CALLBACK permettent de configurer une
+				fonction qui sera appelée lorsque l&#039;assertion échoue.
+			</p>
+			<p class="para">
+				Les fonctions de rappel pour <span class="function"><strong>assert()</strong></span>
+				sont particulièrement utiles pour bâtir des suites de tests
+				automatiques, car elles vous permettent de capturer facilement le
+				code passé à l&#039;assertion, ainsi que des informations sur le
+				lieu et le moment de l&#039;assertion. Même si ces informations
+				peuvent être appelées par d&#039;autres méthodes, les assertions
+				sont plus rapides et plus faciles.
+			</p>
+			<p class="para">La fonction de rappel doit accepter trois
+				arguments. Le premier contient le nom du fichier qui a vu
+				l&#039;assertion échouer. Le second contient le numéro de ligne dans
+				le fichier précédent. Le troisième argument contient
+				l&#039;expression qui a échoué (s&#039;il y en a : les valeurs
+				littérales comme 1 ou &quot;deux&quot; ne seront pas passées par cet
+				argument).</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.assert-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">assertion</code></em></span>
+				<dd>
+
+					<p class="para">L&#039;assertion.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.assert-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				<strong><code>FALSE</code></strong> si l&#039;assertion est fausse,
+				<strong><code>TRUE</code></strong> sinon.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.assert-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-476">
+				<p>
+					<strong>Exemple #1 Gestion des assertions avec un
+						gestionnaire personnalisé</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Activation&nbsp;des&nbsp;assertions&nbsp;et&nbsp;mise&nbsp;en&nbsp;mode&nbsp;discret<br /></span><span
+								style="color: #0000BB">assert_options</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">ASSERT_ACTIVE</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">assert_options</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">ASSERT_WARNING</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">assert_options</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">ASSERT_QUIET_EVAL</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Création&nbsp;d'un&nbsp;gestionnaire&nbsp;d'assertions<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">my_assert_handler</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$file</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$line</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$code</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"&lt;hr&gt;Échec&nbsp;de&nbsp;l'assertion&nbsp;:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File&nbsp;'
+							</span><span style="color: #0000BB">$file</span><span
+								style="color: #DD0000">'&lt;br&nbsp;/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Line&nbsp;'
+							</span><span style="color: #0000BB">$line</span><span
+								style="color: #DD0000">'&lt;br&nbsp;/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Code&nbsp;'
+							</span><span style="color: #0000BB">$code</span><span
+								style="color: #DD0000">'&lt;br&nbsp;/&gt;&lt;hr&nbsp;/&gt;"</span><span
+								style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Configuration&nbsp;de&nbsp;la&nbsp;méthode&nbsp;de&nbsp;callback<br /></span><span
+								style="color: #0000BB">assert_options</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">ASSERT_CALLBACK</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'my_assert_handler'</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Utilisation&nbsp;d'une&nbsp;assertion&nbsp;qui&nbsp;va&nbsp;échouer<br /></span><span
+								style="color: #0000BB">assert</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'mysql_query("")'</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.assert-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.assert-options.html" class="function"
+						rel="rdfs-seeAlso">assert_options()</a> - Fixe et lit
+						diff&eacute;rentes options d'assertions</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.assert-options.html">assert_options</a>
+		</div>
+		<div class="next">
+			<a href="function.dl.html">dl</a>
+		</div>
+		<div class="up">
+			<a href="ref.info.html">Fonctions sur les options et les
+				informations de PHP</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

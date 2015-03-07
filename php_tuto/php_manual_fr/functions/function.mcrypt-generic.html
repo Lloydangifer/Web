@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Chiffre les donn&eacute;es</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="function.mcrypt-generic-init.html">mcrypt_generic_init</a></div>
+ <div class="next"><a href="function.mcrypt-get-block-size.html">mcrypt_get_block_size</a></div>
+ <div class="up"><a href="ref.mcrypt.html">Fonctions Mcrypt</a></div><div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="function.mcrypt-generic" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mcrypt_generic</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.2, PHP 5)</p><p class="refpurpose"><span class="refname">mcrypt_generic</span> <span class="mdash">&mdash;</span> <span class="dc-title">Chiffre les données</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.mcrypt-generic-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>mcrypt_generic</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$td</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$data</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+    <span class="function"><strong>mcrypt_generic()</strong></span> chiffre les données
+   <em><code class="parameter">data</code></em>. Les données sont complétées
+   par des &quot;<em>\0</em>&quot; pour obtenir une taille multiple de la taille
+   d&#039;un bloc. Elle retourne les données chiffrées. Notez que la longueur
+   de la chaîne retournée peut être plus longue que celle
+   passée en argument, à cause du complément.
+  </p>
+  <p class="para">
+   Si vous voulez enregistrer les données chiffrées dans une base de données
+   assurez-vous d&#039;enregistrer la chaîne entière retournée par cette fonction,
+   sinon la chaîne ne sera pas décryptée correctement. Si votre chaîne d&#039;origine
+   comporte 10 caractères et que la taille d&#039;un bloc est de 8 (utilisez
+    <span class="function"><a href="function.mcrypt-enc-get-block-size.html" class="function">mcrypt_enc_get_block_size()</a></span> pour déterminer cette taille),
+   vous aurez besoin d&#039;au moins 16 caractères dans le champ de votre base de données.
+   Notez que la chaîne retournée par  <span class="function"><a href="function.mdecrypt-generic.html" class="function">mdecrypt_generic()</a></span> aura
+   16 caractères de long... utilisez <em>rtrim($str, &quot;\0&quot;)</em>
+   pour supprimer le complément.
+  </p>
+  <p class="para">
+   Par exemple, si vous enregistrez les données dans une base de données MySQL,
+   souvenez-vous que les champs de type VARCHAR suppriment automatiquement les
+   espaces en trop durant l&#039;insertion. Comme les données chiffrés peuvent se
+   terminer avec un espace (ASCII 32), les données seront endommagées par cette
+   suppression. Stockez les données dans un champ de type TINYBLOB/TINYTEXT
+   (ou plus grand) pour que tout fonctionne normalement.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.mcrypt-generic-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><em><code class="parameter">td</code></em></span>
+     <dd>
+
+      <p class="para">
+       La ressource de chiffrement.
+      </p>
+      <p class="para">
+       Le gestionnaire de chiffrement <em><code class="parameter">td</code></em> doit être
+       initialisé avec la fonction  <span class="function"><a href="function.mcrypt-generic-init.html" class="function">mcrypt_generic_init()</a></span>,
+       avec une clé et un VI, avant d&#039;appeler cette fonction. Lorsque le chiffrement
+       est réalisé, vous devez libérer les buffers en appelant la fonction
+        <span class="function"><a href="function.mcrypt-generic-deinit.html" class="function">mcrypt_generic_deinit()</a></span>.
+       Voyez  <span class="function"><a href="function.mcrypt-module-open.html" class="function">mcrypt_module_open()</a></span> pour un exemple.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><em><code class="parameter">data</code></em></span>
+     <dd>
+
+      <p class="para">
+       Les données à chiffrer.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+   </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.mcrypt-generic-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne les données chiffrées.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.mcrypt-generic-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"> <span class="function"><a href="function.mdecrypt-generic.html" class="function" rel="rdfs-seeAlso">mdecrypt_generic()</a> - D&eacute;chiffre les donn&eacute;es</span></li>
+    <li class="member"> <span class="function"><a href="function.mcrypt-generic-init.html" class="function" rel="rdfs-seeAlso">mcrypt_generic_init()</a> - Initialise tous les buffers n&eacute;cessaires</span></li>
+    <li class="member"> <span class="function"><a href="function.mcrypt-generic-deinit.html" class="function" rel="rdfs-seeAlso">mcrypt_generic_deinit()</a> - Pr&eacute;pare le module pour le d&eacute;chargement</span></li>
+   </ul>
+  </p>
+ </div>
+
+ 
+</div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="function.mcrypt-generic-init.html">mcrypt_generic_init</a></div>
+ <div class="next"><a href="function.mcrypt-get-block-size.html">mcrypt_get_block_size</a></div>
+ <div class="up"><a href="ref.mcrypt.html">Fonctions Mcrypt</a></div>
+<div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

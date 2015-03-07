@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Retourne chaque paire cl&eacute;/valeur d'un tableau</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.current.html">current</a>
+		</div>
+		<div class="next">
+			<a href="function.end.html">end</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.each" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">each</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">each</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Retourne chaque paire clé/valeur
+					d&#039;un tableau</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.each-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>each</strong></span>
+				( <span class="methodparam"><span class="type">array</span> <code
+						class="parameter reference">&$array</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>each()</strong></span> retourne la
+				paire clé/valeur courante du tableau <em><code
+						class="parameter">array</code></em> et avance le pointeur de tableau.
+			</p>
+			<p class="para">
+				Après chaque appel à <span class="function"><strong>each()</strong></span>,
+				le pointeur de tableau est déplacé au prochain élément, ou au-delà
+				dernier élément, lorsqu&#039;on arrive à la fin. Vous devez utiliser
+				<span class="function"><a href="function.reset.html"
+					class="function">reset()</a></span> si vous voulez traverser le tableau à
+				nouveau avec <span class="function"><strong>each()</strong></span>.
+			</p>
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.each-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">array</code></em></span>
+				<dd>
+
+					<p class="para">Le tableau d&#039;entrée.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.each-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne la paire clé/valeur courante du tableau <em><code
+						class="parameter">array</code></em> et avance le pointeur de tableau.
+				Cette paire est retournée dans un tableau de 4 éléments, avec les
+				clés <em>0</em>, <em>1</em>, <em>key</em>, et <em>value</em>. Les
+				éléments <em>0</em> et <em>key</em> contiennent le nom de la clé et
+				<em>1</em> et <em>value</em> contiennent la valeur.
+			</p>
+			<p class="para">
+				Si le pointeur interne de tableau est au-delà de la fin du tableau,
+				<span class="function"><strong>each()</strong></span> retourne <strong><code>FALSE</code></strong>.
+			</p>
+		</div>
+
+		<div class="refsect1 examples" id="refsect1-function.each-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4664">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>each()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$foo&nbsp;
+							</span><span style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">"bob"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"fred"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"jussi"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"jouni"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"egon"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"marliese"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$bar&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">each</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$foo</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$bar</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>
+						<var class="varname">
+							<var class="varname">$bar</var>
+						</var>
+						contient maintenant les clés/valeurs suivantes :
+					</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Array
+(
+    [1] =&gt; bob
+    [value] =&gt; bob
+    [0] =&gt; 0
+    [key] =&gt; 0
+)
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+			<p class="para">
+			<div class="informalexample">
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$foo&nbsp;
+							</span><span style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">"Robert"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">"Bob"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"Seppo"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">"Sepi"</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$bar&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">each</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$foo</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$bar</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<p class="para">
+					<var class="varname">
+						<var class="varname">$bar</var>
+					</var>
+					contient maintenant les clés/valeurs suivantes :
+				</p>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Array
+(
+    [1] =&gt; Bob
+    [value] =&gt; Bob
+    [0] =&gt; Robert
+    [key] =&gt; Robert
+)
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+			<p class="para">
+				<span class="function"><strong>each()</strong></span> est
+				typiquement utilisée en conjonction avec <span class="function"><a
+					href="function.list.html" class="function">list()</a></span> pour passer
+				en revue un tableau. Par exemple :
+			<div class="example" id="example-4665">
+				<p>
+					<strong>Exemple #2 Passer en revue un tableau avec <span
+						class="function"><strong>each()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$fruit&nbsp;
+							</span><span style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">'a'&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">'apple'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'b'&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">'banana'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'c'&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">'cranberry'</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #0000BB">reset</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fruit</span><span
+								style="color: #007700">);<br />while&nbsp;(list(
+							</span><span style="color: #0000BB">$key</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$val</span><span style="color: #007700">)&nbsp;=&nbsp;</span><span
+								style="color: #0000BB">each</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$fruit</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$key</span><span
+								style="color: #DD0000">&nbsp;=&gt;&nbsp;</span><span
+								style="color: #0000BB">$val</span><span style="color: #DD0000">\n"</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+a =&gt; apple
+b =&gt; banana
+c =&gt; cranberry
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+			<div class="caution">
+				<strong class="caution">Attention</strong>
+				<p class="para">
+					Assigner un tableau à une autre variable remet le pointeur du
+					tableau original à zéro. À cause de ce comportement, nous aurions
+					pu provoquer une boucle infinie dans notre exemple si nous avions
+					assigné
+					<var class="varname">
+						<var class="varname">$fruit</var>
+					</var>
+					à une autre variable dans notre boucle.
+				</p>
+			</div>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">
+					<span class="function"><strong>each()</strong></span> accepte
+					également des objets, mais peut retourner un résultat non-attendu.
+					Aussi, il n&#039;est pas recommandé d&#039;utiliser cette fonction
+					sur des objets.
+				</p>
+			</div>
+		</div>
+
+		<div class="refsect1 seealso" id="refsect1-function.each-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.key.html" class="function" rel="rdfs-seeAlso">key()</a>
+						- Retourne une cl&eacute; d'un tableau associatif</span></li>
+				<li class="member"><span class="function"><a
+						href="function.list.html" class="function" rel="rdfs-seeAlso">list()</a>
+						- Assigne des variables comme si elles &eacute;taient un tableau</span></li>
+				<li class="member"><span class="function"><a
+						href="function.current.html" class="function" rel="rdfs-seeAlso">current()</a>
+						- Retourne l'&eacute;l&eacute;ment courant du tableau</span></li>
+				<li class="member"><span class="function"><a
+						href="function.reset.html" class="function" rel="rdfs-seeAlso">reset()</a>
+						- Remet le pointeur interne de tableau au d&eacute;but</span></li>
+				<li class="member"><span class="function"><a
+						href="function.next.html" class="function" rel="rdfs-seeAlso">next()</a>
+						- Avance le pointeur interne d'un tableau</span></li>
+				<li class="member"><span class="function"><a
+						href="function.prev.html" class="function" rel="rdfs-seeAlso">prev()</a>
+						- Recule le pointeur courant de tableau</span></li>
+				<li class="member"><a href="control-structures.foreach.html"
+					class="link">foreach</a></li>
+				<li class="member"><a href="language.oop5.iterations.html"
+					class="link">Itération d&#039;objet</a></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.current.html">current</a>
+		</div>
+		<div class="next">
+			<a href="function.end.html">end</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

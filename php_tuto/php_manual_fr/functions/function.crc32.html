@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Calcule la somme de contr&ocirc;le CRC32</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.count-chars.html">count_chars</a>
+		</div>
+		<div class="next">
+			<a href="function.crypt.html">crypt</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.crc32" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">crc32</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.0.1, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">crc32</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Calcule la somme de contrôle CRC32</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.crc32-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">int</span> <span class="methodname"><strong>crc32</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$str</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				Génère la somme de contrôle cyclique CRC32, calculée sur 32 bits, et
+				appliquée à la chaîne <em><code class="parameter">str</code></em>.
+				Cette fonction est généralement utilisée pour valider
+				l&#039;intégrité de données durant une transmission.
+			</p>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="simpara">
+					En raison du fait que le type entier de PHP est signé, la plupart
+					des sommes de contrôle crc32 se trouve être des entiers négatifs
+					sur les plateformes 32bits. Sur des installations 64bits, tous les
+					résultats de la fonction <span class="function"><strong>crc32()</strong></span>
+					seront des entiers positifs.
+				</p>
+				<p class="simpara">
+					Aussi, vous devez utiliser le formatteur &quot;%u&quot; de la
+					fonction <span class="function"><a
+						href="function.sprintf.html" class="function">sprintf()</a></span> ou de
+					la fonction <span class="function"><a
+						href="function.printf.html" class="function">printf()</a></span> pour
+					récupérer une représentation en chaîne de caractères de la somme de
+					contrôle non-signée de la fonction <span class="function"><strong>crc32()</strong></span>
+					au format décimal.
+				</p>
+				<p class="simpara">
+					Pour une représentation hexadécimale de la somme de contrôle, vous
+					pouvez utiliser soit le formatteur &quot;%x&quot; de la fonction <span
+						class="function"><a href="function.sprintf.html"
+						class="function">sprintf()</a></span> ou de la fonction <span
+						class="function"><a href="function.printf.html"
+						class="function">printf()</a></span> , ou bien les fonctions de
+					conversion <span class="function"><a
+						href="function.dechex.html" class="function">dechex()</a></span>, les
+					deux solutions prennent soin de convertir le résultat de la
+					fonction <span class="function"><strong>crc32()</strong></span> en
+					un entier non-signé.
+				</p>
+				<p class="simpara">Sur les installations 64bits, la fonction
+					retournera aussi des entiers négatifs pour des valeurs retournées
+					très grandes, mais cela va casser la conversion en héxadécimal en
+					ayant une position 0xFFFFFFFF######## supplémentaire. Sachant que
+					la représentation décimale semble être le cas le plus largement
+					utilisé, nous avons décidé de ne pas la casser même si elle casse
+					directement la comparaison décimale dans 50% des cas lors d&#039;un
+					passage de 32 à 64bits.</p>
+				<p class="simpara">
+					Avec du recul, le fait que la fonction retourne un entier
+					n&#039;était peut-être pas la meilleure idée, et le fait de
+					retourner une représentation héxadécimale sous la forme d&#039;une
+					chaîne de caractères (tel que le fait la fonction <span
+						class="function"><a href="function.md5.html"
+						class="function">md5()</a></span>) aurait pû être une meilleure solution
+					pour commencer.
+				</p>
+				<p class="simpara">
+					Pour une solution plus pérenne, vous pouvez vous retourner vers la
+					fonction générique <span class="function"><a
+						href="function.hash.html" class="function">hash()</a></span>.
+					<code class="code">hash(&quot;crc32b&quot;, $str)</code>
+					va retourner la même chaîne de caractères que
+					<code class="code">dechex(crc32($str))</code>
+					.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.crc32-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">str</code></em></span>
+				<dd>
+
+					<p class="para">Les données.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.crc32-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne la somme de contrôle crc32 de la chaîne <em><code
+						class="parameter">str</code></em>, sous la forme d&#039;un entier.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.crc32-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4481">
+				<p>
+					<strong>Exemple #1 Afficher une somme de contrôle CRC32</strong>
+				</p>
+				<div class="example-contents">
+					<p>
+						Cet exemple illustre comment afficher la somme de contrôle avec la
+						fonction <span class="function"><a
+							href="function.printf.html" class="function">printf()</a></span> :
+					</p>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$checksum&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">crc32</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"Le&nbsp;vif&nbsp;zéphyr&nbsp;jubile&nbsp;sur&nbsp;les&nbsp;kumquats&nbsp;du&nbsp;clown&nbsp;gracieux."</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">printf</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"%u\n"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$checksum</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.crc32-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.hash.html" class="function" rel="rdfs-seeAlso">hash()</a>
+						- G&eacute;n&egrave;re une valeur de hachage (empreinte
+						num&eacute;rique)</span></li>
+				<li class="member"><span class="function"><a
+						href="function.md5.html" class="function" rel="rdfs-seeAlso">md5()</a>
+						- Calcule le md5 d'une cha&icirc;ne</span></li>
+				<li class="member"><span class="function"><a
+						href="function.sha1.html" class="function" rel="rdfs-seeAlso">sha1()</a>
+						- Calcule le sha1 d'une cha&icirc;ne de caract&egrave;res</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.count-chars.html">count_chars</a>
+		</div>
+		<div class="next">
+			<a href="function.crypt.html">crypt</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Les URLS</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<h3>Définition d'une URL</h3>
+		<section>
+
+			<p>
+				<strong>Les ressources sur le réseau sont référencées,
+					localisées par des <abbr title="Uniform Resource Locator">URL</abbr>.</strong> Une <abbr title="Uniform Resource Locator">URL</abbr> (Uniform Resource Locator) définit
+				donc l'adresse d'une ressource (document ou autre) sur le Web et on
+				utilise souvent le terme d'<i>adresse Web</i> pour en parler.
+			</p>
+
+
+			<figure style="float: right; width: 280px">
+				<img src="../htmlimg/arbo01.png" width="250" height="284">
+				<figcaption> arborescence de dossiers</figcaption>
+			</figure>
+			<p>
+				<strong>Une <abbr title="Uniform Resource Locator">URL</abbr> décrit un chemin dans une arborescence</strong>.
+				<br>
+				Le point de départ du chemin peut être l'adresse du site sur le
+				réseau, suivi de la hiérachie de dossiers à descendre (exemple <code>www.site.fr/livres/promo/c.html</code>).
+				<br>
+				Le point de départ peut également être la ressource en cours, suivi
+				de la hiérarchie de dossiers à remonter (exemple <code>../../index.html</code>).
+				<br>
+				<br>
+				Le caractère de séparation entre les dossiers et les fichiers est le
+				<code>/</code> (slash) comme dans les systèmes UNIX ou Linux (et
+				surtout pas le \ -backslash- des systèmes Microsoft windows).
+			</p>
+
+			<p class="fp-puce fp-bot0 fp-clear">
+				Une <abbr title="Uniform Resource Locator">URL</abbr> est une simple <strong>chaîne de caractères</strong>.
+				<br>
+				Il convient d'être prudent avec les caractères utilisés et je vous
+				conseille fortement d'adopter les règles suivantes :
+			</p>
+			<ul>
+				<li>les noms de fichier et de dossiers étant sensibles à la
+					casse, utilisez uniquement des minuscules,</li>
+				<li>utilisez uniquement les caractères aplhabétiques non
+					accentués (de a à z), des chiffres (de 0 à 9), le caractère -, le
+					caractère _ et le caractère .</li>
+				<li>n'utilisez jamais d'espaces.</li>
+			</ul>
+
+			<p class="fp-p-raz">
+				Les caractères <code>! * ' ( ) ; : @ &amp; = + $ , / ? % # [
+					]</code> sont des <a
+					onclick="top.FP.Voir.showPageTech('url_caracteres', '')">caractères
+					réservés</a> qui ne doivent pas être utilisés telle que dans les <abbr title="Uniform Resource Locator">URLs</abbr>.
+			</p>
+
+			<div class="fp-ordre">
+				<div class="fp-ordre-t">Très prudent tu dois être quand un
+					fichier tu nommes.</div>
+			</div>
+
+			<p>
+				La longueur maximum d'une <abbr title="Uniform Resource Locator">URL</abbr> n'est pas définie dans les <a
+					href="http://www.w3.org/Protocols/rfc2616/rfc2616.html"
+					target="_blank">spécifications techniques</a>. On se base donc sur
+				la longueur la plus faible prise en compte par les navigateurs :
+				2083 caractères pour <a
+					href="http://windows.microsoft.com/fr-fr/internet-explorer/download-ie"
+					target="_blank">Internet Explorer</a>.
+			</p>
+
+		</section>
+
+		<h3>Parties d'une URL</h3>
+		<section>
+			<p>Une <abbr title="Uniform Resource Locator">URL</abbr> est composée de plusieurs parties qui peuvent être ou
+				non présentes.</p>
+
+			<figure>
+				<img src="../htmlimg/url1.png" width="184" height="99">
+				<figcaption> les parties d'une <abbr title="Uniform Resource Locator">URL</abbr></figcaption>
+			</figure>
+			<p class="fp-p-raz">
+				Le protocole est généralement <code>http</code>, mais ça n'est qu'un
+				des protocoles utilisables dans une <a
+					href="http://en.wikipedia.org/wiki/URI_scheme#Official_IANA-registered_schemes"
+					target="_blank">très longue liste.</a>
+				<br>
+				L'adresse réseau peut être un <a
+					href="http://fr.wikipedia.org/wiki/Nom_de_domaine" target="_blank">nom
+					de domaine</a> (ie google.com) ou une <a
+					href="http://fr.wikipedia.org/wiki/Adresse_IP" target="_blank">adresse
+					IP</a> (ie 173.194.78.94).
+				<br>
+				Dans ce type d'<abbr title="Uniform Resource Locator">URL</abbr> aucun nom de ressource n'est défini. C'est la
+				configuration du serveur Web qui définit la ressource renvoyée quand
+				un lien pointe sur le dossier racine du site. Ca sera généralement <code>index.html</code>,
+				<code>index.php</code>, <code>default.html</code> ou <code>default.aspx</code>.
+
+			</p>
+
+			<hr>
+			<figure>
+				<img src="../htmlimg/url2.png" width="422" height="99">
+				<figcaption> les parties d'une <abbr title="Uniform Resource Locator">URL</abbr></figcaption>
+			</figure>
+			<p class="fp-p-raz">
+				Ce type d'<abbr title="Uniform Resource Locator">URL</abbr> définit le chemin d'accès de la ressource dans les
+				dossiers du serveur Web. Notez que les dossiers et le fichier sont
+				séparés par un <code>/</code>.
+			</p>
+
+			<hr>
+			<figure>
+				<img src="../htmlimg/url3.png" width="501" height="99">
+				<figcaption> les parties d'une <abbr title="Uniform Resource Locator">URL</abbr></figcaption>
+			</figure>
+			<p class="fp-p-raz">
+				On peut faire pointer une <abbr title="Uniform Resource Locator">URL</abbr> sur une partie à l'intérieur d'une ressource
+				en utilisant le caractère <code>#</code> (dièses) pour séparer le
+				nom de la ressource et le nom de la partie à atteindre.
+			</p>
+
+			<hr>
+			<figure>
+				<img src="../htmlimg/url4.png" width="600" height="99">
+				<figcaption> les parties d'une <abbr title="Uniform Resource Locator">URL</abbr></figcaption>
+			</figure>
+			<p class="fp-p-raz">
+				On peut passer des "paramètres" à la ressource que l'on appelle. On
+				utilise la caractère <code>?</code> (point d'interrogation) pour
+				séparer le nom de la ressources des paramètres. Les paramètres sont
+				des couples <code>nom=valeur</code>, séparés par le caractère <code>&amp;</code>.
+				Ce type d'<abbr title="Uniform Resource Locator">URL</abbr> est surtout utilisé avec des ressources permettant un
+				traitement comme des programmes ou des scripts PHP, Phyton, ASP,
+				JAVA, etc.
+			</p>
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

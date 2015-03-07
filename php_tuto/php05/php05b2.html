@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Les tableaux</title>
+<link rel="stylesheet" href="../_local/codemirror.css">
+<script src="../_local/codemirror_pour_php.js"></script>
+
+<link rel="stylesheet" href="../_core/def.css">
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+		<ul id="MENU-page"></ul>
+
+		<p class="fp-puce">
+			Une boucle avec <span class="fp-code">for</span> ne peut être faite
+			avec sûreté que sur un tableau indicé dans lequel les indices sont
+			des entiers consécutifs et dont nous connaissons le premier et le
+			dernier indice.<br> A la différence de <span class="fp-code">foreach</span>,
+			<span class="fp-code">for</span> travaille sur le tableau lui même et
+			non sur une copie.
+		</p>
+
+		<form action="" method="post" class="TEST-form">
+			<a class="TEST-lien"
+				onclick="top.FP.Voir.showPLUS('exemple/bib_fonctions_04.html')"
+				title="Afficher la bibliothéque de fonctions"></a>
+			<div class="TEST-titre">
+				<strong>Exemple</strong> : boucle avec for
+			</div>
+			<textarea name="txtCode" class="TEST-textarea">&lt;?php
+require('bib_fonctions.php');
+
+htmlDebut('Boucle avec for');
+
+$t = array('Pierre','Paul','Jacques');
+$iMax = count($t);
+
+echo &quot;&lt;hr&gt;&lt;b&gt;Nombre d'éléments&lt;/b&gt;&lt;hr&gt; $iMax&quot;;
+
+echo '&lt;hr&gt;&lt;b&gt;Contenu du tableau&lt;/b&gt;&lt;hr&gt;';
+
+for ($i = 0; $i &lt; $iMax; $i ++) {
+  echo &quot;&lt;br&gt;Index $i = $t[$i]&quot;;
+}
+
+
+htmlFin();
+?&gt;</textarea>
+		</form>
+
+		<p class="fp-puce fp-inter2">
+			Il ne faut jamais mettre d'appel de fonction dans la partie du <span
+				class="fp-code">for</span> qui teste si la boucle va continuer ou
+			s'arrêter. Par exemple, un <span class="fp-code">for</span> écrit de
+			la façon suivante :<br> <span class="fp-code">for ($i =
+				0; $i &lt; count($t); $i++) { ...</span><br>est une très mauvaise
+			chose. La fonction <a
+				onclick="top.FP.Voir.showPageTech('ref.array','function.count')">count()</a>
+			est appelée à chaque itération, d'o&ugrave; une perte de temps et de
+			ressources<br> Il faut calculer la valeur de fin avant la boucle
+			:<br> <span class="fp-code">for ($i = 0, $iMax =
+				count($t); $i &lt; $iMax; $i++) {.... </span>
+		</p>
+		<p>
+			Pour illustrer nous allons utiliser la fonction <span class="fp-code">chronometrer()</span>
+			écrite dans la chpitre précédent.
+		<p>
+		<form action="" method="post" class="TEST-form">
+			<a class="TEST-lien"
+				onclick="top.FP.Voir.showPLUS('exemple/bib_fonctions_04.html')"
+				title="Afficher la bibliothéque de fonctions"></a>
+			<div class="TEST-titre">
+				<strong>Exemple</strong> : boucle avec for
+			</div>
+			<textarea name="txtCode" class="TEST-textarea">
+&lt;?php
+require('bib_fonctions.php');
+
+htmlDebut('Fonction mal placée');
+
+$t = array_fill(0, 100000, 0);
+
+chronometrer('Avec count à chaque itération', 10);
+for ($i = 0; $i &lt; count($t); $i++) {
+	$x = $i; // juste pour avoir qqe chose
+}
+chronometrer();
+
+chronometrer('Avec count 1 seule fois', 10);
+for ($i = 0, $iMax = count($t); $i &lt; $iMax; $i++) {
+	$x = $i; // juste pour avoir qqe chose
+}
+chronometrer();
+
+htmlFin();
+
+//=================================================
+function chronometrer($txt = '', $precis = 5) {
+    static $debut, $texte, $precision;
+    
+    // Debut du chronométrage
+    if ($txt != '') {
+        $texte = $txt;
+        $precision = $precis;
+        $debut = microtime();
+        return;		// Fin du début
+    }
+    
+    // Arrêt du chronométrage
+    $fin = microtime();
+    $debut = substr($debut , 11).substr($debut , 1, 9);
+    $fin = substr($fin, 11).substr($fin, 1, 9);
+    
+    echo '&lt;hr&gt;Temps (', $texte, ') : ',
+           round($fin - $debut, $precision),
+           '&lt;hr&gt;';
+}
+?&gt;</textarea>
+		</form>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

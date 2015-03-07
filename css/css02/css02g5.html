@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Sélecteur d'adjacents indirects</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+<link rel="stylesheet" href="../_local/selecteurs.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function(){top.FP.initPage();}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+
+		<!-- ################################################################################################## -->
+		<a id="sel_adjacent_indirect"></a>
+		<h3>Sélecteur d'adjacents indirects</h3>
+
+		<section>
+			<div class="bloc-syntaxe">
+				<p>
+					<span class="lib-syntaxe">Syntaxe </span><strong><code>S1
+							~ S2</code></strong>
+				</p>
+				<pre data-code="CSS">
+p ~ ul {
+	margin-top: 0;
+	padding-left: 25px;
+	}
+</pre>
+			</div>
+
+<p class="fp-p-raz">
+				Le combinateur <strong>~</strong> permet de sélectionner les
+				éléments enfants qui sont précédés par un autre
+				élément, quelque soit sa place dans la file des précédents.
+				<br>
+				La sélection travaille donc sur des frères : des éléments qui ont le
+				même parent et qui sont situés au même niveau d'arborescence.
+			</p>
+
+			<figure>
+				<img src="../cssimg/dom_sibling.jpg" width="380" height="128">
+				<figcaption>éléments adjacents (siblings)</figcaption>
+			</figure>
+
+			<div class="fp-puce">
+				<p>L'élément sélectionné est le deuxième de la règle de style.</p>
+
+				<p>
+					<code>p ~ ul { ... }</code>
+					<br>
+					se lit : je cherche tous les éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'ul')">ul</a> qui
+					sont précédés par un <a
+						onclick="top.FP.Voir.showPageTech('elements', 'p')">p</a> quelque part dans la fraterie.
+				</p>
+			</div>
+
+			<div class="fp-puce">
+				<p>Les sélecteurs utilisés dans la règle peuvent être de
+					n'importe quel type ( simples, d'attributs, des pseudo classes, des
+					pseudo éléments).</p>
+			</div>
+
+			<p class="fp-p-raz">
+				L'exemple suivant entoure d'une bordure les éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'ul')">ul</a> qui
+				sont précédés par un élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'h3')">h3</a>.
+			</p>
+			
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : sélection d'adjacents indirects
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Star Wars - ze prélogie&lt;/h3&gt;
+		&lt;h4&gt;Personnages&lt;/h4&gt;
+		&lt;ul&gt;
+			&lt;li&gt;Anakin Webwalker&lt;/li&gt;
+			&lt;li&gt;Padmé Amidala&lt;/li&gt;
+			&lt;li&gt;Yoda&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;h4&gt;Films&lt;/h4&gt;
+		&lt;ol&gt;
+			&lt;li&gt;Le DOM fantôme
+				&lt;ul&gt;
+					&lt;li&gt;1999&lt;/li&gt;
+					&lt;li&gt;2 h 16 min&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li&gt;L'attaque des .com
+				&lt;ul&gt;
+					&lt;li&gt;2002&lt;/li&gt;
+					&lt;li&gt;2 h 22 min&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li&gt;La Revanche des Siths Web
+				&lt;ul&gt;
+					&lt;li&gt;2005&lt;/li&gt;
+					&lt;li&gt;2 h 20 min&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+		&lt;/ol&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<div class="dom-schema" id="dom_sel_adjacents_indirects">
+				<div class="dom-legende">Seule la partie body de la page est
+					représentée. Les feuilles texte ne sont pas représentées.</div>
+					<!--  ce n'est pas une erreur. Même figure pour direct et indirect -->
+				<img src="../cssimg/dom_sel_adjacents_directs.png" width="401"
+					height="152">
+			</div>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a class="TEST-lien-dom" title="Afficher le DOM"
+					onclick="top.FP.Voir.showDOM('dom_sel_adjacents_indirects')"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* Sélection des ul précédés par un h3 */
+h3 ~ ul {
+	border: 1px solid red;
+}</textarea>
+			</form>
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Indique les capacit&eacute;s du navigateur client</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.exit.html">exit</a>
+		</div>
+		<div class="next">
+			<a href="function.halt-compiler.html">__halt_compiler</a>
+		</div>
+		<div class="up">
+			<a href="ref.misc.html">Fonctions diverses</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.get-browser" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">get_browser</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">get_browser</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Indique les capacités du navigateur
+					client</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.get-browser-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><a
+					href="language.pseudo-types.html#language.types.mixed"
+					class="type mixed">mixed</a></span> <span class="methodname"><strong>get_browser</strong></span>
+				([ <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$user_agent</code></span> [, <span
+					class="methodparam"><span class="type">bool</span> <code
+						class="parameter">$return_array</code><span class="initializer">
+						= false</span></span> ]] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>get_browser()</strong></span> essaie
+				de déterminer les capacités du navigateur client. Cela se fait en
+				lisant les informations dans le fichier
+				<var class="filename">browscap.ini</var>
+				.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.get-browser-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">user_agent</code></em></span>
+				<dd>
+
+					<p class="para">
+						L&#039;entête user agent à analyser. Par défaut, la valeur de
+						l&#039;en-tête <em>User-Agent</em> est utilisé; cependant, vous
+						pouvez l&#039;altérer (i.e. cherche d&#039;autres informations sur
+						le navigateur) en passant ce paramètre.
+					</p>
+					<p class="para">
+						Vous pouvez annuler ce paramètre en y passant la valeur <strong><code>NULL</code></strong>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">return_array</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si définit à <strong><code>TRUE</code></strong>, cette fonction
+						retournera un <a href="language.types.array.html" class="link">tableau</a>
+						au lieu d&#039;un <a href="language.types.object.html"
+							class="link">objet</a>.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.get-browser-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Les informations sont retournées sous forme
+				d&#039;un objet, dont les différents membres contiendront des
+				informations, telles que les versions majeures et mineures et des
+				chaînes d&#039;identification ; des booléens pour des
+				caractéristiques telles que frames, JavaScript, et cookies ; et
+				ainsi de suite.</p>
+			<p class="para">
+				La valeur <em>cookies</em> indique simplement que le navigateur est
+				capable d&#039;accepter les cookies, et n&#039;indique pas si
+				l&#039;utilisateur les a activé sur son navigateur. Le seul moyen de
+				tester l&#039;activation des cookies est d&#039;en poser un avec la
+				fonction <span class="function"><a
+					href="function.setcookie.html" class="function">setcookie()</a></span>, de
+				recharger la page et de vérifier que le cookie existe toujours.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.get-browser-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.3.2</td>
+						<td>Le paramètre optionnel <em><code class="parameter">return_array</code></em>
+							a été ajouté.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.get-browser-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-3506">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>get_browser()</strong></span>
+						: liste des capacités du navigateur du client web
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">$_SERVER</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">'HTTP_USER_AGENT'</span><span
+								style="color: #007700">]&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"\n\n"</span><span style="color: #007700">;<br />
+								<br /></span><span style="color: #0000BB">$browser&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">get_browser</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">null</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$browser</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher quelque chose de
+						similaire à :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7) Gecko/20040803 Firefox/0.9.3
+
+Array
+(
+    [browser_name_regex] =&gt; ^mozilla/5\.0 (windows; .; windows nt 5\.1; .*rv:.*) gecko/.* firefox/0\.9.*$
+    [browser_name_pattern] =&gt; Mozilla/5.0 (Windows; ?; Windows NT 5.1; *rv:*) Gecko/* Firefox/0.9*
+    [parent] =&gt; Firefox 0.9
+    [platform] =&gt; WinXP
+    [browser] =&gt; Firefox
+    [version] =&gt; 0.9
+    [majorver] =&gt; 0
+    [minorver] =&gt; 9
+    [cssversion] =&gt; 2
+    [frames] =&gt; 1
+    [iframes] =&gt; 1
+    [tables] =&gt; 1
+    [cookies] =&gt; 1
+    [backgroundsounds] =&gt;
+    [vbscript] =&gt;
+    [javascript] =&gt; 1
+    [javaapplets] =&gt; 1
+    [activexcontrols] =&gt;
+    [cdf] =&gt;
+    [aol] =&gt;
+    [beta] =&gt; 1
+    [win16] =&gt;
+    [crawler] =&gt;
+    [stripper] =&gt;
+    [wap] =&gt;
+    [netclr] =&gt;
+)
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.get-browser-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Afin de pouvoir fonctionner, la directive de configuration <a
+						href="misc.configuration.html#ini.browscap" class="link">browscap</a>
+					dans le fichier
+					<var class="filename">php.ini</var>
+					doit pointer vers le fichier
+					<var class="filename">browscap.ini</var>
+					de votre système.
+				</p>
+				<p class="para">
+					<var class="filename">browscap.ini</var>
+					n&#039;est pas distribué avec PHP, mais vous pouvez le télécharger
+					sur <a href="http://browsers.garykeith.com/downloads.asp"
+						class="link external">&raquo;&nbsp;php_browscap.ini</a>.
+				</p>
+				<p class="para">
+					Bien que
+					<var class="filename">browscap.ini</var>
+					contienne des informations sur de très nombreux navigateur, il
+					incombe à l&#039;utilisateur de conserver sa base de données à
+					jour. Le format du fichier est très simple à comprendre.
+			</blockquote>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.exit.html">exit</a>
+		</div>
+		<div class="next">
+			<a href="function.halt-compiler.html">__halt_compiler</a>
+		</div>
+		<div class="up">
+			<a href="ref.misc.html">Fonctions diverses</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

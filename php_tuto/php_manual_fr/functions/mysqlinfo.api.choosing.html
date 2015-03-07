@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Choisir une API</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="mysqlinfo.terminology.html">Aper&ccedil;u de la terminologie</a></div>
+ <div class="next"><a href="mysqlinfo.library.choosing.html">Choisir une biblioth&egrave;que</a></div>
+ <div class="up"><a href="mysql.html">Aper&ccedil;u des drivers PHP MySQL</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="mysqlinfo.api.choosing" class="chapter">
+   <h1>Choisir une API</h1>
+
+   <p class="para">
+    PHP offre 3 APIs différentes pour se connecter à MySQL. Ci-dessous, vous
+    trouverez les APIs fournies par les extensions mysql, mysqli et PDO.
+    Chaque exemple de code crée une connexion à un serveur MySQL s&#039;exécutant sur
+    le domaine &quot;example.com&quot;, en utilisant le nom d&#039;utilisateur &quot;user&quot;, le mot
+    de passe &quot;password&quot;. Et une requête est exécutée pour saluer l&#039;utilisateur.
+   </p>
+   <p class="para">
+    <div class="example" id="example-1541">
+     <p><strong>Exemple #1 Comparaison des 3 APIs MySQL</strong></p>
+     <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">//&nbsp;mysqli<br /></span><span style="color: #0000BB">$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">"example.com"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;'Bonjour,&nbsp;cher&nbsp;utilisateur&nbsp;de&nbsp;MySQL&nbsp;!'&nbsp;AS&nbsp;_message&nbsp;FROM&nbsp;DUAL"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$result</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_assoc</span><span style="color: #007700">();<br />echo&nbsp;</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'_message'</span><span style="color: #007700">]);<br /><br /></span><span style="color: #FF8000">//&nbsp;PDO<br /></span><span style="color: #0000BB">$pdo&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">PDO</span><span style="color: #007700">(</span><span style="color: #DD0000">'mysql:host=example.com;dbname=database'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'user'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'password'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$statement&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$pdo</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;'Bonjour,&nbsp;cher&nbsp;utilisateur&nbsp;de&nbsp;MySQL&nbsp;!'&nbsp;AS&nbsp;_message&nbsp;FROM&nbsp;DUAL"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$statement</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch</span><span style="color: #007700">(</span><span style="color: #0000BB">PDO</span><span style="color: #007700">::</span><span style="color: #0000BB">FETCH_ASSOC</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'_message'</span><span style="color: #007700">]);<br /><br /></span><span style="color: #FF8000">//&nbsp;mysql<br /></span><span style="color: #0000BB">$c&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">"example.com"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"user"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">mysql_select_db</span><span style="color: #007700">(</span><span style="color: #DD0000">"database"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$result&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_query</span><span style="color: #007700">(</span><span style="color: #DD0000">"SELECT&nbsp;'Bonjour,&nbsp;cher&nbsp;utilisateur&nbsp;de&nbsp;MySQL&nbsp;!'&nbsp;AS&nbsp;_message&nbsp;FROM&nbsp;DUAL"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysql_fetch_assoc</span><span style="color: #007700">(</span><span style="color: #0000BB">$result</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'_message'</span><span style="color: #007700">]);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+     </div>
+
+    </div>
+   </p>
+   <p class="para">
+    <em class="emphasis">API recommandé</em>
+   </p>
+   <p class="para">
+    Il est recommandé d&#039;utiliser soit l&#039;extension <a href="book.mysqli.html" class="link">mysqli</a>,
+    soit l&#039;extension <a href="ref.pdo-mysql.html" class="link">PDO_MySQL</a>.
+    Il n&#039;est pas recommandé d&#039;utiliser l&#039;ancienne extension
+    <a href="ref.mysql.html" class="link">mysql</a> pour de nouveaux développements.
+    Une matrice de comparaison détaillant les fonctionnalités est fournie ci-dessous.
+    La performance globale des 3 extensions peut être considérée comme identique.
+    Malgré tout, la performance de l&#039;extension constitue seulement une fraction
+    du temps total d&#039;exécution d&#039;une requête web PHP. Aussi, l&#039;impacte est
+    inférieur à 0.1%.
+   </p>
+   <p class="para">
+    <em class="emphasis">Comparaison des fonctionnalités</em>
+   </p>
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th class="empty">&nbsp;</th>
+       <th>ext/mysqli</th>
+       <th>PDO_MySQL</th>
+       <th>ext/mysql</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>Introduite en PHP version</td>
+       <td>5.0</td>
+       <td>5.1</td>
+       <td>2.0</td>
+      </tr>
+
+      <tr>
+       <td>Inclus avec PHP 5.x</td>
+       <td>Oui</td>
+       <td>Oui</td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>Statut du développement</td>
+       <td>Active</td>
+       <td>Active</td>
+       <td>Uniquement de la maintenance</td>
+      </tr>
+
+      <tr>
+       <td>Cycle de vie</td>
+       <td>Active</td>
+       <td>Active</td>
+       <td>Passage en obsolète annoncé</td>
+      </tr>
+
+      <tr>
+       <td>Recommandé pour de nouveaux projets</td>
+       <td>Oui</td>
+       <td>Oui</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Interface orientée objet</td>
+       <td>Oui</td>
+       <td>Oui</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Interface procédurale</td>
+       <td>Oui</td>
+       <td>Non</td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>L&#039;API supporte les requêtes non-bloquantes, asynchrones avec mysqlnd</td>
+       <td>Oui</td>
+       <td>Non</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Connexions persistentes disponibles</td>
+       <td>Oui</td>
+       <td>Oui</td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>L&#039;API supporte les jeux de caractères</td>
+       <td>Oui</td>
+       <td>Oui</td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>L&#039;API supporte les requêtes préparées côté serveur</td>
+       <td>Oui</td>
+       <td>Oui</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>L&#039;API supporte les requêtes préparées côté client</td>
+       <td>Non</td>
+       <td>Oui</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>L&#039;API supporte les procédures stockées</td>
+       <td>Oui</td>
+       <td>Oui</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>L&#039;API supporte les requêtes multiples</td>
+       <td>Oui</td>
+       <td>La plupart</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>L&#039;API supporte les transactions</td>
+       <td>Oui</td>
+       <td>Oui</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Les transactions peuvent être contrôlées avec SQL</td>
+       <td>Oui</td>
+       <td>Oui</td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>Supporte toutes les fonctionnalités de MySQL 5.1+</td>
+       <td>Oui</td>
+       <td>La plupart</td>
+       <td>Non</td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </div>
+<hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="mysqlinfo.terminology.html">Aper&ccedil;u de la terminologie</a></div>
+ <div class="next"><a href="mysqlinfo.library.choosing.html">Choisir une biblioth&egrave;que</a></div>
+ <div class="up"><a href="mysql.html">Aper&ccedil;u des drivers PHP MySQL</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

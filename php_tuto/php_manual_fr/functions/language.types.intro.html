@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Introduction</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.types.html">Les types</a>
+		</div>
+		<div class="next">
+			<a href="language.types.boolean.html">Bool&eacute;en</a>
+		</div>
+		<div class="up">
+			<a href="language.types.html">Les types</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.types.intro" class="sect1">
+		<h2 class="title">Introduction</h2>
+
+		<p class="simpara">PHP supporte 8 types basiques.</p>
+
+		<p class="para">4 types scalaires :</p>
+
+		<ul class="itemizedlist">
+
+			<li class="listitem"><span class="simpara"> <span
+					class="type"><a href="language.types.boolean.html"
+						class="type boolean">boolean</a></span>
+			</span></li>
+
+			<li class="listitem"><span class="simpara"> <span
+					class="type"><a href="language.types.integer.html"
+						class="type integer">integer</a></span>
+			</span></li>
+
+			<li class="listitem"><span class="simpara"> <span
+					class="type"><a href="language.types.float.html"
+						class="type float">float</a></span> (nombre à virgule flottante, i.e. <span
+					class="type"><a href="language.types.float.html"
+						class="type double">double</a></span>)
+			</span></li>
+
+			<li class="listitem"><span class="simpara"> <span
+					class="type"><a href="language.types.string.html"
+						class="type string">string</a></span>
+			</span></li>
+
+		</ul>
+
+		<p class="para">2 types composés :</p>
+
+		<ul class="itemizedlist">
+
+			<li class="listitem"><span class="simpara"> <span
+					class="type"><a href="language.types.array.html"
+						class="type array">array</a></span>
+			</span></li>
+
+			<li class="listitem"><span class="simpara"> <span
+					class="type"><a href="language.types.object.html"
+						class="type object">object</a></span>
+			</span></li>
+
+		</ul>
+
+		<p class="para">Et finalement, 3 types spéciaux :</p>
+
+		<ul class="itemizedlist">
+
+			<li class="listitem"><span class="simpara"> <span
+					class="type"><a href="language.types.resource.html"
+						class="type resource">resource</a></span>
+			</span></li>
+
+			<li class="listitem"><span class="simpara"> <span
+					class="type"><a href="language.types.null.html"
+						class="type NULL">NULL</a></span>
+			</span></li>
+
+			<li class="listitem"><span class="simpara"> <span
+					class="type"><a href="language.types.callable.html"
+						class="type callable">callable</a></span>
+			</span></li>
+
+		</ul>
+
+		<p class="para">
+			Ce manuel introduit également quelques <a
+				href="language.pseudo-types.html" class="link">pseudo-types</a> pour
+			des raisons de lisibilité :
+		</p>
+
+		<ul class="itemizedlist">
+
+			<li class="listitem"><span class="simpara"> <span
+					class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span>
+			</span></li>
+
+			<li class="listitem"><span class="simpara"> <span
+					class="type"><a
+						href="language.pseudo-types.html#language.types.number"
+						class="type number">number</a></span>
+			</span></li>
+
+			<li class="listitem"><span class="simpara"> <span
+					class="type"><a
+						href="language.pseudo-types.html#language.types.callback"
+						class="type callback">callback</a></span>
+			</span></li>
+
+		</ul>
+
+		<p class="para">
+			Et la pseudo-variable <em><code class="parameter">$...</code></em>.
+		</p>
+
+		<p class="simpara">Ce manuel peut toutefois contenir des
+			références au type &quot;double&quot;. Considérez ce type comme étant
+			un type &quot;float&quot;. Les deux noms n&#039;existent que pour des
+			raisons historiques.</p>
+
+		<p class="simpara">Le type d&#039;une variable n&#039;est pas
+			toujours défini par le programmeur ; il peut être défini par PHP au
+			moment de l&#039;exécution, suivant le contexte dans lequel la
+			variable est utilisée.</p>
+
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>: <span class="simpara">
+					Pour vérifier le type et la valeur d&#039;une <a
+					href="language.expressions.html" class="link">expression</a>,
+					utilisez la fonction <span class="function"><a
+						href="function.var-dump.html" class="function">var_dump()</a></span>.
+				</span>
+			<p class="para">
+				Pour afficher une représentation humainement lisible d&#039;un type
+				aux fins de déboguage, utilisez la fonction <span class="function"><a
+					href="function.gettype.html" class="function">gettype()</a></span>. Pour
+				vérifier un certain type, n&#039;utilisez <em class="emphasis">pas</em>
+				la fonction <span class="function"><a
+					href="function.gettype.html" class="function">gettype()</a></span>, mais
+				plutôt les fonctions <em>is_<span class="replaceable">type</span></em>.
+				Voici quelques exemples :
+			</p>
+
+			<div class="informalexample">
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$a_bool&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">TRUE</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;un&nbsp;booléen<br /></span><span
+								style="color: #0000BB">$a_str&nbsp;&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"foo"</span><span style="color: #007700">;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;une&nbsp;chaîne&nbsp;de&nbsp;caractères<br /></span><span
+								style="color: #0000BB">$a_str2&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'foo'</span><span style="color: #007700">;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;une&nbsp;chaîne&nbsp;de&nbsp;caractères<br /></span><span
+								style="color: #0000BB">$an_int&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">12</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;un&nbsp;entier<br />
+								<br /></span><span style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">gettype</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$a_bool</span><span
+								style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;affiche&nbsp;:&nbsp;&nbsp;boolean<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">gettype</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$a_str</span><span
+								style="color: #007700">);&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;affiche&nbsp;:&nbsp;&nbsp;string<br />
+								<br />//&nbsp;Si&nbsp;c'est&nbsp;un&nbsp;entier,&nbsp;incrément&nbsp;de&nbsp;4<br /></span><span
+								style="color: #007700">if&nbsp;(</span><span
+								style="color: #0000BB">is_int</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$an_int</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$an_int&nbsp;</span><span
+								style="color: #007700">+=&nbsp;</span><span
+								style="color: #0000BB">4</span><span style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Si&nbsp;$a_bool&nbsp;est&nbsp;une&nbsp;chaîne&nbsp;de&nbsp;caractères,&nbsp;on&nbsp;l'affiche<br /></span><span
+								style="color: #007700">if&nbsp;(</span><span
+								style="color: #0000BB">is_string</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$a_bool</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"String:&nbsp;</span><span
+								style="color: #0000BB">$a_bool</span><span
+								style="color: #DD0000">"</span><span style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</blockquote>
+
+		<p class="simpara">
+			Pour forcer la conversion d&#039;une variable en un certain type,
+			vous pouvez transtyper (<a
+				href="language.types.type-juggling.html#language.types.typecasting"
+				class="link">cast</a>) la variable ou utiliser la fonction <span
+				class="function"><a href="function.settype.html"
+				class="function">settype()</a></span>.
+		</p>
+
+		<p class="simpara">
+			Notez qu&#039;une variable peut être évaluée avec différentes valeurs
+			dans certaines situations, suivant son type à un moment donné. Pour
+			plus d&#039;informations, lisez la section sur le <a
+				href="language.types.type-juggling.html" class="link">transtypage</a>.
+			<a href="types.comparisons.html" class="link">La table de
+				comparaison des types</a> peut également être très utile, montrant
+			différents exemples.
+		</p>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.types.html">Les types</a>
+		</div>
+		<div class="next">
+			<a href="language.types.boolean.html">Bool&eacute;en</a>
+		</div>
+		<div class="up">
+			<a href="language.types.html">Les types</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

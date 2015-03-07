@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Renvoie le nom du dossier parent</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.delete.html">delete</a>
+		</div>
+		<div class="next">
+			<a href="function.disk-free-space.html">disk_free_space</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.dirname" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">dirname</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">dirname</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Renvoie le nom du dossier parent</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.dirname-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>dirname</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$path</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">Renvoie le chemin parent d&#039;un
+				chemin représentant un fichier ou un dossier.</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.dirname-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">path</code></em></span>
+				<dd>
+
+					<p class="para">Un chemin.</p>
+					<p class="para">
+						Sous Windows, les slash (<em>/</em>) et antislash (<em>\</em>)
+						sont utilisés comme séparateurs de dossier. Dans les autres
+						environnements, seul le slash (<em>/</em>) est utilisé.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.dirname-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne le dossier parent du chemin. S&#039;il n&#039;y a pas de
+				slash dans le chemin <em><code class="parameter">path</code></em>,
+				un point (&#039;<em>.</em>&#039;) sera retourné, indiquant le
+				dossier courant. Sinon, la chaîne retournée sera le chemin <em><code
+						class="parameter">path</code></em> dont on aura supprimé tous les <em>/component</em>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.dirname-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.0.0</td>
+						<td><span class="function"><strong>dirname()</strong></span>
+							gère maintenant les données binaires.</td>
+					</tr>
+
+					<tr>
+						<td>4.0.3</td>
+						<td><span class="function"><strong>dirname()</strong></span>
+							respecte désormais la norme POSIX.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.dirname-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2220">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>dirname()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">"1)&nbsp;"&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">dirname</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"/etc/passwd"</span><span
+								style="color: #007700">)&nbsp;.&nbsp;</span><span
+								style="color: #0000BB">PHP_EOL</span><span
+								style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;1)&nbsp;/etc<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">"2)&nbsp;"&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">dirname</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"/etc/"</span><span
+								style="color: #007700">)&nbsp;.&nbsp;</span><span
+								style="color: #0000BB">PHP_EOL</span><span
+								style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;2)&nbsp;/&nbsp;(ou&nbsp;\&nbsp;sous&nbsp;Windows)<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">"3)&nbsp;"&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">dirname</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"."</span><span
+								style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;3)&nbsp;.<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.dirname-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					<span class="function"><strong>dirname()</strong></span> agit
+					naïvement sur la chaine en entrée et n&#039;est pas au courant du
+					système de fichiers courant ou d&#039;éventuels composantes comme
+					&quot;<em>..</em>&quot;.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					<span class="function"><strong>dirname()</strong></span> est
+					sensible à la locale, donc si le chemin possède des caractères
+					multi-octets, la locale qui convient doit être enregistrée au moyen
+					de la fonction <span class="function"><a
+						href="function.setlocale.html" class="function">setlocale()</a></span>.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Depuis PHP 4.3.0, cette fonction retournera
+					toujours un slash ou un point dans les cas où l&#039;ancienne
+					version retournait une chaîne vide.
+			</blockquote>
+			<p class="para">Voici des exemples exposant ce comportement :
+			<div class="informalexample">
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br /></span><span style="color: #FF8000">//Avant&nbsp;PHP&nbsp;4.3.0<br /></span><span
+								style="color: #0000BB">dirname</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'c:/'</span><span
+								style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;Retourné&nbsp;:&nbsp;'.'<br />
+								<br />//Après&nbsp;PHP&nbsp;4.3.0<br /></span><span
+								style="color: #0000BB">dirname</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'c:/x'</span><span
+								style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;Retourné&nbsp;:&nbsp;'c:\'<br /></span><span
+								style="color: #0000BB">dirname</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'c:/Temp/x'</span><span
+								style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;Retourné&nbsp;:&nbsp;'c:/Temp'<br /></span><span
+								style="color: #0000BB">dirname</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'/x'</span><span
+								style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;Retourné&nbsp;:&nbsp;'\'<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.dirname-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.basename.html" class="function" rel="rdfs-seeAlso">basename()</a>
+						- Retourne le nom du fichier dans un chemin</span></li>
+				<li class="member"><span class="function"><a
+						href="function.pathinfo.html" class="function" rel="rdfs-seeAlso">pathinfo()</a>
+						- Retourne des informations sur un chemin syst&egrave;me</span></li>
+				<li class="member"><span class="function"><a
+						href="function.realpath.html" class="function" rel="rdfs-seeAlso">realpath()</a>
+						- Retourne le chemin canonique absolu</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.delete.html">delete</a>
+		</div>
+		<div class="next">
+			<a href="function.disk-free-space.html">disk_free_space</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

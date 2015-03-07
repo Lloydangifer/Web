@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Trie un tableau avec l'algorithme &agrave; &quot;ordre
+	naturel&quot;</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.natcasesort.html">natcasesort</a>
+		</div>
+		<div class="next">
+			<a href="function.next.html">next</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.natsort" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">natsort</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">natsort</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Trie un tableau avec l&#039;algorithme
+					à &quot;ordre naturel&quot;</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.natsort-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>natsort</strong></span>
+				( <span class="methodparam"><span class="type">array</span> <code
+						class="parameter reference">&$array</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>natsort()</strong></span> implémente
+				un algorithme de tri qui traite les chaînes alphanumériques du
+				tableau <em><code class="parameter">array</code></em> comme un être
+				humain tout en conservant la relation clé/valeur. C&#039;est ce qui
+				est appelé l&#039;&quot;ordre naturel&quot;. Un exemple de la
+				différence de traitement entre un tel algorithme et un algorithme de
+				tri de chaînes (comme lorsqu&#039;on utilise <span class="function"><a
+					href="function.sort.html" class="function">sort()</a></span>) est illustré
+				ci-dessous.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.natsort-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">array</code></em></span>
+				<dd>
+
+					<p class="para">Le tableau d&#039;entrée.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.natsort-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.natsort-changelog">
+			<h3 class="title">Historique</h3>
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.2.10</td>
+						<td>Les chaines numériques alignées par des zéros (e.g.,
+							&#039;00005&#039;) ignorent les zéros d&#039;alignement.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.natsort-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4679">
+				<p>
+					<strong>Exemple #1 Exemple d&#039;utilisation de base avec
+						<span class="function"><strong>natsort()</strong></span>
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$array1&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">$array2&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">"img12.png"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"img10.png"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"img2.png"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"img1.png"</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #0000BB">asort</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$array1</span><span
+								style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #DD0000">"Standard&nbsp;sorting\n"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$array1</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #0000BB">natsort</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$array2</span><span
+								style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #DD0000">"\nNatural&nbsp;order&nbsp;sorting\n"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$array2</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Standard sorting
+Array
+(
+    [3] =&gt; img1.png
+    [1] =&gt; img10.png
+    [0] =&gt; img12.png
+    [2] =&gt; img2.png
+)
+
+Natural order sorting
+Array
+(
+    [3] =&gt; img1.png
+    [2] =&gt; img2.png
+    [1] =&gt; img10.png
+    [0] =&gt; img12.png
+)
+</pre>
+					</div>
+				</div>
+				<div class="example-contents">
+					<p>
+						Pour plus de détails, rendez-vous sur le site de Martin Pool sur <a
+							href="http://sourcefrog.net/projects/natsort/"
+							class="link external">&raquo;&nbsp;la comparaison de chaînes
+							en ordre naturel</a>.
+					</p>
+				</div>
+			</div>
+			<div class="example" id="example-4680">
+				<p>
+					<strong>Exemple #2 Exemples montrant les pièges de <span
+						class="function"><strong>natsort()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">"Nombres&nbsp;négatifs\n"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$negative&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">'-5'</span><span style="color: #007700">,</span><span
+								style="color: #DD0000">'3'</span><span style="color: #007700">,</span><span
+								style="color: #DD0000">'-2'</span><span style="color: #007700">,</span><span
+								style="color: #DD0000">'0'</span><span style="color: #007700">,</span><span
+								style="color: #DD0000">'-1000'</span><span
+								style="color: #007700">,</span><span style="color: #DD0000">'9'</span><span
+								style="color: #007700">,</span><span style="color: #DD0000">'1'</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$negative</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">natsort</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$negative</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$negative</span><span
+								style="color: #007700">);<br />
+								<br />echo&nbsp;
+							</span><span style="color: #DD0000">"Alignement&nbsp;avec&nbsp;zéros\n"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$zeros&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">'09'</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'8'</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'10'</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'009'</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'011'</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'0'</span><span style="color: #007700">);&nbsp;<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$zeros</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">natsort</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$zeros</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$zeros</span><span
+								style="color: #007700">);<br />
+								<br />echo&nbsp;
+							</span><span style="color: #DD0000">"Autres&nbsp;caractères&nbsp;pouvant&nbsp;interférer\n"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$images_oops&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">'image_1.jpg'</span><span
+								style="color: #007700">,</span><span style="color: #DD0000">'image_12.jpg'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'image_21.jpg'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'image_4.jpg'</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$images_oops</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">natsort</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$images_oops</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$images_oops</span><span
+								style="color: #007700">);<br />
+								<br />echo&nbsp;
+							</span><span style="color: #DD0000">"Tri&nbsp;par&nbsp;clés\n"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$smoothie&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">'orange'&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'apple'&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'yogurt'&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #0000BB">4</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'banana'&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #0000BB">4</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$smoothie</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">uksort</span><span style="color: #007700">(&nbsp;</span><span
+								style="color: #0000BB">$smoothie</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'strnatcmp'</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$smoothie</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Nombres négatifs
+Array
+(
+    [0] =&gt; -5
+    [1] =&gt; 3
+    [2] =&gt; -2
+    [3] =&gt; 0
+    [4] =&gt; -1000
+    [5] =&gt; 9
+    [6] =&gt; 1
+)
+Array
+(
+    [2] =&gt; -2
+    [0] =&gt; -5
+    [4] =&gt; -1000
+    [3] =&gt; 0
+    [6] =&gt; 1
+    [1] =&gt; 3
+    [5] =&gt; 9
+)
+
+Alignement avec zéros
+Array
+(
+    [0] =&gt; 09
+    [1] =&gt; 8
+    [2] =&gt; 10
+    [3] =&gt; 009
+    [4] =&gt; 011
+    [5] =&gt; 0
+)
+Array
+(
+    [5] =&gt; 0
+    [1] =&gt; 8
+    [3] =&gt; 009
+    [0] =&gt; 09
+    [2] =&gt; 10
+    [4] =&gt; 011
+)
+
+Autres caractères pouvant interférer
+Array
+(
+    [0] =&gt; image_1.jpg
+    [1] =&gt; image_12.jpg
+    [2] =&gt; image_21.jpg
+    [3] =&gt; image_4.jpg
+)
+Array
+(
+    [0] =&gt; image_1.jpg
+    [3] =&gt; image_4.jpg
+    [1] =&gt; image_12.jpg
+    [2] =&gt; image_21.jpg
+)
+
+Tri par clés
+Array
+(
+    [orange] =&gt; 1
+    [apple]  =&gt; 1
+    [yogurt] =&gt; 4
+    [banana] =&gt; 4
+)
+Array
+(
+    [apple]  =&gt; 1
+    [banana] =&gt; 4
+    [orange] =&gt; 1
+    [yogurt] =&gt; 4
+)
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.natsort-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.natcasesort.html" class="function"
+						rel="rdfs-seeAlso">natcasesort()</a> - Trie un tableau avec
+						l'algorithme &agrave; &quot;ordre naturel&quot; insensible
+						&agrave; la casse</span></li>
+				<li class="member">Les fonctions de <a
+					href="array.sorting.html" class="link">tri des tableaux</a></li>
+				<li class="member"><span class="function"><a
+						href="function.strnatcmp.html" class="function" rel="rdfs-seeAlso">strnatcmp()</a>
+						- Comparaison de cha&icirc;nes avec l'algorithme d'&quot;ordre
+						naturel&quot;</span></li>
+				<li class="member"><span class="function"><a
+						href="function.strnatcasecmp.html" class="function"
+						rel="rdfs-seeAlso">strnatcasecmp()</a> - Comparaison de
+						cha&icirc;nes avec l'algorithme d'&quot;ordre naturel&quot;
+						(insensible &agrave; la casse)</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.natcasesort.html">natcasesort</a>
+		</div>
+		<div class="next">
+			<a href="function.next.html">next</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

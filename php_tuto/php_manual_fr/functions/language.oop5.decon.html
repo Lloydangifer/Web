@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Constructeurs et destructeurs</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.oop5.autoload.html">Auto-chargement de classes</a>
+		</div>
+		<div class="next">
+			<a href="language.oop5.visibility.html">Visibilit&eacute;</a>
+		</div>
+		<div class="up">
+			<a href="language.oop5.html">Les classes et les objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.oop5.decon" class="sect1">
+		<h2 class="title">Constructeurs et destructeurs</h2>
+
+		<div class="sect2" id="language.oop5.decon.constructor">
+			<h3 class="title">Constructeur</h3>
+			<div class="methodsynopsis dc-description" id="object.construct">
+				<span class="type"><span class="type void">void</span></span> <span
+					class="methodname"><strong>__construct</strong></span> ([ <span
+					class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$args</code></span>
+				[, <span class="methodparam"> <code class="parameter">$...</code></span>
+				]] )
+			</div>
+
+			<p class="para">PHP permet aux développeurs de déclarer des
+				constructeurs pour les classes. Les classes qui possèdent une
+				méthode constructeur appellent cette méthode à chaque création
+				d&#039;une nouvelle instance de l&#039;objet, ce qui est intéressant
+				pour toutes les initialisations dont l&#039;objet a besoin avant
+				d&#039;être utilisé.</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">
+						Les constructeurs parents ne sont pas appelés implicitement si la
+						classe enfant définit un constructeur. Si vous voulez utiliser un
+						constructeur parent, il sera nécessaire de faire appel à <em>parent::__construct()</em>
+						depuis le constructeur enfant.
+					</span>
+				</p>
+			</blockquote>
+			<div class="example" id="example-188">
+				<p>
+					<strong>Exemple #1 Exemple d&#039;utilisation des nouveaux
+						constructeurs unifiés</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">BaseClass&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">__construct</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;
+							</span><span style="color: #DD0000">"In&nbsp;BaseClass&nbsp;constructor\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">SubClass&nbsp;</span><span
+								style="color: #007700">extends&nbsp;</span><span
+								style="color: #0000BB">BaseClass&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">__construct</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">parent</span><span
+								style="color: #007700">::</span><span style="color: #0000BB">__construct</span><span
+								style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;
+							</span><span style="color: #DD0000">"In&nbsp;SubClass&nbsp;constructor\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #0000BB">$obj&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">BaseClass</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">$obj&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">SubClass</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			<p class="para">
+				Pour des raisons de compatibilité ascendante, si PHP ne peut pas
+				trouver une fonction <a
+					href="language.oop5.decon.html#object.construct" class="link">__construct()</a>
+				pour une classe donnée, il cherchera une fonction constructeur
+				représentée, comme dans l&#039;ancien style (PHP &lt; 5), par le nom
+				de la classe. Dans les faits, cela signifie que le seul cas où il
+				pourrait y avoir un problème de compatibilité est celui où votre
+				classe contiendrait une méthode nommée <a
+					href="language.oop5.decon.html#object.construct" class="link">__construct()</a>
+				et que vous en ayez un autre usage.
+			</p>
+			<p class="para">
+				A la différence des autres méthodes, PHP ne génèrera pas
+				d&#039;erreur de niveau <strong><code>E_STRICT</code></strong>
+				lorsque <a href="language.oop5.decon.html#object.construct"
+					class="link">__construct()</a> est surchargé avec des paramètres
+				différents du <a href="language.oop5.decon.html#object.construct"
+					class="link">__construct()</a> parent.
+			</p>
+			<p class="para">Depuis PHP 5.3.3, les méthodes ayant le même nom
+				que la classe dans laquelle elle se trouve ne sont plus traitées
+				comme des constructeurs, si la classe considérée se situe dans un
+				espace de noms. Ceci n&#039;affecte pas les classes sans espace de
+				noms.</p>
+			<div class="example" id="example-189">
+				<p>
+					<strong>Exemple #2 Constructeurs dans des classes dans des
+						espaces de noms</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">namespace&nbsp;</span><span
+								style="color: #0000BB">Foo</span><span style="color: #007700">;<br />class&nbsp;
+							</span><span style="color: #0000BB">Bar&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">Bar</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;Traitée&nbsp;comme&nbsp;un&nbsp;constructeur&nbsp;dans&nbsp;PHP&nbsp;5.3.0-5.3.2<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Traitée&nbsp;comme&nbsp;une&nbsp;méthode&nbsp;normale&nbsp;depuis&nbsp;PHP&nbsp;5.3.3<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">}<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="sect2" id="language.oop5.decon.destructor">
+			<h3 class="title">Destructeur</h3>
+			<div class="methodsynopsis dc-description" id="object.destruct">
+				<span class="type"><span class="type void">void</span></span> <span
+					class="methodname"><strong>__destruct</strong></span> ( <span
+					class="methodparam">void</span> )
+			</div>
+
+			<p class="para">
+				PHP 5 introduit un concept de destructeur similaire à celui
+				d&#039;autres langages orientés objet, comme le <em>C++</em>. La
+				méthode destructeur est appelée dès qu&#039;il n&#039;y a plus de
+				référence sur un objet donné, ou dans n&#039;importe quel ordre
+				pendant la séquence d&#039;arrêt.
+			</p>
+			<div class="example" id="example-190">
+				<p>
+					<strong>Exemple #3 Exemple avec un Destructeur</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">MyDestructableClass&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">__construct</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;
+							</span><span style="color: #DD0000">"In&nbsp;constructor\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">name&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"MyDestructableClass"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">__destruct</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;
+							</span><span style="color: #DD0000">"Destruction&nbsp;de&nbsp;"&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">name&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #0000BB">$obj&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">MyDestructableClass</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			<p class="para">
+				Tout comme le constructeur, le destructeur parent ne sera pas appelé
+				implicitement par le moteur. Pour exécuter le destructeur parent,
+				vous devez appeler explicitement la fonction <em>parent::__destruct</em>
+				dans le corps du destructeur.
+			</p>
+			<p class="para">
+				Le destructeur sera appelé même si l&#039;exécution du script est
+				stoppée en utilisant la fonction <span class="function"><a
+					href="function.exit.html" class="function">exit()</a></span>. Appeler la
+				fonction <span class="function"><a href="function.exit.html"
+					class="function">exit()</a></span> dans un destructeur empêchera
+				l&#039;exécution des routines d&#039;arrêt restantes.
+			</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Les destructeurs appelées durant l&#039;arrêt du
+					script sont dans une situation où les en-têtes HTTP ont déjà été
+					envoyés. Le dossier de travail dans la phase d&#039;arrêt du script
+					peut être différent avec certaines APIs (e.g. Apache).
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Tenter de lancer une exception depuis un
+					destructeur (appelé à la fin du script) entraine une erreur fatale.
+			</blockquote>
+		</div>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.oop5.autoload.html">Auto-chargement de classes</a>
+		</div>
+		<div class="next">
+			<a href="language.oop5.visibility.html">Visibilit&eacute;</a>
+		</div>
+		<div class="up">
+			<a href="language.oop5.html">Les classes et les objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

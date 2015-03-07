@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Op&eacute;rateur de contr&ocirc;le d'erreur</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.operators.comparison.html">Op&eacute;rateurs de
+				comparaison</a>
+		</div>
+		<div class="next">
+			<a href="language.operators.execution.html">Op&eacute;rateur
+				d'ex&eacute;cution</a>
+		</div>
+		<div class="up">
+			<a href="language.operators.html">Les op&eacute;rateurs</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.operators.errorcontrol" class="sect1">
+		<h2 class="title">Opérateur de contrôle d&#039;erreur</h2>
+		<p class="simpara">PHP supporte un opérateur de contrôle
+			d&#039;erreur : c&#039;est @. Lorsque cet opérateur est ajouté en
+			préfixe d&#039;une expression PHP, les messages d&#039;erreur qui
+			peuvent être générés par cette expression seront ignorés.</p>
+		<p class="simpara">
+			Si vous avez défini un gestionnaire d&#039;erreurs personnalisé avec
+			la fonction <span class="function"><a
+				href="function.set-error-handler.html" class="function">set_error_handler()</a></span>,
+			alors il sera toujours appelé, mais ce gestionnaire d&#039;erreurs
+			peut (et doit) appeler la fonction <span class="function"><a
+				href="function.error-reporting.html" class="function">error_reporting()</a></span>
+			qui devra retourner 0 lorsque l&#039;appel qui a émis l&#039;erreur
+			était précédé d&#039;un @.
+		</p>
+		<p class="simpara">
+			Si l&#039;option <a
+				href="errorfunc.configuration.html#ini.track-errors" class="link"><strong
+				class="option unknown">track_errors</strong> </a> est activée, les
+			messages d&#039;erreurs générés par une expression seront sauvés dans
+			la variable globale
+			<var class="varname">
+				<var class="varname">
+					<a href="reserved.variables.phperrormsg.html" class="classname">$php_errormsg</a>
+				</var>
+			</var>
+			. Cette variable sera écrasée à chaque erreur. Il faut alors la
+			surveiller souvent pour pouvoir l&#039;utiliser.
+		</p>
+		<p class="para">
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #FF8000">/*&nbsp;Erreur&nbsp;intentionnelle&nbsp;(le&nbsp;fichier&nbsp;n'existe&nbsp;pas):&nbsp;*/<br /></span><span
+							style="color: #0000BB">$mon_fichier&nbsp;</span><span
+							style="color: #007700">=&nbsp;@</span><span
+							style="color: #0000BB">file&nbsp;</span><span
+							style="color: #007700">(</span><span style="color: #DD0000">'non_persistent_file'</span><span
+							style="color: #007700">)&nbsp;or<br />&nbsp;&nbsp;&nbsp;&nbsp;die&nbsp;(
+						</span><span style="color: #DD0000">"Impossible&nbsp;d'ouvrir&nbsp;le&nbsp;fichier&nbsp;:&nbsp;L'erreur&nbsp;est&nbsp;:&nbsp;'</span><span
+							style="color: #0000BB">$php_errormsg</span><span
+							style="color: #DD0000">'"</span><span style="color: #007700">);<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Cela&nbsp;fonctionne&nbsp;avec&nbsp;n'importe&nbsp;quelle&nbsp;expression,&nbsp;pas&nbsp;seulement&nbsp;les&nbsp;fonctions<br />&nbsp;&nbsp;
+						</span><span style="color: #0000BB">$value&nbsp;</span><span
+							style="color: #007700">=&nbsp;@</span><span
+							style="color: #0000BB">$cache</span><span style="color: #007700">[</span><span
+							style="color: #0000BB">$key</span><span style="color: #007700">];<br /></span><span
+							style="color: #FF8000">//&nbsp;la&nbsp;ligne&nbsp;ci-dessus&nbsp;n'affichera&nbsp;pas&nbsp;d'alerte&nbsp;si&nbsp;la&nbsp;clé&nbsp;$key&nbsp;du&nbsp;tableau&nbsp;n'existe&nbsp;pas<br />
+							<br /></span><span style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>: <span class="simpara">
+					L&#039;opérateur @ ne fonctionne qu&#039;avec les <a
+					href="language.expressions.html" class="link">expressions</a>. La
+					règle générale de fonctionnement est la suivante : si vous pouvez
+					prendre la valeur de quelque chose, vous pouvez le préfixer avec @.
+					Par exemple, vous pouvez ajouter @ aux variables, fonctions, à <span
+					class="function"><a href="function.include.html"
+						class="function">include</a></span>, aux constantes, etc. Vous ne pourrez
+					pas le faire avec des éléments de langage tels que les classes, <em>if</em>
+					et <a href="control-structures.foreach.html" class="link">foreach</a>,
+					etc.
+				</span>
+			</p>
+		</blockquote>
+		<p class="simpara">
+			Voir aussi <span class="function"><a
+				href="function.error-reporting.html" class="function">error_reporting()</a></span>
+			et la section sur la <a href="ref.errorfunc.html" class="link">gestion
+				d&#039;erreurs</a>.
+		</p>
+		<div class="warning">
+			<strong class="warning">Avertissement</strong>
+			<p class="para">En fait, l&#039;opérateur &quot;@&quot; va aussi
+				désactiver les rapports d&#039;erreurs critiques, qui stoppent
+				l&#039;exécution du script. Entre autres, si vous utilisez
+				&quot;@&quot; pour supprimer les erreurs de certaines fonctions, et
+				que cette fonction n&#039;existe pas, ou qu&#039;elle a été mal
+				orthographiée, vous n&#039;aurez aucune indication.</p>
+		</div>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.operators.comparison.html">Op&eacute;rateurs de
+				comparaison</a>
+		</div>
+		<div class="next">
+			<a href="language.operators.execution.html">Op&eacute;rateur
+				d'ex&eacute;cution</a>
+		</div>
+		<div class="up">
+			<a href="language.operators.html">Les op&eacute;rateurs</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

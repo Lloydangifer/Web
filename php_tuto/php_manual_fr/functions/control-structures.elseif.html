@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>elseif/else if</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="control-structures.else.html">else</a>
+		</div>
+		<div class="next">
+			<a href="control-structures.alternative-syntax.html">Syntaxe
+				alternative</a>
+		</div>
+		<div class="up">
+			<a href="language.control-structures.html">Les structures de
+				contr&ocirc;le</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="control-structures.elseif" class="sect1">
+		<h2 class="title">
+			<em>elseif</em>/<em>else if</em>
+		</h2>
+		<p class="verinfo">(PHP 4, PHP 5)</p>
+		<p class="para">
+			<em>elseif</em>, comme son nom l&#039;indique, est une combinaison de
+			<em>if</em> et de <em>else</em>. Comme l&#039;expression <em>else</em>,
+			il permet d&#039;exécuter une instruction après un <em>if</em> dans
+			le cas où le &quot;premier&quot; if est évalué comme <strong><code>FALSE</code></strong>.
+			Mais, à la différence de l&#039;expression <em>else</em>, il
+			n&#039;exécutera l&#039;instruction que si l&#039;expression
+			conditionnelle <em>elseif</em> est évaluée comme <strong><code>TRUE</code></strong>.
+			L&#039;exemple suivant affichera <span class="computeroutput">a
+				est plus grand que b</span>, <span class="computeroutput">a est égal
+				à b</span> ou <span class="computeroutput">a est plus petit que b</span> :
+		
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">if&nbsp;(</span><span
+							style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">&gt;&nbsp;</span><span
+							style="color: #0000BB">$b</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"a&nbsp;est&nbsp;plus&nbsp;grand&nbsp;que&nbsp;b"</span><span
+							style="color: #007700">;<br />}&nbsp;elseif&nbsp;(
+						</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">==&nbsp;</span><span
+							style="color: #0000BB">$b</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"a&nbsp;est&nbsp;égal&nbsp;à&nbsp;b"</span><span
+							style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"a&nbsp;est&nbsp;plus&nbsp;petit&nbsp;que&nbsp;b"</span><span
+							style="color: #007700">;<br />}<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<p class="simpara">
+			Vous pouvez avoir plusieurs <em>elseif</em> qui se suivent les uns
+			après les autres, après un <em>if</em> initial. Le premier <em>elseif</em>
+			qui sera évalué à <strong><code>TRUE</code></strong> sera exécuté. En
+			PHP, vous pouvez aussi écrire &quot;<em>else if</em>&quot; en deux
+			mots et son comportement sera identique à la version en un seul mot.
+			La sémantique des deux expressions est légèrement différente, mais au
+			bout du compte, le résultat sera exactement le même.
+		</p>
+		<p class="simpara">
+			L&#039;expression <em>elseif</em> est exécutée seulement si le <em>if</em>
+			précédent et tout autre <em>elseif</em> précédent sont évalués comme
+			<strong><code>FALSE</code></strong>, et que votre <em>elseif</em> est
+			évalué à <strong><code>TRUE</code></strong>.
+		</p>
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>: <span class="simpara"> A
+					noter que <em>elseif</em> et <em>else if</em> sont traités de la
+					même façon seulement quand des accolades sont utilisées, comme dans
+					l&#039;exemple ci-dessus. Quand vous utilisez &quot;:&quot; pour
+					définir votre condition <em>if</em>/<em>elseif</em>, vous ne devez
+					pas séparer <em>else if</em> en deux mots, sans quoi PHP soulèvera
+					une erreur d&#039;interprétation.
+				</span>
+			</p>
+		</blockquote>
+		<p class="para">
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+							<br /></span><span style="color: #FF8000">/*&nbsp;Mauvaise&nbsp;méthode&nbsp;:&nbsp;*/<br /></span><span
+							style="color: #007700">if(</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">&gt;&nbsp;</span><span
+							style="color: #0000BB">$b</span><span style="color: #007700">):<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #0000BB">$a</span><span style="color: #007700">.</span><span
+							style="color: #DD0000">"&nbsp;est&nbsp;plus&nbsp;grand&nbsp;que&nbsp;"</span><span
+							style="color: #007700">.</span><span style="color: #0000BB">$b</span><span
+							style="color: #007700">;<br />else&nbsp;if(
+						</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">==&nbsp;</span><span
+							style="color: #0000BB">$b</span><span style="color: #007700">):&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;ne&nbsp;compilera&nbsp;pas<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">echo&nbsp;</span><span
+							style="color: #DD0000">"La&nbsp;ligne&nbsp;ci-dessus&nbsp;provoque&nbsp;une&nbsp;erreur&nbsp;d'interprétation"</span><span
+							style="color: #007700">;<br />endif;<br />
+							<br />
+							<br /></span><span style="color: #FF8000">/*&nbsp;Bonne&nbsp;méthode&nbsp;:&nbsp;*/<br /></span><span
+							style="color: #007700">if(</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">&gt;&nbsp;</span><span
+							style="color: #0000BB">$b</span><span style="color: #007700">):<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #0000BB">$a</span><span style="color: #007700">.</span><span
+							style="color: #DD0000">"&nbsp;est&nbsp;plus&nbsp;grand&nbsp;que&nbsp;"</span><span
+							style="color: #007700">.</span><span style="color: #0000BB">$b</span><span
+							style="color: #007700">;<br />elseif(
+						</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">==&nbsp;</span><span
+							style="color: #0000BB">$b</span><span style="color: #007700">):&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;Les&nbsp;deux&nbsp;mots&nbsp;sont&nbsp;collés<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">echo&nbsp;</span><span
+							style="color: #0000BB">$a</span><span style="color: #007700">.</span><span
+							style="color: #DD0000">"&nbsp;égal&nbsp;"</span><span
+							style="color: #007700">.</span><span style="color: #0000BB">$b</span><span
+							style="color: #007700">;<br />else:<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #0000BB">$a</span><span style="color: #007700">.</span><span
+							style="color: #DD0000">"&nbsp;est&nbsp;plus&nbsp;grand&nbsp;ou&nbsp;égal&nbsp;à&nbsp;"</span><span
+							style="color: #007700">.</span><span style="color: #0000BB">$b</span><span
+							style="color: #007700">;<br />endif;<br />
+							<br /></span><span style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="control-structures.else.html">else</a>
+		</div>
+		<div class="next">
+			<a href="control-structures.alternative-syntax.html">Syntaxe
+				alternative</a>
+		</div>
+		<div class="up">
+			<a href="language.control-structures.html">Les structures de
+				contr&ocirc;le</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

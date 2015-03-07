@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Convertit les caract&egrave;res sp&eacute;ciaux en
+	entit&eacute;s HTML</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.htmlspecialchars-decode.html">htmlspecialchars_decode</a>
+		</div>
+		<div class="next">
+			<a href="function.implode.html">implode</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.htmlspecialchars" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">htmlspecialchars</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">htmlspecialchars</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Convertit les caractères spéciaux en
+					entités HTML</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.htmlspecialchars-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>htmlspecialchars</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$string</code></span> [, <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$flags</code><span
+					class="initializer"> = ENT_COMPAT | ENT_HTML401</span></span> [, <span
+					class="methodparam"><span class="type">string</span> <code
+						class="parameter">$encoding</code><span class="initializer">
+						= &#039;UTF-8&#039;</span></span> [, <span class="methodparam"><span
+					class="type">bool</span> <code class="parameter">$double_encode</code><span
+					class="initializer"> = true</span></span> ]]] )
+			</div>
+
+			<p class="para rdfs-comment">
+				Certains caractères ont des significations spéciales en HTML, et
+				doivent être remplacés par des entités HTML pour conserver leurs
+				significations. Cette fonction retourne une chaîne de caractères
+				avec ces modifications. Si vous avez besoin que toutes les
+				sous-chaînes en entrée qui sont associées à des entités nommées
+				soient transformées, utilisez la fonction <span class="function"><a
+					href="function.htmlentities.html" class="function">htmlentities()</a></span>.
+			</p>
+			<p class="para">
+				Si la chaîne en entrée passée à cette fonction et le document final
+				partagent le même jeu de caractères, cette fonction est suffisante
+				pour préparer l&#039;entrée pour une inclusion dans la plupart des
+				contextes d&#039;un document HTML. Si cependant, l&#039;entrée peut
+				présenter des caractères qui ne sont pas codés dans le jeu de
+				caractères du document final, et que vous souhaitez épargner ces
+				caractères (comme des numériques ou des entités nommés), cette
+				fonction et la fonction <span class="function"><a
+					href="function.htmlentities.html" class="function">htmlentities()</a></span>
+				(qui n&#039;encodes que les sous-chaînes qui ont des entités nommés
+				équivalentes) ne sont pas suffisantes. Vous devez utiliser la
+				fonction <span class="function"><a
+					href="function.mb-encode-numericentity.html" class="function">mb_encode_numericentity()</a></span>
+				à la place.
+			</p>
+			<p class="para">Les remplacements effectués sont :
+			<ul class="itemizedlist">
+				<li class="listitem"><span class="simpara">
+						&quot;&amp;&quot; (et commercial) devient &quot;&amp;amp;&quot; </span></li>
+				<li class="listitem"><span class="simpara">
+						&quot;&quot;&quot; (guillemets doubles) devient
+						&quot;&amp;quot;&quot; (ou &amp;apos;) lorsque <strong><code>ENT_NOQUOTES</code></strong>
+						n&#039;est pas utilisée.
+				</span></li>
+				<li class="listitem"><span class="simpara">
+						&quot;&#039;&quot; (guillemet simple) devient &amp;#039;
+						uniquement lorsque <strong><code>ENT_QUOTES</code></strong> est
+						utilisée.
+				</span></li>
+				<li class="listitem"><span class="simpara">
+						&quot;&lt;&quot; (inférieur à) devient &quot;&amp;lt;&quot; </span></li>
+				<li class="listitem"><span class="simpara">
+						&quot;&gt;&quot; (supérieur à) devient &quot;&amp;gt;&quot; </span></li>
+			</ul>
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.htmlspecialchars-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">string</code></em></span>
+				<dd>
+
+					<p class="para">La chaîne à convertir.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">flags</code></em></span>
+				<dd>
+
+					<p class="para">
+						Un masque d&#039;un ou plusieurs drapeaux suivants, qui
+						déterminent la façon dont les guillemets seront gérés, dont les
+						séquences de code invalide seront gérées ainsi que le type du
+						document utilisé. Par défaut, ce sera <em>ENT_COMPAT |
+							ENT_HTML401</em>.
+					<table class="doctable table">
+						<caption>
+							<strong>Constantes disponibles pour <em><code
+										class="parameter">flags</code></em></strong>
+						</caption>
+
+						<thead>
+							<tr>
+								<th>Constante</th>
+								<th>Description</th>
+							</tr>
+
+						</thead>
+
+						<tbody class="tbody">
+							<tr>
+								<td><strong><code>ENT_COMPAT</code></strong></td>
+								<td>Convertit les guillemets doubles, et ignore les
+									guillemets simples.</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>ENT_QUOTES</code></strong></td>
+								<td>Convertit les guillemets doubles et les guillemets
+									simples.</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>ENT_NOQUOTES</code></strong></td>
+								<td>Ignore les guillemets doubles et les guillemets
+									simples.</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>ENT_IGNORE</code></strong></td>
+								<td>Ignore les séquences de caractères invalides plutôt que
+									de retourner une chaine vide. L&#039;utilisation de ce drapeau
+									est fortement déconseillé pour des <a
+									href="http://unicode.org/reports/tr36/#Deletion_of_Noncharacters"
+									class="link external">&raquo;&nbsp;raisons de sécurité</a>.
+								</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>ENT_SUBSTITUTE</code></strong></td>
+								<td>Remplace les séquences de code invalide avec un
+									caractère de remplacement Unicode U+FFFD (UTF-8) ou &amp;#FFFD;
+									(sinon) au lieu de retourner une chaîne vide.</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>ENT_DISALLOWED</code></strong></td>
+								<td>Remplace les points du code invalides du document
+									fourni avec un caractère de remplacement Unicode U+FFFD (UTF-8)
+									ou &amp;#FFFD; (sinon) au lieu de le laisser tel quel. Ceci
+									peut être utile pour, par exemple, s&#039;assurer du bon
+									formatage de documents XML contenant du contenu externe.</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>ENT_HTML401</code></strong></td>
+								<td>Gère le code comme étant du HTML 4.01.</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>ENT_XML1</code></strong></td>
+								<td>Gère le code comme étant du XML 1.</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>ENT_XHTML</code></strong></td>
+								<td>Gère le code comme étant du XHTML.</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>ENT_HTML5</code></strong></td>
+								<td>Gère le code comme étant du HTML 5.</td>
+							</tr>
+
+						</tbody>
+
+					</table>
+
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">encoding</code></em></span>
+				<dd>
+
+					<p class="para">Encodage à utiliser lors de la conversion. Si
+						omis, la valeur par défaut de cet argument sera ISO-8859-1 dans
+						les versions antérieures à PHP 5.4.0, et UTF-8 à partir de la
+						version PHP 5.4.0.</p>
+					<p class="para">
+						Pour cette fonction, les encodages <em>ISO-8859-1</em>, <em>ISO-8859-15</em>,
+						<em>UTF-8</em>, <em>cp866</em>, <em>cp1251</em>, <em>cp1252</em>,
+						et <em>KOI8-R</em> sont équivalents, à condition que le paramètre
+						<em><code class="parameter">string</code></em> soit valable pour
+						l&#039;encodage, dans le sens où les caractères affectés par la
+						fonction <span class="function"><strong>htmlspecialchars()</strong></span>
+						occupent la même position dans tous ces encodages.
+					</p>
+
+
+
+
+
+					<p class="para">Les jeux de caractères suivants sont supportés
+						:
+					<table class="doctable table">
+						<caption>
+							<strong>Jeux de caractères supportés</strong>
+						</caption>
+
+						<thead>
+							<tr>
+								<th>Jeux de caractères</th>
+								<th>Alias</th>
+								<th>Description</th>
+							</tr>
+
+						</thead>
+
+						<tbody class="tbody">
+							<tr>
+								<td>ISO-8859-1</td>
+								<td>ISO8859-1</td>
+								<td>Europe occidentale, Latin-1.</td>
+							</tr>
+
+							<tr>
+								<td>ISO-8859-5</td>
+								<td>ISO8859-5</td>
+								<td>Jeu de caractère cyrillique rarement utilisé
+									(Latin/Cyrillic).</td>
+							</tr>
+
+							<tr>
+								<td>ISO-8859-15</td>
+								<td>ISO8859-15</td>
+								<td>Europe occidentale, Latin-9. Dispose du signe Euro, des
+									caractères spéciaux français et finlandais, qui manquent au
+									Latin-1 (ISO-8859-1).</td>
+							</tr>
+
+							<tr>
+								<td>UTF-8</td>
+								<td class="empty">&nbsp;</td>
+								<td>Unicode 8 bits multioctets, compatible avec
+									l&#039;ASCII</td>
+							</tr>
+
+							<tr>
+								<td>cp866</td>
+								<td>ibm866, 866</td>
+								<td>Jeu de caractères Cyrillique spécifique à DOS.</td>
+							</tr>
+
+							<tr>
+								<td>cp1251</td>
+								<td>Windows-1251, win-1251, 1251</td>
+								<td>Jeu de caractères Cyrillic spécifique à Windows.</td>
+							</tr>
+
+							<tr>
+								<td>cp1252</td>
+								<td>Windows-1252, 1252</td>
+								<td>Jeu de caractères spécifique de Windows pour
+									l&#039;Europe occidentale.</td>
+							</tr>
+
+							<tr>
+								<td>KOI8-R</td>
+								<td>koi8-ru, koi8r</td>
+								<td>Russe.</td>
+							</tr>
+
+							<tr>
+								<td>BIG5</td>
+								<td>950</td>
+								<td>Chinois traditionnel, principalement utilisé à Taïwan.
+								</td>
+							</tr>
+
+							<tr>
+								<td>GB2312</td>
+								<td>936</td>
+								<td>Chinois simplifié, officiel.</td>
+							</tr>
+
+							<tr>
+								<td>BIG5-HKSCS</td>
+								<td class="empty">&nbsp;</td>
+								<td>Big5 avec les extensions de Hong Kong, chinois
+									traditionnel.</td>
+							</tr>
+
+							<tr>
+								<td>Shift_JIS</td>
+								<td>SJIS, SJIS-win, cp932, 932</td>
+								<td>Japonais</td>
+							</tr>
+
+							<tr>
+								<td>EUC-JP</td>
+								<td>EUCJP, eucJP-win</td>
+								<td>Japonais</td>
+							</tr>
+
+							<tr>
+								<td>MacRoman</td>
+								<td class="empty">&nbsp;</td>
+								<td>Jeu de caractères utilisé par Mac OS.</td>
+							</tr>
+
+							<tr>
+								<td><em>&#039;&#039;</em></td>
+								<td class="empty">&nbsp;</td>
+								<td>Une chaîne vide active la détection de l&#039;encodage
+									depuis un script (multi-octet Zend), <a
+									href="ini.core.html#ini.default-charset" class="link">default_charset</a>
+									et la locale courante (voir <span class="function"><a
+										href="function.nl-langinfo.html" class="function">nl_langinfo()</a></span>
+									et <span class="function"><a
+										href="function.setlocale.html" class="function">setlocale()</a></span>),
+									dans cet ordre. Non recommandé.
+								</td>
+							</tr>
+
+						</tbody>
+
+					</table>
+
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>: <span class="simpara">
+								Les autres jeux de caractères ne sont pas reconnus.
+								L&#039;encodage par défaut sera utilisé à la place et une alerte
+								sera émise. </span>
+						</p>
+					</blockquote>
+					</p>
+
+
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">double_encode</code></em></span>
+				<dd>
+
+					<p class="para">
+						Lorsque le paramètre <em><code class="parameter">double_encode</code></em>
+						est désactivé, PHP n&#039;encodera pas les entités html existants
+						; par défaut, tout est converti.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.htmlspecialchars-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">La chaîne convertie.</p>
+			<p class="para">
+				Si la chaîne d&#039;entrée <em><code class="parameter">string</code></em>
+				contient une séquence de code invalide dans le paramètre <em><code
+						class="parameter">encoding</code></em> fourni, une chaîne vide sera
+				retournée à moins que le drapeau <strong><code>ENT_IGNORE</code></strong>
+				ou le drapeau <strong><code>ENT_SUBSTITUTE</code></strong> ne soit
+				défini.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.htmlspecialchars-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.4.0</td>
+						<td>La valeur par défaut du paramètre <em><code
+									class="parameter">encoding</code></em> est passée à UTF-8.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.4.0</td>
+						<td>Les constantes <strong><code>ENT_SUBSTITUTE</code></strong>,
+							<strong><code>ENT_DISALLOWED</code></strong>, <strong><code>ENT_HTML401</code></strong>,
+							<strong><code>ENT_XML1</code></strong>, <strong><code>ENT_XHTML</code></strong>
+							et <strong><code>ENT_HTML5</code></strong> ont été ajoutées.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.3.0</td>
+						<td>La constante <strong><code>ENT_IGNORE</code></strong> a
+							été joutée.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.2.3</td>
+						<td>Ajout du paramètre <em><code class="parameter">double_encode</code></em>.
+						</td>
+					</tr>
+
+					<tr>
+						<td>4.1.0</td>
+						<td>Ajout du paramètre <em><code class="parameter">encoding</code></em>.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.htmlspecialchars-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4497">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>htmlspecialchars()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$new&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">htmlspecialchars</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"&lt;a&nbsp;href='test'&gt;Test&lt;/a&gt;"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">ENT_QUOTES</span><span
+								style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #0000BB">$new</span><span
+								style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;&amp;lt;a&nbsp;href=&amp;#039;test&amp;#039;&amp;gt;Test&amp;lt;/a&amp;gt;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes"
+			id="refsect1-function.htmlspecialchars-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Notez que cette fonction ne fait aucun autre remplacement que ceux
+					qui sont listés ci-dessus. Pour faire un remplacement total, voyez
+					plutôt <span class="function"><a
+						href="function.htmlentities.html" class="function">htmlentities()</a></span>.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.htmlspecialchars-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.get-html-translation-table.html" class="function"
+						rel="rdfs-seeAlso">get_html_translation_table()</a> - Retourne la
+						table de traduction des entit&eacute;s utilis&eacute;e par
+						htmlspecialchars et htmlentities</span></li>
+				<li class="member"><span class="function"><a
+						href="function.htmlspecialchars-decode.html" class="function"
+						rel="rdfs-seeAlso">htmlspecialchars_decode()</a> - Convertit les
+						entit&eacute;s HTML sp&eacute;ciales en caract&egrave;res</span></li>
+				<li class="member"><span class="function"><a
+						href="function.strip-tags.html" class="function"
+						rel="rdfs-seeAlso">strip_tags()</a> - Supprime les balises HTML et
+						PHP d'une cha&icirc;ne</span></li>
+				<li class="member"><span class="function"><a
+						href="function.htmlentities.html" class="function"
+						rel="rdfs-seeAlso">htmlentities()</a> - Convertit tous les
+						caract&egrave;res &eacute;ligibles en entit&eacute;s HTML</span></li>
+				<li class="member"><span class="function"><a
+						href="function.nl2br.html" class="function" rel="rdfs-seeAlso">nl2br()</a>
+						- Ins&egrave;re un retour &agrave; la ligne HTML &agrave; chaque
+						nouvelle ligne</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.htmlspecialchars-decode.html">htmlspecialchars_decode</a>
+		</div>
+		<div class="next">
+			<a href="function.implode.html">implode</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Pseudo éléments</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+<link rel="stylesheet" href="../_local/selecteurs.css">
+
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function() {
+			top.FP.initPage();
+		}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			Les pseudo éléments créent des éléments qui n'existent pas dans le <abbr
+				title="Document Object Model">DOM</abbr>.
+			<br>
+			Ces nouveaux éléments peuvent déjà exister dans le document <abbr
+				title="HyperText Markup Language">HTML</abbr> sous une autre forme
+			comme par exemple la première ligne ou le premier caractère d'un
+			texte. Ils peuvent aussi être créés ex-nihilo avant ou après un
+			élément existant.
+		</p>
+
+		<section>
+			<div class="fp-puce">
+				<p>
+					<strong>La syntaxe</strong> utilisée pour les pseudo éléments
+					repose sur un selecteur suivi de 2 caractères deux points <code><strong>::</strong></code>,
+					suivi du nom du pseudo élément.
+				</p>
+
+				<figure>
+					<img src="../cssimg/sel_pseudo_element_syntaxe.png" width="336"
+						height="121">
+					<figcaption>syntaxe sélecteur pseudo élément</figcaption>
+				</figure>
+
+				<p>
+					Il ne doit pas y avoir d'espaces avant ou après le caractère <code><strong>::</strong></code>.
+				</p>
+
+				<p>
+					Le double deux points <code><strong>::</strong></code> a été
+					introduit avec CSS3 pour différencier les pseudos classes des
+					pseudos éléments. La spécification précise que les navigateurs
+					doivent toutelois accpeter la syntaxe des versions précédentes à
+					savoir un seul <code><strong>:</strong></code>
+				</p>
+				<p>
+					Par exemple, <code>p:first-letter</code> est équivalent à <code>p::first-letter</code>
+				</p>
+			</div>
+
+			<p>
+				Il ne peut y avoir qu'<strong>un seul pseudo élément</strong> dans
+				un sélecteur.
+			</p>
+
+			<p>
+				Le pseudo élément doit être placé <strong>à la fin</strong> de la
+				séquences de sélecteurs simples.
+			</p>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<a id="sel_first_line"></a>
+		<h3>Première ligne ::first-line</h3>
+		<section>
+			<div class="bloc-syntaxe">
+				<p>
+					<span class="lib-syntaxe">Syntaxe </span><strong><code>::first-line</code></strong>
+				</p>
+				<pre data-code="CSS">
+p::first-line {
+	text-decoration: underline;
+	}
+</pre>
+			</div>
+
+			<p class="fp-p-raz">
+				<code>::first-line</code> sélectionne la première ligne du texte
+				contenu dans un élément en mode d'affichage bloc.
+			</p>
+
+			<p class="fp-bot0">
+				Toutes les propriétés de style ne sont pas utilisables avec <code>::first-line</code>.
+				Seules sont applicables :
+			</p>
+			<ul>
+				<li>les propriétés police de carcatères,</li>
+				<li>les propriétés d'arrière-plan,</li>
+				<li>les propriétés de couleur,</li>
+				<li><code>word-spacing</code>, <code>letter-spacing</code>, <code>text-decoration</code>,
+					<code>text-transform</code> et <code>line-height</code></li>
+			</ul>
+
+			<p class="fp-p-raz">L'exemple suivant affiche en majuscules et
+				sur fond bleu clair la première ligne des paragraphes.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : pseudo élément 1ère ligne
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;La Guerre des Etoiles du Milieu&lt;/h3&gt;
+		&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie,
+			les Gentils Jedis de la Fédération de l'Empire du
+			Commerce de la République se battent contre les
+			Méchants Gobelins de la Comté du Mordor de 
+			l'infâme Sauron.&lt;/p&gt;
+		&lt;p&gt;Les troupes droïdes sont en difficulté sur bien 
+			des planètes de la Galaxie envahies par des
+			hordes de trolls et d'elfes nains.&lt;/p&gt; 
+		&lt;p&gt;De plus en plus portnawak les scénarios chez
+			Disney.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* Sélection de la 1ère ligne des paragraphes */	
+p::first-line {
+	text-transform: uppercase;
+	background: lightcyan;
+}
+
+/* La taille des paragraphes est réduite pour bien avoir
+	plusieurs lignes. Ils sont également centrés. */
+p {
+	width: 25em;
+	margin: 1em auto;
+}</textarea>
+			</form>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<a id="ssel_first_letter"></a>
+		<h3>Premier caractère ::first-letter</h3>
+		<section>
+			<div class="bloc-syntaxe">
+				<p>
+					<span class="lib-syntaxe">Syntaxe </span><strong><code>::first-letter</code></strong>
+				</p>
+				<pre data-code="CSS">
+p::first-letter {
+	font-size: 1.5em;
+	}
+</pre>
+			</div>
+
+			<p class="fp-p-raz">
+				<code>::first-letter</code> sélectionne le premier caractère du
+				texte contenu dans un élément en mode d'affichage bloc.
+			</p>
+
+			<p class="fp-bot0">
+				Toutes les propriétés de style ne sont pas utilisables avec <code>::first-letter</code>.
+				Seules sont applicables :
+			</p>
+			<ul>
+				<li>les propriétés police de carcatères,</li>
+				<li>les propriétés d'arrière-plan,</li>
+				<li>les propriétés de couleur,</li>
+				<li>les propriéts de marges,</li>
+				<li>les propriétés de bordure,</li>
+				<li><code>word-spacing</code>, <code>letter-spacing</code>, <code>text-decoration</code>,
+					<code>text-transform</code>, <code>line-height</code> et <code>float</code>.</li>
+			</ul>
+
+			font properties, 'text-decoration', 'text-transform',
+			'letter-spacing', 'word-spacing' (when appropriate), 'line-height',
+			'float', 'vertical-align' (only if 'float' is 'none'), margin
+			properties, padding properties, border properties, color property,
+			background properties.
+
+			<p class="fp-p-raz">L'exemple suivant affiche le première lettre
+				des paragraphes sous la forme d'une lettrine.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : pseudo élément 1er caractère
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;La Guerre des Etoiles du Milieu&lt;/h3&gt;
+		&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie,
+			les Gentils Jedis de la Fédération de l'Empire du
+			Commerce de la République se battent contre les
+			Méchants Gobelins de la Comté du Mordor de 
+			l'infâme Sauron.&lt;/p&gt;
+		&lt;p&gt;Les troupes droïdes sont en difficulté sur bien 
+			des planètes de la Galaxie envahies par des
+			hordes de trolls et d'elfes nains.&lt;/p&gt; 
+		&lt;p&gt;De plus en plus portnawak les scénarios chez
+			Disney.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* Sélection du 1er caractère des paragraphes */	
+p::first-letter {
+	border: 1px solid darkred;
+	background: red;
+	padding: 2px 6px;
+	font-weight: bold;
+	font-size: 1.5em;
+	margin: 0 1px 0 2em;
+}
+
+/* La taille des paragraphes est réduite pour bien avoir
+	plusieurs lignes. Ils sont également centrés. */
+p {
+	width: 25em;
+	margin: 1em auto;
+}</textarea>
+			</form>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<a id="sel_before"></a> <a id="sel_after"></a>
+		<h3>Contenu avant et après ::before et ::after</h3>
+
+		<section>
+			<div class="bloc-syntaxe">
+				<p>
+					<span class="lib-syntaxe">Syntaxe </span><strong><code>::before</code></strong>
+					<br>
+					<span class="lib-syntaxe">&nbsp;</span><strong><code>::after</code></strong>
+				</p>
+				<pre data-code="CSS">
+a::before {
+	content: "lien : ";
+	}
+</pre>
+			</div>
+
+			<p class="fp-p-raz">
+				<code>::before</code> et <code>::after</code> permettent d'insérer
+				du contenu avant ou après le contenu de l'élément ciblé. Ils créent
+				véritablement ex-nihilo des pseudo éléments qui pourront être mis en
+				forme avec n'importe quelles propriétés <abbr
+					title="Cascading Style Sheets">CSS</abbr> et du texte ou une image
+				pourra être ajouté comme contenu.
+			</p>
+
+			<p>
+				Les pseudo éléments créés par <code>::before</code> et <code>::after</code>
+				sont créés dans l'élément ciblé et pas autour de cet élément.
+			</p>
+
+			<figure>
+				<img src="../cssimg/before_after.png" width="480" height="206">
+				<figcaption>les boîtes élément ciblé, before et after</figcaption>
+			</figure>
+
+			<p>
+				L'exemple suivant crée des pseudo éléments avant et après le contenu
+				du titre <a onclick="top.FP.Voir.showPageTech('elements', 'h3')">h3</a>
+				qui est entouré d'un cadre pour bien montrer que les pseudo éléments
+				sont dans l'élément et pas autour de l'élément.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : pseudo élément before et after
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;La Guerre des Etoiles du Milieu&lt;/h3&gt;
+		&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie,
+			les Gentils Jedis de la Fédération de l'Empire du
+			Commerce de la République se battent contre les
+			Méchants Gobelins de la Comté du Mordor de 
+			l'infâme Sauron.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+h3::before {
+	content: '--BEFORE--';
+	color: red;
+}
+
+h3::after {
+	content: '--AFTER--';
+	color: green;
+}</textarea>
+			</form>
+
+			<p>
+				Les boîtes créées pour contenir les pseudo éléments <code>::before</code>
+				et <code>::after</code> sont par défaut <strong>des boîtes
+					en ligne</strong>. Elles ont des marges, des bordures et un contenu. Toutes
+				les propriétés de style leur sont applicables, sauf les propriétés
+				d'animation et de transition (certains navigateurs en prennent en
+				compte, mais à éviter car trop hasardeux).
+			</p>
+
+			<div class="fp-puce">
+				<p class="fp-bot0">
+					<strong>Le contenu</strong> des pseudo éléments <code>::before</code>
+					et <code>::after</code> est défini avec la propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'content')">content</a>
+					qui peut avoir comme valeur :
+				</p>
+				<ul>
+					<li>une chaîne de caractère, entourées par des guillements
+						simples ou doubles<br> <code>content: "une chaîne de
+							caractère";</code>
+					</li>
+					<li>une chaîne vide<br> <code>content: "";</code></li>
+					<li>une image <br> <code>content:
+							url(/dossier/image.png);</code></li>
+					<li>un compteur <br> <code>content:
+							counter(monCompteur);</code></li>
+					<li>la valeur d'un des attributs de l'élément ciblé<br> <code>content:
+							attr(href)</code></li>
+				</ul>
+
+				<p>
+					La valeur de la propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'content')">content</a>
+					ne peut pas être du code <abbr title="HyperText Markup Language">HTML</abbr>
+					ou JavaScript
+				</p>
+			</div>
+
+			<p>
+				Les possibilités offertes par ces pseudo éléments sont très grandes
+				et donnent lieu à pas mal de "proof of concept" sur le Web.
+				Malheureusement, les choses réalisées sont parfois assez complexes à
+				mettre en place et souvent alourdissent beaucoup un code <abbr
+					title="Cascading Style Sheets">CSS</abbr> déjà important.
+				<br>
+				A noter aussi que d'ajouter du contenu avec des <abbr
+					title="Cascading Style Sheets">CSS</abbr> est en total opposition
+				avec le principe de la séparation du contenu (<abbr
+					title="HyperText Markup Language">HTML</abbr>) et de la mise en
+				forme (<abbr title="Cascading Style Sheets">CSS</abbr>).
+			</p>
+
+			<div class="fp-puce">
+				<p>
+					Ce tutoriel utilise les pseudo éléments <code>::before</code> et <code>::after</code>
+					dans plusieurs règles de style.
+				</p>
+				<p>
+					Quand on passe la souris sur un lien externe, l'<abbr
+						title="Uniform Resource Locator">URL</abbr> du lien est affichée.
+					C'est fait avec la règle suivante :
+				</p>
+				<pre data-code="CSS">
+a[href^="http"]:hover::after {
+	content: "(" attr(href) ")";
+	margin: 0 5px;
+	text-decoration: underline;
+}</pre>
+
+				<p class="fp-bot0">La règle se lit :</p>
+				<ul>
+					<li>quand un lien qui commence par "http" (<code>a[href^="http"]</code>)
+					</li>
+					<li>est survolé (<code>:hover</code>),
+					</li>
+					<li>on affiche après (<code>::after</code>),
+					</li>
+					<li>la valeur de l'attribut <code>href</code> de ce lien (<code>content:
+							"(" attr(href) ")";</code>)
+					</li>
+					<li>avec une marge à droite et à gauche de 5 pixels (<code>margin:
+							0 5px;</code>)
+					</li>
+					<li>et on souligne le texte (<code>text-decoration:
+							underline;</code>).
+					</li>
+				</ul>
+
+				<p>
+					Une autre exemple est celui de la numérotation automatique des
+					figures qui apparaissent ici et là dans le pages. La légende sous
+					les figures est faites avec un élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'figcaption')">figcaption</a>.
+					Le début de la légende ("Fig. n : ") est généré automatiquement
+					avec un compteur <abbr title="Cascading Style Sheets">CSS</abbr> (<a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'counter-reset')">counter-reset</a>
+					et <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'counter-increment')">conter-increment</a>).
+				</p>
+
+				<p>
+					Le compteur de figures est initialisé à 0 à chaque nouvelle page
+					avec une propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'counter-reset')">counter-reset</a>
+					sur l'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'body')">body</a> :
+				</p>
+
+				<pre data-code="CSS">
+body {
+	counter-reset: numFigure;
+}</pre>
+
+				<p>
+					<code>numFigure</code> est le nom du compteur utilisé pour compter
+					les figures de la page.
+				</p>
+
+				<p>
+					Le comptage des figures et l'affichage du numéro est fait avec un
+					pseudo élément <code>::before</code> :
+				</p>
+
+				<pre data-code="CSS">
+figcaption::before {
+	counter-increment: numFigure;
+	content: "Fig. " counter(numFigure) " : ";
+}</pre>
+
+			</div>
+		</section>
+
+
+	</div>
+	<footer></footer>
+</body>
+</html>

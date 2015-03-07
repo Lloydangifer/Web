@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Extrait une repr&eacute;sentation sous forme de
+	cha&icirc;ne d'une valeur interne &agrave; Zend pour affichage</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="ref.var.html">Fonctions de gestion des variables</a>
+		</div>
+		<div class="next">
+			<a href="function.doubleval.html">doubleval</a>
+		</div>
+		<div class="up">
+			<a href="ref.var.html">Fonctions de gestion des variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.debug-zval-dump" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">debug_zval_dump</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">debug_zval_dump</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Extrait une représentation sous forme
+					de chaîne d&#039;une valeur interne à Zend pour affichage</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.debug-zval-dump-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><span class="type void">void</span></span> <span
+					class="methodname"><strong>debug_zval_dump</strong></span> ( <span
+					class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$variable</code></span>
+				)
+			</div>
+
+			<p class="para rdfs-comment">Extrait une représentation sous
+				forme de chaîne d&#039;une valeur interne à Zend pour affichage.</p>
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.debug-zval-dump-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">variable</code></em></span>
+				<dd>
+
+					<p class="para">La variable à évaluer.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.debug-zval-dump-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Aucune valeur n&#039;est retournée.</p>
+		</div>
+
+		<div class="refsect1 examples"
+			id="refsect1-function.debug-zval-dump-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4896">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>debug_zval_dump()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$var1&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'Bonjour&nbsp;le&nbsp;monde&nbsp;!'</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$var2&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">''</span><span style="color: #007700">;<br />
+								<br /></span><span style="color: #0000BB">$var2&nbsp;</span><span
+								style="color: #007700">=&amp;&nbsp;</span><span
+								style="color: #0000BB">$var1</span><span style="color: #007700">;<br />
+								<br /></span><span style="color: #0000BB">debug_zval_dump</span><span
+								style="color: #007700">(&amp;</span><span style="color: #0000BB">$var1</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+&amp;string(18) &quot;Bonjour le monde !&quot; refcount(3)
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <strong>Faites
+						attention avec <em>refcount</em>
+					</strong><br />
+				<p class="para">
+					La valeur <em>refcount</em> retournée par cette fonction n&#039;est
+					pas significative dans certaines circonstances. Par exemple, un
+					développeur peut s&#039;attendre avec l&#039;exemple ci-dessus
+					d&#039;avoir un <em>refcount</em> de <em>2</em>. La troisième
+					référence est créée lors de l&#039;appel à la fonction <span
+						class="function"><strong>debug_zval_dump()</strong></span>.
+				</p>
+				<p class="para">
+					Ce comportement est encore plus fin lorsqu&#039;une variable
+					n&#039;est pas passée par référence à la fonction <span
+						class="function"><strong>debug_zval_dump()</strong></span>. Pour
+					illustrer ceci, voici une version modifiée de l&#039;exemple
+					ci-dessus :
+				</p>
+				<p class="para">
+				<div class="example" id="example-4897">
+
+					<div class="example-contents">
+						<div class="phpcode">
+							<code>
+								<span style="color: #000000"> <span
+									style="color: #0000BB">&lt;?php<br />$var1&nbsp;
+								</span><span style="color: #007700">=&nbsp;</span><span
+									style="color: #DD0000">'Bonjour&nbsp;le&nbsp;monde&nbsp;!'</span><span
+									style="color: #007700">;<br /></span><span
+									style="color: #0000BB">$var2&nbsp;</span><span
+									style="color: #007700">=&nbsp;</span><span
+									style="color: #DD0000">''</span><span style="color: #007700">;<br />
+									<br /></span><span style="color: #0000BB">$var2&nbsp;</span><span
+									style="color: #007700">=&amp;&nbsp;</span><span
+									style="color: #0000BB">$var1</span><span style="color: #007700">;<br />
+									<br /></span><span style="color: #0000BB">debug_zval_dump</span><span
+									style="color: #007700">(</span><span style="color: #0000BB">$var1</span><span
+									style="color: #007700">);&nbsp;</span><span
+									style="color: #FF8000">//&nbsp;non&nbsp;passée&nbsp;par&nbsp;référence,&nbsp;cette&nbsp;fois-ci<br /></span><span
+									style="color: #0000BB">?&gt;</span>
+								</span>
+							</code>
+						</div>
+					</div>
+
+					<div class="example-contents">
+						<p>L&#039;exemple ci-dessus va afficher :</p>
+					</div>
+					<div class="example-contents screen">
+						<div class="cdata">
+							<pre>
+string(18) &quot;Bonjour le monde !&quot; refcount(1)
+</pre>
+						</div>
+					</div>
+				</div>
+				</p>
+				<p class="para">
+					Pourquoi <em>refcount(1)</em> ? Parce qu&#039;une copie de <em>$var1</em>
+					a été faite, lors de l&#039;appel de la fonction.
+				</p>
+				<p class="para">
+					Cette fonction devient encore <em class="emphasis">plus</em>
+					confuse lorsqu&#039;une variable avec un <em>refcount</em> de <em>1</em>
+					est passée (par copie/valeur) :
+				</p>
+				<p class="para">
+				<div class="example" id="example-4898">
+
+					<div class="example-contents">
+						<div class="phpcode">
+							<code>
+								<span style="color: #000000"> <span
+									style="color: #0000BB">&lt;?php<br />$var1&nbsp;
+								</span><span style="color: #007700">=&nbsp;</span><span
+									style="color: #DD0000">'Bonjour&nbsp;le&nbsp;monde&nbsp;!'</span><span
+									style="color: #007700">;<br />
+									<br /></span><span style="color: #0000BB">debug_zval_dump</span><span
+									style="color: #007700">(</span><span style="color: #0000BB">$var1</span><span
+									style="color: #007700">);<br /></span><span
+									style="color: #0000BB">?&gt;</span>
+								</span>
+							</code>
+						</div>
+					</div>
+
+					<div class="example-contents">
+						<p>L&#039;exemple ci-dessus va afficher :</p>
+					</div>
+					<div class="example-contents screen">
+						<div class="cdata">
+							<pre>
+string(18) &quot;Bonjour le monde !&quot; refcount(2)
+</pre>
+						</div>
+					</div>
+				</div>
+				</p>
+				<p class="para">
+					Un <em>refcount</em> de <em>2</em>, ici, est vraiment inattendu.
+					Tout spécialement si on considère les exemples ci-dessus. Donc, que
+					se passe-t-il ?
+				</p>
+				<p class="para">
+					Lorsqu&#039;une variable a une seule référence (faire <em>$var1</em>
+					avant qu&#039;elle ne soit utilisée en tant qu&#039;argument de la
+					fonction <span class="function"><strong>debug_zval_dump()</strong></span>),
+					le moteur PHP optimise la façon dont elle est passée à la fonction.
+					En interne, PHP traite <em>$var1</em> comme une référence (et donc,
+					le <em>refcount</em> est incrémenté), et avec le cas où le passage
+					par référence intervient, une copie est alors faite, <em
+						class="emphasis">mais uniquement</em> au moment de
+					l&#039;écriture. Ceci est connu comme &quot;la copie à
+					l&#039;écriture&quot;.
+				</p>
+				<p class="para">
+					Donc, si <span class="function"><strong>debug_zval_dump()</strong></span>
+					intervient pour écrire son unique paramètre (et il ne le fait pas),
+					alors une copie est faite. Jusque-là, le paramètre demeure une
+					référence, faisant que le <em>refcount</em> est incrémenté à <em>2</em>
+					pour l&#039;appel à la fonction.
+			</blockquote>
+		</div>
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.debug-zval-dump-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.var-dump.html" class="function" rel="rdfs-seeAlso">var_dump()</a>
+						- Affiche les informations d'une variable</span></li>
+				<li class="member"><span class="function"><a
+						href="function.debug-backtrace.html" class="function"
+						rel="rdfs-seeAlso">debug_backtrace()</a> - G&eacute;n&egrave;re le
+						contexte de d&eacute;boguage</span></li>
+				<li class="member"><a href="language.references.html"
+					class="link">Explication sur les références</a></li>
+				<li class="member"><a
+					href="http://derickrethans.nl/php_references_article.php"
+					class="link external">&raquo;&nbsp;Explication sur les
+						références (par Derick Rethans)</a></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="ref.var.html">Fonctions de gestion des variables</a>
+		</div>
+		<div class="next">
+			<a href="function.doubleval.html">doubleval</a>
+		</div>
+		<div class="up">
+			<a href="ref.var.html">Fonctions de gestion des variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

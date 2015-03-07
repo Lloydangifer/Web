@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Renvoie la date &agrave; laquelle le fichier a
+	&eacute;t&eacute; acc&eacute;d&eacute; pour la derni&egrave;re fois</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.file.html">file</a>
+		</div>
+		<div class="next">
+			<a href="function.filectime.html">filectime</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.fileatime" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">fileatime</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">fileatime</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Renvoie la date à laquelle le fichier
+					a été accédé pour la dernière fois</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.fileatime-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">int</span> <span class="methodname"><strong>fileatime</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$filename</code></span> )
+			</div>
+
+			<p class="simpara">Renvoie la date à laquelle le fichier a été
+				accédé pour la dernière fois.</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.fileatime-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">filename</code></em></span>
+				<dd>
+
+					<p class="para">Chemin vers le fichier.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.fileatime-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Renvoie la date à laquelle le fichier a été accédé pour la dernière
+				fois ou <strong><code>FALSE</code></strong> si une erreur survient.
+				La date est retournée sous la forme d&#039;un timestamp Unix.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.fileatime-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2239">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>fileatime()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Affiche&nbsp;:&nbsp;somefile.txt&nbsp;a&nbsp;été&nbsp;accédé&nbsp;le&nbsp;:&nbsp;December&nbsp;29&nbsp;2002&nbsp;22:16:23.<br />
+								<br /></span><span style="color: #0000BB">$filename&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'somefile.txt'</span><span
+								style="color: #007700">;<br />if&nbsp;(
+							</span><span style="color: #0000BB">file_exists</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$filename</span><span
+								style="color: #DD0000">&nbsp;a&nbsp;été&nbsp;accédé&nbsp;le&nbsp;:&nbsp;"&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"F&nbsp;d&nbsp;Y&nbsp;H:i:s."</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">fileatime</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span
+								style="color: #007700">));<br />}<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 errors" id="refsect1-function.fileatime-errors">
+			<h3 class="title">Erreurs / Exceptions</h3>
+			<p class="para">
+				En cas d&#039;échec, une alerte de type <strong><code>E_WARNING</code></strong>
+				sera émise.
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.fileatime-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">La date de dernière modification d&#039;un
+					fichier est supposé changer à chaque fois que les blocs de données
+					du fichier ont commencés à être lus. Cela peut être très coûteux en
+					terme de performance lorsqu&#039;une application accède
+					régulièrement à beaucoup de fichiers ou de répertoires.</p>
+				<p class="para">
+					La plupart des systèmes de fichiers Unix peuvent être montés en
+					ayant désactivés cette information pour accroître les performances
+					d&#039;une telle application ; les nouvelles <em>USENET</em> sont
+					un bon exemple. Sur de telles systèmes de fichiers, cette fonction
+					devient totalement inutile.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Notez que la précision temporelle peut varier
+					selon le système de fichiers utilisé.</p>
+				</p>
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Les
+						résultats de cette fonction sont mis en cache. Voyez la fonction <span
+						class="function"><a href="function.clearstatcache.html"
+							class="function">clearstatcache()</a></span> pour plus de détails.
+					</span>
+				</p>
+			</blockquote>
+			<div class="tip">
+				<strong class="tip">Astuce</strong>
+				<p class="simpara">
+					Depuis PHP 5.0.0, cette fonction peut aussi être utilisée avec <em
+						class="emphasis">quelques</em> protocoles url. Lisez <a
+						href="wrappers.html" class="xref">Liste des protocoles et des
+						gestionnaires support&eacute;s</a> pour connaître les protocoles
+					supportant la famille de fonctionnalités de <span class="function"><a
+						href="function.stat.html" class="function">stat()</a></span>.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.fileatime-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.filemtime.html" class="function" rel="rdfs-seeAlso">filemtime()</a>
+						- Lit la date de derni&egrave;re modification du fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fileinode.html" class="function" rel="rdfs-seeAlso">fileinode()</a>
+						- Lit le num&eacute;ro d'inode du fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.date.html" class="function" rel="rdfs-seeAlso">date()</a>
+						- Formate une date/heure locale</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.file.html">file</a>
+		</div>
+		<div class="next">
+			<a href="function.filectime.html">filectime</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

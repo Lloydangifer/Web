@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Les attributs des zones de saisies</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<style>
+#tblAttr {
+	position: relative;
+}
+
+#tblAttr tr:first-child {
+	text-align: center;
+	font-weight: bold;
+	height: 105px;
+}
+
+#tblAttr td {
+	padding: 2px 3px;
+	}
+
+#tblAttr td.hoverTD, 
+#tblAttr tr:hover td {
+  background: #FFEF76;
+}
+
+#tblAttr td div {
+	margin: 80px 0 0 14px;
+	position: absolute;
+	-webkit-transform: rotate(270deg);
+	-webkit-transform-origin: left bottom 0;	
+	transform: rotate(270deg);
+	transform-origin: left bottom 0;
+}
+</style>
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}	
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<h3>Le couple name / value</h3>
+		<section>
+			<h4>L'attribut name</h4>
+			<section>
+				<p>
+					Le contenu du formulaire est envoyé au serveur Web pour traitement
+					sous la forme de <strong>couples <code>nom=valeur</code></strong>.
+					<br>
+					Les différents couples sont séparés par le caractère <code>&amp;</code>.
+				</p>
+
+				<p>
+					Pour que l'envoi d'une zone de saisie soit réalisé, il est <strong>obligatoire</strong>
+					que celle-ci ait un <strong>attribut <code>name</code></strong>.
+				</p>
+
+				<p class="fp-bot0">
+					La valeur de l'attribut <code>name</code> se retrouvera sur le
+					serveur, dans le programme de traitement du formulaire, comme nom
+					de variable ou nom d'indice dans un tableau associatif. Cette forme
+					de récupération sur le serveur entraîne 2 conséquences :
+			</p>
+
+				<ul>
+					<li>il convient de nommer les zones avec un nom valide pour le
+						langage qui traitera le formulaire sur le serveur,</li>
+					<li>le nom d'une zone de saisie doit être <strong>unique</strong>
+						dans le formulaire, sinon des valeurs seront perdues car la
+						variable résultante sur le serveur ne peut avoir qu'une seule
+						valeur.
+					</li>
+				</ul>
+
+				<div class="fp-puce">
+					<p class="fp-bot0">Pour le nommage des zones de saisie, je vous
+						conseille de :</p>
+					<ul>
+						<li>jamais utiliser d'espaces,
+						<li>utiliser uniquement les caractères aplhabétiques non
+							accentués (de a à z), des chiffres (de 0 à 9) et le caractère _</li>
+					</ul>
+
+					<p>
+						Pour préparer et faciliter l'écriture du code du programme sur le
+						serveur, je vous conseille aussi de nommer les zones de saisie de
+						façon à ce que les variables récupérées soient facilement
+						repérables et identifiables.
+						<br>
+						Un moyen simple est de préfixer le nom de la zone pour indiquer
+						quel est son type.
+					</p>
+				</div>
+
+				<table class="TAB-zebre fp-petit">
+					<tr>
+						<td>Type de zone</td>
+						<td>Préfixe</td>
+						<td>Exemple</td>
+					</tr>
+					<tr>
+						<td>Texte</td>
+						<td>txt</td>
+						<td><code>&lt;input type="text" name="txtNom"&gt;<br>
+								&lt;input type="password" name="txtPasse"&gt;<br>
+								&lt;textarea name="txtComment"&gt;&lt;/textarea&gt;
+						</code></td>
+					</tr>
+					<tr>
+						<td>Case à cocher</td>
+						<td>chk</td>
+						<td><code>&lt;input type="checkbox"
+								name="chkAccepter"&gt;</code></td>
+					</tr>
+					<tr>
+						<td>Bouton radio</td>
+						<td>rad</td>
+						<td><code>&lt;input type="radio" name="radGenre"&gt;</code></td>
+					</tr>
+					<tr>
+						<td>Boutons</td>
+						<td>btn</td>
+						<td><code>&lt;input type="submit"
+								name="btnEnvoyer"&gt;<br> &lt;input type="reset"
+								name="btnEffacer"&gt;<br> &lt;input type="button"
+								name="btnFaire"&gt;
+						</code></td>
+					</tr>
+					<tr>
+						<td>Liste</td>
+						<td>sel</td>
+						<td><code>&lt;select name="slcPersonnages"&gt;</code></td>
+					</tr>
+					<tr>
+						<td>Dates</td>
+						<td>dat</td>
+						<td><code>&lt;input type="date"
+								name="datNaissance"&gt;<br> &lt;input type="month"
+								name="datMois"&gt;
+						</code></td>
+					</tr>
+				</table>
+
+				<p class="fp-p-raz">
+					La forme de l'envoi est la même pour les méthodes <code>GET</code>
+					et <code>POST</code>. Elle est directement visible pour la méthode
+					<code>GET</code> puisque les couples sont envoyés dans l'<abbr
+						title="Uniform Resource Locator">URL</abbr>.
+				</p>
+
+				<figure>
+					<img src="../htmlimg/get_google.png" width="590" height="73">
+					<figcaption>
+						 exemple d'<abbr title="Uniform Resource Locator">URL</abbr>
+						de Google
+					</figcaption>
+				</figure>
+
+				<p class="fp-p-raz">Quand vous testez un exemple de code avec un
+					formulaire dans cette partie du tutoriel, et que vous cliquez sur
+					le bouton de soumission, vous obtenez en résulat un message composé
+					des couples nom / valeur qui seraient envoyés au serveur.</p>
+
+				<form action="" method="post" class="TEST-form">
+					<a class="TEST-lien-css" title="Afficher le fichier CSS"
+						onclick="top.FP.Voir.showPLUS('html08/styles/form02.css.html')"></a>
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : couples nom / valeur
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Couples nom / valeur&lt;/title&gt;
+		&lt;link rel="stylesheet" href="styles/form02.css"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form action="dossier/login.php" method="POST"&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Authentification&lt;/legend&gt;
+				&lt;div&gt;
+					&lt;label for="zNom"&gt;Nom&lt;/label&gt;
+					&lt;input type="text" id="zNom"
+						   name="txtNom"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label for="zPasse"&gt;Mot de passe&lt;/label&gt;
+					&lt;input type="password" id="zPasse"
+						   name="txtPasse"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label for="zCon"&gt;Restez connecté&lt;/label&gt;
+					&lt;input type="checkbox" id="zCon"
+						   name="chkCon"&gt;
+				&lt;/div&gt;
+			&lt;/fieldset&gt;	
+			&lt;fieldset&gt;
+				&lt;input type="reset" value="Effacer"
+					   name="btnEffacer"&gt;
+				&lt;input type="submit" value="S'authentifier"
+					   name="btnAuthentif"&gt;
+			&lt;/fieldset&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<p>
+					<strong>Les attributs <code>name</code> et <code>id</code>
+						sont différents et ne peuvent pas être substitués
+					</strong>.
+					<br>
+					L'attribut <code>name</code> est vraiment spécifique au dialogue
+					client/serveur (<abbr title="HyperText Transfert Protocol">HTTP</abbr>)
+					et sera "transporté" du client au serveur.
+					<br>
+					L'attribut <code>id</code> est spécifique au client et permet
+					principalement d'attacher des règles de style <abbr
+						title="Cascading Style Sheets">CSS</abbr> à un élément <abbr
+						title="HyperText Markup Language">HTML</abbr> ou d'atteindre un
+					élément <abbr title="HyperText Markup Language">HTML</abbr> avec
+					JavaScript.
+					<br>
+					Les 2 attributs peuvent avoir la même valeur pour identifier un
+					élément.
+				</p>
+
+				<form action="" method="post" class="TEST-form">
+					<a class="TEST-lien-css" title="Afficher le fichier CSS"
+						onclick="top.FP.Voir.showPLUS('html08/styles/form02.css.html')"></a>
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : name et id avec la même valeur
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Name et id avec la même valeur&lt;/title&gt;
+		&lt;link rel="stylesheet" href="styles/form02.css"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form action="dossier/login.php" method="POST"&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Authentification&lt;/legend&gt;
+				&lt;div&gt;
+					&lt;label for="zNom"&gt;Nom&lt;/label&gt;
+					&lt;input type="text" id="txtNom"
+						   name="txtNom"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label for="zPasse"&gt;Mot de passe&lt;/label&gt;
+					&lt;input type="password" id="txtPasse"
+						   name="txtPasse"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label for="zCon"&gt;Restez connecté&lt;/label&gt;
+					&lt;input type="checkbox" id="chkCon"
+						   name="chkCon"&gt;
+				&lt;/div&gt;
+			&lt;/fieldset&gt;	
+			&lt;fieldset&gt;
+				&lt;input type="reset" value="Effacer"
+					   name="btnEffacer"&gt;
+				&lt;input type="submit" value="S'authentifier"
+					   name="btnAuthentif"&gt;
+			&lt;/fieldset&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+			</section>
+
+			<h4>L'attribut value</h4>
+			<section>
+				<p>
+					L'attribut <code>value</code> contient ce qui sera envoyé au
+					serveur comme valeur associée au nom de la zone de saisie.
+				</p>
+
+				<div class="fp-puce">
+					<p>
+						Pour certains types de zones, l'attribut <code>value</code> peut
+						être absent. Si c'est le cas, il sera automatiquement créé par le
+						navigateur avec comme valeur initiale une chaîne vide ou "on",
+						"off", 0 ou 1. C'est le cas pour toutes les zones faite avec
+						l'élément <a
+							onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+					</p>
+
+					<p>
+						A noter que la valeur de l'attribut <code>value</code> est
+						utilisée comme <strong>libellé du bouton</strong> pour les boutons
+						faits avec <code>&lt;input type="submit"&gt;</code>, <code>&lt;input
+							type="reset"&gt;</code> et <code>&lt;input type="button"&gt;</code>.
+						<br>
+						Si l'attribut est absent de l'élément, le navigateur affichera un
+						libellé par défaut (pas le même pour tous les navigateurs).
+					</p>
+				</div>
+
+				<p class="fp-bot0">
+					Pour certains types de zones, l'attribut <code>value</code> devrait
+					absolument être présent dans l'élement et la valeur initialisée
+					dans le code <abbr title="HyperText Markup Language">HTML</abbr>
+					plutôt que laissée à l'initiative du navigateur :
+				</p>
+				<ul>
+					<li>cases à cocher (<code>&lt;input type="checkbox"&gt;</code>)
+					</li>
+					<li>boutons radio (<code>&lt;input type="radio"&gt;</code>)
+					</li>
+					<li>listes (éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'option')">option</a>
+						dans l'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'select')">select</a></li>
+				</ul>
+
+				<p class="fp-bot0">
+					Pour d'autres types de zones, l'attribut <code>value</code> ne peut
+					pas être initialisé :
+				</p>
+				<ul>
+					<li>zone de saisie multi-lignes (<a
+						onclick="top.FP.Voir.showPageTech('elements', 'textarea')">textarea</a>)
+					</li>
+					<li>zone de sélection de fichier (<code>&lt;input
+							type="file"&gt;</code>)
+					</li>
+					<li>zone image (<code>&lt;input type="image"&gt;</code>)
+					</li>
+				</ul>
+
+
+				<p class="fp-bot0">
+					De la même façon que l'initialisation de l'attribut <code>value</code>
+					peut prendre différentes formes, la valeur finale de l'attribut
+					pourra provenir de <strong>plusieurs sources</strong> :
+				</p>
+				<ul>
+					<li>la saisie directe de l'utilisateur (zone de texte par
+						exemple),</li>
+					<li>un choix dans une liste prédéfinie (bouton radio, liste),</li>
+					<li>une boîte de dialogue système (fichier) ou gérée par le
+						navigateur (date, intervalle)</li>
+				</ul>
+				<!-- 
+				<table class="TAB-zebre fp-petit">
+					<tr>
+						<td>Type de zone de saisie</td>
+						<td>Initialisation de <br>l'attribut <code>value</code></td>
+						<td>Valeur finale</td>
+					</tr>
+					<tr>
+						<td><code>&lt;datalist&gt;&lt;/datalist&gt;</code></td>
+						<td>Obligatoire (dans l'élément <code>option</code>)
+						</td>
+						<td>Liste prédéfinie</td>
+					</tr>
+
+					<tr>
+						<td><code>&lt;input type="button"&gt;</code></td>
+						<td>Obligatoire</td>
+						<td>Non modifiable</td>
+					</tr>
+					<tr>
+						<td><code>&lt;input type="checkbox"&gt; </code></td>
+						<td>Obligatoire</td>
+						<td>Liste prédéfinie</td>
+					</tr>
+					<tr>
+						<td><code>&lt;input type="color"&gt;</code></td>
+						<td>Facultative</td>
+						<td>Boîte de dialogue système</td>
+					</tr>
+					<tr>
+						<td><code>&lt;input type="date"&gt;</code></td>
+						<td>Facultative</td>
+						<td>Saisie guidée ou calendrier</td>
+					</tr>
+					<tr>
+						<td><code>&lt;input type="datetime"&gt;</code></td>
+						<td>Facultative</td>
+						<td>Saisie guidée ou calendrier</td>
+					</tr>
+					<tr>
+						<td nowrap><code>&lt;input type="datetime-local"&gt;</code></td>
+						<td>Facultative</td>
+						<td>Saisie guidée ou calendrier</td>
+					</tr>
+					<tr>
+						<td><code>&lt;input type="email"&gt;</code></td>
+						<td>Facultative</td>
+						<td>Saisie directe</td>
+					</tr>
+					<tr>
+						<td><code>&lt;input type="file"&gt;</code></td>
+						<td>Impossible</td>
+						<td>Boîte de dialogue système</td>
+					</tr>
+					<tr>
+						<td><code>&lt;input type="hidden"&gt;</code></td>
+						<td>Falcultative</td>
+						<td>Aucune saisie possible</td>
+					</tr>
+					<tr>
+						<td><code>&lt;input type="image"&gt;</code></td>
+						<td>Impossible</td>
+						<td>Aucune</td>
+					</tr>
+					<tr>
+						<td><code>&lt;input type="month"&gt;</code></td>
+						<td>Facultative</td>
+						<td>Saisie guidée ou calendrier</td>
+					</tr>
+					<tr>
+						<td><code>&lt;input type="number"&gt;</code></td>
+						<td>Facultative</td>
+						<td>Saisie directe ou boutons système</td>
+					</tr>
+					<tr>
+						<td nowrap><code>&lt;input type="password"&gt;</code></td>
+						<td>Facultative</td>
+						<td>Saisie directe</td>
+					</tr>
+					<tr>
+						<td><code>&lt;input type="radio"&gt; </code></td>
+						<td>Obligatoire, dans le code HTML</td>
+						<td>Non modifiable</td>
+					</tr>
+					<tr>
+						<td><code>&lt;input type="range"&gt;</code></td>
+						<td>Facultative</td>
+						<td>Système de curseur</td>
+					</tr>
+					<tr>
+						<td><code>&lt;input type="reset"&gt;</code></td>
+						<td>Facultative</td>
+						<td>Non modifiable</td>
+					</tr>
+					<tr>
+						<td><code>&lt;input type="search"&gt;</code></td>
+						<td>Facultative</td>
+						<td>Saisie directe</td>
+					</tr>
+					<tr>
+						<td><code>&lt;input type="submit"&gt;</code></td>
+						<td>Facultative</td>
+						<td>Non modifiable</td>
+					</tr>
+					<tr>
+						<td><code>&lt;input type="tel"&gt;</code></td>
+						<td>Facultative</td>
+						<td>Saisie directe</td>
+					</tr>
+					<tr>
+						<td><code>&lt;input type="text"&gt;</code></td>
+						<td>Facultative</td>
+						<td>Saisie directe</td>
+					</tr>
+					<tr>
+						<td><code>&lt;input type="time"&gt;</code></td>
+						<td>Facultative</td>
+						<td>Saisie guidée ou boutons système</td>
+					</tr>
+					<tr>
+						<td><code>&lt;input type="url"&gt;</code></td>
+						<td>Facultative</td>
+						<td>Saisie directe</td>
+					</tr>
+					<tr>
+						<td><code>&lt;input type="week"&gt;</code></td>
+						<td>Facultative</td>
+						<td>Saisie guidée ou calendrier</td>
+					</tr>
+					<tr>
+						<td><code>&lt;select&gt;&lt;/select&gt;</code></td>
+						<td>Obligatoire (dans l'élément <code>option</code>)
+						</td>
+						<td>Liste prédéfinie</td>
+					</tr>
+					<tr>
+						<td><code>&lt;textarea&gt;&lt;/textarea&gt;</code></td>
+						<td>Pas d'attribut</td>
+						<td>Saisie directe</td>
+					</tr>
+				</table>
+				-->
+			</section>
+
+		</section>
+
+
+		<h3>Tous les attributs</h3>
+		<section>
+			<table class="TAB-zebre fp-petit">
+				<tr>
+					<td>Nom</td>
+					<td>Utilité</td>
+					<td>Types d'&lt;input&gt;</td>
+					<td>Autres balises</td>
+				</tr>
+				<tr>
+					<td><code>accept</code></td>
+					<td>Types MIME acceptés.</td>
+					<td><code>file</code></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><code>alt</code></td>
+					<td>Alternative textuelle à l'image.</td>
+					<td><code>image</code></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><code>autocomplete</code></td>
+					<td>Autocomplétion. Les saisies précédemment faites dans la
+						zone sont proposées. Attribut booléen.</td>
+					<td><code>color, date, datetime, datetime-local, email,
+							month, number, password, range, tel, search, text, time, url,
+							week </code></td>
+					<td><code>&lt;textarea&gt;</code></td>
+				</tr>
+				<tr>
+					<td><code>autofocus</code></td>
+					<td>1er élément activé dans le formulaire. Attribut booléen.</td>
+					<td><code>date, datetime, datetime-local, email, month,
+							number, password, tel, search, text, time, url, week</code></td>
+					<td><code> &lt;button&gt;, &lt;keygen&gt;,
+							&lt;select&gt;, &lt;textarea&gt; </code></td>
+				</tr>
+				<tr>
+					<td><code>checked</code></td>
+					<td>Etat par défaut (coché ou non). Attribut booléen.</td>
+					<td><code>checkbox, radio</code></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><code>cols</code></td>
+					<td>Nombre de caractères en largeur.</td>
+					<td>&nbsp;</td>
+					<td><code>textarea</code></td>
+				</tr>
+				<tr>
+					<td><code>dirname</code></td>
+					<td>Direction du texte saisi ou affiché.</td>
+					<td>Tous</td>
+					<td>Toutes</td>
+				</tr>
+				<tr>
+					<td><code>disabled</code></td>
+					<td>Zone désactivée, non transmise au serveur. Aucune
+						interaction n'est possible avec la zone (pas de focus, pas de
+						copie, etc). Attribut booléen.</td>
+					<td>Tous</td>
+					<td>Toutes</td>
+				</tr>
+				<tr>
+					<td><code>form</code></td>
+					<td><code>id</code> du formulaire associé si la zone n'est pas
+						un élément <code>form</code> ou concerne un autre formulaire que
+						celui dans lequel elle est imbriquée.</td>
+					<td>Tous</td>
+					<td>Toutes</td>
+				</tr>
+				<tr>
+					<td><code>height</code></td>
+					<td>Hauteur de l'image.</td>
+					<td><code>image</code></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><code>high</code></td>
+					<td>Valeur maximale.</td>
+					<td>&nbsp;</td>
+					<td><code>&lt;meter&gt;</code></td>
+				</tr>
+				<tr>
+					<td><code>list</code></td>
+					<td><code>id</code> de la liste de suggestions associée à la
+						zone.</td>
+					<td><code>color, date, datetime, datetime-local, email,
+							month, number, password, range, tel, search, text, time, url,
+							week</code></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><code>low</code></td>
+					<td>Valeur minimale.</td>
+					<td>&nbsp;</td>
+					<td><code>&lt;meter&gt;</code></td>
+				</tr>
+				<tr>
+					<td><code>max</code></td>
+					<td>Valeur maximale.</td>
+					<td><code>date, datetime, datetime-local, month,
+							number, range, time, week</code></td>
+					<td><code>&lt;meter&gt;, &lt;progress&gt;</code></td>
+				</tr>
+				<tr>
+					<td><code>maxlength</code></td>
+					<td>Nombre maximal de caractères pouvant être saisis.</td>
+					<td><code>email, password, tel, search, text, url</code></td>
+					<td><code>&lt;textarea&gt;</code></td>
+				</tr>
+				<tr>
+					<td><code>min</code></td>
+					<td>Valeur minimale.</td>
+					<td><code>date, datetime, datetime-local, month,
+							number, range, time, week</code></td>
+					<td><code>&lt;meter&gt;, &lt;progress&gt;</code></td>
+				</tr>
+				<tr>
+					<td><code>multiple</code></td>
+					<td>Valeurs multiples possibles. Attribut booléen.</td>
+					<td><code>email, file,</code></td>
+					<td><code>&lt;select&gt;</code></td>
+				</tr>
+				<tr>
+					<td><code>name</code></td>
+					<td>Nom de la zone.</td>
+					<td>Tous</td>
+					<td>Toutes</td>
+				</tr>
+				<tr>
+					<td><code>optimum</code></td>
+					<td>Valeur optimale.</td>
+					<td>&nbsp;</td>
+					<td><code>&lt;meter&gt;</code></td>
+				</tr>
+				<tr>
+					<td><code>pattern</code></td>
+					<td>Expression régulière à laquelle doit correspondre la
+						valeur de la zone. Permet de vérifier la saisie. 
+						<a href="http://regexlib.com/%28X%281%29A%28zseIUS5cThlLV_8PSI6h_ap3axRPYn8a-jeAwxb42kSIpn2uJ7wiItRO9dqa0xIo44v5GMwW1FP3cauiQHR4kELACUqeLtipqNfu1glt8F4nq9mNBBFb6LtLxdPPNL0G6KzifWDdVoB4ONUiSqy8y3xhVr9GfBo-CCXH6aDGv2R1zvGr5xSmGCWDrhycU4vl0%29%29/DisplayPatterns.aspx" target="_blank">
+						Des centaines d'expressions régulières</a>.</td>
+					<td><code>email, password, tel, search, text, url</code></td>
+					<td>&nbsp;</td>
+				</tr>
+
+				<tr>
+					<td><code>placeholder</code></td>
+					<td>Texte d'aide, d'indication de saisie.</td>
+					<td><code>email, password, tel, search, text, url</code></td>
+					<td><code>&lt;textarea&gt;</code></td>
+				</tr>
+				<tr>
+					<td><code>readonly</code></td>
+					<td>Zone en lecture seule, non transmise au serveur. La zone
+						peut avoir le focus et le contenu peut être copié. Attribut
+						booléen.</td>
+					<td>Tous</td>
+					<td>Toutes</td>
+				</tr>
+				<tr>
+					<td><code>required</code></td>
+					<td>Zone obligatoire. Attribut booléen.</td>
+					<td><code> checkbox, date, datetime, datetime-local,
+							file, email, month, number, password, radio, range, tel, search,
+							text, time, url, week</code></td>
+					<td><code>&lt;textarea&gt;</code></td>
+				</tr>
+				<tr>
+					<td><code>rows</code></td>
+					<td>Nombre de lignes affichées.</td>
+					<td>&nbsp;</td>
+					<td><code>&lt;textarea&gt;</code></td>
+				</tr>
+				<tr>
+					<td><code>selected</code></td>
+					<td>Ligne sélectionnée par défaut dans une liste.</td>
+					<td>&nbsp;</td>
+					<td>&lt;option&gt;</td>
+				</tr>
+				<tr>
+					<td><code>size</code></td>
+					<td>Nombre de caractères visibles directement, ou nombre lignes affichées.</td>
+					<td><code>email, password, tel, search, text, url</code></td>
+					<td>&lt;progress&gt;</td>
+				</tr>
+				<tr>
+					<td><code>src</code></td>
+					<td>URL de l'image.</td>
+					<td><code>image</code></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><code>step</code></td>
+					<td>Valeur du pas d'incrément/décrément.</td>
+					<td><code>date, datetime, datetime-local, month, range,
+							time</code></td>
+					<td><code>&lt;meter&gt;, &lt;progress&gt;</code></td>
+				</tr>
+				<tr>
+					<td><code>value</code></td>
+					<td>Valeur initiale de la zone et valeur transmise au serveur
+						après saisie.</td>
+					<td>Tous</td>
+					<td><code>&lt;meter&gt;, &lt;progress&gt;,
+							&lt;option&gt;</code></td>
+				</tr>
+				<tr>
+					<td><code>width</code></td>
+					<td>Largeur de l'image.</td>
+					<td><code>image</code></td>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+
+		</section>
+
+		<h3>Les zones et leurs attributs</h3>
+		<section>
+			<table id="tblAttr" class="fp-petit">
+				<tr>
+					<td style="vertical-align: bottom;">Type de zone de saisie</td>
+					<td><div>accept</div></td>
+					<td><div>alt</div></td>
+					<td><div>autocomplete</div></td>
+					<td><div>autofocus</div></td>
+					<td><div>checked</div></td>
+					<td><div>dirname</div></td>
+					<td><div>disabled</div></td>
+					<td><div>form</div></td>
+					<td><div>height</div></td>
+					<td><div>list</div></td>
+					<td><div>max</div></td>
+					<td><div>maxlength</div></td>
+					<td><div>min</div></td>
+					<td><div>multiple</div></td>
+					<td><div>name</div></td>
+					<td><div>pattern</div></td>
+					<td><div>placeholder</div></td>
+					<td><div>readonly</div></td>
+					<td><div>required</div></td>
+					<td><div>selected</div></td>
+					<td><div>size</div></td>
+					<td><div>src</div></td>
+					<td><div>step</div></td>
+					<td><div>value</div></td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type="button"&gt;</code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type="checkbox"&gt; </code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type="color"&gt;</code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type="date"&gt;</code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>X</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type="datetime"&gt;</code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>X</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td>
+				</tr>
+				<tr>
+					<td nowrap><code>type="datetime-local"</code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>X</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type="email"&gt;</code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td>
+					<td>X</td>
+					<td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type="file"&gt;</code></td>
+					<td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type="hidden"&gt;</code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type="image"&gt;</code></td>
+					<td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type="month"&gt;</code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>X</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type="number"&gt;</code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>X</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td>
+				</tr>
+				<tr>
+					<td nowrap><code>&lt;input type="password"&gt;</code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+					<td>X</td>
+					<td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type="radio"&gt; </code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type="range"&gt;</code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>X</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type="reset"&gt;</code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type="search"&gt;</code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+					<td>X</td>
+					<td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type="submit"&gt;</code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type="tel"&gt;</code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+					<td>X</td>
+					<td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type="text"&gt;</code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+					<td>X</td>
+					<td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type="time"&gt;</code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>X</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type="url"&gt;</code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+					<td>X</td>
+					<td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type="week"&gt;</code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+				</tr>
+				<tr>
+					<td><code>&lt;select&gt;&lt;/select&gt;</code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><code>&lt;option&gt;&lt;/option&gt;</code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+				</tr>
+				<tr>
+					<td><code>&lt;textarea&gt;&lt;/textarea&gt;</code></td>
+					<td>&nbsp;</td><td>&nbsp;</td><td>X</td><td>X</td><td>&nbsp;</td><td>X</td><td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>X</td>
+					<td>&nbsp;</td>
+					<td>X</td><td>X</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+				</tr>
+			</table>
+		</section>
+
+	</div>
+	<footer></footer>
+	
+<script>
+FPL.TBL = document.getElementById('tblAttr');
+FPL.TDHover = -1;
+FPL.TDs = [];
+
+FPL.TBL.onmouseover = function(event) {
+	var Target;
+	
+	event = event || window.event;
+	Target = event.target || event.srcElement;
+	
+	if (Target.cellIndex + 1 == FPL.TDHover) {
+		return;
+	}
+	
+	if (FPL.TDHover != -1) {
+		[].forEach.call(FPL.TDs, function(e) {e.className = ''});
+	}
+	
+	if (isNaN(Target.cellIndex)) {
+		// Hover sur div ou code
+		FPL.TDHover = Target.parentNode.cellIndex + 1;
+	} else {
+		FPL.TDHover = Target.cellIndex + 1;
+	}
+	
+	FPL.TDs = document.querySelectorAll("td:nth-child(" + (FPL.TDHover) + ")");
+	    
+	if (FPL.TDs) {
+		[].forEach.call(FPL.TDs, function(e) {e.className = 'hoverTD'});
+	}
+};    
+
+FPL.TBL.onmouseout = function(event) {
+	if (FPL.TDHover != -1) {
+		[].forEach.call(FPL.TDs, function(e) {e.className = ''});
+	}
+	FPL.TDHover = -1;
+	FPL.TDs = [];
+};
+
+</script>
+</body>
+</html>

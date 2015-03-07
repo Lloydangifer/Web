@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Les arguments de fonction</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="functions.user-defined.html">Les fonctions
+				d&eacute;finies par l'utilisateur</a>
+		</div>
+		<div class="next">
+			<a href="functions.returning-values.html">Les valeurs de retour</a>
+		</div>
+		<div class="up">
+			<a href="language.functions.html">Les fonctions</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="functions.arguments" class="sect1">
+		<h2 class="title">Les arguments de fonction</h2>
+		<p class="simpara">Des informations peuvent être passées à une
+			fonction en utilisant une liste d&#039;arguments, dont chaque
+			expression est séparée par une virgule. Les arguments seront évalués
+			depuis la gauche vers la droite.</p>
+		<p class="para">
+			PHP supporte le passage d&#039;arguments par valeur (comportement par
+			défaut), <a
+				href="functions.arguments.html#functions.arguments.by-reference"
+				class="link">le passage par référence</a>, et <a
+				href="functions.arguments.html#functions.arguments.default"
+				class="link">des valeurs d&#039;arguments par défaut</a>. <a
+				href="functions.arguments.html#functions.variable-arg-list"
+				class="link">Une liste variable d&#039;arguments</a> est également
+			supportée, voir la documentation sur les fonctions <span
+				class="function"><a href="function.func-num-args.html"
+				class="function">func_num_args()</a></span>, <span class="function"><a
+				href="function.func-get-arg.html" class="function">func_get_arg()</a></span>,
+			et <span class="function"><a
+				href="function.func-get-args.html" class="function">func_get_args()</a></span>
+			pour plus d&#039;informations.
+		</p>
+		<p class="para">
+		<div class="example" id="example-159">
+			<p>
+				<strong>Exemple #1 Nombre variable d&#039;argument sous
+					forme de tableau</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">function&nbsp;</span><span
+							style="color: #0000BB">takes_array</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$input</span><span
+							style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$input</span><span
+							style="color: #007700">[</span><span style="color: #0000BB">0</span><span
+							style="color: #007700">]</span><span style="color: #DD0000">&nbsp;+&nbsp;</span><span
+							style="color: #0000BB">$input</span><span style="color: #007700">[</span><span
+							style="color: #0000BB">1</span><span style="color: #007700">]</span><span
+							style="color: #DD0000">&nbsp;=&nbsp;"</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$input</span><span
+							style="color: #007700">[</span><span style="color: #0000BB">0</span><span
+							style="color: #007700">]+</span><span style="color: #0000BB">$input</span><span
+							style="color: #007700">[</span><span style="color: #0000BB">1</span><span
+							style="color: #007700">];<br />}<br />
+							<br /></span><span style="color: #0000BB">takes_array</span><span
+							style="color: #007700">(array(</span><span style="color: #0000BB">2</span><span
+							style="color: #007700">,</span><span style="color: #0000BB">3</span><span
+							style="color: #007700">));<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+
+		<div class="sect2" id="functions.arguments.by-reference">
+			<h3 class="title">Passage d&#039;arguments par référence</h3>
+
+			<p class="simpara">Par défaut, les arguments sont passés à la
+				fonction par valeur (Ainsi changer la valeur d&#039;un argument dans
+				la fonction ne change pas sa valeur à l&#039;extérieur de la
+				fonction). Si vous voulez que vos fonctions puissent changer la
+				valeur des arguments, vous devez passer ces arguments par référence.
+			</p>
+			<p class="para">
+				Si vous voulez qu&#039;un argument soit toujours passé par
+				référence, vous pouvez ajouter un &#039;<em>&amp;</em>&#039; devant
+				l&#039;argument dans la déclaration de la fonction :
+			</p>
+			<p class="para">
+			<div class="example" id="example-160">
+				<p>
+					<strong>Exemple #2 Passage d&#039;arguments par référence</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">add_some_extra</span><span
+								style="color: #007700">(&amp;</span><span style="color: #0000BB">$string</span><span
+								style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$string&nbsp;</span><span
+								style="color: #007700">.=&nbsp;</span><span
+								style="color: #DD0000">',&nbsp;et&nbsp;un&nbsp;peu&nbsp;plus.'</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">$str&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'Ceci&nbsp;est&nbsp;une&nbsp;chaîne'</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">add_some_extra</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$str</span><span
+								style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #0000BB">$str</span><span
+								style="color: #007700">;&nbsp;&nbsp;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+
+		</div>
+
+		<div class="sect2" id="functions.arguments.default">
+			<h3 class="title">Valeur par défaut des arguments</h3>
+
+			<p class="para">Vous pouvez définir comme en C++ des valeurs par
+				défaut pour les arguments de type scalaire :</p>
+			<p class="para">
+			<div class="example" id="example-161">
+				<p>
+					<strong>Exemple #3 Valeur par défaut des arguments de
+						fonctions</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">servir_cafe&nbsp;</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$type&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"cappuccino"</span><span
+								style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #DD0000">"Servir&nbsp;un&nbsp;</span><span
+								style="color: #0000BB">$type</span><span style="color: #DD0000">.\n"</span><span
+								style="color: #007700">;<br />}<br />echo&nbsp;
+							</span><span style="color: #0000BB">servir_cafe</span><span
+								style="color: #007700">();<br />echo&nbsp;
+							</span><span style="color: #0000BB">servir_cafe</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">null</span><span
+								style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #0000BB">servir_cafe</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"espresso"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Servir un cappuccino.
+Servir un.
+Servir un espresso.
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+			<p class="para">
+				PHP vous autorise à utiliser des <a href="language.types.array.html"
+					class="link">tableau</a> ainsi que le type spécial <strong><code>NULL</code></strong>
+				comme valeur par défaut, par exemple :
+			</p>
+			<p class="para">
+			<div class="example" id="example-162">
+				<p>
+					<strong>Exemple #4 Utilisation de type non scalaire comme
+						valeur par défaut</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">servir_cafe</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$types&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">"cappuccino"</span><span
+								style="color: #007700">),&nbsp;</span><span
+								style="color: #0000BB">$coffeeMaker&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">NULL</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$device&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">is_null</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$coffeeMaker</span><span
+								style="color: #007700">)&nbsp;?&nbsp;</span><span
+								style="color: #DD0000">"les&nbsp;mains"&nbsp;</span><span
+								style="color: #007700">:&nbsp;</span><span
+								style="color: #0000BB">$coffeeMaker</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #DD0000">"Préparation&nbsp;d'une&nbsp;tasse&nbsp;de&nbsp;"</span><span
+								style="color: #007700">.</span><span style="color: #0000BB">join</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">",&nbsp;"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$types</span><span style="color: #007700">).</span><span
+								style="color: #DD0000">"&nbsp;avec&nbsp;</span><span
+								style="color: #0000BB">$device</span><span
+								style="color: #DD0000">.\n"</span><span style="color: #007700">;<br />}<br />echo&nbsp;
+							</span><span style="color: #0000BB">servir_cafe</span><span
+								style="color: #007700">();<br />echo&nbsp;
+							</span><span style="color: #0000BB">servir_cafe</span><span
+								style="color: #007700">(array(</span><span
+								style="color: #DD0000">"cappuccino"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"lavazza"</span><span
+								style="color: #007700">),&nbsp;</span><span
+								style="color: #DD0000">"une&nbsp;cafetière"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="simpara">La valeur par défaut d&#039;un argument doit
+				obligatoirement être une constante, et ne peut être ni une variable,
+				ni un membre de classe, ni un appel de fonction.</p>
+			<p class="para">Il est à noter que si vous utilisez des arguments
+				avec valeur par défaut avec d&#039;autres sans valeur par défaut,
+				les premiers doivent être placés à la suite de tous les paramètres
+				sans valeur par défaut. Sinon, cela ne fonctionnera pas. Considérons
+				le code suivant :</p>
+			<p class="para">
+			<div class="example" id="example-163">
+				<p>
+					<strong>Exemple #5 Les arguments à valeur par défaut
+						doivent être en premiers : erreur</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">faireunyaourt&nbsp;</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$type&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"acidophilus"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$flavour</span><span
+								style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #DD0000">"Préparer&nbsp;un&nbsp;bol&nbsp;de&nbsp;</span><span
+								style="color: #0000BB">$type</span><span style="color: #DD0000">&nbsp;</span><span
+								style="color: #0000BB">$flavour</span><span
+								style="color: #DD0000">.\n"</span><span style="color: #007700">;<br />}<br />&nbsp;<br />echo&nbsp;
+							</span><span style="color: #0000BB">faireunyaourt</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"framboise"</span><span
+								style="color: #007700">);&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;ne&nbsp;fonctionne&nbsp;pas&nbsp;comme&nbsp;voulu<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Warning: Missing argument 2 in call to makeyogurt() in 
+/usr/local/etc/httpd/htdocs/phptest/functest.html on line 41
+Préparer un bol de framboise .
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+			<p class="para">Maintenant comparons l&#039;exemple précédent
+				avec l&#039;exemple suivant :</p>
+			<p class="para">
+			<div class="example" id="example-164">
+				<p>
+					<strong>Exemple #6 Les arguments à valeur par défaut
+						doivent être en premiers : valide</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">faireunyaourt&nbsp;</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$flavour</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$type&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"acidophilus"</span><span
+								style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #DD0000">"Préparer&nbsp;un&nbsp;bol&nbsp;de&nbsp;</span><span
+								style="color: #0000BB">$type</span><span style="color: #DD0000">&nbsp;</span><span
+								style="color: #0000BB">$flavour</span><span
+								style="color: #DD0000">.\n"</span><span style="color: #007700">;<br />}<br />&nbsp;<br />echo&nbsp;
+							</span><span style="color: #0000BB">faireunyaourt&nbsp;</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"framboise"</span><span
+								style="color: #007700">);&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;fonctionne&nbsp;comme&nbsp;voulu<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Préparer un bol de acidophilus framboise.
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">
+						Les valeurs par défaut peuvent être passées par référence. </span>
+				</p>
+			</blockquote>
+
+		</div>
+
+		<div class="sect2" id="functions.variable-arg-list">
+			<h3 class="title">Nombre d&#039;arguments variable</h3>
+
+			<p class="simpara">
+				PHP supporte les fonctions à nombre d&#039;arguments variable.
+				C&#039;est très simple à utiliser, avec les fonctions <span
+					class="function"><a href="function.func-num-args.html"
+					class="function">func_num_args()</a></span>, <span class="function"><a
+					href="function.func-get-arg.html" class="function">func_get_arg()</a></span>
+				et <span class="function"><a
+					href="function.func-get-args.html" class="function">func_get_args()</a></span>.
+			</p>
+
+			<p class="simpara">Aucune syntaxe particulière n&#039;est
+				nécessaire, et la liste d&#039;arguments doit toujours être fournie
+				explicitement avec la définition de la fonction, et se comportera
+				normalement.</p>
+
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="functions.user-defined.html">Les fonctions
+				d&eacute;finies par l'utilisateur</a>
+		</div>
+		<div class="next">
+			<a href="functions.returning-values.html">Les valeurs de retour</a>
+		</div>
+		<div class="up">
+			<a href="language.functions.html">Les fonctions</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

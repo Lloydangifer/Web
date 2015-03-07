@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Tronque un fichier</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.ftell.html">ftell</a>
+		</div>
+		<div class="next">
+			<a href="function.fwrite.html">fwrite</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.ftruncate" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">ftruncate</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">ftruncate</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Tronque un fichier</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.ftruncate-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>ftruncate</strong></span>
+				( <span class="methodparam"><span class="type">resource</span>
+					<code class="parameter">$handle</code></span> , <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$size</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				Prend le pointeur de fichier <em><code class="parameter">handle</code></em>
+				et le tronque à la taille de <em><code class="parameter">size</code></em>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.ftruncate-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">handle</code></em></span>
+				<dd>
+
+					<p class="para">Le pointeur de fichier.</p>
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>:
+						<p class="para">
+							Le pointeur <em><code class="parameter">handle</code></em> doit
+							avoir été ouvert en écriture.
+					</blockquote>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">size</code></em></span>
+				<dd>
+
+					<p class="para">La taille que l&#039;on doit enlever.</p>
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>:
+						<p class="para">
+							Si <em><code class="parameter">size</code></em> est plus grand
+							que la taille du fichier, ce dernier sera étendu par des octets
+							nuls.
+						</p>
+						<p class="para">
+							Si <em><code class="parameter">size</code></em> est plus petit
+							que la taille du fichier, le reste des données sera perdu.
+					</blockquote>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.ftruncate-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.ftruncate-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.3.3</td>
+						<td>Avant PHP 4.3.3, <span class="function"><strong>ftruncate()</strong></span>
+							retournait un <a href="language.types.integer.html" class="link">entier</a>
+							de valeur 1, en cas de succès, au lieu de la valeur <span
+							class="type"><a href="language.types.boolean.html"
+								class="type boolean">boolean</a></span> <strong><code>TRUE</code></strong>.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.ftruncate-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2263">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>ftruncate()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$filename&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'lorem_ipsum.txt'</span><span
+								style="color: #007700">;<br />
+								<br /></span><span style="color: #0000BB">$handle&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$filename</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'r+'</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">ftruncate</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">rand</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">filesize</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span
+								style="color: #007700">)));<br /></span><span
+								style="color: #0000BB">rewind</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$handle</span><span
+								style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #0000BB">fread</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">filesize</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span
+								style="color: #007700">));<br /></span><span
+								style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$handle</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.ftruncate-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Le pointeur de fichier n&#039;est <em class="emphasis">pas</em>
+					modifié.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.ftruncate-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.fopen.html" class="function" rel="rdfs-seeAlso">fopen()</a>
+						- Ouvre un fichier ou une URL</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fseek.html" class="function" rel="rdfs-seeAlso">fseek()</a>
+						- Modifie la position du pointeur de fichier</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.ftell.html">ftell</a>
+		</div>
+		<div class="next">
+			<a href="function.fwrite.html">fwrite</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

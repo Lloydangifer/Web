@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Gestion des connexions</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="features.remote-files.html">Utilisation des fichiers &agrave; distance</a></div>
+ <div class="next"><a href="features.persistent-connections.html">Connexions persistantes aux bases de donn&eacute;es</a></div>
+ <div class="up"><a href="features.html">Caract&eacute;ristiques</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="features.connection-handling" class="chapter">
+ <h1>Gestion des connexions</h1>
+
+ <p class="para">
+  Le statut des connexions est conservé en interne par PHP. Il y a
+  trois états possibles :
+  <ul class="itemizedlist">
+   <li class="listitem"><span class="simpara">0 - NORMAL (normal)</span></li>
+   <li class="listitem"><span class="simpara">1 - ABORTED (annulé)</span></li>
+   <li class="listitem"><span class="simpara">2 - TIMEOUT (périmé)</span></li>
+  </ul>
+ </p>
+ <p class="simpara">
+  Lorsqu&#039;un script PHP est en cours d&#039;exécution, son
+  état est NORMAL. Si le client distant se déconnecte,
+  le statut devient ABORTED. En général, une telle
+  déconnexion provient d&#039;un arrêt temporaire. Si la
+  durée maximale d&#039;exécution de PHP est
+  dépassée,
+  (voir  <span class="function"><a href="function.set-time-limit.html" class="function">set_time_limit()</a></span>), le script prend le
+  statut TIMEOUT.
+ </p>
+ <p class="simpara">
+  Vous pouvez en outre décider si vous voulez que la
+  déconnexion d&#039;un client provoque l&#039;arrêt de votre
+  script. Il est parfois pratique que vos scripts continuent
+  à s&#039;exécuter jusqu&#039;à la fin, même si le client n&#039;est plus là
+  pour recevoir les informations. Cependant, par défaut, le script
+  s&#039;arrêtera dès que le client se déconnecte.
+  Ce comportement peut être modifié avec la directive
+  <strong class="option unknown">ignore_user_abort</strong>
+ dans le fichier <var class="filename">php.ini</var> ou
+  bien avec la directive Apache <em>php_value ignore_user_abort</em>
+  du fichier Apache <var class="filename">httpd.conf</var> ou avec la fonction
+   <span class="function"><a href="function.ignore-user-abort.html" class="function">ignore_user_abort()</a></span>. Si vous
+  ne demandez pas à PHP d&#039;ignorer la déconnexion, et que
+  l&#039;utilisateur se déconnecte, le script sera terminé. La
+  seule exception est si vous avez enregistré une fonction
+  de fermeture, avec  <span class="function"><a href="function.register-shutdown-function.html" class="function">register_shutdown_function()</a></span>.
+  Avec une telle fonction, lorsque l&#039;utilisateur interrompt sa
+  requête, à la prochaine exécution du script,
+  PHP va s&#039;apercevoir que le dernier script n&#039;a pas été
+  terminé, et il va déclencher la fonction de fermeture.
+  Cette fonction sera aussi appelée à la fin du script,
+  si celui-ci se termine normalement. Pour pouvoir avoir un comportement
+  différent suivant l&#039;état du script lors de sa finalisation,
+  vous pouvez exécutez des commandes spécifiques à
+  la déconnexion grâce à la commande
+   <span class="function"><a href="function.connection-aborted.html" class="function">connection_aborted()</a></span>. Cette fonction retournera
+  <strong><code>TRUE</code></strong> si la connexion a été annulée.
+ </p>
+ <p class="simpara">
+  Votre script peut aussi être automatiquement interrompu
+  après une certaine durée.
+  Par défaut, le délai est de 30 secondes. Cette valeur
+  peut être changée en utilisant la directive PHP
+  <strong class="option unknown">max_execution_time</strong>
+ dans le fichier
+  <var class="filename">php.ini</var> ou avec la directive
+  <em>php_value max_execution_time</em>, dans le fichier
+  Apache <var class="filename">httpd.conf</var> ou encore avec la fonction
+   <span class="function"><a href="function.set-time-limit.html" class="function">set_time_limit()</a></span>.
+  Lorsque le délai expire, le script est terminé,
+  et comme pour la déconnexion du client, une fonction de
+  terminaison sera appelée. Dans cette fonction, vous
+  pouvez savoir si c&#039;est le délai d&#039;expiration qui a
+  causé la fin du script, en appelant la fonction
+   <span class="function"><a href="function.connection-status.html" class="function">connection_status()</a></span>. Cette fonction
+  retournera <em>2</em> si le délai d&#039;expiration a
+  été dépassé.
+ </p>
+ <p class="simpara">
+  Une chose à noter est que les deux cas ABORTED et TIMEOUT
+  peuvent être appelés en même temps. Ceci est
+  possible si vous demandez à PHP d&#039;ignorer les
+  déconnexions des utilisateurs. PHP va quand
+  même noter le fait que l&#039;utilisateur s&#039;est déconnecté,
+  mais le script va continuer. Puis, lorsqu&#039;il atteint la limite de
+  temps, le script va expirer. À ce moment-là, la
+  fonction  <span class="function"><a href="function.connection-status.html" class="function">connection_status()</a></span>
+  retournera <em>3</em>.
+ </p>
+</div>
+<hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="features.remote-files.html">Utilisation des fichiers &agrave; distance</a></div>
+ <div class="next"><a href="features.persistent-connections.html">Connexions persistantes aux bases de donn&eacute;es</a></div>
+ <div class="up"><a href="features.html">Caract&eacute;ristiques</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

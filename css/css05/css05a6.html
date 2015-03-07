@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Marges internes</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function() {
+			top.FP.initPage();
+		}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<section>
+			<p>
+				Les marges internes (padding) permettent de créer de l'espace entre
+				la bordure d'une boîte (border) et le texte ou le contenu de
+				l'élément <abbr title="HyperText Markup Language">HTML</abbr>.
+			</p>
+
+			<p class="fp-clear">
+				Les éléments de type bloc ont des marges <strong>sur les 4
+					côtés</strong> de leur boîte.
+			</p>
+			<p>
+				Les éléments en ligne ont des marges <strong>uniquement à
+					droite et à gauche</strong>.
+			</p>
+
+			<figure style="float: left; margin: 0 50px 1em 50px">
+				<img src="../cssimg/padding_petit.png" width="200" height="138">
+				<figcaption>Marges internes type bloc</figcaption>
+			</figure>
+
+			<figure style="float: left">
+				<img src="../cssimg/padding_petit_en_ligne.png" width="200"
+					height="88">
+				<figcaption>Marges internes type en ligne</figcaption>
+			</figure>
+
+
+			<p class="fp-clear">On ne peut pas affecter de couleur aux marges
+				internes : elles prennent la couleur de fond de la boîte ou laissent
+				apparaitre son image de fond.</p>
+
+			<p>
+				Certains éléments peuvent avoir des marges internes prédéfinies par
+				les navigateurs (par exemple <a
+					onclick="top.FP.Voir.showPageTech('elements', 'body')">body</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'p')">p</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'ul')">ul</a>, etc).
+				Ces valeurs prédéfinies peuvent être différentes d'un navigateur à
+				un autre.
+				<br>
+				Pour être sûr d'avoir les mêmes marges sur tous les navigateurs, il
+				est conseillé de les fixer dans la feuille de style pour les
+				éléments utilisés dans les pages (voir <a class="fp-lientuto"
+					onclick="top.FP.Voir.showPageTuto('css01g1', 'reset_css')">Principes
+					généraux =&gt; La cascade</a>).
+			</p>
+
+
+			<p>Si les marges internes ne sont pas prédéfinies ou omises,
+				elles ont par défaut la valeur 0.</p>
+
+
+			<p>
+				L'unité de taille pour définir une marge est à choisir en fonction
+				du dispositif d'affichage. Par exemple il ne faut pas utiliser des
+				centimètres pour afficher sur un écran pour lequel on privilégiera
+				le pixel CSS (<code>px</code>), le cadratin (<code>em</code>), le
+				pourcentage (<code>%</code>) ou la référence à la racine du document
+				(<code>rem</code>).
+				<br>
+				Les unités utilisées peuvent être différentes pour chacune des
+				marges d'un élément.
+			</p>
+			
+
+			<p>Si les marges internes hautes et basses (<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'padding-top')">padding-top</a> et
+				<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'padding-bottom')">padding-bottom</a>) sont exprimées en 
+					pourcentage (<code>%</code>), la valeur est calculée par rapport à la longueur de la boîte et pas par rapport à la hauteur.</p>
+			
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<h3>La propriété padding</h3>
+		<section>
+			<p>
+				La propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'padding')">padding</a>
+				est un raccourci qui permet de définir les marges des 4 côtés en une seule fois.
+			</p>
+			
+			<p class="fp-bot0">
+				On peut affecter 1, 2, 3 ou 4 valeurs à la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'padding')">padding</a>.
+			</p>
+			
+			<pre data-code="CSS">
+h1 { padding: 5px; }
+h2 { padding: 4px 8px; }
+h3 { padding: 5px 6px 7px 8px; }</pre>
+
+			<figure>
+				<img src="../cssimg/padding_raccourci.png" width="591" height="180">
+				<figcaption>raccourci padding</figcaption>
+			</figure>
+
+			<p class="fp-p-raz fp-petit" style="margin-left: 50px;">Remarque : la forme avec 3 valeurs
+				est rarement utilisée : la marge haute aura la 1ère valeur, les
+				marges droite et gauche auront la 2ème valeur et la marge basse aura
+				la 3ème valeur.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : marges avec raccourci
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Les marges internes du paragraphe sont bien  visibles en lui mettant une bordure. Les marges internes sont l'espace entre le texte et la bordure.&lt;/p&gt;
+		
+		&lt;p&gt;Les marges internes prennent la couleur de fond de la boîte.&lt;/p&gt;
+				
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+p { 
+	width: 300px;
+	border: 2px solid cyan;
+	padding: 30px;
+}
+		
+p:nth-of-type(2) { 
+	padding: 1em 20px;
+	background: lightcyan;
+}</textarea>
+			</form>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Propriétés individualisées</h3>
+
+		<section>
+			<p>
+				Les propriétés <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'padding-top')">padding-top</a>,
+				<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'padding-right')">padding-right</a>,
+				<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'padding-bottom')">padding-bottom</a>
+				et <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'padding-left')">padding-left</a>
+				permettent de définir individuellement les marges des 4 côtés de la
+				boîtes.
+			</p>
+
+			<p>
+				La valeur des propriétés de marge est un nombre <a
+					onclick="top.FP.Voir.showPageTech('longueur', '')">d'unités</a>.
+			</p>
+			<pre data-code="CSS">
+div {
+	padding-top: 10px;
+	padding-right: 1em;
+	padding-bottom: 10%;
+	padding-left: 2.5rem;
+}</pre>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : marges individualisées
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Pas de marge interne&lt;/h3&gt;
+		&lt;p&gt;Quand les boîtes ont des bordures, la marge interne permet d'éloigner le texte du bord et de le rendre plus lisible.&lt;/p&gt;
+				
+		&lt;h3&gt;Avec marge interne&lt;/h3&gt;
+		&lt;p class="marge"&gt;Quand les boîtes ont des bordures, la marge interne permet d'éloigner le texte du bord et de le rendre plus lisible.&lt;/p&gt;	
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+p { 
+	border: 2px solid red;
+	width: 300px;
+}
+
+.marge {
+	padding-top: 0.3em;
+	padding-right: 10px;
+	padding-bottom: 0.3em;
+	padding-left: 10px;
+}</textarea>
+			</form>
+
+
+			<p class="fp-p-raz">
+				L'exemple suivant sélectionne tous les éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'a')">a</a> qui ont
+				un attribut <code>target</code> et ajoute l'icone <img
+					src="onglet.png"> avant le lien pour signaler que le lien
+				ouvre dans un nouvel onglet. Pour l'image ne s'affiche pas sous le texte, on déclage celui-ci avec une 
+				marge interne à gauche.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : marge interne
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;L'Hagard des Etoiles&lt;/h3&gt;
+		
+		&lt;img src="../exemples/img/darkv2.png" align="left"&gt;
+		
+		&lt;p&gt;&lt;a href="luke.html" target="new"&gt;Luke&lt;/a&gt;, on a
+			été racheté par &lt;a href="http://disney.com"&gt;
+			Disney&lt;/a&gt;.&lt;/p&gt;
+		
+		&lt;p&gt;Rejoint nous, et ensemble nous régnerons sur 
+			&lt;a href="http://www.disneylandparis.com/"
+			   target="new"&gt;Disneyland Paris&lt;/a&gt;.
+		&lt;/p&gt;		
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+a[target] {
+	background: url(onglet.png) no-repeat;
+	padding-left: 20px;
+}</textarea>
+			</form>
+
+
+		</section>
+
+
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

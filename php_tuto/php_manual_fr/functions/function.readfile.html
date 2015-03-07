@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Affiche un fichier</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.popen.html">popen</a>
+		</div>
+		<div class="next">
+			<a href="function.readlink.html">readlink</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.readfile" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">readfile</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">readfile</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Affiche un fichier</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.readfile-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">int</span> <span class="methodname"><strong>readfile</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$filename</code></span> [, <span
+					class="methodparam"><span class="type">bool</span> <code
+						class="parameter">$use_include_path</code><span
+					class="initializer"> = false</span></span> [, <span class="methodparam"><span
+					class="type">resource</span> <code class="parameter">$context</code></span>
+				]] )
+			</div>
+
+			<p class="para rdfs-comment">Lit un fichier et l&#039;envoie dans
+				le buffer de sortie.</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.readfile-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">filename</code></em></span>
+				<dd>
+
+					<p class="para">Le fichier à lire.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">use_include_path</code></em></span>
+				<dd>
+
+					<p class="para">
+						Vous pouvez utiliser le deuxième paramètre optionnel pour explorer
+						le dossier <a href="ini.core.html#ini.include-path" class="link">include_path</a>,
+						en passant la valeur de <strong><code>TRUE</code></strong>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">context</code></em></span>
+				<dd>
+
+					<p class="para">Une ressource de contexte.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.readfile-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne le nombre d&#039;octets lus depuis le fichier. Si une
+				erreur survient, retourne <strong><code>FALSE</code></strong>, et à
+				moins que la fonction n&#039;ait été appelée avec @ <span
+					class="function"><strong>readfile()</strong></span>, un message
+				d&#039;erreur est affiché.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.readfile-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2289">
+				<p>
+					<strong>Exemple #1 Forcer le téléchargement en utilisant <span
+						class="function"><strong>readfile()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$file&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'monkey.gif'</span><span
+								style="color: #007700">;<br />
+								<br />if&nbsp;(
+							</span><span style="color: #0000BB">file_exists</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$file</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">header</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'Content-Description:&nbsp;File&nbsp;Transfer'</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">header</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'Content-Type:&nbsp;application/octet-stream'</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">header</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'Content-Disposition:&nbsp;attachment;&nbsp;filename='</span><span
+								style="color: #007700">.</span><span style="color: #0000BB">basename</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$file</span><span
+								style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">header</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'Content-Transfer-Encoding:&nbsp;binary'</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">header</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'Expires:&nbsp;0'</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">header</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'Cache-Control:&nbsp;must-revalidate'</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">header</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'Pragma:&nbsp;public'</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">header</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'Content-Length:&nbsp;'&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">filesize</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$file</span><span
+								style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">ob_clean</span><span
+								style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">flush</span><span
+								style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">readfile</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$file</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher quelque chose de
+						similaire à :</p>
+				</div>
+				<div class="mediaobject">
+
+					<div class="imageobject">
+						<img src="images/e88cefb5c3fca5060e2490b9763c4433-readfile.png"
+							alt="Fenêtre d'ouverture / de sauvegarde" width="319"
+							height="245" />
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.readfile-notes">
+			<h3 class="title">Notes</h3>
+
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					<span class="function"><strong>readfile()</strong></span> ne
+					présentera pas de problème mémoire, même lors de l&#039;envoi de
+					gros fichiers. Si vous rencontrez ce type de problème, assurez-vous
+					que la mise en mémoire tampon de la sortie est désactivée avec la
+					fonction <span class="function"><a
+						href="function.ob-get-level.html" class="function">ob_get_level()</a></span>.
+			</blockquote>
+
+			<div class="tip">
+				<strong class="tip">Astuce</strong>
+				<p class="simpara">
+					Vous pouvez utiliser une URL comme nom de fichier avec cette
+					fonction, si le <a
+						href="filesystem.configuration.html#ini.allow-url-fopen"
+						class="link">gestionnaire fopen</a> a été activé. Voyez <span
+						class="function"><a href="function.fopen.html"
+						class="function">fopen()</a></span> pour plus de détails sur la façon de
+					spécifier le nom du fichier. Reportez-vous aux <a
+						href="wrappers.html" class="xref">Liste des protocoles et des
+						gestionnaires support&eacute;s</a> pour plus d&#039;informations sur
+					les capacités des différents gestionnaires, les notes sur leur
+					utilisation, ainsi que les informations sur leurs variables
+					prédéfinies fournies.
+				</p>
+			</div>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Le
+						support de contexte a été ajouté en PHP 5.0.0. Pour une
+						description des contextes, référez-vous à <a
+						href="book.stream.html" class="xref">Flux</a>.
+					</span>
+				</p>
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.readfile-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.fpassthru.html" class="function" rel="rdfs-seeAlso">fpassthru()</a>
+						- Affiche le reste du fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.file.html" class="function" rel="rdfs-seeAlso">file()</a>
+						- Lit le fichier et renvoie le r&eacute;sultat dans un tableau</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fopen.html" class="function" rel="rdfs-seeAlso">fopen()</a>
+						- Ouvre un fichier ou une URL</span></li>
+				<li class="member"><span class="function"><a
+						href="function.include.html" class="function" rel="rdfs-seeAlso">include</a>
+						- include</span></li>
+				<li class="member"><span class="function"><a
+						href="function.require.html" class="function" rel="rdfs-seeAlso">require</a>
+						- require</span></li>
+				<li class="member"><span class="function"><a
+						href="function.virtual.html" class="function" rel="rdfs-seeAlso">virtual()</a>
+						- Effectue une sous-requ&ecirc;te Apache</span></li>
+				<li class="member"><span class="function"><a
+						href="function.file-get-contents.html" class="function"
+						rel="rdfs-seeAlso">file_get_contents()</a> - Lit tout un fichier
+						dans une cha&icirc;ne</span></li>
+				<li class="member"><a href="wrappers.html" class="xref">Liste
+						des protocoles et des gestionnaires support&eacute;s</a></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.popen.html">popen</a>
+		</div>
+		<div class="next">
+			<a href="function.readlink.html">readlink</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

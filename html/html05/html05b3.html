@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Les listes de définitions</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<h3>dl : liste de définitions</h3>
+		<section>
+			<p>Les listes de définitions permettent d'associer deux contenus
+				entre eux. Si le 1er exemple qui vient à l'esprit est un glossaire
+				(des termes sont associés à leur définition), on peut aussi employer
+				ce type de liste pour des FAQ (Foires Aux Questions) ou des
+				traductions.</p>
+
+			<p class="fp-bot0">Une liste de définitions se fait avec 2
+				élements <abbr title="HyperText Markup Language">HTML</abbr> :</p>
+			<ul>
+				<li>l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'dl')">dl</a> marque
+					les limites de la liste,
+				</li>
+				<li>l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'dt')">dt</a> définit
+					un terme de la liste.
+				</li>
+				<li>l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'dd')">dd</a> définit
+					le contenu associé au terme.
+				</li>
+			</ul>
+
+			<figure>
+				<img src="../htmlimg/liste03.png" width="470" height="181">
+				<figcaption> liste de définitions</figcaption>
+			</figure>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : listes de définitions
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Listes de définitions&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Des personnages fantastiques ...&lt;/h3&gt;
+		&lt;dl&gt;
+			&lt;dt&gt;Yoda&lt;/dt&gt;
+			&lt;dd&gt;Yoda fut l'un des Maîtres Jedi les plus renommés de l'histoire galactique, il était connu pour sa sagesse légendaire, sa maîtrise de la Force et ses compétences en combat au sabre laser.&lt;/dd&gt;
+			&lt;dt&gt;Gandalf&lt;/dt&gt;
+			&lt;dd&gt;Gandalf est un mystérieux vieillard, membre de l'Ordre des Mages, qui met en branle les événements et joue un rôle de sage conseiller utilisant les forces de la magie blanche qu'il contrôle.&lt;/dd&gt;
+		&lt;/dl&gt;
+		
+		&lt;h3&gt;... pour des histoires identiques.&lt;/h3&gt;
+		&lt;dl&gt;
+			&lt;dt&gt;&lt;b&gt;Qui a une épée bleue qui brille ?&lt;/b&gt;&lt;/dt&gt;
+			&lt;dd&gt;Luke Skywalker a un sabre-laser bleu et Frodon a lui aussi une épée bleu qui brille quand le danger est proche.&lt;/dd&gt;
+			&lt;dt&gt;&lt;b&gt;Qui a une main coupée ?&lt;/b&gt;&lt;/dt&gt;
+			&lt;dd&gt;Le grand méchant Dark Vador se fait couper la main avant de devenir encore plus méchant. Le grand méchant Sauron se fait couper la main qui porte l'anneau.&lt;/dd&gt;
+			&lt;dt&gt;&lt;b&gt;Des répliques identiques mot pour mot.&lt;/b&gt;&lt;/dt&gt;
+			&lt;dd&gt;Quand Dark Vador meurt, Luke lui dit "Je vais te sauver !". Darkounet lui répond : "Tu l'as déjà fait". Quand Theoden meurt, Eowyn lui dit "Je vais te sauver !". Theoden répond : "Tu l'as déjà fait".
+		&lt;/dl&gt;				
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>Si on peut faire une analogie avec le concept des tables de
+				hashage (des association de couples nom/valeur), les listes de
+				définitions permettent aussi de faire des associations multiples (un
+				nom avec plusieurs valeurs ou plusieurs noms avec la même valeur).</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : listes de définitions
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Listes de définitions&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Un nom et plusieurs valeurs&lt;/h3&gt;
+		&lt;dl&gt;
+			&lt;dt&gt;rouge&lt;/dt&gt;
+			&lt;dd lang="en"&gt;red&lt;/dd&gt;
+			&lt;dd lang="de"&gt;rot&lt;/dd&gt;
+			&lt;dd lang="it"&gt;rosso&lt;/dd&gt;
+			&lt;dt&gt;jaune&lt;/dt&gt;
+			&lt;dd lang="en"&gt;yellow&lt;/dd&gt;
+			&lt;dd lang="de"&gt;gelb&lt;/dd&gt;
+			&lt;dd lang="it"&gt;giallo&lt;/dd&gt;
+		&lt;/dl&gt;
+		
+		&lt;h3&gt;Plusieurs noms et une même valeur&lt;/h3&gt;
+		&lt;dl&gt;
+			&lt;dt&gt;Navigateur&lt;/dt&gt;
+			&lt;dt&gt;Explorateur&lt;/dt&gt;
+			&lt;dt&gt;Butineur&lt;/dt&gt;
+			&lt;dt&gt;Fureteur&lt;/dt&gt;
+			&lt;dd&gt;Logiciel permettant l'affichage des pages web
+				à l'écran et proposant des fonctionnalités
+				étendues pour l'exploration sur le Net.&lt;/dd&gt;
+			&lt;dt&gt;Apprendre&lt;/dt&gt;
+			&lt;dt&gt;Etudier&lt;/dt&gt;
+			&lt;dt&gt;S'instruire&lt;/dt&gt;
+			&lt;dt&gt;Travailler&lt;/dt&gt;
+			&lt;dd&gt;Acquérir par l'étude, par la pratique, par
+				l'expérience une connaissance, un savoir-
+				faire, quelque chose d'utile&lt;/dd&gt;
+		&lt;/dl&gt;				
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+		</section>
+		
+		<a id="exo_liste_definitions"></a>
+		<h3 class="fp-exo">Définitions des élements de liste</h3>
+		<section>
+			<p class="fp-p-raz">Réalisez la liste de définitions permettant d'obtenir la
+				page ci-dessous.</p>
+
+			<figure>
+				<img src="../exercices/exo_liste_definitions.png" width="537"
+					height="360">
+				<figcaption>définitions des élements de liste</figcaption>
+			</figure>
+
+			<p class="fp-completez">
+				<a
+					onclick="top.FP.Voir.showCompletez('exo_liste_definitions_comp')">Code à compléter</a>
+			</p>
+
+			<div id="exo_liste_definitions_comp" class="BLOC-completez">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : définitions des élements de liste
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+
+			<p class="fp-solution">
+				<a
+					onclick="top.FP.Voir.showSolution('exo_liste_definitions_solu', 1)">Une
+					solution possible</a>
+			</p>
+			<div id="exo_liste_definitions_solu" class="BLOC-solution">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : définitions des élements de liste
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Eléments HTML de liste&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Eléments HTML de liste&lt;/p&gt;
+		&lt;dl&gt;
+			&lt;dt&gt;ol&lt;/dt&gt;
+			&lt;dd&gt;Définit une liste ordonnée&lt;/dd&gt;
+			&lt;dt&gt;ul&lt;/dt&gt;
+			&lt;dd&gt;Définit une liste non ordonnée&lt;/dd&gt;
+			&lt;dt&gt;li&lt;/dt&gt;
+			&lt;dd&gt;Définit une ligne dans une liste ordonnée ou non ordonnée&lt;/dd&gt;
+			&lt;dt&gt;dl&lt;/dt&gt;
+			&lt;dd&gt;Définit une liste de définitions&lt;/dd&gt;
+			&lt;dt&gt;dt&lt;/dt&gt;
+			&lt;dd&gt;Définit un terme dans une liste de définitions&lt;/dd&gt;
+			&lt;dt&gt;dd&lt;/dt&gt;
+			&lt;dd&gt;Définit une définition pour un terme dans une liste de définition&lt;/dd&gt;
+		&lt;/dl&gt;			
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+		</section>		
+	</div>
+	<footer></footer>
+</body>
+</html>

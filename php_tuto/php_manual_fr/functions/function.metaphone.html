@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Calcule la cl&eacute; metaphone</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.md5.html">md5</a>
+		</div>
+		<div class="next">
+			<a href="function.money-format.html">money_format</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.metaphone" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">metaphone</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">metaphone</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Calcule la clé metaphone</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.metaphone-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>metaphone</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$str</code></span> [, <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$phonemes</code><span
+					class="initializer"> = 0</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				Calcule la clé metaphone de <em><code class="parameter">str</code></em>.
+			</p>
+			<p class="para">
+				<span class="function"><strong>metaphone()</strong></span> est
+				similaire à la fonction <span class="function"><a
+					href="function.soundex.html" class="function">soundex()</a></span> : elle
+				créée une clé similaire pour des mots dont la prononciation est
+				proche. C&#039;est une fonction qui est plus précise que <span
+					class="function"><a href="function.soundex.html"
+					class="function">soundex()</a></span> car elle prend en compte la
+				prononciation anglaise. La clé metaphone générée est de taille
+				variable.
+			</p>
+			<p class="para">
+				Metaphone a été développée par Lawrence Philips &lt;lphilips at
+				verity dot com&gt;. Cette méthode est décrite dans le livre <em>[&quot;Practical
+					Algorithms for Programmers&quot;, Binstock &amp; Rex, Addison
+					Wesley, 1995]</em>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.metaphone-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">str</code></em></span>
+				<dd>
+
+					<p class="para">La chaîne d&#039;entrée.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">phonemes</code></em></span>
+				<dd>
+
+					<p class="para">
+						Ce paramètre restreint la clé métaphone retournée à une longueur
+						de <em><code class="parameter">phonemes</code></em> caractères. La
+						valeur par défaut est <em>0</em>, ce qui signifie qu&#039;aucune
+						limitation ne sera appliquée.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.metaphone-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne la clé metaphone, sous la forme d&#039;une <a
+					href="language.types.string.html" class="link">chaîne de
+					caractères</a>, ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.metaphone-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="metaphone.example.basic">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>metaphone()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />var_dump
+							</span><span style="color: #007700">(</span><span style="color: #0000BB">metaphone</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'programming'</span><span
+								style="color: #007700">));<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">metaphone</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'programmer'</span><span
+								style="color: #007700">));<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher quelque chose de
+						similaire à :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+string(7) &quot;PRKRMNK&quot;
+string(6) &quot;PRKRMR&quot;
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="metaphone.example.phonemes">
+				<p>
+					<strong>Exemple #2 Utilisation du paramètre <em><code
+								class="parameter">phonemes</code></em></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />var_dump
+							</span><span style="color: #007700">(</span><span style="color: #0000BB">metaphone</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'programming'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">5</span><span style="color: #007700">));<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">metaphone</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'programmer'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">5</span><span style="color: #007700">));<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher quelque chose de
+						similaire à :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+string(5) &quot;PRKRM&quot;
+string(5) &quot;PRKRM&quot;
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.md5.html">md5</a>
+		</div>
+		<div class="next">
+			<a href="function.money-format.html">money_format</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Exceptions &eacute;tendues</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.exceptions.html">Les exceptions</a>
+		</div>
+		<div class="next">
+			<a href="language.references.html">Les r&eacute;f&eacute;rences</a>
+		</div>
+		<div class="up">
+			<a href="language.exceptions.html">Les exceptions</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.exceptions.extending" class="sect1">
+		<h2 class="title">Exceptions étendues</h2>
+		<p class="para">Une classe d&#039;exception écrite par
+			l&#039;utilisateur peut être définie en étendant la classe Exception
+			interne. Les membres et les propriétés suivants montrent ce qui est
+			accessible dans la classe enfant qui est dérivée de la classe
+			Exception interne.</p>
+		<div class="example" id="example-274">
+			<p>
+				<strong>Exemple #1 La classe Exception interne</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">class&nbsp;</span><span
+							style="color: #0000BB">Exception<br /></span><span
+							style="color: #007700">{<br />&nbsp;&nbsp;protected&nbsp;
+						</span><span style="color: #0000BB">$message&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'exception&nbsp;inconnu'</span><span
+							style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;message&nbsp;de&nbsp;l'exception<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">private&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #0000BB">$string</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;__toString&nbsp;cache<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">protected&nbsp;</span><span
+							style="color: #0000BB">$code&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span
+							style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;code&nbsp;de&nbsp;l'exception&nbsp;défini&nbsp;par&nbsp;l'utilisateur<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">protected&nbsp;</span><span
+							style="color: #0000BB">$file</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;nom&nbsp;du&nbsp;fichier&nbsp;source&nbsp;de&nbsp;l'exception<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">protected&nbsp;</span><span
+							style="color: #0000BB">$line</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;ligne&nbsp;de&nbsp;la&nbsp;source&nbsp;de&nbsp;l'exception<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">private&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #0000BB">$trace</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;backtrace<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">private&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #0000BB">$previous</span><span
+							style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;exception&nbsp;précédente&nbsp;(depuis&nbsp;PHP&nbsp;5.3)<br />
+							<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">public&nbsp;function&nbsp;</span><span
+							style="color: #0000BB">__construct</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$message&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$code&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">Exception&nbsp;$previous&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span><span
+							style="color: #007700">);<br />
+							<br />&nbsp;&nbsp;final&nbsp;private&nbsp;function&nbsp;
+						</span><span style="color: #0000BB">__clone</span><span
+							style="color: #007700">();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;Inhibe&nbsp;le&nbsp;clonage&nbsp;des&nbsp;exceptions.<br />
+							<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">final&nbsp;public&nbsp;function&nbsp;</span><span
+							style="color: #0000BB">getMessage</span><span
+							style="color: #007700">();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;message&nbsp;de&nbsp;l'exception<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">final&nbsp;public&nbsp;function&nbsp;</span><span
+							style="color: #0000BB">getCode</span><span style="color: #007700">();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;code&nbsp;de&nbsp;l'exception<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">final&nbsp;public&nbsp;function&nbsp;</span><span
+							style="color: #0000BB">getFile</span><span style="color: #007700">();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;nom&nbsp;du&nbsp;fichier&nbsp;source<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">final&nbsp;public&nbsp;function&nbsp;</span><span
+							style="color: #0000BB">getLine</span><span style="color: #007700">();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;ligne&nbsp;du&nbsp;fichier&nbsp;source<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">final&nbsp;public&nbsp;function&nbsp;</span><span
+							style="color: #0000BB">getTrace</span><span
+							style="color: #007700">();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;un&nbsp;tableau&nbsp;de&nbsp;backtrace()<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">final&nbsp;public&nbsp;function&nbsp;</span><span
+							style="color: #0000BB">getPrevious</span><span
+							style="color: #007700">();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;exception&nbsp;précédente&nbsp;(depuis&nbsp;PHP&nbsp;5.3)<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">final&nbsp;public&nbsp;function&nbsp;</span><span
+							style="color: #0000BB">getTraceAsString</span><span
+							style="color: #007700">();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;chaîne&nbsp;formatée&nbsp;de&nbsp;trace<br />
+							<br />&nbsp;&nbsp;/*&nbsp;Remplacable&nbsp;*/<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">public&nbsp;function&nbsp;</span><span
+							style="color: #0000BB">__toString</span><span
+							style="color: #007700">();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;chaîne&nbsp;formatée&nbsp;pour&nbsp;l'affichage<br /></span><span
+							style="color: #007700">}<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		<p class="para">
+			Si une classe étend la classe Exception interne et redéfinit le <a
+				href="language.oop5.decon.html" class="link">constructeur</a>, il
+			est vivement recommandé qu&#039;elle appelle aussi <a
+				href="language.oop5.paamayim-nekudotayim.html" class="link"> <em>parent::__construct()</em></a>
+			pour s&#039;assurer que toutes les données disponibles ont été
+			proprement assignées. La méthode <a href="language.oop5.magic.html"
+				class="link">__toString()</a> peut être réécrite pour fournir un
+			affichage personnalisé lorsque l&#039;objet est présenté comme une
+			chaîne.
+		</p>
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>:
+			<p class="para">
+				Les exceptions ne peuvent pas être clônées. Si vous tentez de <a
+					href="language.oop5.cloning.html" class="link">clôner</a> une
+				exception, une erreur fatale (<strong><code>E_ERROR</code></strong>)
+				sera émise.
+		</blockquote>
+		<div class="example" id="example-275">
+			<p>
+				<strong>Exemple #2 Étendre la classe Exception (PHP 5.3.0+)</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #FF8000">/**<br />*&nbsp;Définition&nbsp;d'une&nbsp;classe&nbsp;d'exception&nbsp;personnalisée<br />*/<br /></span><span
+							style="color: #007700">class&nbsp;</span><span
+							style="color: #0000BB">MyException&nbsp;</span><span
+							style="color: #007700">extends&nbsp;</span><span
+							style="color: #0000BB">Exception<br /></span><span
+							style="color: #007700">{<br />&nbsp;&nbsp;
+						</span><span style="color: #FF8000">//&nbsp;Redéfinissez&nbsp;l'exception&nbsp;ainsi&nbsp;le&nbsp;message&nbsp;n'est&nbsp;pas&nbsp;facultatif<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">public&nbsp;function&nbsp;</span><span
+							style="color: #0000BB">__construct</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$message</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$code&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">Exception&nbsp;$previous&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span><span
+							style="color: #007700">)&nbsp;{<br />
+							<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #FF8000">//&nbsp;traitement&nbsp;personnalisé&nbsp;que&nbsp;vous&nbsp;voulez&nbsp;réaliser&nbsp;...<br />
+							<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;assurez-vous&nbsp;que&nbsp;tout&nbsp;a&nbsp;été&nbsp;assigné&nbsp;proprement<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #0000BB">parent</span><span
+							style="color: #007700">::</span><span style="color: #0000BB">__construct</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$message</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$code</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$previous</span><span
+							style="color: #007700">);<br />&nbsp;&nbsp;}<br />
+							<br />&nbsp;&nbsp;
+						</span><span style="color: #FF8000">//&nbsp;chaîne&nbsp;personnalisée&nbsp;représentant&nbsp;l'objet<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">public&nbsp;function&nbsp;</span><span
+							style="color: #0000BB">__toString</span><span
+							style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+						</span><span style="color: #0000BB">__CLASS__&nbsp;</span><span
+							style="color: #007700">.&nbsp;</span><span style="color: #DD0000">":&nbsp;[</span><span
+							style="color: #007700">{</span><span style="color: #0000BB">$this</span><span
+							style="color: #007700">-&gt;</span><span style="color: #0000BB">code</span><span
+							style="color: #007700">}</span><span style="color: #DD0000">]:&nbsp;</span><span
+							style="color: #007700">{</span><span style="color: #0000BB">$this</span><span
+							style="color: #007700">-&gt;</span><span style="color: #0000BB">message</span><span
+							style="color: #007700">}</span><span style="color: #DD0000">\n"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;}<br />
+							<br />&nbsp;&nbsp;public&nbsp;function&nbsp;
+						</span><span style="color: #0000BB">customFunction</span><span
+							style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"Une&nbsp;fonction&nbsp;personnalisée&nbsp;pour&nbsp;ce&nbsp;type&nbsp;d'exception\n"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;}<br />}<br />
+							<br /></span><span style="color: #FF8000">/**<br />*&nbsp;Création&nbsp;d'une&nbsp;classe&nbsp;pour&nbsp;tester&nbsp;l'exception<br />*/<br /></span><span
+							style="color: #007700">class&nbsp;</span><span
+							style="color: #0000BB">TestException<br /></span><span
+							style="color: #007700">{<br />&nbsp;&nbsp;public&nbsp;
+						</span><span style="color: #0000BB">$var</span><span
+							style="color: #007700">;<br />
+							<br />&nbsp;&nbsp;const&nbsp;
+						</span><span style="color: #0000BB">THROW_NONE&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;const&nbsp;
+						</span><span style="color: #0000BB">THROW_CUSTOM&nbsp;&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;const&nbsp;
+						</span><span style="color: #0000BB">THROW_DEFAULT&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">2</span><span
+							style="color: #007700">;<br />
+							<br />&nbsp;&nbsp;function&nbsp;
+						</span><span style="color: #0000BB">__construct</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$avalue&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">self</span><span
+							style="color: #007700">::</span><span style="color: #0000BB">THROW_NONE</span><span
+							style="color: #007700">)&nbsp;{<br />
+							<br />&nbsp;&nbsp;&nbsp;&nbsp;switch&nbsp;(
+						</span><span style="color: #0000BB">$avalue</span><span
+							style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+						</span><span style="color: #0000BB">self</span><span
+							style="color: #007700">::</span><span style="color: #0000BB">THROW_CUSTOM</span><span
+							style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #FF8000">//&nbsp;lance&nbsp;une&nbsp;exception&nbsp;personnalisée<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">throw&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">MyException</span><span
+							style="color: #007700">(</span><span style="color: #DD0000">'1&nbsp;est&nbsp;un&nbsp;paramètre&nbsp;invalide'</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">5</span><span
+							style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />
+							<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;
+						</span><span style="color: #0000BB">self</span><span
+							style="color: #007700">::</span><span style="color: #0000BB">THROW_DEFAULT</span><span
+							style="color: #007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #FF8000">//&nbsp;lance&nbsp;l'exception&nbsp;par&nbsp;défaut.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">throw&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">Exception</span><span
+							style="color: #007700">(</span><span style="color: #DD0000">'2&nbsp;n\'est&nbsp;pas&nbsp;autorisé&nbsp;en&nbsp;tant&nbsp;que&nbsp;paramètre'</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">6</span><span
+							style="color: #007700">);<br />
+							<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />
+							<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #FF8000">//&nbsp;Aucune&nbsp;exception,&nbsp;l'objet&nbsp;sera&nbsp;créé.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #0000BB">$this</span><span
+							style="color: #007700">-&gt;</span><span style="color: #0000BB">var&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$avalue</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;}<br />}<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Exemple&nbsp;1<br /></span><span
+							style="color: #007700">try&nbsp;{<br />&nbsp;&nbsp;
+						</span><span style="color: #0000BB">$o&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">TestException</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">TestException</span><span
+							style="color: #007700">::</span><span style="color: #0000BB">THROW_CUSTOM</span><span
+							style="color: #007700">);<br />}&nbsp;catch&nbsp;(
+						</span><span style="color: #0000BB">MyException&nbsp;$e</span><span
+							style="color: #007700">)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;Devrait&nbsp;être&nbsp;attrapée<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">echo&nbsp;</span><span
+							style="color: #DD0000">"Capture&nbsp;mon&nbsp;exception\n"</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$e</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;
+						</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span
+							style="color: #0000BB">customFunction</span><span
+							style="color: #007700">();<br />}&nbsp;catch&nbsp;(
+						</span><span style="color: #0000BB">Exception&nbsp;$e</span><span
+							style="color: #007700">)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;Sauté<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">echo&nbsp;</span><span
+							style="color: #DD0000">"Capture&nbsp;l'exception&nbsp;par&nbsp;défaut\n"</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$e</span><span
+							style="color: #007700">;<br />}<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Continue&nbsp;l'exécution<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$o</span><span
+							style="color: #007700">);&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;Null<br /></span><span
+							style="color: #007700">echo&nbsp;</span><span
+							style="color: #DD0000">"\n\n"</span><span style="color: #007700">;<br />
+							<br />
+							<br /></span><span style="color: #FF8000">//Exemple&nbsp;2<br /></span><span
+							style="color: #007700">try&nbsp;{<br />&nbsp;&nbsp;
+						</span><span style="color: #0000BB">$o&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">TestException</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">TestException</span><span
+							style="color: #007700">::</span><span style="color: #0000BB">THROW_DEFAULT</span><span
+							style="color: #007700">);<br />}&nbsp;catch&nbsp;(
+						</span><span style="color: #0000BB">MyException&nbsp;$e</span><span
+							style="color: #007700">)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;Ne&nbsp;correspond&nbsp;pas&nbsp;à&nbsp;ce&nbsp;type<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">echo&nbsp;</span><span
+							style="color: #DD0000">"Capture&nbsp;mon&nbsp;exception\n"</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$e</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;
+						</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span
+							style="color: #0000BB">customFunction</span><span
+							style="color: #007700">();<br />}&nbsp;catch&nbsp;(
+						</span><span style="color: #0000BB">Exception&nbsp;$e</span><span
+							style="color: #007700">)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;Devrait&nbsp;être&nbsp;attrapée<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">echo&nbsp;</span><span
+							style="color: #DD0000">"Capture&nbsp;l'exception&nbsp;par&nbsp;défaut\n"</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$e</span><span
+							style="color: #007700">;<br />}<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Continue&nbsp;l'exécution<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$o</span><span
+							style="color: #007700">);&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;Null<br /></span><span
+							style="color: #007700">echo&nbsp;</span><span
+							style="color: #DD0000">"\n\n"</span><span style="color: #007700">;<br />
+							<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Exemple&nbsp;3<br /></span><span
+							style="color: #007700">try&nbsp;{<br />&nbsp;&nbsp;
+						</span><span style="color: #0000BB">$o&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">TestException</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">TestException</span><span
+							style="color: #007700">::</span><span style="color: #0000BB">THROW_CUSTOM</span><span
+							style="color: #007700">);<br />}&nbsp;catch&nbsp;(
+						</span><span style="color: #0000BB">Exception&nbsp;$e</span><span
+							style="color: #007700">)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;Devrait&nbsp;être&nbsp;attrapée<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">echo&nbsp;</span><span
+							style="color: #DD0000">"Capture&nbsp;l'exception&nbsp;par&nbsp;défaut\n"</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$e</span><span
+							style="color: #007700">;<br />}<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Continue&nbsp;l'exécution<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$o</span><span
+							style="color: #007700">);&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;Null<br /></span><span
+							style="color: #007700">echo&nbsp;</span><span
+							style="color: #DD0000">"\n\n"</span><span style="color: #007700">;<br />
+							<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Exemple&nbsp;4<br /></span><span
+							style="color: #007700">try&nbsp;{<br />&nbsp;&nbsp;
+						</span><span style="color: #0000BB">$o&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">TestException</span><span
+							style="color: #007700">();<br />}&nbsp;catch&nbsp;(
+						</span><span style="color: #0000BB">Exception&nbsp;$e</span><span
+							style="color: #007700">)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;sauté,&nbsp;aucune&nbsp;exception<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">echo&nbsp;</span><span
+							style="color: #DD0000">"Capture&nbsp;l'exception&nbsp;par&nbsp;défaut\n"</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$e</span><span
+							style="color: #007700">;<br />}<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;Continue&nbsp;l'exécution<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$o</span><span
+							style="color: #007700">);&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;TestException<br /></span><span
+							style="color: #007700">echo&nbsp;</span><span
+							style="color: #DD0000">"\n\n"</span><span style="color: #007700">;<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Dans PHP, avant PHP 5.3.0 les exceptions ne
+					pouvaient être nichées. Le code suivant montre un exemple
+					d&#039;extension de la classe d&#039;Exception avant PHP 5.3.0.</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">/**<br />&nbsp;*&nbsp;Définition&nbsp;d'une&nbsp;classe&nbsp;d'exception&nbsp;personnalisée<br />&nbsp;*/<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">MyException&nbsp;</span><span
+								style="color: #007700">extends&nbsp;</span><span
+								style="color: #0000BB">Exception<br /></span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;Redéfinition&nbsp;du&nbsp;constructeur&nbsp;pour&nbsp;rendre&nbsp;le&nbsp;message&nbsp;obligatoire<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">public&nbsp;function&nbsp;</span><span
+								style="color: #0000BB">__construct</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$message</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$code&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;du&nbsp;code&nbsp;ici<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Appel&nbsp;du&nbsp;parent<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">parent</span><span
+								style="color: #007700">::</span><span style="color: #0000BB">__construct</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$message</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$code</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;Représentation&nbsp;de&nbsp;l'objet&nbsp;sous&nbsp;forme&nbsp;de&nbsp;chaine&nbsp;personnalisée<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">public&nbsp;function&nbsp;</span><span
+								style="color: #0000BB">__toString</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">__CLASS__&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #DD0000">":&nbsp;[</span><span
+								style="color: #007700">{</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">code</span><span
+								style="color: #007700">}</span><span style="color: #DD0000">]:&nbsp;</span><span
+								style="color: #007700">{</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">message</span><span
+								style="color: #007700">}</span><span style="color: #DD0000">\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">customFunction</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Une&nbsp;méthode&nbsp;personnalisée&nbsp;pour&nbsp;cette&nbsp;exception\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				</p>
+			</blockquote>
+		</div>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.exceptions.html">Les exceptions</a>
+		</div>
+		<div class="next">
+			<a href="language.references.html">Les r&eacute;f&eacute;rences</a>
+		</div>
+		<div class="up">
+			<a href="language.exceptions.html">Les exceptions</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

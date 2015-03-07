@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Calcule la diff&eacute;rence entre deux tableaux en
+	utilisant une fonction rappel</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.array-udiff-uassoc.html">array_udiff_uassoc</a>
+		</div>
+		<div class="next">
+			<a href="function.array-uintersect-assoc.html">array_uintersect_assoc</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.array-udiff" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">array_udiff</h1>
+			<p class="verinfo">(PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">array_udiff</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Calcule la différence entre deux
+					tableaux en utilisant une fonction rappel</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.array-udiff-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>array_udiff</strong></span>
+				( <span class="methodparam"><span class="type">array</span> <code
+						class="parameter">$array1</code></span> , <span class="methodparam"><span
+					class="type">array</span> <code class="parameter">$array2</code></span> [,
+				<span class="methodparam"><span class="type">array</span> <code
+						class="parameter">$ ...</code></span> ], <span class="methodparam"><span
+					class="type"><a href="language.types.callable.html"
+						class="type callable">callable</a></span> <code class="parameter">$data_compare_func</code></span>
+				)
+			</div>
+
+			<p class="para rdfs-comment">
+				Calcule la différence entre deux tableaux en utilisant une fonction
+				rappel. Cette fonctionne agit comme la fonction <span
+					class="function"><a href="function.array-diff.html"
+					class="function">array_diff()</a></span> qui utilise une fonction interne
+				pour comparer les données.
+			</p>
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.array-udiff-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">array1</code></em></span>
+				<dd>
+
+					<p class="para">Le premier tableau.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">array2</code></em></span>
+				<dd>
+
+					<p class="para">Le second tableau.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">data_compare_func</code></em></span>
+				<dd>
+
+					<p class="para">La fonction de comparaison.</p>
+					<p class="para">La fonction de comparaison doit retourner un
+						entier inférieur à, égal à, ou supérieur à 0 si le premier
+						argument est considéré comme, respectivement, inférieur à, égal à,
+						ou supérieur au second.</p>
+					<div class="methodsynopsis dc-description">
+						<span class="type">int</span> <span class="methodname"><span
+							class="replaceable">callback</span></span> ( <span class="methodparam"><span
+							class="type"><a
+								href="language.pseudo-types.html#language.types.mixed"
+								class="type mixed">mixed</a></span> <code class="parameter">$a</code></span>,
+						<span class="methodparam"><span class="type"><a
+								href="language.pseudo-types.html#language.types.mixed"
+								class="type mixed">mixed</a></span> <code class="parameter">$b</code></span> )
+					</div>
+
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.array-udiff-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne un tableau contenant toutes les valeurs du tableau <em><code
+						class="parameter">array1</code></em> qui ne sont pas présentes dans
+				aucun autre argument.
+			</p>
+		</div>
+
+		<div class="refsect1 examples"
+			id="refsect1-function.array-udiff-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4644">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>array_udiff()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">cr&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;
+							</span><span style="color: #0000BB">$priv_member</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">cr</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$val</span><span
+								style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">priv_member&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">$val</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">comp_func_cr</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$b</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(
+							</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">priv_member&nbsp;</span><span
+								style="color: #007700">===&nbsp;</span><span
+								style="color: #0000BB">$b</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">priv_member</span><span
+								style="color: #007700">)&nbsp;return&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(
+							</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">priv_member&nbsp;</span><span
+								style="color: #007700">&gt;&nbsp;</span><span
+								style="color: #0000BB">$b</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">priv_member</span><span
+								style="color: #007700">)?&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">:-</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span
+								style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">"0.1"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">cr</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">9</span><span style="color: #007700">),&nbsp;</span><span
+								style="color: #DD0000">"0.5"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">cr</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">12</span><span style="color: #007700">),&nbsp;</span><span
+								style="color: #0000BB">0&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">cr</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">23</span><span style="color: #007700">),&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">=&gt;&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">cr</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">4</span><span style="color: #007700">),&nbsp;</span><span
+								style="color: #0000BB">2&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">cr</span><span style="color: #007700">(-</span><span
+								style="color: #0000BB">15</span><span style="color: #007700">),);<br /></span><span
+								style="color: #0000BB">$b&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">"0.2"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">cr</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">9</span><span style="color: #007700">),&nbsp;</span><span
+								style="color: #DD0000">"0.5"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">cr</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">22</span><span style="color: #007700">),&nbsp;</span><span
+								style="color: #0000BB">0&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">cr</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">3</span><span style="color: #007700">),&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">=&gt;&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">cr</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">4</span><span style="color: #007700">),&nbsp;</span><span
+								style="color: #0000BB">2&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">cr</span><span style="color: #007700">(-</span><span
+								style="color: #0000BB">15</span><span style="color: #007700">),);<br />
+								<br /></span><span style="color: #0000BB">$result&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">array_udiff</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$b</span><span style="color: #007700">,&nbsp;array(</span><span
+								style="color: #DD0000">"cr"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"comp_func_cr"</span><span
+								style="color: #007700">));<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$result</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Array
+(
+    [0.5] =&gt; cr Object
+        (
+            [priv_member:private] =&gt; 12
+        )
+
+    [0] =&gt; cr Object
+        (
+            [priv_member:private] =&gt; 23
+        )
+
+)
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+		<div class="refsect1 notes" id="refsect1-function.array-udiff-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">
+						Notez que cette fonction ne vérifie qu&#039;une seule dimension
+						d&#039;un tableau multidimensionnel. Vous pouvez, bien sûr, tester
+						une dimension particulière en utilisant par exemple <em>array_udiff($array1[0],
+							$array2[0], &quot;data_compare_func&quot;);</em>.
+					</span>
+				</p>
+			</blockquote>
+		</div>
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.array-udiff-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.array-diff.html" class="function"
+						rel="rdfs-seeAlso">array_diff()</a> - Calcule la diff&eacute;rence
+						entre des tableaux</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-diff-assoc.html" class="function"
+						rel="rdfs-seeAlso">array_diff_assoc()</a> - Calcule la
+						diff&eacute;rence de deux tableaux, en prenant aussi en compte les
+						cl&eacute;s</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-diff-uassoc.html" class="function"
+						rel="rdfs-seeAlso">array_diff_uassoc()</a> - Calcule la
+						diff&eacute;rence entre deux tableaux associatifs, &agrave; l'aide
+						d'une fonction de rappel</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-udiff-assoc.html" class="function"
+						rel="rdfs-seeAlso">array_udiff_assoc()</a> - Calcule la
+						diff&eacute;rence entre des tableaux avec v&eacute;rification des
+						index, compare les donn&eacute;es avec une fonction de rappel</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-udiff-uassoc.html" class="function"
+						rel="rdfs-seeAlso">array_udiff_uassoc()</a> - Calcule la
+						diff&eacute;rence de deux tableaux associatifs, compare les
+						donn&eacute;es et les index avec une fonction de rappel</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-intersect.html" class="function"
+						rel="rdfs-seeAlso">array_intersect()</a> - Calcule l'intersection
+						de tableaux</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-intersect-assoc.html" class="function"
+						rel="rdfs-seeAlso">array_intersect_assoc()</a> - Calcule
+						l'intersection de deux tableaux avec des tests sur les index</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-uintersect.html" class="function"
+						rel="rdfs-seeAlso">array_uintersect()</a> - Calcule l'intersection
+						de deux tableaux, compare les donn&eacute;es en utilisant une
+						fonction de rappel</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-uintersect-assoc.html" class="function"
+						rel="rdfs-seeAlso">array_uintersect_assoc()</a> - Calcule
+						l'intersection de deux tableaux avec des tests sur l'index,
+						compare les donn&eacute;es en utilisant une fonction de rappel</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-uintersect-uassoc.html" class="function"
+						rel="rdfs-seeAlso">array_uintersect_uassoc()</a> - Calcule
+						l'intersection de deux tableaux avec des tests sur l'index,
+						compare les donn&eacute;es et les indexes des deux tableaux en
+						utilisant une fonction de rappel</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.array-udiff-uassoc.html">array_udiff_uassoc</a>
+		</div>
+		<div class="next">
+			<a href="function.array-uintersect-assoc.html">array_uintersect_assoc</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

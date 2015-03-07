@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Connexions persistantes aux bases de donn&eacute;es</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="features.connection-handling.html">Gestion des connexions</a></div>
+ <div class="next"><a href="features.safe-mode.html">Safe mode</a></div>
+ <div class="up"><a href="features.html">Caract&eacute;ristiques</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="features.persistent-connections" class="chapter">
+ <h1>Connexions persistantes aux bases de données</h1>
+
+ <p class="simpara">
+  Les connexions persistantes aux bases de données SQL sont
+  des connexions qui ne se referment pas à la fin du script.
+  Lorsqu&#039;une connexion persistante est demandée, PHP s&#039;assure
+  qu&#039;il n&#039;y a pas une autre connexion identique (qui serait ouverte
+  précédemment, avec le même nom d&#039;hôte,
+  d&#039;utilisateur et le même mot de passe), et si une telle connexion
+  existe, elle est utilisée ; sinon, elle est créée.
+  Une connexion identique est une connexion qui a ouvert le même
+  hôte, avec le même nom et le même mot de passe (s&#039;ils
+  sont nécessaires).
+ </p>
+ <p class="simpara">
+  Ceux qui ne sont pas rompus aux techniques des serveurs web et leur
+  distribution de la charge de travail se font parfois une fausse
+  idée de ces connexions persistantes. En particulier,
+  les connexions persistantes <em class="emphasis">ne permettent pas</em>
+  l&#039;ouverture de plusieurs sessions avec le même lien ;
+  elles <em class="emphasis">ne permettent pas</em> la réalisation
+  de transactions efficaces et ne font pas le café. En fait,
+  pour être extrêmement clair sur le sujet, les
+  connexions persistantes <em class="emphasis">ne vous donnent</em>
+  aucune fonctionnalité
+  de plus que les connexions non persistantes.
+ </p>
+ <p class="simpara">
+  Alors pourquoi les connexions persistantes ?
+ </p>
+ <p class="simpara">
+  Cela s&#039;explique par la manière avec laquelle les serveurs web
+  fonctionnent. Il y a trois manières d&#039;utiliser PHP pour
+  générer des pages.
+ </p>
+ <p class="simpara">
+  La première est d&#039;utiliser PHP comme un CGI (Common Interface Gateway).
+  Lorsque PHP fonctionne de cette manière, une instance de
+  l&#039;interpréteur PHP est créée puis détruite
+  pour chaque page demandée. Étant donné que cet interpréteur est
+  détruit après chaque requête, toutes les
+  ressources acquises (comme une connexion à une base SQL),
+  sont purement et simplement détruites.
+ </p>
+ <p class="simpara">
+  La deuxième méthode, de loin la plus prisée,
+  est d&#039;exécuter PHP sous la forme d&#039;un module sur un serveur
+  multi-processus, ce qui revient à dire : Apache. Un tel serveur
+  a typiquement un processus parent qui coordonne un ensemble de processus fils,
+  qui servent les fichiers. Lorsque les requêtes parviennent depuis
+  un client, elles sont transmises à un fils disponible. Cela signifie
+  que si un client fait une deuxième requête, il peut
+  être servi par un processus client différent du premier.
+  Les connexions persistantes vous permettent alors de ne vous connecter
+  à une base SQL que la première fois. Lors des connexions
+  ultérieures, les processus fils pourront réutiliser la
+  connexion ouverte précédemment.
+ </p>
+ <p class="simpara">
+  La dernière méthode est d&#039;utiliser PHP sous la forme d&#039;un
+  module de serveur multithread. Actuellement, PHP supporte
+  ISAPI, WSAPI, et NSAPI (sous Windows), qui permettent tous d&#039;utiliser
+  PHP comme un module sur un serveur multithread tel que Netscape
+  FastTrack (iPlanet), Microsoft Internet Information Server (IIS), et
+  O&#039;Reilly&#039;s WebSite Pro. Le comportement est essentiellement le même
+  que pour les serveurs multi-processus décrits précédemment.
+ </p>
+ <p class="simpara">
+  Si les connexions persistantes n&#039;ont aucune fonctionnalité de plus,
+  à quoi servent-elles ?
+ </p>
+ <p class="simpara">
+  La réponse est extrêmement simple : efficacité. Les
+  connexions persistantes sont un bon moyen d&#039;accélérer les
+  accès à une base SQL si le traitement de connexion à
+  la base est long. Ce temps dépend de nombreux facteurs : le type
+  de base de données, cette base est-elle sur le même serveur
+  ou pas, quelle est la charge du serveur de base de données, etc.
+  Si le temps de connexion est long, les connexions persistantes seront
+  bien utiles, car une fois ouverte par un processus fils, la connexion est
+  réutilisable sans avoir à se reconnecter. Si vous avez 20
+  processus fils, il suffit d&#039;avoir 20 connexions persistantes ouvertes,
+  une par fils.
+ </p>
+ <p class="simpara">
+  Notez que les connexions persistantes ont quelques inconvénients
+  si vous hébergez une base de données dont le nombre maximal de
+  connexion risque d&#039;être atteint par les connexions persistantes.
+  Si votre base de données accepte jusqu&#039;à 16 connexions
+  simultanées et que 17 processus essaient de se connecter,
+  le dernier restera sur la touche. S&#039;il y a des erreurs dans les scripts qui ne permettent
+  pas de fermer la connexion (par exemple, une boucle infinie), votre
+  serveur sera rapidement engorgé. Vérifiez la documentation de votre
+  base de données pour savoir comment elle traite les connexions
+  inactives ou abandonnées.
+ </p>
+ <div class="warning"><strong class="warning">Avertissement</strong>
+  <p class="simpara">
+   Il y a quelques autres limitations à bien garder en tête lorsque
+   vous utilisez les connexions persistantes. L&#039;une est que lorsque
+   vous posez un verrou avec une connexion persistante, si le script ne
+   peut libérer le verrou pour une raison quelconque, alors les autres
+   scripts qui réutiliseront la connexion seront bloqués indéfiniment,
+   et vous imposeront le redémarrage du serveur ou de la base de données.
+   Une autre limitation est, lors de l&#039;utilisation des transactions, un
+   bloc de transaction non fermé sera prolongé au script suivant, s&#039;il
+   n&#039;est pas fermé par le script initiateur. Dans les deux cas,
+   vous pouvez utiliser la fonction
+    <span class="function"><a href="function.register-shutdown-function.html" class="function">register_shutdown_function()</a></span> pour enregistrer une
+   fonction simple de nettoyage, pour déverrouiller les tables,
+   et annuler les transactions en cours. Mieux encore, évitez le problème
+   entièrement en n&#039;utilisant pas les connexions persistantes dans les
+   scripts qui ont besoin de verrous ou de transactions. Vous pourrez
+   toujours les utiliser ailleurs.
+  </p>
+ </div>
+ <p class="simpara">
+  Résumons-nous : les connexions persistantes ont été
+  définies pour avoir les mêmes fonctionnalités que
+  les connexions non persistantes. Les deux types de connexions
+  sont <em class="emphasis">parfaitement interchangeables</em>,
+  et <em class="emphasis">n&#039;affecteront pas</em> le comportement de votre script
+  : uniquement son efficacité.
+ </p>
+ <p class="para">
+  Voir aussi
+   <span class="function"><a href="function.fbsql-pconnect.html" class="function">fbsql_pconnect()</a></span>,
+   <span class="function"><a href="function.ibase-pconnect.html" class="function">ibase_pconnect()</a></span>,
+   <span class="function"><a href="function.ifx-pconnect.html" class="function">ifx_pconnect()</a></span>,
+   <span class="function"><a href="function.ingres-pconnect.html" class="function">ingres_pconnect()</a></span>,
+   <span class="function"><a href="function.msql-pconnect.html" class="function">msql_pconnect()</a></span>,
+   <span class="function"><a href="function.mssql-pconnect.html" class="function">mssql_pconnect()</a></span>,
+   <span class="function"><a href="function.mysql-pconnect.html" class="function">mysql_pconnect()</a></span>,
+   <span class="function"><a href="function.ociplogon.html" class="function">ociplogon()</a></span>,
+   <span class="function"><a href="function.odbc-pconnect.html" class="function">odbc_pconnect()</a></span>,
+   <span class="function"><a href="function.oci-pconnect.html" class="function">oci_pconnect()</a></span>,
+   <span class="function"><a href="function.pfsockopen.html" class="function">pfsockopen()</a></span>,
+   <span class="function"><a href="function.pg-pconnect.html" class="function">pg_pconnect()</a></span> et
+   <span class="function"><a href="function.sybase-pconnect.html" class="function">sybase_pconnect()</a></span>.
+ </p>
+</div>
+<hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="features.connection-handling.html">Gestion des connexions</a></div>
+ <div class="next"><a href="features.safe-mode.html">Safe mode</a></div>
+ <div class="up"><a href="features.html">Caract&eacute;ristiques</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

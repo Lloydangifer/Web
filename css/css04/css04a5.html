@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Propriété raccourci font</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function() {
+			top.FP.initPage();
+		}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>Une propriété-raccourci est une propriété qui permet de définir
+			plusieurs propriétés en une seule fois (et ainsi de prendre un raccourci).
+			Ces propriété-raccourcis sont à utiliser chaque fois que c'est
+			possible car le code obtenu est plus compact.</p>
+
+		<!-- ################################################################################################## -->
+		<h3>Propriété raccourci font</h3>
+		<section>
+			<p class="fp-bot0">
+				La propriété-raccourci <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'font')">font</a>
+				permet de définir en une fois :
+			</p>
+			<ul>
+				<li>l'italique (ie <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'font-style')">font-style</a>)
+				</li>
+				<li>les petites majuscules (ie <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'font-variant')">font-variant</a>)
+				</li>
+				<li>la graisse (ie <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'font-weight')">font-weight</a>)
+				</li>
+				<li>la taille (ie <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'font-size')">font-size</a>)
+				</li>
+				<li>la hauteur de ligne (ie <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'line-height')">line-height</a>)
+				</li>
+				<li>les polices (ie <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'font-family')">font-family</a>)
+				</li>
+			</ul>
+
+			<figure>
+				<img src="../cssimg/font.png" width="567" height="117">
+				<figcaption>Propriété raccourci font</figcaption>
+			</figure>
+
+			<p>Les valeurs pour le style, les petites majuscules, la graisse
+				et la hauteur de ligne peuvent être absentes.</p>
+			<p>Les valeurs pour la taille et la ou les polices doivent être
+				présentes.</p>
+
+			<pre data-code="CSS">
+/* raccourci habituel */
+html {
+	font: 13px/1.5 Verdana, Geneva, sans-serif;
+}
+
+/* ne fonctionne pas car il manque la taille */
+.important-mauvais {
+	font: small-caps bold Arial;
+}
+
+.important-ok {
+	font: small-caps bold 13px Arial;
+}
+
+/* ne fonctionne pas car il manque la famille */
+h3 {
+	font: bold 2em/2em;
+}
+</pre>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : raccourci font
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;La Guerre des Etoiles du Milieu&lt;/p&gt;
+			
+		&lt;p&gt;Il y a bien longtemps dans une &lt;strong&gt;lointaine galaxie&lt;/strong&gt;, les &lt;strong&gt;Gentils Jedis&lt;/strong&gt; de la Fédération de l'Empire du Commerce de la République se battent contre les &lt;strong&gt;Méchants Gobelins&lt;/strong&gt; de la Comté du Mordor de l'infâme Sauron. &lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+html { 
+	font: 16px/1.5 Tahoma, Geneva, Verdana, sans-serif;
+}
+p:first-of-type {
+	font: small-caps 20px/2em Arial;
+}
+strong {
+	font: italic bold 16px Arial;
+}</textarea>
+			</form>
+
+			<div class="fp-puce">
+				<p class="fp-p-raz">Attention si tous les éléments du raccourci
+					ne sont pas déclarés. Par exemple dans</p>
+				<pre data-code="CSS">
+p { line-height: 16px; }
+p { font: 12px Arial; }</pre>
+				<p class="fp-p-raz">
+					la valeur de la propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'line-height')">line-height</a>
+					ne sera pas <code>16px</code> mais <code>normal</code> car le
+					raccourci lui aura affecté sa valeur par défaut, écrasant la valeur
+					précédemment donnée.
+				</p>
+			</div>
+		</section>
+
+
+	</div>
+	<footer></footer>
+</body>
+</html>

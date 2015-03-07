@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>D&eacute;chiffre les donn&eacute;es</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="function.mcrypt-ofb.html">mcrypt_ofb</a></div>
+ <div class="next"><a href="book.mhash.html">Mhash</a></div>
+ <div class="up"><a href="ref.mcrypt.html">Fonctions Mcrypt</a></div><div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="function.mdecrypt-generic" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mdecrypt_generic</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.0.2, PHP 5)</p><p class="refpurpose"><span class="refname">mdecrypt_generic</span> <span class="mdash">&mdash;</span> <span class="dc-title">Déchiffre les données</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.mdecrypt-generic-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>mdecrypt_generic</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$td</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$data</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Déchiffre les données <em><code class="parameter">data</code></em>. Notez que la longueur de
+   la chaîne déchiffrée peut être plus longue que la chaîne originale, car elle
+   peut avoir été complétée par des caractères.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.mdecrypt-generic-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><em><code class="parameter">td</code></em></span>
+     <dd>
+
+      <p class="para">
+       Un descripteur de chiffrement, retourné par la fonction
+        <span class="function"><a href="function.mcrypt-module-open.html" class="function">mcrypt_module_open()</a></span>
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><em><code class="parameter">data</code></em></span>
+     <dd>
+
+      <p class="para">
+       Les données chiffrées.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.mdecrypt-generic-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-928">
+    <p><strong>Exemple #1 Exemple avec  <span class="function"><strong>mdecrypt_generic()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Données&nbsp;*/<br /></span><span style="color: #0000BB">$key&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Ceci&nbsp;est&nbsp;une&nbsp;très&nbsp;longue&nbsp;clé&nbsp;de&nbsp;chiffrement,&nbsp;et&nbsp;même&nbsp;trop&nbsp;longue'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$plain_text&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Ceci&nbsp;sont&nbsp;des&nbsp;données&nbsp;importantes'</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/*&nbsp;Ouvre&nbsp;le&nbsp;module&nbsp;et&nbsp;crée&nbsp;un&nbsp;VI&nbsp;*/&nbsp;<br /></span><span style="color: #0000BB">$td&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mcrypt_module_open</span><span style="color: #007700">(</span><span style="color: #DD0000">'des'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ecb'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$key&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">substr</span><span style="color: #007700">(</span><span style="color: #0000BB">$key</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mcrypt_enc_get_key_size</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">));<br /></span><span style="color: #0000BB">$iv_size&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mcrypt_enc_get_iv_size</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$iv&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mcrypt_create_iv</span><span style="color: #007700">(</span><span style="color: #0000BB">$iv_size</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">MCRYPT_RAND</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Initialise&nbsp;le&nbsp;module&nbsp;de&nbsp;chiffrement&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">mcrypt_generic_init</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$key</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$iv</span><span style="color: #007700">)&nbsp;!=&nbsp;-</span><span style="color: #0000BB">1</span><span style="color: #007700">)&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Chiffre&nbsp;les&nbsp;données&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$c_t&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mcrypt_generic</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$plain_text</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">mcrypt_generic_deinit</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Réinitialise&nbsp;les&nbsp;tampons&nbsp;pour&nbsp;le&nbsp;déchiffrement&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">mcrypt_generic_init</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$key</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$iv</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$p_t&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mdecrypt_generic</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$c_t</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">/*&nbsp;Nettoye&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">mcrypt_generic_deinit</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">mcrypt_module_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$td</span><span style="color: #007700">);<br />}<br /><br />if&nbsp;(</span><span style="color: #0000BB">strncmp</span><span style="color: #007700">(</span><span style="color: #0000BB">$p_t</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$plain_text</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">strlen</span><span style="color: #007700">(</span><span style="color: #0000BB">$plain_text</span><span style="color: #007700">))&nbsp;==&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"ok\n"</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"erreur\n"</span><span style="color: #007700">;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   L&#039;exemple ci-dessus montre comment vérifier que les données avant
+   chiffrement sont bien les mêmes que celles après
+   chiffrement/déchiffrement. Il est très important de réinitialiser
+   le buffer de chiffrement avec  <span class="function"><a href="function.mcrypt-generic-init.html" class="function">mcrypt_generic_init()</a></span>
+   avant que nous ne déchiffriez les données.
+  </p>
+  <p class="para">
+   Le gestionnaire de déchiffrement doit toujours être initialisé
+   par la fonction  <span class="function"><a href="function.mcrypt-generic-init.html" class="function">mcrypt_generic_init()</a></span> avec une clé
+   et un VI avant d&#039;appeler cette fonction. Lorsque le chiffrement est fait,
+   il faut que vous libériez les données chiffrées en appelant
+    <span class="function"><a href="function.mcrypt-generic-deinit.html" class="function">mcrypt_generic_deinit()</a></span>.
+   Voir  <span class="function"><a href="function.mcrypt-module-open.html" class="function">mcrypt_module_open()</a></span> pour un exemple.
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.mdecrypt-generic-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"> <span class="function"><a href="function.mcrypt-generic.html" class="function" rel="rdfs-seeAlso">mcrypt_generic()</a> - Chiffre les donn&eacute;es</span></li>
+    <li class="member"> <span class="function"><a href="function.mcrypt-generic-init.html" class="function" rel="rdfs-seeAlso">mcrypt_generic_init()</a> - Initialise tous les buffers n&eacute;cessaires</span></li>
+    <li class="member"> <span class="function"><a href="function.mcrypt-generic-deinit.html" class="function" rel="rdfs-seeAlso">mcrypt_generic_deinit()</a> - Pr&eacute;pare le module pour le d&eacute;chargement</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="function.mcrypt-ofb.html">mcrypt_ofb</a></div>
+ <div class="next"><a href="book.mhash.html">Mhash</a></div>
+ <div class="up"><a href="ref.mcrypt.html">Fonctions Mcrypt</a></div>
+<div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

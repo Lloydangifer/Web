@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>D&eacute;place un fichier t&eacute;l&eacute;charg&eacute;</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.mkdir.html">mkdir</a>
+		</div>
+		<div class="next">
+			<a href="function.parse-ini-file.html">parse_ini_file</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.move-uploaded-file" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">move_uploaded_file</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.0.3, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">move_uploaded_file</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Déplace un fichier téléchargé</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.move-uploaded-file-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>move_uploaded_file</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$filename</code></span> , <span
+					class="methodparam"><span class="type">string</span> <code
+						class="parameter">$destination</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				S&#039;assure que le fichier <em><code class="parameter">filename</code></em>
+				est un fichier téléchargé par HTTP POST. Si le fichier est valide,
+				il est déplacé jusqu&#039;à <em><code class="parameter">destination</code></em>.
+			</p>
+			<p class="para">Ce type de vérification est spécialement
+				important s&#039;il est possible que les fichiers téléchargés
+				révèlent leur contenu à l&#039;utilisateur, ou même aux utilisateurs
+				du même système.</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.move-uploaded-file-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">filename</code></em></span>
+				<dd>
+
+					<p class="para">Le nom du fichier téléchargé.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">destination</code></em></span>
+				<dd>
+
+					<p class="para">La destination du fichier déplacé.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.move-uploaded-file-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne <strong><code>TRUE</code></strong> en cas de succès.
+			</p>
+			<p class="para">
+				Si <em><code class="parameter">filename</code></em> n&#039;est pas
+				valide, rien ne se passe, et <span class="function"><strong>move_uploaded_file()</strong></span>
+				retournera <strong><code>FALSE</code></strong>.
+			</p>
+			<p class="para">
+				Si <em><code class="parameter">filename</code></em> est un fichier
+				téléchargé, mais que pour une raison quelconque, il ne peut être
+				déplacé, rien ne se passe, et <span class="function"><strong>move_uploaded_file()</strong></span>
+				retourne <strong><code>FALSE</code></strong>. De plus, une alerte
+				sera affichée.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.move-uploaded-file-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2280">
+				<p>
+					<strong>Exemple #1 Téléchargement de plusieurs fichiers</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$uploads_dir&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'/uploads'</span><span
+								style="color: #007700">;<br />foreach&nbsp;(
+							</span><span style="color: #0000BB">$_FILES</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">"pictures"</span><span
+								style="color: #007700">][</span><span style="color: #DD0000">"error"</span><span
+								style="color: #007700">]&nbsp;as&nbsp;</span><span
+								style="color: #0000BB">$key&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #0000BB">$error</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(
+							</span><span style="color: #0000BB">$error&nbsp;</span><span
+								style="color: #007700">==&nbsp;</span><span
+								style="color: #0000BB">UPLOAD_ERR_OK</span><span
+								style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$tmp_name&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">$_FILES</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">"pictures"</span><span
+								style="color: #007700">][</span><span style="color: #DD0000">"tmp_name"</span><span
+								style="color: #007700">][</span><span style="color: #0000BB">$key</span><span
+								style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$name&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">$_FILES</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">"pictures"</span><span
+								style="color: #007700">][</span><span style="color: #DD0000">"name"</span><span
+								style="color: #007700">][</span><span style="color: #0000BB">$key</span><span
+								style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">move_uploaded_file</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$tmp_name</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"</span><span style="color: #0000BB">$uploads_dir</span><span
+								style="color: #DD0000">/</span><span style="color: #0000BB">$name</span><span
+								style="color: #DD0000">"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes"
+			id="refsect1-function.move-uploaded-file-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					<span class="function"><strong>move_uploaded_file()</strong></span>
+					n&#039;est pas affectée par les restrictions liées au <a
+						href="ini.sect.safe-mode.html#ini.safe-mode" class="link">safe
+						mode</a> et à l&#039;<a href="ini.core.html#ini.open-basedir"
+						class="link">open_basedir</a>. Cependant, les restrictions sont
+					placées uniquement sur le paramètre <em><code
+							class="parameter">destination</code></em> qui permet le déplacement
+					des fichiers chargés dans lesquels <em><code class="parameter">filename</code></em>
+					peut entrer en conflit avec ces restrictions. <span
+						class="function"><strong>move_uploaded_file()</strong></span>
+					permet de s&#039;assurer de la sécurité de cette opération en
+					autorisant le déplacement des seuls fichiers chargés via PHP.
+			</blockquote>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">Si le fichier de destination existe déjà, il
+					sera écrasé.</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.move-uploaded-file-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.is-uploaded-file.html" class="function"
+						rel="rdfs-seeAlso">is_uploaded_file()</a> - Indique si le fichier
+						a &eacute;t&eacute; t&eacute;l&eacute;charg&eacute; par HTTP POST</span></li>
+				<li class="member"><span class="function"><a
+						href="function.rename.html" class="function" rel="rdfs-seeAlso">rename()</a>
+						- Renomme un fichier ou un dossier</span></li>
+				<li class="member">Voir la section sur <a
+					href="features.file-upload.html" class="link">les
+						téléchargements de fichiers</a> pour un exemple d&#039;utilisation
+				</li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.mkdir.html">mkdir</a>
+		</div>
+		<div class="next">
+			<a href="function.parse-ini-file.html">parse_ini_file</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Transpose une entr&eacute;e d'un dossier format&eacute;
+	gopher dans un tableau associatif</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="ref.net-gopher.html">Fonctions Gopher</a>
+		</div>
+		<div class="next">
+			<a href="book.gupnp.html">Gupnp</a>
+		</div>
+		<div class="up">
+			<a href="ref.net-gopher.html">Fonctions Gopher</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.gopher-parsedir" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">gopher_parsedir</h1>
+			<p class="verinfo">(PECL net_gopher &gt;= 0.1)</p>
+			<p class="refpurpose">
+				<span class="refname">gopher_parsedir</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Transpose une entrée d&#039;un dossier
+					formaté gopher dans un tableau associatif</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.gopher-parsedir-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>gopher_parsedir</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$dirent</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>gopher_parsedir()</strong></span>
+				transpose une entrée d&#039;un dossier formaté gopher dans un
+				tableau associatif.
+			</p>
+			<p class="para">
+				Gopher retourne des documents <em>text/plain</em> pour les documents
+				demandés. Une requête vers un dossier (comme /) retournera des
+				séries de lignes encodées à chaque ligne est une entrée du dossier
+				ou une ligne d&#039;informations.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.gopher-parsedir-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">dirent</code></em></span>
+				<dd>
+
+					<p class="para">L&#039;entrée du dossier.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.gopher-parsedir-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Retourne un tableau associatif dont les
+				composants sont :
+			<ul class="itemizedlist">
+				<li class="listitem"><span class="simpara"> <em>type</em>
+						- Une constante <em>GOPHER_XXX</em>.
+				</span></li>
+				<li class="listitem"><span class="simpara"> <em>title</em>
+						- Le nom de la <a href="language.types.resource.html" class="link">ressource</a>.
+				</span></li>
+				<li class="listitem"><span class="simpara"> <em>path</em>
+						- Le chemin vers la <a href="language.types.resource.html"
+						class="link">ressource</a>.
+				</span></li>
+				<li class="listitem"><span class="simpara"> <em>host</em>
+						- Le nom du domaine de l&#039;hôte qui possède ce document (ou
+						dossier).
+				</span></li>
+				<li class="listitem"><span class="simpara"> <em>port</em>
+						- Le port de connexion sur l&#039;hôte <em>host</em>.
+				</span></li>
+			</ul>
+			</p>
+			<p class="para">
+				En cas d&#039;échec, l&#039;entrée additionnelle <em>data</em> du
+				tableau retourné contiendra la ligne analysée.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.gopher-parsedir-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4000">
+				<p>
+					<strong>Exemple #1 Affichage hypothétique depuis <em>gopher://gopher.example.com/</em></strong>
+				</p>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+0All about my gopher site.               /allabout.txt               gopher.example.com    70
+9A picture of my cat.                    /pics/cat.png               gopher.example.com    70
+1A collection of my writings.            /stories                    gopher.example.com    70
+hThe HTTP version of this site.          URL:http://www.example.com  gopher.example.com    70
+1Mirror of this site in Spain.           /                           gopher.ejemplo.co.es  70
+iWelcome to my gopher site.                                          error.host            1
+iPlease select one of the options above                              error.host            1
+iSend complaints to /dev/null                                        error.host            1
+iLong live gopher!                                                   error.host            1
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+			<p class="para">
+				Dans l&#039;exemple précédent, le dossier racine de
+				gopher.example.com reconnaît un <em>DOCUMENT</em> identifié par <em>0</em>
+				et se trouvant à l&#039;adresse <em>gopher://gopher.example.com:70/allabout.txt</em>.
+				Il reconnaît également deux autres dossiers (qui ont leur propre
+				liste de fichiers) à l&#039;adresse <em>gopher://gopher.exmaple.com:70/stories</em>
+				et à l&#039;adresse <em>gopher://gopher.ejemplo.co.es:70/</em>. Il y
+				a également un fichier binaire, un lien vers une url HTTP et
+				plusieurs lignes d&#039;informations.
+			</p>
+			<p class="para">
+				En passant chaque ligne du listing de ce dossier à la fonction <span
+					class="function"><strong>gopher_parsedir()</strong></span>, un
+				tableau associatif est formé contenant une version analysée des
+				données.
+			</p>
+			<p class="para">
+			<div class="example" id="example-4001">
+				<p>
+					<strong>Exemple #2 Exemple avec <span class="function"><strong>gopher_parsedir()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br />$directory&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">file</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"gopher://gopher.example.com"</span><span
+								style="color: #007700">);<br />
+								<br />foreach(
+							</span><span style="color: #0000BB">$directory&nbsp;</span><span
+								style="color: #007700">as&nbsp;</span><span
+								style="color: #0000BB">$dirent</span><span
+								style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">gopher_parsedir</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$dirent</span><span
+								style="color: #007700">));<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Array (
+  [type] =&gt; 0
+  [title] =&gt; All about my gopher site.
+  [path] =&gt; /allabout.txt
+  [host] =&gt; gopher.example.com
+  [port] =&gt; 70
+)
+Array (
+  [type] =&gt; 9
+  [title] =&gt; A picture of my cat.
+  [path] =&gt; /pics/cat.png
+  [host] =&gt; gopher.example.com
+  [port] =&gt; 70
+)
+Array (
+  [type] =&gt; 1
+  [title] =&gt; A collection of my writings.
+  [path] =&gt; /stories
+  [host] =&gt; gopher.example.com
+  [port] =&gt; 70
+)
+Array (
+  [type] =&gt; 254
+  [title] =&gt; The HTTP version of this site.
+  [path] =&gt; URL:http://www.example.com
+  [host] =&gt; gopher.example.com
+  [port] =&gt; 70
+)
+Array (
+  [type] =&gt; 1
+  [title] =&gt; Mirror of this site in Spain.
+  [path] =&gt; /
+  [host] =&gt; gopher.ejemplo.co.es
+  [port] =&gt; 70
+)
+Array (
+  [type] =&gt; 255
+  [title] =&gt; Welcome to my gopher site.
+  [path] =&gt;
+  [host] =&gt; error.host
+  [port] =&gt; 1
+)
+Array (
+  [type] =&gt; 255
+  [title] =&gt; Please select one of the options above.
+  [path] =&gt;
+  [host] =&gt; error.host
+  [port] =&gt; 1
+)
+Array (
+  [type] =&gt; 255
+  [title] =&gt; Send complaints to /dev/null
+  [path] =&gt;
+  [host] =&gt; error.host
+  [port] =&gt; 1
+)
+Array (
+  [type] =&gt; 255
+  [title] =&gt; Long live gopher!
+  [path] =&gt;
+  [host] =&gt; error.host
+  [port] =&gt; 1
+)
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="ref.net-gopher.html">Fonctions Gopher</a>
+		</div>
+		<div class="next">
+			<a href="book.gupnp.html">Gupnp</a>
+		</div>
+		<div class="up">
+			<a href="ref.net-gopher.html">Fonctions Gopher</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

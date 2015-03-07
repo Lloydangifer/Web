@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Les sélecteurs regroupés</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+<link rel="stylesheet" href="../_local/selecteurs.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function(){top.FP.initPage();}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<!-- ################################################################################################## -->
+		<a id="sel_groupe"></a>
+		<h3>Sélecteurs groupés</h3>
+
+		<section>
+			<div class="bloc-syntaxe">
+				<p>
+					<span class="lib-syntaxe">Syntaxe </span><strong><code>S1,
+							S2</code></strong>
+				</p>
+				<pre data-code="CSS">
+dl, dt, dd,
+ul, ol {
+	margin: 0;
+	padding: 0
+	}
+</pre>
+			</div>
+
+			<p class="fp-p-raz">
+				Le combinateur <strong>virgule</strong> permet de définir le même
+				bloc de décalarations de style pour tous les sélecteurs qu'il
+				sépare. On parle aussi de regroupement de sélecteurs. Ce système est
+				trés souvent utilisé car il permet de minimiser le code <abbr
+					title="Cascading Style Sheets">CSS</abbr> et de rendre les
+				modifications plus simples.
+			</p>
+
+			<p>
+				Avec le combinateur <strong>virgule</strong> tous les sélecteurs de
+				la règles sont concernés. C'est comme un opérateur ET.
+			</p>
+
+			<p>Les sélecteurs regroupés peuvent être de n'importe quel type (
+				simples, d'attributs, des pseudo classes, des pseudo éléments).</p>
+
+			<p class="fp-p-raz">
+				L'exemple suivant entoure d'une bordure les éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'h3')">h3</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'h4')">h4</a> et <a
+					onclick="top.FP.Voir.showPageTech('elements', 'ul')">ul</a>. La
+				couleur des caractères des éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'h3')">h3</a> et <a
+					onclick="top.FP.Voir.showPageTech('elements', 'h4')">h4</a> sera
+				rouge.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : regroupement de sélecteur
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Star Wars - ze prélogie&lt;/h3&gt;
+		&lt;h4&gt;Personnages&lt;/h4&gt;
+		&lt;ul&gt;
+			&lt;li&gt;Anakin Webwalker&lt;/li&gt;
+			&lt;li&gt;Padmé Amidala&lt;/li&gt;
+			&lt;li&gt;Yoda&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;h4&gt;Films&lt;/h4&gt;
+		&lt;ol&gt;
+			&lt;li&gt;Le DOM fantôme
+				&lt;ul&gt;
+					&lt;li&gt;1999&lt;/li&gt;
+					&lt;li&gt;2 h 16 min&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li&gt;L'attaque des .com
+				&lt;ul&gt;
+					&lt;li&gt;2002&lt;/li&gt;
+					&lt;li&gt;2 h 22 min&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+			&lt;li&gt;La Revanche des Siths Web
+				&lt;ul&gt;
+					&lt;li&gt;2005&lt;/li&gt;
+					&lt;li&gt;2 h 20 min&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+		&lt;/ol&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+h3, h4, ul {
+	border: 1px solid red;
+}
+
+h3, h4 {
+	color: red;
+}</textarea>
+			</form>
+
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

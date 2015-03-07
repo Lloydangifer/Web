@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Utilisation simple</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="session.examples.html">Exemples</a></div>
+ <div class="next"><a href="session.idpassing.html">Passer l'identifiant de session (session ID)</a></div>
+ <div class="up"><a href="session.examples.html">Exemples</a></div><div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="session.examples.basic" class="section">
+  <h2 class="title">Utilisation simple</h2>
+   <p class="para">
+    Les sessions sont un moyen simple de stocker des données individuelles pour chaque
+    utilisateur en utilisant un identifiant de session unique. Elles peuvent être utilisées
+    pour faire persister des informations entre plusieurs pages. Les identifiants de session
+    sont normalement envoyés au navigateur via des cookies de session, et l&#039;identifiant
+    est utilisé pour récupérer les données existantes de la session. L&#039;absence d&#039;un identifiant
+    ou d&#039;un cookie de session indique à PHP de créer une nouvelle session, et génère ainsi
+    un nouvel identifiant de session.
+   </p>
+   <p class="para">
+    Les sessions suivent une cinématique simple. Lorsqu&#039;une session est démarrée, PHP va
+    soit récupérer une session existante en utilisant l&#039;identifiant de session passé (habituellement
+    depuis un cookie de session) ou si aucun identifiant de session n&#039;est passé, il va créer une
+    nouvelle session. PHP va ainsi peupler la variable superglobale <var class="varname"><var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var></var>
+    avec toutes les données de session une fois la session démarrée. Lorsque PHP s&#039;arrête,
+    il va prendre automatiquement le contenu de la variable superglobale <var class="varname"><var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var></var>,
+    le linéariser, et l&#039;envoyer pour stockage au gestionnaire de sauvegarde de session.
+   </p>
+   <p class="para">
+    Par défaut, PHP utilise en interne le gestionnaire de sauvegarde <em><code class="parameter">files</code></em>
+    qui est défini via la directive <a href="session.configuration.html#ini.session.save-handler" class="link">session.save_handler</a>.
+    Les données de session seront sauvegardées sur le serveur à l&#039;endroit spécifié par
+    la directive de configuration <a href="session.configuration.html#ini.session.save-path" class="link">session.save_path</a>.
+   </p>
+   <p class="para">
+    Les sessions peuvent être démarrées manuellement en utilisant la fonction
+     <span class="function"><a href="function.session-start.html" class="function">session_start()</a></span>, et si la directive de configuration
+    <a href="session.configuration.html#ini.session.auto-start" class="link">session.auto_start</a> est définie à
+    <em><code class="parameter">1</code></em>, une session démarrera automatiquement au moment où PHP envoie
+    n&#039;importe quelle sortie au buffer de sortie.
+   </p>
+   <p class="para">
+    Les sessions s&#039;arrêtent automatiquement lorsque PHP a terminé d&#039;exécuter un script, mais
+    peuvent être stoppées manuellement en utilisant la fonction
+     <span class="function"><a href="function.session-write-close.html" class="function">session_write_close()</a></span>.
+   </p>
+  <p class="para">
+   <div class="example" id="example-4419">
+    <p><strong>Exemple #1 
+     Enregistrer une variable avec <var class="varname"><var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var></var>.
+    </strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />session_start</span><span style="color: #007700">();<br />if&nbsp;(!isset(</span><span style="color: #0000BB">$_SESSION</span><span style="color: #007700">[</span><span style="color: #DD0000">'count'</span><span style="color: #007700">]))&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$_SESSION</span><span style="color: #007700">[</span><span style="color: #DD0000">'count'</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$_SESSION</span><span style="color: #007700">[</span><span style="color: #DD0000">'count'</span><span style="color: #007700">]++;<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+   <div class="example" id="example-4420">
+    <p><strong>Exemple #2 
+     Retirer une variable de session avec la superglobale <var class="varname"><var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var></var>.
+    </strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />session_start</span><span style="color: #007700">();<br />unset(</span><span style="color: #0000BB">$_SESSION</span><span style="color: #007700">[</span><span style="color: #DD0000">'count'</span><span style="color: #007700">]);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   <div class="caution"><strong class="caution">Attention</strong>
+    <p class="para">
+     N&#039;utilisez PAS la fonction  <span class="function"><a href="function.unset.html" class="function">unset()</a></span>
+     avec <var class="varname"><var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var></var> sous la forme
+     <em>unset($_SESSION)</em> sinon, cela rendra impossible
+     l&#039;enregistrement de données dans la session en utilisant la super-globale
+     <var class="varname"><var class="varname"><a href="reserved.variables.session.html" class="classname">$_SESSION</a></var></var>.
+    </p>
+   </div>
+  </p>
+  <div class="warning"><strong class="warning">Avertissement</strong>
+   <p class="para">
+    Vous ne pouvez pas utiliser les références sur des variables de session
+    car il n&#039;y a aucune manière faisable de restaurer une référence vers une
+    autre variable.
+   </p>
+  </div>
+ </div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="session.examples.html">Exemples</a></div>
+ <div class="next"><a href="session.idpassing.html">Passer l'identifiant de session (session ID)</a></div>
+ <div class="up"><a href="session.examples.html">Exemples</a></div>
+<div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

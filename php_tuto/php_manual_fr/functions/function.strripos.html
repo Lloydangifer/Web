@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Cherche la position de la derni&egrave;re occurrence
+	d'une cha&icirc;ne contenue dans une autre, de fa&ccedil;on insensible
+	&agrave; la casse</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.strrev.html">strrev</a>
+		</div>
+		<div class="next">
+			<a href="function.strrpos.html">strrpos</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.strripos" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">strripos</h1>
+			<p class="verinfo">(PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">strripos</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Cherche la position de la dernière
+					occurrence d&#039;une chaîne contenue dans une autre, de façon
+					insensible à la casse</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.strripos-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">int</span> <span class="methodname"><strong>strripos</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$haystack</code></span> , <span
+					class="methodparam"><span class="type">string</span> <code
+						class="parameter">$needle</code></span> [, <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$offset</code><span
+					class="initializer"> = 0</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				Cherche la position numérique de la dernière occurrence de <em><code
+						class="parameter">needle</code></em> dans la chaîne de caractères <em><code
+						class="parameter">haystack</code></em>.
+			</p>
+			<p class="para">
+				Contrairement à la fonction <span class="function"><a
+					href="function.strrpos.html" class="function">strrpos()</a></span>, <span
+					class="function"><strong>strripos()</strong></span> est insensible
+				à la casse.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.strripos-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">haystack</code></em></span>
+				<dd>
+
+					<p class="para">La chaîne dans laquelle on doit chercher.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">needle</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si <em><code class="parameter">needle</code></em> n&#039;est pas
+						une chaîne, il sera converti en un entier, et appliqué comme
+						valeur ordinale d&#039;un caractère.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">offset</code></em></span>
+				<dd>
+
+					<p class="para">Si spécifié, la recherche commencera à ce
+						nombre de caractères compté depuis le début de la chaîne. Si la
+						valeur est négative, la recherche commencera depuis ce nombre de
+						caractères depuis la fin de la chaîne, en cherchant en arrière.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.strripos-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne la position de la dernière occurrence de <em><code
+						class="parameter">needle</code></em> relativement au début de la chaîne
+				<em><code class="parameter">haystack</code></em> (indépendamment de
+				la direction de recherche ou de l&#039;offset). Notez que la
+				position commence à partir de 0, et non de 1.
+			</p>
+			<p class="para">
+				Retourne <strong><code>FALSE</code></strong> si l&#039;occurrence
+				n&#039;a pas été trouvée.
+			</p>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="simpara">
+					Cette fonction peut retourner <strong><code>FALSE</code></strong>,
+					mais elle peut aussi retourner une valeur équivalent à <strong><code>FALSE</code></strong>.
+					Veuillez lire la section sur les <a
+						href="language.types.boolean.html" class="link">booléens</a> pour
+					plus d&#039;informations. Utilisez l&#039;<a
+						href="language.operators.comparison.html" class="link">opérateur
+						===</a> pour tester la valeur de retour exacte de cette fonction.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.strripos-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4558">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>strripos()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$haystack&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'ababcd'</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$needle&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'aB'</span><span style="color: #007700">;<br />
+								<br /></span><span style="color: #0000BB">$pos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">strripos</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$haystack</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$needle</span><span
+								style="color: #007700">);<br />
+								<br />if&nbsp;(
+							</span><span style="color: #0000BB">$pos&nbsp;</span><span
+								style="color: #007700">===&nbsp;</span><span
+								style="color: #0000BB">false</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Désolé,&nbsp;impossible&nbsp;de&nbsp;trouver&nbsp;(</span><span
+								style="color: #0000BB">$needle</span><span
+								style="color: #DD0000">)&nbsp;dans&nbsp;(</span><span
+								style="color: #0000BB">$haystack</span><span
+								style="color: #DD0000">)"</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Félicitations&nbsp;!\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Nous&nbsp;avons&nbsp;trouvé&nbsp;le&nbsp;dernier&nbsp;(</span><span
+								style="color: #0000BB">$needle</span><span
+								style="color: #DD0000">)&nbsp;dans&nbsp;(</span><span
+								style="color: #0000BB">$haystack</span><span
+								style="color: #DD0000">)&nbsp;à&nbsp;la&nbsp;position&nbsp;(</span><span
+								style="color: #0000BB">$pos</span><span style="color: #DD0000">)"</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Félicitations !
+Nous avons trouvé le dernier (aB) dans (ababcd) à la position (2)
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.strripos-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.strpos.html" class="function" rel="rdfs-seeAlso">strpos()</a>
+						- Cherche la position de la premi&egrave;re occurrence dans une
+						cha&icirc;ne</span></li>
+				<li class="member"><span class="function"><a
+						href="function.stripos.html" class="function" rel="rdfs-seeAlso">stripos()</a>
+						- Recherche la position de la premi&egrave;re occurrence dans une
+						cha&icirc;ne, sans tenir compte de la casse</span></li>
+				<li class="member"><span class="function"><a
+						href="function.strrpos.html" class="function" rel="rdfs-seeAlso">strrpos()</a>
+						- Cherche la position de la derni&egrave;re occurrence d'une
+						sous-chaine dans une cha&icirc;ne</span></li>
+				<li class="member"><span class="function"><a
+						href="function.strrchr.html" class="function" rel="rdfs-seeAlso">strrchr()</a>
+						- Trouve la derni&egrave;re occurrence d'un caract&egrave;re dans
+						une cha&icirc;ne</span></li>
+				<li class="member"><span class="function"><a
+						href="function.stristr.html" class="function" rel="rdfs-seeAlso">stristr()</a>
+						- Version insensible &agrave; la casse de strstr</span></li>
+				<li class="member"><span class="function"><a
+						href="function.substr.html" class="function" rel="rdfs-seeAlso">substr()</a>
+						- Retourne un segment de cha&icirc;ne</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.strrev.html">strrev</a>
+		</div>
+		<div class="next">
+			<a href="function.strrpos.html">strrpos</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

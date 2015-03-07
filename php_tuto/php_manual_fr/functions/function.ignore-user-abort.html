@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Active l'interruption de script sur d&eacute;connexion du
+	visiteur</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.highlight-string.html">highlight_string</a>
+		</div>
+		<div class="next">
+			<a href="function.pack.html">pack</a>
+		</div>
+		<div class="up">
+			<a href="ref.misc.html">Fonctions diverses</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.ignore-user-abort" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">ignore_user_abort</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">ignore_user_abort</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Active l&#039;interruption de script
+					sur déconnexion du visiteur</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.ignore-user-abort-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">int</span> <span class="methodname"><strong>ignore_user_abort</strong></span>
+				([ <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$value</code></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>ignore_user_abort()</strong></span>
+				active l&#039;option qui fait que, lors de la déconnexion du client
+				Web, le script poursuit son exécution.
+			</p>
+			<p class="para">
+				Lorsque PHP est exécuté comme script en ligne de commande, et que le
+				tty du script est fermé sans que le script soit terminé, alors le
+				script s&#039;arrêtera dès qu&#039;il essaiera d&#039;écrire quelque
+				chose, à moins que <em><code class="parameter">value</code></em>
+				soit <strong><code>TRUE</code></strong>
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.ignore-user-abort-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">value</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si fourni, la fonction va attribuer à la directive <a
+							href="misc.configuration.html#ini.ignore-user-abort" class="link">ignore_user_abort</a>
+						la valeur de <em><code class="parameter">value</code></em>. Si
+						omis, cette fonction ne fait que retourner la valeur de la
+						configuration courante.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.ignore-user-abort-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne la configuration précédente, sous la forme d&#039;un <a
+					href="language.types.integer.html" class="link">entier</a>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.ignore-user-abort-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-3509">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>ignore_user_abort()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Ignore&nbsp;la&nbsp;déconnexion&nbsp;de&nbsp;l'utilisateur&nbsp;et&nbsp;autorise<br />//&nbsp;le&nbsp;script&nbsp;à&nbsp;continuer&nbsp;de&nbsp;s'exécuter<br /></span><span
+								style="color: #0000BB">ignore_user_abort</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">true</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">set_time_limit</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">0</span><span
+								style="color: #007700">);<br />
+								<br />echo&nbsp;
+							</span><span style="color: #DD0000">'Test&nbsp;du&nbsp;gestionnaire&nbsp;de&nbsp;connexion&nbsp;de&nbsp;PHP'</span><span
+								style="color: #007700">;<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Exécution&nbsp;d'une&nbsp;boucle&nbsp;infinie&nbsp;surveillant<br />//&nbsp;l'activité&nbsp;de&nbsp;l'utilisateur.&nbsp;Soit&nbsp;il&nbsp;clique&nbsp;en&nbsp;dehors<br />//&nbsp;de&nbsp;la&nbsp;page,&nbsp;soit&nbsp;il&nbsp;clique&nbsp;sur&nbsp;le&nbsp;boutton&nbsp;"Stop".<br /></span><span
+								style="color: #007700">while(</span><span style="color: #0000BB">1</span><span
+								style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;La&nbsp;connexion&nbsp;a-t-elle&nbsp;échoué&nbsp;?<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">if(</span><span
+								style="color: #0000BB">connection_status</span><span
+								style="color: #007700">()&nbsp;!=&nbsp;</span><span
+								style="color: #0000BB">CONNECTION_NORMAL</span><span
+								style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;On&nbsp;attend&nbsp;10&nbsp;secondes<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">sleep</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">10</span><span
+								style="color: #007700">);<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Si&nbsp;c'est&nbsp;atteint,&nbsp;alors&nbsp;l'instruction&nbsp;'break'&nbsp;<br />//&nbsp;sera&nbsp;lancée&nbsp;depuis&nbsp;la&nbsp;boucle&nbsp;infinie<br />
+								<br />//&nbsp;Aussi,&nbsp;nous&nbsp;pouvons&nbsp;à&nbsp;ce&nbsp;niveau&nbsp;entrer&nbsp;des&nbsp;informations&nbsp;dans&nbsp;l'historique,<br />//&nbsp;ou&nbsp;exécuter&nbsp;d'autres&nbsp;taches&nbsp;nécessaires,&nbsp;sans&nbsp;pour&nbsp;autant&nbsp;être&nbsp;dépendant<br />//&nbsp;du&nbsp;navigateur.<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes"
+			id="refsect1-function.ignore-user-abort-notes">
+			<h3 class="title">Notes</h3>
+			<p class="para">
+				PHP ne détecte pas la déconnexion du client Web jusqu&#039;à ce
+				qu&#039;une tentative d&#039;envoi soit faite. La simple utilisation
+				d&#039;un <span class="function"><a href="function.echo.html"
+					class="function">echo</a></span> ne garantit pas que l&#039;information
+				est envoyée, voir la fonction <span class="function"><a
+					href="function.flush.html" class="function">flush()</a></span>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.ignore-user-abort-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.connection-aborted.html" class="function"
+						rel="rdfs-seeAlso">connection_aborted()</a> - Indique si
+						l'internaute a abandonn&eacute; la connexion HTTP</span></li>
+				<li class="member"><span class="function"><a
+						href="function.connection-status.html" class="function"
+						rel="rdfs-seeAlso">connection_status()</a> - Retourne les bits de
+						statut de la connexion HTTP</span></li>
+				<li class="member"><a href="features.connection-handling.html"
+					class="link">Gestionnaire de connexion</a> pour une description
+					complète du gestionnaire de connexion en PHP.</li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.highlight-string.html">highlight_string</a>
+		</div>
+		<div class="next">
+			<a href="function.pack.html">pack</a>
+		</div>
+		<div class="up">
+			<a href="ref.misc.html">Fonctions diverses</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

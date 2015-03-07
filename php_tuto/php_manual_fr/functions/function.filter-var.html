@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Filtre une variable avec un filtre sp&eacute;cifique</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.filter-var-array.html">filter_var_array</a>
+		</div>
+		<div class="next">
+			<a href="book.funchand.html">Gestion des fonctions</a>
+		</div>
+		<div class="up">
+			<a href="ref.filter.html">Filter Fonctions</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.filter-var" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">filter_var</h1>
+			<p class="verinfo">(PHP 5 &gt;= 5.2.0)</p>
+			<p class="refpurpose">
+				<span class="refname">filter_var</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Filtre une variable avec un filtre
+					spécifique</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.filter-var-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><a
+					href="language.pseudo-types.html#language.types.mixed"
+					class="type mixed">mixed</a></span> <span class="methodname"><strong>filter_var</strong></span>
+				( <span class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$variable</code></span>
+				[, <span class="methodparam"><span class="type">int</span> <code
+						class="parameter">$filter</code><span class="initializer">
+						= FILTER_DEFAULT</span></span> [, <span class="methodparam"><span
+					class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$options</code></span>
+				]] )
+			</div>
+
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.filter-var-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">variable</code></em></span>
+				<dd>
+
+					<p class="para">Valeur à filtrer.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">filter</code></em></span>
+				<dd>
+
+					<p class="para">
+						L&#039;ID du filtre à appliquer. La page <a
+							href="filter.filters.html" class="xref">Types de filtres</a> du
+						manuel liste tous les filtres disponibles.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">options</code></em></span>
+				<dd>
+
+					<p class="para">
+						Tableau associatif d&#039;options ou des drapeaux. Si le filtre
+						accepte les options, les drapeaux peuvent être fournis dans le
+						champ &quot;flags&quot; du tableau. Pour les fonctions de rappel,
+						le type <span class="type"><a
+							href="language.types.callable.html" class="type callable">callable</a></span>
+						devra être passé. La fonction de rappel doit accepter un seul
+						argument ; la valeur à filtrer et retournera la valeur, une fois
+						le filtre appliqué.
+					</p>
+					<p class="para">
+					<div class="example-contents">
+						<div class="phpcode">
+							<code>
+								<span style="color: #000000"> <span
+									style="color: #0000BB">&lt;?php<br /></span><span
+									style="color: #FF8000">//&nbsp;Pour&nbsp;les&nbsp;filtres&nbsp;acceptant&nbsp;les&nbsp;options,<br />//&nbsp;utilisez&nbsp;ce&nbsp;format<br /></span><span
+									style="color: #0000BB">$options&nbsp;</span><span
+									style="color: #007700">=&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;
+								</span><span style="color: #DD0000">'options'&nbsp;</span><span
+									style="color: #007700">=&gt;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								</span><span style="color: #DD0000">'default'&nbsp;</span><span
+									style="color: #007700">=&gt;&nbsp;</span><span
+									style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;</span><span
+									style="color: #FF8000">//&nbsp;valeur&nbsp;à&nbsp;retourner&nbsp;si&nbsp;le&nbsp;filtre&nbsp;échoue<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;autres&nbsp;options&nbsp;ici...<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								</span><span style="color: #DD0000">'min_range'&nbsp;</span><span
+									style="color: #007700">=&gt;&nbsp;</span><span
+									style="color: #0000BB">0<br />&nbsp;&nbsp;&nbsp;&nbsp;
+								</span><span style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;
+								</span><span style="color: #DD0000">'flags'&nbsp;</span><span
+									style="color: #007700">=&gt;&nbsp;</span><span
+									style="color: #0000BB">FILTER_FLAG_ALLOW_OCTAL</span><span
+									style="color: #007700">,<br />);<br /></span><span
+									style="color: #0000BB">$var&nbsp;</span><span
+									style="color: #007700">=&nbsp;</span><span
+									style="color: #0000BB">filter_var</span><span
+									style="color: #007700">(</span><span style="color: #DD0000">'0755'</span><span
+									style="color: #007700">,&nbsp;</span><span
+									style="color: #0000BB">FILTER_VALIDATE_INT</span><span
+									style="color: #007700">,&nbsp;</span><span
+									style="color: #0000BB">$options</span><span
+									style="color: #007700">);<br />
+									<br /></span><span style="color: #FF8000">//&nbsp;Pour&nbsp;les&nbsp;filtres&nbsp;qui&nbsp;n'acceptent&nbsp;que&nbsp;des&nbsp;drapeaux,<br />//&nbsp;vous&nbsp;pouvez&nbsp;les&nbsp;passer&nbsp;directement<br /></span><span
+									style="color: #0000BB">$var&nbsp;</span><span
+									style="color: #007700">=&nbsp;</span><span
+									style="color: #0000BB">filter_var</span><span
+									style="color: #007700">(</span><span style="color: #DD0000">'oops'</span><span
+									style="color: #007700">,&nbsp;</span><span
+									style="color: #0000BB">FILTER_VALIDATE_BOOLEAN</span><span
+									style="color: #007700">,&nbsp;</span><span
+									style="color: #0000BB">FILTER_NULL_ON_FAILURE</span><span
+									style="color: #007700">);<br />
+									<br /></span><span style="color: #FF8000">//&nbsp;Pour&nbsp;les&nbsp;filtres&nbsp;qui&nbsp;n'acceptent&nbsp;que&nbsp;des&nbsp;drapeaux,<br />//&nbsp;vous&nbsp;pouvez&nbsp;également&nbsp;les&nbsp;passer&nbsp;sous&nbsp;forme&nbsp;de&nbsp;tableau<br /></span><span
+									style="color: #0000BB">$var&nbsp;</span><span
+									style="color: #007700">=&nbsp;</span><span
+									style="color: #0000BB">filter_var</span><span
+									style="color: #007700">(</span><span style="color: #DD0000">'oops'</span><span
+									style="color: #007700">,&nbsp;</span><span
+									style="color: #0000BB">FILTER_VALIDATE_BOOLEAN</span><span
+									style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(
+								</span><span style="color: #DD0000">'flags'&nbsp;</span><span
+									style="color: #007700">=&gt;&nbsp;</span><span
+									style="color: #0000BB">FILTER_NULL_ON_FAILURE</span><span
+									style="color: #007700">));<br />
+									<br /></span><span style="color: #FF8000">//&nbsp;Fonction&nbsp;de&nbsp;rappel&nbsp;du&nbsp;filtre<br /></span><span
+									style="color: #007700">function&nbsp;</span><span
+									style="color: #0000BB">foo</span><span style="color: #007700">(</span><span
+									style="color: #0000BB">$value</span><span
+									style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+								</span><span style="color: #FF8000">//&nbsp;Format&nbsp;attendu:&nbsp;Surname,&nbsp;GivenNames<br />&nbsp;&nbsp;&nbsp;&nbsp;
+								</span><span style="color: #007700">if&nbsp;(</span><span
+									style="color: #0000BB">strpos</span><span
+									style="color: #007700">(</span><span style="color: #0000BB">$value</span><span
+									style="color: #007700">,&nbsp;</span><span
+									style="color: #DD0000">",&nbsp;"</span><span
+									style="color: #007700">)&nbsp;===&nbsp;</span><span
+									style="color: #0000BB">false</span><span style="color: #007700">)&nbsp;return&nbsp;</span><span
+									style="color: #0000BB">false</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;list(
+								</span><span style="color: #0000BB">$surname</span><span
+									style="color: #007700">,&nbsp;</span><span
+									style="color: #0000BB">$givennames</span><span
+									style="color: #007700">)&nbsp;=&nbsp;</span><span
+									style="color: #0000BB">explode</span><span
+									style="color: #007700">(</span><span style="color: #DD0000">",&nbsp;"</span><span
+									style="color: #007700">,&nbsp;</span><span
+									style="color: #0000BB">$value</span><span
+									style="color: #007700">,&nbsp;</span><span
+									style="color: #0000BB">2</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;
+								</span><span style="color: #0000BB">$empty&nbsp;</span><span
+									style="color: #007700">=&nbsp;(empty(</span><span
+									style="color: #0000BB">$surname</span><span
+									style="color: #007700">)&nbsp;||&nbsp;empty(</span><span
+									style="color: #0000BB">$givennames</span><span
+									style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;
+								</span><span style="color: #0000BB">$notstrings&nbsp;</span><span
+									style="color: #007700">=&nbsp;(!</span><span
+									style="color: #0000BB">is_string</span><span
+									style="color: #007700">(</span><span style="color: #0000BB">$surname</span><span
+									style="color: #007700">)&nbsp;||&nbsp;!</span><span
+									style="color: #0000BB">is_string</span><span
+									style="color: #007700">(</span><span style="color: #0000BB">$givennames</span><span
+									style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(
+								</span><span style="color: #0000BB">$empty&nbsp;</span><span
+									style="color: #007700">||&nbsp;</span><span
+									style="color: #0000BB">$notstrings</span><span
+									style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+								</span><span style="color: #0000BB">false</span><span
+									style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+								</span><span style="color: #0000BB">$value</span><span
+									style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span
+									style="color: #0000BB">$var&nbsp;</span><span
+									style="color: #007700">=&nbsp;</span><span
+									style="color: #0000BB">filter_var</span><span
+									style="color: #007700">(</span><span style="color: #DD0000">'Doe,&nbsp;Jane&nbsp;Sue'</span><span
+									style="color: #007700">,&nbsp;</span><span
+									style="color: #0000BB">FILTER_CALLBACK</span><span
+									style="color: #007700">,&nbsp;array(</span><span
+									style="color: #DD0000">'options'&nbsp;</span><span
+									style="color: #007700">=&gt;&nbsp;</span><span
+									style="color: #DD0000">'foo'</span><span style="color: #007700">));<br /></span><span
+									style="color: #0000BB">?&gt;</span>
+								</span>
+							</code>
+						</div>
+					</div>
+
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.filter-var-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne les données filtrées, ou <strong><code>FALSE</code></strong>
+				si le filtre échoue.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.filter-var-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4748">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>filter_var()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />var_dump
+							</span><span style="color: #007700">(</span><span style="color: #0000BB">filter_var</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'bob@example.com'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">FILTER_VALIDATE_EMAIL</span><span
+								style="color: #007700">));<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">filter_var</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'http://example.com'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">FILTER_VALIDATE_URL</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">FILTER_FLAG_PATH_REQUIRED</span><span
+								style="color: #007700">));<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+string(15) &quot;bob@example.com&quot;
+bool(false)
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.filter-var-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.filter-var-array.html" class="function"
+						rel="rdfs-seeAlso">filter_var_array()</a> - R&eacute;cup&egrave;re
+						plusieurs variables et les filtre</span></li>
+				<li class="member"><span class="function"><a
+						href="function.filter-input.html" class="function"
+						rel="rdfs-seeAlso">filter_input()</a> - R&eacute;cup&egrave;re une
+						variable externe et la filtre</span></li>
+				<li class="member"><span class="function"><a
+						href="function.filter-input-array.html" class="function"
+						rel="rdfs-seeAlso">filter_input_array()</a> -
+						R&eacute;cup&egrave;re plusieurs valeurs externes et les filtre</span></li>
+				<li class="member"><a href="filter.filters.html" class="xref">Types
+						de filtres</a></li>
+				<li class="member">Informations sur le type <a
+					href="language.pseudo-types.html#language.types.callback"
+					class="link">callback</a></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.filter-var-array.html">filter_var_array</a>
+		</div>
+		<div class="next">
+			<a href="book.funchand.html">Gestion des fonctions</a>
+		</div>
+		<div class="up">
+			<a href="ref.filter.html">Filter Fonctions</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

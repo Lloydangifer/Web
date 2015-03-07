@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Boutons radio</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			Les boutons radios permettent de faire un <strong>choix
+				exclusif</strong> parmi plusieurs options possibles.
+		</p>
+
+		<a id="type_radio"></a>
+		<h3>Principes de fonctionnement</h3>
+		<section>
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : boutons radio
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Fromulaire&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Boutons radio&lt;/h3&gt;
+		
+		&lt;form method="POST" action="dossier/reception.php"&gt;
+			Ce tutoriel est :
+			
+			&lt;input type="radio" name="radTuto" value="3"
+				   checked id="radExcel"&gt;
+			&lt;label for="radExcel"&gt;excellent&lt;/label&gt;
+			
+			&lt;input type="radio" name="radTuto" value="2"
+				   id="radTB"&gt;
+			&lt;label for="radTB"&gt;très bien&lt;/label&gt;
+			
+			&lt;input type="radio" name="radTuto" value="1"
+				   id="radMoyen"&gt;
+			&lt;label for="radMoyen"&gt;moyen&lt;/label&gt;
+			
+			&lt;input type="radio" name="radTuto" value="0"
+				   id="radNul"&gt;
+			&lt;label for="radNul"&gt;nul&lt;/label&gt;	
+			
+			&lt;p&gt;
+				&lt;input type="submit" value="Envoi" name="btn"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				<strong>La zone est faite avec l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+					dont l'attribut <code>type</code> a la valeur <code>radio</code>.
+				</strong> L'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+				est un élement vide (ie sans balise de fermeture).
+			</p>
+
+			<p>
+				Un bouton radio seul n'a aucun sens car les boutons radio sont
+				conçus pour faire <strong>un choix exclusif</strong> parmi <strong>un
+					ensemble de propositions</strong>. Ils fonctionnent donc toujours en groupe.
+			</p>
+
+			<p>
+				Ce qui détermine l'appartenance d'un bouton radio à un groupe c'est
+				<strong>la valeur de l'attribut <code>name</code></strong> qui doit
+				être <strong>la même pour tous les boutons du groupe</strong>.
+			</p>
+
+			<div class="fp-puce">
+				<p>
+					Un des boutons radio du groupe devrait toujours être <strong>sélectionné
+						par défaut</strong> puisque ce type de zone sert à faire un choix exclusif
+					: c'est soit "oui", soit "non", mais pas "oui et non" et pas "ni
+					oui ni non".
+				<p>
+				<p>
+					Pour sélectionner un bouton radio par défaut, il suffit qu'il ait <strong>l'attribut
+						<code>checked</code>
+					</strong>.
+					<br>
+					<code>checked</code> est un attribut <strong>booléen</strong> qui
+					n'a pas de valeur : sa présence ou son absence dans la balise
+					d'ouverture définit la valeur <code>true</code> (présence) ou <code>false</code>
+					(absence). Le piège est d'écrire :
+					<br>
+					<code>&lt;input type="radio" checked="false"...</code>
+					<br>
+					Comme <code>checked</code> est présent, la valeur sera <code>true</code>
+					et le navigateur ne tiendra pas compte de l'égalité faite dans le
+					code <abbr title="HyperText Markup Language">HTML</abbr>.
+				</p>
+			</div>
+
+			<div class="fp-puce">
+				<p>
+					L'utilisation d'un élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'label')">label</a>
+					attaché à un bouton radio est particulièrement intéressante car la
+					sélection/déselection du bouton est facilitée par la surface plus
+					grande du label.
+				</p>
+
+				<p>
+					Attention a bien donner une valeur d'<code>id</code> différente
+					pour chacun des boutons radio, mais d'avoir une valeur identique
+					pour l'attribut <code>name</code> des boutons d'un même groupe.
+				</p>
+
+			</div>
+
+
+			<table class="TAB-zebre fp-petit">
+				<tr>
+					<td>Attribut possible</td>
+					<td>Utilité</td>
+				</tr>
+				<tr>
+					<td><code>checked</code></td>
+					<td>Etat par défaut (coché ou non). Attribut booléen.</td>
+				</tr>
+
+				<tr>
+					<td><code>dirname</code></td>
+					<td>Direction du texte saisi.</td>
+				</tr>
+				<tr>
+					<td><code>disabled</code></td>
+					<td>Zone désactivée, non transmise au serveur. Aucune
+						interaction n'est possible avec la zone (pas de focus, pas de
+						copie, etc). Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>form</code></td>
+					<td><code>id</code> du formulaire associé si la zone n'est pas
+						un élément <code>form</code> ou concerne un autre formulaire que
+						celui dans lequel elle est imbriquée.</td>
+				</tr>
+
+				<tr>
+					<td><code>name</code></td>
+					<td>Nom de la zone. Tous les boutons d'un même groupe DOIVENT
+						avoir le même.</td>
+				</tr>
+
+				<tr>
+					<td><code>readonly</code></td>
+					<td>Zone en lecture seule, non transmise au serveur. La zone
+						peut avoir le focus et le contenu peut être copié. Attribut
+						booléen.</td>
+				</tr>
+				<tr>
+					<td><code>required</code></td>
+					<td>Zone obligatoire. Attribut booléen.</td>
+				</tr>
+				<tr>
+					<td><code>value</code></td>
+					<td>Valeur initiale de la zone et valeur transmise au serveur
+						après saisie.</td>
+				</tr>
+			</table>
+		</section>
+
+		<a id="exo_btn_radio"></a>
+		<h3 class="fp-exo">Groupes de boutons radio</h3>
+		<section>
+			<p class="fp-p-raz">Complétez le code <abbr title="HyperText Markup Language">HTML</abbr>
+				pour obtenir le résultat ci-dessous.</p>
+
+			<figure>
+				<img src="../exercices/exo_btn_radio.jpg" width="460" height="566">
+				<figcaption>groupes de boutons radio</figcaption>
+			</figure>
+
+			<figure style="float: right; width: 160px;">
+				<img src="../exercices/exo_form_rep.png" width="150" height="218">
+				<figcaption>arborescence de l'exercice</figcaption>
+			</figure>
+
+			<p class="fp-p-raz">
+				Les images s'appellent du nom du personnage, tout en minuscules, et
+				les espaces éventuels remplacés par un _ (underscore). L'extension
+				du fichier est <code>.png</code>
+			</p>
+
+			<p class="fp-p-raz fp-petit">(Personnages : Yoda, Luke Skywalker,
+				Chewbacca, Palpatine, Dark vador, Comte Dooku.)</p>
+
+			<p class="fp-p-raz">Quand on clique sur les images, le bouton
+				radio correspondant est sélectionné ou déselectionné.</p>
+
+			<p class="fp-p-raz">Le dernier bouton radio de chaque groupe est
+				sélectionné par défaut.</p>
+
+			<p class="fp-p-raz">La valeur d'un bouton radio est le nom du personnage auquel il est associé.</p>
+
+			<p class="fp-p-raz">
+				Le formulaire utilise la méthode <code>POST</code> pour envoyer les
+				informations saisies à <code>recuperer.php</code>.
+			</p>
+
+			<p class="fp-p-raz">
+				Les boutons s'appellent <code>btnReset</code> et <code>btnSubmit</code>.
+			</p>
+
+			<p class="fp-completez">
+				<a onClick="top.FP.Voir.showCompletez('exo_btn_radio_comp')">Code
+					à compléter</a>
+			</p>
+
+			<div id="exo_btn_radio_comp" class="BLOC-completez">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : groupes de boutons radio
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Groupes de boutons radio&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form&gt;
+			&lt;h2&gt;Eliminez un concurrent.&lt;/h2&gt;
+			
+			&lt;hr&gt;
+			
+			&lt;p&gt;
+				Je suis :
+			&lt;/p&gt;
+			
+			&lt;hr&gt;
+			
+			&lt;h3&gt;Il ne continue pas l'aventure : &lt;/h3&gt;
+					
+			&lt;hr&gt;
+			
+			&lt;h3&gt;Il ne continue pas l'aventure :&lt;/h3&gt;
+			
+			&lt;hr&gt;
+			
+			&lt;p&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+
+			<p class="fp-solution">
+				<a onClick="top.FP.Voir.showSolution('exo_btn_radio_solu', 1)">Une
+					solution possible</a>
+			</p>
+			<div id="exo_btn_radio_solu" class="BLOC-solution">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : groupes de boutons radio
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Groupes de boutons radio&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form method="POST" action="recuperer.php"&gt;
+			&lt;h2&gt;Eliminez un concurrent.&lt;/h2&gt;
+			
+			&lt;hr&gt;
+			
+			&lt;p&gt;
+				Je suis :
+				&lt;input type="radio" name="radGenre" id="radF"
+					   value="F"&gt;
+				&lt;label for="radF"&gt;une femme&lt;/label&gt;
+			
+				&lt;input type="radio" name="radGenre" id="radH"
+					   checked value="H"&gt;
+				&lt;label for="radH"&gt;un homme&lt;/label&gt;
+			&lt;/p&gt;
+			
+			&lt;hr&gt;
+			
+			&lt;h3&gt;Il ne continue pas l'aventure : &lt;/h3&gt;
+			&lt;input type="radio" name="radGentil" id="rad1"
+				   value="yoda"&gt;
+			&lt;label for="rad1"&gt;
+				&lt;img src="../exemples/star_wars/images/yoda.png"&gt;
+			&lt;/label&gt;
+			
+			&lt;input type="radio" name="radGentil" id="rad2"
+				   value="luke"&gt;
+			&lt;label for="rad2"&gt;
+				&lt;img src="../exemples/star_wars/images/luke_skywalker.png"&gt;
+			&lt;/label&gt;
+			
+			&lt;input type="radio" name="radGentil" id="rad3"
+				   value="chewbacca" checked&gt;
+			&lt;label for="rad3"&gt;
+				&lt;img src="../exemples/star_wars/images/chewbacca.png"&gt;
+			&lt;/label&gt;		
+		
+			&lt;hr&gt;
+			
+			&lt;h3&gt;Il ne continue pas l'aventure :&lt;/h3&gt;
+			&lt;input type="radio" name="radMechant" id="rad4"
+				   value="palpatine"&gt;
+			&lt;label for="rad4"&gt;
+				&lt;img src="../exemples/star_wars/images/palpatine.png"&gt;
+			&lt;/label&gt;
+			
+			&lt;input type="radio" name="radMechant" id="rad5"
+				   value="dark_vador"&gt;
+			&lt;label for="rad5"&gt;
+				&lt;img src="../exemples/star_wars/images/dark_vador.png"&gt;
+			&lt;/label&gt;
+			
+			&lt;input type="radio" name="radMechant" id="rad6"
+				   value="comte_dooku" checked&gt;
+			&lt;label for="rad6"&gt;
+				&lt;img src="../exemples/star_wars/images/comte_dooku.png"&gt;
+			&lt;/label&gt;
+
+			&lt;hr&gt;
+			&lt;p&gt;
+				&lt;input type="reset" value="Effacer"
+					   name="btnReset"&gt;
+				&lt;input type="submit" value="Voter"
+					   name="btnSubmit"&gt;
+			&lt;/p&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

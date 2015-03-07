@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Considerations sur les performances</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="features.gc.collecting-cycles.html">Nettoyage de Cycles</a></div>
+ <div class="next"><a href="funcref.html">R&eacute;f&eacute;rence des fonctions</a></div>
+ <div class="up"><a href="features.gc.html">Ramasse-miettes (Garbage Collection)</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="features.gc.performance-considerations" class="sect1">
+   <h2 class="title">Considerations sur les performances</h2>
+   <p class="para">
+    Nous avons déja vu dans les sections précédentes que la collecte des racines probables
+    avait un impact très léger sur les performances, mais c&#039;est lorsque l&#039;on compare PHP 5.2 à
+    PHP 5.3. Même si l&#039;enregistrement des racines probables est plus lent que de ne pas les
+    enregistrer du tout, comme dans PHP 5.2, d&#039;autres améliorations apportées par PHP 5.3
+    font que cette opération ne se ressent pas au niveau des performances.
+   </p>
+   <p class="para">
+    Il y a principalement deux niveaux pour lesquels les performances sont affectées.
+    Le premier est l&#039;empreinte mémoire réduite, et le second est le délai à l&#039;exécution,
+    lorsque le mécanisme de nettoyage effectue son opération de libération de mémoire.
+    Nous allons étudier ces deux axes.
+   </p>
+
+   <div class="sect2" id="features.gc.performance-considerations.reduced-mem">
+    <h3 class="title">Empreinte mémoire réduite</h3>
+    <p class="para">
+     Avant tout, la raison principale de l&#039;implémentation du mécanisme de collecte des déchets
+     est la réduction de la mémoire consommée, en nettoyant les références circulaires lorsque
+     les conditions requises sont remplies.
+     Avec PHP, ceci arrive dès que le tampon de racines est plein, ou lorsque la
+     fonction  <span class="function"><a href="function.gc-collect-cycles.html" class="function">gc_collect_cycles()</a></span> est appelée. Sur le graphe ci-après, nous
+     affichons l&#039;utilisation mémoire du script suivant, avec PHP 5.2 et avec PHP 5.3, en excluant
+     la mémoire obligatoire que PHP consomme pour lui-même au démarrage.
+    </p>
+    <p class="para">
+     <div class="example" id="example-398">
+      <p><strong>Exemple #1 Exemple d&#039;utilisation mémoire</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">Foo<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;</span><span style="color: #0000BB">$var&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'3.141592654'</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #0000BB">$baseMemory&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">memory_get_usage</span><span style="color: #007700">();<br /><br />for&nbsp;(&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">&lt;=&nbsp;</span><span style="color: #0000BB">100000</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++&nbsp;)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Foo</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$a</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">self&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$a</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">%&nbsp;</span><span style="color: #0000BB">500&nbsp;</span><span style="color: #007700">===&nbsp;</span><span style="color: #0000BB">0&nbsp;</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">sprintf</span><span style="color: #007700">(&nbsp;</span><span style="color: #DD0000">'%8d:&nbsp;'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">memory_get_usage</span><span style="color: #007700">()&nbsp;-&nbsp;</span><span style="color: #0000BB">$baseMemory</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+      </div>
+
+      <div class="mediaobject">
+       
+       <div class="imageobject">
+        <img src="images/12f37b1c6963c1c5c18f30495416a197-gc-benchmark.png" alt="Comparaison de la consommation mémoire entre PHP 5.2 et PHP 5.3" width="850" height="480" />
+       </div>
+      </div>
+     </div>
+    </p>
+    <p class="para">
+     Dans cet exemple quelque peu accadémique, nous créons un objet possédant un attribut le référençant
+     lui-même. Lorsque la variable <var class="varname"><var class="varname">$a</var></var> dans le script est réassignée à
+     l&#039;itération suivante, une fuite mémoire apparaitra. Dans ce cas, les deux conteneurs zval
+     fuient (la zval de l&#039;objet et celle de l&#039;attribut), mais une seule racine possible
+     est trouvée : la variable qui a été supprimée. Lorsque le tampon de racines est plein après
+     10.000 itérations (avec un total de 10.000 racines possibles), le mécanisme de collecte des
+     déchets entre en jeu et libère la mémoire associée à ces racines probables. Cela se voit
+     très clairement sur les graphes d&#039;utilisation mémoire de PHP 5.3. Après chaque 10.000
+     itérations, le mécanisme se déclenche et libère la mémoire associée aux variables circulairement
+     référencées. Le mécanisme en question n&#039;a pas énormément de travail dans cet exemple, parce que
+     la structure qui a fuit est extrêmement simple.
+     Le diagramme montre que l&#039;utilisation maximale de mémoire de PHP 5.3 est d&#039;environ
+     9Mo, là où elle n&#039;arrête pas d&#039;augmenter avec PHP 5.2.
+    </p>
+   </div>
+
+   <div class="sect2" id="features.gc.performance-considerations.slowdowns">
+    <h3 class="title">Ralentissements durant l&#039;exécution</h3>
+    <p class="para">
+     Le second point où le mécanisme de collecte des déchets (GC) affecte les performances
+     est lorsqu&#039;il est exécuté pour libérer la mémoire &quot;gaspillée&quot;. Pour quantifier cet
+     impact, nous modifions légérement le script précédent afin d&#039;avoir un nombre d&#039;itérations
+     plus élevé et de supprimer la collecte de l&#039;usage mémoire intermédiaire.
+     Le second script est reproduit ci-dessous :
+    </p>
+    <p class="para">
+     <div class="example" id="example-399">
+      <p><strong>Exemple #2 Impact de GC sur les performances</strong></p>
+      <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">class&nbsp;</span><span style="color: #0000BB">Foo<br /></span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;</span><span style="color: #0000BB">$var&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'3.141592654'</span><span style="color: #007700">;<br />}<br /><br />for&nbsp;(&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">&lt;=&nbsp;</span><span style="color: #0000BB">1000000</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++&nbsp;)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$a&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">Foo</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$a</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">self&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$a</span><span style="color: #007700">;<br />}<br /><br />echo&nbsp;</span><span style="color: #0000BB">memory_get_peak_usage</span><span style="color: #007700">(),&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+      </div>
+
+     </div>
+    </p>
+    <p class="para">
+     Nous allons lancer ce script 2 fois, une fois avec
+     <strong class="option unknown">zend.enable_gc</strong>
+ à on, et une fois à off:
+    </p>
+    <p class="para">
+     <div class="example" id="example-400">
+      <p><strong>Exemple #3 Lancement du script ci-dessus</strong></p>
+      <div class="example-contents">
+<div class="shellcode"><pre class="shellcode">time php -dzend.enable_gc=0 -dmemory_limit=-1 -n example2.php
+# and
+time php -dzend.enable_gc=1 -dmemory_limit=-1 -n example2.php</pre>
+</div>
+      </div>
+
+     </div>
+    </p>
+    <p class="para">
+     Sur ma machine, la première commande semble durer tout le temps 10,7 secondes,
+     alors que la seconde commande prend environ 11,4 secondes. Cela correspond à un ralentissement
+     de 7% environ. Cependant, la quantité totale de mémoire utilisée par le script est réduite
+     de 98%, passant de 931Mo à 10Mo. Ce benchmark n&#039;est pas très scientifique ou même
+     représentatif d&#039;applications réelles, mais il démontre concrètement en quoi le mécanisme
+     de collecte des déchets peut être utile au niveau de la consommation mémoire. Le bon point
+     est que le ralentissement est toujours de 7%, dans le cas particulier de ce script, alors
+     que la mémoire préservée sera de plus en plus importante au fur et à mesure que
+     des références circulaires apparaitront durant l&#039;éxécution.
+    </p>
+   </div>
+
+   <div class="sect2" id="features.gc.performance-considerations.internal-stats">
+    <h3 class="title">Statistiques internes du GC de PHP</h3>
+    <p class="para">
+     Il est possible d&#039;obtenir quelques informations supplémentaires concernant le mécanisme de collecte
+     des déchets interne à PHP. Mais pour cela, il vous faut recompiler PHP avec le support
+     du benchmarking et de la collecte de données. Vous devrez renseigner la variable
+     d&#039;environnement <em>CFLAGS</em> avec <em>-DGC_BENCH=1</em> avant
+     de lancer <em>./configure</em> avec les options qui vous intéressent.
+     L&#039;exemple suivant démontre cela :
+    </p>
+    <p class="para">
+     <div class="example" id="example-401">
+      <p><strong>Exemple #4 Recompiler PHP pour activer le support du benchmark du GC</strong></p>
+      <div class="example-contents">
+<div class="shellcode"><pre class="shellcode">export CFLAGS=-DGC_BENCH=1
+./config.nice
+make clean
+make</pre>
+</div>
+      </div>
+
+     </div>
+    </p>
+    <p class="para">
+     Lorsque vous ré-éxécutez le code du script ci-dessus avec le binaire PHP fraichement
+     reconstruit, vous devriez voir le résultat suivant après l&#039;exécution :
+    </p>
+    <p class="para">
+     <div class="example" id="example-402">
+      <p><strong>Exemple #5 Statistiques GC</strong></p>
+      <div class="example-contents">
+<div class="shellcode"><pre class="shellcode">GC Statistics
+-------------
+Runs:               110
+Collected:          2072204
+Root buffer length: 0
+Root buffer peak:   10000
+
+      Possible            Remove from  Marked
+        Root    Buffered     buffer     grey
+      --------  --------  -----------  ------
+ZVAL   7175487   1491291    1241690   3611871
+ZOBJ  28506264   1527980     677581   1025731</pre>
+</div>
+      </div>
+
+     </div>
+    </p>
+    <p class="para">
+     Les statistiques les plus intéressantes sont affichées dans le premier bloc. Vous voyez ici
+     que le mécanisme de collecte des dêchets a été déclenché 110 fois, et qu&#039;au total ce sont
+     plus de 2 millions d&#039;allocations mémoire qui ont été libérées durant ces 110 passages.
+     Dès lors que le mécanisme est intervenu au moins une fois, le pic du buffer racine est toujours
+     de 10000.
+    </p>
+   </div>
+
+   <div class="sect2" id="features.gc.performance-considerations.conclusion">
+    <h3 class="title">Conclusion</h3>
+    <p class="para">
+     De manière générale, la collecte des dêchets de PHP ne causera un ralentissement
+     que lorsque l&#039;algorithme de collecte de cycles tournera, ce qui signifie que dans les scripts
+     normaux (plus courts), il ne devrait pas du tout y avoir d&#039;impact sur les performances.
+    </p>
+    <p class="para">
+     Cependant, lorsque le mécanisme de collecte de cycles sera déclenché dans des scripts
+     normaux, la réduction de l&#039;empreinte mémoire permettra l&#039;exécution parallèle d&#039;un nombre plus
+     important de ces scripts, puisque moins de mémoire sera utilisée au total.
+    </p>
+    <p class="para">
+     Les avantages se sentent plus nettement dans le cas de scripts démons ou devant tourner longtemps.
+     Ainsi, pour les applications <a href="http://gtk.php.net/" class="link external">&raquo;&nbsp;PHP-GTK</a> qui tournent souvent
+     plus longtemps que des scripts pour le Web, le nouveau mécanisme devrait réduire
+     significativement les fuites mémoire sur le long terme.
+    </p>
+   </div>
+  </div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="features.gc.collecting-cycles.html">Nettoyage de Cycles</a></div>
+ <div class="next"><a href="funcref.html">R&eacute;f&eacute;rence des fonctions</a></div>
+ <div class="up"><a href="features.gc.html">Ramasse-miettes (Garbage Collection)</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Fixe la valeur d'une variable d'environnement</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.phpversion.html">phpversion</a>
+		</div>
+		<div class="next">
+			<a href="function.restore-include-path.html">restore_include_path</a>
+		</div>
+		<div class="up">
+			<a href="ref.info.html">Fonctions sur les options et les
+				informations de PHP</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.putenv" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">putenv</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">putenv</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Fixe la valeur d&#039;une variable
+					d&#039;environnement</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.putenv-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>putenv</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$setting</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">Fixe la valeur d&#039;une variable
+				d&#039;environnement. Cette valeur n&#039;existera que durant la vie
+				du script courant, et l&#039;environnement initial sera restauré
+				lorsque le script sera terminé.</p>
+			<p class="para">
+				Modifier la valeur de certaines variables système peut être un trou
+				de sécurité considérable. La directive de configuration <em>safe_mode_allowed_env_vars</em>
+				contient une liste de préfixes, séparés par des virgules. Lorsque le
+				Safe Mode est actif, l&#039;utilisateur ne peut que modifier les
+				variables dont le nom commence par les préfixes fournis par cette
+				directive. Par défaut, les utilisateurs ne peuvent modifier que les
+				variables qui commencent par <em>PHP_</em> (i.e. <em>PHP_FOO=BAR</em>).
+				Note : Si cette directive est vide, PHP autorisera la modification
+				de TOUTES les variables d&#039;environnement !
+			</p>
+			<p class="para">
+				La directive de configuration <em>safe_mode_protected_env_vars</em>
+				contient une liste de variables d&#039;environnement, séparées par
+				des virgules. Les utilisateurs ne pourront pas modifier ces
+				variables avec la fonction <span class="function"><strong>putenv()</strong></span>.
+				Ces variables seront protégées même si <em>safe_mode_allowed_env_vars</em>
+				permet leur modification.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.putenv-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">setting</code></em></span>
+				<dd>
+
+					<p class="para">
+						La configuration, comme <em>&quot;FOO=BAR&quot;</em>
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.putenv-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.putenv-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-512">
+				<p>
+					<strong>Exemple #1 Modification d&#039;une variable
+						d&#039;environnement</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />putenv
+							</span><span style="color: #007700">(</span><span style="color: #DD0000">"UNIQID=</span><span
+								style="color: #0000BB">$uniqid</span><span
+								style="color: #DD0000">"</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.putenv-notes">
+			<h3 class="title">Notes</h3>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">
+					Les directives <em>safe_mode_allowed_env_vars</em> et <em>safe_mode_protected_env_vars</em>
+					ne prennent effets que si le <a href="features.safe-mode.html"
+						class="link">safe_mode</a> est activé.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.putenv-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.getenv.html" class="function" rel="rdfs-seeAlso">getenv()</a>
+						- Retourne la valeur d'une variable d'environnement</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.phpversion.html">phpversion</a>
+		</div>
+		<div class="next">
+			<a href="function.restore-include-path.html">restore_include_path</a>
+		</div>
+		<div class="up">
+			<a href="ref.info.html">Fonctions sur les options et les
+				informations de PHP</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

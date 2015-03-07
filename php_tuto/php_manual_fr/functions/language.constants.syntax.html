@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Syntaxe</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.constants.html">Les constantes</a>
+		</div>
+		<div class="next">
+			<a href="language.constants.predefined.html">Constantes magiques</a>
+		</div>
+		<div class="up">
+			<a href="language.constants.html">Les constantes</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.constants.syntax" class="sect1">
+		<h2 class="title">Syntaxe</h2>
+		<p class="simpara">
+			Vous pouvez définir une constante en utilisant la fonction <span
+				class="function"><a href="function.define.html"
+				class="function">define()</a></span> ou en utilisant le mot-clé <em>const</em>
+			en dehors d&#039;une définition de classe à partir de PHP 5.3.0. Une
+			fois qu&#039;une constante est définie, elle ne peut jamais être
+			modifiée, ou détruite.
+		</p>
+		<p class="simpara">
+			Seuls les types de données scalaires peuvent être placés dans une
+			constante : c&#039;est à dire les types booléen, entier, double et
+			chaîne de caractères (soit <span class="type"><a
+				href="language.types.boolean.html" class="type bool">bool</a></span>, <a
+				href="language.types.integer.html" class="link">entier</a>, <span
+				class="type"><a href="language.types.float.html"
+				class="type double">double</a></span> et <span class="type"><a
+				href="language.types.string.html" class="type string">string</a></span>.)
+			Il est possible de définir des constantes en tant que <span
+				class="type"><a href="language.types.resource.html"
+				class="type resource">resource</a></span>, mais cet usage est déconseillé,
+			car il peut mener à des résultats inattendus.
+		</p>
+		<p class="simpara">
+			Vous pouvez accéder à la valeur d&#039;une constante en spécifiant
+			simplement son nom. Contrairement aux variables, vous ne devez <em
+				class="emphasis">PAS</em> préfixer le nom de la constante avec <em>$</em>.
+			Vous pouvez aussi utiliser la fonction <span class="function"><a
+				href="function.constant.html" class="function">constant()</a></span>, pour
+			lire dynamiquement la valeur d&#039;une constante, dont vous obtenez
+			le nom dynamiquement (retour de fonction, par exemple). Utilisez la
+			fonction <span class="function"><a
+				href="function.get-defined-constants.html" class="function">get_defined_constants()</a></span>
+			pour connaître la liste de toutes les constantes définies.
+		</p>
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>: <span class="simpara">
+					Les constantes et les variables globales utilisent deux espaces de
+					noms différents. Ce qui implique que <strong><code>TRUE</code></strong>
+					et <var class="varname">
+						<var class="varname">$TRUE</var>
+					</var> sont généralement différents (en tous cas, ils peuvent avoir des
+					valeurs différentes).
+				</span>
+			</p>
+		</blockquote>
+		<p class="simpara">
+			Si vous utilisez une constante non définie, PHP considère que vous
+			souhaitez uniquement le nom de la constante elle-même, comme si vous
+			l&#039;appeliez comme étant une <a href="language.types.string.html"
+				class="link">chaîne de caractères</a> (CONSTANT vs
+			&quot;CONSTANT&quot;). Une alerte de type <a
+				href="ref.errorfunc.html" class="link">E_NOTICE</a> sera émise
+			lorsque ce cas se produit. Lisez également l&#039;entrée du manuel
+			qui explique pourquoi <a
+				href="language.types.array.html#language.types.array.foo-bar"
+				class="link">$foo[bar]</a> est faux (tant que vous ne définissez pas
+			<em>bar</em> comme étant une constante). Si vous voulez simplement
+			vérifier qu&#039;une constante est définie, utilisez la fonction <span
+				class="function"><a href="function.defined.html"
+				class="function">defined()</a></span>.
+		</p>
+		<p class="para">Il y a des différences entre les constantes et les
+			variables :
+		<ul class="itemizedlist">
+			<li class="listitem"><span class="simpara"> Les
+					constantes ne commencent pas par le signe (<em>$</em>).
+			</span></li>
+			<li class="listitem"><span class="simpara"> Les
+					constantes ne peuvent être définies qu&#039;en utilisant la
+					fonction <span class="function"><a
+						href="function.define.html" class="function">define()</a></span>, pas par
+					simple assignement.
+			</span></li>
+			<li class="listitem"><span class="simpara"> Les
+					constantes sont définies et accessibles à tout endroit du code,
+					globalement. </span></li>
+			<li class="listitem"><span class="simpara"> Les
+					constantes ne peuvent pas être redéfinies ou indéfinies une fois
+					qu&#039;elles ont été définies. </span></li>
+			<li class="listitem"><span class="simpara"> Les
+					constantes ne peuvent contenir que des scalaires. </span></li>
+		</ul>
+		</p>
+
+		<p class="para">
+		<div class="example" id="example-119">
+			<p>
+				<strong>Exemple #1 Définir une constante</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;define
+						</span><span style="color: #007700">(</span><span style="color: #DD0000">"CONSTANTE"</span><span
+							style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"Bonjour&nbsp;le&nbsp;monde."</span><span
+							style="color: #007700">);<br />&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #0000BB">CONSTANTE</span><span
+							style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;affiche&nbsp;"Bonjour&nbsp;le&nbsp;monde."<br />&nbsp;&nbsp;
+						</span><span style="color: #007700">echo&nbsp;</span><span
+							style="color: #0000BB">Constante</span><span
+							style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;affiche&nbsp;"Constante"&nbsp;et&nbsp;une&nbsp;notice.<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+
+		<p class="para">
+		<div class="example" id="example-120">
+			<p>
+				<strong>Exemple #2 Définir des constantes en utilisant le
+					mot-clé <em>const</em>
+				</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #FF8000">//&nbsp;Fonctionne&nbsp;depuis&nbsp;PHP&nbsp;5.3.0.<br /></span><span
+							style="color: #007700">const&nbsp;</span><span
+							style="color: #0000BB">CONSTANT&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Hello&nbsp;World'</span><span
+							style="color: #007700">;<br />
+							<br />echo&nbsp;
+						</span><span style="color: #0000BB">CONSTANT</span><span
+							style="color: #007700">;<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>:
+			<p class="para">
+				Contrairement aux constantes définies en utilisant
+				l&#039;instruction <span class="function"><a
+					href="function.define.html" class="function">define()</a></span>, les
+				constantes définies en utilisant le mot-clé <em>const</em> doivent
+				être déclarées au plus haut niveau du contexte, car elles seront
+				définies au moment de la compilation. Cela signifie qu&#039;elles ne
+				peuvent être déclarées à l&#039;intérieur de fonctions, boucles ou
+				instructions <em>if</em>.
+		</blockquote>
+
+		<p class="simpara">
+			Voir aussi les <a href="language.oop5.constants.html" class="link">constantes
+				de classe</a>.
+		</p>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.constants.html">Les constantes</a>
+		</div>
+		<div class="next">
+			<a href="language.constants.predefined.html">Constantes magiques</a>
+		</div>
+		<div class="up">
+			<a href="language.constants.html">Les constantes</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

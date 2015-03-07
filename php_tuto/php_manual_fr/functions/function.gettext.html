@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Recherche un message dans le domaine courant</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.dngettext.html">dngettext</a>
+		</div>
+		<div class="next">
+			<a href="function.ngettext.html">ngettext</a>
+		</div>
+		<div class="up">
+			<a href="ref.gettext.html">Fonctions Gettext</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.gettext" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">gettext</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">gettext</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Recherche un message dans le domaine
+					courant</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.gettext-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>gettext</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$message</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">Recherche un message dans le domaine
+				courant.</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.gettext-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">message</code></em></span>
+				<dd>
+
+					<p class="para">Le message à traduire.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.gettext-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne une chaîne traduite, si elle en a trouvé une dans la table
+				de traduction, ou bien le message <em><code class="parameter">message</code></em>,
+				s&#039;il n&#039;a pas été trouvé.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.gettext-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2338">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>gettext()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Choix&nbsp;de&nbsp;l'allemand<br /></span><span
+								style="color: #0000BB">putenv</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'LC_ALL=de_DE'</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">setlocale</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">LC_ALL</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'de_DE'</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Spécifie&nbsp;la&nbsp;localisation&nbsp;des&nbsp;tables&nbsp;de&nbsp;traduction<br /></span><span
+								style="color: #0000BB">bindtextdomain</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"myPHPApp"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"./locale"</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Choisit&nbsp;le&nbsp;domaine<br /></span><span
+								style="color: #0000BB">textdomain</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"myPHPApp"</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;La&nbsp;traduction&nbsp;est&nbsp;cherché&nbsp;dans&nbsp;./locale/de_DE/LC_MESSAGES/myPHPApp.mo<br />
+								<br />//&nbsp;Affichage&nbsp;d'un&nbsp;message&nbsp;de&nbsp;test<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">gettext</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"Bienvenue&nbsp;dans&nbsp;mon&nbsp;application&nbsp;PHP"</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Or&nbsp;use&nbsp;the&nbsp;alias&nbsp;_()&nbsp;for&nbsp;gettext()<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">_</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"Passer&nbsp;une&nbsp;bonne&nbsp;journée"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.gettext-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Vous pouvez utiliser le caractère souligné (_)
+					comme alias de cette fonction.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Le fait de définir une langue n&#039;est pas suffisant pour
+					certains systèmes d&#039;exploitation et l&#039;utilisation de la
+					fonction <span class="function"><a
+						href="function.putenv.html" class="function">putenv()</a></span> est
+					nécessaire afin de définir la locale courante.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.gettext-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.setlocale.html" class="function" rel="rdfs-seeAlso">setlocale()</a>
+						- Modifie les informations de localisation</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.dngettext.html">dngettext</a>
+		</div>
+		<div class="next">
+			<a href="function.ngettext.html">ngettext</a>
+		</div>
+		<div class="up">
+			<a href="ref.gettext.html">Fonctions Gettext</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

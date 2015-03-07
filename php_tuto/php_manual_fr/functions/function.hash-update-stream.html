@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Ajoute des donn&eacute;es dans un contexte de hachage actif d'un flux ouvert</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="function.hash-update-file.html">hash_update_file</a></div>
+ <div class="next"><a href="function.hash-update.html">hash_update</a></div>
+ <div class="up"><a href="ref.hash.html">Fonctions Hash</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="function.hash-update-stream" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">hash_update_stream</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.2, PECL hash &gt;= 1.1)</p><p class="refpurpose"><span class="refname">hash_update_stream</span> <span class="mdash">&mdash;</span> <span class="dc-title">Ajoute des données dans un contexte de hachage actif d&#039;un flux ouvert</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.hash-update-stream-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>hash_update_stream</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$context</code></span>
+   , <span class="methodparam"><span class="type">resource</span> <code class="parameter">$handle</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$length</code><span class="initializer"> = -1</span></span>
+  ] )</div>
+
+
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.hash-update-stream-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><em><code class="parameter">context</code></em></span>
+     <dd>
+
+      <p class="para">
+       Contexte de hachage retourné par  <span class="function"><a href="function.hash-init.html" class="function">hash_init()</a></span>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><em><code class="parameter">handle</code></em></span>
+     <dd>
+
+      <p class="para">
+       Identifiant de fichier ouvert comme retourné par n&#039;importe quelle
+       fonction de création de flux.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><em><code class="parameter">length</code></em></span>
+     <dd>
+
+      <p class="para">
+       Taille maximale de caractères à copier de <em><code class="parameter">handle</code></em>
+       dans le contexte de hachage.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.hash-update-stream-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Nombre actuel d&#039;octets ajoutés au contexte de hachage de
+   <em><code class="parameter">handle</code></em>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.hash-update-stream-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-910">
+    <p><strong>Exemple #1 Exemple avec  <span class="function"><strong>hash_update_stream()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">tmpfile</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'Le&nbsp;rapide&nbsp;goupil&nbsp;brun&nbsp;sauta&nbsp;par&nbsp;dessus&nbsp;le&nbsp;chien&nbsp;paresseux.'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">rewind</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$ctx&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">hash_init</span><span style="color: #007700">(</span><span style="color: #DD0000">'md5'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">hash_update_stream</span><span style="color: #007700">(</span><span style="color: #0000BB">$ctx</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br />echo&nbsp;</span><span style="color: #0000BB">hash_final</span><span style="color: #007700">(</span><span style="color: #0000BB">$ctx</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+2dfe052a8caca3db869ede6ae544cd5d
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.hash-update-stream-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"> <span class="function"><a href="function.hash-init.html" class="function" rel="rdfs-seeAlso">hash_init()</a> - Initialise un contexte de hachage incr&eacute;mental</span></li>
+    <li class="member"> <span class="function"><a href="function.hash-update.html" class="function" rel="rdfs-seeAlso">hash_update()</a> - Ajoute des donn&eacute;es dans le contexte de hachage actif</span></li>
+    <li class="member"> <span class="function"><a href="function.hash-final.html" class="function" rel="rdfs-seeAlso">hash_final()</a> - Finalise un hachage incr&eacute;mental et retourne le r&eacute;sultat de l'empreinte num&eacute;rique</span></li>
+    <li class="member"> <span class="function"><a href="function.hash.html" class="function" rel="rdfs-seeAlso">hash()</a> - G&eacute;n&egrave;re une valeur de hachage (empreinte num&eacute;rique)</span></li>
+    <li class="member"> <span class="function"><a href="function.hash-file.html" class="function" rel="rdfs-seeAlso">hash_file()</a> - G&eacute;n&egrave;re une valeur de hachage en utilisant le contenu d'un fichier donn&eacute;</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="function.hash-update-file.html">hash_update_file</a></div>
+ <div class="next"><a href="function.hash-update.html">hash_update</a></div>
+ <div class="up"><a href="ref.hash.html">Fonctions Hash</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

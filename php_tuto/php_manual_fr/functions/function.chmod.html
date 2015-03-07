@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Change le mode du fichier</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.chgrp.html">chgrp</a>
+		</div>
+		<div class="next">
+			<a href="function.chown.html">chown</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.chmod" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">chmod</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">chmod</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Change le mode du fichier</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.chmod-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>chmod</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$filename</code></span> , <span
+					class="methodparam"><span class="type">int</span> <code
+						class="parameter">$mode</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				Remplace le mode du fichier <em><code class="parameter">filename</code></em>
+				par le mode <em><code class="parameter">mode</code></em>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.chmod-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">filename</code></em></span>
+				<dd>
+
+					<p class="para">Chemin vers le fichier.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">mode</code></em></span>
+				<dd>
+
+					<p class="para">
+						Il est à noter que le mode <em><code class="parameter">mode</code></em>
+						est considéré comme un nombre en notation octale. Afin de vous en
+						assurer, vous pouvez préfixer cette valeur par un zéro (<em><code
+								class="parameter">mode</code></em>) :
+					</p>
+					<p class="para">
+					<div class="informalexample">
+						<div class="example-contents">
+							<div class="phpcode">
+								<code>
+									<span style="color: #000000"> <span
+										style="color: #0000BB">&lt;?php<br />chmod
+									</span><span style="color: #007700">(</span><span
+										style="color: #DD0000">"/somedir/somefile"</span><span
+										style="color: #007700">,&nbsp;</span><span
+										style="color: #0000BB">755</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;</span><span
+										style="color: #FF8000">//&nbsp;notation&nbsp;décimale&nbsp;:&nbsp;probablement&nbsp;faux<br /></span><span
+										style="color: #0000BB">chmod</span><span
+										style="color: #007700">(</span><span style="color: #DD0000">"/somedir/somefile"</span><span
+										style="color: #007700">,&nbsp;</span><span
+										style="color: #DD0000">"u+rwx,go+rx"</span><span
+										style="color: #007700">);&nbsp;</span><span
+										style="color: #FF8000">//&nbsp;chaîne&nbsp;:&nbsp;incorrect<br /></span><span
+										style="color: #0000BB">chmod</span><span
+										style="color: #007700">(</span><span style="color: #DD0000">"/somedir/somefile"</span><span
+										style="color: #007700">,&nbsp;</span><span
+										style="color: #0000BB">0755</span><span style="color: #007700">);&nbsp;&nbsp;</span><span
+										style="color: #FF8000">//&nbsp;notation&nbsp;octale&nbsp;:&nbsp;valeur&nbsp;du&nbsp;mode&nbsp;correcte<br /></span><span
+										style="color: #0000BB">?&gt;</span>
+									</span>
+								</code>
+							</div>
+						</div>
+
+					</div>
+					</p>
+					<p class="para">
+						Le paramètre <em><code class="parameter">mode</code></em> est
+						constitué de trois valeurs octales qui spécifient les droits pour
+						le propriétaire, le groupe du propriétaire et les autres,
+						respectivement. Chaque composant peut être calculé en ajoutant les
+						droits désirés. Le chiffre 1 donne les droits d&#039;exécution, le
+						chiffre 2 les droits d&#039;écriture et le chiffre 4 les droits de
+						lecture. Ajoutez simplement ces nombres pour spécifier les droits
+						voulus. Vous pouvez aussi lire le manuel des systèmes Unix avec <strong
+							class="command">man 1 chmod</strong> et <strong class="command">man
+							2 chmod</strong>.
+					</p>
+					<p class="para">
+					<div class="informalexample">
+						<div class="example-contents">
+							<div class="phpcode">
+								<code>
+									<span style="color: #000000"> <span
+										style="color: #0000BB">&lt;?php<br /></span><span
+										style="color: #FF8000">//&nbsp;Lecture&nbsp;et&nbsp;écriture&nbsp;pour&nbsp;le&nbsp;propriétaire,&nbsp;rien&nbsp;pour&nbsp;les&nbsp;autres<br /></span><span
+										style="color: #0000BB">chmod</span><span
+										style="color: #007700">(</span><span style="color: #DD0000">"/somedir/somefile"</span><span
+										style="color: #007700">,&nbsp;</span><span
+										style="color: #0000BB">0600</span><span style="color: #007700">);<br />
+										<br /></span><span style="color: #FF8000">//&nbsp;Lecture&nbsp;et&nbsp;écriture&nbsp;pour&nbsp;le&nbsp;propriétaire,&nbsp;lecture&nbsp;pour&nbsp;les&nbsp;autres<br /></span><span
+										style="color: #0000BB">chmod</span><span
+										style="color: #007700">(</span><span style="color: #DD0000">"/somedir/somefile"</span><span
+										style="color: #007700">,&nbsp;</span><span
+										style="color: #0000BB">0644</span><span style="color: #007700">);<br />
+										<br /></span><span style="color: #FF8000">//&nbsp;Tout&nbsp;pour&nbsp;le&nbsp;propriétaire,&nbsp;lecture&nbsp;et&nbsp;exécution&nbsp;pour&nbsp;les&nbsp;autres<br /></span><span
+										style="color: #0000BB">chmod</span><span
+										style="color: #007700">(</span><span style="color: #DD0000">"/somedir/somefile"</span><span
+										style="color: #007700">,&nbsp;</span><span
+										style="color: #0000BB">0755</span><span style="color: #007700">);<br />
+										<br /></span><span style="color: #FF8000">//&nbsp;Tout&nbsp;pour&nbsp;le&nbsp;propriétaire,&nbsp;lecture&nbsp;exécution&nbsp;pour&nbsp;le&nbsp;groupe,&nbsp;rien&nbsp;pour&nbsp;les&nbsp;autres<br /></span><span
+										style="color: #0000BB">chmod</span><span
+										style="color: #007700">(</span><span style="color: #DD0000">"/somedir/somefile"</span><span
+										style="color: #007700">,&nbsp;</span><span
+										style="color: #0000BB">0750</span><span style="color: #007700">);<br /></span><span
+										style="color: #0000BB">?&gt;</span>
+									</span>
+								</code>
+							</div>
+						</div>
+
+					</div>
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.chmod-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.chmod-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">L&#039;utilisateur courant est
+					l&#039;utilisateur avec lequel PHP fonctionne. Il est probablement
+					différent de l&#039;utilisateur que vous utilisez en mode Shell ou
+					FTP. Le mode ne peut être modifié que par l&#039;utilisateur à qui
+					appartient le fichier sur la plupart des systèmes.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Cette
+						fonction ne fonctionne pas avec les <a
+						href="features.remote-files.html" class="link">fichiers
+							distants</a>, car le fichier utilisé doit être accessible sur le
+						système de fichiers local.
+					</span>
+				</p>
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Lorsque le <a href="ini.sect.safe-mode.html#ini.safe-mode"
+						class="link">safe mode</a> est activé, PHP vérifie si les fichiers
+					et dossiers que vous allez utiliser ont le même UID (propriétaire)
+					que le script qui est en cours d&#039;exécution. De plus, vous ne
+					pouvez pas modifier les SUID, SGID et sticky bits.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.chmod-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.chown.html" class="function" rel="rdfs-seeAlso">chown()</a>
+						- Change le propri&eacute;taire du fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.chgrp.html" class="function" rel="rdfs-seeAlso">chgrp()</a>
+						- Change le groupe d'un fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fileperms.html" class="function" rel="rdfs-seeAlso">fileperms()</a>
+						- Lit les droits d'un fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.stat.html" class="function" rel="rdfs-seeAlso">stat()</a>
+						- Renvoie les informations &agrave; propos d'un fichier</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.chgrp.html">chgrp</a>
+		</div>
+		<div class="next">
+			<a href="function.chown.html">chown</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

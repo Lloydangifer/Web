@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Les variables dynamiques</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.variables.scope.html">Port&eacute;e des
+				variables</a>
+		</div>
+		<div class="next">
+			<a href="language.variables.external.html">Variables externes
+				&agrave; PHP</a>
+		</div>
+		<div class="up">
+			<a href="language.variables.html">Les variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.variables.variable" class="sect1">
+		<h2 class="title">Les variables dynamiques</h2>
+
+		<p class="simpara">Il est pratique d&#039;avoir parfois des noms
+			de variables qui sont variables. C&#039;est-à-dire un nom de variable
+			qui est affecté et utilisé dynamiquement. Une variable classique est
+			affectée avec l&#039;instruction suivante :</p>
+
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$a&nbsp;
+						</span><span style="color: #007700">=&nbsp;</span><span
+							style="color: #DD0000">'bonjour'</span><span
+							style="color: #007700">;<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+
+		<p class="simpara">
+			Une variable dynamique prend la valeur d&#039;une variable et
+			l&#039;utilise comme nom d&#039;une autre variable. Dans
+			l&#039;exemple ci-dessous, <em class="emphasis">bonjour</em> peut
+			être utilisé comme le nom d&#039;une variable en utilisant le
+			&quot;$$&quot; précédent la variable. C&#039;est-à-dire :
+		</p>
+
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">$</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'monde'</span><span
+							style="color: #007700">;<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+
+		<p class="simpara">
+			À ce niveau, deux variables ont été définies et stockées dans
+			l&#039;arbre des symboles PHP :
+			<var class="varname">
+				<var class="varname">$a</var>
+			</var>
+			avec comme valeur &quot;bonjour&quot; et
+			<var class="varname">
+				<var class="varname">$bonjour</var>
+			</var>
+			avec comme valeur &quot;monde&quot;. Alors, l&#039;instruction :
+		</p>
+
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">echo&nbsp;</span><span
+							style="color: #DD0000">"</span><span style="color: #0000BB">$a</span><span
+							style="color: #DD0000">&nbsp;</span><span style="color: #007700">${</span><span
+							style="color: #0000BB">$a</span><span style="color: #007700">}</span><span
+							style="color: #DD0000">"</span><span style="color: #007700">;<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+
+		<p class="simpara">produira le même affichage que :</p>
+
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">echo&nbsp;</span><span
+							style="color: #DD0000">"</span><span style="color: #0000BB">$a</span><span
+							style="color: #DD0000">&nbsp;</span><span style="color: #0000BB">$bonjour</span><span
+							style="color: #DD0000">"</span><span style="color: #007700">;<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+
+		<p class="simpara">
+			c&#039;est-à-dire : <span class="computeroutput">bonjour monde</span>.
+		</p>
+
+		<p class="simpara">
+			Afin de pouvoir utiliser les variables dynamiques avec les tableaux,
+			vous avez à résoudre un problème ambigu. Si vous écrivez
+			<var class="varname">
+				<var class="varname">$$a[1]</var>
+			</var>
+			, l&#039;analyseur a besoin de savoir si vous parler de la variable
+			qui a pour nom
+			<var class="varname">
+				<var class="varname">$a[1]</var>
+			</var>
+			ou bien si vous voulez l&#039;index [1] de la variable
+			<var class="varname">
+				<var class="varname">$$a</var>
+			</var>
+			. La syntaxe pour résoudre cette ambiguïté est la suivante :
+			<var class="varname">
+				<var class="varname">${$a[1]}</var>
+			</var>
+			pour le premier cas et
+			<var class="varname">
+				<var class="varname">${$a}[1]</var>
+			</var>
+			pour le deuxième.
+		</p>
+
+		<p class="simpara">
+			On peut également accéder aux propriétés d&#039;une classe en
+			utilisant les noms des variables. Le nom de la variable sera résolu
+			en utilisant le scope depuis lequel l&#039;appel s&#039;effectue. Par
+			exemple, si vous avez une expression de la forme
+			<var class="varname">
+				<var class="varname">$foo->$bar</var>
+			</var>
+			, alors le scope local sera examiné pour
+			<var class="varname">
+				<var class="varname">$bar</var>
+			</var>
+			et sa valeur sera utilisée comme nom pour la propriété de
+			<var class="varname">
+				<var class="varname">$foo</var>
+			</var>
+			. Ce comportement reste valide si
+			<var class="varname">
+				<var class="varname">$bar</var>
+			</var>
+			est un tableau.
+		</p>
+
+		<p class="para">
+		<div class="example" id="example-113">
+			<p>
+				<strong>Exemple #1 Exemple de propriété variable</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">class&nbsp;</span><span
+							style="color: #0000BB">foo&nbsp;</span><span
+							style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;
+						</span><span style="color: #0000BB">$bar&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'I&nbsp;am&nbsp;bar.'</span><span
+							style="color: #007700">;<br />}<br />
+							<br /></span><span style="color: #0000BB">$foo&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">foo</span><span style="color: #007700">();<br /></span><span
+							style="color: #0000BB">$bar&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'bar'</span><span
+							style="color: #007700">;<br /></span><span
+							style="color: #0000BB">$baz&nbsp;</span><span
+							style="color: #007700">=&nbsp;array(</span><span
+							style="color: #DD0000">'foo'</span><span style="color: #007700">,&nbsp;</span><span
+							style="color: #DD0000">'bar'</span><span style="color: #007700">,&nbsp;</span><span
+							style="color: #DD0000">'baz'</span><span style="color: #007700">,&nbsp;</span><span
+							style="color: #DD0000">'quux'</span><span style="color: #007700">);<br />echo&nbsp;
+						</span><span style="color: #0000BB">$foo</span><span
+							style="color: #007700">-&gt;</span><span style="color: #0000BB">$bar&nbsp;</span><span
+							style="color: #007700">.&nbsp;</span><span style="color: #DD0000">"\n"</span><span
+							style="color: #007700">;<br />echo&nbsp;
+						</span><span style="color: #0000BB">$foo</span><span
+							style="color: #007700">-&gt;</span><span style="color: #0000BB">$baz</span><span
+							style="color: #007700">[</span><span style="color: #0000BB">1</span><span
+							style="color: #007700">]&nbsp;.&nbsp;</span><span
+							style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+			<div class="example-contents">
+				<p>L&#039;exemple ci-dessus va afficher :</p>
+			</div>
+			<div class="example-contents screen">
+				<br /> I am bar.<br /> I am bar.<br />
+			</div>
+		</div>
+		</p>
+
+		<div class="warning">
+			<strong class="warning">Avertissement</strong>
+			<p class="simpara">
+				Notez que les variables dynamiques ne peuvent pas être utilisées
+				avec les <a href="language.variables.superglobals.html" class="link">tableaux
+					Superglobaux</a> dans une fonction ou une classe. La variable <em>$this</em>
+				est aussi une variable spéciale qui ne peut être référencée
+				dynamiquement.
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.variables.scope.html">Port&eacute;e des
+				variables</a>
+		</div>
+		<div class="next">
+			<a href="language.variables.external.html">Variables externes
+				&agrave; PHP</a>
+		</div>
+		<div class="up">
+			<a href="language.variables.html">Les variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

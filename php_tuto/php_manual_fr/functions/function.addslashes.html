@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Ajoute des antislashs dans une cha&icirc;ne</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.addcslashes.html">addcslashes</a>
+		</div>
+		<div class="next">
+			<a href="function.bin2hex.html">bin2hex</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.addslashes" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">addslashes</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">addslashes</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Ajoute des antislashs dans une chaîne</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.addslashes-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>addslashes</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$str</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				Retourne la chaîne <em><code class="parameter">str</code></em>,
+				après avoir échappé tous les caractères qui doivent l&#039;être,
+				pour être utilisée dans une requête de base de données. Ces
+				caractères sont les guillemets simples (<em>&#039;</em>), guillemets
+				doubles (<em>&quot;</em>), antislash (<em>\</em>) et NUL (le
+				caractère <strong><code>NULL</code></strong>).
+			</p>
+			<p class="para">
+				Un exemple d&#039;utilisation d&#039; <span class="function"><strong>addslashes()</strong></span>
+				est lorsque vous entrez des données dans une base de données. Par
+				exemple, pour insérer le nom <em>O&#039;reilly</em> dans la base,
+				vous aurez besoin de le protéger. Il est fortement recommandé
+				d&#039;utiliser les fonctions de protection spécifiques à chaque
+				base de données (telle que <span class="function"><a
+					href="mysqli.real-escape-string.html" class="function">mysqli_real_escape_string()</a></span>
+				pour MySQL et <span class="function"><a
+					href="function.pg-escape-string.html" class="function">pg_escape_string()</a></span>
+				pour PostGreSQL), mais si la base de données que vous utilisez
+				n&#039;a pas de fonction spécifique, et que cette base utilise <em>\</em>
+				pour protéger les caractères spéciaux, vous pouvez utiliser cette
+				fonction. Grâce à elle, <em>\</em> sera ajouté. Si la directive PHP
+				<a href="sybase.configuration.html#ini.magic-quotes-sybase"
+					class="link"><strong class="option unknown">magic_quotes_sybase</strong>
+				</a> est activée, <em>&#039;</em> sera protégé par un autre <em>&#039;</em>.
+			</p>
+			<p class="para">
+				La directive PHP <a
+					href="info.configuration.html#ini.magic-quotes-gpc" class="link"><strong
+					class="option unknown">magic_quotes_gpc</strong> </a> est à <em>on</em>
+				par défaut avant PHP 5.4, et elle appelle <span class="function"><strong>addslashes()</strong></span>
+				sur toutes les données GET, POST et COOKIE. N&#039;utilisez pas <span
+					class="function"><strong>addslashes()</strong></span> sur des
+				données déjà protégées avec <a
+					href="info.configuration.html#ini.magic-quotes-gpc" class="link">magic_quotes_gpc</a>
+				sinon vous doublerez les protections. La fonction <span
+					class="function"><a
+					href="function.get-magic-quotes-gpc.html" class="function">get_magic_quotes_gpc()</a></span>
+				est utile pour vérifier ce paramètre.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.addslashes-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">str</code></em></span>
+				<dd>
+
+					<p class="para">La chaîne à échapper.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.addslashes-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Retourne la chaîne échappée.</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.addslashes-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4475">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>addslashes()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$str&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"Votre&nbsp;nom&nbsp;est-il&nbsp;O'reilly&nbsp;?"</span><span
+								style="color: #007700">;<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Affiche&nbsp;:&nbsp;Votre&nbsp;nom&nbsp;est-il&nbsp;O\'reilly&nbsp;?<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">addslashes</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$str</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.addslashes-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.stripcslashes.html" class="function"
+						rel="rdfs-seeAlso">stripcslashes()</a> - D&eacute;code une
+						cha&icirc;ne encod&eacute;e avec addcslashes</span></li>
+				<li class="member"><span class="function"><a
+						href="function.stripslashes.html" class="function"
+						rel="rdfs-seeAlso">stripslashes()</a> - Supprime les antislashs
+						d'une cha&icirc;ne</span></li>
+				<li class="member"><span class="function"><a
+						href="function.addcslashes.html" class="function"
+						rel="rdfs-seeAlso">addcslashes()</a> - Ajoute des slash dans une
+						cha&icirc;ne, &agrave; la mode du langage C</span></li>
+				<li class="member"><span class="function"><a
+						href="function.htmlspecialchars.html" class="function"
+						rel="rdfs-seeAlso">htmlspecialchars()</a> - Convertit les
+						caract&egrave;res sp&eacute;ciaux en entit&eacute;s HTML</span></li>
+				<li class="member"><span class="function"><a
+						href="function.quotemeta.html" class="function" rel="rdfs-seeAlso">quotemeta()</a>
+						- Prot&egrave;ge les m&eacute;tacaract&egrave;res</span></li>
+				<li class="member"><span class="function"><a
+						href="function.get-magic-quotes-gpc.html" class="function"
+						rel="rdfs-seeAlso">get_magic_quotes_gpc()</a> - Retourne la
+						configuration actuelle de l'option magic_quotes_gpc</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.addcslashes.html">addcslashes</a>
+		</div>
+		<div class="next">
+			<a href="function.bin2hex.html">bin2hex</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

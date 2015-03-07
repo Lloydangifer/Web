@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Exercice</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<style>
+#blocCode {
+	margin: 0 auto;
+	width: 600px;
+	}
+.TEST-form {
+	margin: 10px auto;
+	}
+</style>
+
+<script src="../_core/FP.js"></script>
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+
+</head>
+
+<body>
+	<div id="blocCode"></div>
+
+	<script>
+	(function() {
+		var i, B, TCode;
+		
+		TEST.isExoPopUp = true;
+		
+		// Init propriétés de FP avec celle de l'opener
+		FP.isExoPopUp = true;
+		FP.CodeMirrorEditeur = opener.FP.CodeMirrorEditeur;
+		FP.CodeMirrorMode = opener.FP.CodeMirrorMode;
+		FP.tutoID = opener.FP.tutoID;
+		
+		document.getElementById('blocCode').innerHTML = opener.FP.Voir.BlocExoCompletez.innerHTML;
+		
+		TCode = document.querySelectorAll('.TEST-textarea');
+		if (TCode.length == 0) {
+			return;				// RETURN : aucun code a tester dans la page
+		}
+		
+		// Suppression des code mirror récupèrés
+		for (i = 0; i < TCode.length; i++) {
+			B = TCode[i].nextSibling;
+			B.parentNode.removeChild(B);			
+		}
+		
+		TCode = document.querySelectorAll('.TEST-boutons');
+		// Suppression des lignes de boutons
+		for (i = 0; i < TCode.length; i++) {
+			TCode[i].parentNode.removeChild(TCode[i]);
+		}
+		
+		FP.initCodeMirror();	
+		
+		// Pour bouton + si il y en a un
+		top.FP.Voir = opener.FP.Voir;
+	})();
+	</script>
+</body>
+</html>

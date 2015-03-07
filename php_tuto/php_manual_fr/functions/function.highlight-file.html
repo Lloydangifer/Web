@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Colorisation syntaxique d'un fichier</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.halt-compiler.html">__halt_compiler</a>
+		</div>
+		<div class="next">
+			<a href="function.highlight-string.html">highlight_string</a>
+		</div>
+		<div class="up">
+			<a href="ref.misc.html">Fonctions diverses</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.highlight-file" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">highlight_file</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">highlight_file</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Colorisation syntaxique d&#039;un
+					fichier</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.highlight-file-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><a
+					href="language.pseudo-types.html#language.types.mixed"
+					class="type mixed">mixed</a></span> <span class="methodname"><strong>highlight_file</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$filename</code></span> [, <span
+					class="methodparam"><span class="type">bool</span> <code
+						class="parameter">$return</code><span class="initializer">
+						= false</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				Affiche la syntaxe colorisée du fichier <em><code
+						class="parameter">filename</code></em>, en utilisant les couleurs
+				définies dans le moteur interne de PHP.
+			</p>
+			<p class="para">
+				De nombreux serveurs sont configurés pour automatiquement afficher
+				le source colorisé, avec l&#039;extension <em class="emphasis">phps</em>.
+				Par exemple,
+				<var class="filename">example.phps</var>
+				va afficher le source du script. Pour activer cette fonctionnalité,
+				utilisez cette ligne dans
+				<var class="filename">httpd.conf</var>
+				:
+			</p>
+			<div class="example-contents screen">
+				<div class="descriptioncode">
+					<pre class="descriptioncode">AddType application/x-httpd-php-source .phps</pre>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.highlight-file-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">filename</code></em></span>
+				<dd>
+
+					<p class="para">Le chemin vers le fichier PHP à coloriser.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">return</code></em></span>
+				<dd>
+
+					<p class="para">
+						En passant ce paramètre à <strong><code>TRUE</code></strong>, la
+						fonction retourne le code colorisé au lieu de l&#039;afficher.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.highlight-file-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Si le second paramètre optionnel <em><code class="parameter">return</code></em>
+				vaut <strong><code>TRUE</code></strong> alors <span class="function"><strong>highlight_file()</strong></span>
+				retournera le code généré, au lieu de l&#039;afficher. Si le second
+				paramètre ne vaut pas <strong><code>TRUE</code></strong> alors <span
+					class="function"><strong>highlight_file()</strong></span>
+				retournera <strong><code>TRUE</code></strong> en cas de succès, et <strong><code>FALSE</code></strong>
+				sinon.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.highlight-file-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.2.1</td>
+						<td>Cette fonction est désormais affectée par <a
+							href="ini.sect.safe-mode.html#ini.safe-mode" class="link">safe_mode</a>
+							et <a href="ini.core.html#ini.open-basedir" class="link">open_basedir</a>.
+						</td>
+					</tr>
+
+					<tr>
+						<td>4.2.0</td>
+						<td>Le paramètre <em><code class="parameter">return</code></em>
+							a été ajouté.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes"
+			id="refsect1-function.highlight-file-notes">
+			<h3 class="title">Notes</h3>
+			<div class="caution">
+				<strong class="caution">Attention</strong>
+				<p class="para">
+					Beaucoup de soin doit être apporté lors de l&#039;utilisation de <span
+						class="function"><strong>highlight_file()</strong></span> pour
+					s&#039;assurer que vous ne révélez pas d&#039;informations
+					critiques telles que des mots de passe ou d&#039;autres
+					informations qui pourraient créer des fuites d&#039;informations.
+				</p>
+			</div>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Lorsque le paramètre <em><code class="parameter">return</code></em>
+					est utilisé, cette fonction utilise en interne le buffer de sortie,
+					il ne peut donc pas être utilisé dans la fonction de rappel <span
+						class="function"><a href="function.ob-start.html"
+						class="function">ob_start()</a></span>.
+				</p>
+				</p>
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.highlight-file-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.highlight-string.html" class="function"
+						rel="rdfs-seeAlso">highlight_string()</a> - Applique la syntaxe
+						coloris&eacute;e &agrave; du code PHP</span></li>
+				<li class="member"><a
+					href="misc.configuration.html#ini.syntax-highlighting" class="link">Les
+						directives INI de coloration</a></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.halt-compiler.html">__halt_compiler</a>
+		</div>
+		<div class="next">
+			<a href="function.highlight-string.html">highlight_string</a>
+		</div>
+		<div class="up">
+			<a href="ref.misc.html">Fonctions diverses</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

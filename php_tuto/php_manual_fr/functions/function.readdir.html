@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Lit une entr&eacute;e du dossier</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.opendir.html">opendir</a>
+		</div>
+		<div class="next">
+			<a href="function.rewinddir.html">rewinddir</a>
+		</div>
+		<div class="up">
+			<a href="ref.dir.html">Fonctions sur les dossiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.readdir" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">readdir</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">readdir</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Lit une entrée du dossier</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.readdir-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>readdir</strong></span>
+				([ <span class="methodparam"><span class="type">resource</span>
+					<code class="parameter">$dir_handle</code></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>readdir()</strong></span> retourne le
+				nom de la prochaine entrée du dossier identifié par <em><code
+						class="parameter">dir_handle</code></em>. Les entrées sont retournées
+				dans l&#039;ordre dans lequel elles sont enregistrées dans le
+				système de fichiers.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.readdir-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">dir_handle</code></em></span>
+				<dd>
+
+					<p class="para">
+						La <span class="type"><span class="type ressource">ressource</span></span>
+						de dossier ouverte précédemment avec <span class="function"><a
+							href="function.opendir.html" class="function">opendir()</a></span>. Si
+						la ressource de dossier n&#039;est pas spécifiée, la dernière
+						ressource ouverte avec la fonction <span class="function"><a
+							href="function.opendir.html" class="function">opendir()</a></span> sera
+						utilisée.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.readdir-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne le nom de l&#039;entrée en cas de réussite ou <strong><code>FALSE</code></strong>
+				si une erreur survient.
+			</p>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="simpara">
+					Cette fonction peut retourner <strong><code>FALSE</code></strong>,
+					mais elle peut aussi retourner une valeur équivalent à <strong><code>FALSE</code></strong>.
+					Veuillez lire la section sur les <a
+						href="language.types.boolean.html" class="link">booléens</a> pour
+					plus d&#039;informations. Utilisez l&#039;<a
+						href="language.operators.comparison.html" class="link">opérateur
+						===</a> pour tester la valeur de retour exacte de cette fonction.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.readdir-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2206">
+				<p>
+					<strong>Exemple #1 Liste de toutes les entrées d&#039;un
+						dossier</strong>
+				</p>
+				<div class="example-contents">
+					<p>
+						Notez la façon dont la valeur de retour de <span class="function"><a
+							href="function.dir.html" class="function">dir()</a></span> est vérifiée
+						dans l&#039;exemple suivant. Nous testons si la valeur est
+						identique (égale et de même type que -- voyez <a
+							href="language.operators.comparison.html" class="link">opérateurs
+							de comparaison</a> pour plus de détails) <strong><code>FALSE</code></strong>
+						sinon, toute entrée dans le nom serait évalué à <strong><code>FALSE</code></strong>
+						causera l&#039;arrêt de la boucle (exemple, un répertoire nommé
+						0).
+					</p>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br /></span><span style="color: #007700">if&nbsp;(</span><span
+								style="color: #0000BB">$handle&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">opendir</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'/chemin/vers/fichiers'</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Gestionnaire&nbsp;du&nbsp;dossier&nbsp;:&nbsp;</span><span
+								style="color: #0000BB">$handle</span><span
+								style="color: #DD0000">\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Entrées&nbsp;:\n"</span><span
+								style="color: #007700">;<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">/*&nbsp;Ceci&nbsp;est&nbsp;la&nbsp;façon&nbsp;correcte&nbsp;de&nbsp;traverser&nbsp;un&nbsp;dossier.&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">while&nbsp;(</span><span
+								style="color: #0000BB">false&nbsp;</span><span
+								style="color: #007700">!==&nbsp;(</span><span
+								style="color: #0000BB">$entry&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">readdir</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span
+								style="color: #007700">)))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$entry</span><span
+								style="color: #DD0000">\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">/*&nbsp;Ceci&nbsp;est&nbsp;la&nbsp;MAUVAISE&nbsp;façon&nbsp;de&nbsp;traverser&nbsp;un&nbsp;dossier.&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">while&nbsp;(</span><span
+								style="color: #0000BB">$entry&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">readdir</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$entry</span><span
+								style="color: #DD0000">\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">closedir</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span
+								style="color: #007700">);<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="example-2207">
+				<p>
+					<strong>Exemple #2 Liste toutes les entrées du dossier
+						courant et enlève les <em>.</em> et <em>..</em>
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">if&nbsp;(</span><span
+								style="color: #0000BB">$handle&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">opendir</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'.'</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(
+							</span><span style="color: #0000BB">false&nbsp;</span><span
+								style="color: #007700">!==&nbsp;(</span><span
+								style="color: #0000BB">$entry&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">readdir</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span
+								style="color: #007700">)))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(
+							</span><span style="color: #0000BB">$entry&nbsp;</span><span
+								style="color: #007700">!=&nbsp;</span><span
+								style="color: #DD0000">"."&nbsp;</span><span
+								style="color: #007700">&amp;&amp;&nbsp;</span><span
+								style="color: #0000BB">$entry&nbsp;</span><span
+								style="color: #007700">!=&nbsp;</span><span
+								style="color: #DD0000">".."</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$entry</span><span
+								style="color: #DD0000">\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">closedir</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span
+								style="color: #007700">);<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.readdir-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.is-dir.html" class="function" rel="rdfs-seeAlso">is_dir()</a>
+						- Indique si le fichier est un dossier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.glob.html" class="function" rel="rdfs-seeAlso">glob()</a>
+						- Recherche des chemins qui v&eacute;rifient un masque</span></li>
+				<li class="member"><span class="function"><a
+						href="function.opendir.html" class="function" rel="rdfs-seeAlso">opendir()</a>
+						- Ouvre un dossier, et r&eacute;cup&egrave;re un pointeur dessus</span></li>
+				<li class="member"><span class="function"><a
+						href="function.scandir.html" class="function" rel="rdfs-seeAlso">scandir()</a>
+						- Liste les fichiers et dossiers dans un dossier</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.opendir.html">opendir</a>
+		</div>
+		<div class="next">
+			<a href="function.rewinddir.html">rewinddir</a>
+		</div>
+		<div class="up">
+			<a href="ref.dir.html">Fonctions sur les dossiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

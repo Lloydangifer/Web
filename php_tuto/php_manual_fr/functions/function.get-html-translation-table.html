@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Retourne la table de traduction des entit&eacute;s
+	utilis&eacute;e par htmlspecialchars et htmlentities</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.fprintf.html">fprintf</a>
+		</div>
+		<div class="next">
+			<a href="function.hebrev.html">hebrev</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.get-html-translation-table" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">get_html_translation_table</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">get_html_translation_table</span> <span
+					class="mdash">&mdash;</span> <span class="dc-title">Retourne
+					la table de traduction des entités utilisée par <span
+					class="function"><a href="function.htmlspecialchars.html"
+						class="function">htmlspecialchars()</a></span> et <span class="function"><a
+						href="function.htmlentities.html" class="function">htmlentities()</a></span>
+				</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.get-html-translation-table-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>get_html_translation_table</strong></span>
+				([ <span class="methodparam"><span class="type">int</span> <code
+						class="parameter">$table</code><span class="initializer"> =
+						HTML_SPECIALCHARS</span></span> [, <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$flags</code><span
+					class="initializer"> = ENT_COMPAT | ENT_HTML401</span></span> [, <span
+					class="methodparam"><span class="type">string</span> <code
+						class="parameter">$encoding</code><span class="initializer">
+						= &#039;UTF-8&#039;</span></span> ]]] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>get_html_translation_table()</strong></span>
+				retourne la table de traduction des entités utilisée en interne par
+				les fonctions <span class="function"><a
+					href="function.htmlspecialchars.html" class="function">htmlspecialchars()</a></span>
+				et <span class="function"><a
+					href="function.htmlentities.html" class="function">htmlentities()</a></span>.
+			</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Les caractères spéciaux peuvent être encodés de différentes façon.
+					E.g. <em>&quot;</em> peut être encodé comme <em>&amp;quot;</em>, <em>&amp;#34;</em>
+					ou <em>&amp;#x22</em>. <span class="function"><strong>get_html_translation_table()</strong></span>
+					retourne uniquement la forme utilisée par <span class="function"><a
+						href="function.htmlspecialchars.html" class="function">htmlspecialchars()</a></span>
+					et <span class="function"><a
+						href="function.htmlentities.html" class="function">htmlentities()</a></span>.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.get-html-translation-table-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">table</code></em></span>
+				<dd>
+
+					<p class="para">
+						La table à retourner. Soit <strong><code>HTML_ENTITIES</code></strong>,
+						soit <strong><code>HTML_SPECIALCHARS</code></strong>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">flags</code></em></span>
+				<dd>
+
+					<p class="para">
+						Un masque d&#039;un ou plusieurs drapeaux suivants, qui spécifient
+						quel guillemet la table contiendra, tout comme le type de document
+						prévu pour la table. La valeur par défaut est <em>ENT_COMPAT
+							| ENT_HTML401</em>.
+					<table class="doctable table">
+						<caption>
+							<strong>Constantes disponibles pour le drapeau <em><code
+										class="parameter">flags</code></em></strong>
+						</caption>
+
+						<thead>
+							<tr>
+								<th>Nom de la constante</th>
+								<th>Description</th>
+							</tr>
+
+						</thead>
+
+						<tbody class="tbody">
+							<tr>
+								<td><strong><code>ENT_COMPAT</code></strong></td>
+								<td>La table contient des entités pour les guillemets
+									doubles, mais pas pour les guillemets simples.</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>ENT_QUOTES</code></strong></td>
+								<td>La table contient des entités pour à la fois les
+									guillemets doubles et simples.</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>ENT_NOQUOTES</code></strong></td>
+								<td>La table ne contient pas d&#039;entités pour à la fois
+									les guillemets doubles et simples.</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>ENT_HTML401</code></strong></td>
+								<td>Table pour du HTML 4.01.</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>ENT_XML1</code></strong></td>
+								<td>Table pour du XML 1.</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>ENT_XHTML</code></strong></td>
+								<td>Table for XHTML.</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>ENT_HTML5</code></strong></td>
+								<td>Table pour du HTML 5.</td>
+							</tr>
+
+						</tbody>
+
+					</table>
+
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">encoding</code></em></span>
+				<dd>
+
+					<p class="para">Encodage à utiliser. Si omis, la valeur par
+						défaut de cet argument sera ISO-8859-1 pour les versions
+						antérieures à la version 5.4.0 de PHP, et UTF-8 pour les versions
+						suivantes à 5.4.0.</p>
+
+
+
+
+
+					<p class="para">Les jeux de caractères suivants sont supportés
+						:
+					<table class="doctable table">
+						<caption>
+							<strong>Jeux de caractères supportés</strong>
+						</caption>
+
+						<thead>
+							<tr>
+								<th>Jeux de caractères</th>
+								<th>Alias</th>
+								<th>Description</th>
+							</tr>
+
+						</thead>
+
+						<tbody class="tbody">
+							<tr>
+								<td>ISO-8859-1</td>
+								<td>ISO8859-1</td>
+								<td>Europe occidentale, Latin-1.</td>
+							</tr>
+
+							<tr>
+								<td>ISO-8859-5</td>
+								<td>ISO8859-5</td>
+								<td>Jeu de caractère cyrillique rarement utilisé
+									(Latin/Cyrillic).</td>
+							</tr>
+
+							<tr>
+								<td>ISO-8859-15</td>
+								<td>ISO8859-15</td>
+								<td>Europe occidentale, Latin-9. Dispose du signe Euro, des
+									caractères spéciaux français et finlandais, qui manquent au
+									Latin-1 (ISO-8859-1).</td>
+							</tr>
+
+							<tr>
+								<td>UTF-8</td>
+								<td class="empty">&nbsp;</td>
+								<td>Unicode 8 bits multioctets, compatible avec
+									l&#039;ASCII</td>
+							</tr>
+
+							<tr>
+								<td>cp866</td>
+								<td>ibm866, 866</td>
+								<td>Jeu de caractères Cyrillique spécifique à DOS.</td>
+							</tr>
+
+							<tr>
+								<td>cp1251</td>
+								<td>Windows-1251, win-1251, 1251</td>
+								<td>Jeu de caractères Cyrillic spécifique à Windows.</td>
+							</tr>
+
+							<tr>
+								<td>cp1252</td>
+								<td>Windows-1252, 1252</td>
+								<td>Jeu de caractères spécifique de Windows pour
+									l&#039;Europe occidentale.</td>
+							</tr>
+
+							<tr>
+								<td>KOI8-R</td>
+								<td>koi8-ru, koi8r</td>
+								<td>Russe.</td>
+							</tr>
+
+							<tr>
+								<td>BIG5</td>
+								<td>950</td>
+								<td>Chinois traditionnel, principalement utilisé à Taïwan.
+								</td>
+							</tr>
+
+							<tr>
+								<td>GB2312</td>
+								<td>936</td>
+								<td>Chinois simplifié, officiel.</td>
+							</tr>
+
+							<tr>
+								<td>BIG5-HKSCS</td>
+								<td class="empty">&nbsp;</td>
+								<td>Big5 avec les extensions de Hong Kong, chinois
+									traditionnel.</td>
+							</tr>
+
+							<tr>
+								<td>Shift_JIS</td>
+								<td>SJIS, SJIS-win, cp932, 932</td>
+								<td>Japonais</td>
+							</tr>
+
+							<tr>
+								<td>EUC-JP</td>
+								<td>EUCJP, eucJP-win</td>
+								<td>Japonais</td>
+							</tr>
+
+							<tr>
+								<td>MacRoman</td>
+								<td class="empty">&nbsp;</td>
+								<td>Jeu de caractères utilisé par Mac OS.</td>
+							</tr>
+
+							<tr>
+								<td><em>&#039;&#039;</em></td>
+								<td class="empty">&nbsp;</td>
+								<td>Une chaîne vide active la détection de l&#039;encodage
+									depuis un script (multi-octet Zend), <a
+									href="ini.core.html#ini.default-charset" class="link">default_charset</a>
+									et la locale courante (voir <span class="function"><a
+										href="function.nl-langinfo.html" class="function">nl_langinfo()</a></span>
+									et <span class="function"><a
+										href="function.setlocale.html" class="function">setlocale()</a></span>),
+									dans cet ordre. Non recommandé.
+								</td>
+							</tr>
+
+						</tbody>
+
+					</table>
+
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>: <span class="simpara">
+								Les autres jeux de caractères ne sont pas reconnus.
+								L&#039;encodage par défaut sera utilisé à la place et une alerte
+								sera émise. </span>
+						</p>
+					</blockquote>
+					</p>
+
+
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.get-html-translation-table-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Retourne la table de traduction, sous la forme
+				d&#039;un tableau, avec comme clés, les caractères orignaux, et
+				comme valeurs, les entités correspondantes.</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.get-html-translation-table-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.4.0</td>
+						<td>La valeur par défaut du paramètre <em><code
+									class="parameter">encoding</code></em> a changé en UTF-8.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.4.0</td>
+						<td>Les constantes <strong><code>ENT_HTML401</code></strong>,
+							<strong><code>ENT_XML1</code></strong>, <strong><code>ENT_XHTML</code></strong>
+							et <strong><code>ENT_HTML5</code></strong> ont été ajoutées.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.3.4</td>
+						<td>Le paramètre <em><code class="parameter">encoding</code></em>
+							a été ajouté.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.get-html-translation-table-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4491">
+				<p>
+					<strong>Exemple #1 Exemple avec la table de traduction des
+						caractères en entités HTML</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />var_dump
+							</span><span style="color: #007700">(</span><span style="color: #0000BB">get_html_translation_table</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">HTML_ENTITIES</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">ENT_QUOTES&nbsp;</span><span
+								style="color: #007700">|&nbsp;</span><span
+								style="color: #0000BB">ENT_HTML5</span><span
+								style="color: #007700">));<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher quelque chose de
+						similaire à :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+array(1510) {
+  [&quot;    &quot;]=&gt;
+  string(5) &quot;&amp;Tab;&quot;
+  [&quot;
+&quot;]=&gt;
+  string(9) &quot;&amp;NewLine;&quot;
+  [&quot;!&quot;]=&gt;
+  string(6) &quot;&amp;excl;&quot;
+  [&quot;&quot;&quot;]=&gt;
+  string(6) &quot;&amp;quot;&quot;
+  [&quot;#&quot;]=&gt;
+  string(5) &quot;&amp;num;&quot;
+  [&quot;$&quot;]=&gt;
+  string(8) &quot;&amp;dollar;&quot;
+  [&quot;%&quot;]=&gt;
+  string(8) &quot;&amp;percnt;&quot;
+  [&quot;&amp;&quot;]=&gt;
+  string(5) &quot;&amp;amp;&quot;
+  [&quot;&#039;&quot;]=&gt;
+  string(6) &quot;&amp;apos;&quot;
+  // ...
+}
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.get-html-translation-table-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.htmlspecialchars.html" class="function"
+						rel="rdfs-seeAlso">htmlspecialchars()</a> - Convertit les
+						caract&egrave;res sp&eacute;ciaux en entit&eacute;s HTML</span></li>
+				<li class="member"><span class="function"><a
+						href="function.htmlentities.html" class="function"
+						rel="rdfs-seeAlso">htmlentities()</a> - Convertit tous les
+						caract&egrave;res &eacute;ligibles en entit&eacute;s HTML</span></li>
+				<li class="member"><span class="function"><a
+						href="function.html-entity-decode.html" class="function"
+						rel="rdfs-seeAlso">html_entity_decode()</a> - Convertit toutes les
+						entit&eacute;s HTML en caract&egrave;res normaux</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.fprintf.html">fprintf</a>
+		</div>
+		<div class="next">
+			<a href="function.hebrev.html">hebrev</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>G&eacute;n&egrave;re un message dans l'historique
+	syst&egrave;me</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.socket-set-timeout.html">socket_set_timeout</a>
+		</div>
+		<div class="next">
+			<a href="book.rrd.html">RRD</a>
+		</div>
+		<div class="up">
+			<a href="ref.network.html">Fonctions r&eacute;seaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.syslog" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">syslog</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">syslog</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Génère un message dans
+					l&#039;historique système</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.syslog-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>syslog</strong></span>
+				( <span class="methodparam"><span class="type">int</span> <code
+						class="parameter">$priority</code></span> , <span class="methodparam"><span
+					class="type">string</span> <code class="parameter">$message</code></span>
+				)
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>syslog()</strong></span> génère un
+				message qui sera inscrit dans l&#039;historique par le système.
+			</p>
+			<p class="para">
+				Pour plus d&#039;informations sur comment mettre en place un
+				gestionnaire d&#039;historique, reportez-vous au manuel Unix, page 5
+				<span class="citerefentry"><span class="refentrytitle">syslog.conf</span>
+					<span class="manvolnum">(5)</span></span>. D&#039;autres informations sur
+				les systèmes d&#039;historique et leurs options sont aussi
+				disponibles dans le manuel <span class="citerefentry"><span
+					class="refentrytitle">syslog</span> <span class="manvolnum">(3)</span></span>
+				des machines Unix.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.syslog-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">priority</code></em></span>
+				<dd>
+
+					<p class="para">
+						<em><code class="parameter">priority</code></em> est une
+						combinaison des valeurs d&#039;accès et de niveau. Les valeurs
+						possibles sont :
+					<table class="doctable table">
+						<caption>
+							<strong>Priorités <span class="function"><strong>syslog()</strong></span>
+								(en ordre décroissant)
+							</strong>
+						</caption>
+
+						<thead>
+							<tr>
+								<th>Constante</th>
+								<th>Description</th>
+							</tr>
+
+						</thead>
+
+						<tbody class="tbody">
+							<tr>
+								<td><strong><code>LOG_EMERG</code></strong></td>
+								<td>système inutilisable</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>LOG_ALERT</code></strong></td>
+								<td>une décision doit être prise immédiatement</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>LOG_CRIT</code></strong></td>
+								<td>condition critique</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>LOG_ERR</code></strong></td>
+								<td>condition d&#039;erreur</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>LOG_WARNING</code></strong></td>
+								<td>condition d&#039;alerte</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>LOG_NOTICE</code></strong></td>
+								<td>condition normale, mais significative</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>LOG_INFO</code></strong></td>
+								<td>message d&#039;information</td>
+							</tr>
+
+							<tr>
+								<td><strong><code>LOG_DEBUG</code></strong></td>
+								<td>message de déboguage</td>
+							</tr>
+
+						</tbody>
+
+					</table>
+
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">message</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le message à envoyer. Attention : les caractères <em>%m</em>
+						seront remplacés par l&#039;erreur (sous forme de chaîne),
+						présente dans <span class="errortype">errno</span>.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.syslog-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.syslog-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4162">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>syslog()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;ouverture&nbsp;de&nbsp;syslog,&nbsp;ajout&nbsp;du&nbsp;PID&nbsp;et&nbsp;envoi&nbsp;simultané&nbsp;du<br />//&nbsp;message&nbsp;à&nbsp;la&nbsp;sortie&nbsp;standard&nbsp;et&nbsp;à&nbsp;un&nbsp;mécanisme<br />//&nbsp;spécifique<br /></span><span
+								style="color: #0000BB">openlog</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"myScriptLog"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">LOG_PID&nbsp;</span><span
+								style="color: #007700">|&nbsp;</span><span
+								style="color: #0000BB">LOG_PERROR</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">LOG_LOCAL0</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;quelques&nbsp;lignes&nbsp;de&nbsp;code<br />
+								<br /></span><span style="color: #007700">if&nbsp;(</span><span
+								style="color: #0000BB">authorized_client</span><span
+								style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;faire&nbsp;quelquechose<br /></span><span
+								style="color: #007700">}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;client&nbsp;non&nbsp;autorisé!<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;notation&nbsp;de&nbsp;la&nbsp;tentative<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$access&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"Y/m/d&nbsp;H:i:s"</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">syslog</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">LOG_WARNING</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"Unauthorized&nbsp;client:&nbsp;</span><span
+								style="color: #0000BB">$access</span><span
+								style="color: #DD0000">&nbsp;</span><span style="color: #007700">{</span><span
+								style="color: #0000BB">$_SERVER</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">'REMOTE_ADDR'</span><span
+								style="color: #007700">]}</span><span style="color: #DD0000">&nbsp;(</span><span
+								style="color: #007700">{</span><span style="color: #0000BB">$_SERVER</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">'HTTP_USER_AGENT'</span><span
+								style="color: #007700">]}</span><span style="color: #DD0000">)"</span><span
+								style="color: #007700">);<br />}<br />
+								<br /></span><span style="color: #0000BB">closelog</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.syslog-notes">
+			<h3 class="title">Notes</h3>
+			<p class="para">Avec Windows NT, l&#039;historique est pris en
+				charge par le log d&#039;événements.</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					L&#039;utilisation de <em>LOG_LOCAL0</em> à <em>LOG_LOCAL7</em>
+					pour le paramètre <em><code class="parameter">facility</code></em>
+					de la fonction <span class="function"><a
+						href="function.openlog.html" class="function">openlog()</a></span>
+					n&#039;est pas disponible sous Windows.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.syslog-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.openlog.html" class="function" rel="rdfs-seeAlso">openlog()</a>
+						- Ouvre la connexion &agrave; l'historique syst&egrave;me</span></li>
+				<li class="member"><span class="function"><a
+						href="function.closelog.html" class="function" rel="rdfs-seeAlso">closelog()</a>
+						- Ferme la connexion &agrave; l'historique syst&egrave;me</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.socket-set-timeout.html">socket_set_timeout</a>
+		</div>
+		<div class="next">
+			<a href="book.rrd.html">RRD</a>
+		</div>
+		<div class="up">
+			<a href="ref.network.html">Fonctions r&eacute;seaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

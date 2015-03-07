@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Lecture de fichier compress&eacute; binaire</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.gzputs.html">gzputs</a>
+		</div>
+		<div class="next">
+			<a href="function.gzrewind.html">gzrewind</a>
+		</div>
+		<div class="up">
+			<a href="ref.zlib.html">Fonctions Zlib</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.gzread" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">gzread</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">gzread</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Lecture de fichier compressé binaire</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.gzread-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>gzread</strong></span>
+				( <span class="methodparam"><span class="type">resource</span>
+					<code class="parameter">$zp</code></span> , <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$length</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>gzread()</strong></span> lit
+				jusqu&#039;à <em><code class="parameter">length</code></em> octets
+				dans le fichier compressé gzip, représenté par <em><code
+						class="parameter">zp</code></em>. La lecture s&#039;arrête lorsque <em><code
+						class="parameter">length</code></em> octets (décompressés) ont été lus,
+				ou que la fin du fichier a été atteinte (position <acronym
+					title="End Of File">EOF</acronym>).
+			</p>
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.gzread-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">zp</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le pointeur de fichier gz. Il doit être valide et doit pointer
+						vers un fichier ouvert avec succès grâce à la fonction <span
+							class="function"><a href="function.gzopen.html"
+							class="function">gzopen()</a></span>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">length</code></em></span>
+				<dd>
+
+					<p class="para">Le nombre d&#039;octets lus.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.gzread-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Les données qui ont été lues.</p>
+		</div>
+
+		<div class="refsect1 examples" id="refsect1-function.gzread-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-897">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>gzread()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;récupère&nbsp;le&nbsp;contenu&nbsp;d'un&nbsp;fichier&nbsp;gz&nbsp;dans&nbsp;une&nbsp;chaîne<br /></span><span
+								style="color: #0000BB">$filename&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"/usr/local/something.txt.gz"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$zd&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">gzopen</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$filename</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"r"</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$contents&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">gzread</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$zd</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">10000</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">gzclose</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$zd</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+		<div class="refsect1 seealso" id="refsect1-function.gzread-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.gzwrite.html" class="function" rel="rdfs-seeAlso">gzwrite()</a>
+						- &Eacute;crit dans un fichier compress&eacute; gzip</span></li>
+				<li class="member"><span class="function"><a
+						href="function.gzopen.html" class="function" rel="rdfs-seeAlso">gzopen()</a>
+						- Ouvre un fichier compress&eacute; avec gzip</span></li>
+				<li class="member"><span class="function"><a
+						href="function.gzgets.html" class="function" rel="rdfs-seeAlso">gzgets()</a>
+						- Lit une ligne dans un fichier compress&eacute;</span></li>
+				<li class="member"><span class="function"><a
+						href="function.gzgetss.html" class="function" rel="rdfs-seeAlso">gzgetss()</a>
+						- Lit une ligne dans un fichier compress&eacute;, et supprime les
+						balises HTML</span></li>
+				<li class="member"><span class="function"><a
+						href="function.gzfile.html" class="function" rel="rdfs-seeAlso">gzfile()</a>
+						- Lit la totalit&eacute; d'un fichier compress&eacute;</span></li>
+				<li class="member"><span class="function"><a
+						href="function.gzpassthru.html" class="function"
+						rel="rdfs-seeAlso">gzpassthru()</a> - Affiche toutes les
+						donn&eacute;es qui restent dans un pointeur gz</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.gzputs.html">gzputs</a>
+		</div>
+		<div class="next">
+			<a href="function.gzrewind.html">gzrewind</a>
+		</div>
+		<div class="up">
+			<a href="ref.zlib.html">Fonctions Zlib</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

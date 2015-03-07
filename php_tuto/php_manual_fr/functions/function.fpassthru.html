@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Affiche le reste du fichier</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.fopen.html">fopen</a>
+		</div>
+		<div class="next">
+			<a href="function.fputcsv.html">fputcsv</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.fpassthru" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">fpassthru</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">fpassthru</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Affiche le reste du fichier</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.fpassthru-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">int</span> <span class="methodname"><strong>fpassthru</strong></span>
+				( <span class="methodparam"><span class="type">resource</span>
+					<code class="parameter">$handle</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">Lit tout le reste d&#039;un fichier
+				jusqu&#039;à la fin et dirige le résultat vers la sortie standard.</p>
+			<p class="para">
+				Vous devez appeler la fonction <span class="function"><a
+					href="function.rewind.html" class="function">rewind()</a></span> pour
+				réinitialiser le pointeur de fichier au début si vous avez déjà
+				écrit des données dans le fichier.
+			</p>
+			<p class="para">
+				Si vous voulez uniquement copier le contenu d&#039;un fichier dans
+				le buffer de sortie, sans le modifier auparavant ou placer le
+				pointeur à un endroit particulier, vous devriez utiliser la fonction
+				<span class="function"><a href="function.readfile.html"
+					class="function">readfile()</a></span>, ce qui vous évite d&#039;appeler
+				la fonction <span class="function"><a
+					href="function.fopen.html" class="function">fopen()</a></span> call.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.fpassthru-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">handle</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le pointeur de fichier doit être valide et pointer sur un fichier
+						ouvert avec succès par <span class="function"><a
+							href="function.fopen.html" class="function">fopen()</a></span> ou <span
+							class="function"><a href="function.fsockopen.html"
+							class="function">fsockopen()</a></span> (et pas encore fermé par <span
+							class="function"><a href="function.fclose.html"
+							class="function">fclose()</a></span>).
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.fpassthru-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Si une erreur survient, <span class="function"><strong>fpassthru()</strong></span>
+				retourne <strong><code>FALSE</code></strong>. Sinon, <span
+					class="function"><strong>fpassthru()</strong></span> retourne le
+				nombre de caractères lus dans <em><code class="parameter">handle</code></em>
+				et passés à la sortie standard.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.fpassthru-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2253">
+				<p>
+					<strong>Exemple #1 Utilisation de <span class="function"><strong>fpassthru()</strong></span>
+						avec un fichier binaire
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;ouvre&nbsp;un&nbsp;fichier&nbsp;en&nbsp;mode&nbsp;binaire<br /></span><span
+								style="color: #0000BB">$name&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'./img/ok.png'</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$fp&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$name</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'rb'</span><span style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;envoie&nbsp;les&nbsp;bons&nbsp;en-têtes<br /></span><span
+								style="color: #0000BB">header</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"Content-Type:&nbsp;image/png"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">header</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"Content-Length:&nbsp;"&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">filesize</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$name</span><span
+								style="color: #007700">));<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;envoie&nbsp;le&nbsp;contenu&nbsp;du&nbsp;fichier,&nbsp;puis&nbsp;stoppe&nbsp;le&nbsp;script<br /></span><span
+								style="color: #0000BB">fpassthru</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">);<br />exit;<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.fpassthru-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Lorsque vous utilisez la fonction <span class="function"><strong>fpassthru()</strong></span>
+					sur un fichier binaire sous Windows, assurez-vous d&#039;avoir
+					ouvert le fichier en mode binaire en ajoutant la lettre <em>b</em>
+					au mode d&#039;accès utilisé dans <span class="function"><a
+						href="function.fopen.html" class="function">fopen()</a></span>.
+				</p>
+				<p class="para">
+					Vous êtes encouragé à utiliser l&#039;option <em>b</em> lorsque
+					vous traitez des fichiers binaires, même si votre système ne le
+					requiert pas, de façon à rendre vos scripts portables.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.fpassthru-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.readfile.html" class="function" rel="rdfs-seeAlso">readfile()</a>
+						- Affiche un fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fopen.html" class="function" rel="rdfs-seeAlso">fopen()</a>
+						- Ouvre un fichier ou une URL</span></li>
+				<li class="member"><span class="function"><a
+						href="function.popen.html" class="function" rel="rdfs-seeAlso">popen()</a>
+						- Cr&eacute;e un processus de pointeur de fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fsockopen.html" class="function" rel="rdfs-seeAlso">fsockopen()</a>
+						- Ouvre un socket de connexion Internet ou Unix</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.fopen.html">fopen</a>
+		</div>
+		<div class="next">
+			<a href="function.fputcsv.html">fputcsv</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

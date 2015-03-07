@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Trie un tableau en utilisant une fonction de comparaison</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.uksort.html">uksort</a>
+		</div>
+		<div class="next">
+			<a href="book.classobj.html">Classes/Objets</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.usort" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">usort</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">usort</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Trie un tableau en utilisant une
+					fonction de comparaison</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.usort-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>usort</strong></span>
+				( <span class="methodparam"><span class="type">array</span> <code
+						class="parameter reference">&$array</code></span> , <span
+					class="methodparam"><span class="type"><a
+						href="language.types.callable.html" class="type callable">callable</a></span>
+					<code class="parameter">$cmp_function</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>usort()</strong></span> va trier le
+				tableau <em><code class="parameter">array</code></em> avec ses
+				valeurs, en utilisant une fonction définie par l&#039;utilisateur.
+				Si un tableau doit être trié avec un critère complexe, il est
+				préférable d&#039;utiliser cette fonction.
+			</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Si deux éléments sont égaux, au sens de la fonction <em><code
+							class="parameter">cmp_function</code></em>, leur ordre relatif sera
+					indéfini.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Cette
+						fonction assigne de nouvelles clés pour les éléments du paramètre
+						<em><code class="parameter">array</code></em>. Elle effacera
+						toutes les clés existantes que vous aviez pu assigner, plutôt que
+						de les trier.
+					</span>
+				</p>
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.usort-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">array</code></em></span>
+				<dd>
+
+					<p class="para">Le tableau d&#039;entrée.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">cmp_function</code></em></span>
+				<dd>
+
+					<p class="para">La fonction de comparaison doit retourner un
+						entier inférieur à, égal à, ou supérieur à 0 si le premier
+						argument est considéré comme, respectivement, inférieur à, égal à,
+						ou supérieur au second.</p>
+					<div class="methodsynopsis dc-description">
+						<span class="type">int</span> <span class="methodname"><span
+							class="replaceable">callback</span></span> ( <span class="methodparam"><span
+							class="type"><a
+								href="language.pseudo-types.html#language.types.mixed"
+								class="type mixed">mixed</a></span> <code class="parameter">$a</code></span>,
+						<span class="methodparam"><span class="type"><a
+								href="language.pseudo-types.html#language.types.mixed"
+								class="type mixed">mixed</a></span> <code class="parameter">$b</code></span> )
+					</div>
+
+					<div class="caution">
+						<strong class="caution">Attention</strong>
+						<p class="para">
+							Le fait de retourner des valeurs <em class="emphasis">non
+								entières</em> depuis la fonction de comparaison, comme des valeurs de
+							type <a href="language.types.float.html" class="link">nombre
+								décimal</a> fera que l&#039;intervalle sera transtypé en <a
+								href="language.types.integer.html" class="link">entier</a> en se
+							basant sur la valeur retournée par la fonction de rappel. Aussi
+							des valeurs comme 0.99 et 0.1 sera toutes les deux transformées
+							en la valeur 0, et leur comparaison sera égale.
+						</p>
+					</div>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.usort-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog" id="refsect1-function.usort-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.1.0</td>
+						<td>Un nouvel algorithme est introduit. Le paramètre <em><code
+									class="parameter">cmp_function</code></em> ne conserve pas
+							l&#039;ordre original des éléments considérés comme égaux.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.usort-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="function.usort.examples.basic">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>usort()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">cmp</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$a</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$b</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(
+							</span><span style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">==&nbsp;</span><span
+								style="color: #0000BB">$b</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(
+							</span><span style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">&lt;&nbsp;</span><span
+								style="color: #0000BB">$b</span><span style="color: #007700">)&nbsp;?&nbsp;-</span><span
+								style="color: #0000BB">1&nbsp;</span><span
+								style="color: #007700">:&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">5</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">6</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">);<br />
+								<br /></span><span style="color: #0000BB">usort</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"cmp"</span><span style="color: #007700">);<br />
+								<br />foreach&nbsp;(
+							</span><span style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">as&nbsp;</span><span
+								style="color: #0000BB">$key&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #0000BB">$value</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$key</span><span
+								style="color: #DD0000">:&nbsp;</span><span
+								style="color: #0000BB">$value</span><span style="color: #DD0000">\n"</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+0: 1
+1: 2
+2: 3
+3: 5
+4: 6
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Évidemment dans ce cas trivial, <span class="function"><a
+						href="function.sort.html" class="function">sort()</a></span> serait plus
+					approprié.
+			</blockquote>
+			<p class="para">
+			<div class="example" id="function.usort.examples.multi">
+				<p>
+					<strong>Exemple #2 Tri avec <span class="function"><strong>usort()</strong></span>
+						sur un tableau multidimensionnel
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">cmp</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$a</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$b</span><span style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">strcmp</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">"fruit"</span><span
+								style="color: #007700">],&nbsp;</span><span
+								style="color: #0000BB">$b</span><span style="color: #007700">[</span><span
+								style="color: #DD0000">"fruit"</span><span
+								style="color: #007700">]);<br />}<br />
+								<br /></span><span style="color: #0000BB">$fruits</span><span
+								style="color: #007700">[</span><span style="color: #0000BB">0</span><span
+								style="color: #007700">][</span><span style="color: #DD0000">"fruit"</span><span
+								style="color: #007700">]&nbsp;=&nbsp;</span><span
+								style="color: #DD0000">"lemons"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$fruits</span><span
+								style="color: #007700">[</span><span style="color: #0000BB">1</span><span
+								style="color: #007700">][</span><span style="color: #DD0000">"fruit"</span><span
+								style="color: #007700">]&nbsp;=&nbsp;</span><span
+								style="color: #DD0000">"apples"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$fruits</span><span
+								style="color: #007700">[</span><span style="color: #0000BB">2</span><span
+								style="color: #007700">][</span><span style="color: #DD0000">"fruit"</span><span
+								style="color: #007700">]&nbsp;=&nbsp;</span><span
+								style="color: #DD0000">"grapes"</span><span
+								style="color: #007700">;<br />
+								<br /></span><span style="color: #0000BB">usort</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fruits</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"cmp"</span><span style="color: #007700">);<br />
+								<br />while&nbsp;(list(
+							</span><span style="color: #0000BB">$key</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$value</span><span style="color: #007700">)&nbsp;=&nbsp;</span><span
+								style="color: #0000BB">each</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$fruits</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"\$fruits[</span><span
+								style="color: #0000BB">$key</span><span style="color: #DD0000">]:&nbsp;"&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">$value</span><span style="color: #007700">[</span><span
+								style="color: #DD0000">"fruit"</span><span
+								style="color: #007700">]&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>
+						Lors du tri de tableau multidimensionnel,
+						<var class="varname">
+							<var class="varname">$a</var>
+						</var>
+						et
+						<var class="varname">
+							<var class="varname">$b</var>
+						</var>
+						contiennent des références sur le premier élément du tableau.
+					</p>
+				</div>
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+$fruits[0]: apples
+$fruits[1]: grapes
+$fruits[2]: lemons
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="function.usort.examples.object">
+				<p>
+					<strong>Exemple #3 Tri avec <span class="function"><strong>usort()</strong></span>
+						sur un objet
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">TestObj&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;
+							</span><span style="color: #0000BB">$name</span><span
+								style="color: #007700">;<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">TestObj</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$name</span><span
+								style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">name&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">$name</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">/*&nbsp;Ceci&nbsp;est&nbsp;une&nbsp;fonction&nbsp;de&nbsp;comparaison&nbsp;statique&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">static&nbsp;function&nbsp;</span><span
+								style="color: #0000BB">cmp_obj</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$b</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$al&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">strtolower</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">name</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$bl&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">strtolower</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$b</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">name</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(
+							</span><span style="color: #0000BB">$al&nbsp;</span><span
+								style="color: #007700">==&nbsp;</span><span
+								style="color: #0000BB">$bl</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">0</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(
+							</span><span style="color: #0000BB">$al&nbsp;</span><span
+								style="color: #007700">&gt;&nbsp;</span><span
+								style="color: #0000BB">$bl</span><span style="color: #007700">)&nbsp;?&nbsp;+</span><span
+								style="color: #0000BB">1&nbsp;</span><span
+								style="color: #007700">:&nbsp;-</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">[]&nbsp;=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">TestObj</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"c"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$a</span><span style="color: #007700">[]&nbsp;=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">TestObj</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"b"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$a</span><span style="color: #007700">[]&nbsp;=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">TestObj</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"d"</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #0000BB">usort</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">,&nbsp;array(</span><span
+								style="color: #DD0000">"TestObj"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"cmp_obj"</span><span
+								style="color: #007700">));<br />
+								<br />foreach&nbsp;(
+							</span><span style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">as&nbsp;</span><span
+								style="color: #0000BB">$item</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #0000BB">$item</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">name&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+b
+c
+d
+</pre>
+					</div>
+				</div>
+			</div>
+			<div class="example" id="function.usort.examples.closure">
+				<p>
+					<strong>Exemple #4 Exemple avec <span class="function"><strong>usort()</strong></span>
+						en utilisant une <a href="functions.anonymous.html" class="link">closure</a>
+						pour trier un tableau multi-dimensionnel
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$array
+							</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span
+								style="color: #007700">]&nbsp;=&nbsp;array(</span><span
+								style="color: #DD0000">'key_a'&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">'z'</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'key_b'&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">'c'</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$array</span><span style="color: #007700">[</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">]&nbsp;=&nbsp;array(</span><span
+								style="color: #DD0000">'key_a'&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">'x'</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'key_b'&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">'b'</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$array</span><span style="color: #007700">[</span><span
+								style="color: #0000BB">2</span><span style="color: #007700">]&nbsp;=&nbsp;array(</span><span
+								style="color: #DD0000">'key_a'&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">'y'</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'key_b'&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">'a'</span><span style="color: #007700">);<br />
+								<br />function&nbsp;
+							</span><span style="color: #0000BB">build_sorter</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$key</span><span
+								style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;function&nbsp;(
+							</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$b</span><span style="color: #007700">)&nbsp;use&nbsp;(</span><span
+								style="color: #0000BB">$key</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">strnatcmp</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">[</span><span style="color: #0000BB">$key</span><span
+								style="color: #007700">],&nbsp;</span><span
+								style="color: #0000BB">$b</span><span style="color: #007700">[</span><span
+								style="color: #0000BB">$key</span><span style="color: #007700">]);<br />&nbsp;&nbsp;&nbsp;&nbsp;};<br />}<br />
+								<br /></span><span style="color: #0000BB">usort</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$array</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">build_sorter</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'key_b'</span><span
+								style="color: #007700">));<br />
+								<br />foreach&nbsp;(
+							</span><span style="color: #0000BB">$array&nbsp;</span><span
+								style="color: #007700">as&nbsp;</span><span
+								style="color: #0000BB">$item</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #0000BB">$item</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">'key_a'</span><span
+								style="color: #007700">]&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">',&nbsp;'&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">$item</span><span style="color: #007700">[</span><span
+								style="color: #DD0000">'key_b'</span><span
+								style="color: #007700">]&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+y, a
+x, b
+z, c
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.usort-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.uasort.html" class="function" rel="rdfs-seeAlso">uasort()</a>
+						- Trie un tableau en utilisant une fonction de rappel</span></li>
+				<li class="member">Les fonctions de <a
+					href="array.sorting.html" class="link">tri des tableaux</a></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.uksort.html">uksort</a>
+		</div>
+		<div class="next">
+			<a href="book.classobj.html">Classes/Objets</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>iFrame</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			Un <code>iframe</code> (inline frame : cadre, encadrement, carcasse
+			en ligne) est un espace défini dans une page Web. Dans cet espace
+			réservé on va pouvoir afficher une autre page Web provenant de notre
+			site ou de n'importe quel autre site sur le réseau. Le <abbr
+				title="World Wide Web Consortium">W3C</abbr> appelle cet espace un <a
+				href="http://www.w3.org/TR/2014/REC-html5-20141028/browsers.html#windows"
+				target="_blank">contexte de navigation</a> et plus particuliérement
+			contexte de navigation imbriqué (<a
+				href="http://www.w3.org/TR/2014/REC-html5-20141028/browsers.html#nested-browsing-context"
+				target="_blank">nested browsing context</a>. En simplifiant c'est
+			comme si on avait une nouvelle fenêtre (onglet) du navigateur à
+			l'intérieur de la fenêtre (onglet) de la page principale. Cette
+			fenêtre n'a pas de barre de menu ou de barre d'<abbr
+				title="Uniform Resource Locator">URL</abbr>, mais elle aura
+			éventuellement des barres de défilement. Elle a aussi son propre
+			historique de navigation.
+		</p>
+
+		<p>
+			Le principe des <code>iframes</code> est utilisé par exemple pour
+			embarquer des publicités sur un site, inclure des "widgets" provenant
+			d'autres sites (météo, cours de la bourse, mur facebook, tweets,
+			vidéos youtube, google map, etc) ou encore émuler un système
+			d'onglets.
+		</p>
+
+		<p>
+			Ce qui est intéressant avec les <code>iframes</code> c'est que le
+			temps de chargement et d'affichage de leur contenu ne bloque pas
+			l'affichage de la page principale. Le navigateur fait d'abord le
+			rendu de la page principale, réserve un espace pour l'affichage de la
+			page embarquée dans l'<code>iframe</code> et quand il a fini le rendu
+			principale s'occcupe du rendu du contenu de l'<code>iframe</code>.
+		</p>
+
+		<p>Les exemples suivants nécessitent une connexion Internet car
+			ils affichent des éléments se trouvant sur le réseau. Ce sont des
+			widgets offerts par différents sites que l'on peut intégrer dans nos
+			propres pages.</p>
+
+		<form action="" method="post" class="TEST-form">
+			<div class="TEST-titre">
+				<strong>Exemple</strong> : Besançon avec google map
+			</div>
+			<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Besançon avec google map&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;L'iframe affiche la position de l'UFR ST de Besançon.&lt;/p&gt;
+		
+		&lt;iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d43334.05971058872!2d5.989899300000022!3d47.248296999999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sUFR+ST+-+Universit%C3%A9+de+Franche-Comt%C3%A9%2C+Besan%C3%A7on%2C+France!5e0!3m2!1sfr!2s!4v1386747735184" width="400" height="300" frameborder="0" style="border:0"&gt;
+		&lt;/iframe&gt;
+				
+		&lt;p&gt;La page affichée dans l'iframe est générée par maps.google.com&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+		</form>
+
+
+
+		<form action="" method="post" class="TEST-form">
+			<div class="TEST-titre">
+				<strong>Exemple</strong> : prévisions météo
+			</div>
+			<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Prévisions météo&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;L'iframe affiche les prévisions météo pour la ville
+			de Besançon.&lt;/p&gt;
+		
+		&lt;iframe height="190" width="250"
+			src="http://www.prevision-meteo.ch/services/html/besancon/square"&gt;&lt;/iframe&gt;
+		
+		&lt;p&gt;La page affichée dans l'iframe se trouve sur le
+			site prevision-meteo.ch&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+		</form>
+
+		<form action="" method="post" class="TEST-form">
+			<div class="TEST-titre">
+				<strong>Exemple</strong> : vidéo youtube
+			</div>
+			<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Vidéo youtube&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;L'iframe affiche une vidéo de youtube.&lt;/p&gt;
+		
+		&lt;iframe width="560" height="315" allowfullscreen
+			src="http://www.youtube.com/embed/QJSRuwqFch4?rel=0"&gt;
+		&lt;/iframe&gt;
+
+		&lt;p&gt;La ressource dans l'iframe se trouve sur le
+			site youtube.com.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+		</form>
+
+		<form action="" method="post" class="TEST-form">
+			<div class="TEST-titre">
+				<strong>Exemple</strong> : hit-parade spotify
+			</div>
+			<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Hit-parade spotify&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Hit parade spotify&lt;/p&gt;
+		
+		&lt;iframe width="300" height="400"
+			src="http://charts.spotify.com/embed/charts/most_streamed/fr/latest"&gt;
+			&lt;/iframe&gt;
+		
+		&lt;p&gt;La page dans l'iframe se trouve sur le
+			site spotify.com.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+		</form>
+
+
+		<form action="" method="post" class="TEST-form">
+			<div class="TEST-titre">
+				<strong>Exemple</strong> : player deezer
+			</div>
+			<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Player deezer&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Player deezer&lt;/p&gt;
+		
+		&lt;iframe width="500" height="240"
+			src="http://www.deezer.com/plugins/player?autoplay=false&amp;playlist=true&amp;width=500&amp;height=240&amp;cover=true&amp;type=playlist&amp;id=30595446&amp;title=&amp;app_id=undefined"&gt;
+		&lt;/iframe&gt;
+		
+		&lt;p&gt;La page dans l'iframe se trouve sur le
+			site deezer.com.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+		</form>
+
+		<p>
+			Ce dernier exemple embarque une page <a href="https://twitter.com"
+				target="_blanck">twitter</a>. Twitter ne fournit pas le code <abbr
+				title="HyperText Markup Language">HTML</abbr> pour intégrer un <code>iframe</code>
+			mais un lien <abbr title="HyperText Markup Language">HTML</abbr> et
+			du code JavaScript. C'est l'exécution de ce code qui au final
+			générera un <code>iframe</code>.
+		</p>
+
+		<form action="" method="post" class="TEST-form">
+			<div class="TEST-titre">
+				<strong>Exemple</strong> : tweets
+			</div>
+			<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Tweets&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Tweets avec le hashtag #html&lt;/p&gt;
+		
+		&lt;a class="twitter-timeline" 
+		   href="https://twitter.com/search?q=%23html"
+		   data-widget-id="409606580020072448"&gt;
+			Tweets concernant "#html"&lt;/a&gt;
+    	&lt;script&gt;!function(d,s,id){var
+js,fjs=d.getElementsByTagName(s)[0],
+p=/^http:/.test(d.location)?'http':'https'
+if(!d.getElementById(id)){js=d.createElement(s);js.id=id;
+js.src=p+"://platform.twitter.com/widgets.js"
+fjs.parentNode.insertBefore(js,fjs);}}
+(document,"script","twitter-wjs");
+		&lt;/script&gt;
+		
+		&lt;p&gt;La page dans l'iframe est générée par le
+			site twitter.com.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+		</form>
+
+		<h3>L'élément &lt;iframe&gt;</h3>
+		<section>
+			<p>
+				On utilise l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'iframe')">iframe</a>
+				pour embarquer dans la page web en cours une autre page. La balise
+				doit avoir une balise de fermeture <code>&lt;/iframe&gt;</code> bien
+				que le contenu de l'élément ne soit pas dans le fichier <abbr
+					title="HyperText Markup Language">HTML</abbr>.
+			</p>
+
+			<h4>Dimensions</h4>
+			<section>
+				<p>
+					L'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'iframe')">iframe</a>
+					créant un espace d'affichage dans une page, il faut en définir les
+					dimensions avec les attributs <code>width</code> et <code>height</code>.
+					La valeur de ces attributs est un nombre de pixels, sans que
+					l'unité ne soit précisée.
+				</p>
+
+				<p>
+					Il n'est pas possible que les dimensions d'un <code>iframe</code>
+					s'adaptent automatiquement à leur contenu.
+					<br>
+					Si le contenu de la page embarquée est trop petit pour remplir
+					complétement l'<code>iframe</code>, un espace vide sera généré.
+					<br>
+					Si le contenu de la page embarquée est trop grand pour tenir dans
+					l'espace de l'<code>iframe</code>, une barre de défilement
+					verticale et/ou une barre de défilement horizontale seront
+					automatiquement créée par le navigateur pour que le contenu puisse
+					être vu malgré tout.
+				</p>
+			</section>
+
+			<h4>L'attribut src</h4>
+			<section>
+				<p>
+					Comme pour tous les éléments embarqués, il faut aussi définir la
+					localisation de la ressource sur le réseau. On utilise l'attribut <code>src</code>
+					dont la valeur est l'<abbr title="Uniform Resource Locator">URL</abbr>
+					de la ressource.
+					<br>
+					Bien sûr si la ressource est située dans un des dossiers de votre
+					site, il faut utiliser une <abbr title="Uniform Resource Locator">URL</abbr>
+					relative pour faire le lien.
+				</p>
+
+				<div class="fp-remarque">
+					<p class="fp-bot0">Je vous rappelle qu'il convient d'être
+						prudent avec les caractères utilisés pour les noms des fichiers et
+						des dossiers qui les contiennent et je vous conseille (à nouveau)
+						d'adopter les règles suivantes :</p>
+					<ul>
+						<li>les noms de fichier et de dossiers étant sensibles à la
+							casse, utilisez uniquement des minuscules,</li>
+						<li>utilisez uniquement les caractères aplhabétiques non
+							accentués (de a à z), des chiffres (de 0 à 9), le caractère -, le
+							caractère _ et le caractère .</li>
+						<li>n'utilisez jamais d'espaces.</li>
+					</ul>
+				</div>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : embarquer une page Web
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Embarquer une page Web&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Gandalf est un héros du "Seigneur des Anneaux".
+			&lt;iframe src="pages/gandalf.html"
+				width="400" height="400"&gt;
+			&lt;/iframe&gt;
+			On le trouve aussi dans "Bilbo le Hobbit".
+		&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<p>
+					En testant l'exemple, on voit que le navigateur a automatiquement
+					placé une barre de défilement verticale pour que l'on puisse faire
+					défiler la page embarquée et la consulter en entier.
+					<br>
+					Une barre de défilement horizontal aurait aussi été ajoutée
+					automatiquement si cela avait été nécessaire.
+				</p>
+
+				<p>
+					<a onClick="top.FP.Voir.showPageTech('elements', 'iframe')">iframe</a>
+					est un élément en ligne. Si vous agrandissez la fenêtre de test,
+					vous verrez que le texte entoure l'<code>iframe</code>. Pour qu'un
+					<code>iframe</code> soit considéré comme un bloc il faut le placer
+					dans un élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'p')">p</a> ou <a
+						onclick="top.FP.Voir.showPageTech('elements', 'div')">div</a>, ou
+					l'entourer par des éléments de bloc.
+				</p>
+
+				<p>
+					On peut avoir autant d'élements <a
+						onclick="top.FP.Voir.showPageTech('elements', 'iframe')">iframe</a>
+					que l'on veut dans une page.
+				</p>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : plusieurs iframes dans la page
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Plusieurs iframes&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Gandalf&lt;/h3&gt;
+		&lt;iframe	src="pages/gandalf.html"
+			width="400" height="200"&gt;
+		&lt;/iframe&gt;
+
+		&lt;h3&gt;Sauron&lt;/h3&gt;
+		&lt;iframe src="pages/sauron.html"
+			width="200" height="150"&gt;
+		&lt;/iframe&gt;
+		
+		&lt;h3&gt;Yoda&lt;/h3&gt;
+		&lt;iframe src="pages/yoda.html"
+			width="300" height="100"&gt;
+		&lt;/iframe&gt;
+		
+		&lt;h3&gt;Palpatine&lt;/h3&gt;
+		&lt;iframe src="pages/palpatine.html"
+			width="400" height="200"&gt;
+		&lt;/iframe&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</section>
+
+			<h4>Bordure</h4>
+			<section>
+				<p>
+					Dans les versions précédentes de <abbr
+						title="HyperText Markup Language">HTML</abbr>, des attributs
+					permettaient de gérer la bordure entourant un <a
+						onclick="top.FP.Voir.showPageTech('elements', 'iframe')">iframe</a>.
+					Bien que ces attributs soient toujours supportés par les
+					navigateurs, il convient maintenant d'utiliser des propriétés de
+					style <abbr title="Cascading Style Sheets">CSS</abbr> pour agir sur
+					l'aspect des <code>iframes</code>.
+				</p>
+
+				<p>
+					Par défaut les <code>iframes</code> sont entourés par une bordure
+					de 1 ou 2 pixels. On peut gérer cette bordure avec plusieurs
+					propriétés <abbr title="Cascading Style Sheets">CSS</abbr> comme <code>border</code>,
+					<code>border-style</code>, <code>border-color</code>, etc.
+				</p>
+
+				<p>
+					L'exemple suivant montre comment enlever la bordure autour d'un <code>iframe</code>,
+					ou comment changer sa couleur.
+				</p>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : gestion de la bordure
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;iframe sans bordure&lt;/title&gt;
+		&lt;style&gt;
+			.sans-bord {border: 0}
+			.bord-rouge {border: 1px solid red}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Gandalf&lt;/h3&gt;
+		&lt;iframe	src="pages/gandalf.html"
+			width="400" height="150"
+			class="sans-bord"&gt;
+		&lt;/iframe&gt;
+
+		&lt;h3&gt;Yoda&lt;/h3&gt;
+		&lt;iframe	src="pages/yoda.html"
+			width="400" height="150"
+			class="bord-rouge"&gt;
+		&lt;/iframe&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+			</section>
+
+			<h4>Barres de défilement</h4>
+			<section>
+				<p>Comme on l'a vu dans les exemples précédents, le navigateur
+					place automatiquement une barre de défilement verticale pour que
+					l'on puisse faire défiler la page embarquée et la consulter en
+					entier.</p>
+
+				<p class="fp-bot0">
+					Avant <abbr title="HyperText Markup Language">HTML</abbr>5,
+					l'attribut <code>scrolling</code> permettait de gérer ces barres de
+					défilement, mais cet attribut est déprécié et n'a pas été remplacé.
+					Pour le moment, la propriété de style <abbr
+						title="Cascading Style Sheets">CSS</abbr> <code>overflow</code>
+					qui devrait gérer cet affichage n'est pas pris en compte pour les <code>iframes</code>
+					par les navigateurs.
+					<br>
+					On continue donc d'utiliser l'attribut <code>scrolling</code> avec
+					les valeurs :
+				</p>
+				<ul>
+					<li><code>no</code> : aucune barre de défilement ne sera
+						présente, et ce même si le contenu embarqué ne tient pas dans
+						l'espace de l'<code>iframe</code> ;</li>
+					<li><code>yes</code> : dans les versions anciennes de
+						navigateurs, une barre de défilement verticale (et éventuellement
+						une barre de défilement horizontale) seront présentes, et ce même
+						si elles sont inutiles. Dans les nouvelles versions cette valeur
+						réagit comme <code>auto</code> ;</li>
+					<li><code>auto</code> : le navigateur gère automatiquement les
+						barres de défilement (comportement par défaut).</li>
+				</ul>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : barres de défilement
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Barres de défilement&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Yoda - no&lt;/h3&gt;
+		&lt;iframe	src="pages/yoda.html"
+			width="400" height="150" 
+			scrolling="no"&gt;
+		&lt;/iframe&gt;
+		
+		&lt;h3&gt;Yoda - yes&lt;/h3&gt;
+		&lt;iframe	src="pages/yoda.html"
+			width="400" height="500"
+			scrolling="yes"&gt;
+		&lt;/iframe&gt;
+		
+		&lt;h3&gt;Yoda - auto&lt;/h3&gt;
+		&lt;iframe	src="pages/gandalf.html"
+			width="400" height="150"
+			scrolling="auto"&gt;
+		&lt;/iframe&gt;		
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</section>
+
+		</section>
+
+		<h3>Liens et iframes</h3>
+		<section>
+			<p>
+				Avec l'attribut <code>target</code> de l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'a')">a</a> on va
+				pouvoir faire un lien qui va s'afficher dans un <code>iframe</code>.
+			</p>
+
+			<p>
+				Pour que ça fonctionne, il faut que l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'iframe')">iframe</a>
+				soit nommé en utilisant un attribut <code>name</code> ou un attribut
+				<code>id</code>. La valeur de cet attribut sera utilisée comme
+				valeur de l'attribut <code>target</code> du lien.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : lien vers un iframe
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Lien vers un iframe&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Préférez vous 
+		&lt;a href="pages/gandalf.html" target="voir"&gt;Gandalf&lt;/a&gt;
+		ou &lt;a href="pages/yoda.html" target="voir"&gt;Yoda&lt;/a&gt; ?
+		&lt;/p&gt;
+		
+		&lt;iframe width="400" height="150" name="voir"&gt;
+		&lt;/iframe&gt;
+		
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<a id="exo_iframe_01"></a>
+			<h4 class="fp-exo">Liens vers un iframe</h4>
+			<section>
+				<p class="fp-p-raz">
+					Complétez le code <abbr title="HyperText Markup Language">HTML</abbr>
+					pour obtenir le résultat ci-dessous.
+				</p>
+
+				<figure>
+					<img src="../exercices/exo_iframe_01.jpg" width="400" height="385">
+					<figcaption>liens vers des iframes</figcaption>
+				</figure>
+
+				<figure style="float: right; width: 190px;">
+					<img src="../exercices/exo_chap06_repert.png" width="150"
+						height="218">
+					<figcaption>arborescence de l'exercice</figcaption>
+				</figure>
+
+				<p class="fp-p-raz">Quand on clique sur les petites images en
+					haut de la page, une image correspondante de grandes dimensions
+					s'affiche dans l'iframe situé sous les petites images.</p>
+
+				<p class="fp-p-raz">L'iframe a pour dimensions 816 pixels sur
+					600. Il est entouré par une bordure noir de 1 pixel d'épaisseur.</p>
+
+				<p class="fp-p-raz">Les images se trouvent dans l'arborescence
+					ci-contre.</p>
+
+				<p class="fp-p-raz">
+					Pour simplifier, ne donnez pas les dimensions des images dans le
+					code <abbr title="HyperText Markup Language">HTML</abbr>.
+				</p>
+
+				<table>
+					<thead>
+						<tr>
+							<th>Nom</th>
+							<th>Dossier</th>
+							<th>Correspondance</th>
+							<th>Dossier</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>affiche_150.jpg</code></td>
+							<td><code>lord_rings</code></td>
+							<td><code>affiche_800.jpg</code></td>
+							<td><code>images</code> dans <code>lord_rings</code></td>
+						</tr>
+						<tr>
+							<td><code>lego_150.jpg</code></td>
+							<td><code>star_wars</code></td>
+							<td><code>lego_800.jpg</code></td>
+							<td><code>images</code> dans <code>star_wars</code></td>
+						</tr>
+						<tr>
+							<td><code>family_150.jpg</code></td>
+							<td><code>star_wars</code></td>
+							<td><code>family_800.jpg</code></td>
+							<td><code>images</code> dans <code>star_wars</code></td>
+						</tr>
+					</tbody>
+				</table>
+
+
+				<p class="fp-completez">
+					<a onClick="top.FP.Voir.showCompletez('exo_iframe_01_comp')">Code à compléter</a>
+				</p>
+
+				<div id="exo_iframe_01_comp" class="BLOC-completez">
+					<form action="" method="post" class="TEST-form">
+						<div class="TEST-titre">
+							<strong>Exercice</strong> : liens vers un iframe
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Liens vers un iframe&lt;/title&gt;
+		&lt;style&gt;
+			
+		&lt;/style&gt;		
+	&lt;/head&gt;
+	&lt;body&gt;
+
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+				</div>
+
+				<p class="fp-solution">
+					<a onClick="top.FP.Voir.showSolution('exo_iframe_01_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_iframe_01_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form">
+						<div class="TEST-titre">
+							<strong>Exercice</strong> : liens vers un iframe
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Liens vers un iframe&lt;/title&gt;
+		&lt;style&gt;
+			.bord-fin { border: 1px solid black; }
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		
+		&lt;p&gt;
+			&lt;a href="../exemples/lord_rings/images/affiche_800.jpg" target="grande_image"&gt;
+				&lt;img src="../exemples/lord_rings/affiche_150.jpg"&gt;&lt;/a&gt;
+			&lt;a href="../exemples/star_wars/images/lego_800.jpg" target="grande_image"&gt;
+				&lt;img src="../exemples/star_wars/lego_150.jpg"&gt;&lt;/a&gt;
+			&lt;a href="../exemples/star_wars/images/family_800.jpg" target="grande_image"&gt;
+				&lt;img src="../exemples/star_wars/family_150.jpg"&gt;&lt;/a&gt;
+		&lt;/p&gt;
+		
+		&lt;iframe width="816" height="600" 
+				   name="grande_image"
+				   class="bord-fin"&gt;
+		&lt;/iframe&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+				</div>
+			</section>
+
+			<a id="exo_iframe_02"></a>
+			<h4 class="fp-exo">Liens vers des iframes</h4>
+			<section>
+				<table class="TAB-sans-bord">
+					<tr>
+						<td width="90%">
+							<p>Réalisez des ensembles de liens et d'iframes pour obtenir
+								le résultat ci-contre.</p>
+
+							<p>
+								Quand on clique sur les images, une page <abbr
+									title="HyperText Markup Language">HTML</abbr> descriptive du
+								personnage s'affiche dans l'iframe situé sous le personnage.
+							</p>
+
+							<p>Les pages sur lesquelles pointent les liens se trouvent dans
+								l'arborescence suivante :</p>
+							<figure>
+								<img src="../exercices/exo_chap06_repert.png" width="150"
+									height="218">
+								<figcaption>arborescence de l'exercice</figcaption>
+							</figure>
+
+							<p>
+								Les pages <abbr title="HyperText Markup Language">HTML</abbr>
+								concernant "Le Seigneur des Anneaux" se trouvent dans le dossier
+								<code>lord_rings</code>.
+								<br>
+								Les images concernant "Le Seigneur des Anneaux" se trouvent dans
+								le dossier <code>lord_rings/images</code>.
+							</p>
+							<p>
+								Les pages <abbr title="HyperText Markup Language">HTML</abbr>
+								concernant "La Guerre des Etoiles" se trouvent dans le dossier <code>star_wars</code>.
+								<br>
+								Les images concernant "La Guerre des Etoiles" se trouvent dans
+								le dossier <code>star_wars/images</code>.
+							</p>
+							<p>
+								Les pages s'appellent du nom du personnage, tout en minuscules,
+								et les espaces éventuels remplacés par un _ (underscore).
+								L'extension du fichier est <code>.html</code>
+							</p>
+							<p>
+								Les images s'appellent du nom du personnage, tout en minuscules,
+								et les espaces éventuels remplacés par un _ (underscore).
+								L'extension du fichier est <code>.png</code>. Pour simplifier ne
+								donnez pas les dimensions des images.
+							</p>
+						</td>
+						<td width="10%">
+							<figure style="width: 220px">
+								<img src="../exercices/exo_iframe_02.jpg" width="220"
+									height="682">
+								<figcaption>liens vers des iframes</figcaption>
+							</figure>
+
+							<p class="fp-petit">Par ordre d'apparition : Gandalf, Frodon,
+								Gimli, Sauron, Saroumane, Gollum, Yoda, Luke Skywalker,
+								Chewbacca, Palpatine, Dark vador, Comte Dooku.</p>
+						</td>
+					</tr>
+				</table>
+
+				<p class="fp-completez">
+					<a onClick="top.FP.Voir.showCompletez('exo_iframe_02_comp')">Code à compléter</a>
+				</p>
+
+				<div id="exo_iframe_02_comp" class="BLOC-completez">
+					<form action="" method="post" class="TEST-form">
+						<div class="TEST-titre">
+							<strong>Exercice</strong> : liens vers des iframes
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Liens vers des iframes&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Anneaux ou Etoiles ?&lt;/h3&gt;
+
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+				</div>
+
+				<p class="fp-solution">
+					<a onClick="top.FP.Voir.showSolution('exo_iframe_02_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_iframe_02_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form">
+						<div class="TEST-titre">
+							<strong>Exercice</strong> : liens vers des iframes
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Liens vers des iframes&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;Anneaux ou Etoiles ?&lt;/h3&gt;
+		&lt;p&gt;
+			&lt;a href="../exemples/lord_rings/gandalf.html"
+			   target="lord_gentils"&gt;
+				&lt;img src="../exemples/lord_rings/images/gandalf.png"&gt;&lt;/a&gt;
+			&lt;a href="../exemples/lord_rings/frodon.html"
+			   target="lord_gentils"&gt;
+				&lt;img src="../exemples/lord_rings/images/frodon.png"&gt;&lt;/a&gt;
+			&lt;a href="../exemples/lord_rings/gimli.html"
+			   target="lord_gentils"&gt;
+		&lt;img src="../exemples/lord_rings/images/gimli.png"&gt;&lt;/a&gt;
+		&lt;/p&gt;
+		&lt;iframe width="350" height="150" name="lord_gentils"&gt;
+		&lt;/iframe&gt;
+		
+		&lt;p&gt;
+			&lt;a href="../exemples/lord_rings/sauron.html"
+			   target="lord_mechants"&gt;
+				&lt;img src="../exemples/lord_rings/images/sauron.png"&gt;&lt;/a&gt;
+			&lt;a href="../exemples/lord_rings/saroumane.html"
+		   		target="lord_mechants"&gt;
+				&lt;img src="../exemples/lord_rings/images/saroumane.png"&gt;&lt;/a&gt;
+			&lt;a href="../exemples/lord_rings/gollum.html"
+			   target="lord_mechants"&gt;
+				&lt;img src="../exemples/lord_rings/images/gollum.png"&gt;&lt;/a&gt;
+		&lt;/p&gt;
+		&lt;iframe width="350" height="150" name="lord_mechants"&gt;
+		&lt;/iframe&gt;
+
+		&lt;p&gt;
+			&lt;a href="../exemples/star_wars/yoda.html"
+			   target="star_gentils"&gt;
+				&lt;img src="../exemples/star_wars/images/yoda.png"&gt;&lt;/a&gt;
+			&lt;a href="../exemples/star_wars/luke_skywalker.html"
+		   target="star_gentils"&gt;
+			&lt;img src="../exemples/star_wars/images/luke_skywalker.png"&gt;&lt;/a&gt;
+		&lt;a href="../exemples/star_wars/chewbacca.html"
+		   target="star_gentils"&gt;
+			&lt;img src="../exemples/star_wars/images/chewbacca.png"&gt;&lt;/a&gt;
+		&lt;/p&gt;
+		&lt;iframe width="350" height="150" name="star_gentils"&gt;
+		&lt;/iframe&gt;
+		
+		&lt;p&gt;
+			&lt;a href="../exemples/star_wars/palpatine.html"
+			   target="star_mechants"&gt;
+				&lt;img src="../exemples/star_wars/images/palpatine.png"&gt;&lt;/a&gt;
+			&lt;a href="../exemples/star_wars/dark_vador.html"
+		  		target="star_mechants"&gt;
+				&lt;img src="../exemples/star_wars/images/dark_vador.png"&gt;&lt;/a&gt;
+			&lt;a href="../exemples/star_wars/comte_dooku.html"
+		   		target="star_mechants"&gt;
+				&lt;img src="../exemples/star_wars/images/comte_dooku.png"&gt;&lt;/a&gt;
+		&lt;/p&gt;
+		&lt;iframe width="350" height="150" name="star_mechants"&gt;
+		&lt;/iframe&gt;
+
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+				</div>
+			</section>
+
+			<div class="fp-puce">
+				<p>
+					Une page dans un <code>iframe</code> peut aussi donner comme cible
+					d'un de ses liens la page conteneur. La valeur de l'attribut <code>target</code>
+					doit être le mot-clé <code>_parent</code>.
+				</p>
+
+				<p>
+					Code <abbr title="HyperText Markup Language">HTML</abbr> de la page
+					affichée dans l'<code>iframe</code> de l'exemple suivant :
+				</p>
+				<pre data-code="HTML">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Lien vers le parent&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+	
+	&lt;p&gt;Ce lien va ouvrir la 
+		&lt;a href="gandalf.html" target="_parent"&gt;
+		page gandalf.html&lt;/a&gt; dans la fenêtre principale.
+	&lt;/p&gt;
+
+	&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : lien vers le parent conteneur
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Lien vers le parent&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;En cliquant sur le lien de la page dans 
+			l'iframe, vous allez remplacer cette page.
+		&lt;/p&gt;
+		
+		&lt;iframe src="pages/enfant.html"
+			width="400" height="150"&gt;
+		&lt;/iframe&gt;
+		
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+
+
+
+		</section>
+
+		<h3>Protection</h3>
+		<section>
+			<p>
+				Embarquer une page étrangère dans notre site peut s'avèrer dangereux
+				car la page embarquée aura accès a l'environnement de la page parent
+				: les cookies, le stockage local, les scripts, les éléments <abbr
+					title="HyperText Markup Language">HTML</abbr>, etc.
+			</p>
+
+			<p>
+				L'attribut <code>sandbox</code> permet de restreindre les droits des
+				pages embarquées. <code>sandbox</code> travaille sur le principe de
+				la liste blanche : d'abord on enlève tous les droits, puis on accord
+				seulement les droits qui semblent nécessaires.
+			</p>
+
+			<p>
+				Si l'attribut <code>sandbox</code> est absent de la balise
+				d'ouverture de l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'iframe')">iframe</a>,
+				la page embarquée a tous les droits. Si c'est une page de votre
+				site, c'est normal, par contre si c'est une page d'un autre site
+				c'est peut-être trop.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : pas de sandbox
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Tous les droits&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;La page dans l'iframe ouvre une fenêtre pop-up
+			d'alerte avec JavaScript, a un lien qui s'ouvre
+			dans la fenêtre parent, a une vidéo en autoplay,
+			a un script qui affiche la date du jour.
+		&lt;/p&gt;
+		
+		&lt;iframe src="pages/bac_a_sable.html"
+			width="500" height="350"&gt;
+		&lt;/iframe&gt;
+		
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p class="fp-bot0">
+				Si la valeur de l'attribut <code>sandbox</code> est une valeur vide
+				(<code>&lt;iframe sandbox=""
+					src="http/site.com/page.html"&gt; </code>) on enlève le maximum de droits
+				:
+			</p>
+
+			<ul>
+				<li>les scripts JavaScript de la page embarquée ne seront pas
+					exécutés,</li>
+				<li>la page embarquée n'aura accès à aucun cookie ou moyens de
+					stockage local (<abbr title="Document Object Model">DOM</abbr>,
+					Indexed DB, etc.),
+				</li>
+				<li>la page embarquée ne pourra pas créer de nouvelles fenêtres
+					(par exemple avec des liens <code>target="_blank"</code>,
+				</li>
+				<li>les formulaires de la page embarquée ne pourront pas être
+					envoyés,</li>
+				<li>la page embarquée peut seulement naviguer dans son contexte
+					de navigation (les liens avec <code>target="_parent"</code> ou <code>target="_top"</code>
+					ne fonctionneront pas,
+				</li>
+				<li>tous les éléments avec des événements automatiques sont
+					bloqués (par exemple une vidéo avec <code>autoplay</code>,
+				</li>
+			</ul>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : sandbox sans valeur
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Aucun droit&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;La page dans l'iframe ouvre une fenêtre pop-up
+			d'alerte avec JavaScript, a un lien qui s'ouvre
+			dans la fenêtre parent, a une vidéo en autoplay,
+			a un script qui affiche la date du jour.
+		&lt;/p&gt;
+		
+		&lt;iframe src="pages/bac_a_sable.html"
+			width="500" height="350"
+			sandbox=""&gt;
+		&lt;/iframe&gt;
+		
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p class="fp-bot0">
+				Pour accorder des droits à la page embarquée, on va donner comme
+				valeur à l'attribut <code>sandbox</code> une liste de mots-clés :
+			</p>
+			<ul>
+				<li><code>allow-forms</code> : les formulaires peuvent être
+					envoyés</li>
+				<li><code>allow-popups</code> : des nouvelles fenêtres peuvent
+					être créées (avec <code>target</code> ou par JavaScript),</li>
+				<li><code>allow-pointer-lock</code> : autorise le verrouillage
+					du curseur de la souris,</li>
+				<li><code>allow-same-origin</code> : donne accès à la page
+					embarquée aux objets qui ont la même origine (domaine) qu'elle,</li>
+				<li><code>allow-scripts</code> : autorise l'exécution du code
+					JavaScript et l'exécution automatique des éléments,</li>
+				<li><code>allow-top-navigation</code> : autorise la page
+					embarquée à naviguer dans les contextes de navigation suppérieurs.</li>
+			</ul>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : sandbox avec popup et scripts
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Aucun droit&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;La page dans l'iframe ouvre une fenêtre pop-up
+			d'alerte avec JavaScript, a un lien qui s'ouvre
+			dans la fenêtre parent, a une vidéo en autoplay,
+			a un script qui affiche la date du jour.
+		&lt;/p&gt;
+		
+		&lt;iframe src="pages/bac_a_sable.html"
+			width="500" height="350"
+			sandbox="allow-same-origin allow-popups allow-scripts"&gt;
+		&lt;/iframe&gt;
+		
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

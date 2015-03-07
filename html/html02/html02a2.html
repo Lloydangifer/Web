@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Client/serveur avec HTTP</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<h3>Client/Serveur avec HTTP</h3>
+		<section>
+
+			<p class="fp-p-raz">Remarque : les explications qui suivent sont
+				une présentation simplifiée du principe client/serveur avec le
+				protocole <abbr title="HyperText Transfert Protocol">HTTP</abbr> utilisé pour le Web. Ces explications visent à une
+				bonne compréhension des principes et ne constituent pas un cours
+				réseau détaillé.</p>
+
+			<p>
+				<strong>Le client est un navigateur Web</strong> : un programme qui
+				"écoute" un port sur un ordinateur. Cette "écoute" lui permet de
+				dialoguer avec un autre ordinateur (le serveur) : envoyer des
+				demandes ou des informations, recevoir des fichiers.
+				<br>
+				Le client <strong>interpréte les fichiers</strong> qu'il reçoit si
+				ils contiennent du code <abbr title="HyperText Markup Language">HTML</abbr>, <abbr title="Cascading Style Sheets">CSS</abbr>
+				ou JavaScript. Il sait aussi <strong>décoder certains types</strong>
+				de fichiers binaires (aux formats gif, jpeg, png, mp4, mp3, etc)
+				pour en faire l'affichage ou la lecture audio.
+			</p>
+
+			<p class="fp-petit fp-remarque">
+				Par extension, le terme <i>client</i> est utilisé aussi bien pour le
+				programme que pour l'ordinateur sur lequel le programme est exécuté.
+			</p>
+
+			<p class="fp-puce fp-top2">
+				<strong>Le serveur est un serveur Web</strong> : un programme qui
+				"écoute" un port sur un ordinateur. Cette "écoute" lui permet de
+				dialoguer avec un autre ordinateur (le client) : recevoir des
+				demandes ou des informations, renvoyer une réponse appropriée.
+				<br>
+				Le serveur a <strong>accès à l'espace de stockage</strong> de
+				l'ordinateur sur lequel il s'exécute et en particulier en
+				particulier aux fichiers qu'il va <strong>envoyer au client</strong>
+				pour que celui-ci les interprète (<abbr title="HyperText Markup Language">HTML</abbr>, <abbr
+					title="Cascading Style Sheets">CSS</abbr>, JavaScript) ou les
+				affiche (gif, jpeg, png, mp4, mp3, etc).
+				<br>
+				Le serveur peut <strong>réaliser des traitements</strong> de tous
+				types (lecture / écriture de fichiers, connexion à des bases de
+				données, calculs, génération de contenus ...) en faisant appel à des
+				applications ou programmes compilés (Java, C++, C, etc) ou
+				interprétés (python, shell script, PHP, etc).
+			</p>
+
+			<p class="fp-petit fp-remarque">
+				Par extension, le terme <i>serveur</i> est utilisé aussi bien pour
+				le programme que pour l'ordinateur sur lequel le programme est
+				exécuté.
+			</p>
+
+			<p class="fp-puce fp-top2">
+				Le dialogue entre le client et le serveur s'effectue grâce au <a
+					href="http://fr.wikipedia.org/wiki/Hypertext_Transfer_Protocol"
+					target="_blank">protocole HTTP</a> (HyperText Transfert Protocol),
+				mis au point en même temps que <abbr title="HyperText Markup Language">HTML</abbr>.
+			</p>
+
+			<p class="fp-p-raz">Le principe de ce dialogue est le suivant :</p>
+			<figure>
+				<img src="../htmlimg/client-serveur.png" width="600" height="293">
+				<figcaption> dialogue client-serveur</figcaption>
+			</figure>
+
+			<table class="TAB-sans-bord">
+				<tr>
+					<td><div class="fp-rond fp-f-left">1</div></td>
+					<td>L'utilisateur saisit une adresse dans la barre d'adresse
+						du navigateur ou clique sur un lien dans une page html.</td>
+				</tr>
+				<tr>
+					<td><div class="fp-rond fp-f-left">2</div></td>
+					<td>Le navigateur client demande le fichier <abbr title="HyperText Markup Language">HTML</abbr> correspondant
+						au serveur en lui envoyant un message <abbr title="HyperText Transfert Protocol">HTTP</abbr> de type <code>request</code>
+						(requête).
+					</td>
+				</tr>
+				<tr>
+					<td><div class="fp-rond fp-f-left">3</div></td>
+					<td>Le serveur Web recherche dans le disque du serveur
+						(l'ordinateur) le fichier <abbr title="HyperText Markup Language">HTML</abbr> demandé.</td>
+				</tr>
+				<tr>
+					<td><div class="fp-rond fp-f-left">4</div></td>
+					<td>Le serveur Web envoie au client le fichier <abbr title="HyperText Markup Language">HTML</abbr> dans le
+						corps d'un message <abbr title="HyperText Transfert Protocol">HTTP</abbr> de type <code>response</code> (réponse)
+					</td>
+				</tr>
+				<tr>
+					<td><div class="fp-rond fp-f-left">5</div></td>
+					<td>Le navigateur client reçoit le fichier en fait le parsing
+						(analyse syntaxique) et l'affichage dans sa fenêtre. <br> Au
+						cours de la phase de parsing, chaque fois que le navigateur trouve
+						une référence sur un élément embarqué (par exemple une image) il
+						fait une demande du fichier correspondant au serveur, et un cycle
+						complet de 1 à 5 recommence.
+					</td>
+				</tr>
+			</table>
+
+			<p class="fp-p-raz">Il est important de noter et bien prendre en
+				compte les éléments suivants :</p>
+			<p>
+				<strong>C'est toujours le client qui appelle le serveur.</strong>
+			</p>
+			<p class="fp-petit fp-remarque">De nouvelles API sont en cours de
+				mise au point et devraient permettre à terme de changer cette règle
+				: le serveur sera capable de pousser (push) des informations au
+				client sans que celui ne les demande. Pour le moment ça n'est pas
+				encore le cas.</p>
+			<p class="fp-puce fp-top2">
+				<strong>Il y a autant de demandes que de ressources à
+					traiter.</strong> Par exemple une page <abbr title="HyperText Markup Language">HTML</abbr> avec 5 images donnera lieu à 6
+				demandes (et 6 réponses) : 1 demande pour le fichier <abbr title="HyperText Markup Language">HTML</abbr> et 5
+				demandes pour les images.
+			</p>
+			<p>
+				<strong>Les demandes sont asynchrones</strong> : le navigateur
+				client n'attend pas d'avoir reçu une réponse à une demande pour en
+				faire une autre. Le nombre de requêtes en cours est toutefois limité
+				de 6 à 8 suivant les navigateurs.
+			</p>
+			<p>
+				<strong>Il n'y a pas de persistance dans les connexions</strong> :
+				une fois que le navigateur à récupéré toutes les ressources d'une
+				page, la connexion avec le serveur est coupée.
+			</p>
+
+
+			<p class="fp-bot0">
+				<strong>Une requête <abbr title="HyperText Transfert Protocol">HTTP</abbr> est composée généralement par :</strong>
+			</p>
+			<ul>
+				<li>une méthode <abbr title="HyperText Transfert Protocol">HTTP</abbr> (<code>GET</code>, <code>POST</code>, <code>PUT</code>,
+					etc),
+				</li>
+				<li>des directives d'en-tête (<code>Referer</code>, <code>User-agent</code>,
+					<code>Accept</code>, etc),
+				</li>
+				<li>éventuellement un contenu (paramètres d'<abbr title="Uniform Resource Locator">URL</abbr>, fichier <abbr title="HyperText Markup Language">HTML</abbr>,
+					fichier image, etc).</li>
+			</ul>
+
+			<figure>
+				<iframe width="420" height="315"
+					src="http://www.youtube.com/embed/USHA_3-owqQ"></iframe>
+				<figcaption> Dans le port 80</figcaption>
+			</figure>
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

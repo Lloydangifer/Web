@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Les opérateurs</title>
+<link rel="stylesheet" href="../_local/codemirror.css">
+<script src="../_local/codemirror_pour_php.js"></script>
+
+<link rel="stylesheet" href="../_core/def.css">
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+
+</head>
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<h3>Opérateurs de type</h3>
+		<section>
+
+			<p>Bien que PHP soit un langage sans définition de type des
+				variables, des opérateurs permettent de forcer le type d'une
+				variable.</p>
+			<ul class="fp-ul-1em">
+				<li><span class="fp-code">&nbsp;(int)&nbsp;</span> ou <span
+					class="fp-code">&nbsp;(integer)&nbsp;</span> : la variable devient
+					un entier.</li>
+				<li><span class="fp-code">&nbsp;(float)&nbsp;</span> ou <span
+					class="fp-code">&nbsp;(real)&nbsp;</span> : la variable devient un
+					nombre à virgule flottante.</li>
+				<li><span class="fp-code">&nbsp;(string)&nbsp;</span> : la
+					variable devient une chaîne de caractères.</li>
+				<li><span class="fp-code">&nbsp;(bool)&nbsp;</span> ou <span
+					class="fp-code">&nbsp;(boolean)&nbsp;</span> : la variable devient
+					un booléen.</li>
+				<li><span class="fp-code">&nbsp;(array)&nbsp;</span> : la
+					variable devient un tableau.</li>
+				<li><span class="fp-code">&nbsp;(object)&nbsp;</span>&nbsp; :
+					la variable devient un objet.</li>
+			</ul>
+
+			<p>Toutes les conversions ne sont pas utiles. Par exemple,
+				transformer un tableau en numérique donne comme résultat 1, le
+				transformer en chaîne donne "array".</p>
+			<p>Transformer un objet en tableau donne un tableau associatif :
+				nom de propriété associé à la valeur de la propriété.</p>
+			<p>Transformer un tableau en objet donnera un objet dont les
+				propriétés seront les valeurs du tableau.</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : opérateurs de type
+				</div>
+				<textarea name="txtCode" class="TEST-textarea">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Opérateurs de type&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;?php
+$x = 'Piat';
+echo '&lt;hr&gt;Variable = ', $x, '&lt;br&gt;type : ', gettype($x);
+
+$x = (int) $x;
+echo '&lt;hr&gt;Variable = ', $x, '&lt;br&gt;type : ', gettype($x);
+
+$x = '1.23';
+echo '&lt;hr&gt;Variable = ', $x, '&lt;br&gt;type : ', gettype($x);
+
+$x = (double) $x;
+echo '&lt;hr&gt;Variable = ', $x, '&lt;br&gt;type : ', gettype($x);
+
+$x = (int) $x;
+echo '&lt;hr&gt;Variable = ', $x, '&lt;br&gt;type : ', gettype($x);
+
+$x = array('pre' =&gt; 'François', 'nom' =&gt; 'Piat');
+$x = (object) $x;
+echo '&lt;hr&gt;Tableau en objet&lt;br&gt;', $x-&gt;pre, '&lt;br&gt;', $x-&gt;nom;
+
+$x-&gt;pre = 'Pierre';
+$x-&gt;nom = 'Dupont';
+$x = (array) $x;
+echo '&lt;hr&gt;Objet en tableau&lt;pre&gt;';
+print_r($x);
+?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+		</section>
+
+		<h3>Autres opérateurs</h3>
+		<section>
+			<ul class="fp-ul-1em">
+				<li><span class="fp-code">&nbsp;@&nbsp;</span> : lorsque cet
+					opérateur est ajouté en préfixe d'une expression PHP, les messages
+					d'erreur qui pourraient être générés par cette expression ne seront
+					pas affichés.</li>
+				<li><span class="fp-code">&nbsp;`..`&nbsp;</span> : exécution
+					de la chaîne comprise entre les guillemets obliques, comme une
+					commande système.</li>
+				<li><span class="fp-code">&nbsp;?&nbsp;:&nbsp;</span> :
+					opérateur de test conditionnel. <br> Syntaxe :<br> <span
+					class="fp-code">(test) <span class="fp-rouge">?</span>
+						valeur_si_vrai <span class="fp-rouge">:</span> valeur_si_faux<br>
+						(test) <span class="fp-rouge">?</span> instruction_si_vrai <span
+						class="fp-rouge">:</span> instruction_si_faux
+				</span></li>
+			</ul>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : opérateur d'erreur
+				</div>
+				<textarea name="txtCode" class="TEST-textarea">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Opérateur d'erreur&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;?php
+echo '&lt;hr&gt;Erreur avec message PHP&lt;hr&gt;';
+// L'instruction suivante provoque une erreur, 
+// avec l'affichage d'un message.
+$x = file('lefichier');
+
+echo '&lt;hr&gt;Erreur sans message&lt;hr&gt;';
+// L'instruction suivante provoque une erreur,
+// aucun message n'est affiché.
+$x = @file('lefichier');
+
+echo '&lt;hr&gt;Erreur avec message personnalisé&lt;hr&gt;';
+// L'instruction suivante provoque une erreur.
+// Le message d'erreur est personnalisé
+$x = @file('lefichier')
+     or print("Impossible d'ouvrir le fichier");
+?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : opérateur conditionnel
+				</div>
+				<textarea name="txtCode" class="TEST-textarea">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Opérateur conditionnel&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;?php
+$seconde = date('s');
+echo 'Seconde = ', $seconde;
+
+//-------------------------------------------------------
+// Affichage paire/impaire avec un if
+if ($seconde % 2 == 0) {
+  echo '&lt;hr&gt;paire';
+} else {
+  echo '&lt;hr&gt;impaire';
+}
+//-------------------------------------------------------
+// Affichage paire/impaire avec operateur conditionnel
+// 1ere façon
+$x = ($seconde % 2 == 0) ? 'paire' : 'impaire';
+echo '&lt;hr&gt;', $x;
+
+//-------------------------------------------------------
+// 2eme façon
+echo '&lt;hr&gt;',($seconde % 2 == 0) ? 'paire' : 'impaire';
+?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+		</section>
+
+
+	</div>
+	<footer></footer>
+</body>
+</html>

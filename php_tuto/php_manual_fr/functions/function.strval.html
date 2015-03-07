@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>R&eacute;cup&egrave;re la valeur d'une variable, au
+	format cha&icirc;ne</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.settype.html">settype</a>
+		</div>
+		<div class="next">
+			<a href="function.unserialize.html">unserialize</a>
+		</div>
+		<div class="up">
+			<a href="ref.var.html">Fonctions de gestion des variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.strval" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">strval</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">strval</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Récupère la valeur d&#039;une
+					variable, au format chaîne</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.strval-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>strval</strong></span>
+				( <span class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$var</code></span> )
+			</div>
+
+			<p class="simpara">
+				Récupère la valeur de la variable <em><code class="parameter">var</code></em>,
+				au format chaîne de caractères. Voir la documentation sur les
+				chaînes de caractères pour plus d&#039;informations sur la
+				conversion en chaîne.
+			</p>
+			<p class="simpara">
+				Cette fonction n&#039;effectue aucun formatage sur la valeur
+				retournée. Si vous cherchez un moyen de formatter une valeur
+				numérique en chaîne de caractères, reportez-vous à la fonction <span
+					class="function"><a href="function.sprintf.html"
+					class="function">sprintf()</a></span> ou la fonction <span
+					class="function"><a href="function.number-format.html"
+					class="function">number_format()</a></span>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.strval-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">var</code></em></span>
+				<dd>
+
+					<p class="para">
+						La variable à convertir en <a href="language.types.string.html"
+							class="link">chaîne de caractères</a>.
+					</p>
+					<p class="para">
+						<em><code class="parameter">var</code></em> peut être un scalaire
+						ou un objet implémentant la méthode magique <a
+							href="language.oop5.magic.html#object.tostring" class="link">__toString()</a>.
+						Vous ne pouvez pas utiliser la fonction <span class="function"><strong>strval()</strong></span>
+						avec des tableaux ou des objets qui n&#039;implémentent pas la
+						méthode magique <a href="language.oop5.magic.html#object.tostring"
+							class="link">__toString()</a>.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.strval-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				La valeur de la variable <em><code class="parameter">var</code></em>
+				sous la forme d&#039;une <a href="language.types.string.html"
+					class="link">chaîne de caractères</a>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.strval-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4924">
+				<p>
+					<strong>Exemple #1 Exemple pour <span class="function"><strong>strval()</strong></span>
+						utilisant la méthode magique PHP 5 <a
+						href="language.oop5.magic.html#object.tostring" class="link">__toString()</a>.
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">StrValTest<br /></span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">__toString</span><span
+								style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">__CLASS__</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Affiche&nbsp;'StrValTest'<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">strval</span><span style="color: #007700">(new&nbsp;</span><span
+								style="color: #0000BB">StrValTest</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.strval-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.floatval.html" class="function" rel="rdfs-seeAlso">floatval()</a>
+						- Convertit une cha&icirc;ne en nombre &agrave; virgule flottante</span></li>
+				<li class="member"><span class="function"><a
+						href="function.intval.html" class="function" rel="rdfs-seeAlso">intval()</a>
+						- Retourne la valeur num&eacute;rique enti&egrave;re
+						&eacute;quivalente d'une variable</span></li>
+				<li class="member"><span class="function"><a
+						href="function.settype.html" class="function" rel="rdfs-seeAlso">settype()</a>
+						- Affecte un type &agrave; une variable</span></li>
+				<li class="member"><span class="function"><a
+						href="function.sprintf.html" class="function" rel="rdfs-seeAlso">sprintf()</a>
+						- Retourne une cha&icirc;ne format&eacute;e</span></li>
+				<li class="member"><span class="function"><a
+						href="function.number-format.html" class="function"
+						rel="rdfs-seeAlso">number_format()</a> - Formate un nombre pour
+						l'affichage</span></li>
+				<li class="member"><a href="language.types.type-juggling.html"
+					class="link">Le transtypage</a></li>
+				<li class="member"><a
+					href="language.oop5.magic.html#object.tostring" class="link">__toString()</a></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.settype.html">settype</a>
+		</div>
+		<div class="next">
+			<a href="function.unserialize.html">unserialize</a>
+		</div>
+		<div class="up">
+			<a href="ref.var.html">Fonctions de gestion des variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Retourne le type d'interface utilis&eacute;e entre le
+	serveur web et PHP</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.php-logo-guid.html">php_logo_guid</a>
+		</div>
+		<div class="next">
+			<a href="function.php-uname.html">php_uname</a>
+		</div>
+		<div class="up">
+			<a href="ref.info.html">Fonctions sur les options et les
+				informations de PHP</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.php-sapi-name" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">php_sapi_name</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.0.1, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">php_sapi_name</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Retourne le type d&#039;interface
+					utilisée entre le serveur web et PHP</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.php-sapi-name-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>php_sapi_name</strong></span>
+				( <span class="methodparam">void</span> )
+			</div>
+
+			<p class="simpara">Retourne une chaîne en minuscule qui décrit le
+				type d&#039;interface (l&#039;API, SAPI serveur) que PHP utilise.
+				Par exemple, en PHP CLI, cette chaîne sera &quot;cli&quot; tandis
+				qu&#039;avec Apache, elle pourra avoir plusieurs valeurs différentes
+				suivant le SAPI exact utilisé. Les valeurs possibles sont listées
+				ci-dessous.</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.php-sapi-name-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne le type de l&#039;interface, sous la forme d&#039;une <a
+					href="language.types.string.html" class="link">chaîne de
+					caractères</a> en minuscule.
+			</p>
+			<p class="para">
+				Voici une liste non exhaustive des valeurs possibles : <em>aolserver</em>,
+				<em>apache</em>, <em>apache2filter</em>, <em>apache2handler</em>, <em>caudium</em>,
+				<em>cgi</em> (jusqu&#039;en PHP 5.3), <em>cgi-fcgi</em>, <em>cli</em>,
+				<em>continuity</em>, <em>embed</em>, <em>isapi</em>, <em>litespeed</em>,
+				<em>milter</em>, <em>nsapi</em>, <em>phttpd</em>, <em>pi3web</em>, <em>roxen</em>,
+				<em>thttpd</em>, <em>tux</em> et <em>webjames</em>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.php-sapi-name-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-503">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>php_sapi_name()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<p>
+						Cet exemple cherche la sous-chaîne <em>cgi</em> car elle peut
+						également valoir <em>cgi-fcgi</em>.
+					</p>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$sapi_type&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">php_sapi_name</span><span
+								style="color: #007700">();<br />if&nbsp;(
+							</span><span style="color: #0000BB">substr</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$sapi_type</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">3</span><span style="color: #007700">)&nbsp;==&nbsp;</span><span
+								style="color: #DD0000">'cgi'</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Vous&nbsp;utilisez&nbsp;CGI&nbsp;PHP\n"</span><span
+								style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Vous&nbsp;n'utilisez&nbsp;pas&nbsp;CGI&nbsp;PHP\n"</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.php-sapi-name-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <strong>Une approche
+						alternative</strong><br />
+				<p class="para">
+					La constante PHP <strong><code>PHP_SAPI</code></strong> a une
+					valeur identique à <span class="function"><strong>php_sapi_name()</strong></span>.
+			</blockquote>
+			<div class="tip">
+				<strong class="tip">Astuce</strong>
+				<h1 class="title">Un comportement inattendu</h1>
+				<p class="para">
+					Le <acronym title="Server Application Programming Interface">SAPI</acronym>
+					défini ne doit pas être ambigu, car par exemple, au lieu de <em>apache</em>,
+					il peut être défini à <em>apache2handler</em> ou <em>apache2filter</em>.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.php-sapi-name-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><a
+					href="reserved.constants.html#reserved.constants.core" class="link">PHP_SAPI</a></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.php-logo-guid.html">php_logo_guid</a>
+		</div>
+		<div class="next">
+			<a href="function.php-uname.html">php_uname</a>
+		</div>
+		<div class="up">
+			<a href="ref.info.html">Fonctions sur les options et les
+				informations de PHP</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

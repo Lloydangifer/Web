@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Migration de PHP 4 &agrave; PHP 5</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="faq.languages.html">PHP et les autres langages</a>
+		</div>
+		<div class="next">
+			<a href="faq.misc.html">Questions diverses</a>
+		</div>
+		<div class="up">
+			<a href="faq.html">FAQ</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="faq.migration5" class="chapter">
+		<h1>Migration de PHP 4 à PHP 5</h1>
+
+
+
+		<p class="para">Cette section devrait vous aider à migrer de PHP 4
+			à PHP 5.</p>
+
+		<div class="qandaset">
+			<ol class="qandaset_questions">
+				<li><a href="#faq.migration5.php45"> Migration de PHP 4
+						&agrave; PHP 5 </a></li>
+				<li><a href="#faq.migration5.mysql"> Est-ce que MySQL
+						fonctionne en PHP 5 ? Il semble avoir disparu. </a></li>
+				<li><a href="#faq.migration5.oop"> J&#039;ai entendu dire
+						que PHP 5 &agrave; un tout nouveau mod&egrave;le objet ; est-ce
+						que mon actuel code objet fonctionne ? O&ugrave; puis-je trouver
+						des informations concernant ces nouvelles fonctionnalit&eacute;s ?
+
+				</a></li>
+				<li><a href="#faq.migration5.changes"> Donc, mise &agrave;
+						part le nouveau mod&egrave;le objet, qu&#039;est-ce qui a
+						chang&eacute; dans PHP 5 ? En particulier, existe-t-il une version
+						sp&eacute;cifique du manuel PHP ? </a></li>
+			</ol>
+		</div>
+		<dl class="qandaentry" id="faq.migration5.php45">
+			<dt>
+				<strong> Migration de PHP 4 à PHP 5 </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">Bien que PHP 5 offre beaucoup de nouvelles
+					fonctionnalités, il a été prévu pour être compatible avec les
+					anciennes versions de PHP autant que possible, avec un minimum de
+					fonctionnalités rompues dans le processus.</p>
+				<p class="para">
+					Assurez-vous de lire l&#039;annexe intitulé &quot;<a
+						href="migration5.html" class="link">Migrer en PHP 5</a>&quot; de
+					ce manuel ; il contient beaucoup plus d&#039;informations
+					concernant la migration en PHP 5.
+				</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.migration5.mysql">
+			<dt>
+				<strong> Est-ce que MySQL fonctionne en PHP 5 ? Il semble
+					avoir disparu. </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">
+					<a href="ref.mysql.html" class="link">MySQL</a> est supporté avec
+					la seule différence que le support de MySQL n&#039;est plus activé
+					par <em class="emphasis">défaut</em> en PHP 5. Cela signifie
+					essentiellement que PHP n&#039;inclut pas automatiquement <strong
+						class="option configure">--with-mysql</strong> dans la <a
+						href="configuration.html" class="link">configuration</a> ; vous
+					devez donc maintenant l&#039;ajouter à la main lorsque vous
+					compilez PHP. Les utilisateurs de Windows doivent éditer leur
+					<var class="filename">php.ini</var>
+					et activer la bibliothèque DLL
+					<var class="filename">php_mysql.dll</var>
+					, sachant qu&#039;en PHP 4, cette bibliothèque n&#039;existait pas,
+					elle était automatiquement incluse dans le binaire PHP.
+				</p>
+				<p class="para">
+					En outre, la bibliothèque cliente MySQL n&#039;est plus incluse
+					avec PHP. Plus de détails sur ce sujet sont consultables dans cette
+					<a href="faq.databases.html#faq.databases.mysql.php5" class="link">section
+						de la FAQ</a> ; lisez également la <a href="ref.mysql.html"
+						class="link">section MySQL</a> pour les détails concernant
+					l&#039;installation de MySQL. Un exemple de ligne de configuration
+					serait <strong class="option configure">--with-mysql=/usr</strong>
+					alors que les utilisateurs de Windows doivent avoir la bibliothèque
+					DLL nommée
+					<var class="filename">libmySQL.dll</var>
+					de disponible sur leur système.
+				</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.migration5.oop">
+			<dt>
+				<strong> J&#039;ai entendu dire que PHP 5 à un tout nouveau
+					modèle objet ; est-ce que mon actuel code objet fonctionne ? Où
+					puis-je trouver des informations concernant ces nouvelles
+					fonctionnalités ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">
+					Le principal changement en PHP 5 est le nouveau model objet car PHP
+					5 utilise désormais le <em class="emphasis">Zend Engine 2.0</em>.
+					La directive <a
+						href="ini.core.html#ini.zend.ze1-compatibility-mode" class="link">
+						zend.ze1_compatibility_mode</a> active la compatibilité avec le <em>Zend
+						Engine 1.0</em> (PHP 4).
+				</p>
+				<p class="para">
+					Le nouveau model objet est documenté dans la <a
+						href="language.oop5.html" class="link">référence du langage
+						orienté objet</a> ainsi que dans les sections concernant la <a
+						href="migration5.oop.html" class="link">migration du model
+						objet</a>.
+				</p>
+			</dd>
+		</dl>
+
+		<dl class="qandaentry" id="faq.migration5.changes">
+			<dt>
+				<strong> Donc, mise à part le nouveau modèle objet,
+					qu&#039;est-ce qui a changé dans PHP 5 ? En particulier,
+					existe-t-il une version spécifique du manuel PHP ? </strong>
+			</dt>
+			<dd class="answer">
+				<p class="para">
+					Peu de changements existent mise à part le modèle objet, lisez
+					l&#039;annexe &quot;<a href="migration5.html" class="link">Migration
+						5</a>&quot; pour plus de détails. Il n&#039;y a pas de version
+					spécifique à PHP 5 de ce manuel car la majorité des fonctionnalités
+					de PHP restent les mêmes.
+				</p>
+			</dd>
+		</dl>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="faq.languages.html">PHP et les autres langages</a>
+		</div>
+		<div class="next">
+			<a href="faq.misc.html">Questions diverses</a>
+		</div>
+		<div class="up">
+			<a href="faq.html">FAQ</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

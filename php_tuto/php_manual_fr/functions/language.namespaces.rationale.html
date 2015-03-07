@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Introduction aux espaces de noms</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.namespaces.html">Les espaces de noms</a>
+		</div>
+		<div class="next">
+			<a href="language.namespaces.definition.html">D&eacute;finition
+				des espaces de noms</a>
+		</div>
+		<div class="up">
+			<a href="language.namespaces.html">Les espaces de noms</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.namespaces.rationale" class="sect1">
+		<h2 class="title">Introduction aux espaces de noms</h2>
+		<p class="verinfo">(PHP 5 &gt;= 5.3.0)</p>
+		<p class="simpara">
+			Que sont les espaces de noms ? Dans leur définition la plus large,
+			ils représentent un moyen d&#039;encapsuler des éléments. Cela peut
+			être conçu comme un concept abstrait, à différents endroits. Par
+			exemple, dans un système de fichiers, les dossiers représentent un
+			groupe de fichiers associés, et sert d&#039;espace de noms pour les
+			fichiers qu&#039;il contient. Un exemple concret est que le fichier <em>foo.txt</em>
+			peut exister dans les deux dossiers <em>/home/greg</em> et <em>/home/other</em>,
+			mais que les deux copies de <em>foo.txt</em> ne peuvent pas
+			co-exister dans le même dossier. De plus, pour accéder au fichier <em>foo.txt</em>
+			depuis l&#039;extérieur du dossier <em>/home/greg</em>, il faut
+			préciser le nom du dossier en utilisant un séparateur de dossier, tel
+			que <em>/home/greg/foo.txt</em>. Le même principe applique les
+			espaces de noms au monde de la programmation.
+		</p>
+		<p class="simpara">Dans le monde PHP, les espaces de noms sont
+			conçus pour résoudre deux problèmes que les auteurs de bibliothèques
+			et applications rencontrent lors de la réutilisation d&#039;éléments
+			tels que des classes ou des bibliothèques de fonctions :</p>
+		<p class="para">
+		<ol type="1">
+			<li class="listitem"><span class="simpara"> Collisions de
+					noms entre le code que vous créez, les classes, fonctions ou
+					constantes internes de PHP, ou celle de bibliothèques tierces. </span></li>
+			<li class="listitem"><span class="simpara"> La capacité
+					de faire des alias ou de raccourcir des Noms_Extremement_Long pour
+					aider à la résolution du premier problème, et améliorer la
+					lisibilité du code. </span></li>
+		</ol>
+		</p>
+		<p class="simpara">Les espaces de noms PHP fournissent un moyen
+			pour regrouper des classes, interfaces, fonctions ou constantes.
+			Voici un exemple de syntaxe des espaces de noms PHP :</p>
+		<div class="example" id="example-236">
+			<p>
+				<strong>Exemple #1 Exemple de syntaxe des espaces de noms</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">namespace&nbsp;</span><span
+							style="color: #0000BB">mon</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">nom</span><span style="color: #007700">;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;Voyez&nbsp;la&nbsp;section&nbsp;"Définition&nbsp;des&nbsp;espaces&nbsp;de&nbsp;noms"<br />
+							<br /></span><span style="color: #007700">class&nbsp;</span><span
+							style="color: #0000BB">MaClasse&nbsp;</span><span
+							style="color: #007700">{}<br />function&nbsp;
+						</span><span style="color: #0000BB">mafonction</span><span
+							style="color: #007700">()&nbsp;{}<br />const&nbsp;
+						</span><span style="color: #0000BB">MACONSTANTE&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">1</span><span
+							style="color: #007700">;<br />
+							<br /></span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">MaClasse</span><span
+							style="color: #007700">;<br /></span><span
+							style="color: #0000BB">$c&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;\</span><span
+							style="color: #0000BB">mon</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">nom</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">MaClasse</span><span
+							style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;Voyez&nbsp;la&nbsp;section&nbsp;"Espace&nbsp;global"<br />
+							<br /></span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">strlen</span><span
+							style="color: #007700">(</span><span style="color: #DD0000">'bonjour'</span><span
+							style="color: #007700">);&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;Voyez&nbsp;"Utilisation&nbsp;des&nbsp;espaces&nbsp;de&nbsp;noms&nbsp;:&nbsp;retour<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;à&nbsp;l'espace&nbsp;global<br />
+							<br /></span><span style="color: #0000BB">$d&nbsp;</span><span
+							style="color: #007700">=&nbsp;namespace\</span><span
+							style="color: #0000BB">MACONSTANTE</span><span
+							style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;Voyez&nbsp;"L'opérateur&nbsp;namespace&nbsp;et&nbsp;la&nbsp;constante&nbsp;__NAMESPACE__<br />
+							<br /></span><span style="color: #0000BB">$d&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">__NAMESPACE__&nbsp;</span><span
+							style="color: #007700">.&nbsp;</span><span style="color: #DD0000">'\MACONSTANTE'</span><span
+							style="color: #007700">;<br />echo&nbsp;
+						</span><span style="color: #0000BB">constant</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$d</span><span
+							style="color: #007700">);&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;Voyez&nbsp;"Espaces&nbsp;de&nbsp;noms&nbsp;et&nbsp;fonctionnalités&nbsp;dynamiques"<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>:
+			<p class="para">
+				Les espaces de noms <em>PHP</em> et <em>php</em>, mais aussi les
+				noms composés commençant par ces noms (comme <em>PHP\Classes</em>)
+				sont réservés pour l&#039;utilisation interne du langage, et ne
+				doivent pas être utilisés dans le code de l&#039;espace utilisateur.
+		</blockquote>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.namespaces.html">Les espaces de noms</a>
+		</div>
+		<div class="next">
+			<a href="language.namespaces.definition.html">D&eacute;finition
+				des espaces de noms</a>
+		</div>
+		<div class="up">
+			<a href="language.namespaces.html">Les espaces de noms</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

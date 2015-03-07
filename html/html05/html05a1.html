@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Paragraphes</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<section>
+			<p class="fp-clear">
+				L'élément <a onclick="top.FP.Voir.showPageTech('elements', 'p')">p</a>
+				définit un paragraphe de texte (contenant éventuellement des
+				images).
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : paragraphe
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Paragraphe&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;L'élément p définit un paragraphe de texte
+			(contenant éventuellement des images).&lt;/p&gt;
+		&lt;p&gt;Par défaut, les navigateurs séparent visuellement
+			les paragraphes en laissant une ligne vierge. Ces
+			marges peuvent être modifiées par des règles de
+			style.&lt;/p&gt;
+		&lt;p&gt;Par défaut, le texte des paragraphes est aligné à
+			gauche et non justifié. L'alignement du contenu
+			peut être modifié par des règles de style.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+		</section>
+
+		<h3>Marges</h3>
+		<section>
+			<p>Par défaut, les navigateurs séparent visuellement les
+				paragraphes en laissant une ligne vierge. Ces marges peuvent être
+				modifiées par des règles de style.</p>
+
+			<p class="fp-bot0">Par défaut les marges sont faites de la façon
+				suivante :</p>
+			<ul>
+				<li>il y a une marge avant et une marge après le contenu d'un
+					paragraphe. Cette marge est égale à la hauteur d'une ligne du
+					paragraphe.</li>
+				<li>les marges de 2 paragraphes consécutifs ne se cumule pas.
+					Une seule marge est faite. Au cas où les marges des 2 paragraphes
+					ne sont pas de la même hauteur, c'est la marge la plus haute qui
+					est utilisée (cf paragraphe 3 dans l'exemple suivant).</li>
+			</ul>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : marges
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Marges&lt;/title&gt;
+		&lt;style&gt;
+			p {border: 1px solid red}
+			p:nth-child(3) {margin: 2em 1em 2em 3em}		
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;L'exemple entoure les paragraphes avec une bordure
+			pour mettre en évidence les marges. Le
+			troisième paragraphe à des marges différentes des
+			marges par défaut.&lt;/p&gt;
+		&lt;p&gt;L'élément p définit un paragraphe de texte
+			(contenant éventuellement des images).&lt;/p&gt;
+		&lt;p&gt;Par défaut, les navigateurs séparent visuellement
+			les paragraphes en laissant une ligne vierge. Ces
+			marges peuvent être modifiées par des règles de
+			style.&lt;/p&gt;
+		&lt;p&gt;Par défaut, le texte des paragraphes est aligné à
+			gauche et non justifié. L'alignement du contenu
+			peut être modifié par des règles de style.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+		</section>
+
+		<h3>Alignement</h3>
+		<section>
+			<p>Par défaut, le texte des paragraphes est aligné à gauche et
+				non justifié. L'alignement du contenu peut être modifié par des
+				règle de style.</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : alignement du texte
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Alignement du texte&lt;/title&gt;
+		&lt;style&gt;
+			p {border: 1px solid red; width: 75%;}
+			.gauche {text-align: left;} /* par défaut */
+			.droite {text-align: right;}
+			.centre {text-align: center;}
+			.justifie {text-align: justify;}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p class="gauche"&gt;Par défaut le texte est aligné à gauche.&lt;/p&gt;
+		&lt;p class="droite"&gt;Le texte peut être aligné à droite.&lt;/p&gt;
+		&lt;p class="justifie"&gt;Le text peut aussi être justifié. Le rendu n'est pas toujours très bon car les navigateurs ne sont pas encore des outils de mise en page comme les logiciels dédié à la mise en page papier. Toutefois des progès sont faits régulièrement.&lt;/p&gt;
+		&lt;p class="centre"&gt;Le texte peut être centré. A réserver pour des textes courts.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+		</section>
+
+		<h3>Encombrement</h3>
+		<section>
+			<p>
+				L'encombrement d'un paragraphe est défini automatiquement par son
+				contenu et par la place laissée par les éléments entourant le
+				paragraphe. Par défaut un paragraphe prend toute la largeur de son
+				élément parent et prend la hauteur nécessaire pour afficher son
+				contenu en entier.<br>
+				<strong>Il ne faut jamais chercher à forcer le contenu
+				d'un paragraphe en introduisant par exemple des retours à la ligne</strong> (<a
+					onclick="top.FP.Voir.showPageTech('elements', 'br')">br</a>) car il
+				suffirait que la largeur de la fenêtre du navigateur change pour que
+				la mise en forme soit incohérente.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : saut de ligne forcé
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Saut de ligne&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Utilisez le bouton "Tester dans pop-up".
+			Agrandissez et rétrécissez la fenêtre pour voir
+			l'effet de saut de ligne mis dans le texte. Ce 
+			paragraphe sans saut de ligne forcé sera toujours
+			correctement affiché.&lt;/p&gt;
+		&lt;p&gt;L'encombrement d'un paragraphe est défini
+			automatiquement par son	contenu et&lt;br&gt;
+			par la place laissée par les éléments entourant
+			le paragraphe. Par défaut un&lt;br&gt;
+			paragraphe prend toute la largeur de son élément
+			parent et prend la hauteur&lt;br&gt;
+			nécessaire pour afficher son contenu en entier.
+			Il ne faut jamais chercher à forcer&lt;br&gt;
+			le contenu d'un paragraphe en introduisant par 
+			exemple des	retours à la ligne&lt;br&gt;
+			(br) car il suffirait que la largeur de la
+			fenêtre du navigateur change pour que la&lt;br&gt;
+			mise en forme soit incohérente.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

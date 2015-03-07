@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Enclenche la tamporisation de sortie</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.ob-list-handlers.html">ob_list_handlers</a>
+		</div>
+		<div class="next">
+			<a href="function.output-add-rewrite-var.html">output_add_rewrite_var</a>
+		</div>
+		<div class="up">
+			<a href="ref.outcontrol.html">Fonctions de bufferisation de
+				sortie</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.ob-start" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">ob_start</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">ob_start</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Enclenche la tamporisation de sortie</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.ob-start-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>ob_start</strong></span>
+				([ <span class="methodparam"><span class="type"><a
+						href="language.types.callable.html" class="type callable">callable</a></span>
+					<code class="parameter">$output_callback</code></span> [, <span
+					class="methodparam"><span class="type">int</span> <code
+						class="parameter">$chunk_size</code><span class="initializer">
+						= 0</span></span> [, <span class="methodparam"><span class="type">bool</span>
+					<code class="parameter">$erase</code><span class="initializer">
+						= true</span></span> ]]] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>ob_start()</strong></span> démarre la
+				tamporisation de sortie. Tant qu&#039;elle est enclenchée, aucune
+				donnée, hormis les en-têtes, n&#039;est envoyée au navigateur, mais
+				temporairement mise en tampon.
+			</p>
+			<p class="para">
+				Le contenu de ce tampon peut être copié dans une chaîne avec la
+				fonction <span class="function"><a
+					href="function.ob-get-contents.html" class="function">ob_get_contents()</a></span>.
+				Pour afficher le contenu de ce tampon, utilisez <span
+					class="function"><a href="function.ob-end-flush.html"
+					class="function">ob_end_flush()</a></span>. Au contraire, <span
+					class="function"><a href="function.ob-end-clean.html"
+					class="function">ob_end_clean()</a></span> effacera le contenu de ce
+				tampon.
+			</p>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">
+					Quelques serveurs web (par exemple Apache) modifient le dossier de
+					travail d&#039;un script lorsqu&#039;il appelle une fonction de
+					rappel. Vous pouvez revenir à un comportement normal en ajoutant <em>chdir(dirname($_SERVER[&#039;SCRIPT_FILENAME&#039;]))</em>
+					dans votre fonction de rappel.
+				</p>
+			</div>
+			<p class="para">
+				Les tampons de sortie sont gérés par pile, c&#039;est-à-dire que
+				vous pouvez appeler plusieurs fois <span class="function"><strong>ob_start()</strong></span>
+				simultanément. Assurez-vous que vous appelez <span class="function"><a
+					href="function.ob-end-flush.html" class="function">ob_end_flush()</a></span>
+				suffisamment souvent. Si plusieurs fonctions de rappel sont actives,
+				les contenus seront filtrés séquentiellement, dans l&#039;ordre
+				d&#039;emboîtement.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.ob-start-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">output_callback</code></em></span>
+				<dd>
+
+					<p class="para">
+						Une fonction optionnelle de rappel peut être spécifiée. Cette
+						fonction prend une chaîne comme paramètre, et retourne une chaîne.
+						Elle sera appelée lorsque le tampon sera envoyé ou supprimé (avec
+						les fonctions <span class="function"><a
+							href="function.ob-flush.html" class="function">ob_flush()</a></span>, <span
+							class="function"><a href="function.ob-clean.html"
+							class="function">ob_clean()</a></span> ou des fonctions similaires) ou
+						lorsque le tampon sera envoyé au navigateur à la fin du script et
+						recevra le contenu du tampon de sortie. Lorsque la fonction <em><code
+								class="parameter">output_callback</code></em> est appelée, elle doit
+						retourner un nouveau contenu pour le tampon de sortie : celui-ci
+						sera envoyé au navigateur. Si <em><code class="parameter">output_callback</code></em>
+						n&#039;est pas une fonction accessible, la fonction retournera <strong><code>FALSE</code></strong>.
+					</p>
+					<p class="para">
+						Si la fonction de rappel a deux paramètres, le second est composé
+						du champ bits constitué des constantes <strong><code>PHP_OUTPUT_HANDLER_*</code></strong>.
+					</p>
+					<p class="para">
+						Si <em><code class="parameter">output_callback</code></em>
+						retourne <strong><code>FALSE</code></strong>, l&#039;entrée
+						originale est envoyée au navigateur.
+					</p>
+					<p class="para">
+						Le paramètre <em><code class="parameter">output_callback</code></em>
+						peut être annulé en y passant la valeur <strong><code>NULL</code></strong>.
+					</p>
+					<p class="para">
+						<span class="function"><a href="function.ob-end-clean.html"
+							class="function">ob_end_clean()</a></span>, <span class="function"><a
+							href="function.ob-end-flush.html" class="function">ob_end_flush()</a></span>,
+						<span class="function"><a href="function.ob-clean.html"
+							class="function">ob_clean()</a></span>, <span class="function"><a
+							href="function.ob-flush.html" class="function">ob_flush()</a></span> et
+						<span class="function"><strong>ob_start()</strong></span> ne
+						doivent pas être appelés depuis une fonction de rappel. Si vous
+						les appelez depuis une fonction de rappel, le comportement ne sera
+						pas défini. Si vous voulez effacer le contenu du tampon, retournez
+						&quot;&quot; (une chaîne vide) comme fonction de rappel. Vous ne
+						pourrez jamais appeler les fonctions utilisant la fonction de
+						tamporisation de sortie comme <em>print_r($expression, true)</em>
+						ou <em>highlight_file($filename, true)</em> depuis une fonction de
+						rappel.
+					</p>
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>:
+						<p class="para">
+							En PHP 4.0.4, <span class="function"><a
+								href="function.ob-gzhandler.html" class="function">ob_gzhandler()</a></span>
+							a été introduite pour faciliter l&#039;envoi de fichiers
+							compressés avec gzip aux navigateurs web qui supportent les pages
+							compressées. <span class="function"><a
+								href="function.ob-gzhandler.html" class="function">ob_gzhandler()</a></span>
+							détermine le type d&#039;encodage accepté par un navigateur, et
+							retourne le contenu le plus adéquat.
+					</blockquote>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">chunk_size</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si le paramètre optionnel <em><code class="parameter">chunk_size</code></em>
+						est passé, la fonction de rappel est appelée à chaque nouvelle
+						ligne après <em><code class="parameter">chunk_size</code></em>
+						octets d&#039;affichage. La valeur par défaut <em>0</em> (zéro)
+						signifie que l&#039;affichage de la fonction ne sera appelé que
+						lorsque le buffer de sortie est clos.
+					</p>
+					<p class="para">
+						Avant la version PHP 5.4.0, la valeur <em>1</em> était une valeur
+						spéciale qui définissait la taille du morceau à 4096 octets.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">erase</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si le paramètre optionnel <em><code class="parameter">erase</code></em>
+						est défini à <strong><code>FALSE</code></strong>, le tampon ne
+						sera pas effacé tant que le script ne sera pas terminé. Ceci aura
+						pour effet d&#039;émettre une notice et de retourner <strong><code>FALSE</code></strong>
+						lors de l&#039;appel aux fonctions d&#039;affichage et de
+						nettoyage.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.ob-start-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.ob-start-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.4.0</td>
+						<td>Une taille de morceau de <em>1</em> résulte maintenant en
+							1 octet envoyé au buffer de sortie.
+						</td>
+					</tr>
+
+					<tr>
+						<td>4.3.2</td>
+						<td>Cette fonction a été modifiée pour retourner <strong><code>FALSE</code></strong>
+							dans le cas où <em><code class="parameter">output_callback</code></em>
+							ne peut être exécuté.
+						</td>
+					</tr>
+
+					<tr>
+						<td>4.2.0</td>
+						<td>Ajout du paramètre <em><code class="parameter">erase</code></em>.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.ob-start-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-472">
+				<p>
+					<strong>Exemple #1 Exemple de gestion de sortie avec
+						fonction de rappel</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br /></span><span style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">rappel</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$buffer</span><span
+								style="color: #007700">)<br />{<br />&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;remplace&nbsp;toutes&nbsp;les&nbsp;pommes&nbsp;par&nbsp;des&nbsp;carottes<br />&nbsp;&nbsp;
+							</span><span style="color: #007700">return&nbsp;(</span><span
+								style="color: #0000BB">ereg_replace</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"pommes&nbsp;de&nbsp;terre"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"carottes"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$buffer</span><span
+								style="color: #007700">));<br />}<br />
+								<br /></span><span style="color: #0000BB">ob_start</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"rappel"</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #0000BB">?&gt;<br /></span>&lt;html&gt;<br />&lt;body&gt;<br />&lt;p&gt;C'est&nbsp;comme&nbsp;comparer&nbsp;des&nbsp;carottes&nbsp;et&nbsp;des&nbsp;pommes&nbsp;de&nbsp;terre.&lt;/p&gt;<br />&lt;/body&gt;<br />&lt;/html&gt;<br />
+							<span style="color: #0000BB">&lt;?php<br />
+								<br />ob_end_flush
+							</span><span style="color: #007700">();<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+&lt;html&gt;
+&lt;body&gt;
+&lt;p&gt;C&#039;est comme comparer des carottes et des carottes.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.ob-start-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.ob-get-contents.html" class="function"
+						rel="rdfs-seeAlso">ob_get_contents()</a> - Retourne le contenu du
+						tampon de sortie</span></li>
+				<li class="member"><span class="function"><a
+						href="function.ob-end-clean.html" class="function"
+						rel="rdfs-seeAlso">ob_end_clean()</a> - D&eacute;truit les
+						donn&eacute;es du tampon de sortie et &eacute;teint la
+						tamporisation de sortie</span></li>
+				<li class="member"><span class="function"><a
+						href="function.ob-end-flush.html" class="function"
+						rel="rdfs-seeAlso">ob_end_flush()</a> - Envoie les donn&eacute;es
+						du tampon de sortie et &eacute;teint la tamporisation de sortie</span></li>
+				<li class="member"><span class="function"><a
+						href="function.ob-implicit-flush.html" class="function"
+						rel="rdfs-seeAlso">ob_implicit_flush()</a> -
+						Active/d&eacute;sactive l'envoi implicite</span></li>
+				<li class="member"><span class="function"><a
+						href="function.ob-gzhandler.html" class="function"
+						rel="rdfs-seeAlso">ob_gzhandler()</a> - Fonction de rappel pour la
+						compression automatique des tampons</span></li>
+				<li class="member"><span class="function"><a
+						href="function.ob-iconv-handler.html" class="function"
+						rel="rdfs-seeAlso">ob_iconv_handler()</a> - Gestionnaire de sortie
+						pour ma&icirc;triser le jeu de caract&egrave;res de sortie</span></li>
+				<li class="member"><span class="function"><a
+						href="function.mb-output-handler.html" class="function"
+						rel="rdfs-seeAlso">mb_output_handler()</a> - Fonction de
+						traitement des affichages</span></li>
+				<li class="member"><span class="function"><a
+						href="function.ob-tidyhandler.html" class="function"
+						rel="rdfs-seeAlso">ob_tidyhandler()</a> - Fonction de rappel
+						ob_start pour r&eacute;parer le buffer</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.ob-list-handlers.html">ob_list_handlers</a>
+		</div>
+		<div class="next">
+			<a href="function.output-add-rewrite-var.html">output_add_rewrite_var</a>
+		</div>
+		<div class="up">
+			<a href="ref.outcontrol.html">Fonctions de bufferisation de
+				sortie</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

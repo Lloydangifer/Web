@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>V&eacute;rifie si l'objet fait parti d'une classe ou a
+	cette classe comme parents</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.interface-exists.html">interface_exists</a>
+		</div>
+		<div class="next">
+			<a href="function.is-subclass-of.html">is_subclass_of</a>
+		</div>
+		<div class="up">
+			<a href="ref.classobj.html">Fonctions Classes/Objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.is-a" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">is_a</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">is_a</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Vérifie si l&#039;objet fait parti
+					d&#039;une classe ou a cette classe comme parents</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.is-a-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>is_a</strong></span>
+				( <span class="methodparam"><span class="type">object</span>
+					<code class="parameter">$object</code></span> , <span class="methodparam"><span
+					class="type">string</span> <code class="parameter">$class_name</code></span>
+				[, <span class="methodparam"><span class="type">bool</span> <code
+						class="parameter">$allow_string</code><span class="initializer">
+						= <strong><code>FALSE</code></strong>
+				</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				Vérifie si l&#039;objet <em><code class="parameter">object</code></em>
+				fait partie de cette classe ou a cette classe comme parent.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.is-a-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">object</code></em></span>
+				<dd>
+
+					<p class="para">L&#039;objet testé</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">class_name</code></em></span>
+				<dd>
+
+					<p class="para">Le nom de la classe</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">allow_string</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si ce paramètre vaut <strong><code>FALSE</code></strong>, le nom
+						de la classe sous forme de chaîne de caractères dans le paramètre
+						<em><code class="parameter">object</code></em> n&#039;est pas
+						autorisé. Ceci permet d&#039;éviter l&#039;appel de
+						l&#039;autoloader si la classe n&#039;existe pas.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.is-a-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne <strong><code>TRUE</code></strong> si l&#039;objet fait
+				parti de cette classe ou a cette classe comme parents, <strong><code>FALSE</code></strong>
+				sinon.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog" id="refsect1-function.is-a-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.3.9</td>
+						<td>Ajout du paramètre <em><code class="parameter">allow_string</code></em>.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.3.0</td>
+						<td>Cette fonction n&#039;est plus obsolète, et ne lance plus
+							d&#039;alerte de type <strong><code>E_STRICT</code></strong>.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.0.0</td>
+						<td>Cette fonction devient obsolète en faveur de
+							l&#039;opérateur <a href="language.operators.type.html"
+							class="link">instanceof</a>. L&#039;appel à cette fonction
+							émettra une alerte de niveau <strong><code>E_STRICT</code></strong>.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.is-a-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4713">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>is_a()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Définit&nbsp;une&nbsp;classe<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">WidgetFactory<br /></span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;var&nbsp;
+							</span><span style="color: #0000BB">$oink&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'moo'</span><span style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Crée&nbsp;un&nbsp;nouvel&nbsp;objet<br /></span><span
+								style="color: #0000BB">$WF&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">WidgetFactory</span><span
+								style="color: #007700">();<br />
+								<br />if&nbsp;(
+							</span><span style="color: #0000BB">is_a</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$WF</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'WidgetFactory'</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"oui,&nbsp;\$WF&nbsp;est&nbsp;toujours&nbsp;un&nbsp;objet&nbsp;WidgetFactory\n"</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			<div class="example" id="example-4714">
+				<p>
+					<strong>Exemple #2 Utilisation de l&#039;opérateur <em
+						class="emphasis">instanceof</em> avec PHP 5
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">if&nbsp;(</span><span
+								style="color: #0000BB">$WF&nbsp;</span><span
+								style="color: #007700">instanceof&nbsp;</span><span
+								style="color: #0000BB">WidgetFactory</span><span
+								style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'Oui,&nbsp;$WF&nbsp;est&nbsp;un&nbsp;WidgetFactory'</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+		<div class="refsect1 seealso" id="refsect1-function.is-a-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.get-class.html" class="function" rel="rdfs-seeAlso">get_class()</a>
+						- Retourne la classe d'un objet</span></li>
+				<li class="member"><span class="function"><a
+						href="function.get-parent-class.html" class="function"
+						rel="rdfs-seeAlso">get_parent_class()</a> - Retourne le nom de la
+						classe parente d'un objet</span></li>
+				<li class="member"><span class="function"><a
+						href="function.is-subclass-of.html" class="function"
+						rel="rdfs-seeAlso">is_subclass_of()</a> - D&eacute;termine si un
+						objet est une sous-classe</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.interface-exists.html">interface_exists</a>
+		</div>
+		<div class="next">
+			<a href="function.is-subclass-of.html">is_subclass_of</a>
+		</div>
+		<div class="up">
+			<a href="ref.classobj.html">Fonctions Classes/Objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

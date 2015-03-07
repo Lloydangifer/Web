@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Retourne les noms des m&eacute;thodes d'une classe</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.get-called-class.html">get_called_class</a>
+		</div>
+		<div class="next">
+			<a href="function.get-class-vars.html">get_class_vars</a>
+		</div>
+		<div class="up">
+			<a href="ref.classobj.html">Fonctions Classes/Objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.get-class-methods" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">get_class_methods</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">get_class_methods</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Retourne les noms des méthodes
+					d&#039;une classe</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.get-class-methods-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>get_class_methods</strong></span>
+				( <span class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$class_name</code></span>
+				)
+			</div>
+
+			<p class="para rdfs-comment">Retourne les noms des méthodes
+				d&#039;une classe.</p>
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.get-class-methods-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">class_name</code></em></span>
+				<dd>
+
+					<p class="para">Le nom de la classe ou une instance
+						d&#039;objet</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.get-class-methods-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne un tableau contenant les noms des méthodes de la classe <em><code
+						class="parameter">class_name</code></em>. En cas d&#039;erreur, <strong><code>NULL</code></strong>
+				est retourné.
+			</p>
+		</div>
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.get-class-methods-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.0.0</td>
+						<td>Depuis PHP 5, cette fonction retourne le nom des méthodes
+							telles quelles sont déclarées (sensible à la casse). En PHP 4,
+							elles étaient en minuscules.</td>
+					</tr>
+
+					<tr>
+						<td>4.0.6</td>
+						<td>La possibilité de spécifier l&#039;objet lui-même a été
+							ajoutée.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+		<div class="refsect1 examples"
+			id="refsect1-function.get-class-methods-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4703">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>get_class_methods()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br /></span><span style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">myclass&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;constructeur<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">myclass</span><span
+								style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return(
+							</span><span style="color: #0000BB">true</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;méthode&nbsp;1<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">myfunc1</span><span
+								style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return(
+							</span><span style="color: #0000BB">true</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;méthode&nbsp;2<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">myfunc2</span><span
+								style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return(
+							</span><span style="color: #0000BB">true</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #0000BB">$class_methods&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">get_class_methods</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'myclass'</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #FF8000">//&nbsp;ou<br /></span><span
+								style="color: #0000BB">$class_methods&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">get_class_methods</span><span
+								style="color: #007700">(new&nbsp;</span><span
+								style="color: #0000BB">myclass</span><span
+								style="color: #007700">());<br />
+								<br />foreach&nbsp;(
+							</span><span style="color: #0000BB">$class_methods&nbsp;</span><span
+								style="color: #007700">as&nbsp;</span><span
+								style="color: #0000BB">$method_name</span><span
+								style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$method_name</span><span
+								style="color: #DD0000">\n"</span><span style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+myclass
+myfunc1
+myfunc2
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.get-class-methods-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.get-class.html" class="function" rel="rdfs-seeAlso">get_class()</a>
+						- Retourne la classe d'un objet</span></li>
+				<li class="member"><span class="function"><a
+						href="function.get-class-vars.html" class="function"
+						rel="rdfs-seeAlso">get_class_vars()</a> - Retourne les valeurs par
+						d&eacute;faut des propri&eacute;t&eacute;s d'une classe</span></li>
+				<li class="member"><span class="function"><a
+						href="function.get-object-vars.html" class="function"
+						rel="rdfs-seeAlso">get_object_vars()</a> - Retourne les
+						propri&eacute;t&eacute;s d'un objet</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.get-called-class.html">get_called_class</a>
+		</div>
+		<div class="next">
+			<a href="function.get-class-vars.html">get_class_vars</a>
+		</div>
+		<div class="up">
+			<a href="ref.classobj.html">Fonctions Classes/Objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

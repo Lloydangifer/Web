@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>R&egrave;gles de r&eacute;solutions de noms</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.namespaces.fallback.html">Utilisation des
+				espaces de noms : retour &agrave; l'espace global</a>
+		</div>
+		<div class="next">
+			<a href="language.namespaces.faq.html">Foire aux questions : ce
+				que vous devez savoir des espaces de noms</a>
+		</div>
+		<div class="up">
+			<a href="language.namespaces.html">Les espaces de noms</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.namespaces.rules" class="sect1">
+		<h2 class="title">Règles de résolutions de noms</h2>
+		<p class="verinfo">(PHP 5 &gt;= 5.3.0)</p>
+		<p class="para">Dans le cadre des règles de résolution, il y a
+			plusieurs définitions importantes :
+		<dl>
+
+			<strong class="title">Définitions pour les espaces de noms</strong>
+			<dt>
+
+				<span class="term">nom non qualifié</span>
+			<dd>
+
+				<p class="para">
+					Ceci est un identifiant ne contenant pas un séparateur
+					d&#039;espace de noms. Par exemple : <em>Foo</em>
+				</p>
+			</dd>
+
+			</dt>
+
+			<dt>
+
+				<span class="term">nom qualifié</span>
+			<dd>
+
+				<p class="para">
+					Ceci est un identifiant contenant un séparateur d&#039;espace de
+					noms. Par exemple : <em>Foo\Bar</em>
+				</p>
+			</dd>
+
+			</dt>
+
+			<dt>
+
+				<span class="term">Nom absolu</span>
+			<dd>
+
+				<p class="para">
+					Ceci est un identifiant qui commence par un séparateur
+					d&#039;espace de noms. Par exemple : <em>\Foo\Bar</em>. <em>namespace\Foo</em>
+					est aussi un nom absolu.
+				</p>
+			</dd>
+
+			</dt>
+
+		</dl>
+
+		</p>
+		<p class="para">Les noms sont résolus en suivant les règles
+			suivantes :
+		<ol type="1">
+			<li class="listitem"><span class="simpara"> Les appels à
+					des espaces de noms absolus pour des fonctions, classes ou
+					constantes sont résolus à la compilation. Par exemple, <em>new
+						\A\B</em> utilise la classe <em>A\B</em>.
+			</span></li>
+			<li class="listitem"><span class="simpara"> Tous les noms
+					qui ne sont pas absolus sont traduits durant la compilation à
+					l&#039;aide des règles d&#039;importation. Par exemple, si le nom <em>A\B\C</em>
+					est importé sous l&#039;alias <em>C</em>, un appel à <em>C\D\e()</em>
+					est traduit en un appel à <em>A\B\C\D\e()</em>.
+			</span></li>
+			<li class="listitem"><span class="simpara"> Dans un nom
+					de domaine, tous les noms qualifiés qui ne sont pas traduits à
+					l&#039;aide des règles d&#039;importation sont préfixés avec
+					l&#039;espace de noms courant. Par exemple, si un appel à <em>C\D\e()</em>
+					est effectué dans l&#039;espace de noms <em>A\B</em>, il est
+					traduit en <em>A\B\C\D\e()</em>.
+			</span></li>
+			<li class="listitem"><span class="simpara"> Les classes
+					non qualifiées sont traduites durant la compilation en fonction des
+					règles d&#039;importations (le nom complet remplace les noms
+					courts). Par exemple, si l&#039;espace de noms <em>A\B\C</em> est
+					importé sous le nom C, <em>new C()</em> est remplacé par <em>new
+						A\B\C()</em>.
+			</span></li>
+			<li class="listitem"><span class="simpara"> Dans un
+					espace de noms, tel que A\B, les appels à des fonctions sans
+					qualification sont résolus à la compilation. Voici comment un appel
+					à <em>foo()</em> est résolu :
+			</span>
+				<ol type="1">
+					<li class="listitem"><span class="simpara"> Il
+							recherche une fonction dans l&#039;espace de noms courant : <em>A\B\foo()</em>.
+					</span></li>
+					<li class="listitem"><span class="simpara"> Il essaie
+							de trouver et appeler la fonction <em class="emphasis">globale</em>
+							<em>foo()</em>.
+					</span></li>
+				</ol></li>
+			<li class="listitem"><span class="simpara"> Dans un
+					espace de noms, e.g. <em>A\B</em>, un appel à une classe qualifiée
+					ou non qualifiée (pas absolue) est résolu à l&#039;exécution. Voici
+					comment un appel à <em>new C()</em> ou à <em>new D\E()</em> est
+					résolu. Pour <em> new C()</em> :
+			</span>
+				<ol type="1">
+					<li class="listitem"><span class="simpara"> Il
+							recherche une classe dans l&#039;espace de noms courant : <em>A\B\C</em>.
+					</span></li>
+					<li class="listitem"><span class="simpara"> Il appelle
+							l&#039;autoload pour <em>A\B\C</em>.
+					</span></li>
+				</ol> <span class="simpara"> Pour <em> new D\E()</em>:
+			</span>
+				<ol type="1">
+					<li class="listitem"><span class="simpara"> Il
+							recherche une classe dans l&#039;espace de noms courant : <em>A\B\D\E</em>.
+					</span></li>
+					<li class="listitem"><span class="simpara"> Il appelle
+							l&#039;autoload pour <em>A\B\D\E</em>.
+					</span></li>
+				</ol> <span class="simpara"> Pour référencer une classe globale
+					dans l&#039;espace de noms global, son nom absolu <em>new \C()</em>
+					doit être utilisé.
+			</span></li>
+		</ol>
+		</p>
+		<div class="example" id="example-260">
+			<p>
+				<strong>Exemple #1 Exemples de résolutions d&#039;espaces
+					de noms</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">namespace&nbsp;</span><span
+							style="color: #0000BB">A</span><span style="color: #007700">;<br />use&nbsp;
+						</span><span style="color: #0000BB">B</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">D</span><span style="color: #007700">,&nbsp;</span><span
+							style="color: #0000BB">C</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">E&nbsp;</span><span style="color: #007700">as&nbsp;</span><span
+							style="color: #0000BB">F</span><span style="color: #007700">;<br />
+							<br /></span><span style="color: #FF8000">//&nbsp;appels&nbsp;de&nbsp;fonctions<br />
+							<br /></span><span style="color: #0000BB">foo</span><span
+							style="color: #007700">();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;tente&nbsp;d'appeler&nbsp;la&nbsp;fonction&nbsp;"foo"&nbsp;dans&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;"A"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;puis&nbsp;appelle&nbsp;la&nbsp;fonction&nbsp;globale&nbsp;"foo"<br />
+							<br /></span><span style="color: #007700">\</span><span
+							style="color: #0000BB">foo</span><span style="color: #007700">();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;appelle&nbsp;la&nbsp;fonction&nbsp;"foo"&nbsp;définie&nbsp;dans&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;global<br />
+							<br /></span><span style="color: #0000BB">my</span><span
+							style="color: #007700">\</span><span style="color: #0000BB">foo</span><span
+							style="color: #007700">();&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;appelle&nbsp;la&nbsp;fonction&nbsp;"foo"&nbsp;définie&nbsp;dans&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;"A\my"<br />
+							<br /></span><span style="color: #0000BB">F</span><span
+							style="color: #007700">();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;tente&nbsp;d'appeler&nbsp;la&nbsp;fonction&nbsp;"F"&nbsp;définie&nbsp;dans&nbsp;l'espace&nbsp;"A"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;puis&nbsp;tente&nbsp;d'appeler&nbsp;la&nbsp;fonction&nbsp;globale&nbsp;"F"<br />
+							<br />//&nbsp;référence&nbsp;de&nbsp;classes&nbsp;references<br />
+							<br /></span><span style="color: #007700">new&nbsp;</span><span
+							style="color: #0000BB">B</span><span style="color: #007700">();&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;crée&nbsp;un&nbsp;objet&nbsp;de&nbsp;la&nbsp;classe&nbsp;"B"&nbsp;définie&nbsp;dans&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;&nbsp;"A"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;si&nbsp;non&nbsp;trouvé,&nbsp;il&nbsp;essaie&nbsp;l'autoload&nbsp;sur&nbsp;la&nbsp;classe&nbsp;"A\B"<br />
+							<br /></span><span style="color: #007700">new&nbsp;</span><span
+							style="color: #0000BB">D</span><span style="color: #007700">();&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;crée&nbsp;un&nbsp;objet&nbsp;de&nbsp;la&nbsp;classe&nbsp;"D"&nbsp;définie&nbsp;dans&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;&nbsp;"B"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;si&nbsp;non&nbsp;trouvé,&nbsp;il&nbsp;essaie&nbsp;l'autoload&nbsp;sur&nbsp;la&nbsp;classe&nbsp;"B\D"<br />
+							<br /></span><span style="color: #007700">new&nbsp;</span><span
+							style="color: #0000BB">F</span><span style="color: #007700">();&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;crée&nbsp;un&nbsp;objet&nbsp;de&nbsp;la&nbsp;classe&nbsp;"E"&nbsp;définie&nbsp;dans&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;&nbsp;"C"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;si&nbsp;non&nbsp;trouvé,&nbsp;il&nbsp;essaie&nbsp;l'autoload&nbsp;sur&nbsp;la&nbsp;classe&nbsp;"C\E"<br />
+							<br /></span><span style="color: #007700">new&nbsp;\</span><span
+							style="color: #0000BB">B</span><span style="color: #007700">();&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;crée&nbsp;un&nbsp;objet&nbsp;de&nbsp;la&nbsp;classe&nbsp;"B"&nbsp;définie&nbsp;dans&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;global<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;si&nbsp;non&nbsp;trouvé,&nbsp;il&nbsp;essaie&nbsp;l'autoload&nbsp;sur&nbsp;la&nbsp;classe&nbsp;"B"<br />
+							<br /></span><span style="color: #007700">new&nbsp;\</span><span
+							style="color: #0000BB">D</span><span style="color: #007700">();&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;crée&nbsp;un&nbsp;objet&nbsp;de&nbsp;la&nbsp;classe&nbsp;"D"&nbsp;définie&nbsp;dans&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;global<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;si&nbsp;non&nbsp;trouvé,&nbsp;il&nbsp;essaie&nbsp;l'autoload&nbsp;sur&nbsp;la&nbsp;classe&nbsp;"D"<br />
+							<br /></span><span style="color: #007700">new&nbsp;\</span><span
+							style="color: #0000BB">F</span><span style="color: #007700">();&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;crée&nbsp;un&nbsp;objet&nbsp;de&nbsp;la&nbsp;classe&nbsp;"F"&nbsp;définie&nbsp;dans&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;global<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;si&nbsp;non&nbsp;trouvé,&nbsp;il&nbsp;essaie&nbsp;l'autoload&nbsp;sur&nbsp;la&nbsp;classe&nbsp;"F"<br />
+							<br />//&nbsp;méthodes&nbsp;statiques&nbsp;et&nbsp;fonctions&nbsp;d'espace&nbsp;de&nbsp;noms&nbsp;d'un&nbsp;autre&nbsp;espace<br />
+							<br /></span><span style="color: #0000BB">B</span><span
+							style="color: #007700">\</span><span style="color: #0000BB">foo</span><span
+							style="color: #007700">();&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;appelle&nbsp;la&nbsp;fonction&nbsp;"foo"&nbsp;de&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;"A\B"<br />
+							<br /></span><span style="color: #0000BB">B</span><span
+							style="color: #007700">::</span><span style="color: #0000BB">foo</span><span
+							style="color: #007700">();&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;appelle&nbsp;la&nbsp;méthode&nbsp;"foo"&nbsp;de&nbsp;la&nbsp;classe&nbsp;"B"&nbsp;définie&nbsp;dans&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;&nbsp;"A"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;si&nbsp;la&nbsp;classe&nbsp;"A\B"&nbsp;n'est&nbsp;pas&nbsp;trouvée,&nbsp;il&nbsp;essaie&nbsp;l'autoload&nbsp;sur&nbsp;la&nbsp;classe&nbsp;"A\B"<br />
+							<br /></span><span style="color: #0000BB">D</span><span
+							style="color: #007700">::</span><span style="color: #0000BB">foo</span><span
+							style="color: #007700">();&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;appelle&nbsp;la&nbsp;méthode&nbsp;"foo"&nbsp;de&nbsp;la&nbsp;classe&nbsp;"D"&nbsp;définie&nbsp;dans&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;&nbsp;"B"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;si&nbsp;la&nbsp;classe&nbsp;"B\D"&nbsp;n'est&nbsp;pas&nbsp;trouvée,&nbsp;il&nbsp;essaie&nbsp;l'autoload&nbsp;sur&nbsp;la&nbsp;classe&nbsp;"B\D"<br />
+							<br /></span><span style="color: #007700">\</span><span
+							style="color: #0000BB">B</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">foo</span><span style="color: #007700">();&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;appelle&nbsp;la&nbsp;fonction&nbsp;"foo"&nbsp;de&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;"B"<br />
+							<br /></span><span style="color: #007700">\</span><span
+							style="color: #0000BB">B</span><span style="color: #007700">::</span><span
+							style="color: #0000BB">foo</span><span style="color: #007700">();&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;appelle&nbsp;la&nbsp;méthode&nbsp;"foo"&nbsp;de&nbsp;la&nbsp;classe&nbsp;"B"&nbsp;située&nbsp;dans&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;global<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;si&nbsp;la&nbsp;classe&nbsp;"B"&nbsp;n'est&nbsp;pas&nbsp;trouvée,&nbsp;il&nbsp;essaie&nbsp;l'autoload&nbsp;sur&nbsp;la&nbsp;classe&nbsp;"B"<br />
+							<br />//&nbsp;méthodes&nbsp;statiques&nbsp;et&nbsp;fonctions&nbsp;d'espace&nbsp;de&nbsp;noms&nbsp;de&nbsp;l'espace&nbsp;courant<br />
+							<br /></span><span style="color: #0000BB">A</span><span
+							style="color: #007700">\</span><span style="color: #0000BB">B</span><span
+							style="color: #007700">::</span><span style="color: #0000BB">foo</span><span
+							style="color: #007700">();&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;appelle&nbsp;la&nbsp;méthode&nbsp;"foo"&nbsp;de&nbsp;la&nbsp;classe&nbsp;"B"&nbsp;de&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;"A\A"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;si&nbsp;la&nbsp;classe&nbsp;"A\A\B"&nbsp;n'est&nbsp;pas&nbsp;trouvée,&nbsp;il&nbsp;essaie&nbsp;l'autoload&nbsp;sur&nbsp;la&nbsp;classe&nbsp;"A\A\B"<br />
+							<br /></span><span style="color: #007700">\</span><span
+							style="color: #0000BB">A</span><span style="color: #007700">\</span><span
+							style="color: #0000BB">B</span><span style="color: #007700">::</span><span
+							style="color: #0000BB">foo</span><span style="color: #007700">();&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;appelle&nbsp;la&nbsp;méthode&nbsp;"foo"&nbsp;de&nbsp;la&nbsp;classe&nbsp;"B"&nbsp;de&nbsp;l'espace&nbsp;de&nbsp;noms&nbsp;"A"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;si&nbsp;la&nbsp;classe&nbsp;"A\B"&nbsp;n'est&nbsp;pas&nbsp;trouvée,&nbsp;il&nbsp;essaie&nbsp;l'autoload&nbsp;sur&nbsp;la&nbsp;classe&nbsp;"A\B"<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.namespaces.fallback.html">Utilisation des
+				espaces de noms : retour &agrave; l'espace global</a>
+		</div>
+		<div class="next">
+			<a href="language.namespaces.faq.html">Foire aux questions : ce
+				que vous devez savoir des espaces de noms</a>
+		</div>
+		<div class="up">
+			<a href="language.namespaces.html">Les espaces de noms</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

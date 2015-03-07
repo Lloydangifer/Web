@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Les listes</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function() {
+			top.FP.initPage();
+		}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			Après avoir été preque totalement abandonnées, les listes sont
+			devenues très présentes dans les pages <abbr
+				title="HyperText Markup Language">HTML</abbr>.
+			<br>
+			Beaucoup de regroupements sont désormais considérés comme des listes,
+			en particulier les regroupements de liens (barre de navigation, liens
+			dans les hors-textes latéreaux ou les pieds de page) et les vignettes
+			photos. On voit même parfois des formulaires de saisie considérés
+			comme des listes de zones de saisie.
+			<br>
+			Les spécifications pour les listes sont définies dans <a
+				href="http://www.w3.org/TR/2011/REC-CSS2-20110607/generate.html#lists"
+				target="_blank">la version 2.1 des CSS</a> et quelques modifications
+			mineures sont en discution pour <a
+				href="http://www.w3.org/TR/css3-lists/">la version 3</a>.
+		</p>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Propriétés de liste</h3>
+		<section>
+			<p class="fp-bot0">Il n'y a que 4 propriétés concernant
+				directement les listes :</p>
+			<ul>
+				<li><a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'list-style-type')">list-style-type</a>
+					définit le type de puce ou de numérotation de la ligne de la liste,</li>
+				<li><a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'list-style-position')">list-style-position</a>
+					définit la position de la puce dans la ligne,</li>
+				<li><a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'list-style-image')">list-style-image</a>
+					définit une image à utiliser comme puce de la ligne,</li>
+				<li><a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'list-style')">list-style</a>
+					est un raccourci pour les 3 propriétés précédentes. C'est cette
+					propriété qui est la plus souvent utilisée.</li>
+			</ul>
+
+			<h4>Types de puce</h4>
+			<section>
+				<div class="TEST-iframe">
+					<p>Tester les types de puce</p>
+					<iframe src="../exemples/liste_widget.html?1liste-widget"
+						id="liste-widget"
+						style="width: 100%; margin: 0; border: 0 none; height: 600px;"></iframe>
+				</div>
+
+			</section>
+
+			<h4>Position de la puce</h4>
+			<section>
+				<p class="fp-p-raz">
+					L'exemple suivant montre les 2 positions possibles pour la puce :
+					en dehors de la ligne (par défaut) ou à l'intérieur de la ligne.
+					<br>
+					Une bordre rouge est mise sur le côté gauche des lignes pour bien
+					montrer le positionnement.
+				</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : position de la puce
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		Pour mon anniversaire je veux :
+		&lt;ul&gt;
+			&lt;li&gt;un X-Wing rouge&lt;/li&gt;
+			&lt;li&gt;un sabre-laser&lt;/li&gt;
+		&lt;/ul&gt;
+		Et à Noël :
+		&lt;ul&gt;
+			&lt;li&gt;un chapeau de Gandalf&lt;/li&gt;
+			&lt;li&gt;de l'herbe à pipe de la Comté.&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+ul:first-of-type {
+	list-style: square outside; /* Puce en dehors - défaut*/
+}
+
+ul:last-of-type {
+	list-style: square inside; /* Puce dedans */
+}
+
+li {
+	border-left: 2px solid red;
+}</textarea>
+				</form>
+			</section>
+
+			<h4>Image comme puce</h4>
+			<section>
+				<p>On peut utiliser n'importe quelle image pour remplacer les
+					puces par défaut des lignes d'une liste.</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : image comme puce
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		Pour mon anniversaire je veux :
+		&lt;ul&gt;
+			&lt;li&gt;un X-Wing rouge&lt;/li&gt;
+			&lt;li&gt;un sabre-laser&lt;/li&gt;
+		&lt;/ul&gt;
+		Et à Noël :
+		&lt;ul&gt;
+			&lt;li&gt;un chapeau de Gandalf&lt;/li&gt;
+			&lt;li&gt;de l'herbe à pipe de la Comté.&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+ul:first-of-type {
+	list-style: url(../exemples/img/star.png);
+}
+
+ul:last-of-type {
+	list-style: url(../exemples/img/fleche.gif);
+}</textarea>
+				</form>
+			</section>
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Listes avec images et textes</h3>
+		<section>
+			<p>Une forme de liste très souvent utilisée mélange une image sur
+				la gauche et du texte en vis à vis à droite. C'est le type de liste
+				que l'on trouve par exemple sur Facebook ou Twitter.</p>
+
+			<figure style="float: left; margin: 0 0 0.5em 1em; width: 280px">
+				<img src="../cssimg/twitter.jpg" width="270" height="206">
+				<figcaption>liste dans twitter</figcaption>
+			</figure>
+			<figure style="float: right; margin: 0 0 0.5em 1em; width: 280px">
+				<img src="../cssimg/facebook.jpg" width="270" height="195">
+				<figcaption>liste dans facebook</figcaption>
+			</figure>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : gouttières
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;ul&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/fb_yoda.png"&gt;
+				&lt;p&gt;&lt;a href=""&gt;Yoyo&lt;/a&gt; a changé sa photo de couverture&lt;/p&gt;
+				&lt;p&gt;20 mai, 10h30&lt;/p&gt;
+			&lt;/li&gt;
+		
+			&lt;li&gt;
+				&lt;img src="../exemples/img/vador_sucks.jpg"&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+		
+		&lt;ul&gt;
+			&lt;li&gt;17 personnes aiment ça.&lt;/li&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/fb_vador.png"&gt;
+				&lt;p&gt;&lt;a href=""&gt;Darkounet&lt;/a&gt; Tes faibles talents ne font pas le poids face à la puissance du côté obscur.&lt;/p&gt;
+				&lt;p&gt;20 mai, 12h18&lt;/p&gt;
+			&lt;/li&gt;		
+			&lt;li&gt;
+				&lt;img src="../exemples/img/fb_potter.png"&gt;
+				&lt;p&gt;&lt;a href=""&gt;HPot&lt;/a&gt; Ce ne sont pas nos aptitudes qui déterminent ce que nous sommes, ce sont nos choix.&lt;/p&gt;
+				&lt;p&gt;20 mai, 15h45&lt;/p&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/fb_gandalf.png"&gt;
+				&lt;p&gt;&lt;a href=""&gt;Gandalf&lt;/a&gt; En fait, le mieux serait que vous ne parliez pas du tout.&lt;/p&gt;
+				&lt;p&gt;21 mai, 8h02&lt;/p&gt;
+			&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+/* propriétés communes aux 2 listes */
+ul {
+	list-style: none;
+	margin: 10px auto 0 auto;
+	padding: 5px;
+	width: 450px;
+	border: 1px solid #D0D1D5;
+	color: #141823;
+	overflow: auto;	
+}
+
+/* 1ere liste : coins arrondis en haut */
+ul:first-of-type { 
+	border-radius: 5px 5px 0 0;
+	padding-bottom: 10px;
+}
+
+/* 2eme liste : coins arrondis en bas */
+ul:last-of-type {
+    background: #F6F7F8;    
+    margin: 0 auto;
+	border-top: none;
+	border-radius: 0 0 5px 5px;
+}
+
+/* marges haut et bas pour les lignes */
+li { margin: 5px 0; }
+
+/* les images dans le lignes flottent à gauche */
+li img { float: left; }
+
+/* les paragraphes dans les lignes ont une marger interne à gauche pour que le texte ne viennent pas en dessous de l'avatar de l'utisateur */
+li p {
+	margin: 0;
+	padding-left: 46px;
+}
+
+/* couleur gris clair pour le 2eme paragraphe des lignes */
+li p:nth-of-type(2) { color: #999; }
+
+/* liens dans les lignes */
+li a {
+	color: mediumblue;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+/* la 1ere ligne de la 2eme liste a un bord en bas */
+ul:last-of-type li:first-of-type {
+	border-bottom: 1px solid #D0D1D5;
+	margin: 0;
+}</textarea>
+			</form>
+
+
+
+			<a id="exo_top_5"></a>
+			<h4 class="fp-exo">Top 5</h4>
+			<section>
+				<div style="float: right; width: 260px; margin: 0 0 0 10px;">
+					<figure>
+						<img src="../exercices/exo_top_5.jpg" width="250" height="514">
+						<figcaption>liste à réaliser</figcaption>
+					</figure>
+					<figure>
+						<img src="../exercices/exo_top_5_hover.jpg" width="250"
+							height="106">
+						<figcaption>ligne au survol de la souris</figcaption>
+					</figure>
+				</div>
+
+				<p>
+					Complétez le code <abbr title="HyperText Markup Language">HTML</abbr>
+					et le code <abbr title="Cascading Style Sheets">CSS</abbr> pour
+					obtenir le résultat ci-contre.
+				</p>
+
+
+				<p class="fp-bot0">Vous pouvez classer les films comme vous
+					désirez. Les images ont toutes la même dimension : 120 pixels de
+					large et 160 pixels de haut. Les correspondances avec les films
+					sont :</p>
+				<ul>
+					<li>Le Cinquième Element<br>../exemples/img/hit_element.jpg
+					</li>
+					<li>Avatar<br>../exemples/img/hit_avatar.jpg
+					</li>
+					<li>L'Empire contre-attaque<br>../exemples/img/hit_empire.jpg
+					</li>
+					<li>Brazil<br>../exemples/img/hit_brazil.jpg
+					</li>
+					<li>Gattaca<br>../exemples/img/hit_gattaca.jpg
+					<li>
+				</ul>
+
+				<p>Les numéros ne sont pas faits avec une liste ordonnée. Leur
+					police est Helvetica ou Verdana, gras, 160 pixels.</p>
+
+				<p>La police pour le titre du film est de taille 20 pixels.</p>
+
+				<p>
+					Au survol de la souris, la couleur du numéro change (<code>red</code>)
+					ainsi que la bordure de la ligne (4 pixel de large).
+				</p>
+
+				<p class="fp-completez fp-clear">
+					<a onclick="top.FP.Voir.showCompletez('exo_top_5_comp')">Code à
+						compléter</a>
+				</p>
+
+				<div id="exo_top_5_comp" class="BLOC-completez">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : top 5
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;ul class="hit-parade"&gt;
+			&lt;li&gt;
+
+			&lt;/li&gt;
+			&lt;li&gt;
+
+			&lt;/li&gt;
+			&lt;li&gt;
+
+			&lt;/li&gt;
+			&lt;li&gt;
+
+			&lt;/li&gt;
+			&lt;li&gt;
+
+			&lt;/li&gt;			
+		&lt;/oll&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+
+CODE CSS A COMPLETER 
+
+</textarea>
+					</form>
+				</div>
+
+				<p class="fp-solution">
+					<a onclick="top.FP.Voir.showSolution('exo_top_5_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_top_5_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : top 5
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;ul class="hit-parade"&gt;
+			&lt;li&gt;
+				&lt;p&gt;1&lt;/p&gt;
+				&lt;img src="../exemples/img/hit_element.jpg"&gt;
+				&lt;p&gt;Le Cinquième Elément&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;2&lt;/p&gt;
+				&lt;img src="../exemples/img/hit_avatar.jpg"&gt;
+				&lt;p&gt;Avatar&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;3&lt;/p&gt;
+				&lt;img src="../exemples/img/hit_empire.jpg"&gt;
+				&lt;p&gt;L'Empire contre-attaque&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;4&lt;/p&gt;
+				&lt;img src="../exemples/img/hit_brazil.jpg"&gt;
+				&lt;p&gt;Brazil&lt;/p&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;p&gt;5&lt;/p&gt;
+				&lt;img src="../exemples/img/hit_gattaca.jpg"&gt;
+				&lt;p&gt;Gattaca&lt;/p&gt;
+			&lt;/li&gt;			
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+.hit-parade {
+	margin: 0;
+	padding: 0;
+}
+
+/* lignes de la liste */
+.hit-parade li {
+	margin: 20px 0;
+	font-family: Helvetica, Verdana, sans-serif;
+	line-height: 160px;	/* centrer verticalement le texte */
+	border: 4px solid transparent;	/* marge transparente
+									pour qu'il n'y ait pas de
+									décalage au survol de 
+									la souris */
+}
+
+/* 1er paragraphe d'une ligne, flottant à gauche */
+.hit-parade li p:first-of-type {
+	float: left;
+	margin: 0;
+	font-weight: bold;
+	font-size: 160px;
+	color: #999;
+}
+
+/* images de la liste, flottantes à gauche */
+.hit-parade img {
+	float: left;
+	margin: 0 10px;
+}
+
+/* 2eme paragraphe d'une ligne */
+.hit-parade li p:last-of-type {
+	font-size: 20px;
+	color: #000;
+	margin: 0;
+}
+
+/* changement de couleur bordure ligne au survol souris */
+.hit-parade li:hover { border: 4px solid red; }
+
+/* changement de couleur 1er parapgraphe au survol souris */
+.hit-parade li:hover p:first-of-type { color: red; }</textarea>
+					</form>
+				</div>
+			</section>
+
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Compteur de lignes</h3>
+		<section>
+			<p class="fp-bot0">L'exercice précédent montre qu'il n'est pas
+				facile de styler le numéro de ligne d'une liste numérotée. Si on
+				veut avoir un compteur automatique, il est possible d'utiliser deux
+				propriétés un peu particulières :</p>
+			<ul>
+				<li><a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'counter-reset')">counter-reset</a>
+					permet d'initialiser un compteur que l'on nomme à notre convenance
+					et que l'on peut initialiser avec n'importe quelle valeur entière
+					(éventuellement différente de 0, la valeur par défaut) : <br>
+					<code>counter-reset: mon_compteur;<br> counter-reset:
+						autre_compteur 10;
+				</code></li>
+				<li><a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'counter-increment')">counter-increment</a>
+					incrémente automatiquement le compteur précédemment initialisé : <br>
+					<code>counter-increment: mon_compteur;</code> <br> Il est
+					possible de donner la valeur de l'incrément (1 par défaut). Cette
+					valeur doit être un entier :<br> <code>counter-increment:
+						autre_compteur 5;</code></li>
+			</ul>
+
+			<p>
+				Pour récupèrer le numéro de la ligne en cours on utilise la fonction
+				<code>counter()</code> dont le paramètre est le nom d'un compteur.
+				Une fois que l'on a le numéro de la ligne, on peut l'afficher avec
+				le pseudo élément <a class="fp-lientuto"
+					onclick="top.FP.Voir.showPageTuto('css02f1', 'sel_before')">
+					::before</a> et sa propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'content')">content</a>
+			<p class="fp-p-raz">
+				L'exemple suivant reprend l'exercice sur le top 5 des films en
+				utilisant la technique des compteurs.
+				<br>
+				On pourra noter que le code <abbr title="HyperText Markup Language">HTML</abbr>
+				est simplifié (disparition des numéros et des paragraphes).
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : compteur de lignes
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;ul class="hit-parade"&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_element.jpg"&gt;
+				Le Cinquième Elément
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_avatar.jpg"&gt;
+				Avatar
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_empire.jpg"&gt;
+				L'Empire contre-attaque
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_brazil.jpg"&gt;
+				Brazil
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_gattaca.jpg"&gt;
+				Gattaca
+			&lt;/li&gt;			
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+.hit-parade {
+	margin: 0;
+	padding: 0;
+	list-style: none;		/* pas de puce pour la liste */
+	counter-reset: film;	/* initialisation du compteur */
+}
+
+.hit-parade li {
+	margin: 20px 0 20px 90px;	/* marge, en particulier à
+								gauche pour laisser la place
+								au numéro de ligne */
+	font: 20px/160px Helvetica, Verdana, sans-serif;
+	position: relative;		/* pour pouvoir positionner en
+							absolu le pseudo élément */
+}
+
+/* le numéro de la ligne avec un pseudo élément */
+.hit-parade li::before {
+	counter-increment: film;	/* incrément du compteur */
+	content: counter(film);		/* génération du contenu */
+	position: absolute;			/* positionnement */
+	left: -90px;				/* en début de ligne */
+	font-weight: bold;
+	font-size: 160px;
+	color: #999;
+}
+
+/* images de la liste, flottantes à gauche */
+.hit-parade img {
+	float: left;
+	margin: 0 10px;
+}
+
+.hit-parade li:hover::before {
+	color: red;
+}</textarea>
+			</form>
+
+
+			<a id="exo_top_5_inverse"></a>
+			<h4 class="fp-exo">Top 5 inversé</h4>
+			<section>
+				<figure style="float: right; width: 260px; margin: 0 0 0 10px;">
+					<img src="../exercices/exo_top_5_inverse.jpg" width="250"
+						height="604">
+					<figcaption>liste à réaliser</figcaption>
+				</figure>
+
+
+				<p>
+					Complétez le code <abbr title="Cascading Style Sheets">CSS</abbr>
+					pour obtenir le résultat ci-contre.
+				</p>
+
+				<p>Vous pouvez classer les films comme vous désirez, l'important
+					étant de commencer par le cinquième et de finir par le premier. Les
+					images ont toutes la même dimension : 120 pixels de large et 160
+					pixels de haut.</p>
+
+				<p>
+					Le rayon des boîtes des numéros est de 50 pixels. Le bord est de 4
+					pixel, couleur <code>chocolate</code>. Le fond est <code>darkorange</code>.
+					La police est Helvetica ou Verdana, gras, 30 pixels.
+				</p>
+
+				<p>
+					Au survol de la souris, la couleur du numéro change (<code>white</code>),
+					ainsi que le fond (<code>firebrick</code>) et la bordure (<code>orangered</code>).
+					Un halo est ajouté avec <code>rgba(255, 69, 0, 0.8)</code>.
+				</p>
+
+				<figure style="float: left; width: 260px;">
+					<img src="../exercices/exo_top_5_inverse_hover.jpg" width="250"
+						height="124">
+					<figcaption>ligne au survol de la souris</figcaption>
+				</figure>
+
+				<p class="fp-completez fp-clear">
+					<a onclick="top.FP.Voir.showCompletez('exo_top_5_inverse_comp')">Code
+						à compléter</a>
+				</p>
+
+				<div id="exo_top_5_inverse_comp" class="BLOC-completez">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : top 5 inversé
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;ul class="hit-parade"&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_element.jpg"&gt;
+				Le Cinquième Elément
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_avatar.jpg"&gt;
+				Avatar
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_empire.jpg"&gt;
+				L'Empire contre-attaque
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_brazil.jpg"&gt;
+				Brazil
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_gattaca.jpg"&gt;
+				Gattaca
+			&lt;/li&gt;			
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+
+CODE CSS A COMPLETER 
+
+</textarea>
+					</form>
+				</div>
+
+				<p class="fp-solution">
+					<a onclick="top.FP.Voir.showSolution('exo_top_5_inverse_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_top_5_inverse_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : top 5 inversé
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;ul class="hit-parade"&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_element.jpg"&gt;
+				Le Cinquième Elément
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_avatar.jpg"&gt;
+				Avatar
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_empire.jpg"&gt;
+				L'Empire contre-attaque
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_brazil.jpg"&gt;
+				Brazil
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_gattaca.jpg"&gt;
+				Gattaca
+			&lt;/li&gt;			
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+.hit-parade {
+	margin: 0;
+	padding: 0;
+	list-style: none;		/* pas de puce pour la liste */
+	counter-reset: film 6;	/* initialisation du compteur */
+}
+
+.hit-parade li {
+	margin: 30px;
+	font: 20px/160px Helvetica, Verdana, sans-serif;
+	position: relative;		/* pour pouvoir positionner en
+							absolu le pseudo élément */
+}
+
+/* le numéro de la ligne avec un pseudo élément */
+.hit-parade li::before {
+	counter-increment: film -1;	/* décrément du compteur */
+	content: counter(film);		/* génération du contenu */
+	position: absolute;			/* positionnement */
+	left: -20px;
+	top: -20px;
+	font: bold 30px/50px Helvetica, Verdana, sans-serif;
+	width: 50px;
+	height: 50px;
+	border: 4px solid chocolate;
+	border-radius: 50%;
+	background: darkorange;
+	text-align: center;
+}
+
+/* images de la liste, flottantes à gauche */
+.hit-parade img {
+	float: left;
+	margin: 0 10px;
+}
+
+/* survol d'une ligne par la souris */
+.hit-parade li:hover::before {
+	color: white;
+	box-shadow: 0 0 5px 3px rgba(255, 69, 0, 0.8);
+	border-color: orangered;
+	background: firebrick;
+}</textarea>
+					</form>
+				</div>
+			</section>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Lignes flottantes</h3>
+		<section>
+			<p>
+				Il arrive souvent que les lignes des listes soient utilisées en
+				positionnement flottant (<code>float: left</code> ou <code>float:
+					right</code>) par exemple pour faire des listes horizontales (menu) ou des
+				listes de vignettes photos.
+				<br>
+				Nous verrons en détail page suivante comment réaliser des menus avec
+				les listes et nous allons ici montrer un exemple de présentation de
+				vignettes.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : lignes flottantes
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;ul class="vignette"&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_12_singes.jpg"&gt;
+				L'Armée des 12 Singes
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_avatar.jpg"&gt;
+				Avatar
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_brazil.jpg"&gt;
+				Brazil
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_element.jpg"&gt;
+				Le Cinquième Elément
+			&lt;/li&gt;						
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_empire.jpg"&gt;
+				L'Empire contre-attaque
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_futur.jpg"&gt;
+				Retour vers le Futur
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_gattaca.jpg"&gt;
+				Gattaca
+			&lt;/li&gt;	
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_matrix.jpg"&gt;
+				Matrix
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_men.jpg"&gt;
+				Men in Black
+			&lt;/li&gt;	
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_minority.jpg"&gt;
+				Minority Report
+			&lt;/li&gt;	
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_robot.jpg"&gt;
+				I Robot
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;img src="../exemples/img/hit_strange.jpg"&gt;
+				Strange Days
+			&lt;/li&gt;			
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+.vignette {
+	margin: 0;
+	padding: 0;
+	list-style: none;	/* pas de puce pour la liste */
+	overflow: auto;		/* pour que les blocs flottants ne
+						sortent pas de la liste */
+}
+
+.vignette li {
+	float: left;
+	margin: 10px;
+	width: 120px;
+	height: 200px;
+	text-align: center;
+	border: 1px solid #aaa;
+	border-radius: 5px;
+	padding: 0 0 5px 0;
+}</textarea>
+			</form>
+
+
+			<a id="exo_liste_flottante"></a>
+			<h4 class="fp-exo">Vignettes flottantes</h4>
+			<section>
+				<figure style="float: right; width: 260px; margin: 0 0 0 10px;">
+					<img src="../exercices/exo_liste_flottante.jpg" width="250"
+						height="242">
+					<figcaption>liste à réaliser</figcaption>
+				</figure>
+
+
+				<p>
+					Complétez le code <abbr title="Cascading Style Sheets">CSS</abbr>
+					pour obtenir le résultat ci-contre.
+				</p>
+
+				<p>Les images ont toutes la même dimension : 120 pixels de large
+					et 160 pixels de haut. Par défaut elles sont affichées tronquées
+					dans un ovale.</p>
+
+				<p>
+					Au survol de la souris, l'image est affichée complétement. Le titre
+					du film est lui aussi affiché dans une boîte placée à 10 pixels du
+					bord inférieur de l'image. Le titre est récupéré dans l'attribut <code>data-titre</code>
+					des lignes de la liste. Une ombre est ajoutée tout autour de
+					l'image.
+				</p>
+
+				<figure style="float: left; width: 260px;">
+					<img src="../exercices/exo_liste_flottante_hover.jpg"
+						width="147" height="181">
+					<figcaption>ligne au survol de la souris</figcaption>
+				</figure>
+
+				<p class="fp-completez fp-clear">
+					<a onclick="top.FP.Voir.showCompletez('exo_liste_flottante_comp')">Code
+						à compléter</a>
+				</p>
+
+				<div id="exo_liste_flottante_comp" class="BLOC-completez">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : vignettes flottantes
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;ul class="vignette"&gt;
+			&lt;li data-titre="L'Armée des 12 Singes"&gt;
+				&lt;img src="../exemples/img/hit_12_singes.jpg"&gt;
+			&lt;/li&gt;
+			&lt;li data-titre="Avatar"&gt;
+				&lt;img src="../exemples/img/hit_avatar.jpg"&gt;
+			&lt;/li&gt;
+			&lt;li data-titre="Brazil"&gt;
+				&lt;img src="../exemples/img/hit_brazil.jpg"&gt;
+			&lt;/li&gt;
+			&lt;li data-titre="Le Cinquième Elément"&gt;
+				&lt;img src="../exemples/img/hit_element.jpg"&gt;
+			&lt;/li&gt;						
+			&lt;li data-titre="L'Empire contre-attaque"&gt;
+				&lt;img src="../exemples/img/hit_empire.jpg"&gt;
+			&lt;/li&gt;
+			&lt;li data-titre="Retour vers le Futur"&gt;
+				&lt;img src="../exemples/img/hit_futur.jpg"&gt;
+			&lt;/li&gt;
+			&lt;li data-titre="Gattaca"&gt;
+				&lt;img src="../exemples/img/hit_gattaca.jpg"&gt;
+			&lt;/li&gt;	
+			&lt;li data-titre="Matrix"&gt;
+				&lt;img src="../exemples/img/hit_matrix.jpg"&gt;
+			&lt;/li&gt;
+			&lt;li data-titre="Men in Black"&gt;
+				&lt;img src="../exemples/img/hit_men.jpg"&gt;
+			&lt;/li&gt;	
+			&lt;li data-titre="Minority Report"&gt;
+				&lt;img src="../exemples/img/hit_minority.jpg"&gt;
+			&lt;/li&gt;	
+			&lt;li data-titre="I Robot"&gt;
+				&lt;img src="../exemples/img/hit_robot.jpg"&gt;
+			&lt;/li&gt;
+			&lt;li data-titre="Strange Days"&gt;
+				&lt;img src="../exemples/img/hit_strange.jpg"&gt;
+			&lt;/li&gt;			
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+
+CODE CSS A COMPLETER 
+
+</textarea>
+					</form>
+				</div>
+
+				<p class="fp-solution">
+					<a
+						onclick="top.FP.Voir.showSolution('exo_liste_flottante_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_liste_flottante_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : vignettes flottantes
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;ul class="vignette"&gt;
+			&lt;li data-titre="L'Armée des 12 Singes"&gt;
+				&lt;img src="../exemples/img/hit_12_singes.jpg"&gt;
+			&lt;/li&gt;
+			&lt;li data-titre="Avatar"&gt;
+				&lt;img src="../exemples/img/hit_avatar.jpg"&gt;
+			&lt;/li&gt;
+			&lt;li data-titre="Brazil"&gt;
+				&lt;img src="../exemples/img/hit_brazil.jpg"&gt;
+			&lt;/li&gt;
+			&lt;li data-titre="Le Cinquième Elément"&gt;
+				&lt;img src="../exemples/img/hit_element.jpg"&gt;
+			&lt;/li&gt;						
+			&lt;li data-titre="L'Empire contre-attaque"&gt;
+				&lt;img src="../exemples/img/hit_empire.jpg"&gt;
+			&lt;/li&gt;
+			&lt;li data-titre="Retour vers le Futur"&gt;
+				&lt;img src="../exemples/img/hit_futur.jpg"&gt;
+			&lt;/li&gt;
+			&lt;li data-titre="Gattaca"&gt;
+				&lt;img src="../exemples/img/hit_gattaca.jpg"&gt;
+			&lt;/li&gt;	
+			&lt;li data-titre="Matrix"&gt;
+				&lt;img src="../exemples/img/hit_matrix.jpg"&gt;
+			&lt;/li&gt;
+			&lt;li data-titre="Men in Black"&gt;
+				&lt;img src="../exemples/img/hit_men.jpg"&gt;
+			&lt;/li&gt;	
+			&lt;li data-titre="Minority Report"&gt;
+				&lt;img src="../exemples/img/hit_minority.jpg"&gt;
+			&lt;/li&gt;	
+			&lt;li data-titre="I Robot"&gt;
+				&lt;img src="../exemples/img/hit_robot.jpg"&gt;
+			&lt;/li&gt;
+			&lt;li data-titre="Strange Days"&gt;
+				&lt;img src="../exemples/img/hit_strange.jpg"&gt;
+			&lt;/li&gt;			
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+.vignette {
+	margin: 0;
+	padding: 0;
+	list-style: none;	/* pas de puce pour la liste */
+	overflow: auto;		/* pour que les blocs flottants ne
+						sortent pas de la liste */
+}
+
+/* Ligne flottante avec dimensions fixées */
+.vignette li {
+	float: left;
+	margin: 10px;
+	width: 120px;
+	height: 160px;
+	position: relative;	/* pour pouvoir positionner en
+						absolu le pseudo élément */
+}
+
+/* pseudo élément pour le titre */
+.vignette li::before {
+	content: attr(data-titre);	/* récupération du contenu de
+								l'attribut data-titre */
+	position: absolute;
+	left: 0;
+	bottom: 10px;
+	width: 118px;
+	border: 1px solid black;
+	text-align: center;
+	display: none;				/* masqué par défaut */
+	background: white;
+}
+	
+/* affichage du pseudo élément au survol de la souris */
+.vignette li:hover::before {
+	display: block;
+}
+
+.vignette img {
+	border-radius: 50%;			/* vignette ovale */
+}
+
+/* vignette rectanguliare au sruvol de la souris */
+.vignette li:hover img {
+	border-radius: 0;			
+}</textarea>
+					</form>
+				</div>
+			</section>
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

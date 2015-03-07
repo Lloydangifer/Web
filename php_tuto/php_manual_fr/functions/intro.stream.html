@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Introduction</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="book.stream.html">Flux</a></div>
+ <div class="next"><a href="stream.setup.html">Installation/Configuration</a></div>
+ <div class="up"><a href="book.stream.html">Flux</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="intro.stream" class="preface">
+   <h1 class="title">Introduction</h1>
+   <p class="simpara">
+    Les flux (&quot;<em>streams</em>&quot; en anglais) ont été introduits
+    en PHP 4.3.0 comme méthode de généralisation des fichiers, sockets,
+    connexions réseau, données compressées et autres opérations du même type,
+    qui partagent des opérations communes. Dans sa définition la plus simple,
+    un <em>flux</em> est une <em>ressource</em> qui
+    présente des capacités de flux : c&#039;est-à-dire que ces objets peuvent
+    être lus ou recevoir des écritures de manière linéaire, et dispose aussi
+    de moyen d&#039;accéder à des positions arbitraires dans le flux.
+   </p>
+   <p class="simpara">
+    Un <em>gestionnaire</em> (littéralement,
+    <em>wrapper</em> en anglais), est une fonction qui indique comment le flux se comporte spécifiquement. C&#039;est le cas du gestionnaire
+    <em>http</em>, qui sait comment traduire une URL en une
+    requête <em>HTTP/1.0</em> sur un serveur distant.
+    Il existe de nombreux gestionnaires intégrés à PHP
+    par défaut (voir <a href="wrappers.html" class="xref">Liste des protocoles et des gestionnaires support&eacute;s</a>),
+    et, de plus, des gestionnaires spécifiques peuvent être ajoutés dans
+    les scripts PHP avec la fonction  <span class="function"><a href="function.stream-register-wrapper.html" class="function">stream_register_wrapper()</a></span>,
+    ou bien directement par une autre extension, en utilisant l&#039;API C de
+    <a href="internals2.streams.html" class="xref">Working with streams</a>.
+    Grâce à la souplesse des gestionnaires qui peuvent être ajoutés à PHP,
+    il n&#039;y a pas de limites aux possibilités offertes. Pour connaître la liste
+    des gestionnaires actuellement enregistrés, utilisez la fonction
+     <span class="function"><a href="function.stream-get-wrappers.html" class="function">stream_get_wrappers()</a></span>.
+   </p>
+   <p class="para">
+    Un flux est référencé comme :
+    <em><code class="parameter">scheme</code></em>://<em><code class="parameter">target</code></em>
+    <ul class="itemizedlist">
+     <li class="listitem">
+      <span class="simpara">
+       <em><code class="parameter">scheme</code></em>(<a href="language.types.string.html" class="link">chaîne de caractères</a>) -
+       Le nom du gestionnaire a utiliser. Par exemple, <em>file</em>,
+       <em>http</em>, <em>https</em>,
+       <em>ftp</em>, <em>ftps</em>, <em>compress.zlib</em>,
+       <em>compress.bz</em>. et <em>php.</em>.
+       Voir <a href="wrappers.html" class="xref">Liste des protocoles et des gestionnaires support&eacute;s</a>
+       pour une liste complète des gestionnaires enregistrés de PHP.
+       Si aucun gestionnaire n&#039;est spécifié, la fonction par défaut est utilisée (typiquement,
+       <em>file</em>://).
+      </span>
+     </li>
+     <li class="listitem">
+      <span class="simpara">
+       <em><code class="parameter">target</code></em> -
+       Dépend du gestionnaire utilisé. Pour les flux relatifs aux systèmes
+       de fichiers, c&#039;est typiquement un chemin et un nom de fichier du
+       fichier désiré. Pour les flux relatifs aux réseaux, c&#039;est 
+       typiquement le nom d&#039;hôte, souvent avec un chemin apposé. 
+       Voir aussi <a href="wrappers.html" class="xref">Liste des protocoles et des gestionnaires support&eacute;s</a>
+       pour une description des cibles des flux intégrés.
+      </span>
+     </li>
+    </ul>
+   </p>
+   <p class="para">
+    <blockquote class="note"><p><strong class="note">Note</strong>: 
+     <p class="para">
+      Des informations sur l&#039;utilisation des flux dans le code source de PHP
+      peuvent être trouvées dans
+      <a href="internals2.ze1.streams.html" class="link">l&#039;API des flux pour les auteurs d&#039;extensions PHP</a>.
+     </p>
+    </p></blockquote>
+   </p>
+  </div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="book.stream.html">Flux</a></div>
+ <div class="next"><a href="stream.setup.html">Installation/Configuration</a></div>
+ <div class="up"><a href="book.stream.html">Flux</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

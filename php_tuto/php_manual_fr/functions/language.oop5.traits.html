@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Traits</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.oop5.interfaces.html">Interfaces</a>
+		</div>
+		<div class="next">
+			<a href="language.oop5.overloading.html">Surcharge magique</a>
+		</div>
+		<div class="up">
+			<a href="language.oop5.html">Les classes et les objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.oop5.traits" class="sect1">
+		<h2 class="title">Traits</h2>
+		<p class="para">Depuis PHP 5.4.0, PHP supporte une manière de
+			réutiliser le code appelée Traits.</p>
+		<p class="para">Les traits sont un mécanisme de réutilisation de
+			code dans un langage à héritage simple tel que PHP. Un trait tente de
+			réduire certaines limites de l&#039;héritage simple, en autorisant le
+			développeur à réutiliser un certain nombre de méthodes dans des
+			classes indépendantes. La sémantique entre les classes et les traits
+			réduit la complexité et évite les problèmes typiques de
+			l&#039;héritage multiple et des Mixins.</p>
+		<p class="para">Un trait est semblable à une classe, mais il ne
+			sert qu&#039;à grouper des fonctionnalités d&#039;une manière
+			intéressante. Il n&#039;est pas possible d&#039;instancier un Trait
+			en lui-même. C&#039;est un ajout à l&#039;héritage traditionnel, qui
+			autorise la composition horizontale de comportements, c&#039;est à
+			dire l&#039;utilisation de méthodes de classe sans besoin
+			d&#039;héritage.</p>
+
+		<div class="example" id="language.oop5.traits.basicexample">
+			<p>
+				<strong>Exemple #1 Exemple d&#039;utilisation de Trait</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />trait&nbsp;ezcReflectionReturnInfo&nbsp;
+						</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;
+						</span><span style="color: #0000BB">getReturnType</span><span
+							style="color: #007700">()&nbsp;{&nbsp;</span><span
+							style="color: #FF8000">/*1*/&nbsp;</span><span
+							style="color: #007700">}<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;
+						</span><span style="color: #0000BB">getReturnDescription</span><span
+							style="color: #007700">()&nbsp;{&nbsp;</span><span
+							style="color: #FF8000">/*2*/&nbsp;</span><span
+							style="color: #007700">}<br />}<br />
+							<br />class&nbsp;
+						</span><span style="color: #0000BB">ezcReflectionMethod&nbsp;</span><span
+							style="color: #007700">extends&nbsp;</span><span
+							style="color: #0000BB">ReflectionMethod&nbsp;</span><span
+							style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;use&nbsp;
+						</span><span style="color: #0000BB">ezcReflectionReturnInfo</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #FF8000">/*&nbsp;...&nbsp;*/<br /></span><span
+							style="color: #007700">}<br />
+							<br />class&nbsp;
+						</span><span style="color: #0000BB">ezcReflectionFunction&nbsp;</span><span
+							style="color: #007700">extends&nbsp;</span><span
+							style="color: #0000BB">ReflectionFunction&nbsp;</span><span
+							style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;use&nbsp;
+						</span><span style="color: #0000BB">ezcReflectionReturnInfo</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #FF8000">/*&nbsp;...&nbsp;*/<br /></span><span
+							style="color: #007700">}<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="sect2" id="language.oop5.traits.precedence">
+			<h3 class="title">Précédence</h3>
+			<p class="para">Une méthode héritée depuis une classe mère est
+				écrasée par une méthode issue d&#039;un Trait. L&#039;ordre de
+				précédence fait en sorte que les méthodes de la classe courante
+				écrasent les méthodes issues d&#039;un Trait, elles-mêmes
+				surchargeant les méthodes héritées.</p>
+			<div class="example"
+				id="language.oop5.traits.precedence.examples.ex1">
+				<p>
+					<strong>Exemple #2 Exemple avec l&#039;ordre de précédence</strong>
+				</p>
+				<div class="example-contents">
+					<p>Une méthode héritée depuis la classe de base est écrasée par
+						celle provenant du Trait. Ce n&#039;est pas le cas des méthodes
+						réelles, écrites dans la classe de base.</p>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">Base&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">sayHello</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'Hello&nbsp;'</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #0000BB">trait&nbsp;SayWorld&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">sayHello</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">parent</span><span
+								style="color: #007700">::</span><span style="color: #0000BB">sayHello</span><span
+								style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'World!'</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">MyHelloWorld&nbsp;</span><span
+								style="color: #007700">extends&nbsp;</span><span
+								style="color: #0000BB">Base&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;use&nbsp;
+							</span><span style="color: #0000BB">SayWorld</span><span
+								style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #0000BB">$o&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">MyHelloWorld</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">$o</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">sayHello</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Hello World!
+</pre>
+					</div>
+				</div>
+			</div>
+			<div class="example"
+				id="language.oop5.traits.precedence.examples.ex2">
+				<p>
+					<strong>Exemple #3 Autre exemple d&#039;ordre de
+						précédence</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />trait&nbsp;HelloWorld&nbsp;
+							</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">sayHello</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'Hello&nbsp;World!'</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">TheWorldIsNotEnough&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;use&nbsp;
+							</span><span style="color: #0000BB">HelloWorld</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">sayHello</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'Hello&nbsp;Universe!'</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #0000BB">$o&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">TheWorldIsNotEnough</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">$o</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">sayHello</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Hello Universe!
+</pre>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="sect2" id="language.oop5.traits.multiple">
+			<h3 class="title">Multiples Traits</h3>
+			<p class="para">Une classe peut utiliser de multiples Traits en
+				les déclarant avec le mot-clé use, séparés par des virgules.</p>
+			<div class="example" id="language.oop5.traits.multiple.ex1">
+				<p>
+					<strong>Exemple #4 Utilisation de plusieurs Traits</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />trait&nbsp;Hello&nbsp;
+							</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">sayHello</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'Hello&nbsp;'</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #0000BB">trait&nbsp;World&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">sayWorld</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'World'</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">MyHelloWorld&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;use&nbsp;
+							</span><span style="color: #0000BB">Hello</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">World</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">sayExclamationMark</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'!'</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #0000BB">$o&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">MyHelloWorld</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">$o</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">sayHello</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">$o</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">sayWorld</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">$o</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">sayExclamationMark</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Hello World!
+</pre>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="sect2" id="language.oop5.traits.conflict">
+			<h3 class="title">Résolution des conflits</h3>
+			<p class="para">Si deux Traits insèrent une méthode avec le même
+				nom, une erreur fatale est levée si le conflit n&#039;est pas
+				explicitement résolu.</p>
+			<p class="para">
+				Pour résoudre un conflit de nommage entre des Traits utilisés dans
+				la même classe, il faut utiliser l&#039;opérateur <em>insteadof</em>
+				pour choisir une des méthodes en conflit.
+			</p>
+			<p class="para">
+				Puisque ce principe ne permet que d&#039;exclure des méthodes,
+				l&#039;opérateur <em>as</em> peut être utilisé pour permettre
+				l&#039;inclusion d&#039;une des méthodes conflictuelles sous un
+				autre nom.
+			</p>
+			<div class="example" id="language.oop5.traits.examples.ex1">
+				<p>
+					<strong>Exemple #5 Résolution des conflits</strong>
+				</p>
+				<div class="example-contents">
+					<p>Dans cet exemple, la classe Talker utilise les traits A et
+						B. Comme A et B ont des méthodes conflictuelles, on indique que
+						l&#039;on souhaite utiliser la variante de smallTalk depuis le
+						trait B, et la variante de bigTalk depuis le trait A.</p>
+				</div>
+				<div class="example-contents">
+					<p>
+						La classe Aliased_Talker utilise l&#039;opérateur <em>as</em> pour
+						être capable d&#039;utiliser l&#039;implementation bigTalk de B
+						sous un alias supplémentaire <em>talk</em>.
+					</p>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />trait&nbsp;A&nbsp;
+							</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">smallTalk</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'a'</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">bigTalk</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'A'</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #0000BB">trait&nbsp;B&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">smallTalk</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'b'</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">bigTalk</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'B'</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">Talker&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;use&nbsp;
+							</span><span style="color: #0000BB">A</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">B&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">B</span><span style="color: #007700">::</span><span
+								style="color: #0000BB">smallTalk&nbsp;insteadof&nbsp;A</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">A</span><span style="color: #007700">::</span><span
+								style="color: #0000BB">bigTalk&nbsp;insteadof&nbsp;B</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">Aliased_Talker&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;use&nbsp;
+							</span><span style="color: #0000BB">A</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">B&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">B</span><span style="color: #007700">::</span><span
+								style="color: #0000BB">smallTalk&nbsp;insteadof&nbsp;A</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">A</span><span style="color: #007700">::</span><span
+								style="color: #0000BB">bigTalk&nbsp;insteadof&nbsp;B</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">B</span><span style="color: #007700">::</span><span
+								style="color: #0000BB">bigTalk&nbsp;</span><span
+								style="color: #007700">as&nbsp;</span><span
+								style="color: #0000BB">talk</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="sect2" id="language.oop5.traits.visibility">
+			<h3 class="title">Changer la visibilité des méthodes</h3>
+			<p class="para">
+				En utilisant la syntaxe <em>as</em>, vous pouvez aussi ajuster la
+				visibilité de la méthode dans la classe qui l&#039;utilise.
+			</p>
+			<div class="example" id="language.oop5.traits.visibility.ex1">
+				<p>
+					<strong>Exemple #6 Changer la visibilité des méthodes</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />trait&nbsp;HelloWorld&nbsp;
+							</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">sayHello</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'Hello&nbsp;World!'</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Modification&nbsp;de&nbsp;la&nbsp;visibilité&nbsp;de&nbsp;la&nbsp;méthode&nbsp;sayHello<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">MyClass1&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;use&nbsp;
+							</span><span style="color: #0000BB">HelloWorld&nbsp;</span><span
+								style="color: #007700">{&nbsp;</span><span
+								style="color: #0000BB">sayHello&nbsp;</span><span
+								style="color: #007700">as&nbsp;protected;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Utilisation&nbsp;d'un&nbsp;alias&nbsp;lors&nbsp;de&nbsp;la&nbsp;modification&nbsp;de&nbsp;la&nbsp;visibilité<br />//&nbsp;La&nbsp;visibilité&nbsp;de&nbsp;la&nbsp;méthode&nbsp;sayHello&nbsp;n'est&nbsp;pas&nbsp;modifiée<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">MyClass2&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;use&nbsp;
+							</span><span style="color: #0000BB">HelloWorld&nbsp;</span><span
+								style="color: #007700">{&nbsp;</span><span
+								style="color: #0000BB">sayHello&nbsp;</span><span
+								style="color: #007700">as&nbsp;private&nbsp;</span><span
+								style="color: #0000BB">myPrivateHello</span><span
+								style="color: #007700">;&nbsp;}<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="sect2" id="language.oop5.traits.composition">
+			<h3 class="title">Traits Composés depuis d&#039;autres Traits</h3>
+			<p class="para">Tout comme les classes peuvent utiliser des
+				traits, d&#039;autres traits le peuvent aussi. Un trait peut donc
+				utiliser d&#039;autres traits et hériter de tout ou d&#039;une
+				partie de ceux-ci.</p>
+			<div class="example" id="language.oop5.traits.composition.ex1">
+				<p>
+					<strong>Exemple #7 Traits Composés depuis d&#039;autres
+						Traits</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />trait&nbsp;Hello&nbsp;
+							</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">sayHello</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'Hello&nbsp;'</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #0000BB">trait&nbsp;World&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">sayWorld</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'World!'</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #0000BB">trait&nbsp;HelloWorld&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;use&nbsp;
+							</span><span style="color: #0000BB">Hello</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">World</span><span style="color: #007700">;<br />}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">MyHelloWorld&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;use&nbsp;
+							</span><span style="color: #0000BB">HelloWorld</span><span
+								style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #0000BB">$o&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">MyHelloWorld</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">$o</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">sayHello</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">$o</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">sayWorld</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Hello World!
+</pre>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="sect2" id="language.oop5.traits.abstract">
+			<h3 class="title">Méthodes abstraites dans les Traits</h3>
+			<p class="para">Les traits supportent l&#039;utilisation de
+				méthodes abstraites afin d&#039;imposer des contraintes aux classes
+				sous-jacentes.</p>
+			<div class="example" id="language.oop5.traits.abstract.ex1">
+				<p>
+					<strong>Exemple #8 Obligations requises par les méthodes
+						abstraites</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />trait&nbsp;Hello&nbsp;
+							</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">sayHelloWorld</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'Hello'</span><span
+								style="color: #007700">.</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">getWorld</span><span
+								style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;abstract&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">getWorld</span><span
+								style="color: #007700">();<br />}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">MyHelloWorld&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;
+							</span><span style="color: #0000BB">$world</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;use&nbsp;
+							</span><span style="color: #0000BB">Hello</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">getWorld</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">world</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">setWorld</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$val</span><span
+								style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">world&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">$val</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="sect2" id="language.oop5.traits.static">
+			<h3 class="title">Attributs statiques dans les Traits</h3>
+			<p class="para">Des variables statiques peuvent être utilisées
+				dans les méthodes d&#039;un trait, mais ne peuvent être définies
+				dans le trait. Les traits peuvent par contre déclarer des méthodes
+				statiques pour la classe sous-jacente.</p>
+			<div class="example" id="language.oop5.traits.static.ex1">
+
+				<p>
+					<strong>Exemple #9 Variables statiques</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />trait&nbsp;Counter&nbsp;
+							</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">inc</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;
+							</span><span style="color: #0000BB">$c&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$c&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">$c&nbsp;</span><span
+								style="color: #007700">+&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$c</span><span
+								style="color: #DD0000">\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">C1&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;use&nbsp;
+							</span><span style="color: #0000BB">Counter</span><span
+								style="color: #007700">;<br />}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">C2&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;use&nbsp;
+							</span><span style="color: #0000BB">Counter</span><span
+								style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #0000BB">$o&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">C1</span><span style="color: #007700">();&nbsp;</span><span
+								style="color: #0000BB">$o</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">inc</span><span style="color: #007700">();&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;echo&nbsp;1<br /></span><span
+								style="color: #0000BB">$p&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">C2</span><span style="color: #007700">();&nbsp;</span><span
+								style="color: #0000BB">$p</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">inc</span><span style="color: #007700">();&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;echo&nbsp;1<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			<div class="example" id="language.oop5.traits.static.ex2">
+				<p>
+					<strong>Exemple #10 Méthodes statiques</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />trait&nbsp;StaticExample&nbsp;
+							</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">doSomething</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #DD0000">'Doing&nbsp;something'</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">Example&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;use&nbsp;
+							</span><span style="color: #0000BB">StaticExample</span><span
+								style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #0000BB">Example</span><span
+								style="color: #007700">::</span><span style="color: #0000BB">doSomething</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="sect2" id="language.oop5.traits.properties">
+			<h3 class="title">Propriétés</h3>
+			<p class="para">Les traits peuvent aussi définir des propriétés.
+			</p>
+			<div class="example" id="language.oop5.traits.properties.example">
+				<p>
+					<strong>Exemple #11 Définir des propriétes</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />trait&nbsp;PropertiesTrait&nbsp;
+							</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;
+							</span><span style="color: #0000BB">$x&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">;<br />}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">PropertiesExample&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;use&nbsp;
+							</span><span style="color: #0000BB">PropertiesTrait</span><span
+								style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #0000BB">$example&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">PropertiesExample</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$example</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">x</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			<p class="para">
+				Si un trait définit une propriété, alors la classe ne peut pas
+				définir une propriété de même nom ; sinon, une erreur sera levée. Il
+				s&#039;agira d&#039;une erreur de type <strong><code>E_STRICT</code></strong>
+				si la définition dans la classe est compatible (même visibilité et
+				valeur initiale), et d&#039;une erreur fatale dans les autres cas.
+			</p>
+			<div class="example" id="language.oop5.traits.properties.conflicts">
+				<p>
+					<strong>Exemple #12 Résolution des conflits</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />trait&nbsp;PropertiesTrait&nbsp;
+							</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;
+							</span><span style="color: #0000BB">$same&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;
+							</span><span style="color: #0000BB">$different&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">false</span><span style="color: #007700">;<br />}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">PropertiesExample&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;use&nbsp;
+							</span><span style="color: #0000BB">PropertiesTrait</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;
+							</span><span style="color: #0000BB">$same&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;Strict&nbsp;Standards<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">public&nbsp;</span><span
+								style="color: #0000BB">$different&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;Fatal&nbsp;error<br /></span><span
+								style="color: #007700">}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.oop5.interfaces.html">Interfaces</a>
+		</div>
+		<div class="next">
+			<a href="language.oop5.overloading.html">Surcharge magique</a>
+		</div>
+		<div class="up">
+			<a href="language.oop5.html">Les classes et les objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

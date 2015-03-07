@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Bibliothèques de fonctions</title>
+<link rel="stylesheet" href="../_local/codemirror.css">
+<script src="../_local/codemirror_pour_php.js"></script>
+
+<link rel="stylesheet" href="../_core/def.css">
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<p class="fp-rappel">
+			Rappel : si vous travaillez sur votre ordinateur personnel, vous
+			devez avoir <a onclick="top.FP.Voir.showPLUS('exemple/initbase.php')">créer
+				la base de données de test</a> pour que les exemples puissent être
+			utilisés.
+		</p>
+
+		<p class="fp-puce">La connexion à la base de données doit être
+			faite dans chaque script qui va utiliser cette base. Il faut donc la
+			centraliser dans une fonction placée dans une bibliothèque pour que
+			toute modification en soit simplifiée. Les identifiants de connexion
+			seront en effet différent selon que l'on est en phase de
+			développement, sur notre serveur (personnelle ou de l'entreprise), ou
+			en phase de production (le site est accessible depuis le Web et sur
+			le serveur d'un hébergeur).</p>
+
+		<p class="fp-puce fp-bottom0">Pour faire correctement les choses
+			il faut avoir 2 fichiers :</p>
+		<ul class="fp-ul-puce">
+			<li>un fichier avec les fonctions de gestion de la base,</li>
+			<li>un fichier avec les paramètres de notre application (et en
+				particulier les paramètres concernant la base de données).</li>
+		</ul>
+
+		<p>
+			Nous utiliserons notre bibliothèque (<span class="fp-code">bib_fonctions.php</span>)
+			pour y mettre notre fonction de connexion, et un nouveau fichier (<span
+				class="fp-code">bib_params.php</span>) pour y mettre les paramètres
+			de notre application.
+		</p>
+
+		<p>
+			<b>Contenu du fichier <span class="fp-code">bib_params.php</span></b>
+		</p>
+
+		<pre data-code="PHP">
+&lt;?php
+//
+// Paramètres de l'application
+//
+/* Comme le fichier des paramètres doit être (normalement)
+ * appelé par tous les scripts, nous pouvons y placer toutes
+ * les initialisations qui devraient être faites.  
+ * Nous pourrions y mettre ob_start et session_start() par
+ * exemple. Elles n'y sont pas pour que vous ne perdiez pas
+ * de vue la bufferisation des sorties. 
+ */
+//ob_start();
+//session_start();
+
+/* Une des façons les plus simples de définir des paramètres
+ * est de définir des constantes car elles sont "superglobales"
+ */
+
+// Phase de développement (TRUE) ou de production (FALSE)
+// Permet d'afficher des messages de débuggage (TRUE)
+define('IS_DEV', TRUE);
+
+// Paramètres base de données
+define('BD_SERVEUR', 'localhost');
+define('BD_USER', 'tuto_user');
+define('BD_PASS', 'tuto_pass');
+define('BD_NOM', 'php_tuto');
+?&gt;</pre>
+
+		<p>
+			<b>Nouvelles fonctions dans le fichier <span class="fp-code">bib_fonctions.php</span></b>
+		</p>
+
+		<pre data-code="PHP">
+//___________________________________________________________________
+/**
+ * Connexion à une base de données MySQL.
+ * En cas d'erreur de connexion le script est arrêté.
+ *
+ * @return resource	connecteur à la base de données
+ */
+function bdConnecter() {
+	$bd = mysqli_connect(BD_SERVEUR, BD_USER, BD_PASS, BD_NOM);
+
+	if ($bd !== FALSE) {
+		return $bd;		// Sortie connexion OK
+	}
+
+	// Erreur de connexion
+	// Collecte des informations facilitant le debugage
+	$msg = '&lt;h4&gt;Erreur de connexion base MySQL&lt;/h4&gt;'
+			.'&lt;div style="margin: 20px auto; width: 350px;"&gt;'
+			.'BD_SERVEUR : '.BD_SERVEUR
+			.'&lt;br&gt;BD_USER : '.BD_USER
+			.'&lt;br&gt;BD_PASS : '.BD_PASS
+			.'&lt;br&gt;BD_NOM : '.BD_NOM
+			.'&lt;p&gt;Erreur MySQL num&eacute;ro : '.mysqli_connect_errno($bd)
+			.'&lt;br&gt;'.mysqli_connect_error($bd)
+			.'&lt;/div&gt;';
+
+	bdErreurExit($msg);
+}
+
+//___________________________________________________________________
+/**
+ * Arrêt du script si erreur base de données.
+ * La fonction arrête le script, avec affichage de message d'erreur
+ * si on est en phase de développement.
+ *
+ * @param string	$msg	Message affiché ou stocké.
+ */
+function bdErreurExit($msg) {
+	ob_end_clean();		// Supression de tout ce qui
+						// a pu être déja généré
+
+	// Si on est en phase de développement, on affiche le message
+	if (IS_DEV) {
+		htmlDebut('Erreur base de données');
+		echo $msg;
+		htmlFin();
+		exit();
+	}
+
+	// Si on est en phase de production on stocke les
+	// informations de débuggage dans un fichier d'erreurs
+	// et on affiche un message sibyllin.
+	$buffer = date('d/m/Y H:i:s')."\n$msg\n";
+	error_log($buffer, 3, 'erreurs_bd.txt');
+
+	htmlDebut('Maintenance en cours');
+	// Gros mensonge
+	echo 'Notre site est momentan&eacute;ment indisponible ',
+		'pour cause de maintenance. Merci de r&eacute;-essayer ',
+		'dans quelques instants.';
+	htmlFin();
+	exit();
+}
+</pre>
+
+		<p>
+			<b>Résultat :</b>
+		</p>
+
+		<form action="" method="post" class="TEST-form">
+			<a class="TEST-lien"
+				onclick="top.FP.Voir.showPLUS('exemple/bib_fonctions_07.html')"
+				title="Afficher la bibliothéque de fonctions"></a> <a
+				class="TEST-lien-bd" title="Afficher le schéma de la base"
+				onclick="top.FP.Voir.showPLUS('exemple/php_tuto_bd.html')"></a>
+			<div class="TEST-titre">
+				<strong>Exemple</strong> : bibliothèque
+			</div>
+			<textarea name="txtCode" class="TEST-textarea">
+&lt;?php
+ob_start();
+require('bib_params.php');
+require('bib_fonctions.php');
+
+htmlDebut('Nombre de livres');
+
+$bd = $bd = bdConnecter();
+
+//-- Requête ----------------------------------------
+$sql = 'SELECT count(*) FROM livres';
+$r = mysqli_query($bd, $sql);
+
+//-- Traitement -------------------------------------
+$enr = mysqli_fetch_row($r);
+
+echo 'Il y a ', $enr[0], ' livres dans notre base';
+
+//-- Déconnexion ------------------------------------
+mysqli_free_result($r);
+mysqli_close($bd);
+
+htmlFin();
+?&gt;</textarea>
+		</form>
+
+		<p>Si vous travailler sur votre ordinateur personnel vous pouvez
+			arrêter le serveur MySQL (et laisser bien sûr le serveur apache) pour
+			tester en simulant un serveur de bases de données en panne.</p>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

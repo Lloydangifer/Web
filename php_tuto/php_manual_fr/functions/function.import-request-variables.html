@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Importe les variables de GET/POST/Cookie dans
+	l'environnement global</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.gettype.html">gettype</a>
+		</div>
+		<div class="next">
+			<a href="function.intval.html">intval</a>
+		</div>
+		<div class="up">
+			<a href="ref.var.html">Fonctions de gestion des variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.import-request-variables" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">import_request_variables</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.1.0, PHP 5 &lt; 5.4.0)</p>
+			<p class="refpurpose">
+				<span class="refname">import_request_variables</span> <span
+					class="mdash">&mdash;</span> <span class="dc-title">Importe
+					les variables de GET/POST/Cookie dans l&#039;environnement global</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.import-request-variables-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>import_request_variables</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$types</code></span> [, <span class="methodparam"><span
+					class="type">string</span> <code class="parameter">$prefix</code></span> ]
+				)
+			</div>
+
+			<p class="para rdfs-comment">
+				Importe les variables GET/POST/Cookie dans l&#039;environnement
+				global. C&#039;est pratique si vous avez désactivé <a
+					href="ini.core.html#ini.register-globals" class="link"> <strong
+					class="option unknown">register_globals</strong>
+				</a>, mais que vous voulez enregistrer des variables dans
+				l&#039;environnement global.
+			</p>
+			<p class="para">
+				Si vous souhaitez importer d&#039;autres variables dans
+				l&#039;environnement global, comme
+				<var class="varname">
+					<var class="varname">
+						<a href="reserved.variables.server.html" class="classname">$_SERVER</a>
+					</var>
+				</var>
+				, utilisez la fonction <span class="function"><a
+					href="function.extract.html" class="function">extract()</a></span>.
+			</p>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="simpara">
+					Cette fonction a devenue <em class="emphasis">OBSOLETE</em> depuis
+					PHP 5.3.0 et a été <em class="emphasis">SUPPRIMEE</em> depuis PHP
+					5.4.0.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.import-request-variables-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">types</code></em></span>
+				<dd>
+
+					<p class="para">
+						En utilisant le paramètre <em><code class="parameter">types</code></em>,
+						vous pouvez spécifier les variables que vous voulez importer. Vous
+						pouvez utiliser &#039;G&#039;, &#039;P&#039; et &#039;C&#039; pour
+						désigner respectivement GET, POST et Cookie. Ces caractères ne
+						sont pas sensibles à la casse, et vous pouvez les combiner entre
+						eux. POST inclut les fichiers téléchargés.
+					</p>
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>:
+						<p class="para">
+							Notez que l&#039;ordre des lettres est important. En utilisant
+							par exemple &quot;<em>GP</em>&quot;, les variables POST
+							écraseront les variables GET ayant le même nom. Toute lettre
+							autre que G, P ou C, est ignorée.
+					</blockquote>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">prefix</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le paramètre <em><code class="parameter">prefix</code></em> est
+						utilisé comme un préfixe de nom de variable, qui sera ajouté au
+						début de tous les noms de variables importées. Si vous avez par
+						exemple une variable GET du nom de &quot;<em>userid</em>&quot;, et
+						utilisez le préfixe &quot;<em>pref_</em>&quot;, la variable ainsi
+						générée s&#039;appellera
+						<var class="varname">
+							<var class="varname">$pref_userid</var>
+						</var>
+						.
+					</p>
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>:
+						<p class="para">
+							Bien que le paramètre <em><code class="parameter">prefix</code></em>
+							soit optionnel, il sera généré une alerte <a href="" class="link"><strong><code>E_NOTICE</code></strong></a>
+							si vous ne spécifiez pas de préfixe, ou si vous utilisez une
+							chaîne vide comme préfixe. C&#039;est potentiellement un trou de
+							sécurité. Les alertes de ce niveau ne sont pas affichées si vous
+							utilisez le <a
+								href="errorfunc.configuration.html#ini.error-reporting"
+								class="link">niveau d&#039;erreur</a> par défaut.
+					</blockquote>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.import-request-variables-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.import-request-variables-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4905">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>import_request_variables()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Ce&nbsp;code&nbsp;va&nbsp;importer&nbsp;les&nbsp;variables&nbsp;GET&nbsp;et&nbsp;POST<br />//&nbsp;avec&nbsp;un&nbsp;préfixe&nbsp;"rvar_"<br /></span><span
+								style="color: #0000BB">import_request_variables</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"gp"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"rvar_"</span><span
+								style="color: #007700">);<br />
+								<br />echo&nbsp;
+							</span><span style="color: #0000BB">$rvar_foo</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.import-request-variables-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.request.html" class="classname">$_REQUEST</a>
+						</var>
+					</var></li>
+				<li class="member"><a href="ini.core.html#ini.register-globals"
+					class="link">register_globals</a></li>
+				<li class="member"><a href="language.variables.predefined.html"
+					class="link">variables prédéfinies</a></li>
+				<li class="member"><span class="function"><a
+						href="function.extract.html" class="function" rel="rdfs-seeAlso">extract()</a>
+						- Importe les variables dans la table des symboles</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.gettype.html">gettype</a>
+		</div>
+		<div class="next">
+			<a href="function.intval.html">intval</a>
+		</div>
+		<div class="up">
+			<a href="ref.var.html">Fonctions de gestion des variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

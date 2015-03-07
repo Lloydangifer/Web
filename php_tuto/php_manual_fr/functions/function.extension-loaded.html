@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>D&eacute;termine si une extension est charg&eacute;e ou
+	non</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.dl.html">dl</a>
+		</div>
+		<div class="next">
+			<a href="function.gc-collect-cycles.html">gc_collect_cycles</a>
+		</div>
+		<div class="up">
+			<a href="ref.info.html">Fonctions sur les options et les
+				informations de PHP</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.extension-loaded" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">extension_loaded</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">extension_loaded</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Détermine si une extension est chargée
+					ou non</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.extension-loaded-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>extension_loaded</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$name</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">Détermine si une extension est
+				chargée ou non.</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.extension-loaded-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">name</code></em></span>
+				<dd>
+
+					<p class="para">Le nom de l&#039;extension.</p>
+					<p class="para">
+						Vous pouvez connaître le nom des différentes extensions PHP en
+						utilisant la fonction <span class="function"><a
+							href="function.phpinfo.html" class="function">phpinfo()</a></span> ou
+						bien si vous utilisez la version <em>CGI</em> ou <em>CLI</em> de
+						PHP, vous pouvez utiliser l&#039;option de ligne de commande <em>-m</em>
+						pour afficher toutes les extensions disponibles :
+					<div class="example-contents screen">
+						<div class="cdata">
+							<pre>
+$ php -m
+[PHP Modules]
+xml
+tokenizer
+standard
+sockets
+session
+posix
+pcre
+overload
+mysql
+mbstring
+ctype
+
+[Zend Modules]
+</pre>
+						</div>
+					</div>
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.extension-loaded-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne <strong><code>TRUE</code></strong> si l&#039;extension <em><code
+						class="parameter">name</code></em> a été chargée, <strong><code>FALSE</code></strong>
+				sinon.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.extension-loaded-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-478">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>extension_loaded()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">if&nbsp;(!</span><span
+								style="color: #0000BB">extension_loaded</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'gd'</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!
+							</span><span style="color: #0000BB">dl</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'gd.so'</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.extension-loaded-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.0.0</td>
+						<td><span class="function"><strong>extension_loaded()</strong></span>
+							utilise le nom interne de l&#039;extension pour vérifier si une
+							extension est disponible ou pas. La plupart des extensions ont
+							des noms internes écrits en minuscules, mais il peut arriver que
+							certaines aient des noms en majuscules. Avant PHP 5, cette
+							fonction comparait les noms en ne tenant pas compte de la casse.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.extension-loaded-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.get-loaded-extensions.html" class="function"
+						rel="rdfs-seeAlso">get_loaded_extensions()</a> - Retourne la liste
+						de tous les modules compil&eacute;s et charg&eacute;s</span></li>
+				<li class="member"><span class="function"><a
+						href="function.get-extension-funcs.html" class="function"
+						rel="rdfs-seeAlso">get_extension_funcs()</a> - Liste les fonctions
+						d'une extension</span></li>
+				<li class="member"><span class="function"><a
+						href="function.phpinfo.html" class="function" rel="rdfs-seeAlso">phpinfo()</a>
+						- Affiche de nombreuses informations sur la configuration de PHP</span></li>
+				<li class="member"><span class="function"><a
+						href="function.dl.html" class="function" rel="rdfs-seeAlso">dl()</a>
+						- Charge une extension PHP &agrave; la vol&eacute;e</span></li>
+				<li class="member"><span class="function"><a
+						href="function.function-exists.html" class="function"
+						rel="rdfs-seeAlso">function_exists()</a> - Indique si une fonction
+						est d&eacute;finie</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.dl.html">dl</a>
+		</div>
+		<div class="next">
+			<a href="function.gc-collect-cycles.html">gc_collect_cycles</a>
+		</div>
+		<div class="up">
+			<a href="ref.info.html">Fonctions sur les options et les
+				informations de PHP</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

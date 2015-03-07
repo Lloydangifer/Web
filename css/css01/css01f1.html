@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Inclure des styles</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function(){top.FP.initPage();}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p class="fp-bot0">Selon l'endroit où elles sont définies, la
+			portée des règles de style peut être :</p>
+		<ul>
+			<li>limitée à un endroit particulier de la page,</li>
+			<li>étendue à toutes les occurrences des éléments dans une page</li>
+			<li>étendue à toutes les occurrences des éléments dans un
+				ensemble de pages.</li>
+		</ul>
+
+		<!-- ################################################################################################## -->
+		<a id="style_externe"></a>
+		<h3>Feuille de style externe</h3>
+		<section>
+			<p>
+				La méthode d'inclusion de règles de style dans du code HTML qui
+				présente le plus d'avantages et qu'il faut donc toujours
+				privilégier, consiste à <strong>écrire les règles de style
+					dans un fichier séparé</strong> de celui du code <abbr
+					title="HyperText Markup Language">HTML</abbr>. On parle alors de <strong>feuille
+					de style externe</strong>.
+			</p>
+			<p>
+			<p>Les feuilles de style externes offrent une souplesse maximum
+				car les mêmes styles pourrons être partagés par un nombre infini de
+				pages HTML, garantissant ainsi une homogénéité parfaite du site, et
+				une mise à jour extrêmement simple (une modification dans un seul
+				fichier, un effet dans une multitude de pages).</p>
+
+			<p>
+				Une feuille de style externe (ie fichier <abbr
+					title="Cascading Style Sheets">CSS</abbr>) est un <strong>simple
+					fichier texte</strong> (même format que les fichiers <abbr
+					title="HyperText Markup Language">HTML</abbr>).
+			</p>
+
+			<p>
+				Le fichier a l'extension <strong><code>.css</code></strong>.
+			</p>
+
+			<p>
+				Le fichier ne doit contenir <strong>que du code <abbr
+					title="Cascading Style Sheets">CSS</abbr></strong>, à l'exclusion de tout
+				autre code (<abbr title="HyperText Markup Language">HTML</abbr>,
+				JavaScript, etc).
+			</p>
+
+			<p>
+				La liaison du fichier <abbr title="Cascading Style Sheets">CSS</abbr>
+				avec la page <abbr title="HyperText Markup Language">HTML</abbr> est
+				faite dans l'en-tête de la page <abbr
+					title="HyperText Markup
+				Language">HTML</abbr> avec l'élément<a
+					onclick="top.FP.Voir.showPageTech('elements', 'link')">link</a>.
+			</p>
+
+			<figure>
+				<img src="../cssimg/link_css_html.png" width="580" height="615">
+				<figcaption>feuille de style externe</figcaption>
+			</figure>
+
+			<p>
+				On peut bien sûr lier plusieurs fichiers <abbr
+					title="Cascading Style Sheets">CSS</abbr> à une meêm page <abbr
+					title="HyperText Markup Language">HTML</abbr>. Il suffit d'utiliser
+				autant d'élément<a
+					onclick="top.FP.Voir.showPageTech('elements', 'link')">link</a>
+				qu'il y a de fichiers à lier.
+				<br>
+				Par exemple cette page utilise 2 feuilles de styles qui sont liées
+				de la façon suivante :
+			</p>
+
+			<pre data-code="HTML">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Inclure des styles&lt;/title&gt;
+
+		&lt;link href="../_local/codemirror.css" rel="stylesheet"&gt;
+		&lt;link href="../_core/def.css" rel="stylesheet"&gt;
+
+		...
+</pre>
+
+
+			<div class="fp-remarque">
+				<p class="fp-bot0">Je vous rappelle qu'il convient d'être
+					prudent avec les caractères utilisés pour les noms des fichiers et
+					des dossiers qui les contiennent et je vous conseille d'adopter les
+					règles suivantes :</p>
+				<ul>
+					<li>les noms de fichier et de dossiers étant sensibles à la
+						casse, utilisez uniquement des minuscules,</li>
+					<li>utilisez uniquement les caractères aplhabétiques non
+						accentués (de a à z), des chiffres (de 0 à 9), le caractère -, le
+						caractère _ et le caractère .</li>
+					<li>n'utilisez jamais d'espaces.</li>
+				</ul>
+				<p>
+					Pour plus d'informations consultez 'Les liens' dans le tutoriel <abbr
+						title="HyperText Markup Language">HTML</abbr>
+				</p>
+			</div>
+
+
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Feuille de style interne</h3>
+		<section>
+			<p>
+				Une feuille de style interne est une feuille de style <abbr
+					title="Cascading Style Sheets">CSS</abbr> qui se trouve <strong>directement
+					dans le code <abbr title="HyperText Markup Language">HTML</abbr>
+					d'une page
+				</strong>.
+			</p>
+
+			<p>
+				Les règles de style sont écrites dans <strong>un élément <abbr
+					title="HyperText Markup Language">HTML</abbr> <a
+					onclick="top.FP.Voir.showPageTech('elements', 'style')">style</a></strong>.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : feuille de style interne
+				</div>
+				<textarea name="txtCode" class="TEST-textarea">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Feuille de style interne&lt;/title&gt;
+		&lt;style&gt;
+			body {
+				background: #000;
+				color: #fff79f;
+				}
+			h2 { border-bottom: 3px solid; }
+			p { text-align: center; }
+			em { color: red; }
+			.tel {
+				margin: 2em auto;
+				padding: 1em;
+				width: 385px;
+				}
+			.tel img {
+				border: 2px dashed;
+				float: right;
+				padding: 5px 5px 0;
+				}
+			.tel a {
+				border-bottom: 2px dashed;
+				color: #FFF79F;
+				float: right;
+				padding: 33px 35px 0 0;
+				text-decoration: none;
+				}
+			.tel a:hover { color: #9ffeff; }
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h2&gt;L'Arrière Des Etoiles&lt;/h2&gt;
+		
+		&lt;p&gt;Les CSS sont &lt;strong&gt;l'arme &lt;em&gt;secrète&lt;/em&gt; de la
+			Force !&lt;/strong&gt;&lt;/p&gt;
+		
+		&lt;p class="tel"&gt;
+			&lt;img src="../exemples/img/yoda1.png"&gt;
+			&lt;a href="#"&gt;Télécharger ce tutoriel tu
+			dois.&lt;/a&gt;&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<div class="fp-puce">
+				<p>
+					L'inclusion d'une feuille de style directement dans le code <abbr
+						title="HyperText Markup Language">HTML</abbr> est <strong>bien
+						plus limitée</strong> que la méthode de liaison d'une feuille de style
+					externe car la portée de telles règles sera limitée à la page
+					particulière dans laquelle elles sont définies.
+				</p>
+
+				<p>
+					Cette méthode est donc à choisir uniquement quand les règles de
+					styles sont <strong>très spécifiques et non ré-utilisées
+						par ailleurs</strong>.
+					<br>
+					Par exemple, dans ce tutoriel <a href="index.html">la 1ere page</a>
+					utilise cette forme d'inclusion pour mettre en forme la partie
+					principale de la page qui est particulière et que l'on ne retrouve
+					dans aucune autre page.
+				</p>
+			</div>
+
+			<p>
+				On peut bien sûr utiliser une feuille de style dans un fichier
+				externe lié avec <a
+					onclick="top.FP.Voir.showPageTech('elements', 'link')">link</a> et
+				en même temps une feuille de style interne définie dans <a
+					onclick="top.FP.Voir.showPageTech('elements', 'style')">style</a>.
+			</p>
+
+
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Règle de style locale</h3>
+		<section>
+			<p>
+				Une règle de style locale est une règle de style qui se trouve <strong>à
+					l'intérieur du tag d'ouverture d'un élément <abbr
+					title="HyperText Markup Language">HTML</abbr>
+				</strong>.
+			</p>
+
+			<div class="fp-puce">
+				<p>
+					La règle est introduite dans l'élément avec l'attribut <code>style</code>
+					(à ne pas confondre avec l'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'style')">style</a>.
+				</p>
+
+				<p>L'exemple précédent pourrait être écrit de cette façon en
+					utilisant des règles de style locales.</p>
+			</div>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : règle de style d'élément
+				</div>
+				<textarea name="txtCode" class="TEST-textarea">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Règle de style d'élément&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body style="background: #000; color: #fff79f;"&gt;
+		&lt;h2 style=" border-bottom: 3px solid;"&gt;
+			L'Arrière Des Etoiles&lt;/h2&gt;
+		
+		&lt;p style="text-align: center;"&gt;Les CSS sont &lt;strong&gt;
+			l'arme &lt;em style="color: red;"&gt;secrète&lt;/em&gt; de
+			la Force !&lt;/strong&gt;&lt;/p&gt;
+		
+		&lt;p style="text-align: center; margin: 2em auto;
+				  padding: 1em; width: 385px;"&gt;
+			&lt;img src="../exemples/img/yoda1.png"
+				 style="border: 2px dashed; float: right;
+						padding: 5px 5px 0;"&gt;
+			&lt;a href="#" style="border-bottom: 2px dashed;
+				color: #FFF79F; float: right; padding: 
+				33px 35px 0 0; text-decoration: none;"&gt;
+			   Télécharger ce tutoriel tu dois.&lt;/a&gt;&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				L'utilisation de règles de style locales est à <strong>éviter absolument</strong>
+				car il n'y a plus aucune séparation du contenu et de la forme.
+				<br>
+				La maintenance d'une telle forme de code est très difficile, et l'évolution de pages conçues de cette façon est 
+				pratiquement impossible.</p>
+
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

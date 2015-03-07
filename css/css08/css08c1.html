@@ -1,0 +1,2013 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Les tableaux</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function() {
+			top.FP.initPage();
+		}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>Si dans le passé les tableaux étaient utilisés pour définir des
+			grilles de mise en page, leur usage est désormais réservé à
+			l'affichage de données présentées spécifiquement dans une structure
+			tabulaire (données statistiques, tableaux de produits, grilles de
+			tarifs, etc).</p>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Propriétés de base</h3>
+		<section>
+			<h4>Rappel sur les tableaux</h4>
+			<section>
+				<p>
+					Dans sa forme la plus simple, un tableau est une élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'table')">table</a>
+					qui contient des lignes (éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'tr')">tr</a>)
+					composées de cellules (éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'td')">td</a>).
+				</p>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : tableau basique
+					</div>
+					<textarea name="txtCode" class="TEST-textarea">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+			&lt;tr&gt;
+				&lt;td&gt;Film&lt;/td&gt;
+				&lt;td&gt;France&lt;/td&gt;
+				&lt;td&gt;Belgique&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;La communauté de l'anneau&lt;/td&gt;
+				&lt;td&gt;6 822 407&lt;/td&gt;
+				&lt;td&gt;541 274&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;Les deux tours&lt;/td&gt;
+				&lt;td&gt;7 063 746&lt;/td&gt;
+				&lt;td&gt;664 070&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;Le retour du roi&lt;/td&gt;
+				&lt;td&gt;6 930 000&lt;/td&gt;
+				&lt;td&gt;761 891&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;Totaux&lt;/td&gt;
+				&lt;td&gt;20 815 883&lt;/td&gt;
+				&lt;td&gt;1 967 235&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<p>
+					Comme on le voit en affichant l'exemple, par défaut un tableau a
+					peu de mise en forme particulière.
+					<br>
+					Un tableau est un élément de type bloc un peu particulier car il ne
+					prend pas nécessairement toute la largeur de son conteneur, mais
+					uniquement la largeur qui lui est nécessaire pour afficher le
+					contenu de ces cellules.
+					<br>
+					Le contenu des cellules est quant à lui aligné verticalement et les
+					cellules sont éloignées les unes des autres par un espace de 2
+					pixels
+				</p>
+
+				<p class="fp-bot0">
+					D'autres éléments <abbr title="HyperText Markup Language">HTML</abbr>
+					permettent d'introduire plus de sémantique dans la description d'un
+					tableau :
+				</p>
+				<ul>
+					<li><a
+						onclick="top.FP.Voir.showPageTech('elements', 'caption')">caption</a>
+						définit le titre du tableau,</li>
+					<li><a onclick="top.FP.Voir.showPageTech('elements', 'thead')">thead</a>
+						regroupe les cellules d'en-tête (une ou plusieurs lignes),</li>
+					<li><a onclick="top.FP.Voir.showPageTech('elements', 'th')">th</a>
+						définit une cellule d'en-tête,</li>
+					<li><a onclick="top.FP.Voir.showPageTech('elements', 'tbody')">tbody</a>
+						regroupe les cellules du corps du tableau (une ou plusieurs
+						lignes),</li>
+					<li><a onclick="top.FP.Voir.showPageTech('elements', 'tfoot')">tfoot</a>
+						regroupe les cellules du corps du tableau (une ou plusieurs
+						lignes).</li>
+				</ul>
+
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : tableau sémantiquement correct
+					</div>
+					<textarea name="txtCode" class="TEST-textarea">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+			&lt;caption&gt;Nombre d'entrées pour les films de la trilogie du Seigneur des Anneaux&lt;/caption&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Film&lt;/th&gt;
+					&lt;th&gt;France&lt;/th&gt;
+					&lt;th&gt;Belgique&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;!-- les spécifications HTML précisent que 
+			le pied d'un tableau doit apparaître après 
+			l'en-tête et avant le corps --&gt;
+			&lt;tfoot&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Totaux&lt;/th&gt;
+					&lt;td&gt;20 815 883&lt;/td&gt;
+					&lt;td&gt;1 967 235&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tfoot&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td&gt;La communauté de l'anneau&lt;/td&gt;
+					&lt;td&gt;6 822 407&lt;/td&gt;
+					&lt;td&gt;541 274&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Les deux tours&lt;/td&gt;
+					&lt;td&gt;7 063 746&lt;/td&gt;
+					&lt;td&gt;664 070&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Le retour du roi&lt;/td&gt;
+					&lt;td&gt;6 930 000&lt;/td&gt;
+					&lt;td&gt;761 891&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<figure>
+					<img src="../cssimg/table_3d.jpg" width="500" height="356">
+					<figcaption>imbrication des éléments d'un tableau
+						sémantiquement correct</figcaption>
+				</figure>
+				<p>
+					On voit que les éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'th')">th</a> ont
+					par défaut une mise en forme particulière : leur contenu est centré
+					dans la cellule et en gras.
+				</p>
+			</section>
+
+			<h4>Bordure et espacement des cellules</h4>
+			<section>
+				<p>
+					La propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'border')">border</a>
+					permet de définir la taille, la couleur et le style des bordures
+					des cellules.
+				</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : bordure des cellules
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML" data-hidden>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+			&lt;caption&gt;Nombre d'entrées pour les films de la trilogie du Seigneur des Anneaux&lt;/caption&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Film&lt;/th&gt;
+					&lt;th&gt;France&lt;/th&gt;
+					&lt;th&gt;Belgique&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tfoot&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Totaux&lt;/th&gt;
+					&lt;td&gt;20 815 883&lt;/td&gt;
+					&lt;td&gt;1 967 235&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tfoot&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td&gt;La communauté de l'anneau&lt;/td&gt;
+					&lt;td&gt;6 822 407&lt;/td&gt;
+					&lt;td&gt;541 274&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Les deux tours&lt;/td&gt;
+					&lt;td&gt;7 063 746&lt;/td&gt;
+					&lt;td&gt;664 070&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Le retour du roi&lt;/td&gt;
+					&lt;td&gt;6 930 000&lt;/td&gt;
+					&lt;td&gt;761 891&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+td,
+th {
+	border: 1px solid #00bfff;	/* bordure 1 pixel bleu */
+}</textarea>
+				</form>
+
+
+				<figure style="float: right; margin: 0 0 0.5em 1em; width: 240px">
+					<img src="../cssimg/table_border_spacing.png" width="233"
+						height="136">
+					<figcaption>border-spacing à 0</figcaption>
+				</figure>
+
+				<p>
+					Pour supprimer l'espace entre les celules il pourrait sembler
+					naturel de donner la valeur 0 à la propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'border-spacing')">border-spacing</a>,
+					mais on n'obtiendra pas l'effet escompté car l'espace sera bien
+					supprimé, mais le résultat sera des bordures côte à côte.
+					<br>
+					Ce qu'il faut faire c'est fusionner les bordures avec la propriété
+					<a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'border-collapse')">border-collapse</a>
+					à la valeur <code>collapse</code> (et non <code>separate</code>, la
+					valeur par défaut).
+					<br>
+					Cette propriété est à appliqué à l'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'table')">table</a>.
+				</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : bordure des cellules
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML" data-hidden>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+			&lt;caption&gt;Nombre d'entrées pour les films de la trilogie du Seigneur des Anneaux&lt;/caption&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Film&lt;/th&gt;
+					&lt;th&gt;France&lt;/th&gt;
+					&lt;th&gt;Belgique&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tfoot&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Totaux&lt;/th&gt;
+					&lt;td&gt;20 815 883&lt;/td&gt;
+					&lt;td&gt;1 967 235&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tfoot&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td&gt;La communauté de l'anneau&lt;/td&gt;
+					&lt;td&gt;6 822 407&lt;/td&gt;
+					&lt;td&gt;541 274&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Les deux tours&lt;/td&gt;
+					&lt;td&gt;7 063 746&lt;/td&gt;
+					&lt;td&gt;664 070&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Le retour du roi&lt;/td&gt;
+					&lt;td&gt;6 930 000&lt;/td&gt;
+					&lt;td&gt;761 891&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+table {
+	border-collapse: collapse;	/* fusion des bordures */
+}
+
+td,
+th {
+	border: 1px solid #00bfff;	/* bordure 1 pixel bleu */
+}</textarea>
+				</form>
+
+				<p>
+					Nous pouvons ajouter des marges internes avec la propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'padding')">padding</a>
+					pour que le contenu d'une cellule ne soit pas collé à sa bordure.
+				</p>
+
+				<p>Pour les cellules contenant des nombres, l'alignement à
+					droite est recommandé.</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : bordure, marge et alignement
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML" data-hidden>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+			&lt;caption&gt;Nombre d'entrées pour les films de la trilogie du Seigneur des Anneaux&lt;/caption&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Film&lt;/th&gt;
+					&lt;th&gt;France&lt;/th&gt;
+					&lt;th&gt;Belgique&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tfoot&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Totaux&lt;/th&gt;
+					&lt;td&gt;20 815 883&lt;/td&gt;
+					&lt;td&gt;1 967 235&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tfoot&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td&gt;La communauté de l'anneau&lt;/td&gt;
+					&lt;td&gt;6 822 407&lt;/td&gt;
+					&lt;td&gt;541 274&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Les deux tours&lt;/td&gt;
+					&lt;td&gt;7 063 746&lt;/td&gt;
+					&lt;td&gt;664 070&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Le retour du roi&lt;/td&gt;
+					&lt;td&gt;6 930 000&lt;/td&gt;
+					&lt;td&gt;761 891&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+table {
+	border-collapse: collapse;	/* fusion des bordures */
+}
+
+td,
+th {
+	border: 1px solid #00bfff;	/* bordure 1 pixel bleu */
+	padding: 2px 5px;
+}
+
+/* 2 dernières cellules d'une ligne */
+td:nth-last-of-type(1),
+td:nth-last-of-type(2) {
+	text-align: right;	/* alignement à droite */
+	white-space: nowrap;/* éviter que les sauts de lignes
+							dans les nombres */
+}</textarea>
+				</form>
+			</section>
+
+			<h4>Dimensions</h4>
+			<section>
+				<p>
+					Par défaut un tableau prend ni plus ni moins que la largeur et la
+					hauteur minimum nécessaires pour afficher le contenu de ces
+					cellules.
+					<br>
+					Si le contenu est moins grand que le conteneur du tableau, le
+					tableau ne prendra pas 100% du conteneur.
+					<br>
+					Si le contenu est trop grand pour être affiché dans la largeur du
+					conteneur, le contenu sera réparti sur plusieurs lignes dans les
+					cellules. Si il ne tient toujours pas, le tableau aura une largeur
+					plus grande que son conteneur et en dépassera.
+				</p>
+
+				<p>
+					On peut bien sûr fixer la largeur d'un tableau avec la propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'width')">width</a>
+					et la hauteur avec la propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'height')">height</a>
+					en unités absolues ou en pourcentage.
+					<br>
+					Le contenu sera adapté pour tenir compte de ces dimensions, soit
+					par l'agrandissement des dimensions des cellules, soit par du
+					contenu de cellule répartis sur plusieurs lignes.
+				</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : dimensions du tableau
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML" data-hidden>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Film&lt;/th&gt;
+					&lt;th&gt;France&lt;/th&gt;
+					&lt;th&gt;Belgique&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Le seigneur des anneaux&lt;/td&gt;
+					&lt;td&gt;20 815 883&lt;/td&gt;
+					&lt;td&gt;1 967 235&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+		
+		&lt;table&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Film&lt;/th&gt;
+					&lt;th&gt;France&lt;/th&gt;
+					&lt;th&gt;Belgique&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Le seigneur des anneaux&lt;/td&gt;
+					&lt;td&gt;20 815 883&lt;/td&gt;
+					&lt;td&gt;1 967 235&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+		
+		&lt;table&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Film&lt;/th&gt;
+					&lt;th&gt;France&lt;/th&gt;
+					&lt;th&gt;Belgique&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Le seigneur des anneaux&lt;/td&gt;
+					&lt;td&gt;20 815 883&lt;/td&gt;
+					&lt;td&gt;1 967 235&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+/* le 1er tableau est laissé libre de sa taille */
+/* le 2éme tableau à une taille "réduite" */
+table:nth-of-type(2) {
+	width: 200px;
+}
+/* le 3eme tableau prend toute la largeur de la page, et se redimensionne avec elle */
+table:nth-of-type(3) {
+	width: 100%;
+}
+
+table {
+	border-collapse: collapse;
+	margin: 1em 0;
+}
+
+td,
+th {
+	border: 1px solid #00bfff;
+	padding: 2px 5px;
+}
+/* 2 dernières cellules d'une ligne */
+td:nth-last-of-type(1),
+td:nth-last-of-type(2) {
+	text-align: right;	/* alignement à droite */
+	white-space: nowrap;/* éviter que les sauts de lignes
+							dans les nombres */
+}</textarea>
+				</form>
+
+
+				<p>
+					On peut donner les dimensions des cellules toujours avec les
+					propriétés <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'width')">width</a>
+					et <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'height')">height</a>
+					en unités absolues ou en pourcentage.
+					<br>
+					Toutes les cellules d'une même colonne auront la même largeur et
+					toutes les cellules d'une même ligne auront la même hauteur ( sauf
+					bien sûr si on fusionne des cellules avec les attributs <code>colspan</code>
+					ou <code>rowspan</code> - voir tutoriel HTML &rtrif; Groupements
+					&rtrif; Tableaux).
+				</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : dimensions des cellules
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML" data-hidden>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+			&lt;caption&gt;Nombre d'entrées pour les films de la trilogie du Seigneur des Anneaux&lt;/caption&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Film&lt;/th&gt;
+					&lt;th&gt;France&lt;/th&gt;
+					&lt;th&gt;Belgique&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tfoot&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Totaux&lt;/th&gt;
+					&lt;td&gt;20 815 883&lt;/td&gt;
+					&lt;td&gt;1 967 235&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tfoot&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td&gt;La communauté de l'anneau&lt;/td&gt;
+					&lt;td&gt;6 822 407&lt;/td&gt;
+					&lt;td&gt;541 274&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Les deux tours&lt;/td&gt;
+					&lt;td&gt;7 063 746&lt;/td&gt;
+					&lt;td&gt;664 070&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Le retour du roi&lt;/td&gt;
+					&lt;td&gt;6 930 000&lt;/td&gt;
+					&lt;td&gt;761 891&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+table {
+	border-collapse: collapse;
+	margin: 1em 0;
+}
+
+td,
+th {
+	border: 1px solid #00bfff;
+	padding: 2px 5px;
+}
+
+thead {
+	height: 40px;	/* hauteur de la ligne d'en-tête */
+}
+
+/* largeur et alignement des 2 dernières 
+cellules d'une ligne */
+td:nth-last-of-type(1),
+td:nth-last-of-type(2) {
+	width: 100px;
+	text-align: right;
+	white-space: nowrap;
+}</textarea>
+				</form>
+
+			</section>
+
+			<a id="exo_table_1"></a>
+			<h4 class="fp-exo">Dans nos hangars</h4>
+			<section>
+				<p>
+					Complétez le code <abbr title="HyperText Markup Language">HTML</abbr>
+					et le code <abbr title="Cascading Style Sheets">CSS</abbr> pour
+					obtenir le tableau ci-dessous.
+				</p>
+
+				<figure>
+					<img src="../exercices/exo_table_1.jpg" width="400" height="348">
+					<figcaption>dans nos hangars</figcaption>
+				</figure>
+
+				<p>Le tableau est centré horizontalement dans la page et la
+					police utilisée pour le tableau est Verdana ou Helvetica ou
+					sans-serif, à la taille de 15 pixels.</p>
+
+				<p>La taille de la police pour le titre est de 18 pixels et le
+					texte est en gras.</p>
+
+				<p>
+					La largeur des cellules est de 80 pixels et elles ont une bordure
+					rouge de 1 pixel. La marge interne verticale est de 5 pixels et la
+					marge interne horizontale de 10 pixels.
+					<br>
+					Les chiffres dans les cellules sont alignés à droite.
+				</p>
+
+				<p>
+					Toutes les images se trouvent dans le répertoire <code>../exemple/img/</code>
+					et s'appelle dans l'ordre <code>v8.png</code>, <code>v3.png</code>
+					et <code>v5.png</code>.
+				</p>
+
+				<p class="fp-completez fp-clear">
+					<a onclick="top.FP.Voir.showCompletez('exo_table_1_comp')">Code
+						à compléter</a>
+				</p>
+
+				<div id="exo_table_1_comp" class="BLOC-completez">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : dans nos hangars
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+
+CODE CSS A COMPLETER 
+
+</textarea>
+					</form>
+				</div>
+
+				<p class="fp-solution">
+					<a onclick="top.FP.Voir.showSolution('exo_table_1_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_table_1_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : dans nos hangars
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+			&lt;caption&gt;Dans nos hangars&lt;/caption&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Vaisseaux&lt;/th&gt;
+					&lt;th&gt;A louer&lt;/th&gt;
+					&lt;th&gt;A vendre&lt;/th&gt;
+					&lt;th&gt;Réservés&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tfoot&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Totaux&lt;/th&gt;
+					&lt;td&gt;4 500&lt;/td&gt;
+					&lt;td&gt;1 250&lt;/td&gt;
+					&lt;td&gt;230&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tfoot&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td&gt;&lt;img src="../exemples/img/v8.png"&gt;&lt;/td&gt;
+					&lt;td&gt;2 200&lt;/td&gt;
+					&lt;td&gt;250&lt;/td&gt;
+					&lt;td&gt;&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;&lt;img src="../exemples/img/v3.png"&gt;&lt;/td&gt;
+					&lt;td&gt;1 000&lt;/td&gt;
+					&lt;td&gt;500&lt;/td&gt;
+					&lt;td&gt;120&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;&lt;img src="../exemples/img/v5.png"&gt;&lt;/td&gt;
+					&lt;td&gt;1 300&lt;/td&gt;
+					&lt;td&gt;500&lt;/td&gt;
+					&lt;td&gt;210&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+table {
+	font: 15px verdana, helvetica, sans-serif;
+	border-collapse: collapse;	/* fusion des bordures */
+	margin: 0 auto;				/* tableau centré */
+}
+
+/* titre du tableau */
+caption {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 0.5em;
+}
+
+td,
+th {
+	border: 1px solid red;	/* bordure 1 pixel rouge */
+	padding: 5px 10px;		/* marge interne */
+	white-space: nowrap;	/* pas de saut de ligne */	
+}
+
+td {
+	text-align: right;
+	width: 80px;
+}</textarea>
+					</form>
+				</div>
+
+				<table class="TAB-sans-bord">
+					<tr>
+						<td><p class="fp-puce">
+								Modifiez la solution pour gérer un effet de survol de la souris.
+								A son passage au dessus des images on affiche un agrandissement
+								(<code>v8_big.jpg</code>, <code>v3_big.jpg</code> et <code>v5_big.jpg</code>)
+								avec le nom des vaisseaux (Droïd Gunship, X-Wing et Naboo
+								Starfighter).
+							</p></td>
+						<td><figure>
+								<img src="../exercices/exo_table_1b_a.jpg" width="240"
+									height="225">
+								<figcaption>survol vaisseau 1</figcaption>
+							</figure></td>
+					</tr>
+					<tr>
+						<td><figure>
+								<img src="../exercices/exo_table_1b_b.jpg" width="240"
+									height="263">
+								<figcaption>survol vaisseau 2</figcaption>
+							</figure></td>
+						<td><figure>
+								<img src="../exercices/exo_table_1b_c.jpg" width="240"
+									height="263">
+								<figcaption>survol vaisseau 3</figcaption>
+							</figure></td>
+					</tr>
+				</table>
+
+				<p class="fp-solution">
+					<a onclick="top.FP.Voir.showSolution('exo_table_1b_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_table_1b_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : dans nos hangars
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+			&lt;caption&gt;Dans nos hangars&lt;/caption&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Vaisseaux&lt;/th&gt;
+					&lt;th&gt;A louer&lt;/th&gt;
+					&lt;th&gt;A vendre&lt;/th&gt;
+					&lt;th&gt;Réservés&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tfoot&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Totaux&lt;/th&gt;
+					&lt;td&gt;4 500&lt;/td&gt;
+					&lt;td&gt;1 250&lt;/td&gt;
+					&lt;td&gt;230&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tfoot&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td&gt;
+						&lt;img src="../exemples/img/v8.png"&gt;
+						&lt;figure&gt;
+							&lt;img src="../exemples/img/v8_big.jpg"&gt;
+							&lt;figcaption&gt;Droïd Gunship&lt;/figcaption&gt;
+						&lt;/figure&gt;
+					&lt;/td&gt;
+					&lt;td&gt;2 200&lt;/td&gt;
+					&lt;td&gt;250&lt;/td&gt;
+					&lt;td&gt;&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;
+						&lt;img src="../exemples/img/v3.png"&gt;
+						&lt;figure&gt;
+							&lt;img src="../exemples/img/v3_big.jpg"&gt;
+							&lt;figcaption&gt;X-Wing&lt;/figcaption&gt;
+						&lt;/figure&gt;
+					&lt;/td&gt;
+					&lt;td&gt;1 000&lt;/td&gt;
+					&lt;td&gt;500&lt;/td&gt;
+					&lt;td&gt;120&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;
+						&lt;img src="../exemples/img/v5.png"&gt;
+						&lt;figure&gt;
+							&lt;img src="../exemples/img/v5_big.jpg"&gt;
+							&lt;figcaption&gt;Naboo Starfighter&lt;/figcaption&gt;
+						&lt;/figure&gt;
+					&lt;/td&gt;
+					&lt;td&gt;1 300&lt;/td&gt;
+					&lt;td&gt;500&lt;/td&gt;
+					&lt;td&gt;210&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+table {
+	font: 15px verdana, helvetica, sans-serif;
+	border-collapse: collapse;	/* fusion des bordures */
+	margin: 0 auto;				/* tableau centré */
+}
+
+/* titre du tableau */
+caption {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 0.5em;
+}
+
+td,
+th {
+	border: 1px solid red;	/* bordure 1 pixel rouge */
+	padding: 5px 10px;		/* marge interne */
+	white-space: nowrap;	/* pas de saut de ligne */	
+}
+
+td {
+	text-align: right;
+	width: 80px;
+	position: relative;	/* devient bloc de référence pour
+						position absolue de la 2eme image */
+}
+
+td figure {
+	display: none;		/* cachée par défaut */
+	position: absolute;	/* positionnement */
+	top: 0;				/* positionnement */
+	z-index: 1;			/* positionnement */
+	margin: 0;
+	border: 10px solid white;
+	background: white;
+	font-weight: bold;
+	text-align: center;
+	box-shadow:0 0 10px 2px  rgba(0, 0, 0, 0.8);
+}
+
+/* au survol de la 1ére cellule d'une ligne du corps du tableau on affiche la 2eme image */
+tbody td:first-of-type:hover figure {
+	display: block;
+}</textarea>
+					</form>
+				</div>
+			</section>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Mise en forme</h3>
+		<section>
+			<h4>Couleur/image de fond</h4>
+			<section>
+				<p>
+					Pour mettre une couleur de fond (ou une image de fond ou un
+					dégradé) on utilise comme d'habitude la propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'background')">background</a>
+					qui est applicable à tous les éléments constitutifs d'un tableau (<a
+						onclick="top.FP.Voir.showPageTech('elements', 'table')">table</a>,
+					<a onclick="top.FP.Voir.showPageTech('elements', 'tr')">tr</a>, <a
+						onclick="top.FP.Voir.showPageTech('elements', 'caption')">td</a>,
+					<a onclick="top.FP.Voir.showPageTech('elements', 'caption')">caption</a>,
+					<a onclick="top.FP.Voir.showPageTech('elements', 'thead')">thead</a>,
+					<a onclick="top.FP.Voir.showPageTech('elements', 'th')">th</a>, <a
+						onclick="top.FP.Voir.showPageTech('elements', 'tbody')">tbody</a>
+					et <a onclick="top.FP.Voir.showPageTech('elements', 'tfoot')">tfoot</a>).
+					<br>
+					La couleur finalement visible tient compte de l'imbrication des
+					éléments : c'est la couleur donnée à l'élément le plus profond dans
+					l'imbrication qui est visible.
+				</p>
+
+				<figure>
+					<img src="../cssimg/table_3d.jpg" width="500" height="356">
+					<figcaption>imbrication des éléments d'un tableau</figcaption>
+				</figure>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : couleur de fond
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML" data-hidden>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+			&lt;caption&gt;Nombre d'entrées pour les films de la trilogie du Seigneur des Anneaux&lt;/caption&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Film&lt;/th&gt;
+					&lt;th&gt;France&lt;/th&gt;
+					&lt;th&gt;Belgique&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tfoot&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Totaux&lt;/th&gt;
+					&lt;td&gt;20 815 883&lt;/td&gt;
+					&lt;td&gt;1 967 235&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tfoot&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td&gt;La communauté de l'anneau&lt;/td&gt;
+					&lt;td&gt;6 822 407&lt;/td&gt;
+					&lt;td&gt;541 274&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Les deux tours&lt;/td&gt;
+					&lt;td&gt;7 063 746&lt;/td&gt;
+					&lt;td&gt;664 070&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Le retour du roi&lt;/td&gt;
+					&lt;td&gt;6 930 000&lt;/td&gt;
+					&lt;td&gt;761 891&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+/* image de fond pour le tableau entier */
+table {
+	background: url(../exemples/img/lsda2.jpg);
+	background-size: cover;
+	height: 200px;	
+	border-collapse: collapse;
+	margin: 1em auto;	/* centré dans la page */
+	color: white;
+}
+
+/* mise en forme du titre du tableau */
+caption {
+	background: #b69d52;
+	margin-bottom: 2px;
+	border: 1px solid #aaa;
+}
+
+/* dégradé de fond de l'en-tête : une couleur vers transparent - laisse apparaitre l'image de fond de la table petit à petit */
+thead {
+	background: linear-gradient(#b69d52 10%, rgba(182, 157, 82, 0.2) 100%);
+}
+
+/* dégradé de fond du pied: inverse de l'en-tête */
+tfoot {
+	background: linear-gradient(to top, #b69d52 5%, rgba(182, 157, 82, 0) 100%);
+}
+
+td,
+th {
+	border: 1px solid #aaa;
+	padding: 2px 5px;
+}
+
+td:nth-last-of-type(1),
+td:nth-last-of-type(2) {
+	width: 100px;
+	text-align: right;
+}</textarea>
+				</form>
+			</section>
+
+			<h4>Zébrage</h4>
+			<section>
+				<p>
+					Pour les tableaux qui ont de nombreuses colonnes et/ou de
+					nombreuses lignes, on peut améliorer la lisibilité en changeant de
+					couleur pour les lignes paires et les lignes impaires. Avec le
+					selecteur CSS3 de pseudo-classe <a class="fp-lientuto"
+						onclick="top.FP.Voir.showPageTuto('css02e1', 'sel_pc_ntype')">
+						:nth-of-type(n)</a> c'est on ne peut plus simple.
+				</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : zébrage
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML" data-hidden>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+			&lt;caption&gt;Top 10 des films de science-fiction en France&lt;/caption&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Titre&lt;/th&gt;
+					&lt;th&gt;Année&lt;/th&gt;
+					&lt;th&gt;Entrées&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Avatar&lt;/td&gt;
+					&lt;td&gt;2009&lt;/td&gt;
+					&lt;td&gt;14 775 990&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Vingt mille lieues sous les mers&lt;/td&gt;
+					&lt;td&gt;1954&lt;/td&gt;
+					&lt;td&gt;9 623 712&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;E.T. l'extra-terrestre&lt;/td&gt;
+					&lt;td&gt;1982&lt;/td&gt;
+					&lt;td&gt;9 420 339&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Star Wars : La Menace fantôme&lt;/td&gt;
+					&lt;td&gt;1999&lt;/td&gt;
+					&lt;td&gt;7 830 052&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Le Cinquième Élément&lt;/td&gt;
+					&lt;td&gt;1997&lt;/td&gt;
+					&lt;td&gt;7 704 669&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Orange mécanique&lt;/td&gt;
+					&lt;td&gt;1972&lt;/td&gt;
+					&lt;td&gt;7 611 645&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Star Wars : La Revanche des Sith&lt;/td&gt;
+					&lt;td&gt;2005&lt;/td&gt;
+					&lt;td&gt;7 230 417&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Jurassic Park&lt;/td&gt;
+					&lt;td&gt;1993&lt;/td&gt;
+					&lt;td&gt;6 738 210&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Star Wars : Un nouvel espoir&lt;/td&gt;
+					&lt;td&gt;1977&lt;/td&gt;
+					&lt;td&gt;6 459 530&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Le Gendarme et les Extra-terrestres&lt;/td&gt;
+					&lt;td&gt;1979&lt;/td&gt;
+					&lt;td&gt;6 280 070&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+table {
+	border-collapse: collapse;
+	margin: 0 auto;
+}
+
+/* mise en forme du titre du tableau */
+caption {
+	padding: 5px;
+	font-weight: bold;
+}
+
+thead {
+	background: rgb(3, 184, 207);
+	color: white;
+}
+
+/* lignes impaires du corps du tableau */
+tbody tr:nth-of-type(odd) {
+	background: rgb(218, 238, 243);
+}
+
+td,
+th {
+	border: 1px solid #aaa;
+	padding: 5px 10px;
+}
+
+td:nth-last-of-type(1),
+td:nth-last-of-type(2) {
+	text-align: right;
+	white-space: nowrap;
+}</textarea>
+				</form>
+			</section>
+
+			<h4>Survol des lignes</h4>
+			<section>
+				<p>
+					Pour augmenter encore la lisibilité, il est très facile de gèrer le
+					survol des lignes pour mettre en évidence les informations
+					contenues dans une rangée. On utilisera bien sûr la pseudo-classe <a
+						class="fp-lientuto"
+						onclick="top.FP.Voir.showPageTuto('css02e1', 'sel_pc_interaction')">hover</a>
+					en la faisant porter sur les éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'tr')">tr</a> du
+					corps du tableau (ou du tableau entier).
+				</p>
+
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : zébrage
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML" data-hidden>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+			&lt;caption&gt;Top 10 des films de science-fiction en France&lt;/caption&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Titre&lt;/th&gt;
+					&lt;th&gt;Année&lt;/th&gt;
+					&lt;th&gt;Entrées&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Avatar&lt;/td&gt;
+					&lt;td&gt;2009&lt;/td&gt;
+					&lt;td&gt;14 775 990&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Vingt mille lieues sous les mers&lt;/td&gt;
+					&lt;td&gt;1954&lt;/td&gt;
+					&lt;td&gt;9 623 712&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;E.T. l'extra-terrestre&lt;/td&gt;
+					&lt;td&gt;1982&lt;/td&gt;
+					&lt;td&gt;9 420 339&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Star Wars : La Menace fantôme&lt;/td&gt;
+					&lt;td&gt;1999&lt;/td&gt;
+					&lt;td&gt;7 830 052&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Le Cinquième Élément&lt;/td&gt;
+					&lt;td&gt;1997&lt;/td&gt;
+					&lt;td&gt;7 704 669&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Orange mécanique&lt;/td&gt;
+					&lt;td&gt;1972&lt;/td&gt;
+					&lt;td&gt;7 611 645&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Star Wars : La Revanche des Sith&lt;/td&gt;
+					&lt;td&gt;2005&lt;/td&gt;
+					&lt;td&gt;7 230 417&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Jurassic Park&lt;/td&gt;
+					&lt;td&gt;1993&lt;/td&gt;
+					&lt;td&gt;6 738 210&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Star Wars : Un nouvel espoir&lt;/td&gt;
+					&lt;td&gt;1977&lt;/td&gt;
+					&lt;td&gt;6 459 530&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Le Gendarme et les Extra-terrestres&lt;/td&gt;
+					&lt;td&gt;1979&lt;/td&gt;
+					&lt;td&gt;6 280 070&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+table {
+	border-collapse: collapse;
+	margin: 0 auto;
+}
+
+caption {
+	padding: 5px;
+	font-weight: bold;
+}
+
+thead {
+	background: rgb(3, 184, 207);
+	color: white;
+}
+
+/* lignes impaires du corps du tableau */
+tbody tr:nth-of-type(odd) {
+	background: rgb(218, 238, 243);
+}
+
+/* survol des lignes */
+tbody tr:hover {
+	background: #ff4500;
+	color: white;
+}
+
+td,
+th {
+	border: 1px solid #aaa;
+	padding: 5px 10px;
+}
+
+td:nth-last-of-type(1),
+td:nth-last-of-type(2) {
+	text-align: right;
+	white-space: nowrap;
+}</textarea>
+				</form>
+
+			</section>
+
+			<a id="exo_table_2"></a>
+			<h4 class="fp-exo">Dans nos hangars : le retour</h4>
+			<section>
+				<p>
+					A partir du code <abbr title="HyperText Markup Language">HTML</abbr>
+					ci-après, complétez le code <abbr title="Cascading Style Sheets">CSS</abbr>
+					pour obtenir le tableau ci-dessous.
+				</p>
+
+				<figure>
+					<img src="../exercices/exo_table_2a.jpg" width="540" height="530">
+					<figcaption>dans nos hangars : le retour</figcaption>
+				</figure>
+
+				<p>Le tableau est centré horizontalement dans la page et la
+					police utilisée pour le tableau est Verdana ou Helvetica ou
+					sans-serif, à la taille de 15 pixels et de couleur blanche.</p>
+
+				<p>
+					La taille de la police pour le titre est de 40 pixels et le texte
+					est en gras. Le titre a des marges verticales de 16px. L'effet néon
+					sur le texte est fait avec des ombres sans décalage : une ombre de
+					4 pixels couleur <code>#FFF</code>, une ombre de 4 pixels couleur <code>#FFFF33</code>,
+					une ombre de 6 pixels couleur <code>#FFDD33</code>, une ombre de 11
+					pixels couleur <code>#FF8800</code> et une ombre de 18 pixels
+					couleur <code>#FF2200</code>.
+				</p>
+
+				<p>
+					Les cellules d'en-tête et de pied ont une ombre sans décalage de 4
+					pixels, avec 1 pixel de renfort et de couleur <code>#FF8800</code>.
+					Pour que le contour des cellules soit bien visibles, leur bord ne
+					doit pas être fusionné.
+				</p>
+
+				<p>
+					La largeur des cellules est de 80 pixels. La marge interne
+					verticale est de 5 pixels et la marge interne horizontale de 10
+					pixels.
+					<br>
+					Les chiffres dans les cellules sont alignés à droite.
+				</p>
+
+				<p>Quand la souris survol une ligne du corps du tableau,
+					l'affichage de la figure suivante doit être réalisé.</p>
+
+				<figure>
+					<img src="../exercices/exo_table_2b.jpg" width="540" height="207">
+					<figcaption>dans nos hangars : le retour - Survol
+						d'une ligne</figcaption>
+				</figure>
+
+
+				<p>
+					Les cellules sont entourée par la même ombre que les cellules
+					d'en-tête et de pied, sauf pour la couleur qui est <code>#ddc067</code>.
+					la couleur de fond des cellules devient <code>#111</code> et le
+					curseur de la souris change pour la forme <code>pointer</code>.
+				</p>
+
+
+
+				<p class="fp-completez fp-clear">
+					<a onclick="top.FP.Voir.showCompletez('exo_table_2_comp')">Code
+						à compléter</a>
+				</p>
+
+
+				<div id="exo_table_2_comp" class="BLOC-completez">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : dans nos hangars - le retour
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+			&lt;caption&gt;Dans nos hangars&lt;/caption&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Vaisseaux&lt;/th&gt;
+					&lt;th&gt;A louer&lt;/th&gt;
+					&lt;th&gt;A vendre&lt;/th&gt;
+					&lt;th&gt;Réservés&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tfoot&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Totaux&lt;/th&gt;
+					&lt;td&gt;4 500&lt;/td&gt;
+					&lt;td&gt;1 250&lt;/td&gt;
+					&lt;td&gt;230&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tfoot&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td&gt;&lt;img src="../exemples/img/v8.png"&gt;&lt;/td&gt;
+					&lt;td&gt;2 200&lt;/td&gt;
+					&lt;td&gt;250&lt;/td&gt;
+					&lt;td&gt;&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;&lt;img src="../exemples/img/v3.png"&gt;&lt;/td&gt;
+					&lt;td&gt;1 000&lt;/td&gt;
+					&lt;td&gt;500&lt;/td&gt;
+					&lt;td&gt;120&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;&lt;img src="../exemples/img/v5.png"&gt;&lt;/td&gt;
+					&lt;td&gt;1 300&lt;/td&gt;
+					&lt;td&gt;500&lt;/td&gt;
+					&lt;td&gt;210&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+
+CODE CSS A COMPLETER 
+
+</textarea>
+					</form>
+				</div>
+
+				<p class="fp-solution">
+					<a onclick="top.FP.Voir.showSolution('exo_table_2_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_table_2_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : dans nos hangars - le retour
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+			&lt;caption&gt;Dans nos hangars&lt;/caption&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Vaisseaux&lt;/th&gt;
+					&lt;th&gt;A louer&lt;/th&gt;
+					&lt;th&gt;A vendre&lt;/th&gt;
+					&lt;th&gt;Réservés&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tfoot&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Totaux&lt;/th&gt;
+					&lt;td&gt;4 500&lt;/td&gt;
+					&lt;td&gt;1 250&lt;/td&gt;
+					&lt;td&gt;230&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tfoot&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td&gt;&lt;img src="../exemples/img/v8.png"&gt;&lt;/td&gt;
+					&lt;td&gt;2 200&lt;/td&gt;
+					&lt;td&gt;250&lt;/td&gt;
+					&lt;td&gt;&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;&lt;img src="../exemples/img/v3.png"&gt;&lt;/td&gt;
+					&lt;td&gt;1 000&lt;/td&gt;
+					&lt;td&gt;500&lt;/td&gt;
+					&lt;td&gt;120&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;&lt;img src="../exemples/img/v5.png"&gt;&lt;/td&gt;
+					&lt;td&gt;1 300&lt;/td&gt;
+					&lt;td&gt;500&lt;/td&gt;
+					&lt;td&gt;210&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+body { background: url(../exemples/img/etoiles.jpg); }
+
+/* pas de border-collapse sur la table pour que les cellules soient bien séparées par un border-spacing */
+table {
+	font: 15px verdana, helvetica, sans-serif;
+	border-spacing: 8px;
+	margin: 0 auto;
+	color: white;
+}
+
+/* titre du tableau */
+caption {
+	font-size: 40px;
+	font-weight: bold;
+	margin: 16px 0;
+	color: black;
+	text-shadow: 0 0 4px white,
+                0 0 4px #FFFF33,
+				0 0 6px #FFDD33,
+				0 0 11px #FF8800,
+				0 0 18px #FF2200;
+
+}
+
+/* cellules en-tête et pied */
+thead th,
+tfoot th,
+tfoot td {
+	box-shadow: 0 0 4px 1px #FF8800;
+}
+
+/* survol des lignes */
+tbody tr:hover td {
+	box-shadow: 0 0 4px 1px #ddc067;
+	background: #111;
+	cursor: pointer;
+}
+
+td,
+th {
+	padding: 5px 10px;		/* marge interne */
+	white-space: nowrap;	/* pas de saut de ligne */
+}
+
+td {
+	text-align: right;
+	width: 80px;
+}</textarea>
+					</form>
+				</div>
+
+				<p>Modifiez la solution pour gérer l'affichage d'informations
+					complémentaires quand la souris survole les lignes du corps du
+					tableau.</p>
+
+				<p>Quand la souris survole une ligne on affiche les prix de
+					location et de vente d'un vaisseau.</p>
+
+
+				<figure>
+					<img src="../exercices/exo_table_2c.jpg" width="540" height="281">
+					<figcaption>survol d'une ligne</figcaption>
+				</figure>
+
+				<table>
+					<tr>
+						<td>Ligne</td>
+						<td>Location</td>
+						<td>Vente</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>1 000 &euro; / h</td>
+						<td>60 000 &euro;</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>2 500 &euro; / h</td>
+						<td>149 999 &euro;</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>5 000 &euro; / h</td>
+						<td>200 000 &euro;</td>
+					</tr>
+				</table>
+
+				<p class="fp-p-raz">Les textes sont affichés avec la police
+					Consolas ou monaco ou monospace, en taille 13 pixels et dans une
+					couleur composée de rouge 237, vert 211 et bleu 1. Les textes sont
+					centrés horizontalement et placés tout en bas de la cellule.</p>
+
+				<p>Quand la souris survole la 1ère cellule d'une ligne on
+					affiche dans un tableau des informations sur le vaiseau.</p>
+
+				<figure>
+					<img src="../exercices/exo_table_2d.jpg" width="540" height="281">
+					<figcaption>survol de la 1ère cellule</figcaption>
+				</figure>
+
+				<p class="fp-p-raz">Les informations sur un vaiseau sont
+					présentées dans un tableau de 3 lignes et 2 colonnes.</p>
+
+				<table>
+					<tr>
+						<td></td>
+						<td>Ligne 1</td>
+						<td>Ligne 2</td>
+						<td>Ligne 3</td>
+					</tr>
+					<tr>
+						<td>Nom</td>
+						<td>Droid Gunship</td>
+						<td>X-Wing</td>
+						<td>naboo N-1</td>
+					</tr>
+					<tr>
+						<td>Vitesse</td>
+						<td>14 200 km/h</td>
+						<td>1 000 km/h</td>
+						<td>1 100 km/h</td>
+					</tr>
+					<tr>
+						<td>Equipage</td>
+						<td>Aucun</td>
+						<td>1 pilote</td>
+						<td>1 pilote</td>
+					</tr>
+				</table>
+
+				<p class="fp-p-raz">Le tableau d'informations occupe tout
+					l'espace de la cellule et a un fond noir transparent à 50%. Les
+					textes sont affichés avec la police Consolas ou monaco ou
+					monospace, en taille 13 pixels. Dans la 1ère colonne, les textes
+					sont en blancs et alignés à droite. Dans la 2ème colonne ils sont
+					alignés à gauche et leur couleur est composée de rouge 237, vert
+					211 et bleu 1.</p>
+
+				<p class="fp-solution">
+					<a onclick="top.FP.Voir.showSolution('exo_table_2b_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_table_2b_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : dans nos hangars - le retour
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table class="hangar"&gt;
+			&lt;caption&gt;Dans nos hangars&lt;/caption&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Vaisseaux&lt;/th&gt;
+					&lt;th&gt;A louer&lt;/th&gt;
+					&lt;th&gt;A vendre&lt;/th&gt;
+					&lt;th&gt;Réservés&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tfoot&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Totaux&lt;/th&gt;
+					&lt;td&gt;4 500&lt;/td&gt;
+					&lt;td&gt;1 250&lt;/td&gt;
+					&lt;td&gt;230&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tfoot&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td&gt;
+						&lt;img src="../exemples/img/v8.png"&gt;
+						&lt;table class="info"&gt;
+							&lt;tr&gt;&lt;td&gt;Nom&lt;/td&gt;&lt;td&gt;Droid Gunship&lt;/td&gt;&lt;/tr&gt;
+							&lt;tr&gt;&lt;td&gt;Vitesse&lt;/td&gt;&lt;td&gt;14 200 km/h&lt;/td&gt;&lt;/tr&gt;
+							&lt;tr&gt;&lt;td&gt;Equipage&lt;/td&gt;&lt;td&gt;Aucun&lt;/td&gt;&lt;/tr&gt;
+							&lt;/table&gt;					
+					&lt;/td&gt;
+					&lt;td&gt;2 200
+						&lt;div&gt;1 000 &euro; / h&lt;/div&gt;
+					&lt;/td&gt;
+					&lt;td&gt;250
+						&lt;div&gt;60 000 &euro;&lt;/div&gt;
+					&lt;/td&gt;
+					&lt;td&gt;&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;
+						&lt;img src="../exemples/img/v3.png"&gt;
+						&lt;table class="info"&gt;
+							&lt;tr&gt;&lt;td&gt;Nom&lt;/td&gt;&lt;td&gt;X-Wing&lt;/td&gt;&lt;/tr&gt;
+							&lt;tr&gt;&lt;td&gt;Vitesse&lt;/td&gt;&lt;td&gt;1 000 km/h&lt;/td&gt;&lt;/tr&gt;
+							&lt;tr&gt;&lt;td&gt;Equipage&lt;/td&gt;&lt;td&gt;1 pilote&lt;/td&gt;&lt;/tr&gt;
+						&lt;/table&gt;
+					&lt;/td&gt;
+					&lt;td&gt;1 000
+						&lt;div&gt;2 500 &euro; / h&lt;/div&gt;
+					&lt;/td&gt;
+					&lt;td&gt;500
+						&lt;div&gt;149 999 &euro;&lt;/div&gt;
+					&lt;/td&gt;
+					&lt;td&gt;120&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;
+						&lt;img src="../exemples/img/v5.png"&gt;
+						&lt;table class="info"&gt;
+							&lt;tr&gt;&lt;td&gt;Nom&lt;/td&gt;&lt;td&gt;Naboo N-1&lt;/td&gt;&lt;/tr&gt;
+							&lt;tr&gt;&lt;td&gt;Vitesse&lt;/td&gt;&lt;td&gt;1 100 km/h&lt;/td&gt;&lt;/tr&gt;
+							&lt;tr&gt;&lt;td&gt;Equipage&lt;/td&gt;&lt;td&gt;1 pilote&lt;/td&gt;&lt;/tr&gt;
+						&lt;/table&gt;
+					&lt;/td&gt;
+					&lt;td&gt;1 300
+						&lt;div&gt;5 000 &euro; / h&lt;/div&gt;
+					&lt;/td&gt;
+					&lt;td&gt;500
+						&lt;div&gt;200 000 &euro;&lt;/div&gt;
+					&lt;/td&gt;
+					&lt;td&gt;210&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+body { background: url(../exemples/img/etoiles.jpg); }
+
+/* tableau principal */
+.hangar {
+	font: 15px verdana, helvetica, sans-serif;
+	border-spacing: 8px;
+	margin: 0 auto;
+	color: white;
+}
+
+/* titre du tableau principal */
+.hangar > caption {
+	font-size: 40px;
+	font-weight: bold;
+	margin: 16px 0;
+	color: black;
+	text-shadow: 0 0 4px white,
+                0 0 4px #FFFF33,
+				0 0 6px #FFDD33,
+				0 0 11px #FF8800,
+				0 0 18px #FF2200;
+
+}
+
+/* cellules en-tête et pied du tableau principal */
+.hangar > thead th,
+.hangar > tfoot th,
+.hangar > thead td {
+	box-shadow: 0 0 4px 1px #FF8800;
+}
+
+/* Indication des prix */
+.hangar div {
+	position: absolute;
+	bottom: 0;
+	text-align: center;
+	width: 100%;
+	left: 0;
+	display: none;
+	font: 13px Consolas,monaco,monospace;
+	color: rgb(237, 211, 1);
+}
+
+/* survol des lignes du corps du tableau principal */
+.hangar > tbody > tr:hover > td {
+	box-shadow: 0 0 4px 1px #ddc067;
+	background: #111;
+	cursor: pointer;
+}
+/* au survol des lignes du corps du tableau principal on rend les prix visibles */
+.hangar > tbody > tr:hover > td div {
+	display: block;
+}
+
+/* tableau avec les infos sur un vaisseau */
+.info {
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+	border-collapse: collapse;
+	border-spacing: 0;
+	display: none;
+	font: 13px Consolas, monaco, monospace;
+	height: 100%;
+	left: 0;
+	margin: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+/* au survol de la 1ére cellule du corps du tableau principal on rend le tableau information visible */
+.hangar > tbody > tr > td:first-of-type:hover .info {
+	display: block;
+}
+
+/* tous les td et th des tables */
+td,
+th {
+	padding: 5px 10px;
+	position: relative;
+	white-space: nowrap;
+}
+
+td {
+	text-align: right;
+	width: 80px;
+}
+
+/* on redéfinit les td du tableau d'informations */
+.info td:first-of-type {
+	width: auto;
+	color: white;
+	text-align: right;
+}
+.info td:last-of-type {
+	width: auto;
+	color: rgb(237, 211, 1);
+	text-align: left;
+}</textarea>
+					</form>
+				</div>
+
+			</section>
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

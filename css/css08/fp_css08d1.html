@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Flexbox</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function() {
+			top.FP.initPage();
+		}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			CSS3 étend les possibilités de positionnement avec une nouvelle
+			méthode : les boîtes flexibles (<a
+				href="http://www.w3.org/TR/css3-flexbox/" target="_blank">CSS
+				Flexible Box Layout Module</a>).
+			<br>
+			<i>Dans la suite, les boîtes flexibles seront appelées simplement
+				flexbox.</i>
+		</p>
+
+		<p class="fp-bot0">
+			Par certains aspects, cette méthode de positionnement ressemble à un
+			tableau qui n'aurait qu'une seule ligne de cellules car on a un
+			élément conteneur avec des éléments items.
+			<br>
+			Par contre les possibilités d'agencement des items sont bien plus
+			grandes que celles des cellules d'un tableau. En effet, les items
+			d'une flexbox peuvent :
+		</p>
+		<ul>
+			<li>se positionner dans 4 directions,</li>
+			<li>être réordonnés et réarrangés,</li>
+			<li>être agencés le long d'un axe principal ou d'un axe
+				transversal (ie alignés horizontalement et verticalement),</li>
+			<li>avoir leurs dimensions automatiquement mises à jour suivant
+				la place disponible.</li>
+		</ul>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Principes</h3>
+		<section>
+			<h4>Un conteneur, des items</h4>
+			<section>
+				<figure style="float: right; margin: 0 0 0.5em 1em; width: 260px">
+					<img src="../cssimg/flex_01.png" width="250" height="190">
+					<figcaption>éléments flexbox</figcaption>
+				</figure>
+
+				<p>
+					Une structure de boîtes flexibles repose sur plusieurs éléments <abbr
+						title="HyperText Markup Language">HTML</abbr>.
+				</p>
+
+				<p>
+					Un élément joue le rôle de conteneur. Cet élément doit avoir sa <strong>
+						propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'display')">display</a>
+					</strong> avec la valeur <strong><code>flex</code></strong> ou <strong><code>inline-flex</code></strong>.
+				</p>
+
+				<p>
+					L'élément conteneur contient d'autres élements <abbr
+						title="HyperText Markup Language">HTML</abbr>, les items, qui vont
+					se positionner à l'intérieur du conteneur suivant des propriétés <abbr
+						title="Cascading Style Sheets">CSS</abbr> spécifiques aux flexbox.
+				</p>
+
+				<p>
+					Ce positionnement concerne les enfants du conteneur (ie 1er niveau
+					d'imbrication), quelque soit le type d'élément de ces enfants. On
+					peut donc avoir des enfants de même type (par exemple des <a
+						onclick="top.FP.Voir.showPageTech('elements', 'p')">p</a>, des <a
+						onclick="top.FP.Voir.showPageTech('elements', 'article')">articles</a>,
+					des <a onclick="top.FP.Voir.showPageTech('elements', 'div')">div</a>,
+					etc) ou de types différents et mélangés.
+				</p>
+
+			</section>
+
+			<h4>Direction d'affichage des items</h4>
+			<section>
+				<p>
+					La propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'flex-direction')">flex-direction</a>
+					appliquée sur le conteneur définit dans quel sens vont s'afficher
+					les items contenus. Les spécifications parlent de l'axe principal
+					et de l'axe transversal, perpendiculaire à l'axe principal.
+				</p>
+
+				<div
+					style="display: flex; flex-wrap: wrap; justify-content: space-around">
+					<figure>
+						<img src="../cssimg/flex_02.png" width="250" height="96">
+						<figcaption>flex-direction: row</figcaption>
+					</figure>
+					<figure>
+						<img src="../cssimg/flex_03.png" width="250" height="97">
+						<figcaption>flex-direction: row-reverse</figcaption>
+					</figure>
+					<figure>
+						<img src="../cssimg/flex_04.png" width="159" height="200">
+						<figcaption>flex-direction: column</figcaption>
+					</figure>
+					<figure>
+						<img src="../cssimg/flex_04.png" width="160" height="200">
+						<figcaption>flex-direction: column-reverse</figcaption>
+					</figure>
+				</div>
+
+				<div class="TEST-iframe">
+					<p>Tester la direction</p>
+					<iframe src="../exemples/flexbox_widget_01.html?1widget-01"
+						id="widget-01"
+						style="width: 100%; margin: 0; border: 0 none; height: 600px;"></iframe>
+				</div>
+
+				<p class="fp-p-raz">L'exemple suivant montre un bandeau
+					horizontal comme on pourrait en avoir dans la partie supérieure des
+					pages d'un site.</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : bandeau horizontal
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML" data-hidden>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;nav&gt;
+			&lt;div&gt;
+				Logo&lt;br&gt;du&lt;br&gt;site
+			&lt;/div&gt;
+			&lt;div&gt;
+				Menu 1
+				&lt;ul&gt;
+					&lt;li&gt;Lien&lt;/li&gt;
+					&lt;li&gt;Lien&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+			&lt;div&gt;
+				Menu 2
+				&lt;ul&gt;
+					&lt;li&gt;Lien&lt;/li&gt;
+					&lt;li&gt;Lien&lt;/li&gt;
+					&lt;li&gt;Lien&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+			&lt;div&gt;
+				Menu 3
+				&lt;ul&gt;
+					&lt;li&gt;Lien&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/nav&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+/* le conteneur */
+nav {
+	display: flex;			/* boîte flexible */
+	flex-direction: row;	/* direction horizontale */
+	height: 140px;
+	background: darkturquoise;
+}
+
+/* les items */
+nav div {
+	background: paleturquoise;
+	margin: 10px;
+	padding: 10px;	
+}
+
+ul { margin: 0; }</textarea>
+				</form>
+
+
+				<p class="fp-p-raz">L'exemple suivant montre un bandeau
+					vertical.</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : bandeau vertical
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML" data-hidden>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;aside&gt;
+			&lt;div&gt;
+				Publicité&lt;br&gt;numéro&lt;br&gt;1
+			&lt;/div&gt;
+			&lt;div&gt;
+				La publicité&lt;br&gt;deux
+			&lt;/div&gt;
+			&lt;div&gt;
+				Pub&lt;br&gt;n°&lt;br&gt;3
+			&lt;/div&gt;
+			&lt;div&gt;
+				Publicité 4
+			&lt;/div&gt;
+		&lt;/aside&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+/* le conteneur */
+aside {
+	display: flex;			/* boîte flexible */
+	flex-direction: column;	/* direction verticale */
+	width: 140px;
+	height: 100%;			/* la boîte prend toute la hauteur
+							de la page */
+	background: darkturquoise;
+}
+
+/* les items */
+aside div {
+	background: paleturquoise;
+	margin: 10px;
+	padding: 10px;	
+}
+
+/* forcer la hauteur de la page à la hauteur du navigateur */
+html, body {
+	margin: 0;
+	height: 100%;
+}</textarea>
+				</form>
+
+			</section>
+		</section>
+
+		<h3>Alignements des items</h3>
+		<section>
+			<h4>Alignement sur l'axe principal</h4>
+			<section>
+				<p>
+					Une des caractéristiques très intéressante des boîtes flexibles
+					tient dans l'alignement que l'on peut gèrer sur l'axe principal.
+					<br>
+					La propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'justify-content')">justify-content</a>
+					va non seulement permettre les alignements classiques (gauche /
+					droite, haut / bas, centre) mais également des alignements qui
+					tiennent compte des largeurs des items et calculent automatiquement
+					l'espace entre eux.
+				</p>
+
+				<figure>
+					<img src="../cssimg/justify_content_horiz.png" width="350"
+						height="302">
+					<figcaption>justify-content avec axe principal
+						horizontal</figcaption>
+				</figure>
+				<figure>
+					<img src="../cssimg/justify_content_vertic.png" width="400"
+						height="220">
+					<figcaption>justify-content avec axe principal
+						vertical</figcaption>
+				</figure>
+
+				<div class="TEST-iframe">
+					<p>Tester direction et alignement sur l'axe principal</p>
+					<iframe src="../exemples/flexbox_widget_02.html?2widget-02"
+						id="widget-02"
+						style="width: 100%; margin: 0; border: 0 none; height: 600px;"></iframe>
+				</div>
+
+				<p class="fp-p-raz">L'exemple suivant montre l'alignement des
+					items dans un bandeau horizontal.</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : bandeau horizontal
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML" data-hidden>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;nav&gt;
+			&lt;div&gt;
+				Logo&lt;br&gt;du&lt;br&gt;site
+			&lt;/div&gt;
+			&lt;div&gt;
+				Menu 1
+				&lt;ul&gt;
+					&lt;li&gt;Lien&lt;/li&gt;
+					&lt;li&gt;Lien&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+			&lt;div&gt;
+				Menu 2
+				&lt;ul&gt;
+					&lt;li&gt;Lien&lt;/li&gt;
+					&lt;li&gt;Lien&lt;/li&gt;
+					&lt;li&gt;Lien&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+			&lt;div&gt;
+				Menu 3
+				&lt;ul&gt;
+					&lt;li&gt;Lien&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/nav&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+/* le conteneur */
+nav {
+	display: flex;			/* boîte flexible */
+	flex-direction: row;	/* direction horizontale */
+	justify-content: space-between;	/* alignement principal */
+	height: 140px;
+	background: darkturquoise;
+}
+
+/* les items */
+nav div {
+	background: paleturquoise;
+	margin: 10px;
+	padding: 10px;	
+}
+
+ul { margin: 0; }</textarea>
+				</form>
+
+
+				<p class="fp-p-raz">L'exemple suivant montre l'alignement des
+					items dans un bandeau vertical.</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : bandeau vertical
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML" data-hidden>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;aside&gt;
+			&lt;div&gt;
+				Publicité&lt;br&gt;numéro&lt;br&gt;1
+			&lt;/div&gt;
+			&lt;div&gt;
+				La publicité&lt;br&gt;deux
+			&lt;/div&gt;
+			&lt;div&gt;
+				Pub&lt;br&gt;n°&lt;br&gt;3
+			&lt;/div&gt;
+			&lt;div&gt;
+				Publicité 4
+			&lt;/div&gt;
+		&lt;/aside&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+/* le conteneur */
+aside {
+	display: flex;			/* boîte flexible */
+	flex-direction: column;	/* direction verticale */
+	justify-content: space-around;	/* alignement principal */
+	width: 140px;
+	height: 100%;			/* la boîte prend toute la hauteur
+							de la page */
+	background: darkturquoise;
+}
+
+/* les items */
+aside div {
+	background: paleturquoise;
+	margin: 10px;
+	padding: 10px;	
+}
+
+/* forcer la hauteur de la page à la hauteur du navigateur */
+html, body {
+	margin: 0;
+	height: 100%;
+}</textarea>
+				</form>
+			</section>
+
+
+			<h4>Alignement sur l'axe transversal</h4>
+			<section>
+				<p>
+					Comme on peut le voir dans les exemples précédents, par défaut les
+					items du conteneur occupent toute la largeur ou la hauteur de l'axe
+					transversal.
+					<br>
+					La propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'align-items')">align-items</a>
+					permet de gérer plus finement cet alignement.
+					<br>
+					La valeur <code>center</code> permet en particulier de centrer
+					verticalement un élément par rapport à son conteneur de façon on ne
+					peut plus simple.
+				</p>
+
+
+				<figure>
+					<img src="../cssimg/align_items_horiz.png" width="350" height="318">
+					<figcaption>align-items avec axe principal horizontal</figcaption>
+				</figure>
+
+				<figure>
+					<img src="../cssimg/align_items_vertic.png" width="400"
+						height="132">
+					<figcaption>align-items avec axe principal vertical</figcaption>
+				</figure>
+
+				<div class="TEST-iframe">
+					<p>Tester direction et alignement sur l'axe transverval</p>
+					<iframe src="../exemples/flexbox_widget_03.html?3widget-03"
+						id="widget-03"
+						style="width: 100%; margin: 0; border: 0 none; height: 600px;"></iframe>
+				</div>
+
+				<p class="fp-p-raz">L'exemple suivant montre l'alignement des
+					items dans un bandeau horizontal.</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : bandeau horizontal
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML" data-hidden>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;nav&gt;
+			&lt;div&gt;
+				Logo&lt;br&gt;du&lt;br&gt;site
+			&lt;/div&gt;
+			&lt;div&gt;
+				Menu 1
+				&lt;ul&gt;
+					&lt;li&gt;Lien&lt;/li&gt;
+					&lt;li&gt;Lien&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+			&lt;div&gt;
+				Menu 2
+				&lt;ul&gt;
+					&lt;li&gt;Lien&lt;/li&gt;
+					&lt;li&gt;Lien&lt;/li&gt;
+					&lt;li&gt;Lien&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+			&lt;div&gt;
+				Menu 3
+				&lt;ul&gt;
+					&lt;li&gt;Lien&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/div&gt;
+		&lt;/nav&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+/* le conteneur */
+nav {
+	display: flex;			/* boîte flexible */
+	flex-direction: row;	/* direction horizontale */
+	justify-content: space-between;	/* alignement principal */
+	align-items: flex-start;	/* alignemeent transversal */
+	height: 140px;
+	background: darkturquoise;
+}
+
+/* les items */
+nav div {
+	background: paleturquoise;
+	margin: 10px;
+	padding: 10px;	
+}
+
+ul { margin: 0; }</textarea>
+				</form>
+
+				<p class="fp-p-raz">L'exemple suivant montre l'alignement des
+					items dans un bandeau vertical.</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : bandeau vertical
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML" data-hidden>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;aside&gt;
+			&lt;div&gt;
+				Publicité&lt;br&gt;numéro&lt;br&gt;1
+			&lt;/div&gt;
+			&lt;div&gt;
+				La publicité&lt;br&gt;deux
+			&lt;/div&gt;
+			&lt;div&gt;
+				Pub&lt;br&gt;n°&lt;br&gt;3
+			&lt;/div&gt;
+			&lt;div&gt;
+				Publicité 4
+			&lt;/div&gt;
+		&lt;/aside&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+/* le conteneur */
+aside {
+	display: flex;			/* boîte flexible */
+	flex-direction: column;	/* direction verticale */
+	justify-content: space-around;	/* alignement principal */
+	align-items: center;	/* alignement transversal */
+	width: 140px;
+	height: 100%;			/* la boîte prend toute la hauteur
+							de la page */
+	background: darkturquoise;
+}
+
+/* les items */
+aside div {
+	background: paleturquoise;
+	margin: 10px;
+	padding: 10px;	
+}
+
+/* forcer la hauteur de la page à la hauteur du navigateur */
+html, body {
+	margin: 0;
+	height: 100%;
+}</textarea>
+				</form>
+
+
+			</section>
+
+
+			<a id="exo_flex_1"></a>
+			<h4 class="fp-exo">Bandeau de navigation</h4>
+			<section>
+				<p>
+					A partir du code <abbr title="HyperText Markup Language">HTML</abbr>
+					ci-après, complétez le code <abbr title="Cascading Style Sheets">CSS</abbr>
+					pour obtenir une page avec le bandeau de navigation ci-dessous.
+				</p>
+
+				<figure>
+					<img src="../exercices/exo_flexbox_1a.jpg" width="540" height="279">
+					<figcaption>bandeau de navigation</figcaption>
+				</figure>
+
+				<p>
+					Toutes les images utilisées se trouvent dans le répertoire <code>../exemples/img</code>
+				</p>
+
+				<p>La police utilisée est verdana, helvetica ou sans-serif avec
+					une taille de 15 pixels.</p>
+
+				<p>
+					L'image de fond de la page occupe automatiquement toute la surface
+					de la page et se redimenssionne en même temps que la page. Elle
+					s'appelle <code>metal_rivets.jpg</code>.
+				</p>
+
+
+				<p>
+					Le bandeau est fait avec une flexbox. Sa hauteur est de 140 pixels.
+					Le fond est fait par un dégradé linéaire avec 3 points d'arrêt : <code>#ccc</code>,
+					<code>#fcfcfc</code> et <code>#dcdcdc</code>. Il est entouré par
+					une ombre sans décalage, avec un adouci de 2 pixels, un renfort de
+					4 pixels et de couleur <code>#322b25</code>.
+				</p>
+
+				<p>
+					L'image de gauche s'appelle <code>pirate.png</code> et mesure 115
+					pixels de large et 122 pixels de haut.
+				</p>
+
+
+				<div class="fp-puce">
+					<table class="TAB-sans-bord">
+						<tr>
+							<td>
+								<p>
+									Les 3 boutons du centre sont des liens faits avec la balise <a
+										onclick="top.FP.Voir.showPageTech('elements', 'a')">a</a>.
+									<br>
+									La couleur de fond est est un gris léger (232 de rouge, vert et
+									bleu) avec une transparence de 0.2.
+									<br>
+									Le texte a pour couleur 41 de rouge, 34 de vert, 28 et de bleu.
+									<br>
+									Le lien est entouré par une ombre sans décalage, avec un adouci
+									de 3 pixels, un renfort de 1 pixel et de même couleur que le
+									texte.
+									<br>
+									Les images utilisées s'appellent respectivement <code>m1.png</code>,
+									<code>m2.png</code> et <code>m3.png</code>.
+								</p>
+							</td>
+							<td>
+								<figure>
+									<img src="../exercices/exo_flexbox_1b.png" width="200"
+										height="151">
+									<figcaption>dimensions des boutons centraux</figcaption>
+								</figure>
+							</td>
+						</tr>
+						<tr>
+							<td>Au survol de la souris, le texte des liens est ombré
+								avec une ombre sans décalage, de 3 pixels d'adouci et de couleur
+								190 rouge, 190 vert et 190 bleu. Une ombre interne
+								supplémentaire est également ajoutée au lien, sans décalage,
+								avec un adouci de 5 pixels, un renfort de 2 pixels et de couleur
+								190 rouge, 190 vert et 190 bleu.</td>
+							<td>
+								<figure>
+									<img src="../exercices/exo_flexbox_1c.png" width="135"
+										height="104">
+									<figcaption>bouton survolé par la souris</figcaption>
+								</figure>
+							</td>
+						</tr>
+					</table>
+				</div>
+
+
+				<figure style="float: right; margin: 0 0 0.5em 1em; width: 200px">
+					<img src="../exercices/exo_flexbox_1d.png" width="200" height="145">
+					<figcaption>dimensions des zones de saisie</figcaption>
+				</figure>
+
+				<p>
+					Les 2 zones de saisie du formulaire ont les dimensions indiquées
+					ci-contre.
+					<br>
+					Les 2 zones ont une bordure de 1 pixel de couleur <code>ACACAC</code>.
+					<br>
+					La couleur de fond est de couleur <code>F0F0F0</code>.
+					<br>
+					Quand les zones obtiennent le focus, le couleur de fond devient
+					blanche.
+				</p>
+
+				<figure
+					style="float: right; margin: 0 0 0.5em 1em; width: 200px; clear: both;">
+					<img src="../exercices/exo_flexbox_1e.png" width="200" height="149">
+					<figcaption>dimensions de bouton de sousmission</figcaption>
+				</figure>
+
+				<p>
+					Le bouton de soumission a les dimensions indiquées ci-contre.
+					<br>
+					Le fond du bouton est fait par un dégradé linéaire avec 3 points
+					d'arrêt : <code>#ececec</code>, <code>#fcfcfc</code> et <code>#ccc</code>.
+					<br>
+					La couleur du texte est <code>#777</code>.
+					<br>
+					Quand la souris survole le bouton, la couleur du texte est faite
+					avec 41 de rouge, 34 de vert et 28 de bleu. Le texte a une ombre
+					sans décalage, avec un adouci de 3 pixels et de couleur 190 de
+					rouge, de vert et de bleu. Le bouton a une ombre sans décalage,
+					avec un adouci de 1 pixel et de couleur 41 de rouge, 34 de vert et
+					28 de bleu.
+				</p>
+
+
+				<p class="fp-completez fp-clear">
+					<a onclick="top.FP.Voir.showCompletez('exo_flex_1_comp')">Code
+						à compléter</a>
+				</p>
+
+
+				<div id="exo_flex_1_comp" class="BLOC-completez">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : bandeau de navigation
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;header&gt;
+			&lt;img&gt;
+			&lt;nav&gt;
+				&lt;a href="#"&gt;&lt;/a&gt;
+				&lt;a href="#"&gt;&lt;/a&gt;
+				&lt;a href="#"&gt;&lt;/a&gt;
+			&lt;/nav&gt;
+			&lt;form action="http://example.com/login.php"&gt;
+				&lt;input&gt;
+				&lt;input&gt;
+				&lt;input&gt;
+			&lt;/form&gt;
+		&lt;/header&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+
+CODE CSS A COMPLETER 
+
+</textarea>
+					</form>
+				</div>
+
+				<p class="fp-solution">
+					<a onclick="top.FP.Voir.showSolution('exo_flex_1_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_flex_1_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : bandeau de navigation
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;header&gt;
+			&lt;img src="../exemples/img/pirate.png" id="logo"&gt;
+			&lt;nav&gt;
+				&lt;a href="#"&gt;Vaisseaux&lt;/a&gt;
+				&lt;a href="#"&gt;Robots&lt;/a&gt;
+				&lt;a href="#"&gt;Droïds&lt;/a&gt;
+			&lt;/nav&gt;
+			&lt;form action="http://example.com/login.php"&gt;
+				&lt;input type="text" name="txtPseudo" placeholder="Pseudo"&gt;
+				&lt;input type="password" name="txtPasse" placeholder="Mot de passe"&gt;
+				&lt;input type="submit" value="Entrage"&gt;
+			&lt;/form&gt;
+		&lt;/header&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+body {
+	margin: 20px;
+	background-image: url(../exemples/img/metal_rivets.jpg);
+	background-position: center center;
+	background-size: cover;
+	background-attachment: fixed;
+	/* raccourci background :
+	background: url(../exemples/img/metal_rivets.jpg) center center / cover fixed;
+	*/
+	font: 15px verdana, helvetica, sans-serif;
+}
+
+header {
+	display: flex;			/* boîte flexible */
+	flex-direction: row;	/* direction horizontale */
+	justify-content: space-between; /* alignement horizontal*/
+	align-items: center;	/* alignement vertical */
+	height: 140px;
+	padding: 0 10px;
+	border-radius: 10px;
+	background: linear-gradient(#ccc, #fcfcfc, #dcdcdc);
+	box-shadow: 0 0 2px 4px #322b25;
+}
+
+nav {
+	display: flex;			/* boîte flexible */
+	flex-direction: row;	/* direction horizontale */
+	justify-content: space-between; /* alignement horizontal*/
+	align-items: center;	/* alignement vertical */
+}
+
+/* liens du menu et formulaire */
+nav a,
+header form {
+	display: block;	
+	margin: 5px;	
+	width: 120px;
+	min-width: 120px;
+	height: 80px;
+	border-radius: 5px;
+	line-height: 140px;		/* pour que les textes soient en
+							bas de l'image de fond */
+	background-repeat: no-repeat;
+	background-color: rgba(232, 232, 232, 0.2);
+	color:  rgb(41, 34, 28); 
+	box-shadow: 0 0 3px 1px rgb(41, 34, 28);
+	text-align: center;
+	text-decoration: none;
+}
+
+header form {
+	height: 105px;
+}
+
+#logo {
+	width: 115px;
+	min-width: 115px;
+	height: 122px;
+}
+
+/* images de fond des liens du menu */
+nav a:nth-of-type(1) {
+	background-image: url(../exemples/img/m1.png);
+}
+nav a:nth-of-type(2) {
+	background-image: url(../exemples/img/m2.png);
+}
+nav a:nth-of-type(3) {
+	background-image: url(../exemples/img/m3.png);
+}
+
+/* survol d'un lien du menu ou d'un bouton */
+nav a:hover {
+	box-shadow: 0 0 3px 1px rgb(41, 34, 28), 
+				0 0 5px 2px rgb(190, 190, 190) inset;
+	text-shadow: 0 0 3px rgb(190, 190, 190);
+}
+
+/* zones de saisie */
+header input {
+	display: block;
+	width: 100px;
+	margin: 10px auto;
+	border: 1px solid #acacac;
+	background: #f0f0f0;
+}
+/* changement couleur de fond quand zone activée */
+header input:focus { background: white; }
+
+/* bouton du formulaire */
+header input[type="submit"] {
+	width: 80px;
+	height: 2em;
+	border-radius: 10px;
+	background: linear-gradient(#ececec, #fcfcfc, #ccc);
+	color: #777;
+	cursor: pointer;
+}
+header input[type="submit"]:hover {
+	color: rgb(41, 34, 28);
+	box-shadow: 0 0 1px 0px rgb(41, 34, 28);
+	text-shadow: 0 0 3px rgb(190, 190, 190);
+}
+</textarea>
+					</form>
+				</div>
+			</section>
+
+		</section>
+
+	</div>
+
+	<footer></footer>
+
+	<script>
+		(function() {
+			var FPLMsgProp = top.FP.getCSSPropPrefix('flexDirection');
+
+			if (FPLMsgProp == '') {
+				return;
+			}
+
+			if (FPLMsgProp == '--') {
+				FPLMsgProp = 'Vous ne pouvez pas tester les exemples car votre navigateur\n ne supporte pas les propriétés flexbox.';
+			} else if (FPLMsgProp != '') {
+				FPLMsgProp = 'Pour tester les exemples, vous devez préfixer les propriétés flexbox par '
+						+ FPLMsgProp;
+			}
+
+			[].forEach.call(document
+					.getElementsByClassName('TEST-form-groupe-bottom'),
+					function(Form) {
+						var E = document.createElement('DIV');
+						E.innerHTML = FPLMsgProp;
+						E.className = 'TEST-msg-alerte';
+						Form.appendChild(E);
+					});
+
+		})();
+	</script>
+</body>
+</html>

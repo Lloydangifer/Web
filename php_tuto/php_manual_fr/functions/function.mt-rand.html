@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>G&eacute;n&egrave;re une meilleure valeur
+	al&eacute;atoire</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.mt-getrandmax.html">mt_getrandmax</a>
+		</div>
+		<div class="next">
+			<a href="function.mt-srand.html">mt_srand</a>
+		</div>
+		<div class="up">
+			<a href="ref.math.html">Fonctions Math</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.mt-rand" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">mt_rand</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">mt_rand</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Génère une meilleure valeur aléatoire</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.mt-rand-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">int</span> <span class="methodname"><strong>mt_rand</strong></span>
+				( <span class="methodparam">void</span> )
+			</div>
+
+			<div class="methodsynopsis dc-description">
+				<span class="type">int</span> <span class="methodname"><strong>mt_rand</strong></span>
+				( <span class="methodparam"><span class="type">int</span> <code
+						class="parameter">$min</code></span> , <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$max</code></span> )
+			</div>
+
+			<p class="simpara">
+				De nombreux générateurs de nombres aléatoires provenant de vieilles
+				bibliothèques libcs ont des comportements douteux et sont très
+				lents. Par défaut, PHP utilise le générateur de nombres aléatoires
+				de libc avec la fonction <span class="function"><a
+					href="function.rand.html" class="function">rand()</a></span>. <span
+					class="function"><strong>mt_rand()</strong></span> est une fonction
+				de remplacement, pour cette dernière. Elle utilise un générateur de
+				nombres aléatoire de caractéristique connue, le &quot; <a
+					href="http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html"
+					class="link external">&raquo;&nbsp;Mersenne Twister</a> &quot; qui
+				est 4 fois plus rapide que la fonction standard libc.
+			</p>
+			<p class="simpara">
+				Appelée sans les arguments optionnels <em><code
+						class="parameter">min</code></em> et <em><code class="parameter">max</code></em>,
+				<span class="function"><strong>mt_rand()</strong></span> retourne un
+				nombre pseudoaléatoire, entre 0 et <span class="function"><a
+					href="function.mt-getrandmax.html" class="function">mt_getrandmax()</a></span>.
+				Pour obtenir un nombre entre 5 et 15 inclus, il faut utiliser <em>mt_rand(5,15)</em>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.mt-rand-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">min</code></em></span>
+				<dd>
+
+					<p class="para">Valeur la plus basse qui peut être retournée
+						(par défaut : 0)</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">max</code></em></span>
+				<dd>
+
+					<p class="para">
+						Valeur la plus haute qui peut être retournée (par défaut : <span
+							class="function"><a href="function.mt-getrandmax.html"
+							class="function">mt_getrandmax()</a></span>).
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.mt-rand-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Un <a href="language.types.integer.html" class="link">entier</a>
+				aléatoire compris entre <em><code class="parameter">min</code></em>
+				(ou 0) et <em><code class="parameter">max</code></em> (ou <span
+					class="function"><a href="function.mt-getrandmax.html"
+					class="function">mt_getrandmax()</a></span>, inclusif).
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.mt-rand-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.2.0</td>
+						<td>Le générateur de nombres aléatoires est initialisé
+							automatiquement.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.mt-rand-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-3271">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>mt_rand()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">mt_rand</span><span
+								style="color: #007700">()&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />echo&nbsp;
+							</span><span style="color: #0000BB">mt_rand</span><span
+								style="color: #007700">()&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />
+								<br />echo&nbsp;
+							</span><span style="color: #0000BB">mt_rand</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">5</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">15</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher quelque chose de
+						similaire à :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+1604716014
+1478613278
+6
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.mt-rand-notes">
+			<h3 class="title">Notes</h3>
+			<div class="caution">
+				<strong class="caution">Attention</strong>
+				<p class="para">
+					Les valeurs retournées par la fonction <span class="function"><strong>mt_rand()</strong></span>
+					sont biaisées par les nombres paires pour les versions de PHP
+					compilées sur les architectures 64-bits lorsque le paramètre <em><code
+							class="parameter">max</code></em> est au-delà de <em>2^32</em>.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.mt-rand-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.mt-srand.html" class="function" rel="rdfs-seeAlso">mt_srand()</a>
+						- Initialise une meilleure valeur al&eacute;atoire</span></li>
+				<li class="member"><span class="function"><a
+						href="function.mt-getrandmax.html" class="function"
+						rel="rdfs-seeAlso">mt_getrandmax()</a> - La plus grande valeur
+						al&eacute;atoire possible</span></li>
+				<li class="member"><span class="function"><a
+						href="function.rand.html" class="function" rel="rdfs-seeAlso">rand()</a>
+						- G&eacute;n&egrave;re une valeur al&eacute;atoire</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.mt-getrandmax.html">mt_getrandmax</a>
+		</div>
+		<div class="next">
+			<a href="function.mt-srand.html">mt_srand</a>
+		</div>
+		<div class="up">
+			<a href="ref.math.html">Fonctions Math</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Les opérateurs</title>
+<link rel="stylesheet" href="../_local/codemirror.css">
+<script src="../_local/codemirror_pour_php.js"></script>
+
+<link rel="stylesheet" href="../_core/def.css">
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+
+</head>
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<h3>Opérateurs d'assignement</h3>
+		<section>
+
+			<p>Ces opérateurs donnent une valeur, ou modifient la valeur
+				d'une variable. L'assignement peut être simple ou avec opération.</p>
+			<ul class="fp-ul-1em">
+				<li><span class="fp-code">&nbsp;=&nbsp;</span> : une valeur est
+					assignée.
+					<p>
+						<span class="fp-code">$x = 10;</span> $x contient la valeur 10 <br>
+						<span class="fp-code"> $x = $y = 10;</span> $y contient la valeur
+						10 puis la valeur de $y est affectée à $x <br> <span
+							class="fp-code">$x = $y + $z;</span> $x contient le résultat de
+						l'addition de $y et $z
+					</p>
+				<li><span class="fp-code">&nbsp;.=&nbsp;</span> : concaténation
+					de chaînes de caractères. L'opérande de droite est ajouté à la
+					suite de l'opérande de gauche qui reçoit le résultat.
+					<p>
+						<span class="fp-code">$x = 'François';<br>$x .= '
+							Piat'
+						</span><br>$x contient 'François Piat'
+					</p>
+				<li><span class="fp-code">&nbsp;+=&nbsp;</span> : ajoute
+					l'opérande de droite à l'opérande de gauche qui reçoit le résultat.
+					<p>
+						<span class="fp-code">$x += 5</span> est identique à <span
+							class="fp-code">$x = $x + 5</span>
+					</p>
+				<li><span class="fp-code">&nbsp;-=&nbsp;</span> : soustrait
+					l'opérande de droite de l'opérande de gauche qui reçoit le
+					résultat.
+					<p>
+						<span class="fp-code">$x -= 5</span> est identique à <span
+							class="fp-code">$x = $x - 5</span>
+					</p>
+				<li><span class="fp-code">&nbsp;/=&nbsp;</span> : divise
+					l'opérande de gauche par l'opérande de droite, puis assigne le
+					résultat à l'opérande de gauche.
+					<p>
+						<span class="fp-code">$x /= 5</span> est identique à <span
+							class="fp-code">$x = $x / 5</span>
+					</p>
+				<li><span class="fp-code">&nbsp;*=&nbsp;</span> : multiplie
+					l'opérande de gauche par l'opérande de droite, puis assigne le
+					résultat à l'opérande de gauche.
+					<p>
+						<span class="fp-code">$x *= 5</span> est identique à <span
+							class="fp-code">$x = $x * 5</span>
+					</p>
+				<li><span class="fp-code">&nbsp;%=&nbsp;</span> : divise
+					l'opérande de gauche par l'opérande de droite, puis assigne le
+					reste de la divison à l'opérande de gauche.
+					<p>
+						<span class="fp-code">$x %= 5</span> est identique à <span
+							class="fp-code">$x = $x % 5</span>
+					</p>
+				<li><span class="fp-code">&nbsp;^=&nbsp;</span> : opération de
+					bit XOR sur les opérandes. Le résultat est affecté à l'opérande de
+					gauche.
+				<li><span class="fp-code">&nbsp;&amp;=&nbsp;</span> : opération
+					de bit AND sur les opérandes. Le résultat est affecté à l'opérande
+					de gauche.
+				<li><span class="fp-code">&nbsp;|=&nbsp;</span> : opération de
+					bit OU sur les opérandes. Le résultat est affecté à l'opérande de
+					gauche.</li>
+			</ul>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : opérateurs d'assignement
+				</div>
+				<textarea name="txtCode" class="TEST-textarea">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Opérateurs d'assignement&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;?php
+$x = 'François';
+echo '&lt;hr&gt;Valeur de $x après affectation : ', $x;
+
+$x .= ' Piat';
+echo '&lt;hr&gt;Valeur de $x après concaténation : ', $x;
+
+$x = 10;
+echo '&lt;hr&gt;Valeur de $x après affectation : ', $x;
+
+$x += 10;
+echo '&lt;hr&gt;Valeur de $x après addition : ', $x;
+
+$x /= 5;
+echo '&lt;hr&gt;Valeur de $x après division : ', $x;
+
+$x -= 4;
+echo '&lt;hr&gt;Valeur de $x après soustraction : ', $x;
+?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+		</section>
+
+		<h3>Opérateurs de bits</h3>
+		<section>
+
+			<p>Ces opérateurs travaillent sur la représentation binaire des
+				opérandes.</p>
+			<ul class="fp-ul-1em">
+				<li><span class="fp-code">&nbsp;$a &amp; $b&nbsp;</span> : AND
+					(les bits positionnés à 1 dans $a ET dans $b sont positionnés à 1).</li>
+				<li><span class="fp-code">&nbsp;$a | $b&nbsp;</span> : OR (les
+					bits positionnés à 1 dans $a OU $b sont sont positionnés à 1).</li>
+				<li><span class="fp-code">&nbsp;$a ^ $b&nbsp;</span> : XOR (les
+					bits positionnés à 1 dans $a OU dans $b sont positionnés à 1).</li>
+				<li><span class="fp-code">&nbsp;~ $a&nbsp;</span> : NOT (les
+					bits qui sont positionnés à 1 dans $a sont positionnés à 0, et vice
+					versa).</li>
+				<li><span class="fp-code">&nbsp;$a &lt;&lt; $b&nbsp;</span> :
+					décale les bits de $a dans $b par la gauche (chaque décalage
+					équivaut à une multiplication par 2).</li>
+				<li><span class="fp-code">&nbsp;$a &gt;&gt; $b&nbsp;</span> :
+					décalage des bits de $a dans $b par la droite (chaque décalage
+					équivaut à une division par 2).</li>
+			</ul>
+
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

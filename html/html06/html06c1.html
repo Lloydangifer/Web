@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Vidéo</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			Embarquer une vidéo dans une page <abbr
+				title="HyperText Markup Language">HTML</abbr> se fait maintenant
+			très facilement car des éléments ont été spécifiquement définis dans
+			<abbr title="HyperText Markup Language">HTML</abbr>5.
+			<br>
+			Les navigateurs de dernière génération prennent tous en compte la
+			lecture native de certains formats vidéos : ils n'ont plus besoin de
+			plug-in pour traiter les <a
+				onclick="top.FP.Voir.showPageTech('videos', '')">codecs vidéos</a>,
+			parce que les algorithmes de décompression font partie intégrante de
+			leur code.
+		</p>
+
+		<div class="fp-ordre fp-f-right" style="width: 19em; margin-left: 0">
+			<div class="fp-ordre-t">
+				<a onClick="top.FP.Voir.showPageTech('videos', '')">Vidéo et
+					audio, codecs et conteneurs</a> lire aussi tu dois.
+			</div>
+		</div>
+
+		<p>
+			Comme pour les images, il existe des formats spécifiques à utiliser
+			car tous les navigateurs ne gérent pas <a
+				href="http://www.codecsdb.com/" target="_blank">tous les codecs
+				vidéos</a>, en particulier parce que certains nécessitent le paiement de
+			droits pour que leur algorithme puisse être utilisé (codecs
+			propriétaires vs codecs libres ou open source).
+			<br>
+			A noter aussi que les performances réseaux et les performances de
+			compression des codecs permettent aujourd'hui la diffusion d'un tel
+			média.
+		</p>
+
+		<p class="fp-remarque">Les vidéos dans les exemples de cette page
+			sont de très petite dimension et de très courte durée à cause de la
+			taille en octets des fichiers vidéo qui est toujours importante.</p>
+
+
+		<h3>L'élément &lt;video&gt;</h3>
+		<section>
+			<p>
+				On utilise la balise <a
+					onclick="top.FP.Voir.showPageTech('elements', 'video')">video</a>
+				pour embarquer une séquence vidéo dans du contenu. La balise doit
+				avoir une balise de fermeture <code>&lt;/video&gt;</code> bien que
+				le contenu vidéo ne soit pas dans le fichier <abbr
+					title="HyperText Markup Language">HTML</abbr>.
+			</p>
+
+			<p class="fp-bot0">Les conteneurs (ie ~ les formats) utilisables
+				sont les suivants :</p>
+			<table class="TAB-zebre" style="width: 80%">
+				<tr>
+					<td>Navigateurs</td>
+					<td>Conteneur</td>
+					<td>Extension</td>
+				</tr>
+				<tr>
+					<td><a href="http://www.google.fr/intl/fr/chrome/browser/"
+						target="_blank">Chrome</a></td>
+					<td>MP4, Ogg, WebM</td>
+					<td>.mp4, .ogg, .webm</td>
+				</tr>
+				<tr>
+					<td><a href="http://www.mozilla.org/fr/firefox/new/"
+						target="_blank">Firefox</a></td>
+					<td>MP4, Ogg, WebM</td>
+					<td>.mp4, .ogg, .webm</td>
+				</tr>
+				<tr>
+					<td><a
+						href="http://windows.microsoft.com/fr-fr/internet-explorer/download-ie"
+						target="_blank">Internet Explorer</a></td>
+					<td>MP4</td>
+					<td>.mp4</td>
+				</tr>
+				<tr>
+					<td><a href="http://www.opera.com/fr/computer/windows"
+						target="_blank">Opera</a></td>
+					<td>Ogg, WebM</td>
+					<td>.ogg, .webm</td>
+				</tr>
+			</table>
+
+			<p class="fp-bot0">
+				Comme pour tous les éléments embarqués, il faut spécifier la
+				localisation de la ressource sur le réseau (ie son <abbr
+					title="Uniform Resource Locator">URL</abbr>). Avec la vidéo, il y a
+				2 façons de spécifier le fichier source :
+			</p>
+			<ul>
+				<li>avec un attribut <code>src</code></li>
+				<li>avec un ou plusieurs éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'source')">source</a>
+			</ul>
+
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : vidéo avec attribut src
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;vidéo avec attribut src&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;	 
+		&lt;video src="videos/sw01.mp4" controls 
+			   width="480" height="270"
+				poster="images/vador_sucks.jpg"&gt;
+			Affiché si le format vidéo n'est pas géré.
+		&lt;/video&gt;
+		
+		&lt;p&gt;Extrait d'une vidéo disponible en entier à
+			http://www.youtube.com/watch?v=3KWTqYJsr-s&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : vidéo avec éléments source
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Vidéo avec éléments source&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;video controls  width="480" height="270" 
+			poster="images/vador_sucks.jpg"&gt;
+			
+			&lt;source src="videos/sw01.webm" type="video/webm"&gt;	
+			&lt;source src="videos/sw01.mp4" type="video/mp4"&gt;
+			&lt;source src="videos/sw01.ogg" type="video/ogg"&gt;
+							   
+			Affiché si le format vidéo n'est pas géré.
+		&lt;/video&gt;
+
+		&lt;p&gt;Extrait d'une vidéo disponible en entier à
+			http://www.youtube.com/watch?v=3KWTqYJsr-s&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<h4>L'attribut src</h4>
+			<section>
+				<p>
+					L'attribut <code>src</code> est une des solutions possibles pour
+					définir l'<abbr title="Uniform Resource Locator">URL</abbr> du
+					fichier vidéo à télécharger et à inclure dans la page. Bien sûr si
+					la vidéo est un fichier situé dans un des dossiers de votre site,
+					il faut utiliser une <abbr title="Uniform Resource Locator">URL</abbr>
+					relative pour faire le lien.
+				</p>
+
+				<div class="fp-remarque">
+					<p class="fp-bot0">Je vous rappelle qu'il convient d'être
+						prudent avec les caractères utilisés pour les noms des fichiers et
+						des dossiers qui les contiennent et je vous conseille (à nouveau)
+						d'adopter les règles suivantes :</p>
+					<ul>
+						<li>les noms de fichier et de dossiers étant sensibles à la
+							casse, utilisez uniquement des minuscules,</li>
+						<li>utilisez uniquement les caractères aplhabétiques non
+							accentués (de a à z), des chiffres (de 0 à 9), le caractère -, le
+							caractère _ et le caractère .</li>
+						<li>n'utilisez jamais d'espaces.</li>
+					</ul>
+				</div>
+
+				<p class="fp-p-raz">
+					Quand vous allez tester le code <abbr
+						title="HyperText Markup Language">HTML</abbr> suivant, vous
+					obtiendrez une page dans laquelle s'affiche la 1ère image de la
+					vidéo, mais rien de plus ne se passe et aucun moyen n'est fourni
+					pour déclencher la lecture.
+				</p>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : vidéo
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Vidéo&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;video src="videos/sw01.mp4"&gt;
+			&lt;!-- Ce qui est ici est affiché si le format vidéo
+			n'est pas géré par le navigateur.
+			On peut mettre par exemple un message avec un 
+			lien direct pour que l'utilisateur puisse 
+			télécharger la vidéo --&gt;
+			&lt;p&gt;Malheureusement votre navigateur ne peut pas
+				lire cette vidéo. Mais heureusement vous
+				pouvez &lt;a href="videos/sw01.mp4"&gt;télécharger
+				une version MP4&lt;/a&gt;&lt;/p&gt; 
+		&lt;/video&gt;
+
+		&lt;p&gt;Extrait d'une vidéo disponible en entier à
+			http://www.youtube.com/watch?v=3KWTqYJsr-s&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<p class="fp-p-raz">
+					<strong>L'attribut <code>src</code> tout seul n'est pas
+						suffisant pour que la vidéo soit lue
+					</strong>. On doit ajouter d'autres attributs pour la lecture à la demande
+					de l'utilisateur (attribut <code>controls</code>) ou automatique
+					(attribut <code>autoplay</code>).
+				</p>
+			</section>
+
+			<h4>L'attribut controls</h4>
+			<section>
+				<p>
+					<strong>Pour que la vidéo soit fonctionnelle il faut
+						ajouter l'attribut <code>controls</code>
+					</strong> qui va forcer l'affichage d'une barre d'icônes permettant de
+					contrôler différentes actions : play, pause, début, etc.
+				</p>
+
+				<p>
+					<code>controls</code> est un attribut booléen : c'est la présence
+					de l'attribut qui définit sa prise en compte. Si une valeur est
+					affectée elle n'aura aucune influence. Une <strong>erreur
+						commune</strong> est d'écrire <code>controls="false"</code> : la barre de
+					contrôle sera affichée malgré la valeur <code>false</code>.
+				</p>
+
+				<p>
+					Avec <abbr title="HyperText Markup Language">HTML</abbr> seul on ne
+					peut pas agir sur cette barre de contrôle. Il n'est pas possible de
+					modifier sa position, sa couleur, la forme ou la présence de tel ou
+					tel bouton. Chaque navigateur l'affiche comme il veut, à l'endroit
+					où il veut, et celà peut changer d'une version à une autre, ou même
+					selon les dimensions de la vidéo.
+				</p>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : vidéo avec contrôles
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Vidéo avec contrôles&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;video src="videos/sw01.mp4" controls&gt;
+			Affiché si le format vidéo n'est pas géré.
+		&lt;/video&gt;
+
+		&lt;p&gt;Extrait d'une vidéo disponible en entier à
+			http://www.youtube.com/watch?v=3KWTqYJsr-s&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</section>
+
+			<h4>Dimensions</h4>
+			<section>
+				<p>
+					Les attributs <code>width</code> et <code>height</code> permettent
+					de donner la largeur et la hauteur de la vidéo. La valeur de ces
+					attributs est simplement <strong>un nombre entier</strong> qui
+					exprime la hauteur ou la largeur en pixels. Il ne faut surtout pas
+					spécifier d'unité (le pixel) car la valeur ne serait pas prise en
+					compte.
+				<p>
+				<p>
+					Comme pour <a class="fp-lientuto"
+						onclick="top.FP.Voir.showPageTuto('html06b1', 'image_dim')">les
+						images</a>, et pour les même raisons, je vous conseille de toujours
+					donner les dimensions des vidéos.
+				</p>
+
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : dimensions de la vidéo
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Dimensions de la vidéo&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;video src="videos/sw01.mp4" controls 
+			   width="480" height="270"&gt;
+			Affiché si le format vidéo n'est pas géré.
+		&lt;/video&gt;
+
+		&lt;p&gt;Extrait d'une vidéo disponible en entier à
+			http://www.youtube.com/watch?v=3KWTqYJsr-s&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</section>
+
+			<h4>L'attribut poster</h4>
+			<section>
+				<p>
+					L'attribut <code>poster</code> accepte comme valeur l'<abbr
+						title="Uniform Resource Locator">URL</abbr> d'une image à afficher
+					tant que la vidéo n'est pas en mode lecture.
+					<br>
+					L'utilisation de <code>poster</code> est intéressante à partir du
+					moment où la lecture de la vidéo n'est pas certaine (l'utilisateur
+					n'est pas interessé) ou que la page contient de nombreux autres
+					médias à télécharger (images, autres vidéos, audio). Dans ce cas le
+					navigateur affichera l'image d'attente et passera au téléchargement
+					de la vidéo uniquement quand ça sera nécessaire. Si il n'y a pas de
+					<code>poster</code>, le navigateur téléchargera le plus souvent le
+					début de la vidéo pour avoir quelque chose à afficher plutôt qu'un
+					espace noir.
+				<p>
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : poster
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Poster&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;video src="videos/sw01.mp4" controls 
+			   width="480" height="270"
+			   poster="images/vador_sucks.jpg"&gt;
+			Affiché si le format vidéo n'est pas géré.
+		&lt;/video&gt;
+
+		&lt;p&gt;Extrait d'une vidéo disponible en entier à
+			http://www.youtube.com/watch?v=3KWTqYJsr-s&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</section>
+
+
+			<h4>L'attribut autoplay</h4>
+			<section>
+				<p>
+					L'attribut <code>autoplay</code> est un attribut booléen qui
+					déclenche la lecture automatique de la vidéo dès qu'elle est
+					possible.
+				</p>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : lecture automatique
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Lecture automatique&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;video src="videos/sw01.mp4" controls 
+			   width="480" height="270"
+			   poster="images/vador_sucks.jpg"
+			   autoplay&gt;
+			Affiché si le format vidéo n'est pas géré.
+		&lt;/video&gt;
+
+		&lt;p&gt;Extrait d'une vidéo disponible en entier à
+			http://www.youtube.com/watch?v=3KWTqYJsr-s&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<p>
+					Si vous ne voulez pas que l'utilisateur ait le contrôle de la
+					vidéo, mais que la vidéo soit lue malgré tout, vous pouvez ne pas
+					mettre d'attribut <code>controls</code> et uniquement un attribut <code>autoplay</code>.
+				</p>
+			</section>
+
+
+			<h4>L'attribut loop</h4>
+			<section>
+				<p>
+					L'attribut <code>loop</code> est un attribut booléen qui déclenche
+					la lecture en boucle de la vidéo.
+				</p>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : vidéo en boucle
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Vidéo en boucle&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;video src="videos/sw02.mp4"
+			   width="480" height="270"
+			   autoplay
+			   loop&gt;
+			Affiché si le format vidéo n'est pas géré.
+		&lt;/video&gt;
+
+		&lt;p&gt;Extrait d'une vidéo disponible en entier à
+			http://www.youtube.com/watch?v=3KWTqYJsr-s&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</section>
+
+			<h4>L'attribut preload</h4>
+			<section>
+				<p class="fp-bot0">
+					L'attribut <code>preload</code> définit comment sera chargée la
+					vidéo si on ne veut pas utiliser le système mis en place par le
+					navigateur pour la gestion des chargements.
+					<br>
+					L'attribut <code>preload</code> peut avoir 3 valeurs.
+				</p>
+				<ul>
+					<li><code>preload="none"</code> : le téléchargement de la
+						vidéo commencera seulement quand l'utilisateur démarrera la
+						lecture.
+					<li><code>preload="auto"</code> : le téléchargement de la
+						vidéo commencera dès que la page sera affichée. Celà peut conduire
+						à surcharger le réseau et le serveur si la vidéo est de grande
+						taille et pas regardée.</li>
+					<li><code>preload="metadata"</code> : le navigateur va
+						seulement télécharger les métadonnées de la vidéo comme sa durée,
+						sa taille, ses dimensions, liste des pistes, etc.</li>
+				</ul>
+			</section>
+
+		</section>
+
+		<h3>Sources multiples</h3>
+		<section>
+			<p>
+				L'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'source')">source</a>
+				permet de définir plusieurs sources pour une vidéo, et ainsi de
+				pallier l'absence de support de certains formats par le navigateur.
+			</p>
+
+			<p>
+				Le travail de préparation est plus long car si on veut être complet,
+				il faut encoder la même vidéo pour 3 conteneurs différents et
+				fournir un fichier MP4, un fichier WebM et un fichier Ogg (cf <a
+					onclick="top.FP.Voir.showPageTech('videos', '')">les conteneurs
+					vidéo</a>).
+			</p>
+
+			<p>
+				Entre les balises &lt;video&gt; et &lt;/video&gt; on placera autant
+				d'éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'source')">source</a>
+				que l'on veut fournir de formats différents.
+				<br>
+				La localisation de la ressource sur le réseaut est faite avec l'<abbr
+					title="Uniform Resource Locator">URL</abbr> donnée comme valeur de
+				l'attribut <code>src</code>
+				<br>
+				Le navigateur téléchargera la 1ère source de la liste qu'il sait
+				décoder et afficher.
+				<br>
+				Pour faire ce choix, il se base sur le <a
+					onclick="top.FP.Voir.showPageTech('types_mime', '')">type MIME</a>
+				défini par l'attribut <code>type</code>.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : sources vidéo multiples
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Sources vidéo multiples&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;video controls  width="480" height="270" 
+			poster="images/vador_sucks.jpg"&gt;
+			
+			&lt;source src="videos/sw01.webm" type="video/webm"&gt;
+			&lt;source src="videos/sw01.mp4" type="video/mp4"&gt;
+			&lt;source src="videos/sw01.ogg" type="video/ogg"&gt;
+							   
+			Affiché si le format vidéo n'est pas géré.
+		&lt;/video&gt;
+
+		&lt;p&gt;Extrait d'une vidéo disponible en entier à
+			http://www.youtube.com/watch?v=3KWTqYJsr-s&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				Une particularité est de pouvoir préciser dans l'attribut <code>type</code>
+				le codec utilisé par le conteneur. La syntaxe est un peu
+				embarassante car il y a un mélange à faire entre des guillemets
+				simples et des guillemets doubles.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : sources vidéo multiples
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Sources vidéo multiples&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;video controls  width="480" height="270" 
+			poster="images/vador_sucks.jpg"&gt;
+			
+			&lt;source src="videos/sw01.webm" 
+			type='video/webm; codecs="vp8, vorbis"'&gt;
+			
+			&lt;source src="videos/sw01.mp4" 
+			type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'&gt;
+			
+			&lt;source src="videos/sw01.ogg" 
+			type='video/ogg; codecs="theora, vorbis"'&gt;				   
+			Affiché si le format vidéo n'est pas géré.
+		&lt;/video&gt;
+
+		&lt;p&gt;Extrait d'une vidéo disponible en entier à
+			http://www.youtube.com/watch?v=3KWTqYJsr-s&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+			<hr>
+
+			<div class="fp-ordre" style="width: 34em; margin: 1em auto">
+				<div class="fp-ordre-t">
+					<a onClick="top.FP.Voir.showPageTech('videos', '')">Vidéo et
+						audio, codecs et conteneurs</a> lire aussi tu dois.
+				</div>
+			</div>
+
+		</section>
+
+		<a id="exo_video_01"></a>
+		<h3 class="fp-exo">Store wars</h3>
+		<section>
+
+			<table class="TAB-sans-bord">
+				<tr>
+					<td>
+						<p class="fp-p-raz">
+							Complétez le code <abbr
+								title="HyperText Markup Language">HTML</abbr> pour obtenir le
+							résultat ci-dessous.</p>
+
+						<figure>
+							<img src="../exercices/exo_video_01.png" width="300" height="286">
+							<figcaption>images et textes</figcaption>
+						</figure>
+
+					</td>
+					<td>
+						<p>Le poster et les vidéos se trouvent dans l'arborescence
+							suivante :</p>
+						<figure>
+							<img src="../exercices/exo_chap06_repert.png" width="150" height="218">
+							<figcaption>arborescence de l'exercice</figcaption>
+						</figure>
+
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<p>
+							Le poster est dans le dossier <code>exemples</code> et s'appelle
+							<code>parasites.gif</code>.
+						</p>
+						<p>
+							Il y a 2 sources pour la vidéo : <code>store_wars.ogg</code> dans
+							le dossier <code>star_wars</code> et <code>store_wars.mp4</code>
+							dans le dossier <code>images</code> du dossier <code>star_wars</code>.
+						</p>
+
+						<p>Les dimensions des vidéos sont de 450 pixels sur 360. Elles
+							doivent avoir des contrôles, ne sont ni en autoplay ni en boucle.</p>
+
+						<p>Si le navigateur ne supporte pas le tag vidéo, le message
+							"Votre navigateur est trop ancien pour supporter les vidéos."
+							s'affiche.</p>
+
+						<p>
+							L'<abbr title="Uniform Resource Locator">URL</abbr> du lien sur
+							tagtélé est <code>http://www.tagtele.com/videos/voir/86772/</code>.
+							Le lien doit s'ouvrir dans une nouvelle fenêtre.
+						</p>
+					</td>
+				</tr>
+			</table>
+
+			<p class="fp-completez">
+				<a onClick="top.FP.Voir.showCompletez('exo_video_01_comp')">Code à compléter</a>
+			</p>
+
+			<div id="exo_video_01_comp" class="BLOC-completez">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : Store wars
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Store wars&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+	
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+
+			<p class="fp-solution">
+				<a onClick="top.FP.Voir.showSolution('exo_video_01_solu', 1)">Une
+					solution possible</a>
+			</p>
+			<div id="exo_video_01_solu" class="BLOC-solution">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : Store wars
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Store wars&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;video controls  width="450" height="360" 
+			   poster="../exemples/parasites.gif"&gt;
+			
+			&lt;source src="../exemples/star_wars/store_wars.ogg" type="video/ogg"&gt;
+			&lt;source src="../exemples/star_wars/images/store_wars.mp4" type="video/mp4"&gt;
+							   
+			Votre navigateur est trop ancien pour supporter les vidéos.
+		&lt;/video&gt;
+		
+		&lt;h3&gt;
+			Suite et fin sur &lt;a href="http://www.tagtele.com/videos/voir/86772/" target="_blank"&gt;tagtélé&lt;/a&gt;.
+		&lt;/h3&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Affiche les informations d'une variable</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.unset.html">unset</a>
+		</div>
+		<div class="next">
+			<a href="function.var-export.html">var_export</a>
+		</div>
+		<div class="up">
+			<a href="ref.var.html">Fonctions de gestion des variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.var-dump" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">var_dump</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">var_dump</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Affiche les informations d&#039;une
+					variable</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.var-dump-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><span class="type void">void</span></span> <span
+					class="methodname"><strong>var_dump</strong></span> ( <span
+					class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$expression</code></span>
+				[, <span class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$...</code></span> ]
+				)
+			</div>
+
+			<p class="simpara">
+				<span class="function"><strong>var_dump()</strong></span> retourne
+				les informations structurées d&#039;une variable, y compris son type
+				et sa valeur. Les tableaux et les objets sont explorés
+				récursivement, avec des indentations, pour mettre en valeur leur
+				structure.
+			</p>
+			<p class="simpara">En PHP 5, toutes les propriétés publiques,
+				privées et protégées seront retournées dans le résultat.</p>
+			<div class="tip">
+				<strong class="tip">Astuce</strong>
+				<p class="simpara">
+					Comme pour toutes les fonctions qui affichent directement des
+					résultats au navigateur, vous pouvez utiliser <a
+						href="book.outcontrol.html" class="link">les fonctions de
+						gestion des sorties</a> pour capturer le contenu de cette fonction et
+					le sauver, par exemple, dans une chaîne.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.var-dump-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">expression</code></em></span>
+				<dd>
+
+					<p class="para">La variable que vous voulez afficher.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.var-dump-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Aucune valeur n&#039;est retournée.</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.var-dump-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4929">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>var_dump()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$a&nbsp;
+							</span><span style="color: #007700">=&nbsp;array(</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;array(</span><span
+								style="color: #DD0000">"a"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"b"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"c"</span><span style="color: #007700">));<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+array(3) {
+  [0]=&gt;
+  int(1)
+  [1]=&gt;
+  int(2)
+  [2]=&gt;
+  array(3) {
+    [0]=&gt;
+    string(1) &quot;a&quot;
+    [1]=&gt;
+    string(1) &quot;b&quot;
+    [2]=&gt;
+    string(1) &quot;c&quot;
+  }
+}
+</pre>
+					</div>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br />$b&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">3.1</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$c&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$b</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$c</span><span style="color: #007700">);<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+float(3.1)
+bool(true)
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.var-dump-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.var-export.html" class="function"
+						rel="rdfs-seeAlso">var_export()</a> - Retourne le code PHP
+						utilis&eacute; pour g&eacute;n&eacute;rer une variable</span></li>
+				<li class="member"><span class="function"><a
+						href="function.print-r.html" class="function" rel="rdfs-seeAlso">print_r()</a>
+						- Affiche des informations lisibles pour une variable</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.unset.html">unset</a>
+		</div>
+		<div class="next">
+			<a href="function.var-export.html">var_export</a>
+		</div>
+		<div class="up">
+			<a href="ref.var.html">Fonctions de gestion des variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

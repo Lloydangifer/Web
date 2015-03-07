@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Les listes ordonnées</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<h3>ol : liste ordonnée</h3>
+		<section>
+			<p class="fp-p-raz">La différence entre une liste non ordonnée et
+				une liste ordonnée tient dans la façon dont le navigateur va faire
+				l'affichage des lignes de la liste : dans une liste ordonnée, les
+				lignes seront automatiquement précédée d'un numéro.</p>
+
+			<p class="fp-bot0">Une liste ordonnée se fait avec 2 élements
+				<abbr title="HyperText Markup Language">HTML</abbr> :</p>
+			<ul>
+				<li>l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'ol')">ol</a> marque
+					les limites de la liste,
+				</li>
+				<li>l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'li')">li</a> définit
+					une ligne à l'intérieur de la liste.
+				</li>
+			</ul>
+
+			<p>
+				L'imbrication des <a
+					onclick="top.FP.Voir.showPageTech('elements', 'li')">li</a> à
+				l'intérieur d'un élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'ol')">ol</a> est
+				obligatoire.
+			</p>
+
+			<figure>
+				<img src="../htmlimg/liste02.png" width="580" height="181">
+				<figcaption> liste ordonnée</figcaption>
+			</figure>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : liste ordonnée
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Liste ordonnée&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Pour mon anniversaire, je veux :&lt;/p&gt;
+		&lt;ol&gt;
+			&lt;li&gt;un X-Wing rouge&lt;/li&gt;
+			&lt;li&gt;un sabre-laser&lt;/li&gt;
+			&lt;li&gt;un chapeau de Gandalf&lt;/li&gt;
+			&lt;li&gt;de l'herbe à pipe de la Comté.&lt;/li&gt;
+		&lt;/ol&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p class="fp-bot0">Par défaut le navigateur représente les listes
+				ordonnées de la façon suivante :</p>
+			<ul>
+				<li>il y a une marge avant et une marge après le contenu de la
+					liste. Cette marge est égale à la hauteur d'une ligne de texte.</li>
+				<li>les lignes de la liste sont mises en retrait par une marge
+					à l'intérieur gauche de la liste,</li>
+				<li>les lignes sont précédées d'un compteur automatique,</li>
+				<li>les lignes sont affichées les unes en dessous des autres,
+					sans marge pour les séparer.</li>
+			</ul>
+
+			<p class="fp-remarque">
+				Comme d'habitude des règles de style <abbr
+					title="Cascading Style Sheets">CSS</abbr> peuvent modifier cet
+				affichage par défaut. Voir dans le tutoriel <abbr
+					title="Cascading Style Sheets">CSS</abbr> la partie consacrée aux
+				listes.
+			</p>
+
+			<p class="fp-bot0">
+				L'attribut <code>type</code> permet de définir comment sera fait le
+				compteur et l'attribut <code>start</code> sa valeur de départ.
+				<br>
+				La valeur de <code>type</code>
+			</p>
+			<ul>
+				<li><code>1</code> indique un compteur décimal (1, 2, 3, 4,
+					...) - valeur par défaut</li>
+				<li><code>a</code> indique un compteur alphabétique en
+					minuscules (a, b, c, d, ...)</li>
+				<li><code>A</code> indique un compteur alphabétique en
+					majuscules (A, B, C, D, ...)</li>
+				<li><code>i</code> indique un compteur en nombres romains en
+					minuscules (i, ii, iii, iv, ...)</li>
+				<li><code>I</code> indique un compteur en nombres romains en
+					majuscules (I, II, III, IV, ...)</li>
+			</ul>
+
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : compteur en chiffres romains
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Compteur en chiffres romains&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Pour mon anniversaire, je veux :&lt;/p&gt;
+		&lt;ol type="I"&gt;
+			&lt;li&gt;un X-Wing rouge&lt;/li&gt;
+			&lt;li&gt;un sabre-laser&lt;/li&gt;
+			&lt;li&gt;un chapeau de Gandalf&lt;/li&gt;
+			&lt;li&gt;de l'herbe à pipe de la Comté.&lt;/li&gt;
+		&lt;/ol&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+		</section>
+
+		<a id="exo_liste_ordonnee"></a>
+		<h3 class="fp-exo">Liste du contenu du tutoriel CSS</h3>
+		<section>
+			<p class="fp-p-raz">Réalisez la liste ordonnée permettant d'obtenir la
+				page ci-dessous.</p>
+
+			<figure>
+				<img src="../exercices/exo_liste_ordonnee.png" width="391"
+					height="267">
+				<figcaption>liste du contenu du tutoriel CSS</figcaption>
+			</figure>
+
+			<p class="fp-completez">
+				<a
+					onclick="top.FP.Voir.showCompletez('exo_liste_ordonnee_comp')">Code à compléter</a>
+			</p>
+
+			<div id="exo_liste_ordonnee_comp" class="BLOC-completez">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : liste du contenu du tutoriel CSS
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+
+			<p class="fp-solution">
+				<a
+					onclick="top.FP.Voir.showSolution('exo_liste_ordonnee_solu', 1)">Une
+					solution possible</a>
+			</p>
+			<div id="exo_liste_ordonnee_solu" class="BLOC-solution">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : liste du contenu du tutoriel CSS
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Liste contenu tutoriel CSS&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Tutoriel CSS&lt;/p&gt;
+		&lt;ol type="A"&gt;
+			&lt;li&gt;Principes généraux&lt;/li&gt;
+			&lt;li&gt;Sélectionner des éléments&lt;/li&gt;
+			&lt;li&gt;Positionner des éléments&lt;/li&gt;
+			&lt;li&gt;Boîtes et dimensions&lt;/li&gt;
+			&lt;li&gt;Couleur et arrière-plan&lt;/li&gt;
+			&lt;li&gt;Polices et textes&lt;/li&gt;
+			&lt;li&gt;Mise en page&lt;/li&gt;							
+		&lt;/ol&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+		</section>
+		
+	</div>
+	<footer></footer>
+</body>
+</html>

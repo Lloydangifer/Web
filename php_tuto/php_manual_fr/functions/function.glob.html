@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Recherche des chemins qui v&eacute;rifient un masque</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.fwrite.html">fwrite</a>
+		</div>
+		<div class="next">
+			<a href="function.is-dir.html">is_dir</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.glob" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">glob</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">glob</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Recherche des chemins qui vérifient un
+					masque</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.glob-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>glob</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$pattern</code></span> [, <span
+					class="methodparam"><span class="type">int</span> <code
+						class="parameter">$flags</code><span class="initializer"> =
+						0</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>glob()</strong></span> recherche tous
+				les chemins qui vérifient le masque <em><code class="parameter">pattern</code></em>,
+				en suivant les règles utilisées par la fonction <em>glob()</em> de
+				la libc, qui sont les mêmes que celles utilisées par le Shell en
+				général.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.glob-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">pattern</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le masque. Aucun remplacement de tilde (<em>~</em>) ou de
+						paramètre n&#039;est fait.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">flags</code></em></span>
+				<dd>
+
+					<p class="para">Les drapeaux valides sont :
+					<ul class="itemizedlist">
+						<li class="listitem"><span class="simpara"> <strong><code>GLOB_MARK</code></strong>
+								: Ajoute un slash final à chaque dossier retourné
+						</span></li>
+						<li class="listitem"><span class="simpara"> <strong><code>GLOB_NOSORT</code></strong>
+								: Retourne les fichiers dans l&#039;ordre d&#039;apparence (pas
+								de tri)
+						</span></li>
+						<li class="listitem"><span class="simpara"> <strong><code>GLOB_NOCHECK</code></strong>
+								: Retourne le masque de recherche si aucun fichier n&#039;a été
+								trouvé
+						</span></li>
+						<li class="listitem"><span class="simpara"> <strong><code>GLOB_NOESCAPE</code></strong>
+								: Ne protège aucun métacaractère d&#039;un antislash
+						</span></li>
+						<li class="listitem"><span class="simpara"> <strong><code>GLOB_BRACE</code></strong>
+								: Remplace {a,b,c} par &#039;a&#039;, &#039;b&#039; ou
+								&#039;c&#039;
+						</span></li>
+						<li class="listitem"><span class="simpara"> <strong><code>GLOB_ONLYDIR</code></strong>
+								: Ne retourne que les dossiers qui vérifient le masque
+						</span></li>
+						<li class="listitem"><span class="simpara"> <strong><code>GLOB_ERR</code></strong>
+								: Stop lors d&#039;une erreur (comme des dossiers non lisibles),
+								par défaut, les erreurs sont ignorées.
+						</span></li>
+					</ul>
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.glob-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne un tableau contenant les fichiers et dossiers correspondant
+				au masque, un tableau vide s&#039;il n&#039;y a aucune
+				correspondance, ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Sous certains systèmes, il est impossible de
+					distinguer un masque vide d&#039;une erreur.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 changelog" id="refsect1-function.glob-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.1.0</td>
+						<td><strong><code>GLOB_ERR</code></strong> a été ajouté</td>
+					</tr>
+
+					<tr>
+						<td>4.3.3</td>
+						<td><strong><code>GLOB_ONLYDIR</code></strong> devient
+							disponible sous Windows ainsi que sur les autres systèmes
+							n&#039;utilisant pas la bibliothèque GNU C.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.glob-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2265">
+				<p>
+					<strong>Exemple #1 Un moyen pratique pour remplacer <span
+						class="function"><a href="function.opendir.html"
+							class="function">opendir()</a></span> par <span class="function"><strong>glob()</strong></span>
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">foreach&nbsp;(</span><span
+								style="color: #0000BB">glob</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"*.txt"</span><span
+								style="color: #007700">)&nbsp;as&nbsp;</span><span
+								style="color: #0000BB">$filename</span><span
+								style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$filename</span><span
+								style="color: #DD0000">&nbsp;occupe&nbsp;"&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">filesize</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span
+								style="color: #007700">)&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher quelque chose de
+						similaire à :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+funclist.txt occupe 44686
+funcsummary.txt occupe 267625
+quickref.txt occupe 137820
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.glob-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Cette
+						fonction ne fonctionne pas avec les <a
+						href="features.remote-files.html" class="link">fichiers
+							distants</a>, car le fichier utilisé doit être accessible sur le
+						système de fichiers local.
+					</span>
+				</p>
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">
+						Cette fonction n&#039;est pas disponible sur quelques systèmes
+						(e.g. vieux Sun OS). </span>
+				</p>
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">
+						Le drapeau <strong><code>GLOB_BRACE</code></strong> n&#039;est pas
+						disponible sur quelques systèmes non GNU, comme Solaris.
+					</span>
+				</p>
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.glob-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.opendir.html" class="function" rel="rdfs-seeAlso">opendir()</a>
+						- Ouvre un dossier, et r&eacute;cup&egrave;re un pointeur dessus</span></li>
+				<li class="member"><span class="function"><a
+						href="function.readdir.html" class="function" rel="rdfs-seeAlso">readdir()</a>
+						- Lit une entr&eacute;e du dossier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.closedir.html" class="function" rel="rdfs-seeAlso">closedir()</a>
+						- Ferme le pointeur sur le dossier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fnmatch.html" class="function" rel="rdfs-seeAlso">fnmatch()</a>
+						- Rep&egrave;re un fichier &agrave; partir d'un masque de
+						recherche</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.fwrite.html">fwrite</a>
+		</div>
+		<div class="next">
+			<a href="function.is-dir.html">is_dir</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>R&eacute;cup&egrave;re l'heure locale</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.idate.html">idate</a>
+		</div>
+		<div class="next">
+			<a href="function.microtime.html">microtime</a>
+		</div>
+		<div class="up">
+			<a href="ref.datetime.html">Fonctions Date/Heure</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.localtime" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">localtime</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">localtime</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Récupère l&#039;heure locale</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.localtime-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>localtime</strong></span>
+				([ <span class="methodparam"><span class="type">int</span> <code
+						class="parameter">$timestamp</code><span class="initializer">
+						= time()</span></span> [, <span class="methodparam"><span class="type">bool</span>
+					<code class="parameter">$is_associative</code><span
+					class="initializer"> = false</span></span> ]] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>localtime()</strong></span> retourne
+				un tableau identique à la structure retournée par la fonction C
+				localtime.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.localtime-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+
+
+				<dt>
+					<span class="term"><em><code class="parameter">timestamp</code></em></span>
+				<dd>
+					<p class="para">
+						Le paramètre optionnel <em><code class="parameter">timestamp</code></em>
+						est un timestamp Unix de type <span class="type"><span
+							class="type entier">entier</span></span> qui vaut par défaut
+						l&#039;heure courante locale si le paramètre <em><code
+								class="parameter">timestamp</code></em> n&#039;est pas fourni. En
+						d&#039;autres termes, il vaut par défaut la valeur de la fonction
+						<span class="function"><a href="function.time.html"
+							class="function">time()</a></span>.
+					</p>
+				</dd>
+				</dt>
+
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">is_associative</code></em></span>
+				<dd>
+
+					<p class="para">
+						si défini à <strong><code>FALSE</code></strong> ou ignoré, force <span
+							class="function"><strong>localtime()</strong></span> à retourner
+						un tableau à index numérique. S&#039;il est mis à <strong><code>TRUE</code></strong>,
+						<span class="function"><strong>localtime()</strong></span>
+						retourne un tableau associatif, avec tous les éléments de la
+						structure C, accessible avec les clés. Les noms des différentes
+						clés du tableau associatif sont les suivants :
+					</p>
+					<p class="para">
+					<ul class="itemizedlist">
+						<li class="listitem"><span class="simpara"> <em>&quot;tm_sec&quot;</em>
+								: secondes, de <em>0</em> à <em>59</em>
+						</span></li>
+						<li class="listitem"><span class="simpara"> <em>&quot;tm_min&quot;</em>
+								: minutes, de <em>0</em> à <em>59</em>
+						</span></li>
+						<li class="listitem"><span class="simpara"> <em>&quot;tm_hour&quot;</em>
+								: heure, de <em>0</em> à <em>23</em>
+						</span></li>
+						<li class="listitem"><span class="simpara"> <em>&quot;tm_mday&quot;</em>
+								: jour du mois, de <em>1</em> à <em>31</em>
+						</span></li>
+						<li class="listitem"><span class="simpara"> <em>&quot;tm_mon&quot;</em>
+								: mois de l&#039;année, de <em>0</em> (Jan) à <em>11</em> (Déc)
+						</span></li>
+						<li class="listitem"><span class="simpara"> <em>&quot;tm_year&quot;</em>
+								: Année depuis 1900
+						</span></li>
+						<li class="listitem"><span class="simpara"> <em>&quot;tm_wday&quot;</em>
+								: Jour de la semaine, de <em>0</em> (Dim) à <em>6</em> (Sam)
+						</span></li>
+						<li class="listitem"><span class="simpara"> <em>&quot;tm_yday&quot;</em>
+								: Jour de l&#039;année, de <em>0</em> à <em>365</em>
+						</span></li>
+						<li class="listitem"><span class="simpara"> <em>&quot;tm_isdst&quot;</em>
+								: Est-ce que l&#039;heure d&#039;hiver a pris effet ?
+						</span> <span class="simpara"> Valeur positive si oui, <em>0</em>
+								sinon, valeur négative si le résultat n&#039;a pu être
+								déterminé.
+						</span></li>
+					</ul>
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 errors" id="refsect1-function.localtime-errors">
+			<h3 class="title">Erreurs / Exceptions</h3>
+			<p class="para">
+				Chaque appel à une fonction date/heure générera un message de type <strong><code>E_NOTICE</code></strong>
+				si le fuseau horaire n&#039;est pas valide, et/ou un message de type
+				<strong><code>E_STRICT</code></strong> ou <strong><code>E_WARNING</code></strong>
+				si vous utilisez la configuration du système ou la variable
+				d&#039;environnement
+				<var class="varname">
+					<var class="varname">TZ</var>
+				</var>
+				. Voir aussi <span class="function"><a
+					href="function.date-default-timezone-set.html" class="function">date_default_timezone_set()</a></span>
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.localtime-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.1.0</td>
+						<td><p class="para">
+								Émet un message de type <strong><code>E_STRICT</code></strong>
+								et <strong><code>E_NOTICE</code></strong> lors d&#039;erreurs de
+								fuseaux horaires.
+							</p></td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.localtime-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-688">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>localtime()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$localtime&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">localtime</span><span
+								style="color: #007700">();<br /></span><span
+								style="color: #0000BB">$localtime_assoc&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">localtime</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">time</span><span
+								style="color: #007700">(),&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$localtime</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$localtime_assoc</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher quelque chose de
+						similaire à :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Array
+(
+    [0] =&gt; 24
+    [1] =&gt; 3
+    [2] =&gt; 19
+    [3] =&gt; 3
+    [4] =&gt; 3
+    [5] =&gt; 105
+    [6] =&gt; 0
+    [7] =&gt; 92
+    [8] =&gt; 1
+)
+
+Array
+(
+    [tm_sec] =&gt; 24
+    [tm_min] =&gt; 3
+    [tm_hour] =&gt; 19
+    [tm_mday] =&gt; 3
+    [tm_mon] =&gt; 3
+    [tm_year] =&gt; 105
+    [tm_wday] =&gt; 0
+    [tm_yday] =&gt; 92
+    [tm_isdst] =&gt; 1
+)
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.localtime-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.getdate.html" class="function" rel="rdfs-seeAlso">getdate()</a>
+						- Retourne la date/heure</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.idate.html">idate</a>
+		</div>
+		<div class="next">
+			<a href="function.microtime.html">microtime</a>
+		</div>
+		<div class="up">
+			<a href="ref.datetime.html">Fonctions Date/Heure</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

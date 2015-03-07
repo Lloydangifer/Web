@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Lie des variables &agrave; une requ&ecirc;te MySQL</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="mysqli-stmt.attr-set.html">mysqli_stmt::attr_set</a></div>
+ <div class="next"><a href="mysqli-stmt.bind-result.html">mysqli_stmt::bind_result</a></div>
+ <div class="up"><a href="class.mysqli-stmt.html">mysqli_stmt</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="mysqli-stmt.bind-param" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysqli_stmt::bind_param</h1>
+  <h1 class="refname">mysqli_stmt_bind_param</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">mysqli_stmt::bind_param</span> -- <span class="refname">mysqli_stmt_bind_param</span> <span class="mdash">&mdash;</span> <span class="dc-title">Lie des variables à une requête MySQL</span></p>
+
+ </div>
+ 
+ <div class="refsect1 description" id="refsect1-mysqli-stmt.bind-param-description">
+  <h3 class="title">Description</h3>
+  <p class="para">Style orienté objet</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>mysqli_stmt::bind_param</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$types</code></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter reference">&$var1</code></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter reference">&$...</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">Style procédural</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">bool</span> <span class="methodname"><strong>mysqli_stmt_bind_param</strong></span>
+    ( <span class="methodparam"><span class="type"><a href="class.mysqli-stmt.html" class="type mysqli_stmt">mysqli_stmt</a></span> <code class="parameter">$stmt</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$types</code></span>
+   , <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter reference">&$var1</code></span>
+   [, <span class="methodparam"><span class="type"><a href="language.pseudo-types.html#language.types.mixed" class="type mixed">mixed</a></span> <code class="parameter reference">&$...</code></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Sert à lier des variables à une requête MySQL préparée par
+    <span class="function"><a href="mysqli.prepare.html" class="function">mysqli_prepare()</a></span>.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Si la taille des données dépasse la taille maximal d&#039;un paquet,
+    (<em>max_allowed_packet</em>), vous devez spécifier
+    le caractère <em>b</em> dans le paramètre
+    <em><code class="parameter">types</code></em> et utiliser la fonction 
+     <span class="function"><a href="mysqli-stmt.send-long-data.html" class="function">mysqli_stmt_send_long_data()</a></span> pour envoyer le
+    message par paquets.
+   </p>
+  </p></blockquote>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Vous devez être prudent lors de l&#039;utilisation de
+     <span class="function"><strong>mysqli_stmt_bind_param()</strong></span> avec la fonction
+     <span class="function"><a href="function.call-user-func-array.html" class="function">call_user_func_array()</a></span>. Notez que
+     <span class="function"><strong>mysqli_stmt_bind_param()</strong></span> nécessite que ses paramètres
+    soient passés par référence, alors que la fonction
+     <span class="function"><a href="function.call-user-func-array.html" class="function">call_user_func_array()</a></span> peut accepter comme paramètre
+    une liste de variables qui peuvent représenter des références ou des valeurs.
+   </p>
+  </p></blockquote>
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-mysqli-stmt.bind-param-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><em><code class="parameter">
+stmt</code></em></span><dd>
+<p class="para">Style procédural uniquement : Un identifiant
+de requête retourné par la fonction  <span class="function"><a href="mysqli.stmt-init.html" class="function">mysqli_stmt_init()</a></span>.</p>
+</dd>
+</dt>
+
+    <dt>
+
+     <span class="term"><em><code class="parameter">types</code></em></span>
+     <dd>
+
+      <p class="para">
+       Une <a href="language.types.string.html" class="link">chaîne de caractères</a> qui contient un ou plusieurs caractères
+       qui spécifient le type de la variable à lier :
+       <table class="doctable table">
+        <caption><strong>Caractère de spécification des types</strong></caption>
+        
+         <thead>
+          <tr>
+           <th>Caractère</th>
+           <th>Description</th>
+          </tr>
+
+         </thead>
+
+         <tbody class="tbody">
+          <tr>
+           <td>i</td>
+           <td>correspond à une variable de type <a href="language.types.integer.html" class="link">entier</a></td>
+          </tr>
+
+          <tr>
+           <td>d</td>
+           <td>correspond à une variable de type <a href="language.types.float.html" class="link">nombre décimal</a></td>
+          </tr>
+
+          <tr>
+           <td>s</td>
+           <td>correspond à une variable de type <a href="language.types.string.html" class="link">chaîne de caractères</a></td>
+          </tr>
+
+          <tr>
+           <td>b</td>
+           <td>correspond à une variable de type BLOB, qui sera envoyé par paquets</td>
+          </tr>
+
+         </tbody>
+        
+       </table>
+
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><em><code class="parameter">var1</code></em></span>
+     <dd>
+
+      <p class="para">
+       Le nombre de variables et la longueur de la <a href="language.types.string.html" class="link">chaîne de caractères</a>
+       <em><code class="parameter">types</code></em> doivent correspondre
+       aux paramètres de la requête.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-mysqli-stmt.bind-param-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+succès ou <strong><code>FALSE</code></strong> si une erreur survient.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-mysqli-stmt.bind-param-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="example-1679">
+   <p><strong>Exemple #1 Style orienté objet</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">'localhost'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'my_user'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'my_password'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'world'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Vérification&nbsp;de&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">())&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Échec&nbsp;de&nbsp;la&nbsp;connexion&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">prepare</span><span style="color: #007700">(</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;CountryLanguage&nbsp;VALUES&nbsp;(?,&nbsp;?,&nbsp;?,&nbsp;?)"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">bind_param</span><span style="color: #007700">(</span><span style="color: #DD0000">'sssd'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$code</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$language</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$official</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$percent</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$code&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'DEU'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$language&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Bavarian'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$official&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"F"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$percent&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">11.2</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/*&nbsp;Exécution&nbsp;de&nbsp;la&nbsp;requête&nbsp;*/<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">execute</span><span style="color: #007700">();<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%d&nbsp;ligne&nbsp;insérée.\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">affected_rows</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Fermeture&nbsp;du&nbsp;traitement&nbsp;*/<br /></span><span style="color: #0000BB">$stmt</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">/*&nbsp;Nettoyage&nbsp;de&nbsp;la&nbsp;table&nbsp;CountryLanguage&nbsp;*/<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #DD0000">"DELETE&nbsp;FROM&nbsp;CountryLanguage&nbsp;WHERE&nbsp;Language='Bavarian'"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%d&nbsp;ligne&nbsp;effacée.\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">affected_rows</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Fermeture&nbsp;de&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+  </div>
+  <div class="example" id="example-1680">
+   <p><strong>Exemple #2 Style procédural</strong></p>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqli_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'localhost'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'my_user'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'my_password'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'world'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Vérification&nbsp;de&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #007700">if&nbsp;(!</span><span style="color: #0000BB">$link</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"Échec&nbsp;de&nbsp;la&nbsp;connexion&nbsp;:&nbsp;%s\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_connect_error</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">mysqli_prepare</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"INSERT&nbsp;INTO&nbsp;CountryLanguage&nbsp;VALUES&nbsp;(?,&nbsp;?,&nbsp;?,&nbsp;?)"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">mysqli_stmt_bind_param</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'sssd'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$code</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$language</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$official</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$percent</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">$code&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'DEU'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$language&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Bavarian'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$official&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"F"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$percent&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">11.2</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">/*&nbsp;Exécution&nbsp;de&nbsp;la&nbsp;requête&nbsp;*/<br /></span><span style="color: #0000BB">mysqli_stmt_execute</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br /><br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%d&nbsp;ligne&nbsp;insérée.\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_stmt_affected_rows</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">/*&nbsp;Fermeture&nbsp;du&nbsp;traitement&nbsp;*/<br /></span><span style="color: #0000BB">mysqli_stmt_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Nettoyage&nbsp;de&nbsp;la&nbsp;table&nbsp;CountryLanguage&nbsp;*/<br /></span><span style="color: #0000BB">mysqli_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"DELETE&nbsp;FROM&nbsp;CountryLanguage&nbsp;WHERE&nbsp;Language='Bavarian'"</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">printf</span><span style="color: #007700">(</span><span style="color: #DD0000">"%d&nbsp;ligne&nbsp;effacée.\n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">mysqli_affected_rows</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">));<br /><br /></span><span style="color: #FF8000">/*&nbsp;Fermeture&nbsp;de&nbsp;la&nbsp;connexion&nbsp;*/<br /></span><span style="color: #0000BB">mysqli_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$link</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+1 ligne insérée.
+1 ligne effacée.
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-mysqli-stmt.bind-param-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"> <span class="function"><a href="mysqli-stmt.bind-result.html" class="function" rel="rdfs-seeAlso">mysqli_stmt_bind_result()</a> - Lie des variables &agrave; un jeu de r&eacute;sultats</span></li>
+    <li class="member"> <span class="function"><a href="mysqli-stmt.execute.html" class="function" rel="rdfs-seeAlso">mysqli_stmt_execute()</a> - Ex&eacute;cute une requ&ecirc;te pr&eacute;par&eacute;e</span></li>
+    <li class="member"> <span class="function"><a href="mysqli-stmt.fetch.html" class="function" rel="rdfs-seeAlso">mysqli_stmt_fetch()</a> - Lit des r&eacute;sultats depuis une requ&ecirc;te MySQL pr&eacute;par&eacute;e dans des variables li&eacute;es</span></li>
+    <li class="member"> <span class="function"><a href="mysqli.prepare.html" class="function" rel="rdfs-seeAlso">mysqli_prepare()</a> - Pr&eacute;pare une requ&ecirc;te SQL pour l'ex&eacute;cution</span></li>
+    <li class="member"> <span class="function"><a href="mysqli-stmt.send-long-data.html" class="function" rel="rdfs-seeAlso">mysqli_stmt_send_long_data()</a> - Envoie des donn&eacute;es MySQL par paquets</span></li>
+    <li class="member"> <span class="function"><a href="mysqli-stmt.errno.html" class="function" rel="rdfs-seeAlso">mysqli_stmt_errno()</a> - Retourne un code erreur pour la derni&egrave;re requ&ecirc;te</span></li>
+    <li class="member"> <span class="function"><a href="mysqli-stmt.error.html" class="function" rel="rdfs-seeAlso">mysqli_stmt_error()</a> - Retourne une description de la derni&egrave;re erreur de traitement</span></li>
+   </ul>
+  </p>
+ </div>
+
+ 
+</div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="mysqli-stmt.attr-set.html">mysqli_stmt::attr_set</a></div>
+ <div class="next"><a href="mysqli-stmt.bind-result.html">mysqli_stmt::bind_result</a></div>
+ <div class="up"><a href="class.mysqli-stmt.html">mysqli_stmt</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

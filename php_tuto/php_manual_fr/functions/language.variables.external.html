@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Variables externes &agrave; PHP</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.variables.variable.html">Les variables
+				dynamiques</a>
+		</div>
+		<div class="next">
+			<a href="language.constants.html">Les constantes</a>
+		</div>
+		<div class="up">
+			<a href="language.variables.html">Les variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.variables.external" class="sect1">
+		<h2 class="title">Variables externes à PHP</h2>
+
+		<div class="sect2" id="language.variables.external.form">
+			<h3 class="title">Formulaires HTML (GET et POST)</h3>
+
+			<p class="simpara">Lorsqu&#039;un formulaire est envoyé à un
+				script PHP, toutes les variables du formulaire seront
+				automatiquement disponibles dans le script. Par exemple, considérons
+				le formulaire suivant :</p>
+
+			<p class="para">
+			<div class="example" id="example-114">
+				<p>
+					<strong>Exemple #1 Exemple avec un formulaire simple</strong>
+				</p>
+				<div class="example-contents">
+					<div class="htmlcode">
+						<pre class="htmlcode">&lt;form action=&quot;foo.php&quot; method=&quot;post&quot;&gt;
+    Nom  :  &lt;input type=&quot;text&quot; name=&quot;username&quot; /&gt;&lt;br /&gt;
+    Email: &lt;input type=&quot;text&quot; name=&quot;email&quot; /&gt;&lt;br /&gt;
+    &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Envoie!&quot; /&gt;
+&lt;/form&gt;</pre>
+					</div>
+				</div>
+
+			</div>
+			</p>
+
+			<p class="para">Suivant votre configuration particulière et vos
+				préférences, vous avez plusieurs méthodes pour accéder aux variables
+				du formulaires. Voici quelques exemples :</p>
+
+
+			<p class="para">
+			<div class="example" id="example-115">
+				<p>
+					<strong>Exemple #2 Accéder simplement à des variables de
+						formulaires POST</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Disponibles&nbsp;depuis&nbsp;PHP&nbsp;4.1.0<br />
+								<br />&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">$_POST</span><span style="color: #007700">[</span><span
+								style="color: #DD0000">'username'</span><span
+								style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #0000BB">$_REQUEST</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">'username'</span><span
+								style="color: #007700">];<br />
+								<br />&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">import_request_variables</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'p'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'p_'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #0000BB">$p_username</span><span
+								style="color: #007700">;<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Depuis&nbsp;PHP&nbsp;5.0.0,&nbsp;ce&nbsp;type&nbsp;de&nbsp;variable&nbsp;peut&nbsp;être&nbsp;désactivé<br />//&nbsp;avec&nbsp;la&nbsp;directive&nbsp;de&nbsp;configuration&nbsp;register_long_arrays.<br />
+								<br />&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">$HTTP_POST_VARS</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">'username'</span><span
+								style="color: #007700">];<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Disponibles&nbsp;si&nbsp;la&nbsp;directive&nbsp;register_globals&nbsp;=&nbsp;on.&nbsp;&nbsp;Depuis<br />//&nbsp;PHP&nbsp;4.2.0&nbsp;la&nbsp;valeur&nbsp;par&nbsp;défaut&nbsp;de&nbsp;cette&nbsp;directive&nbsp;est&nbsp;register_globals&nbsp;=&nbsp;off.<br />//&nbsp;Utiliser&nbsp;ou&nbsp;présumer&nbsp;cette&nbsp;méthode&nbsp;est&nbsp;découragé.<br />
+								<br />&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">$username</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">
+				Utiliser un formulaire de type GET est similaire, hormis le fait que
+				vous deviez utiliser les variables pré-définies de GET à la place.
+				GET s&#039;applique aussi à la <em>QUERY_STRING</em> (les
+				informations disponibles après le &#039;?&#039; dans une URL). De ce
+				fait, par exemple, <em>http://www.example.com/test.php?id=3</em>
+				contient les données de GET, qui sont accessibles via
+				<var class="varname">
+					<var class="varname">
+						<a href="reserved.variables.get.html" class="classname">$_GET['id']</a>
+					</var>
+				</var>
+				. Voyez aussi
+				<var class="varname">
+					<var class="varname">
+						<a href="reserved.variables.request.html" class="classname">$_REQUEST</a>
+					</var>
+				</var>
+				et <span class="function"><a
+					href="function.import-request-variables.html" class="function">import_request_variables()</a></span>.
+			</p>
+
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					<a href="language.variables.superglobals.html" class="link">Les
+						tableaux superglobaux</a>, comme
+					<var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.post.html" class="classname">$_POST</a>
+						</var>
+					</var>
+					et
+					<var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.get.html" class="classname">$_GET</a>
+						</var>
+					</var>
+					sont disponibles depuis PHP 4.1.0.
+			</blockquote>
+
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Les points et les espaces dans les noms de variables sont convertis
+					en underscores. Par exemple, <em>&lt;input
+						name=&quot;a.b&quot; /&gt;</em> deviendra <em>$_REQUEST[&quot;a_b&quot;]</em>.
+			</blockquote>
+
+			<p class="para">
+				Comme nous l&#039;avons déjà dis, avant PHP 4.2.0, la valeur par
+				défaut de <a href="ini.core.html#ini.register-globals" class="link">register_globals</a>
+				était <em class="emphasis">on</em>. La communauté PHP
+				n&#039;encourage personne à utiliser cette directive et privilégie
+				la valeur <em class="emphasis">off</em> et un code accordé.
+			</p>
+
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					La directive de configuration <a
+						href="info.configuration.html#ini.magic-quotes-gpc" class="link">magic_quotes_gpc</a>
+					affecte les valeurs de GET, POST et cookies. Si elle est activée,
+					une valeur comme celle de (C&#039;est &quot;PHP!&quot;) sera
+					magiquement transformée en (C\&#039;est \&quot;PHP!\&quot;). La
+					protection des caractères est nécessaire pour l&#039;insertion dans
+					les bases de données. Voyez aussi les fonctions <span
+						class="function"><a href="function.addslashes.html"
+						class="function">addslashes()</a></span>, <span class="function"><a
+						href="function.stripslashes.html" class="function">stripslashes()</a></span>
+					et <a href="sybase.configuration.html#ini.magic-quotes-sybase"
+						class="link">magic_quotes_sybase</a>.
+			</blockquote>
+
+			<p class="simpara">
+				PHP comprend aussi les tableaux dans le contexte des formulaires.
+				(voir aussi <a href="faq.html.html" class="link">la FAQ</a>). Vous
+				pouvez, par exemple, grouper des variables ensemble ou bien utiliser
+				cette fonctionnalité pour lire des valeurs multiples d&#039;un menu
+				déroulant. Par exemple, voici un formulaire qui se poste lui-même
+				des données, et les affiche :
+			</p>
+
+			<p class="para">
+			<div class="example" id="example-116">
+				<p>
+					<strong>Exemple #3 Variables de formulaires complexes</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">if&nbsp;(</span><span
+								style="color: #0000BB">$_POST</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'&lt;pre&gt;'</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #0000BB">htmlspecialchars</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$_POST</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'&lt;/pre&gt;'</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;<br /></span>&lt;form&nbsp;action=""&nbsp;method="post"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;Name:&nbsp;&nbsp;&lt;input&nbsp;type="text"&nbsp;name="personal[name]"&nbsp;/&gt;&lt;br&nbsp;/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;Email:&nbsp;&lt;input&nbsp;type="text"&nbsp;name="personal[email]"&nbsp;/&gt;&lt;br&nbsp;/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;Beer:&nbsp;&lt;br&nbsp;/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;select&nbsp;multiple&nbsp;name="beer[]"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&nbsp;value="warthog"&gt;Warthog&lt;/option&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&nbsp;value="guinness"&gt;Guinness&lt;/option&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&nbsp;value="stuttgarter"&gt;Stuttgarter&nbsp;Schwabenbräu&lt;/option&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/select&gt;&lt;br&nbsp;/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type="submit"&nbsp;value="Validez&nbsp;moi&nbsp;!"&nbsp;/&gt;<br />&lt;/form&gt;
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+
+			<div class="sect3" id="language.variables.external.form.submit">
+				<h4 class="title">Nom de variables IMAGE de type SUBMIT</h4>
+
+				<p class="simpara">Lors de la soumission d&#039;un formulaire,
+					il est possible d&#039;utiliser une image au lieu d&#039;un bouton
+					standard, comme ceci :</p>
+
+				<div class="informalexample">
+					<div class="example-contents">
+						<div class="htmlcode">
+							<pre class="htmlcode">&lt;input type=&quot;image&quot; src=&quot;image.gif&quot; name=&quot;sub&quot; /&gt;</pre>
+						</div>
+					</div>
+
+				</div>
+
+				<p class="simpara">
+					Lorsque l&#039;utilisateur clique sur cette image, le formulaire
+					associé est envoyé au serveur, avec deux données supplémentaires,
+					<var class="varname">
+						<var class="varname">sub_x</var>
+					</var>
+					et
+					<var class="varname">
+						<var class="varname">sub_y</var>
+					</var>
+					. Elles contiennent les coordonnées du clic de l&#039;utilisateur
+					dans l&#039;image. Vous noterez que ces variables sont envoyées par
+					le navigateur avec un point dans leur nom, mais PHP convertit ces
+					points en soulignés.
+				</p>
+			</div>
+
+		</div>
+
+		<div class="sect2" id="language.variables.external.cookies">
+			<h3 class="title">Cookies HTTP</h3>
+
+			<p class="simpara">
+				PHP supporte les cookies HTTP de manière totalement transparente,
+				comme défini dans la <a href="http://www.faqs.org/rfcs/rfc6265"
+					class="link external">&raquo;&nbsp;RFC 6265</a>. Les cookies sont
+				un mécanisme permettant de stocker des données sur la machine
+				cliente à des fins d&#039;identification de l&#039;utilisateur. Vous
+				pouvez établir un cookie grâce à la fonction <span class="function"><a
+					href="function.setcookie.html" class="function">setcookie()</a></span>.
+				Les cookies font partie intégrante des en-têtes HTTP et donc la
+				fonction <span class="function"><a
+					href="function.setcookie.html" class="function">setcookie()</a></span>
+				doit être appelée avant que le moindre affichage ne soit envoyé au
+				navigateur. C&#039;est la même restriction que pour la fonction <span
+					class="function"><a href="function.header.html"
+					class="function">header()</a></span>. Les données contenus dans les
+				cookies sont alors disponibles dans les tableaux de cookies
+				appropriés, comme
+				<var class="varname">
+					<var class="varname">
+						<a href="reserved.variables.cookies.html" class="classname">$_COOKIE</a>
+					</var>
+				</var>
+				,
+				<var class="varname">
+					<var class="varname">$HTTP_COOKIE_VARS</var>
+				</var>
+				mais aussi
+				<var class="varname">
+					<var class="varname">
+						<a href="reserved.variables.request.html" class="classname">$_REQUEST</a>
+					</var>
+				</var>
+				. Lisez la page de la documentation sur la fonction <span
+					class="function"><a href="function.setcookie.html"
+					class="function">setcookie()</a></span> pour plus de détails ainsi que des
+				exemples.
+			</p>
+
+			<p class="simpara">Si vous souhaitez assigner plusieurs valeurs à
+				un seul cookie, il devait l&#039;assigner sous forme de tableau. Par
+				exemple :</p>
+
+			<div class="informalexample">
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />setcookie
+							</span><span style="color: #007700">(</span><span style="color: #DD0000">"MyCookie[foo]"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'Test&nbsp;1'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">time</span><span style="color: #007700">()+</span><span
+								style="color: #0000BB">3600</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">setcookie</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"MyCookie[bar]"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'Test&nbsp;2'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">time</span><span style="color: #007700">()+</span><span
+								style="color: #0000BB">3600</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+
+			<p class="simpara">
+				Cela va créer deux cookies distincts bien que
+				<var class="varname">
+					<var class="varname">MyCookie</var>
+				</var>
+				est maintenant un simple tableau dans votre script. Si vous voulez
+				définir seulement un cookie avec plusieurs valeurs, utilisez la
+				fonction <span class="function"><a
+					href="function.serialize.html" class="function">serialize()</a></span> ou
+				<span class="function"><a href="function.explode.html"
+					class="function">explode()</a></span> sur la première valeur.
+			</p>
+
+			<p class="simpara">Il est à noter qu&#039;un cookie remplace le
+				cookie précédent par un cookie de même nom tant que le chemin ou le
+				domaine sont identiques. Donc, pour une application de panier, vous
+				devez implémenter un compteur et l&#039;incrémenter au fur et à
+				mesure. C&#039;est-à-dire :</p>
+
+			<div class="example" id="example-117">
+				<p>
+					<strong>Exemple #4 Exemple avec <span class="function"><a
+							href="function.setcookie.html" class="function">setcookie()</a></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">if&nbsp;(isset(</span><span
+								style="color: #0000BB">$_COOKIE</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">'compte'</span><span
+								style="color: #007700">]))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$compte&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">$_COOKIE</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">'compte'</span><span
+								style="color: #007700">]&nbsp;+&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">;<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$compte&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">setcookie</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'Panier'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$compte</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">time</span><span style="color: #007700">()+</span><span
+								style="color: #0000BB">3600</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">setcookie</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"Panier[</span><span
+								style="color: #0000BB">$compte</span><span
+								style="color: #DD0000">]"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$item</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">time</span><span style="color: #007700">()+</span><span
+								style="color: #0000BB">3600</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="sect2" id="language.variables.external.dot-in-names">
+			<h3 class="title">Cas des points dans les noms de variables</h3>
+
+			<p class="para">Typiquement, PHP ne modifie pas les noms des
+				variables lorsqu&#039;elles sont passées à un script. Cependant, il
+				faut noter que les points (.) ne sont pas autorisés dans les noms de
+				variables PHP. Pour cette raison, jetez un oeil sur :
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />&nbsp;&nbsp;$varname
+						</span><span style="color: #007700">.</span><span style="color: #0000BB">ext</span><span
+							style="color: #007700">;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">/*&nbsp;nom&nbsp;de&nbsp;variable&nbsp;invalide&nbsp;*/<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+			Dans ce cas, l&#039;analyseur croit voir la variable nommée
+			<var class="varname">
+				<var class="varname">$varname</var>
+			</var>
+			, suivie par l&#039;opérateur de concaténation, et suivie encore par
+			la chaîne sans guillemets (une chaîne sans guillemets et qui n&#039;a
+			pas de signification particulière). Visiblement, ce n&#039;est pas ce
+			qu&#039;on attendait...
+			</p>
+
+			<p class="para">Pour cette raison, il est important de noter que
+				PHP remplacera automatiquement les points des noms de variables
+				entrantes par des soulignés.</p>
+
+		</div>
+
+		<div class="sect2" id="language.variables.determining-type-of">
+			<h3 class="title">Détermination du type des variables</h3>
+
+			<p class="para">
+				Parce que PHP détermine le type des variables et les convertit
+				(généralement) comme il faut, ce n&#039;est pas toujours le type de
+				variable que vous souhaitez. PHP inclut des fonctions permettant de
+				déterminer le type d&#039;une variable : <span class="function"><a
+					href="function.gettype.html" class="function">gettype()</a></span>, <span
+					class="function"><a href="function.is-array.html"
+					class="function">is_array()</a></span>, <span class="function"><a
+					href="function.is-float.html" class="function">is_float()</a></span>, <span
+					class="function"><a href="function.is-int.html"
+					class="function">is_int()</a></span>, <span class="function"><a
+					href="function.is-object.html" class="function">is_object()</a></span> et
+				<span class="function"><a href="function.is-string.html"
+					class="function">is_string()</a></span>. Lisez également le chapitre sur
+				les <a href="language.types.html" class="link">types</a>.
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.variables.variable.html">Les variables
+				dynamiques</a>
+		</div>
+		<div class="next">
+			<a href="language.constants.html">Les constantes</a>
+		</div>
+		<div class="up">
+			<a href="language.variables.html">Les variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

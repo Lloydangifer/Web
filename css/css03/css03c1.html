@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Positionnement relatif</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function(){top.FP.initPage();}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+
+		<!-- ################################################################################################## -->
+		<h3>position: relative</h3>
+		<section>
+			<p class="fp-p-raz fp-t-center">
+				<code><strong>position: <span class="fp-rouge">relative</span>;
+				</strong></code>
+			</p>
+
+			<p>
+				Le positionnement relatif est considéré comme une variante du
+				positionnement normal : il consiste à déplacer
+				une boîte <strong>relativement à son positionnement normal</strong>.
+				<br>
+				On affecte à la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'position')">position</a>
+				la valeur <code>relative</code>.
+			</p>
+
+			<p>
+				La boîte est d'abord positionnée selon les règles du flux normal qui
+				s'appliquent à son type (bloc ou en ligne). Elle est ensuite
+				repositionnée relativement à sa position normale suivant la valeur
+				de ses propriétés <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'top')">top</a>,
+				<a onclick="top.FP.Voir.showPageTech('css_proprietes', 'left')">left</a>,
+				<a onclick="top.FP.Voir.showPageTech('css_proprietes', 'bottom')">bottom</a>
+				et <a onclick="top.FP.Voir.showPageTech('css_proprietes', 'right')">right</a>.
+			</p>
+
+			<p>Dans la figure ci-dessous, le positionnement normal est en
+				gris.</p>
+
+			<figure>
+				<img src="../cssimg/tlbr_relatif.png" width="580" height="218">
+				<figcaption>top, left, bottom, right avec
+					positionnement relatif</figcaption>
+			</figure>
+
+			<p class="fp-bot0">Pour les 4 propriétés <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'top')">top</a>,
+				<a onclick="top.FP.Voir.showPageTech('css_proprietes', 'left')">left</a>,
+				<a onclick="top.FP.Voir.showPageTech('css_proprietes', 'bottom')">bottom</a>
+				et <a onclick="top.FP.Voir.showPageTech('css_proprietes', 'right')">right</a>, les valeurs possibles
+				sont :</p>
+			<ul>
+				<li><a onclick="top.FP.Voir.showPageTech('longueur', '')">une
+						longeur</a> (valeur négative possible),</li>
+				<li>un pourcentage,</li>
+				<li><code>auto</code> (valeur par défaut)</li>
+				<li><code>inherit</code></li>
+			</ul>
+			
+			<p>
+				Les propriétés <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'top')">top</a>
+				et <a onclick="top.FP.Voir.showPageTech('css_proprietes', 'bottom')">bottom</a>
+				ne sont pas utilisables en même temps car on aurait une double
+				contrainte. Si c'est le cas malgré tout, la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'bottom')">bottom</a>
+				sera ignorée.
+			<p>
+			<p>
+				Les propriétés <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'left')">left</a>
+				et <a onclick="top.FP.Voir.showPageTech('css_proprietes', 'right')">right</a>
+				ne sont pas utilisables en même temps car on aurait là aussi une
+				double contrainte. Si c'est le cas malgré tout, la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'right')">right</a>
+				sera ignorée, sauf si la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'direction')">direction</a>
+				a la valeur <code>rtl</code>.
+			</p>
+
+			<p>
+				La largeur et la hauteur de la boîte ne sont <strong>pas
+					affectées</strong> par le positionnement relatif. On peut donc avoir 
+					des boîtes qui débordent de leur <a class="fp-lientuto"
+					onclick="top.FP.Voir.showPageTuto('css03a3', '')">bloc conteneur</a>.
+			</p>
+
+			<p>
+				Les boîtes qui suivent la boîte en positionnement relatif ne sont
+				pas affectées. Elles restent à leur place comme si la boîte n'avait
+				pas été déplacée. On peut donc avoir <strong>des
+					chevauchements</strong> avec la boîte déplacée qui cache le contenu des
+				boîtes qui la suivent.
+			</p>
+
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement relatif
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;L'Arrière des Etoiles&lt;/h3&gt;
+		&lt;p&gt;Les CSS sont l'arme secrète de la Force !&lt;/p&gt;
+		&lt;p&gt;Tu veux savoir les utiliser ?  
+			Envoie CSS au 7 1718.&lt;/p&gt;
+		&lt;div&gt;
+			&lt;p id="yoda"&gt;
+				&lt;img src="../exemples/img/yoda.jpg"&gt; 
+				Le côté obscur des CSS redouter tu dois.&lt;/p&gt;
+	    	&lt;p&gt;&lt;img src="../exemples/img/darkv.jpg"&gt; 
+				Les CSS ont vraiment transformé ma vie.&lt;/p&gt;
+	  	&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+			<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+div {
+	margin: 20px; 
+	border: 1px solid black; 
+	padding: 10px;  
+	background-color: lightgrey;
+}
+p {
+	margin: 10px;
+	border: 1px solid #000;
+	padding: 5px;
+	background-color: yellow;
+}
+#yoda {
+	position: relative;
+	left: 100px;
+	background-color: orange;
+}</textarea>
+			</form>
+
+			<p>
+				<strong>Attention au positionnement qui cache du contenu</strong> :
+				dans l'exemple suivant la boîte en positionnement relatif est
+				déplacée vers la gauche et vers le bas. La partie gauche de la boîte
+				sort de la fenêtre du navigateur. Le reste recouvre la boîte qui la
+				suit dans le flux normal et qui n'a pas bougé.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : positionnement relatif et perte de
+					contenu
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;L'Arrière des Etoiles&lt;/h3&gt;
+		&lt;p&gt;Les CSS sont l'arme secrète de la Force !&lt;/p&gt;
+		&lt;p&gt;Tu veux savoir les utiliser ?  
+			Envoie CSS au 7 1718.&lt;/p&gt;
+		&lt;div&gt;
+			&lt;p id="yoda"&gt;
+				&lt;img src="../exemples/img/yoda.jpg"&gt; 
+				Le côté obscur des CSS redouter tu dois.&lt;/p&gt;
+	    	&lt;p&gt;&lt;img src="../exemples/img/darkv.jpg"&gt; 
+				Les CSS ont vraiment transformé ma vie.&lt;/p&gt;
+	  	&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+			<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+div {
+	margin: 20px; 
+	border: 1px solid black; 
+	padding: 10px;  
+	background-color: lightgrey;
+}
+p {
+	margin: 10px;
+	border: 1px solid #000;
+	padding: 5px;
+	background-color: yellow;
+}
+#yoda {
+	position: relative;
+	right: 150px;
+	top: 110px;
+	background-color: orange;
+}</textarea>
+			</form>
+
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

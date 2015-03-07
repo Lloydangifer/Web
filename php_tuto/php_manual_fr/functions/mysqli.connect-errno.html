@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Retourne le code d'erreur de la connexion MySQL</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="mysqli.commit.html">mysqli::commit</a></div>
+ <div class="next"><a href="mysqli.connect-error.html">mysqli::$connect_error</a></div>
+ <div class="up"><a href="class.mysqli.html">mysqli</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="mysqli.connect-errno" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysqli::$connect_errno</h1>
+  <h1 class="refname">mysqli_connect_errno</h1>
+  <p class="verinfo">(PHP 5)</p><p class="refpurpose"><span class="refname">mysqli::$connect_errno</span> -- <span class="refname">mysqli_connect_errno</span> <span class="mdash">&mdash;</span> <span class="dc-title">Retourne le code d&#039;erreur de la connexion MySQL</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-mysqli.connect-errno-description">
+  <h3 class="title">Description</h3>
+  <p class="para">Style orienté objet</p>
+  <div class="fieldsynopsis"><span class="type">string</span> <var class="varname"><a href="mysqli.connect-errno.html">$mysqli-&gt;connect_errno</a></var>;</div>
+
+  <p class="para">Style procédural</p>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>mysqli_connect_errno</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Retourne le code d&#039;erreur de la dernière tentative de connexion
+   avec  <span class="function"><a href="function.mysqli-connect.html" class="function">mysqli_connect()</a></span>.
+  </p>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+    Les messages d&#039;erreur du client MySQL sont disponibles dans
+    <var class="filename">errmsg.h</var>. Les messages d&#039;erreur du
+    serveur MySQL sont disponibles dans <var class="filename">mysqld_error.h</var>.
+    Dans la distribution source de MySQL, vous pouvez trouver la liste
+    complète des messages d&#039;erreurs et des codes d&#039;erreurs dans
+    le fichier <var class="filename">Docs/mysqld_error.txt</var>.
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-mysqli.connect-errno-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Un code d&#039;erreur généré par le dernier appel à
+    <span class="function"><a href="function.mysqli-connect.html" class="function">mysqli_connect()</a></span>, si ce dernier a échoué.
+   Zéro signifie qu&#039;aucune erreur n&#039;est survenue.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-mysqli.connect-errno-examples">
+  <h3 class="title">Exemples</h3>
+  <div class="example" id="example-1641">
+   <p><strong>Exemple #1 Exemple avec <var class="varname"><var class="varname">$mysqli->connect_errno</var></var></strong></p>
+   <div class="example-contents"><p>Style orienté objet</p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$mysqli&nbsp;</span><span style="color: #007700">=&nbsp;@new&nbsp;</span><span style="color: #0000BB">mysqli</span><span style="color: #007700">(</span><span style="color: #DD0000">'localhost'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'fake_user'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'my_password'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'my_db'</span><span style="color: #007700">);<br /><br />if&nbsp;(</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect_errno</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #DD0000">'Erreur&nbsp;de&nbsp;connexion&nbsp;:&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$mysqli</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect_errno</span><span style="color: #007700">);<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>Style procédural</p></div>
+   <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />$link&nbsp;</span><span style="color: #007700">=&nbsp;@</span><span style="color: #0000BB">mysqli_connect</span><span style="color: #007700">(</span><span style="color: #DD0000">'localhost'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'fake_user'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'my_password'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'my_db'</span><span style="color: #007700">);<br /><br />if&nbsp;(!</span><span style="color: #0000BB">$link</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #DD0000">'Erreur&nbsp;de&nbsp;connexion&nbsp;:&nbsp;'&nbsp;</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">mysqli_connect_errno</span><span style="color: #007700">());<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+   </div>
+
+   <div class="example-contents"><p>Les exemples ci-dessus vont afficher :</p></div>
+   <div class="example-contents screen">
+<div class="cdata"><pre>
+Erreur de connexion : 1045
+</pre></div>
+   </div>
+  </div>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-mysqli.connect-errno-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"> <span class="function"><a href="function.mysqli-connect.html" class="function" rel="rdfs-seeAlso">mysqli_connect()</a> - Alias de mysqli::__construct</span></li>
+    <li class="member"> <span class="function"><a href="mysqli.connect-error.html" class="function" rel="rdfs-seeAlso">mysqli_connect_error()</a> - Retourne le message d'erreur de connexion MySQL</span></li>
+    <li class="member"> <span class="function"><a href="mysqli.errno.html" class="function" rel="rdfs-seeAlso">mysqli_errno()</a> - Retourne le dernier code d'erreur produit</span></li>
+    <li class="member"> <span class="function"><a href="mysqli.error.html" class="function" rel="rdfs-seeAlso">mysqli_error()</a> - Retourne une cha&icirc;ne d&eacute;crivant la derni&egrave;re erreur</span></li>
+    <li class="member"> <span class="function"><a href="mysqli.sqlstate.html" class="function" rel="rdfs-seeAlso">mysqli_sqlstate()</a> - Retourne l'erreur SQLSTATE de la derni&egrave;re op&eacute;ration MySQL</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="mysqli.commit.html">mysqli::commit</a></div>
+ <div class="next"><a href="mysqli.connect-error.html">mysqli::$connect_error</a></div>
+ <div class="up"><a href="class.mysqli.html">mysqli</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

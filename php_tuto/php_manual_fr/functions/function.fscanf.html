@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Analyse un fichier en fonction d'un format</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.fread.html">fread</a>
+		</div>
+		<div class="next">
+			<a href="function.fseek.html">fseek</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.fscanf" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">fscanf</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.0.1, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">fscanf</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Analyse un fichier en fonction
+					d&#039;un format</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.fscanf-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><a
+					href="language.pseudo-types.html#language.types.mixed"
+					class="type mixed">mixed</a></span> <span class="methodname"><strong>fscanf</strong></span>
+				( <span class="methodparam"><span class="type">resource</span>
+					<code class="parameter">$handle</code></span> , <span class="methodparam"><span
+					class="type">string</span> <code class="parameter">$format</code></span>
+				[, <span class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter reference">&$...</code></span>
+				] )
+			</div>
+
+			<p class="para rdfs-comment">
+				La fonction <span class="function"><strong>fscanf()</strong></span>
+				est similaire à la fonction <span class="function"><a
+					href="function.sscanf.html" class="function">sscanf()</a></span>, sauf
+				qu&#039;elle prend un fichier en entrée, représentée par la
+				ressource <em><code class="parameter">handle</code></em> et
+				interprète l&#039;entrée en fonction du format <em><code
+						class="parameter">format</code></em> spécifié, qui est décrit dans la
+				documentation de la fonction <span class="function"><a
+					href="function.sprintf.html" class="function">sprintf()</a></span>.
+			</p>
+			<p class="para">
+				Tous les caractères blancs de la chaîne de formatage correspondent à
+				autant d&#039;espaces dans le flux d&#039;entrée. Cela signifie
+				qu&#039;une tabulation <em>\t</em> dans la chaîne de format peut
+				remplacer un espace simple dans le flux d&#039;entrée.
+			</p>
+			<p class="para">
+				Chaque appel à la fonction <span class="function"><strong>fscanf()</strong></span>
+				lit une ligne du fichier.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.fscanf-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">handle</code></em></span>
+				<dd>
+
+					<p class="para">
+						Un pointeur de système de fichiers de type <span class="type"><a
+							href="language.types.resource.html" class="type resource">resource</a></span>
+						qui est habituellement créé en utilisant la fonction <span
+							class="function"><a href="function.fopen.html"
+							class="function">fopen()</a></span>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">format</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le format spécifié, tel que décrit dans la documentation de la
+						fonction <span class="function"><a
+							href="function.sprintf.html" class="function">sprintf()</a></span>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">...</code></em></span>
+				<dd>
+
+					<p class="para">Les valeurs optionnelles à assigner.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.fscanf-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Si seulement 2 paramètres sont passés à la
+				fonction, la valeur analysée sera retourné sous la forme d&#039;un
+				tableau. Si des paramètres optionnels sont passés, la fonction
+				retournera le nombre de valeurs assignées. Les paramètres optionnels
+				doivent être passés par référence.</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.fscanf-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.3.0</td>
+						<td>Avant PHP 4.3.0, le nombre maximum de caractères lus dans
+							le fichier était de 512, ou bien jusqu&#039;à la première
+							nouvelle ligne &quot;<em>\n</em>&quot; : en fait, le premier des
+							deux. Depuis PHP 4.3.0, des lignes de n&#039;importe quelle
+							taille peuvent être lues.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.fscanf-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2258">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>fscanf()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$handle&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"users.txt"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"r"</span><span style="color: #007700">);<br />while&nbsp;(
+							</span><span style="color: #0000BB">$userinfo&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">fscanf</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$handle</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"%s\t%s\t%s\n"</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;list&nbsp;(
+							</span><span style="color: #0000BB">$name</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$profession</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$countrycode</span><span
+								style="color: #007700">)&nbsp;=&nbsp;</span><span
+								style="color: #0000BB">$userinfo</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//...&nbsp;traitement&nbsp;des&nbsp;données<br /></span><span
+								style="color: #007700">}<br /></span><span
+								style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$handle</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="example-2259">
+				<p>
+					<strong>Exemple #2 Contenu du fichier users.txt</strong>
+				</p>
+				<div class="example-contents">
+					<div class="txtcode">
+						<pre class="txtcode">javier  argonaut        pe
+hiroshi sculptor        jp
+robert  slacker us
+luigi   florist it</pre>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.fscanf-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.fread.html" class="function" rel="rdfs-seeAlso">fread()</a>
+						- Lecture du fichier en mode binaire</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fgets.html" class="function" rel="rdfs-seeAlso">fgets()</a>
+						- R&eacute;cup&egrave;re la ligne courante sur laquelle se trouve
+						le pointeur du fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fgetss.html" class="function" rel="rdfs-seeAlso">fgetss()</a>
+						- Renvoie la ligne courante du fichier et &eacute;limine les
+						balises HTML</span></li>
+				<li class="member"><span class="function"><a
+						href="function.sscanf.html" class="function" rel="rdfs-seeAlso">sscanf()</a>
+						- Analyse une cha&icirc;ne &agrave; l'aide d'un format</span></li>
+				<li class="member"><span class="function"><a
+						href="function.printf.html" class="function" rel="rdfs-seeAlso">printf()</a>
+						- Affiche une cha&icirc;ne de caract&egrave;res format&eacute;e</span></li>
+				<li class="member"><span class="function"><a
+						href="function.sprintf.html" class="function" rel="rdfs-seeAlso">sprintf()</a>
+						- Retourne une cha&icirc;ne format&eacute;e</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.fread.html">fread</a>
+		</div>
+		<div class="next">
+			<a href="function.fseek.html">fseek</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

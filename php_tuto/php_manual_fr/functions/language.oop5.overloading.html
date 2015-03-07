@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Surcharge magique</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.oop5.traits.html">Traits</a>
+		</div>
+		<div class="next">
+			<a href="language.oop5.iterations.html">Parcours d'objets</a>
+		</div>
+		<div class="up">
+			<a href="language.oop5.html">Les classes et les objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.oop5.overloading" class="sect1">
+		<h2 class="title">Surcharge magique</h2>
+
+		<p class="para">La surcharge magique en PHP permet de
+			&quot;créer&quot; dynamiquement des propriétés et des méthodes. Ces
+			entités dynamiques sont traitées via des méthodes magiques établies
+			que l&#039;on peut positionner dans une classe pour divers types
+			d&#039;actions.</p>
+
+		<p class="para">
+			Les méthodes magiques de surcharge sont appelées lors de
+			l&#039;interaction avec des propriétés ou des méthodes qui n&#039;ont
+			pas été déclarées ou ne sont pas <a
+				href="language.oop5.visibility.html" class="link">visibles</a> dans
+			le contexte courant. Le reste de cette section utilise les termes de
+			"<span class="quote">propriétés inaccessibles</span>" et de "<span
+				class="quote">méthodes inaccessibles</span>" pour se référer à cette
+			combinaison de déclaration et de visibilité.
+		</p>
+
+		<p class="para">
+			Toutes les méthodes magiques de surcharge doivent être définies comme
+			<em>public</em>.
+		</p>
+
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>:
+			<p class="para">
+				Aucun des arguments de ces méthodes magiques ne peut être <a
+					href="functions.arguments.html#functions.arguments.by-reference"
+					class="link">passé par référence</a>.
+		</blockquote>
+
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>:
+			<p class="para">
+				L&#039;interprétation PHP de la "<span class="quote">surcharge</span>"
+				est différente de celle de la plupart des langages orientés objet.
+				La surcharge, habituellement, fournit la possibilité d&#039;avoir
+				plusieurs méthodes portant le même nom mais avec une quantité et des
+				types différents d&#039;arguments.
+		</blockquote>
+
+
+		<div class="sect2" id="language.oop5.overloading.changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.3.0</td>
+						<td>Ajout de <a
+							href="language.oop5.overloading.html#object.callstatic"
+							class="link">__callStatic()</a>. Ajout d&#039;un avertissement
+							pour forcer la visibilité <em>public</em> et la déclaration non <em>static</em>.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.1.0</td>
+						<td>Ajout de <a
+							href="language.oop5.overloading.html#object.isset" class="link">__isset()</a>
+							et de <a href="language.oop5.overloading.html#object.unset"
+							class="link">__unset()</a>.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="sect2" id="language.oop5.overloading.members">
+			<h3 class="title">Surcharge de propriétés</h3>
+
+			<div class="methodsynopsis dc-description" id="object.set">
+				<span class="modifier">public</span> <span class="type"><span
+					class="type void">void</span></span> <span class="methodname"><strong>__set</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$name</code></span> , <span class="methodparam"><span
+					class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$value</code></span>
+				)
+			</div>
+
+			<div class="methodsynopsis dc-description" id="object.get">
+				<span class="modifier">public</span> <span class="type"><a
+					href="language.pseudo-types.html#language.types.mixed"
+					class="type mixed">mixed</a></span> <span class="methodname"><strong>__get</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$name</code></span> )
+			</div>
+
+			<div class="methodsynopsis dc-description" id="object.isset">
+				<span class="modifier">public</span> <span class="type">bool</span>
+				<span class="methodname"><strong>__isset</strong></span> ( <span
+					class="methodparam"><span class="type">string</span> <code
+						class="parameter">$name</code></span> )
+			</div>
+
+			<div class="methodsynopsis dc-description" id="object.unset">
+				<span class="modifier">public</span> <span class="type"><span
+					class="type void">void</span></span> <span class="methodname"><strong>__unset</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$name</code></span> )
+			</div>
+
+
+			<p class="para">
+				<a href="language.oop5.overloading.html#object.set" class="link">__set()</a>
+				est sollicitée lors de l&#039;écriture de données vers des
+				propriétés inaccessibles.
+			</p>
+
+			<p class="para">
+				<a href="language.oop5.overloading.html#object.get" class="link">__get()</a>
+				est appelée pour lire des données depuis des propriétés
+				inaccessibles.
+			</p>
+
+			<p class="para">
+				<a href="language.oop5.overloading.html#object.isset" class="link">__isset()</a>
+				est sollicitée lorsque <span class="function"><a
+					href="function.isset.html" class="function">isset()</a></span> ou la
+				fonction <span class="function"><a href="function.empty.html"
+					class="function">empty()</a></span> sont appelées sur des propriétés
+				inaccessibles.
+			</p>
+
+			<p class="para">
+				<a href="language.oop5.overloading.html#object.unset" class="link">__unset()</a>
+				est invoquée lorsque <span class="function"><a
+					href="function.unset.html" class="function">unset()</a></span> est appelée
+				sur des propriétés inaccessibles.
+			</p>
+
+			<p class="para">
+				L&#039;argument
+				<var class="varname">
+					<var class="varname">$name</var>
+				</var>
+				est le nom de la propriété avec laquelle on interagit.
+				L&#039;argument
+				<var class="varname">
+					<var class="varname">$value</var>
+				</var>
+				de la méthode <a href="language.oop5.overloading.html#object.set"
+					class="link">__set()</a> spécifie la valeur à laquelle la propriété
+				<var class="varname">
+					<var class="varname">$name</var>
+				</var>
+				devrait être définie.
+			</p>
+
+			<p class="para">
+				La surcharge de propriétés ne fonctionne que dans les contextes
+				objets. Ces méthodes magiques ne seront pas lancées en contexte
+				statique. Par conséquent, ces méthodes ne devraient pas être
+				déclarées comme <a href="language.oop5.static.html" class="link">statiques</a>.
+				Depuis PHP 5.3.0, un avertissement est levée si une des méthodes
+				magiques est déclarée comme statique.
+			</p>
+
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					La valeur retournée par <a
+						href="language.oop5.overloading.html#object.set" class="link">__set()</a>
+					est ignorée en raison de la façon dont PHP traite l&#039;opérateur
+					d&#039;affectation. De la même façon, <a
+						href="language.oop5.overloading.html#object.get" class="link">__get()</a>
+					n&#039;est jamais appelée lors d&#039;un enchaînement
+					d&#039;assignements, comme ceci : <em><div class="cdata">
+							<pre> $a = $obj-&gt;b = 8; </pre>
+						</div></em>
+			</blockquote>
+
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Il n&#039;est pas possible d&#039;utiliser les attributs surchargés
+					dans d&#039;autres structures de langages que <span
+						class="function"><a href="function.isset.html"
+						class="function">isset()</a></span>. Ceci signifie que si <span
+						class="function"><a href="function.empty.html"
+						class="function">empty()</a></span> est appelée avec un attribut
+					surchargé, la méthode de surcharge n&#039;est pas invoquée.
+				</p>
+				<p class="para">
+					Pour contourner cette limitation, l&#039;attribut surchargé doit
+					être copié dans une variable locale du contexte courant, elle-même
+					passée à <span class="function"><a
+						href="function.empty.html" class="function">empty()</a></span>.
+			</blockquote>
+
+			<div class="example" id="example-217">
+				<p>
+					<strong>Exemple #1 Exemple de surcharge de propriétés avec
+						les méthodes <a href="language.oop5.overloading.html#object.get"
+						class="link">__get()</a>, <a
+						href="language.oop5.overloading.html#object.set" class="link">__set()</a>,
+						<a href="language.oop5.overloading.html#object.isset" class="link">__isset()</a>
+						et <a href="language.oop5.overloading.html#object.unset"
+						class="link">__unset()</a>
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">PropertyTest<br /></span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">/**&nbsp;&nbsp;Variable&nbsp;pour&nbsp;les&nbsp;données&nbsp;surchargées.&nbsp;&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">private&nbsp;</span><span
+								style="color: #0000BB">$data&nbsp;</span><span
+								style="color: #007700">=&nbsp;array();<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">/**&nbsp;&nbsp;La&nbsp;surcharge&nbsp;n'est&nbsp;pas&nbsp;utilisée&nbsp;sur&nbsp;les&nbsp;propriétés&nbsp;déclarées.&nbsp;&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">public&nbsp;</span><span
+								style="color: #0000BB">$declared&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">;<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">/**&nbsp;&nbsp;La&nbsp;surcharge&nbsp;n'est&nbsp;lancée&nbsp;que&nbsp;lorsque&nbsp;l'on&nbsp;accède&nbsp;à&nbsp;cette&nbsp;propriété&nbsp;depuis&nbsp;l'extérieur&nbsp;de&nbsp;la&nbsp;classe.&nbsp;&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">private&nbsp;</span><span
+								style="color: #0000BB">$hidden&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">2</span><span style="color: #007700">;<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">__set</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$name</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$value</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Définition&nbsp;de&nbsp;'</span><span
+								style="color: #0000BB">$name</span><span style="color: #DD0000">'&nbsp;à&nbsp;la&nbsp;valeur&nbsp;'</span><span
+								style="color: #0000BB">$value</span><span style="color: #DD0000">'\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">data</span><span
+								style="color: #007700">[</span><span style="color: #0000BB">$name</span><span
+								style="color: #007700">]&nbsp;=&nbsp;</span><span
+								style="color: #0000BB">$value</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">__get</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$name</span><span
+								style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Récupération&nbsp;de&nbsp;'</span><span
+								style="color: #0000BB">$name</span><span style="color: #DD0000">'\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(
+							</span><span style="color: #0000BB">array_key_exists</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$name</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">data</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">data</span><span
+								style="color: #007700">[</span><span style="color: #0000BB">$name</span><span
+								style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$trace&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">debug_backtrace</span><span
+								style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">trigger_error</span><span
+								style="color: #007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #DD0000">'Propriété&nbsp;non-définie&nbsp;via&nbsp;__get()&nbsp;:&nbsp;'&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">$name&nbsp;</span><span
+								style="color: #007700">.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #DD0000">'&nbsp;dans&nbsp;'&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">$trace</span><span style="color: #007700">[</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">][</span><span
+								style="color: #DD0000">'file'</span><span style="color: #007700">]&nbsp;.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #DD0000">'&nbsp;à&nbsp;la&nbsp;ligne&nbsp;'&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">$trace</span><span style="color: #007700">[</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">][</span><span
+								style="color: #DD0000">'line'</span><span style="color: #007700">],<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">E_USER_NOTICE</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">null</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">/**&nbsp;&nbsp;Depuis&nbsp;PHP&nbsp;5.1.0&nbsp;&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">public&nbsp;function&nbsp;</span><span
+								style="color: #0000BB">__isset</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$name</span><span
+								style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Est-ce&nbsp;que&nbsp;'</span><span
+								style="color: #0000BB">$name</span><span style="color: #DD0000">'&nbsp;est&nbsp;défini&nbsp;?\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;isset(
+							</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">data</span><span
+								style="color: #007700">[</span><span style="color: #0000BB">$name</span><span
+								style="color: #007700">]);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">/**&nbsp;&nbsp;Depuis&nbsp;PHP&nbsp;5.1.0&nbsp;&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">public&nbsp;function&nbsp;</span><span
+								style="color: #0000BB">__unset</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$name</span><span
+								style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Effacement&nbsp;de&nbsp;'</span><span
+								style="color: #0000BB">$name</span><span style="color: #DD0000">'\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unset(
+							</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">data</span><span
+								style="color: #007700">[</span><span style="color: #0000BB">$name</span><span
+								style="color: #007700">]);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">/**&nbsp;&nbsp;Ce&nbsp;n'est&nbsp;pas&nbsp;une&nbsp;méthode&nbsp;magique,&nbsp;nécessaire&nbsp;ici&nbsp;que&nbsp;pour&nbsp;l'exemple.&nbsp;&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">public&nbsp;function&nbsp;</span><span
+								style="color: #0000BB">getHidden</span><span
+								style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">hidden</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br />
+								<br />echo&nbsp;
+							</span><span style="color: #DD0000">"&lt;pre&gt;\n"</span><span
+								style="color: #007700">;<br />
+								<br /></span><span style="color: #0000BB">$obj&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">PropertyTest</span><span
+								style="color: #007700">;<br />
+								<br /></span><span style="color: #0000BB">$obj</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">a&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">;<br />echo&nbsp;
+							</span><span style="color: #0000BB">$obj</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">a&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #DD0000">"\n\n"</span><span style="color: #007700">;<br />
+								<br /></span><span style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(isset(</span><span
+								style="color: #0000BB">$obj</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">a</span><span style="color: #007700">));<br />unset(
+							</span><span style="color: #0000BB">$obj</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">a</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(isset(</span><span
+								style="color: #0000BB">$obj</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">a</span><span style="color: #007700">));<br />echo&nbsp;
+							</span><span style="color: #DD0000">"\n"</span><span
+								style="color: #007700">;<br />
+								<br />echo&nbsp;
+							</span><span style="color: #0000BB">$obj</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">declared&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #DD0000">"\n\n"</span><span style="color: #007700">;<br />
+								<br />echo&nbsp;
+							</span><span style="color: #DD0000">"Manipulons&nbsp;maintenant&nbsp;la&nbsp;propriété&nbsp;privée&nbsp;nommée&nbsp;'hidden'&nbsp;:\n"</span><span
+								style="color: #007700">;<br />echo&nbsp;
+							</span><span style="color: #DD0000">"'hidden'&nbsp;est&nbsp;visible&nbsp;depuis&nbsp;la&nbsp;classe,&nbsp;donc&nbsp;__get()&nbsp;n'est&nbsp;pas&nbsp;utilisée...\n"</span><span
+								style="color: #007700">;<br />echo&nbsp;
+							</span><span style="color: #0000BB">$obj</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">getHidden</span><span
+								style="color: #007700">()&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />echo&nbsp;
+							</span><span style="color: #DD0000">"'hidden'&nbsp;n'est&nbsp;pas&nbsp;visible&nbsp;en&nbsp;dehors&nbsp;de&nbsp;la&nbsp;classe,&nbsp;donc&nbsp;__get()&nbsp;est&nbsp;utilisée...\n"</span><span
+								style="color: #007700">;<br />echo&nbsp;
+							</span><span style="color: #0000BB">$obj</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">hidden&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Définition de &#039;a&#039; à &#039;1&#039;
+Récupération de &#039;a&#039;
+1
+
+Est-ce que &#039;a&#039; est défini ?
+bool(true)
+Effacement de &#039;a&#039;
+Est-ce que &#039;a&#039; est défini ?
+bool(false)
+
+1
+
+Manipulons maintenant la propriété privée nommée &#039;hidden&#039; :
+&#039;hidden&#039; est visible depuis la classe, donc __get() n&#039;est pas utilisée...
+2
+&#039;hidden&#039; n&#039;est pas visible en dehors de la classe, donc __get() est utilisée...
+Récupération de &#039;hidden&#039;
+
+
+Notice: Propriété non-définie via __get() : hidden dans &lt;file&gt; à la ligne 64 dans &lt;file&gt; à la ligne 28
+</pre>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="sect2" id="language.oop5.overloading.methods">
+			<h3 class="title">Surcharge de méthodes</h3>
+
+			<div class="methodsynopsis dc-description" id="object.call">
+				<span class="modifier">public</span> <span class="type"><a
+					href="language.pseudo-types.html#language.types.mixed"
+					class="type mixed">mixed</a></span> <span class="methodname"><strong>__call</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$name</code></span> , <span class="methodparam"><span
+					class="type">array</span> <code class="parameter">$arguments</code></span>
+				)
+			</div>
+
+			<div class="methodsynopsis dc-description" id="object.callstatic">
+				<span class="modifier">public static</span> <span class="type"><a
+					href="language.pseudo-types.html#language.types.mixed"
+					class="type mixed">mixed</a></span> <span class="methodname"><strong>__callStatic</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$name</code></span> , <span class="methodparam"><span
+					class="type">array</span> <code class="parameter">$arguments</code></span>
+				)
+			</div>
+
+
+			<p class="para">
+				<a href="language.oop5.overloading.html#object.call" class="link">__call()</a>
+				est appelée lorsque l&#039;on invoque des méthodes inaccessibles
+				dans un contexte objet.
+			</p>
+
+			<p class="para">
+				<a href="language.oop5.overloading.html#object.callstatic"
+					class="link">__callStatic()</a> est lancée lorsque l&#039;on
+				invoque des méthodes inaccessibles dans un contexte statique.
+			</p>
+
+			<p class="para">
+				L&#039;argument
+				<var class="varname">
+					<var class="varname">$name</var>
+				</var>
+				est le nom de la méthode appelée. L&#039;argument
+				<var class="varname">
+					<var class="varname">$arguments</var>
+				</var>
+				est un tableau contenant les paramètres passés à la méthode
+				<var class="varname">
+					<var class="varname">$name</var>
+				</var>
+				.
+			</p>
+
+			<div class="example" id="example-218">
+				<p>
+					<strong>Exemple #2 Surcharge de méthodes avec <a
+						href="language.oop5.overloading.html#object.call" class="link">__call()</a>
+						et <a href="language.oop5.overloading.html#object.callstatic"
+						class="link">__callStatic()</a></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">MethodTest<br /></span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">__call</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$name</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$arguments</span><span
+								style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;Note&nbsp;:&nbsp;la&nbsp;valeur&nbsp;de&nbsp;$name&nbsp;est&nbsp;sensible&nbsp;à&nbsp;la&nbsp;casse.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">"Appel&nbsp;de&nbsp;la&nbsp;méthode&nbsp;'</span><span
+								style="color: #0000BB">$name</span><span style="color: #DD0000">'&nbsp;"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">implode</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">',&nbsp;'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$arguments</span><span
+								style="color: #007700">).&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">/**&nbsp;&nbsp;Depuis&nbsp;PHP&nbsp;5.3.0&nbsp;&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">public&nbsp;static&nbsp;function&nbsp;</span><span
+								style="color: #0000BB">__callStatic</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$name</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$arguments</span><span
+								style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;Note&nbsp;:&nbsp;la&nbsp;valeur&nbsp;de&nbsp;$name&nbsp;est&nbsp;sensible&nbsp;à&nbsp;la&nbsp;casse.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">"Appel&nbsp;de&nbsp;la&nbsp;méthode&nbsp;statique&nbsp;'</span><span
+								style="color: #0000BB">$name</span><span style="color: #DD0000">'&nbsp;"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">implode</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">',&nbsp;'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$arguments</span><span
+								style="color: #007700">).&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #0000BB">$obj&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">MethodTest</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$obj</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">runTest</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'dans&nbsp;un&nbsp;contexte&nbsp;objet'</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #0000BB">MethodTest</span><span
+								style="color: #007700">::</span><span style="color: #0000BB">runTest</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'dans&nbsp;un&nbsp;contexte&nbsp;static'</span><span
+								style="color: #007700">);&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;Depuis&nbsp;PHP&nbsp;5.3.0<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Appel de la méthode &#039;runTest&#039; dans un contexte objet
+Appel de la méthode statique &#039;runTest&#039; dans un contexte static
+</pre>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.oop5.traits.html">Traits</a>
+		</div>
+		<div class="next">
+			<a href="language.oop5.iterations.html">Parcours d'objets</a>
+		</div>
+		<div class="up">
+			<a href="language.oop5.html">Les classes et les objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

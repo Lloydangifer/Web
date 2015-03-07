@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Variables d'environnement</title>
+
+ </head>
+ <body><div class="manualnavbar"><div class="prev"><a href="reserved.variables.session.html">$_SESSION</a></div>
+ <div class="next"><a href="reserved.variables.cookies.html">$_COOKIE</a></div>
+ <div class="up"><a href="reserved.variables.html">Variables pr&eacute;d&eacute;finies</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="reserved.variables.environment" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">$_ENV</h1>
+  <h1 class="refname">$HTTP_ENV_VARS [Obsolète]</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.1.0, PHP 5)</p><p class="refpurpose"><span class="refname">$_ENV</span> -- <span class="refname">$HTTP_ENV_VARS [Obsolète]</span> <span class="mdash">&mdash;</span> <span class="dc-title">Variables d&#039;environnement</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-reserved.variables.environment-description">
+  <h3 class="title">Description</h3>
+  <p class="para">
+   Un tableau associatif de variable passé au script courant, via la méthode
+   d&#039;environnement.
+  </p>
+
+  <p class="simpara">
+   Cette variable est importée dans l&#039;espace de nom global de PHP,
+   depuis l&#039;environnement dans lequel l&#039;exécutable PHP fonctionne.
+   De nombreuses valeurs sont fournies par le shell qui exécute PHP,
+   et différents systèmes pouvant disposer de différents shell, même
+   un début de liste serait ici impossible. Reportez-vous à la documentation
+   de votre shell pour connaître une liste de variables pré-définies.
+  </p>
+
+  <p class="simpara">
+   Les autres variables d&#039;environnement incluent les variables CGI,
+   placées ici, indépendamment du fait que PHP fonctionne en tant
+   que CGI ou bien que module du serveur.
+  </p>
+
+  <p class="simpara">
+   <var class="varname"><var class="varname">$HTTP_ENV_VARS</var></var> contient les mêmes
+   informations, mais n&#039;est pas <a href="language.variables.superglobals.html" class="link">superglobale</a>. (Notez que
+   <var class="varname"><var class="varname">$HTTP_ENV_VARS</var></var> et <var class="varname"><var class="varname">$_ENV</var></var>
+   sont des variables différentes et que PHP les traite comme telles.)
+  </p>
+
+ </div>
+
+
+ <div class="refsect1 changelog" id="refsect1-reserved.variables.environment-changelog">
+  <h3 class="title">Historique</h3>
+  <p class="para">
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th>Version</th>
+       <th>Description</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>4.1.0</td>
+       <td>
+        Introduction de <var class="varname"><var class="varname">$_ENV</var></var>, rendant obsolète
+        <var class="varname"><var class="varname">$HTTP_ENV_VARS</var></var>.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-reserved.variables.environment-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="variable.env.basic">
+    <p><strong>Exemple #1 Exemple avec <var class="varname"><var class="varname">$_ENV</var></var></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'Mon&nbsp;nom&nbsp;d\'utilisateur&nbsp;est&nbsp;'&nbsp;</span><span style="color: #007700">.</span><span style="color: #0000BB">$_ENV</span><span style="color: #007700">[</span><span style="color: #DD0000">"USER"</span><span style="color: #007700">]&nbsp;.&nbsp;</span><span style="color: #DD0000">'!'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>
+     En assumant que <em>&quot;yannick&quot;</em> exécute ce script
+    </p></div>
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher quelque chose de similaire à :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+Mon nom d&#039;utilisateur est yannick !
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-reserved.variables.environment-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: <p class="para">Ceci est une &#039;superglobale&#039;, ou
+variable globale automatique. Cela signifie simplement que cette variable
+est disponible dans tous les contextes du script. Il n&#039;est pas nécessaire
+de faire <strong class="command">global $variable;</strong> pour y accéder dans les fonctions
+ou les méthodes.</p></p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-reserved.variables.environment-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"> <span class="function"><a href="function.getenv.html" class="function" rel="rdfs-seeAlso">getenv()</a> - Retourne la valeur d'une variable d'environnement</span></li>
+    <li class="member"><a href="book.filter.html" class="link">L&#039;extension sur les filtres</a></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div class="manualnavbarbas"><div class="prev"><a href="reserved.variables.session.html">$_SESSION</a></div>
+ <div class="next"><a href="reserved.variables.cookies.html">$_COOKIE</a></div>
+ <div class="up"><a href="reserved.variables.html">Variables pr&eacute;d&eacute;finies</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>G&eacute;n&egrave;re une valeur de hachage en utilisant le contenu d'un fichier donn&eacute;</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="function.hash-copy.html">hash_copy</a></div>
+ <div class="next"><a href="function.hash-final.html">hash_final</a></div>
+ <div class="up"><a href="ref.hash.html">Fonctions Hash</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="function.hash-file" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">hash_file</h1>
+  <p class="verinfo">(PHP 5 &gt;= 5.1.2, PECL hash &gt;= 1.1)</p><p class="refpurpose"><span class="refname">hash_file</span> <span class="mdash">&mdash;</span> <span class="dc-title">Génère une valeur de hachage en utilisant le contenu d&#039;un fichier donné</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.hash-file-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>hash_file</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$algo</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$filename</code></span>
+   [, <span class="methodparam"><span class="type">bool</span> <code class="parameter">$raw_output</code><span class="initializer"> = false</span></span>
+  ] )</div>
+
+
+ </div>
+
+ <div class="refsect1 parameters" id="refsect1-function.hash-file-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+
+     <span class="term"><em><code class="parameter">algo</code></em></span>
+     <dd>
+
+      <p class="para">
+       Nom de l&#039;algorithme de hachage sélectionné (c&#039;est-à-dire &quot;md5&quot;,
+       &quot;sha256&quot;, &quot;haval160,4&quot;, etc.)
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><em><code class="parameter">filename</code></em></span>
+     <dd>
+
+      <p class="para">
+       URL indiquant l&#039;emplacement du fichier qui sera haché; Supporte les
+       enveloppes  <span class="function"><a href="function.fopen.html" class="function">fopen()</a></span>.
+      </p>
+     </dd>
+
+    </dt>
+
+    <dt>
+
+     <span class="term"><em><code class="parameter">raw_output</code></em></span>
+     <dd>
+
+      <p class="para">
+       Lorsqu&#039;il vaut <strong><code>TRUE</code></strong>, la sortie sera des données brutes binaires.
+       Lorsqu&#039;il vaut <strong><code>FALSE</code></strong>, la sortie sera des chiffres hexadécimaux en
+       minuscule.
+      </p>
+     </dd>
+
+    </dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.hash-file-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne une chaîne de caractères contenant l&#039;empreinte numérique calculée
+   en chiffre hexadécimal minuscule à moins que
+   <em><code class="parameter">raw_output</code></em> soit fixé à <strong><code>TRUE</code></strong>. Dans ce cas, la
+   représentation brute binaire de l&#039;empreinte numérique est retournée.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.hash-file-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-904">
+    <p><strong>Exemple #1 Exemple avec  <span class="function"><strong>hash_file()</strong></span></strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Crée&nbsp;un&nbsp;fichier&nbsp;pour&nbsp;calculer&nbsp;son&nbsp;empreinte&nbsp;numérique&nbsp;*/<br /></span><span style="color: #0000BB">file_put_contents</span><span style="color: #007700">(</span><span style="color: #DD0000">'exemple.txt'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'Le&nbsp;rapide&nbsp;goupil&nbsp;brun&nbsp;sauta&nbsp;par&nbsp;dessus&nbsp;le&nbsp;chien&nbsp;paresseux.'</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #0000BB">hash_file</span><span style="color: #007700">(</span><span style="color: #DD0000">'md5'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'exemple.txt'</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+    <div class="example-contents"><p>L&#039;exemple ci-dessus va afficher :</p></div>
+    <div class="example-contents screen">
+<div class="cdata"><pre>
+2dfe052a8caca3db869ede6ae544cd5d
+</pre></div>
+    </div>
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.hash-file-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"> <span class="function"><a href="function.hash.html" class="function" rel="rdfs-seeAlso">hash()</a> - G&eacute;n&egrave;re une valeur de hachage (empreinte num&eacute;rique)</span></li>
+    <li class="member"> <span class="function"><a href="function.hash-hmac-file.html" class="function" rel="rdfs-seeAlso">hash_hmac_file()</a> - G&eacute;n&egrave;re une valeur de cl&eacute; de hachage en utilisant la m&eacute;thode HMAC et le contenu d'un fichier donn&eacute;</span></li>
+    <li class="member"> <span class="function"><a href="function.hash-update-file.html" class="function" rel="rdfs-seeAlso">hash_update_file()</a> - Ajoute des donn&eacute;es dans un contexte de hachage actif provenant d'un fichier</span></li>
+    <li class="member"> <span class="function"><a href="function.md5-file.html" class="function" rel="rdfs-seeAlso">md5_file()</a> - Calcule le md5 d'un fichier</span></li>
+    <li class="member"> <span class="function"><a href="function.sha1-file.html" class="function" rel="rdfs-seeAlso">sha1_file()</a> - Calcule le sha1 d'un fichier</span></li>
+   </ul>
+  </p>
+ </div>
+
+
+</div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="function.hash-copy.html">hash_copy</a></div>
+ <div class="next"><a href="function.hash-final.html">hash_final</a></div>
+ <div class="up"><a href="ref.hash.html">Fonctions Hash</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

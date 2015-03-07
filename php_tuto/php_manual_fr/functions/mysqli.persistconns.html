@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>L'extension mysqli et les connexions persistantes</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="mysqli.resources.html">Types de ressources</a></div>
+ <div class="next"><a href="mysqli.constants.html">Constantes pr&eacute;-d&eacute;finies</a></div>
+ <div class="up"><a href="book.mysqli.html">mysqli</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="mysqli.persistconns" class="chapter">
+
+ <h1>L&#039;extension mysqli et les connexions persistantes</h1>
+
+
+ <p class="para">
+  Les connexions persistantes ont été ajoutés en PHP 5.3 pour l&#039;extension
+  <em>mysqli</em>. Le support est déjà présent dans PDO_MYSQL et
+  ext/mysql. L&#039;idée derrière les connexions persistantes est que les connexions
+  entre les clients et la base peuvent être réutilisés par un autre processus
+  client, au lieu d&#039;être détruits et recréés de nombreuses fois. Cela réduit
+  le coût de création des connexions à chaque fois que l&#039;une d&#039;entre elle
+  est requise, car les connexions sont mises en cache pour être recyclées.
+ </p>
+ 
+ <p class="para">
+  Contrairement à l&#039;extension MySQL, MySQLi ne fournit pas de fonction
+  séparée pour ouvrir des connexions persistantes. Pour ouvrir une connexion
+  persistante, vous devez ajouter <em>p:</em> au nom de l&#039;hôte
+  lors de la connexion.
+ </p>
+
+ <p class="para">
+  Le problème des connexions persistantes est qu&#039;elles peuvent être laissées
+  dans un état imprévisible, par les clients. Par exemple, un verrou de table
+  peut avoir été posé avant que le client ne se déconnecte inopinément. 
+  Un nouveau client va alors prendre la connexion, mais 
+  "<span class="quote">tel quel</span>". Il faudrait alors que le nouveau venu effectue
+  un nettoyage en profondeur de la connexion avant de pouvoir la réutiliser
+  sans parasitage, ce qui est un inconvénient pour le programmeur.
+ </p>
+
+ <p class="para">
+  La connexion persistante de l&#039;extension <em>mysqli</em> 
+  fournit une méthode de nettoyage automatique. Le nettoyage est effectué
+  par <em>mysqli</em> et inclut :
+ </p>
+
+ <ul class="itemizedlist">
+
+  <li class="listitem">
+   <p class="para">
+    L&#039;annulation des transactions actives.
+   </p>
+  </li>
+
+  <li class="listitem">
+   <p class="para">
+    La fermeture et destruction des tables temporaires.
+   </p>
+  </li>
+
+  <li class="listitem">
+   <p class="para">
+    Le déverrouillage des tables
+   </p>
+  </li>
+
+  <li class="listitem">
+   <p class="para">
+    La remise à la valeur par défaut les variables de sessions
+   </p>
+  </li>
+
+  <li class="listitem">
+   <p class="para">
+    La libération des commandes préparées (cela arrive toujours avec PHP)
+   </p>
+  </li>
+
+  <li class="listitem">
+   <p class="para">
+    La fermeture du gestionnaire
+   </p>
+  </li>
+
+  <li class="listitem">
+   <p class="para">
+    La libération des verrous posés par  <span class="function"><strong>GET_LOCK()</strong></span>
+   </p>
+  </li>
+
+ </ul>
+
+ <p class="para">
+  Cela assure que la connexion persistante est dans une condition correcte
+  avant d&#039;être remise dans le groupe de connexion, et qu&#039;un client différent
+  la reprenne. 
+ </p>
+
+ <p class="para">
+  L&#039;extension <em>mysqli</em> effectue ce nettoyage e
+  appelant automatiquement la fonction C <em>mysql_change_user()</em>.
+ </p>
+
+ <p class="para">
+  Le nettoyage automatique a ses avantages et ses inconvénients.
+  L&#039;avantage est que le programmeurs n&#039;a pas besoin de s&#039;en inquiéter,
+  car il est appelé automatiquement. Cependant, l&#039;inconvénient est 
+  que ce code peut <em class="emphasis">éventuellement</em> être un peu plus
+  lent, car il doit être appelé à chaque fois que la connexion est 
+  retournée dans le groupe d&#039;attente.
+ </p>
+
+ <p class="para">
+  Il est possible de désactiver le nettoyage du code, en compilant
+  PHP avec l&#039;option <strong><code>MYSQLI_NO_CHANGE_USER_ON_PCONNECT</code></strong>.
+ </p>
+
+ <blockquote class="note"><p><strong class="note">Note</strong>: 
+  <p class="para">
+   L&#039;extension <em>mysqli</em> supporte les connexions
+   persistantes avec le MySQL Native Driver et avec la bibliothèque
+   MySQL.
+  </p>
+ </p></blockquote>
+
+</div>
+<hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="mysqli.resources.html">Types de ressources</a></div>
+ <div class="next"><a href="mysqli.constants.html">Constantes pr&eacute;-d&eacute;finies</a></div>
+ <div class="up"><a href="book.mysqli.html">mysqli</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

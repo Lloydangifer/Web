@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Formate une date/heure GMT/CUT en fonction de la
+	configuration locale</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.gmmktime.html">gmmktime</a>
+		</div>
+		<div class="next">
+			<a href="function.idate.html">idate</a>
+		</div>
+		<div class="up">
+			<a href="ref.datetime.html">Fonctions Date/Heure</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.gmstrftime" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">gmstrftime</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">gmstrftime</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Formate une date/heure GMT/CUT en
+					fonction de la configuration locale</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.gmstrftime-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>gmstrftime</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$format</code></span> [, <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$timestamp</code><span
+					class="initializer"> = time()</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>gmstrftime()</strong></span> se
+				comporte exactement comme <span class="function"><a
+					href="function.strftime.html" class="function">strftime()</a></span>
+				hormis le fait que l&#039;heure utilisée est celle de Greenwich (<em>Greenwich
+					Mean Time</em>, GMT). Par exemple, dans la zone <em>Eastern
+					Standard Time</em> (est des USA) est GMT -0500, la première ligne de
+				l&#039;exemple ci-dessous affiche <em>&quot;Dec 31 1998
+					20:00:00&quot;</em>, tandis que la seconde affiche <em>&quot;Jan 01
+					1999 01:00:00&quot;</em>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.gmstrftime-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">format</code></em></span>
+				<dd>
+
+					<p class="para">
+						Voir la description de la fonction <span class="function"><a
+							href="function.strftime.html" class="function">strftime()</a></span>.
+					</p>
+				</dd>
+
+				</dt>
+
+
+				<dt>
+					<span class="term"><em><code class="parameter">timestamp</code></em></span>
+				<dd>
+					<p class="para">
+						Le paramètre optionnel <em><code class="parameter">timestamp</code></em>
+						est un timestamp Unix de type <span class="type"><span
+							class="type entier">entier</span></span> qui vaut par défaut
+						l&#039;heure courante locale si le paramètre <em><code
+								class="parameter">timestamp</code></em> n&#039;est pas fourni. En
+						d&#039;autres termes, il vaut par défaut la valeur de la fonction
+						<span class="function"><a href="function.time.html"
+							class="function">time()</a></span>.
+					</p>
+				</dd>
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.gmstrftime-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne une <a href="language.types.string.html" class="link">chaîne
+					de caractères</a> formatée suivant le format donné par le paramètre <em><code
+						class="parameter">timestamp</code></em> ou la date courante si aucun
+				paramètre <em><code class="parameter">timestamp</code></em>
+				n&#039;est fourni. Les noms des mois, des jours de la semaine et des
+				autres chaînes dépendant d&#039;une localisation donnée, respectent
+				la localisation courante définie par la fonction <span
+					class="function"><a href="function.setlocale.html"
+					class="function">setlocale()</a></span>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.gmstrftime-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-686">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>gmstrftime()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />setlocale
+							</span><span style="color: #007700">(</span><span style="color: #0000BB">LC_TIME</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'en_US'</span><span
+								style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #0000BB">strftime</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"%b&nbsp;%d&nbsp;%Y&nbsp;%H:%M:%S"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">mktime</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">20</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">12</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">31</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">98</span><span style="color: #007700">))&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />echo&nbsp;
+							</span><span style="color: #0000BB">gmstrftime</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"%b&nbsp;%d&nbsp;%Y&nbsp;%H:%M:%S"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">mktime</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">20</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">12</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">31</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">98</span><span style="color: #007700">))&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.gmstrftime-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.strftime.html" class="function" rel="rdfs-seeAlso">strftime()</a>
+						- Formate une date/heure locale avec la configuration locale</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.gmmktime.html">gmmktime</a>
+		</div>
+		<div class="next">
+			<a href="function.idate.html">idate</a>
+		</div>
+		<div class="up">
+			<a href="ref.datetime.html">Fonctions Date/Heure</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

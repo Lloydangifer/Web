@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>L'élément form</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			L'élément <a onclick="top.FP.Voir.showPageTech('elements', 'form')">form</a>
+			est indispensable pour créer un formulaire. Nous étudierons plus en
+			détail trois attributs importants de l'élément (<code>action</code>,
+			<code>method</code> et <code>enctype</code>). Pour la liste de tous
+			les attributs voir <a
+				onclick="top.FP.Voir.showPageTech('elements', 'form')">les
+				spécifications techniques</a>.
+		</p>
+
+
+		<section>
+			<p class="fp-bot0">
+				Un formulaire est <strong>toujours</strong> composé avec <strong>un
+					élément <a onclick="top.FP.Voir.showPageTech('elements', 'form')">form</a>
+				</strong> qui contient :
+			</p>
+			<ul>
+				<li><strong>toutes les zones de saisie</strong> (éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>,
+					<a onclick="top.FP.Voir.showPageTech('elements', 'select')">select</a>
+					et <a onclick="top.FP.Voir.showPageTech('elements', 'textarea')">textarea</a>),
+				</li>
+				<li><strong>un ou plusieurs boutons de soumission</strong> qui
+					vont permettre d'envoyer les informations saisies au serveur
+					(élément <a onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+					avec attribut <code>type="submit"</code>),</li>
+				<li><strong>tous les éléments de groupement et de
+						présentation</strong> propres aux formulaires (<a
+					onclick="top.FP.Voir.showPageTech('elements', 'fieldset')">fieldset</a>,
+					<a onclick="top.FP.Voir.showPageTech('elements', 'legend')">legend</a>
+				</li>
+			</ul>
+
+			<p class="fp-bot0">
+				Pour fonctionner correctement, l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'form')">form</a>
+				utilise <strong>plusieurs attributs</strong> qui vont définir :
+			</p>
+			<ul>
+				<li><strong>où</strong> sont envoyées les données saisies (<code>action</code>),
+				</li>
+				<li><strong>comment</strong> sont envoyées les données saisies
+					(<code>method</code>),</li>
+				<li>quel <strong>encodage</strong> est utilisé pour transmettre
+					les données (<code>enctype</code>).
+				</li>
+			</ul>
+
+			<p>Visuellement, ces attributs n'ont aucun effet sur le
+				formulaire dans la page.</p>
+
+			<a id="form_action"></a>
+			<h3>L'attribut action</h3>
+			<section>
+				<p>
+					L'attribut <code>action</code> définif l'<abbr
+						title="Uniform Resource Locator">URL</abbr> à laquelle seront
+					envoyées les données saisies. Cette adresse n'est jamais une page <abbr
+						title="HyperText Markup Language">HTML</abbr> puisque <abbr
+						title="HyperText Markup Language">HTML</abbr> ne sait pas faire du
+					traitement de données. Il s'agit le plus souvent de l'adresse d'un
+					programme écrit dans un langage de script comme <abbr
+						title="PHP : HyperText Prepocessor">PHP</abbr>, <abbr
+						title="Active Server Page">ASP</abbr>, python, ruby, etc.
+				</p>
+
+
+				<form action="" method="post" class="TEST-form">
+					<a class="TEST-lien-css" title="Afficher le fichier CSS"
+						onclick="top.FP.Voir.showPLUS('html08/styles/form02.css.html')"></a>
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : envoi à un script PHP
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Envoi à un script PHP&lt;/title&gt;
+		&lt;link rel="stylesheet" href="styles/form02.css"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form action="dossier/login.php"&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Authentification&lt;/legend&gt;
+				&lt;div&gt;
+					&lt;label for="zNom"&gt;Nom&lt;/label&gt;
+					&lt;input type="text" id="zNom"
+						   name="txtNom"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label for="zPasse"&gt;Mot de passe&lt;/label&gt;
+					&lt;input type="password" id="zPasse"
+						   name="txtPasse"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label for="zCon"&gt;Restez connecté&lt;/label&gt;
+					&lt;input type="checkbox" id="zCon"
+						   name="chkCon"&gt;
+				&lt;/div&gt;
+			&lt;/fieldset&gt;	
+			&lt;fieldset&gt;
+				&lt;input type="reset" value="Effacer"
+					   name="btnEffacer"&gt;
+				&lt;input type="submit" value="S'authentifier"
+					   name="btnAuthentif"&gt;
+			&lt;/fieldset&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<p class="fp-remarque">
+					Quand vous envoyez le formulaire en cliquant sur le bouton
+					"S'authentifier", vous obtenez l'affichage d'un message qui vous
+					montre ce qui est envoyé au serveur Web dont l'adresse est definie
+					par la valeur de l'attribut <code>action</code>. Ce traitement
+					particulier est fait par le tutoriel (et un script JavaScript) pour
+					vous montrer ce qui part sur le réseau quand on soumet un
+					formulaire. L'envoi réel est ensuite stoppé par le tutoriel.
+				</p>
+
+				<p>
+					Si l'attribut <code>action</code> est absent de l'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'form')">form</a>,
+					le formulaire est envoyé à l'URL de la page.
+				</p>
+			</section>
+
+			<a id="form_method"></a>
+			<h3>L'attribut method</h3>
+			<section>
+				<p>
+					L'attribut <code>method</code> définit comment le contenu saisi va
+					être envoyé au serveur. L'envoi peut se faire selon <strong>2
+						méthodes</strong> : <code>POST</code> ou <code>GET</code>. Le choix de
+					l'une ou l'autre des méthodes est de la plus haute important car il
+					influe sur la sécurité et la confidentialité du transfert, ainsi
+					que sur la taille du contenu envoyé.
+				</p>
+
+
+				<p>
+					<strong>La méthode <code>GET</code></strong> envoie les données du
+					formulaire <strong>à la suite de l'<abbr
+						title="Uniform Resource Locator">URL</abbr>
+					</strong> contenue dans l'attribut <code>action</code>. Les données sont
+					directement lisibles (et modifiables) dans la zone d'adresse du
+					navigateur.
+					<br>
+					Vous avez déjà vu des données envoyées de cette façon qui se
+					présentent sous la forme suivante :
+					<br>
+					<code>http://www.monsite.fr/page.php?zone1=abc&amp;zone2=123</code>
+					<br>
+					Google utilise ce type de méthode pour envoyer la recherche à ses
+					serveur :
+					<br>
+					<wbr>
+					<code>https://www.google.fr/search?q=comment+fonctionne+le+web&amp;ie=utf-8&amp;oe=utf-8&amp;rls=org.mozilla:en-US:official&amp;client=firefox-a&amp;gws_rd=cr&amp;ei=DRCvUseUN8qVhQfzwICwBA</code>
+					</wbr>
+					<br>
+					On voit que la recherche est envoyée à <code>https://www.google.fr/search</code>
+					et que les éléments du formulaire sont <code>q</code> (sans doute
+					pour "question") suivi du texte de la recherche (ici "comment
+					fonctionne le web"), suivi de multiple zones qui n'apparaissaient
+					pas à l'écran (zones cachées) et qui permettent à Google de faire
+					des statistiques (savoir par exemple quel navigateur est utilisé <code>client=firefox-a</code>).
+					<br>
+					<strong>La méthode <code>GET</code></strong> qui envoie les données
+					saisies dans l'<abbr title="Uniform Resource Locator">URL</abbr>
+					est <strong>généralement à éviter</strong> car l'<abbr
+						title="Uniform Resource Locator">URL</abbr> formée par la
+					soumission du formulaire peut ensuite être modifiée directement.
+					Dans une <abbr title="Uniform Resource Locator">URL</abbr> de
+					recherche de Google, vous pouvez par exemple remplacer ce qui suit
+					le <code>q=</code> par n'importe quel autre terme, appuyer sur la
+					touche "Entrée" et tout se passe comme si vous aviez utilisé le
+					formulaire "officiel" de Google. Il est évident que dans un autre
+					type de site, comme un site de commerce, il n'est pas possible
+					d'utiliser cette méthode qui donnerait par exemple tout latitude
+					pour modifier les prix, ou qui laisserait passer en clair sur le
+					réseau des numéros de cartes bleues.
+				</p>
+
+				<p>
+					<strong>La méthode <code>POST</code></strong> place les données du
+					formulaire dans le corps du message <abbr
+						title="HyperText Transfert Protocol">HTTP</abbr> envoyé au serveur
+					Web. De cette façon, les informations ne sont pas visibles
+					directement, et il n'existe pas vraiment de limite dans le nombre
+					de caractères qui peuvent être transférés, ou alors une limite très
+					grande (par exemple 8 mo de données en réception pour PHP). Un
+					rappel sur les <abbr title="Uniform Resource Locator">URL</abbr> :
+					le nombre maximal de caractères n'est pas fixé dans les
+					spécifications techniques, mais la limite est de 2083 à cause d'<a
+						href="http://windows.microsoft.com/fr-fr/internet-explorer/download-ie"
+						target="_blank">Internet Explorer</a>. On est donc limité dans ce
+					qu'on peut envoyer comme données avec la méthode <code>GET</code>.
+					<br>
+					D'une façon générale <strong>privilégiez la méthode <code>POST</code></strong>
+					pour l'envoi de vos formulaires au serveur.
+				</p>
+
+				<figure>
+					<a href="../htmlimg/http_get_post_big.png" target="hgpb"><img
+						src="../htmlimg/http_get.png" width="579" height="51"></a>
+					<figcaption>
+						message <abbr title="HyperText Transfert Protocol">HTTP</abbr>
+						d'une requête GET
+					</figcaption>
+				</figure>
+				<p class="fp-p-raz">
+					La figure 1 représente le message <abbr
+						title="HyperText Transfert Protocol">HTTP</abbr> envoyé par le
+					navigateur quand il fait une requête avec la méthode <code>GET</code>.
+					Le message contient uniquement des en-têtes <abbr
+						title="HyperText Transfert Protocol">HTTP</abbr> et les couples
+					nom de zone / valeur saisie sont situés dans l'<abbr
+						title="Uniform Resource Locator">URL</abbr>, donc directement
+					lisible quand cette <abbr title="Uniform Resource Locator">URL</abbr>
+					sera affichée dans la barre d'adresse du navigateur.
+				</p>
+
+				<figure>
+					<a href="../htmlimg/http_get_post_big.png" target="hgpb"><img
+						src="../htmlimg/http_post.png" width="579" height="85"></a>
+					<figcaption>
+						message <abbr title="HyperText Transfert Protocol">HTTP</abbr>
+						d'une requête POST
+					</figcaption>
+				</figure>
+				<p class="fp-p-raz">
+					La figure 2 représente le message <abbr
+						title="HyperText Transfert Protocol">HTTP</abbr> envoyé par le
+					navigateur quand il fait une requête avec la méthode <code>POST</code>.
+					Le message contient des en-têtes <abbr
+						title="HyperText Transfert Protocol">HTTP</abbr> et un corps,
+					constitué par les couples nom de zone / valeur saisie. A aucun
+					moment ce corps ne sera visible et modifiable par l'utilisateur.
+				</p>
+
+				<p>
+					Si l'attribut <code>method</code> est absent de l'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'form')">form</a>,
+					le formulaire est envoyé avec la méthode <code>POST</code>. Je vous
+					conseille donc de toujours préciser cet attribut comme dans
+					l'exemple suivant.
+				</p>
+
+
+				<form action="" method="post" class="TEST-form">
+					<a class="TEST-lien-css" title="Afficher le fichier CSS"
+						onclick="top.FP.Voir.showPLUS('html08/styles/form02.css.html')"></a>
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : méthode POST
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Méthode POST&lt;/title&gt;
+		&lt;link rel="stylesheet" href="styles/form02.css"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form action="dossier/login.php" method="POST"&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Authentification&lt;/legend&gt;
+				&lt;div&gt;
+					&lt;label for="zNom"&gt;Nom&lt;/label&gt;
+					&lt;input type="text" id="zNom"
+						   name="txtNom"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label for="zPasse"&gt;Mot de passe&lt;/label&gt;
+					&lt;input type="password" id="zPasse"
+						   name="txtPasse"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label for="zCon"&gt;Restez connecté&lt;/label&gt;
+					&lt;input type="checkbox" id="zCon"
+						   name="chkCon"&gt;
+				&lt;/div&gt;
+			&lt;/fieldset&gt;	
+			&lt;fieldset&gt;
+				&lt;input type="reset" value="Effacer"
+					   name="btnEffacer"&gt;
+				&lt;input type="submit" value="S'authentifier"
+					   name="btnAuthentif"&gt;
+			&lt;/fieldset&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</section>
+
+			<a id="form_enctype"></a>
+			<h3>L'attribut enctype</h3>
+			<section>
+				<p>
+					L'attribut <code>enctype</code> définit l'encodage qui sera utilisé
+					pour transmettre les donnée saisies. On ne parle pas ici de
+					l'encodage du fichier <abbr title="HyperText Markup Language">HTML</abbr>
+					(cf <a class="fp-lientuto"
+						onclick="top.FP.Voir.showPageTuto('html03b1', 'meta_charset')">
+						élément meta </a>), mais de l'encodage dans le corps du message <abbr
+						title="HyperText Transfert Protocol">HTTP</abbr> envoyé au
+					serveur. En effet, certains caractères sont des caractères réservés
+					(cf <a onclick="top.FP.Voir.showPageTech('url_caracteres', '')">URL
+						- caractères réservés</a> qui ne peuvent pas être transmis tel que et
+					nécessite donc un encodage particulier. L'envoi d'un fichier sur le
+					serveur nécessite aussi que le corps du message <abbr
+						title="HyperText Transfert Protocol">HTTP</abbr> soit construit
+					d'une certaine façon, et c'est l'attribut <code>enctype</code> qui
+					permettra de le spécifier.
+				</p>
+
+				<p class="fp-bot0">
+					L'attribut <code>enctype</code> peut avoir <strong>3
+						valeurs précises</strong> :
+				</p>
+				<ul>
+					<li><code>text/plain</code> : ne jamais utilisé</li>
+					<li><code>application/x-www-form-urlencoded</code> : encodage
+						à utiliser pour le transfert de données alpha-numériques</li>
+					<li><code>multipart/formdata</code> : encodage à utiliser pour
+						l'envoi de fichier sur le serveur.</li>
+				</ul>
+				<p>
+					Si l'attribut <code>enctype</code> est absent de l'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'form')">form</a>,
+					l'encodage utilisé est <code>application/x-www-form-urlencoded</code>
+					et c'est parfait dans la majorité des cas.
+					<br>
+					Je vous conseille de préciser l'encodage uniquement si votre
+					formulaire fait un envoi de fichier et d'utiliser
+					<br>
+					<code>enctype="multipart/formdata"</code> comme dans l'exemple
+					suivant.
+				</p>
+
+
+				<form action="" method="post" class="TEST-form">
+					<a class="TEST-lien-css" title="Afficher le fichier CSS"
+						onclick="top.FP.Voir.showPLUS('html08/styles/form02.css.html')"></a>
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : envoi de fichier
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Envoi de fichier&lt;/title&gt;
+		&lt;link rel="stylesheet" href="styles/form02.css"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form action="dossier/upload.php" method="POST" 
+				enctype="multipart/formdata"&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Fichier à télécharger&lt;/legend&gt;
+					Sélectionnez un fichier&lt;br&gt;
+					&lt;input type="file" name="ficNom"&gt;
+			&lt;/fieldset&gt;	
+			&lt;fieldset&gt;
+				&lt;input type="submit" value="Envoyer"
+					   name="btnEnvoi"&gt;
+			&lt;/fieldset&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+			</section>
+
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

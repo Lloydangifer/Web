@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Op&eacute;rateurs de types</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.operators.array.html">Op&eacute;rateurs de
+				tableaux</a>
+		</div>
+		<div class="next">
+			<a href="language.control-structures.html">Les structures de
+				contr&ocirc;le</a>
+		</div>
+		<div class="up">
+			<a href="language.operators.html">Les op&eacute;rateurs</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.operators.type" class="sect1">
+		<h2 class="title">Opérateurs de types</h2>
+		<p class="para">
+			<em>instanceof</em> est utilisé pour déterminer si une variable PHP
+			est un objet instancié d&#039;une certaine <a
+				href="language.oop5.basic.html#language.oop5.basic.class"
+				class="link">classe</a> :
+		<div class="example" id="example-134">
+			<p>
+				<strong>Exemple #1 Utilisation de <em>instanceof</em> avec
+					des classes
+				</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">class&nbsp;</span><span
+							style="color: #0000BB">MaClasse<br /></span><span
+							style="color: #007700">{<br />}<br />class&nbsp;
+						</span><span style="color: #0000BB">PasMaClasse<br /></span><span
+							style="color: #007700">{<br />}<br /></span><span
+							style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">MaClasse</span><span
+							style="color: #007700">;<br />
+							<br /></span><span style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">instanceof&nbsp;</span><span
+							style="color: #0000BB">MaClasse</span><span
+							style="color: #007700">);<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">instanceof&nbsp;</span><span
+							style="color: #0000BB">PasMaClasse</span><span
+							style="color: #007700">);<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+			<div class="example-contents">
+				<p>L&#039;exemple ci-dessus va afficher :</p>
+			</div>
+			<div class="example-contents screen">
+				<div class="cdata">
+					<pre>
+bool(true)
+bool(false)
+</pre>
+				</div>
+			</div>
+		</div>
+		</p>
+		<p class="para">
+			<em>instanceof</em> peut également être utilisé pour déterminer si
+			une variable est un objet instancié d&#039;une classe qui hérite
+			d&#039;une classe parente :
+		<div class="example" id="example-135">
+			<p>
+				<strong>Exemple #2 Utilisation de <em>instanceof</em> avec
+					des classes héritées
+				</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">class&nbsp;</span><span
+							style="color: #0000BB">ParentClass<br /></span><span
+							style="color: #007700">{<br />}<br />class&nbsp;
+						</span><span style="color: #0000BB">MyClass&nbsp;</span><span
+							style="color: #007700">extends&nbsp;</span><span
+							style="color: #0000BB">ParentClass<br /></span><span
+							style="color: #007700">{<br />}<br /></span><span
+							style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">MyClass</span><span style="color: #007700">;<br />
+							<br /></span><span style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">instanceof&nbsp;</span><span
+							style="color: #0000BB">MyClass</span><span style="color: #007700">);<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">instanceof&nbsp;</span><span
+							style="color: #0000BB">ParentClass</span><span
+							style="color: #007700">);<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+			<div class="example-contents">
+				<p>L&#039;exemple ci-dessus va afficher :</p>
+			</div>
+			<div class="example-contents screen">
+				<div class="cdata">
+					<pre>
+bool(true)
+bool(true)
+</pre>
+				</div>
+			</div>
+		</div>
+		</p>
+		<p class="para">
+			Pour vérifier si un objet <em class="emphasis">n&#039;est pas</em>
+			une instance d&#039;une classe, l&#039;<a
+				href="language.operators.logical.html" class="link">opérateur
+				logique <em>not</em>
+			</a> peut être utilisé.
+		<div class="example" id="example-136">
+			<p>
+				<strong>Exemple #3 Utilisation de <em>instanceof</em> pour
+					vérifier que l&#039;objet <em class="emphasis">n&#039;est pas</em>
+					une instance de la classe
+				</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">class&nbsp;</span><span
+							style="color: #0000BB">MyClass<br /></span><span
+							style="color: #007700">{<br />}<br /></span><span
+							style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">MyClass</span><span style="color: #007700">;<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(!(</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">instanceof&nbsp;</span><span
+							style="color: #0000BB">stdClass</span><span
+							style="color: #007700">));<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+			<div class="example-contents">
+				<p>L&#039;exemple ci-dessus va afficher :</p>
+			</div>
+			<div class="example-contents screen">
+				<div class="cdata">
+					<pre>
+bool(true)
+</pre>
+				</div>
+			</div>
+		</div>
+		</p>
+		<p class="para">
+			Et finalement, <em>instanceof</em> peut être utilisé pour déterminer
+			si une variable est un objet instancié d&#039;une classe qui
+			implémente une <a href="language.oop5.interfaces.html" class="link">interface</a>
+			:
+		<div class="example" id="example-137">
+			<p>
+				<strong>Exemple #4 Utilisation de <em>instanceof</em> pour
+					une interface
+				</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">interface&nbsp;</span><span
+							style="color: #0000BB">MyInterface<br /></span><span
+							style="color: #007700">{<br />}<br />class&nbsp;
+						</span><span style="color: #0000BB">MyClass&nbsp;</span><span
+							style="color: #007700">implements&nbsp;</span><span
+							style="color: #0000BB">MyInterface<br /></span><span
+							style="color: #007700">{<br />}<br /></span><span
+							style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">MyClass</span><span style="color: #007700">;<br />
+							<br /></span><span style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">instanceof&nbsp;</span><span
+							style="color: #0000BB">MyClass</span><span style="color: #007700">);<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">instanceof&nbsp;</span><span
+							style="color: #0000BB">MyInterface</span><span
+							style="color: #007700">);<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+			<div class="example-contents">
+				<p>L&#039;exemple ci-dessus va afficher :</p>
+			</div>
+			<div class="example-contents screen">
+				<div class="cdata">
+					<pre>
+bool(true)
+bool(true)
+</pre>
+				</div>
+			</div>
+		</div>
+		</p>
+		<p class="para">
+			Bien que <em>instanceof</em> soit habituellement utilisé avec un nom
+			de classe littéral, il peut également être utilisé avec un autre
+			objet ou une chaîne représentant une variable :
+		<div class="example" id="example-138">
+			<p>
+				<strong>Exemple #5 Utilisation de <em>instanceof</em> avec
+					d&#039;autres variables
+				</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">interface&nbsp;</span><span
+							style="color: #0000BB">MyInterface<br /></span><span
+							style="color: #007700">{<br />}<br />class&nbsp;
+						</span><span style="color: #0000BB">MyClass&nbsp;</span><span
+							style="color: #007700">implements&nbsp;</span><span
+							style="color: #0000BB">MyInterface<br /></span><span
+							style="color: #007700">{<br />}<br /></span><span
+							style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">MyClass</span><span style="color: #007700">;<br /></span><span
+							style="color: #0000BB">$b&nbsp;</span><span
+							style="color: #007700">=&nbsp;new&nbsp;</span><span
+							style="color: #0000BB">MyClass</span><span style="color: #007700">;<br /></span><span
+							style="color: #0000BB">$c&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'MyClass'</span><span
+							style="color: #007700">;<br /></span><span
+							style="color: #0000BB">$d&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'NotMyClass'</span><span
+							style="color: #007700">;<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">instanceof&nbsp;</span><span
+							style="color: #0000BB">$b</span><span style="color: #007700">);&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;$b&nbsp;est&nbsp;un&nbsp;objet&nbsp;de&nbsp;la&nbsp;classe&nbsp;MyClass<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">instanceof&nbsp;</span><span
+							style="color: #0000BB">$c</span><span style="color: #007700">);&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;$c&nbsp;est&nbsp;une&nbsp;chaîne&nbsp;'MyClass'<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">instanceof&nbsp;</span><span
+							style="color: #0000BB">$d</span><span style="color: #007700">);&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;$d&nbsp;est&nbsp;une&nbsp;chaîne&nbsp;'NotMyClass'<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+			<div class="example-contents">
+				<p>L&#039;exemple ci-dessus va afficher :</p>
+			</div>
+			<div class="example-contents screen">
+				<div class="cdata">
+					<pre>
+bool(true)
+bool(true)
+bool(false)
+</pre>
+				</div>
+			</div>
+		</div>
+		</p>
+		<p class="para">
+			Il y a quelques pièges à éviter. Avant PHP version 5.1.0, <em>instanceof</em>
+			appellera <span class="function"><a
+				href="function.autoload.html" class="function">__autoload()</a></span> si
+			le nom de la classe n&#039;existe pas. De plus, si la classe n&#039;a
+			pas été chargée, une erreur fatale sera émise. Ceci peut fonctionner
+			en utilisant une référence de classe dynamique, ou une chaîne
+			représentant une variable contenant le nom de la classe :
+		<div class="example" id="example-139">
+			<p>
+				<strong>Exemple #6 Pas de recherche sur le nom de la classe
+					et une erreur fatale avec <em>instanceof</em> en PHP 5.0
+				</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$d&nbsp;
+						</span><span style="color: #007700">=&nbsp;</span><span
+							style="color: #DD0000">'NotMyClass'</span><span
+							style="color: #007700">;<br /></span><span
+							style="color: #0000BB">var_dump</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$a&nbsp;</span><span
+							style="color: #007700">instanceof&nbsp;</span><span
+							style="color: #0000BB">$d</span><span style="color: #007700">);&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;no&nbsp;fatal&nbsp;error&nbsp;here<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+			<div class="example-contents">
+				<p>L&#039;exemple ci-dessus va afficher :</p>
+			</div>
+			<div class="example-contents screen">
+				<div class="cdata">
+					<pre>
+bool(false)
+</pre>
+				</div>
+			</div>
+		</div>
+		</p>
+		<p class="simpara">
+			L&#039;opérateur <em>instanceof</em> a été introduit en PHP 5. Avant
+			cette version, <span class="function"><a
+				href="function.is-a.html" class="function">is_a()</a></span> était utilisée
+			mais <span class="function"><a href="function.is-a.html"
+				class="function">is_a()</a></span> est depuis devenue obsolète, en faveur
+			de <em>instanceof</em>. Notez que depuis PHP 5.3.0, <span
+				class="function"><a href="function.is-a.html"
+				class="function">is_a()</a></span> n&#039;est de nouveau plus obsolète.
+		</p>
+		<p class="para">
+			Voir aussi <span class="function"><a
+				href="function.get-class.html" class="function">get_class()</a></span> et <span
+				class="function"><a href="function.is-a.html"
+				class="function">is_a()</a></span>.
+		</p>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.operators.array.html">Op&eacute;rateurs de
+				tableaux</a>
+		</div>
+		<div class="next">
+			<a href="language.control-structures.html">Les structures de
+				contr&ocirc;le</a>
+		</div>
+		<div class="up">
+			<a href="language.operators.html">Les op&eacute;rateurs</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

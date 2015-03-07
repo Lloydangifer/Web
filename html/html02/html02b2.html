@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Portée des URL</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<h3>Des portées différentes</h3>
+		<section>
+			<p class="fp-p-raz">
+				Les liens que l'on fait dans un document <abbr
+					title="HyperText Markup Language">HTML</abbr> ont une portée
+				différente suivant l'emplacement sur le réseau de la ressource
+				qu'ils référencient.
+			</p>
+
+			<figure>
+				<img src="../htmlimg/types_liens.png" width="400" height="309">
+				<figcaption>types de liens</figcaption>
+			</figure>
+
+			<table class="TAB-sans-bord">
+				<tr>
+					<td><div class="fp-rond fp-f-left">1</div></td>
+					<td>Un lien <strong>intra-page</strong> pointe à une partie de
+						document dans la même page.<br>Exemple : <code>&lt;a
+							href="#partie_1"&gt;Première partie&lt;/a&gt;</code>
+					</td>
+				</tr>
+				<tr>
+					<td><div class="fp-rond fp-f-left">2</div></td>
+					<td>Un lien <strong>interne</strong> pointe sur une ressource
+						située dans le même site (dans le même dossier ou dans un autre
+						dossier).<br> Exemple : <code>&lt;a
+							href="livres/promo/c.html"&gt;Nos promos livres&lt;/a&gt;</code>
+					</td>
+				</tr>
+				<tr>
+					<td><div class="fp-rond fp-f-left">3</div></td>
+					<td>Un lien <strong>externe</strong> pointe sur une ressource
+						située dans un autre site.<br> Exemple : <code>&lt;a
+							href="http://www.amazon.fr/search.html"&gt;Rechercher des livres
+							sur Amazon&lt;/a&gt;</code></td>
+				</tr>
+			</table>
+
+			<div
+				style="border: 2px solid #B60A36; padding: 5px; margin: 1em 0; font-weight: bold">
+				<p class="fp-bot0 fp-p-raz">
+					Suivant l'endroit où se trouve la ressource que vous voulez lier à
+					votre document il faut utiliser soit une <abbr
+						title="Uniform Resource Locator">URL</abbr> absolue, soit une <abbr
+						title="Uniform Resource Locator">URL</abbr> relative.
+				</p>
+			</div>
+		</section>
+
+		<h3>URL absolue</h3>
+		<section>
+
+			<p>
+				<strong>Pour pointer sur une ressource qui se trouve à
+					l'extérieur de votre site (lien externe), vous DEVEZ utiliser une <abbr
+					title="Uniform Resource Locator">URL</abbr> absolue.
+				</strong>
+			</p>
+
+			<div class="fp-ordre">
+				<div class="fp-ordre-t">
+					Une <abbr title="Uniform Resource Locator">URL</abbr> absolue
+					utiliser tu dois si un lien extérieur faire tu dois.
+				</div>
+			</div>
+
+			<p class="fp-bot0">
+				Une <abbr title="Uniform Resource Locator">URL</abbr> absolue décrit
+				un chemin <strong>à partir de l'adresse d'un serveur</strong> sur le
+				réseau. C'est une hiérarchie descendante composée :
+			</p>
+			<ul>
+				<li>du protocole (facultatif, http:// par défaut)</li>
+				<li>de l'adresse du serveur (ie nom de domaine)</li>
+				<li>du ou des noms des dossiers de la hiérarchie</li>
+				<li>du nom du fichier contenant la ressource</li>
+			</ul>
+
+			<p class="fp-p-raz">L'exemple suivant est une page avec un lien
+				sur un document externe : la page d'accueil de Google.</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : <abbr title="Uniform Resource Locator">URL</abbr>
+					absolue
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Exemple d'URL absolue&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Voilà un lien externe : 
+			&lt;a href="http://www.google.fr"&gt;
+				la page d'accueil de Google&lt;/a&gt;
+		&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p class="fp-p-raz">
+				L'exemple suivant est une page qui utilise une image externe : le
+				logo <abbr title="HyperText Markup Language">HTML</abbr>5 d'un
+				absolu mauvais goût situé sur le site du <abbr
+					title="World Wide Web Consortium">W3C</abbr>.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : <abbr title="Uniform Resource Locator">URL</abbr>
+					absolue
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Exemple d'URL absolue&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Le logo HTML5 provenant du site du W3C.&lt;/p&gt;
+		&lt;p&gt;&lt;img src="http://www.w3.org/html/logo/downloads/HTML5_Logo_128.png" width="128" height="128"&gt;
+		&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p class="fp-rouge">
+				<strong>Vous ne devez jamais utiliser une <abbr
+					title="Uniform Resource Locator">URL</abbr> absolue pour faire un
+					lien sur une ressource se trouvant dans votre site.
+				</strong>
+			</p>
+
+		</section>
+
+		<h3>URL relative</h3>
+		<section>
+
+			<p>
+				<strong>Pour pointer sur une ressource qui se trouve à
+					l'intérieur de votre site (lien interne), vous DEVEZ utiliser une <abbr
+					title="Uniform Resource Locator">URL</abbr> relative.
+				</strong>
+			</p>
+
+			<div class="fp-ordre">
+				<div class="fp-ordre-t">
+					Une <abbr title="Uniform Resource Locator">URL</abbr> relative
+					utiliser tu dois
+					<br>
+					si un lien à l'intérieur de ton site faire tu dois.
+				</div>
+			</div>
+
+			<p>
+				Une <abbr title="Uniform Resource Locator">URL</abbr> relative
+				décrit un chemin <strong>à partir du document en cours</strong>.
+				C'est une hiérarchie ascendante qui définit la cible par rapport à
+				l'endroit où se trouve le document de départ du lien.
+			</p>
+
+			<p class="fp-bot0">
+				Une <abbr title="Uniform Resource Locator">URL</abbr> relative :
+			</p>
+			<ul>
+				<li>utilise les noms des dossiers pour descendre dans
+					l'arborescence</li>
+				<li>utilise la syntaxe <code>../</code> pour remonter dans
+					l'arborescence
+				</li>
+				<li>ne peut pas "sortir" de l'arborescence du serveur du
+					document en cours</li>
+				<li>a pour domaine implicite le domaine du document en cours</li>
+				<li>a pour protocole implicite le protocole du document en
+					cours</li>
+			</ul>
+
+			<p class="fp-rouge">
+				<strong>Vous devez toujours utiliser une <abbr
+					title="Uniform Resource Locator">URL</abbr> relative pour faire un
+					lien sur une ressource se trouvant dans votre site.
+				</strong>
+			</p>
+
+
+			<p class="fp-p-raz">
+				Nous utiliserons l'arborescence suivante pour calculer quelques
+				exemples d'<abbr title="Uniform Resource Locator">URL</abbr>.
+			</p>
+
+			<figure>
+				<img src="../htmlimg/arbo01.png" width="250" height="284">
+				<figcaption>arborescence des exemples</figcaption>
+			</figure>
+
+			<table>
+				<tr>
+					<td>Liens</td>
+					<td><abbr title="Uniform Resource Locator">URL</abbr></td>
+				</tr>
+				<tr>
+					<td>de a.html vers b.html</td>
+					<td><code>b.html</code></td>
+				</tr>
+				<tr>
+					<td>de a.html vers c.html</td>
+					<td><code>promos/c.html</code></td>
+				</tr>
+				<tr>
+					<td>de index.html vers e.html</td>
+					<td><code>musiques/soldes/e.html</code></td>
+				</tr>
+				<tr>
+					<td>de a.html vers index.html</td>
+					<td><code>../index.html</code></td>
+				</tr>
+				<tr>
+					<td>de e.html vers index.html</td>
+					<td><code>../../index.html</code></td>
+				</tr>
+				<tr>
+					<td>de d.html vers e.html</td>
+					<td><code>../livres/promos/c.html</code></td>
+				</tr>
+			</table>
+		</section>
+
+		<a id="exo_liens_relatifs"></a>
+		<h3 class="fp-exo">Un anneau pour les lier tous</h3>
+		<section>
+			<p class="fp-p-raz">
+				<i>Un Anneau pour les gouverner tous, un Anneau pour les
+					trouver, un Anneau pour les amener tous et dans les ténèbres les
+					lier.</i>
+			</p>
+
+			<p class="fp-bot0 fp-p-raz">Vous devez forger non pas un anneau
+				mais une page Web qui va lier différents personnages se trouvant sur
+				le serveur de la Terre du Milieu dont l'arborescence est la suivante
+				:</p>
+
+			<table class="TAB-sans-bord">
+				<tr>
+					<td>
+						<figure style="margin: 0">
+							<img src="../exercices/terre_du_milieu.png" width="308"
+								height="337">
+							<figcaption>arborescence de l'exercice</figcaption>
+						</figure>
+					</td>
+					<td>
+						<p>
+							Complétez le code <abbr title="HyperText Markup Language">HTML</abbr>
+							ci-dessous pour afficher dans la page les images suivantes en
+							utilisant des <abbr title="Uniform Resource Locator">URLs</abbr>
+							relatives par rapport à la page <code>ici.html</code>.
+						</p>
+						<ul class="fp-ul-puce" style="margin: 0">
+							<li style="margin-left: 1em">aragorn.png (dossier anneaux)</li>
+							<li style="margin-left: 1em">boromir.png (dossier anneaux)</li>
+							<li style="margin-left: 1em">elrond.png (dossier elfes)</li>
+							<li style="margin-left: 1em">frodon.png (dossier hobbits)</li>
+							<li style="margin-left: 1em">gandalf.png (dossier html02)</li>
+							<li style="margin-left: 1em">gimli.png (dossier images)</li>
+							<li style="margin-left: 1em">gollum.png (dossier hobbits)</li>
+							<li style="margin-left: 1em">legolas.png (dossier elfes)</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+
+			<p class="fp-p-raz">
+				L'intégration des images se fait avec la balise <a
+					onclick="top.FP.Voir.showPageTech('elements', 'img')">img</a> et
+				son attribut <code>src</code>. Pas la peine de donner les dimensions
+				des images.
+			</p>
+
+			<p class="fp-completez">
+				<a onclick="top.FP.Voir.showCompletez('exo_liens_relatifs_comp')">Code
+					à compléter</a>
+			</p>
+
+			<div id="exo_liens_relatifs_comp" class="BLOC-completez">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : faire des <abbr
+							title="Uniform Resource Locator">URLs</abbr> relatives
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;URs relatives&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;img src="chemin/de/la/ressource"&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+
+			<p class="fp-solution">
+				<a onclick="top.FP.Voir.showSolution('exo_liens_relatifs_solu', 1)">Une
+					solution possible</a>
+			</p>
+			<div id="exo_liens_relatifs_solu" class="BLOC-solution">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : faire des <abbr
+							title="Uniform Resource Locator">URLs</abbr> relatives
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;URLs relatives&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;img src="../exemples/anneaux/aragorn.png"&gt;
+		&lt;img src="../exemples/anneaux/boromir.png"&gt;
+		&lt;img src="../exemples/anneaux/elfes/elrond.png"&gt;
+		&lt;img src="images/hobbits/frodon.png"&gt;
+		&lt;img src="gandalf.png"&gt;
+		&lt;img src="images/gimli.png"&gt;
+		&lt;img src="images/hobbits/gollum.png"&gt;
+		&lt;img src="../exemples/anneaux/elfes/legolas.png"&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+		</section>
+
+
+	</div>
+	<footer></footer>
+</body>
+</html>

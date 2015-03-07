@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>La cascade</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function(){top.FP.initPage();}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p class="fp-bot0">
+			La règle de style finalement appliquée à un élément <abbr
+				title="HyperText Markup Language">HTML</abbr> a <strong>3
+				origines possibles</strong> :
+		</p>
+
+		<ul>
+			<li>le navigateur,</li>
+			<li>l'utilisateur,</li>
+			<li>l'auteur du code.</li>
+		</ul>
+
+		<p>
+			La façon dont sera choisie telle ou telle règle est un algorithme
+			simple qui s'appelle <i>la cascade</i>.
+		</p>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Trois origines possibles</h3>
+		<section>
+
+			<h4>La feuille de style navigateur</h4>
+			<section>
+				<p>
+					Chaque navigateur (<i>agent utilisateur</i> dans le vocabuliare du
+					<abbr title="World Wide Web Consortium">W3C</abbr>) applique aux
+					pages <abbr title="HyperText Markup Language">HTML</abbr> un
+					ensemble de styles par défaut.
+				</p>
+
+				<p>
+					Ces styles par défaut se trouvent soit dans des fichiers externes
+					soit directement dans le moteur de rendu du navigateur.
+					<br>
+					Par exemple, suivant les versions, la feuilles de style par défaut
+					de <a href="http://www.mozilla.org/fr/firefox/new/" target="_blank">Firefox</a>
+					sera visible dans ce navigateur avec l'<abbr
+						title="Uniform Resource Locator">URL</abbr> <code>chrome://browser/content/browser.css</code>.
+					<br>
+					Pour webkit, on a la description <a
+						href="http://trac.webkit.org/browser/trunk/Source/WebCore/css/html.css"
+						target="_blank">dans le site des sources du moteur</a>.
+					<br>
+					Le site <a href="http://www.iecss.com" target="_blank">iecss</a>
+					fournit les feuilles de style par défaut de certaines versions d'<a
+						href="http://windows.microsoft.com/fr-fr/internet-explorer/download-ie"
+						target="_blank">Internet Explorer</a>.
+				</p>
+
+				<p class="fp-bot0">
+					Ces style par défaut doivent permettre que n'importe quelle page <abbr
+						title="HyperText Markup Language">HTML</abbr> soit correctement
+					affichée quelque soit l'absence de styles fournis par l'auteur de
+					la page.
+					<br>
+					Ils doivent garantir "l'interprétation conventionnelle" des
+					éléments <abbr title="HyperText Markup Language">HTML</abbr> :
+				</p>
+
+				<ul>
+					<li>cacher les éléments situés dans la partie <a
+						onclick="top.FP.Voir.showPageTech('elements', 'head')">head</a></li>
+					<li>afficher différemment les éléments blocs et les éléments
+						en ligne</li>
+					<li>afficher correctement des listes</li>
+					<li>afficher des tableaux avec des colonnes</li>
+				</ul>
+			</section>
+
+			<h4>La feuille de style utilisateur</h4>
+			<section>
+				<p>
+					Pour plus de confort, ou pour une meilleure accessibilité en cas de
+					handicap, le navigateur donne la possibilité à l'utilisateur de
+					configurer certaines options de rendu et d'affichage. L'accès à
+					cette configuration se fait par menu
+					(Options-&gt;Option-&gt;Contenu dans <a
+						href="http://www.mozilla.org/fr/firefox/new/" target="_blank">Firefox</a>,
+					Paramètres-&gt;Afficher les paramètres avancés dans <a
+						href="http://www.google.fr/intl/fr/chrome/browser/"
+						target="_blank">Chrome</a>, Outils-&gt;Options
+					Internet-&gt;Général dans <a
+						href="http://windows.microsoft.com/fr-fr/internet-explorer/download-ie"
+						target="_blank">Internet Explorer</a>).
+				</p>
+
+				<p class="fp-bot0">Les possibilités de définition sont
+					généralement limitées aux</p>
+				<ul>
+					<li>couleurs et images de fond,</li>
+					<li>couleurs des textes,</li>
+					<li>polices de caractères préférérées et tailles par défaut</li>
+					<li>apparences des liens (couleur, soulignement),</li>
+					<li>affichage des images.</li>
+				</ul>
+
+				<p>
+					L'utilisateur peut toutefois aller plus loin en demandant au
+					navigateur d'utiliser une feuille de style qu'il aurait
+					spécifiquement écrite.
+					<br>
+					Dans ce domaine c'est <a
+						href="http://windows.microsoft.com/fr-fr/internet-explorer/download-ie"
+						target="_blank">Internet Explorer</a> qui est le plus simple car
+					il propose directement dans ses options (Général-&gt;Accessibilité)
+					de télécharger la feuille de style à utiliser.
+					<br>
+					Avec <a href="http://www.google.fr/intl/fr/chrome/browser/"
+						target="_blank">Chrome</a> et <a
+						href="http://www.mozilla.org/fr/firefox/new/" target="_blank">Firefox</a>
+					on peut placer un fichier appelé respectivement <code>Custom.css</code>
+					et <code>userContent.css</code> dans les dossiers d'applications
+					des navigateurs.
+				</p>
+
+			</section>
+
+			<h4>La feuille de style auteur</h4>
+			<section>
+				<p>
+					La feuille de style auteur est la feuille de style que nous
+					écrivons en tant qu'auteur de la page <abbr
+						title="HyperText Markup Language">HTML</abbr> et qui sera attachée
+					au fichier <abbr title="HyperText Markup Language">HTML</abbr> avec
+					l'élément <a onclick="top.FP.Voir.showPageTech('elements', 'link')">link</a>
+					ou incluse dans le code <abbr title="HyperText Markup Language">HTML</abbr>
+					avec l'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'style')">style</a>.
+					<br>
+					C'est celle que nous étudions tout au long de ce tutoriel.
+				</p>
+
+				<p>La feuille de style auteur permet de définir le style de
+					n'importe quel élément que nous avons placé dans notre code et de
+					spécifier des valeurs pour le rendu et l'affichage de cet élément.</p>
+
+			</section>
+
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>La cascade</h3>
+		<section>
+			<p>
+				Que se passe-t-il quand nous avons défini des styles pour un élement
+				alors que des styles différents ont été définis par la feuille de
+				style navigateur et/ou par la feuille de style utilisateur.
+				<br>
+				Comment le navigateur va-t-il choisir la règle à appliquer
+				finalement à l'élément ?
+			</p>
+
+			<p>L'algorithme de choix du navigateur est très simple et
+				s'appelle la cascade.</p>
+
+			<figure>
+				<img src="../cssimg/cascade.png" width="460" height="318">
+				<figcaption>la cascade</figcaption>
+			</figure>
+
+			<p class="fp-bot0">
+				Pour chaque déclaration de style de chaque élément <abbr
+					title="HyperText Markup Language">HTML</abbr> de la page, le
+				navigateur fait les choix suivants :
+			</p>
+			<ul>
+				<li>si la déclaration est définie par l'utilisateur avec le
+					mot-clé <code>!important</code> elle est utilisée (les options de
+					configuration tombent dans ce cas)
+				</li>
+				<li>sinon si la déclaration est définie par l'auteur, elle est
+					utilisée,</li>
+				<li>sinon si la déclaration est définie par l'utilisateur, elle
+					est utilisée,</li>
+				<li>sinon c'est la déclaration définie par le navigateur qui
+					est utilisée.</li>
+			</ul>
+
+			<p class="fp-remarque">
+				La cascade est la 1ère étape du choix d'une règle. Il peut arriver
+				que 2 règles de même origine entre en concurrence. On complétera
+				alors la 1ère étape avec une seconde : la détermination du poids d'une règle en fonction 
+				de ses sélecteurs (<a class="fp-lientuto"
+					onclick="top.FP.Voir.showPageTuto('css02h1', '')">
+					Sélectionner des éléments -&gt; Spécificité des sélecteurs</a>)
+			</p>
+
+
+			<p>Le principe de la cascade a une influence certaine sur les
+				couleurs et polices de caractères utilisées pour le rendu des pages
+				puisque l'utilisateur y a accès facilement dans les options de
+				configuration de son navigateur, et qu'elles auront priorité sur
+				celles que nous avons choisis. Il est donc important de ne jamais
+				"calculer" et bâtir une mise en page en fonction d'une police
+				particulière et/ou dans une taile particulière car rien ne garantit
+				que la page sera rendue avec les valeurs que nous avons défini.</p>
+
+			<p>Prenons l'exemple des lien. Dans les navigateurs, ils sont
+				définis comme :</p>
+			<pre data-code="CSS">
+a {
+	display: inline;
+	color: blue;
+	text-decoration: underline;
+}</pre>
+
+			<p>L'utilisateur a modifié les préférences de son navigateur pour
+				avoir le rouge comme couleur des liens et qu'ils soient toujours
+				soulignés. On obtient la règle de style utilisateur suivante :</p>
+			<pre data-code="CSS">
+a {
+	color: red !important;
+	text-decoration: underline !important;
+}</pre>
+
+			<p>L'auteur a défini les liens ainsi :</p>
+			<pre data-code="CSS">
+a {
+	color: black;
+	text-decoration: none;
+	background: yellow;
+}</pre>
+
+			<p>La règle de style pour les liens sera finalement :</p>
+			<pre data-code="CSS">
+a {
+	display: inline;	/* navigateur */
+	color: red;			/* utilisateur */
+	text-decoration: underline;	/* utilisateur */
+	background: yellow;	/* auteur */
+}</pre>
+		</section>
+
+		<a id="reset_css"></a>
+		<!-- ################################################################################################## -->
+		<h3>Eviter les différences des navigateurs</h3>
+		<section>
+			<p>
+				Bien que le <abbr title="World Wide Web Consortium">W3C</abbr>
+				fournisse une <a href="http://www.w3.org/TR/CSS2/sample.html"
+					target="_blank">feuille de style d'exemple</a> rien n'est
+				standardisé dans une représentation par défaut des éléments <abbr
+					title="HyperText Markup Language">HTML</abbr>.
+				<br>
+				Les navigateurs ont tous des différences (qui se réduissent mais
+				subsistent) dans les déclarations de style qui régissent le rendu de
+				tel ou tel élément. Les principales différences concernent les
+				marges intérieures et extérieures, la taille ou la graisse de
+				certains éléments textuels ou de titrage et les affichages des zones
+				de formulaires.
+			</p>
+
+			<p>
+				Pour pallier ces différences de rendu entre les navigateurs, les
+				auteurs de page ont le choix entre 2 techniques : le <i>reset
+					CSS</i> et la normalisation
+			</p>
+
+
+			<h4>Reset CSS</h4>
+			<section>
+				<p>
+					Dans sa forme la plus simple, le <i>reset CSS</i> remet à zéro les
+					marges internes et externes de pratiquement tous les éléments <abbr
+						title="HyperText Markup Language">HTML</abbr> et garanti la
+					transmission de la taille de la police de caractères. Les plus
+					connus sont celui de <a
+						href="http://meyerweb.com/eric/tools/css/reset/" target="_blank">Eric
+						Meyer</a> et celui de <a
+						href="http://yuilibrary.com/yui/docs/cssreset/" target="_blank">Yahoo</a>.
+				</p>
+
+				<p>
+					L'utilisation d'un <i>reset CSS</i> oblige l'auteur à redéfinir les
+					marges des éléments blocs et les tailles différentes de police pour
+					les éléments de titrage. C'est généralement très facile avec par
+					exemple :
+				</p>
+
+				<pre data-code="CSS">
+p, h1, h2, h3, h4, h5, h6 {
+	margin: 1em 0;
+}
+h1 {
+	font-size: 2em; /*taille suivant convenance*/
+}
+h2 {
+	font-size: 1.8em;  /*taille suivant convenance*/
+}
+h3 {
+	font-size: 1.6em;  /*taille suivant convenance*/
+}</pre>
+			</section>
+
+			<h4>Normalisation</h4>
+			<section>
+				<p>La normalisation corrige les différences sur les éléments qui
+					en ont besoin. Elle nécessite une connaissance en profondeur de
+					tous les comportements de toutes les versions de tous les
+					navigateurs. La mise à jour n'est pas aisée et l'auteur doit suivre
+					chaque nouvelle version pour être sans cess à jour.</p>
+
+				<p>
+					La feuille de style de normalisation la plus connue et la plus
+					utilisée est celle de <a
+						href="http://necolas.github.com/normalize.css/" target="_blank">Nicolas
+						Gallagher</a>. La lecture de cette feuille de style est intéressante
+					pour se rendre compte des différences de rendus, d'autant plus que
+					chaque correction est expliquée.
+				</p>
+			</section>
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

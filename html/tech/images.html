@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Images et formats graphiques</title>
+
+<link rel="stylesheet" href="tech.css">
+
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function() {
+			top.FP.makeMenuPage('Tech');
+		}, false);
+	} else {
+		location.replace('../index.html');
+	}
+</script>
+</head>
+<body>
+	<div id="PAGE-tech">
+		<h2>Images et formats graphiques</h2>
+
+		<ul id="MENU-page"></ul>
+
+		<p>Vous trouverez ici des informations sur le format graphique à
+			utiliser pour les images à embarquer dans les pages. Diverses parties
+			apportent des compléments techniques sur ces formats et sur le
+			vocabulaire à connaitre pour le traiement graphique.</p>
+
+		<h3>Formats du Web</h3>
+		<section>
+			<p class="fp-bot0">
+				Seuls <strong>quatre formats graphiques</strong> d'image sont
+				reconnus nativement par les navigateurs de dernière génération :
+			</p>
+			<ul>
+				<li>le format GIF (Graphics Interchange Format),</li>
+				<li>le formet JPEG (Joint Photographic Experts Group),</li>
+				<li>le format PNG (Portable Network Graphics),</li>
+				<li>le format SVG (Scalable Vector Graphic).</li>
+			</ul>
+
+			<p class="fp-remarque">D'autres formats peuvent éventuellement
+				être pris en compte, mais seulement par l'intermédiaire d'un plug-in
+				ou d'une fonctionnalité spécifique au navigateur qui prendront en
+				charge le traitement particulier du format graphique. Ils sont à
+				éviter absolument.</p>
+
+			<table class="fp-petit TAB-zebre">
+				<tr>
+					<td>Format</td>
+					<td>Type</td>
+					<td>Compres-<br>sion
+					</td>
+					<td>Nombre couleurs</td>
+					<td>Affich.<br>progres.
+					</td>
+					<td>Ani-<br>mation
+					</td>
+					<td>Trans-<br>parence
+					</td>
+				</tr>
+				<tr>
+					<td><abbr title="Graphics Interchange Format">GIF</abbr></td>
+					<td>bitmap</td>
+					<td>Oui, sans perte</td>
+					<td>256 maxi (palette)</td>
+					<td>Oui</td>
+					<td>Oui</td>
+					<td>Oui (une couleur)</td>
+				</tr>
+				<tr>
+					<td><abbr title="Joint Photographic Experts Group">JPEG</abbr></td>
+					<td>bitmap</td>
+					<td>Réglable (avec perte)</td>
+					<td>16 millions</td>
+					<td>Oui</td>
+					<td>Non</td>
+					<td>Non</td>
+				</tr>
+				<tr>
+					<td><abbr title="Portable Network Graphics">PNG</abbr></td>
+					<td>bitmap</td>
+					<td>Oui, sans perte</td>
+					<td>256 (palette) ou 16 millions</td>
+					<td>Oui</td>
+					<td>Non</td>
+					<td>Oui (couche Alpha)</td>
+				</tr>
+				<tr>
+					<td><abbr title="Scalable Vector Graphic">SVG</abbr></td>
+					<td>vectoriel</td>
+					<td>-</td>
+					<td>16 millions</td>
+					<td>-</td>
+					<td>Oui</td>
+					<td>Oui (par nature)</td>
+				</tr>
+			</table>
+
+			<p>Toutes les images de type bitmap de cette liste ont le point
+				commun d'être compressées. Cette compression se fait par la
+				réduction du nombre de couleurs dans l'image, soit par un mécanisme
+				destructif (images de plus de 256 couleurs), soit par un mécanisme
+				d'optimisation (images jusuq'à 256 couleurs). Suivant ce qui est
+				représenté par l'image, il faut choisir la bonne méthode pour
+				obtenir le poids de fichier le plus faible par rapport à la qualité
+				acceptable la moins dégradée.</p>
+
+			<p>
+				Le changement de format d'une image ne se fait pas en renommant
+				simplement le fichier avec un extension particulière (.gif, .jpg,
+				.png, .svg) mais en utilisant un logiciel spécifiquement fait pour
+				le traitement d'image (<a
+					href="http://fr.wikipedia.org/wiki/Adobe_Photoshop" target="_blank">photoshop</a>,
+				<a href="http://fr.wikipedia.org/wiki/Gimp" target="_blank">Gimp</a>,
+				<a href="http://fr.wikipedia.org/wiki/Corel_Paint_Shop_Pro"
+					target="_blank">Paintshop Pro</a>, etc).
+			</p>
+		</section>
+
+		<h3>Types d'images</h3>
+		<section>
+			<p class="fp-bot0">
+				Il existe <strong>2 types d'images</strong> :
+			</p>
+			<ul>
+				<li>les images de type vectoriel,</li>
+				<li>les images de type bitmap.</li>
+
+			</ul>
+
+			<p>
+				Une image de <strong>type vectoriel</strong> est constituée de
+				formules mathématiques qui décrivent les éléments géométriques
+				constitutifs de l'images. On aura une liste de figures géométriques
+				simples (rectangles, cercles, triangles, segments de droite, courbes
+				de Bézier, etc.), avec leur couleur et leur emplacement. On stocke
+				non pas une matrice de points comme dans les images de type bitmap,
+				mais une suite d'opérations mathématiques conduisant au tracé des
+				formes.
+				<br>
+				Un tel type d'image présente des avantages indéniables pour le Web
+				(gain de poids important, déformation possible par changement des
+				valeurs des formules mathématiques, animations), mais n'est pas du
+				tout adapter pour stocker des images présentant beaucoup de nuances
+				et de formes complexes (par exemple des photos).
+				<br>
+				Dans ce type d'image on trouvera sur le web le format <abbr
+					title="Scalable Vector Graphic">SVG</abbr>.
+			</p>
+
+			<figure>
+				<img src="../exemples/images/img_vectoriel.png" width="406"
+					height="347">
+				<figcaption>points de controle dans une image
+					vectorielle</figcaption>
+			</figure>
+
+			<p>
+				Une image de <strong>type bitmap</strong> (ou matricielle ou type
+				point) est constituée par la matrice de tous les "points"
+				constitutifs de l'image. Un "point" est le carré élémentaire pouvant
+				être représenté par un écran. Un "point" est appelé pixels (picture
+				element) et il est représenté visuellement par une couleur (codée
+				sur 1 ou 3 octets).
+				<br>
+				Dans ce type d'image on trouvera sur le Web les formats <abbr
+					title="Graphics Interchange Format">GIF</abbr>, <abbr
+					title="Joint Photographic Experts Group">JPEG</abbr> et <abbr
+					title="Portable Network Graphics">PNG</abbr>.
+				<br>
+				Les images utilisées sur le Web sont à 98% des images de type
+				bitmap. L'explication de cette situtation est historique : jusqu'à
+				il y a peu de temps, les navigateurs ne supportaient nativement que
+				ce type d'images. Dans le futur, l'utilisation d'images vectorielles
+				va certainement beaucoup se développer à cause des poids réduits et
+				des possibilités de déformation qui permettent d'avoir la même image
+				pour différents type d'écrans (ordinateurs, tablettes, smartphones).
+			</p>
+
+
+			<figure>
+				<img src="../exemples/images/img_pixel.jpg" width="470" height="411">
+				<figcaption>pixels dans une image bitmap</figcaption>
+			</figure>
+
+		</section>
+
+		<h3>Mode colorimétrique</h3>
+		<section>
+			<p class="fp-bot0">
+				Le mode colorimétrique définit la façon dont seront calculées et
+				stockées les couleurs d'une image.
+				<br>
+				On aura par exemple :
+			</p>
+			<ul>
+				<li>le mode noir et blanc : un pixel est soit noir, soit blanc</li>
+				<li>le mode niveau de gris : un pixel est une teinte choisie
+					parmi 256 niveau de gris (du noir au blanc)</li>
+				<li>le mode CMYB (Cyan, Magenta, Yellow, Black, CMJN en
+					français) : la couleur d'un point est obtenue par un mélange de
+					cyan, de magenta, de juane et de noir. C'est le mode à utiliser
+					pour toute image destinée à être imprimée (4 encres de couleurs
+					différentes = quadrichromie).</li>
+				<li>le mode HSL (Hue, Saturation, Lightness, TSL en français) :
+					la couleur est codée suivant le cercle des couleurs,</li>
+				<li>le mode RGB (Red, Green, Blue, RVB en français) : la
+					couleur d'un pixel est obtenue par le mélange de ces 3 couleurs.
+					C'est le mode généralement utilisé pour toute image couleur
+					destinée à être vue sur un écran.</li>
+			</ul>
+
+			<figure>
+				<img src="../exemples/images/img_rgb_cmyk.jpg" width="434"
+					height="162">
+				<figcaption>mode RGB / mode CMYK</figcaption>
+			</figure>
+
+			<div class="fp-puce">
+				<p class="fp-bot0">Quelque soit l'écran électronique qui affiche
+					une image, la couleur est toujours calculée par le mélange de 3
+					sources lumineuses : une rouge, une verte et une bleue. Dans sa
+					forme la plus gourmande en taille, la représentation informatique
+					de ces 3 sources lumineuses est faite par une valeur stockée dans 3
+					octets :</p>
+				<ul>
+					<li>un octet pour la source rouge (avec 256 valeurs possibles
+						- de 0 à 255)</li>
+					<li>un octet pour la source verte (avec 256 valeurs possibles
+						- de 0 à 255)</li>
+					<li>un octet pour la source bleue (avec 256 valeurs possibles
+						- de 0 à 255)</li>
+				</ul>
+
+
+				<figure>
+					<img src="../exemples/images/img_rvb.jpg" width="440" height="270">
+					<figcaption>mode RGB 24 bits</figcaption>
+				</figure>
+
+				<p>
+					La couleur résultant de ces 3 nuances de rouge, vert et bleu étant
+					stockée dans 3 octets, soit 24 bits, on parle aussi "d'images 24
+					bits" ou "true color". Les pixels d'une telle image peuvent avoir
+					16&nbsp;777&nbsp;216 couleurs différentes (256*256*256).
+					<br>
+					<span class="fp-petit">Remarque : l'oeil humain perçoit
+						"seulement" 5&nbsp;000&nbsp;000 de couleurs.</span>
+				</p>
+			</div>
+
+			<div class="fp-puce">
+				<p>
+					<strong>Images à palette indexée</strong>
+					<br>
+					Pour minimiser la taille des fichiers, et si la représentation
+					faite par l'image s'y prête, on peut stocker les couleurs des
+					pixels avec seulement un octet. On parlera alors "d'images 8 bits"
+					ou "d'images à palette indexée". L'inconvénient majeur du principe
+					est d'être limité à la représentation de 256 couleurs différentes
+					dans une image. C'est souvent insuffisant pour des photographies,
+					mais tout à fait acceptable pour des images avec de grands aplats
+					de couleur comme les illustrations, logos, icônes, etc.
+				</p>
+
+				<p>La palette est un ensemble d'octets qui stockent 2, 4, 8, 16,
+					32, 64, 128 ou 256 couleurs différentes. Bien entendu chacune de
+					ces couleurs est elle même représentée sur 3 octets, mais on aura
+					au maximum 768 octets (3*256) pour la palette.</p>
+
+				<p>Un index est fait avec les couleurs de la palette, et chaque
+					pixel de l'image est référencé par une entrée dans l'index. On
+					pourra donc ainsi représenter la couleur d'un pixel avec un seul
+					octet (images 8 bits) plutôt qu'avec 3 (images 24 bits).</p>
+
+
+				<figure>
+					<img src="../exemples/images/img_palette.png" width="460"
+						height="280">
+					<figcaption>palette indexée</figcaption>
+				</figure>
+
+			</div>
+
+		</section>
+
+		<h3>Affichage progressif</h3>
+		<section>
+			<p>Les formats d'images utilisés sur le Web permettent de faire
+				un affichage progressif particulièrement adapté pour les images de
+				grandes dimensions ou de poids élevé.</p>
+
+			<p>Par défaut, le navigateur va afficher une image au fur et à
+				mesure qu'il la reçoit, ligne par ligne.</p>
+
+			<figure>
+				<img src="../exemples/images/progressive01.gif" width="310"
+					height="248">
+				<figcaption>
+					affichage ligne à ligne
+					<br>
+					Source : <a
+						href="http://www.codinghorror.com/blog/2005/12/progressive-image-rendering.html"
+						target="_blank">codinghorror.com</a>
+				</figcaption>
+			</figure>
+
+			<p>Avec l'affichage progressif, le navigateur affiche l'image par
+				plusieurs passes successives qui apportent de plus en plus de
+				précisions dans les détails. Le poids du fichier est un peu plus
+				élevé mais le ressenti de l'utilisateur sera bien meilleur.</p>
+
+			<figure>
+				<img src="../exemples/images/progressive02.gif" width="310"
+					height="248">
+				<figcaption>
+					affichage progressif
+					<br>
+					Source : <a
+						href="http://www.codinghorror.com/blog/2005/12/progressive-image-rendering.html"
+						target="_blank">codinghorror.com</a>
+				</figcaption>
+			</figure>
+
+			<p>Attention : l'affichage progressif ne doit pas être utilisé
+				avec des images de faibles dimensions (ie moins de 300/300 pixels)</p>
+
+		</section>
+
+		<h3>Le format GIF</h3>
+		<section>
+			<p>
+				Le format GIF (Graphics Interchange Format) a été créé par
+				Compuserve. Il est indépendant des plates-formes et s'affiche aussi
+				bien sur PC, Mac ou Linux/Unix. Il gère au maximum 256 couleurs et
+				produit donc exlusivement des images en mode 8 bits avec une palette
+				de couleurs indexées. L'extension des fichiers est <code>.gif</code>.
+			</p>
+
+			<div>
+				<figure style="width: 210px; float: left;">
+					<img src="../exemples/images/r2d2_256_coul.gif" width="190"
+						height="279">
+					<figcaption>Dimensions 190 x 279, 256 couleurs, taille
+						: 34.9Ko</figcaption>
+				</figure>
+				<figure style="width: 210px; float: right;">
+					<img src="../exemples/images/r2d2_32_coul.gif" width="190"
+						height="279">
+					<figcaption>Dimensions 190 x 279, 32 couleurs, taille
+						: 16.3Ko</figcaption>
+				</figure>
+
+				<p class="fp-clear">Les deux images ont la même taille (190
+					pixels / 279 pixels), mais le nombre de couleurs utilisées dans la
+					palette n'est pas le même (256 ou 32). Le poids de la deuxième
+					image est la moitié de celui de la première, pour une qualité
+					pratiquement identique (sauf si on regarde entre les pieds du
+					robot). Le temps de chargement de la deuxième image sera donc deux
+					fois plus rapide, sans une perte de qualité vraiment notable.</p>
+			</div>
+
+			<p>
+				Le format <abbr title="Graphics Interchange Format">GIF</abbr>
+				permet les images entrelacées (dénomination de l'affichage
+				progressif pour le gif). Le principe est un peu différent de celui
+				utilisé par les autres formats, mais le résultat est intéressant
+				pour les images de grandes dimensions.
+			</p>
+
+			<p>On peut définir une couleur de transparence : une couleur
+				parmi les 256 possibles est choisie pour ne pas être affichée. De
+				cette façon l'image se fond dans son environnement. A toujours
+				utiliser pour les icônes de navigation ou d'interface.</p>
+
+			<figure>
+				<img src="../exemples/images/yoda_bleu.gif" width="106" height="135">
+				<img src="../exemples/images/yoda_transparent.gif" width="106"
+					height="135">
+				<figcaption>
+					le bleu est la couleur transparente
+					<br>
+					dans la 2eme image
+				</figcaption>
+			</figure>
+
+
+			<p>On peut contruire des animations : les gifs animés. Ils sont
+				constitués d'une succession d'images gif toutes différentes, avec
+				des durées d'affichage variables, stockées dans le même fichier.</p>
+
+			<figure>
+				<img src="../exemples/images/ajax_loader.gif" width="220"
+					height="19">
+				<img src="../exemples/images/ajax_loader2.gif" width="128"
+					height="15">
+				<br>
+				<img src="../exemples/images/ajax_loader3.gif" width="100"
+					height="100">
+				<img src="../exemples/images/demo_anim.gif" width="89" height="37">
+				<figcaption>exemples de gifs animés simples</figcaption>
+			</figure>
+
+			<p>
+				Le format <abbr title="Graphics Interchange Format">GIF</abbr>
+				utilise l'algorithme de compression LZW (propriété jusqu'en 2004 de
+				<a href="http://en.wikipedia.org/wiki/Unisys" target="_blank">Unisys</a>).
+				L'algorithme est plus ou moins bien adapté suivant la répartition
+				des zones de couleur car il travaille sur la redondance
+				d'informations sur une ligne, de la droite vers la gauche.
+			</p>
+
+			<table>
+				<tr>
+					<td>Avant compression</td>
+					<td>Après compression</td>
+				</tr>
+				<tr>
+					<td>aaaaabbbbbcccddddeeeeffffaaaaabb</td>
+					<td>a5b4c2d4e4f4a5bb0</td>
+				</tr>
+			</table>
+
+			<figure>
+				<img src="../exemples/images/img_lzw.png" width="310" height="210">
+				<figcaption>algorithme LZW</figcaption>
+			</figure>
+
+		</section>
+
+		<h3>Le format JPEG</h3>
+		<section>
+			<p>
+				Le format JPEG (Joint Photographic Expert Group) produit des images
+				en mode 24 bits (16 millions de couleurs) et permet donc une
+				excellente reproduction des images avec beaucoup de couleurs et de
+				nuances différentes (photos par exemple). Il est aussi très bien
+				adapté pour les images de grande taille.
+				<br>
+				Par contre, il ne faut pas utiliser <abbr
+					title="Joint Photographic Experts Group">JPEG</abbr> pour : les
+				images de moins de 16 couleurs, les images de petite taille (moins
+				de 100X100 pixels) ou les images déjà compressées en <abbr
+					title="Joint Photographic Experts Group">JPEG</abbr>.
+				<br>
+				L'extension des fichiers est <code>.jpg</code> ou <code>.jpeg</code>.
+			</p>
+
+			<p>
+				Le format <abbr title="Joint Photographic Experts Group">JPEG</abbr>
+				utilise une compression destructive. L'image est 'dégradée' car des
+				couleurs peu différentes de pixels contigus sont remplacée par une
+				seule et même couleur. L'algorithme <abbr
+					title="Joint Photographic Experts Group">JPEG</abbr> découpe
+				l'image en zones de couleurs proche et supprime des couleurs sont
+				les nuances seraient peu perceptibles à l'oeil humain. Le taux de
+				compression (ie le taux de suppression de couleurs) est défini lors
+				de l'enregistrement de l'image dans ce format. Plus le taux de
+				compression est élevé plus l'image est dégradée avec perte des
+				détails, des contours et l'apparition de blocs de couleur identique.
+				Les pertes sont irréversibles.
+			</p>
+
+			<table>
+				<tr>
+					<td>Avant compression</td>
+					<td>Après compression</td>
+				</tr>
+				<tr>
+					<td>0.123, 1.2345, 21.2165, 21.999, 12.123</td>
+					<td>0,0,20,20,10</td>
+				</tr>
+			</table>
+
+			<div>
+				<figure style="width: 210px; float: left;">
+					<img src="../exemples/images/ex24.jpg" width="165" height="358">
+					<figcaption>Qualité 100 - 55 Ko</figcaption>
+				</figure>
+				<figure style="width: 210px; float: right;">
+					<img src="../exemples/images/ex25.jpg" width="165" height="358">
+					<figcaption>Qualité 60 - 22 Ko</figcaption>
+				</figure>
+			</div>
+			<div class="fp-clear">
+				<figure style="width: 210px; float: left;">
+					<img src="../exemples/images/ex26.jpg" width="165" height="358">
+					<figcaption>Qualité 30 - 16 Ko</figcaption>
+				</figure>
+				<figure style="width: 210px; float: right;">
+					<img src="../exemples/images/ex27.jpg" width="165" height="358">
+					<figcaption>Qualité 10 : 12 Ko</figcaption>
+				</figure>
+			</div>
+
+			<p class="fp-clear">
+				<abbr title="Joint Photographic Experts Group">JPEG</abbr> permet
+				l'affichage progressif des images. Cette option se définit au moment
+				de l'enregistrement du fichier.
+			</p>
+
+			<p>
+				<abbr title="Joint Photographic Experts Group">JPEG</abbr> ne gére
+				pas de transparence de couleur ou de couche aplha.
+			</p>
+		</section>
+
+		<h3>Le format PNG</h3>
+		<section>
+			<p>
+				Le format PNG (Portable Network Graphics) utilise une compression
+				non destructive pour produire des images 8, 24, 32 ou 48 bits (deep
+				color). <abbr title="Portable Network Graphics">PNG</abbr> a été mis
+				au point pour remplacer <abbr title="Graphics Interchange Format">GIF</abbr>
+				qui n'était pas un format totalement libre jusqu'en 2004. C'est une
+				est une <a href="http://www.w3.org/TR/PNG/" target="_blank">spécification</a>
+				du <abbr title="World Wide Web Consortium">W3C</abbr>
+				<br>
+				L'extension des fichiers est <code>.png</code>.
+			</p>
+
+			<p>
+				<abbr title="Portable Network Graphics">PNG</abbr> fait 2 passes
+				pour compresser au mieux les images. La 1ère passe va pré-compresser
+				les lignes de l'image avec le filtre jugé adéquat par <abbr
+					title="Portable Network Graphics">PNG</abbr> (5 filtres possibles).
+				La 2eme passer va compresser à nouveau le résultat de la 1ère passe
+				avec l'alogorithme <a
+					href="http://fr.wikipedia.org/wiki/LZ77_et_LZ78" target="_blank">LZ77</a>.
+				<br>
+				Il existe une <a
+					href="http://www.dailymotion.com/video/x1umwga_le-fonctionnement-de-la-compression-gzip-frederic-kayser_tech"
+					target="_blank">vidéo très intéressante sur dailymotion</a> qui
+				explique (en français) le fonctionnement de la compression gzip et
+				des algorithmes LZ.
+			</p>
+
+			<p>
+				Pour tout ce qui est génération d'images en 8 bits, <abbr
+					title="Portable Network Graphics">PNG</abbr> est généralement
+				supérieur à <abbr title="Graphics Interchange Format">GIF</abbr>,
+				sauf pour l'animation qu'il ne gére pas.
+			</p>
+
+			<div>
+				<figure style="width: 210px; float: left;">
+					<img src="../exemples/images/r2d2_256_coul.gif" width="190"
+						height="279">
+					<figcaption>
+						format <abbr title="Graphics Interchange Format">GIF</abbr>, 256
+						couleurs, taille : 34.9Ko
+					</figcaption>
+				</figure>
+				<figure style="width: 210px; float: right;">
+					<img src="../exemples/images/r2d2_256_coul.png" width="190"
+						height="279">
+					<figcaption>
+						Fig 18 : format <abbr title="Portable Network Graphics">PNG</abbr>,
+						256 couleurs, taille : 30.5Ko
+					</figcaption>
+				</figure>
+			</div>
+
+			<p class="fp-clear">
+				Pour les images en mode RVB 24 bits, le poids des fichiers est plus
+				important que ceux produits par <abbr
+					title="Joint Photographic Experts Group">JPEG</abbr>, mais
+				l'agorithme de compression n'est pas destructif.
+			</p>
+
+			<div>
+				<figure style="width: 150px; float: left;">
+					<img src="../exemples/images/trilogie_sda.png" width="150"
+						height="250">
+					<figcaption>
+						Fig 19 : format <abbr title="Portable Network Graphics">PNG</abbr>,
+						taille : 45.8ko
+					</figcaption>
+				</figure>
+				<figure style="width: 150px; float: left;">
+					<img src="../exemples/images/trilogie_sda_100.jpg" width="150"
+						height="250">
+					<figcaption>format JPG, qualité 100, taille : 30.3Ko</figcaption>
+				</figure>
+				<figure style="width: 150px; float: left;">
+					<img src="../exemples/images/trilogie_sda_30.jpg" width="150"
+						height="250">
+					<figcaption>format JPG, qualité 30, taille : 5.13Ko</figcaption>
+				</figure>
+			</div>
+
+			<p class="fp-clear">
+				<abbr title="Portable Network Graphics">PNG</abbr> permet
+				l'affichage progressif des images. Cette option se définit au moment
+				de l'enregistrement du fichier.
+			</p>
+
+			<p class="fp-clear">
+				En mode 8 bits, <abbr title="Portable Network Graphics">PNG</abbr>
+				gére une couleur transparente, comme <abbr
+					title="Graphics Interchange Format">GIF</abbr>.
+			</p>
+
+			<p>
+				En mode 32 ou 48 bits <abbr title="Portable Network Graphics">PNG</abbr>
+				gère des couleurs translucides : on voit la couleur de fond derrière
+				la couleur translucide qui peut avoir 256 niveau de transparence (de
+				totalement opaque a complétement transparent). Ca permet de gérer
+				par exemple des ombrages de façon très fine. On parle alors de mode
+				RGBa (a pour couche alpha comme dans les claques photoshop) ou de
+				transparence par couche alpha.
+			</p>
+
+			<div>
+				<div
+					style="background: url(../exemples/images/carte_terre_milieu.jpg) no-repeat; float: left; height: 230px; margin: 0 auto; padding: 63px 10px 0; width: 200px">
+					<img src="../exemples/images/lunettes_8bits.png" width="200"
+						height="169">
+				</div>
+				<div
+					style="background: url(../exemples/images/carte_terre_milieu.jpg) no-repeat; float: right; height: 230px; margin: 0 auto; padding: 63px 10px 0; width: 200px">
+					<img src="../exemples/images/lunettes.png" width="200" height="169">
+				</div>
+			</div>
+			<figure style="margin: 0; clear: both;">
+				<figcaption>transparent vs translucide</figcaption>
+			</figure>
+			<p class="fp-p-raz">
+				Dans la figure ci-dessus, 2 images sont affichées sur la même image
+				image de fond.
+				<br>
+				L'image de gauche est une image 8 bits avec une couleur transparente
+				(le blanc). L'affichage sur un fond uni très clair serait parfait,
+				mais sur un fond composé, elle n'est pas utilisable.
+				<br>
+				L'image de droite est une image 32 bits avec une couche apha qui
+				permet une transparence sur 256 niveaux (translucidité). Les zones
+				translucides de l'image laissent apparaitre plus ou moins les
+				détails de l'image de fond. On peut ainsi afficher des ombres qui en
+				sont vraiment (sous les branches de lunettes par exemple), et on
+				peut voir ce qui se trouve derrière les verres.
+				<br>
+				Cette qualité a bien sûr un prix : 1 octet de plus par pixel pour
+				gérer le niveau de transparence de chacun des pixels de l'image.
+			</p>
+		</section>
+
+	</div>
+</body>
+</html>

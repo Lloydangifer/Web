@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>&Eacute;chappement depuis du HTML</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.basic-syntax.phptags.html">Balises PHP</a>
+		</div>
+		<div class="next">
+			<a href="language.basic-syntax.instruction-separation.html">S&eacute;paration
+				des instructions</a>
+		</div>
+		<div class="up">
+			<a href="language.basic-syntax.html">La syntaxe de base</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.basic-syntax.phpmode" class="sect1">
+		<h2 class="title">Échappement depuis du HTML</h2>
+		<p class="para">Tout ce qui se trouve en dehors d&#039;une paire
+			de balises ouvrantes/fermantes est ignoré par l&#039;analyseur PHP,
+			ce qui permet d&#039;avoir des fichiers PHP mixant les contenus. Ceci
+			permet à PHP d&#039;être contenu dans des documents HTML, pour créer
+			par exemple des templates.
+		<div class="example" id="example-64">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000">
+							&lt;p&gt;Ceci&nbsp;sera&nbsp;ignoré&nbsp;par&nbsp;PHP&nbsp;et&nbsp;affiché&nbsp;au&nbsp;navigateur.&lt;/p&gt;<br />
+						<span style="color: #0000BB">&lt;?php&nbsp;</span><span
+							style="color: #007700">echo&nbsp;</span><span
+							style="color: #DD0000">'Alors&nbsp;que&nbsp;ceci&nbsp;sera&nbsp;analysé&nbsp;par&nbsp;PHP.'</span><span
+							style="color: #007700">;&nbsp;</span><span style="color: #0000BB">?&gt;<br /></span>&lt;p&gt;Ceci&nbsp;sera&nbsp;aussi&nbsp;ignoré&nbsp;par&nbsp;PHP&nbsp;et&nbsp;affiché&nbsp;au&nbsp;navigateur.&lt;/p&gt;
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		Ceci fonctionne comme prévu parce que lorsque l&#039;interpréteur PHP
+		rencontre la balise fermante ?&gt;, il commence simplement à afficher
+		ce qu&#039;il rencontre (mise à part s&#039;il est immédiatement suivi
+		d&#039;une nouvelle ligne : voir l&#039;<a
+			href="language.basic-syntax.instruction-separation.html" class="link">instruction
+			de séparation</a>) jusqu&#039;à ce qu&#039;il rencontre une autre balise
+		ouvrante même si PHP se trouve au milieu d&#039;une instruction
+		conditionnelle, au quel cas, l&#039;interpréteur va déterminer la
+		condition à prendre en compte avant de prendre une décision sur ce qui
+		doit être afficher. Voir le prochain exemple.
+		</p>
+		<p class="para">Utilisation de structures avec des conditions
+		<div class="example" id="example-65">
+			<p>
+				<strong>Exemple #1 Echappement avancé en utilisant des
+					conditions</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php&nbsp;</span><span
+							style="color: #007700">if&nbsp;(</span><span
+							style="color: #0000BB">$expression&nbsp;</span><span
+							style="color: #007700">==&nbsp;</span><span
+							style="color: #0000BB">true</span><span style="color: #007700">):&nbsp;</span><span
+							style="color: #0000BB">?&gt;<br /></span>&nbsp;&nbsp;Ceci&nbsp;sera&nbsp;affiché&nbsp;si&nbsp;l'expression&nbsp;est&nbsp;vrai.<br />
+						<span style="color: #0000BB">&lt;?php&nbsp;</span><span
+							style="color: #007700">else:&nbsp;</span><span
+							style="color: #0000BB">?&gt;<br /></span>&nbsp;&nbsp;Sinon,&nbsp;ceci&nbsp;sera&nbsp;affiché.<br />
+						<span style="color: #0000BB">&lt;?php&nbsp;</span><span
+							style="color: #007700">endif;&nbsp;</span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		Dans cet exemple, PHP va ignorer les blocs où la condition n&#039;est
+		pas remplie, même si ils sont en dehors des balises
+		ouvrantes/fermantes de PHP. PHP va les ignorer suivant la condition vu
+		que l&#039;interpréteur PHP va passer les blocs contenant ce qui
+		n&#039;est pas remplie par la condition.
+		</p>
+		<p class="para">
+			Pour afficher de gros blocs de texte, il est plus efficace de sortir
+			du mode d&#039;analyse de PHP plutôt que d&#039;envoyer le texte via
+			la fonction <span class="function"><a
+				href="function.echo.html" class="function">echo</a></span> ou <span
+				class="function"><a href="function.print.html"
+				class="function">print</a></span>.
+		</p>
+		<p class="para">
+			Il y a quatre paires différentes de balises ouvrantes / fermantes qui
+			peuvent être utilisées dans PHP. Deux de ces balises, &lt;?php ?&gt;
+			et &lt;script language=&quot;php&quot;&gt; &lt;/script&gt;, sont
+			toujours disponibles. Les deux autres sont les balises courtes et les
+			balises du style <span class="productname">ASP</span>, et peuvent
+			être activées ou désactivées depuis le fichier de configuration
+			<var class="filename">php.ini</var>
+			. Cependant, malgré le fait que des personnes trouvent les balises
+			courtes et les balises du style <span class="productname">ASP</span>
+			pratiques, elles sont moins portables et donc, généralement, non
+			recommandées.
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>:
+			<p class="para">Notez également que si vous intégrez PHP dans des
+				documents XML ou XHTML, vous devez utiliser les balises &lt;?php
+				?&gt; pour rester conforme aux standards.
+		</blockquote>
+		</p>
+		<p class="para">
+		<div class="example" id="example-66">
+			<p>
+				<strong>Exemple #2 Balises d&#039;ouvertures et de
+					fermetures PHP</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> 1.&nbsp;&nbsp;<span
+							style="color: #0000BB">&lt;?php&nbsp;</span><span
+							style="color: #007700">echo&nbsp;</span><span
+							style="color: #DD0000">'Si&nbsp;vous&nbsp;voulez&nbsp;réaliser&nbsp;des&nbsp;documents&nbsp;XHTML&nbsp;ou&nbsp;XML,&nbsp;faites&nbsp;comme&nbsp;ceci'</span><span
+							style="color: #007700">;&nbsp;</span><span style="color: #0000BB">?&gt;<br /></span><br />2.&nbsp;&nbsp;<span
+							style="color: #0000BB">&lt;script&nbsp;language="php"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">echo&nbsp;</span><span
+							style="color: #DD0000">'quelques&nbsp;éditeurs&nbsp;(comme&nbsp;FrontPage)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n\'aiment&nbsp;pas&nbsp;ce&nbsp;genre&nbsp;d\'instructions'
+						</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #0000BB">&lt;/script&gt;<br /></span><br />3.&nbsp;&nbsp;<span
+							style="color: #0000BB">&lt;?&nbsp;</span><span
+							style="color: #007700">echo&nbsp;</span><span
+							style="color: #DD0000">'ceci&nbsp;est&nbsp;le&nbsp;plus&nbsp;simple,&nbsp;une&nbsp;instruction&nbsp;SGML'</span><span
+							style="color: #007700">;&nbsp;</span><span style="color: #0000BB">?&gt;<br /></span>&nbsp;&nbsp;&nbsp;&nbsp;<span
+							style="color: #0000BB">&lt;?=&nbsp;expression&nbsp;?&gt;</span>&nbsp;Ceci&nbsp;est&nbsp;la&nbsp;version&nbsp;courte&nbsp;pour&nbsp;"<span
+							style="color: #0000BB">&lt;?&nbsp;</span><span
+							style="color: #007700">echo&nbsp;</span><span
+							style="color: #0000BB">expression&nbsp;?&gt;</span>"<br />
+						<br />4.&nbsp;&nbsp;&lt;%&nbsp;echo&nbsp;'Vous&nbsp;pouvez&nbsp;optionnellement&nbsp;utiliser&nbsp;les&nbsp;balises&nbsp;ASP-style';&nbsp;%&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;%=&nbsp;$variable;&nbsp;#&nbsp;Ceci&nbsp;est&nbsp;la&nbsp;version&nbsp;courte&nbsp;pour&nbsp;"&lt;%&nbsp;echo&nbsp;.&nbsp;.&nbsp;."&nbsp;%&gt;
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<p class="para">Bien que les balises vues dans les exemples un et
+			deux sont toutes les deux disponibles, l&#039;exemple un est le plus
+			communément utilisé et le plus recommandé des deux.</p>
+		<p class="para">
+			Les balises courtes (troisième exemple) ne sont disponibles que
+			s&#039;elles ont été activées via la directive <a
+				href="ini.core.html#ini.short-open-tag" class="link">short_open_tag</a>
+			du fichier de configuration
+			<var class="filename">php.ini</var>
+			, ou si PHP a été configuré avec l&#039;option <strong
+				class="option unknown">--enable-short-tags</strong> .
+		</p>
+		<p class="para">
+			Les balises du style <span class="productname">ASP</span> (quatrième
+			exemple) sont uniquement disponibles lorsqu&#039;elles sont activées
+			via la directive <a href="ini.core.html#ini.asp-tags" class="link">asp_tags</a>
+			du fichier de configuration
+			<var class="filename">php.ini</var>
+			.
+		</p>
+		<p class="para">
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>:
+			<p class="para">L&#039;utilisation des balises courtes doit être
+				bannie lors de développements d&#039;applications ou de
+				bibliothèques qui sont destinées à être redistribuées, ou déployées
+				sur des serveurs qui ne sont pas sous votre contrôle, car les
+				balises courtes peuvent ne pas être supportées sur le serveur cible.
+				Pour réaliser du code portable, qui peut être redistribué,
+				n&#039;utilisez jamais les balises courtes.
+		</blockquote>
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>:
+			<p class="para">
+				En PHP 5.2 et antérieures, l&#039;analyseur n&#039;autorisait pas un
+				tag ouvrant <em>&lt;?php</em> comme seul élément d&#039;une page.
+				Ceci est permis à compter de la version 5.3 de PHP lorsqu&#039;il y
+				a un ou plusieurs espaces après la balise ouvrante.
+		</blockquote>
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>:
+			<p class="para">
+				Depuis PHP 5.4, le tag echo court <em>&lt;?=</em> est toujours
+				reconnu et valide, suivant la configuration de l&#039;option <a
+					href="ini.core.html#ini.short-open-tag" class="link">short_open_tag</a>.
+		</blockquote>
+		</p>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.basic-syntax.phptags.html">Balises PHP</a>
+		</div>
+		<div class="next">
+			<a href="language.basic-syntax.instruction-separation.html">S&eacute;paration
+				des instructions</a>
+		</div>
+		<div class="up">
+			<a href="language.basic-syntax.html">La syntaxe de base</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>DOM</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function() {
+			top.FP.initPage();
+		}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<!-- ################################################################################################## -->
+		<h3>L'arbre DOM</h3>
+		<section>
+			<div class="fp-puce">
+				<p>
+					Les sélecteurs nous permettent de sélectionner des éléments <abbr
+						title="HyperText Markup Language">HTML</abbr> dans la page
+					affichée par le navigateur.
+				</p>
+				<p>
+					Ils peuvent avoir des formes très simples (le nom d'un élément <abbr
+						title="HyperText Markup Language">HTML</abbr>) ou très complexes
+					pour cibler précisément des éléments <abbr
+						title="HyperText Markup Language">HTML</abbr> profondément enfoui
+					dans les imbrications de la page.
+				</p>
+			</div>
+
+			<div class="fp-puce">
+				<img src="../cssimg/arbre.jpg"
+					style="width: 300px; height: 250px; float: right; margin-top: 2em;">
+				<p>
+					Pour faciliter la représentation schématique de l'organisation des
+					éléments et ainsi pouvoir mieux définir les sélecteurs, on copie le
+					travail fait par le navigateur quand il construit en mémoire un
+					graphe représentant la structure de données du document <abbr
+						title="HyperText Markup Language">HTML</abbr> traité.
+				</p>
+
+				<p>
+					Cette structure de donnée s'appelle le DOM (Document Object Model)
+					et peut être visualisée sous la forme d'un arbre inversé, dont la
+					racine est l'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'html')">html</a>.
+				</p>
+
+				<p class="fp-bot0">
+					Le <abbr title="Document Object Model">DOM</abbr> est standardisé
+					par le <abbr title="World Wide Web Consortium">W3C</abbr>. Il a
+					évolué en 3 versions :
+				</p>
+				<ul>
+					<li><a href="http://www.w3.org/TR/REC-DOM-Level-1/"
+						target="_blank">DOM Level 1</a> d'octobre 998,</li>
+					<li>le <abbr title="Document Object Model">DOM</abbr> Level 2,
+						du fait de sa complexité est divisé en plusieurs modules (novembre
+						2000) : <a
+						href="http://www.w3.org/TR/2000/REC-DOM-Level-2-Core-20001113/"
+						target="_blank">Core</a>, <a
+						href="http://www.w3.org/TR/2000/REC-DOM-Level-2-Events-20001113/"
+						target="_blank">Events</a>, <a
+						href="http://www.w3.org/TR/2000/REC-DOM-Level-2-Style-20001113/"
+						target="_blank">Style</a>, <a
+						href="http://www.w3.org/TR/2000/REC-DOM-Level-2-Views-20001113/"
+						target="_blank">Views</a> et <a
+						href="http://www.w3.org/TR/2000/REC-DOM-Level-2-Traversal-Range-20001113/"
+						target="_blank">Traversal and range</a>. La spécification <a
+						href="http://www.w3.org/TR/2003/REC-DOM-Level-2-HTML-20030109/"
+						target="_blank">DOM Level 2 HTML</a> date de janvier 2003&nbsp;;
+					</li>
+					<li>le <abbr title="Document Object Model">DOM</abbr> level 3
+						ne concerne pas tous les modules du 2. On a <a
+						href="http://www.w3.org/TR/2004/REC-DOM-Level-3-Val-20040127/"
+						target="_blank">Validation</a>, <a
+						href="http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/"
+						target="_blank">Core</a>, <a
+						href="http://www.w3.org/TR/2004/REC-DOM-Level-3-LS-20040407/"
+						target="_blank">Load ans Save</a>, tous de 2004. D'autres modules
+						sont toujours en discussion.
+					</li>
+				</ul>
+			</div>
+
+			<p class="fp-bot0">En simplifiant, le travail du navigateur peut
+				être représenté par 3 étapes :</p>
+			<ul>
+				<li>étape 1 : le navigateur parse le code HTML et définit sa
+					structure sous la forme d'un arbre (le <abbr
+					title="Document Object Model">DOM</abbr>),
+				</li>
+				<li>étape 2 : le navigateur parse le code <abbr
+					title="Cascading Style Sheets">CSS</abbr> et définit les propriétés
+					applicables des différentes règles. Il accroche les sélecteurs à
+					l'arbre <abbr title="Document Object Model">DOM</abbr> et définit
+					un arbre d'affichage,
+				</li>
+				<li>étape 3 : le navigateur affiche les résultat de l'étape 3 à
+					l'écran.</li>
+			</ul>
+
+			<figure>
+				<img src="../cssimg/parsing.jpg" width="590" height="403">
+				<figcaption>étapes de traitement par le navigateur</figcaption>
+			</figure>
+
+
+			<p>
+				L'exemple de code suivant a l'arbre <abbr
+					title="Document Object Model">DOM</abbr> représenté en figure 2.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : arbre DOM
+				</div>
+				<textarea name="txtCode" class="TEST-textarea">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;L'Arrière des Etoiles&lt;/h3&gt;
+		&lt;p&gt;Les CSS sont l'arme secrète de la Force !&lt;/p&gt;
+		&lt;p&gt;Tu veux savoir les utiliser ? 
+			Envoie CSS au 7 1718.&lt;/p&gt;
+		&lt;div&gt;
+			&lt;p&gt;&lt;img src="../exemples/img/yoda.jpg"&gt; 
+				Le côté obscur des CSS redouter tu dois.&lt;/p&gt;
+	    	&lt;p&gt;&lt;img src="../exemples/img/darkv.jpg"&gt; 
+				Les CSS ont vraiment transformé ma vie.&lt;/p&gt;
+	    	&lt;p&gt;&lt;img src="../exemples/img/gandalf.jpg"&gt; 
+				Bien sûr, moi aussi j'utilise les CSS !&lt;/p&gt;
+	  	&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<figure>
+				<img src="../cssimg/dom_01.png" width="590" height="178">
+				<figcaption>
+					<abbr title="Document Object Model">DOM</abbr> de l'exemple
+				</figcaption>
+			</figure>
+
+			<p>Les attributs des éléments ne sont jamais représentés car ils
+				ne constituent pas des noeuds à proprement parlé.</p>
+
+			<p>
+				Le contenu textuel du document <abbr
+					title="HyperText Markup Language">HTML</abbr> est représenté,
+				généralement sous la forme d'un rond, car il constitue bien une
+				feuille de l'arbre.
+			</p>
+
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Vocabulaire</h3>
+		<section>
+			<p>Les graphes en forme d'arbre ont un vocabulaire bien défini
+				pour parler de leurs composants. Ce vocabuliare doit être acquis car
+				certaines spécifications de sélecteur y font référence.</p>
+
+			<table class="TAB-sans-bord">
+				<tr>
+					<td>
+						<p>
+							<strong>Les noeuds</strong> ont une ou plusieurs branches. Il
+							sont en rouge dans la figure 3.
+						</p>
+						<p>
+							<strong>Le feuilles</strong> sont situées au bout des branches.
+							Elles sont en vert dans la figure 3.
+						</p>
+					</td>
+					<td style="vertical-align: middle">
+						<figure>
+							<img src="../cssimg/dom_noeud_feuille.jpg" width="380"
+								height="128">
+							<figcaption>noeuds et feuilles</figcaption>
+						</figure>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<p>
+							<strong>Un ancêtre</strong> est un noeud qui a un ou plusieurs
+							enfants, petits-enfants, arrière petits-enfants, etc.
+						</p>
+						<p>
+							<strong>Un descendant</strong> est un noeud ou une feuille qui
+							est enfant, petit-enfant, arrière petit-enfant, etc, d'un autre
+							noeud.
+						</p>
+					</td>
+					<td style="vertical-align: middle">
+						<figure>
+							<img src="../cssimg/dom_ancetre.jpg" width="380" height="128">
+							<figcaption>un ancêtre et ses descendants</figcaption>
+						</figure>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">L'élément <a
+						onclick="top.FP.Voir.showPageTech('elements', 'html')">html</a>
+						est l'ancêtre de tous les noeuds et feuilles d'un arbre <abbr
+						title="Document Object Model">DOM</abbr> <abbr
+						title="HyperText Markup Language">HTML</abbr>.
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<p>
+							<strong>Un enfant</strong> est le noeud ou la feuille qui est un
+							descendant direct d'un autre noeud (1 seul niveau de hiérarchie).
+						</p>
+						<p>
+							<strong>Un parent</strong> est un noeud qui est l'ancêtre direct
+							d'un autre noeud ou d'une feuille (1 seul niveau de hiérarchie).
+						</p>
+					</td>
+					<td style="vertical-align: middle">
+						<figure>
+							<img src="../cssimg/dom_parent.jpg" width="380" height="128">
+							<figcaption>un parent et ses enfants</figcaption>
+						</figure>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<p>
+							Des éléments <strong>adjacents</strong> (sibling) sont des noeuds
+							ou des feuilles qui ont le même parent.
+						</p>
+					</td>
+					<td style="vertical-align: middle">
+						<figure>
+							<img src="../cssimg/dom_sibling.jpg" width="380" height="128">
+							<figcaption>éléments adjacents</figcaption>
+						</figure>
+					</td>
+				</tr>
+			</table>
+
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Document minimum</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<h3>Document minimum</h3>
+		<section>
+
+			<p class="fp-p-raz">Un document <abbr title="HyperText Markup Language">HTML</abbr> minimum et bien formé
+				contient les éléments montrés dans l'exemple suivant.</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : document minimum bien formé
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;title&gt;Document minimum&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				Quand on teste le code, il semble que rien ne soit affiché par le
+				navigateur.
+				<br>
+				En réalité le navigateur a affiché le seul élément d'information
+				textuelle qu'il a : le titre du document. Ce titre n'est pas affiché
+				dans la fenêtre, mais dans la barre de titre (ou dans l'onglet) du
+				navigateur.
+				<br>
+				Si la fenêtre est vide, c'est normal car le navigateur fait le rendu
+				de ce qui est contenu dans l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'body')">body</a>.
+				Comme celui-ci est vide, le navigateur n'a rien à afficher.
+			</p>
+
+			<figure style="float: right; margin: 0 0 0.5em 1em; width: 200px">
+				<img src="../htmlimg/html_head_body.png" width="200" height="194">
+				<figcaption> structure d'un document</figcaption>
+			</figure>
+
+			<p class="fp-bot0">On voit que la structure d'un document <abbr title="HyperText Markup Language">HTML</abbr>
+				est la suivante :</p>
+			<ul>
+				<li>une déclaration de doctype</li>
+				<li>un élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'html')">html</a> qui
+					contient
+					<ul class="fp-ul-puce">
+						<li>un élément <a
+							onclick="top.FP.Voir.showPageTech('elements', 'head')">head</a>
+							avec
+							<ul class="fp-ul-puce fp-bot0">
+								<li>un élément <a
+									onclick="top.FP.Voir.showPageTech('elements', 'title')">title</a></li>
+							</ul>
+						</li>
+						<li>un élément <a
+							onclick="top.FP.Voir.showPageTech('elements', 'body')">body</a></li>
+					</ul></li>
+			</ul>
+
+			<p class="fp-p-raz">C'est la structure minimum d'un document <abbr title="HyperText Markup Language">HTML</abbr>
+				bien formé.</p>
+
+		</section>
+
+		<h3>La racine avec &lt;html&gt;</h3>
+		<section>
+			<p>
+				L'élément <a onclick="top.FP.Voir.showPageTech('elements', 'html')">html</a>
+				est un élément spécial dans le sens où il contient tous les autres
+				éléments du document. Ce type d'élément est généralement appelé
+				élément racine dans les langages de balisage (<a
+					href="http://fr.wikipedia.org/wiki/Standard_Generalized_Markup_Language"
+					target="_blank">SGML</a>, <a
+					href="http://fr.wikipedia.org/wiki/Extensible_Markup_Language"
+					target="_blank">XML</a>, etc). Cette dénomination provient de la
+				représentation possible sous la forme d'un arbre inversé des
+				documents à base de balisage. Pour <abbr title="HyperText Markup Language">HTML</abbr>, ce graphe est appelé
+				l'arbre <abbr title="Document Object Model">DOM</abbr> (Document Object Model).
+			</p>
+
+			<figure>
+				<img src="../htmlimg/arbre01.png" width="400" height="316">
+				<figcaption> arbre et vocabulaire associé</figcaption>
+			</figure>
+
+			<p>Les relations des noeuds (et des feuilles) entre eux ont aussi
+				un vocabulaire bien défini :</p>
+
+			<figure>
+				<img src="../htmlimg/arbre02.png" width="400" height="365">
+				<figcaption> relations et vocabulaire associé</figcaption>
+			</figure>
+
+			<p>
+				Le <abbr title="World Wide Web Consortium">W3C</abbr> recommande de spécifier la langue dans laquelle est écrit le
+				document avec un attribut <code>lang</code>. Cette précision est
+				surtout utile pour les programmes de lecture utilisés par les
+				malvoyants.
+			</p>
+		</section>
+
+
+		<h3>L'en-tête avec &lt;head&gt;</h3>
+		<section>
+			<p>
+				<strong>L'en-tête d'un document <abbr title="HyperText Markup Language">HTML</abbr> n'est pas la même
+					chose que l'en-tête d'un document papier</strong>. L'en-tête d'un document
+				<abbr title="HyperText Markup Language">HTML</abbr> est défini avec la balise <a
+					onclick="top.FP.Voir.showPageTech('elements', 'head')">head</a> et
+				contient des <strong>métadonnées</strong> : des informations sur les
+				données du document (le contenu à proprement parler) et
+				éventuellement sur la manière de traiter ce contenu.
+			</p>
+
+			<div class="fp-puce">
+				<p class="fp-bot0">
+					L'élément <a onclick="top.FP.Voir.showPageTech('elements', 'head')">head</a>
+					peut contenir les éléments suivants :
+				</p>
+				﻿
+				<table class="fp-top0">
+					<tr>
+						<td>Élément</td>
+						<td>Nombre</td>
+						<td>Description</td>
+					</tr>
+					<tr>
+						<td><a
+							onclick="top.FP.Voir.showPageTech('elements', 'title')">title</a></td>
+						<td>1</td>
+						<td>Titre du document</td>
+					</tr>
+					<tr>
+						<td><a onclick="top.FP.Voir.showPageTech('elements', 'meta')">meta</a></td>
+						<td nowrap>0 ou plus</td>
+						<td>Métadonnées</td>
+					</tr>
+					<tr>
+						<td><a onclick="top.FP.Voir.showPageTech('elements', 'link')">link</a></td>
+						<td nowrap>0 ou plus</td>
+						<td>Liaisons ou relations vers des ressources externes (par
+							exemple feuilles de style <abbr title="Cascading Style Sheets">CSS</abbr>)
+						</td>
+					</tr>
+					<tr>
+						<td><a
+							onclick="top.FP.Voir.showPageTech('elements', 'style')">style</a></td>
+						<td nowrap>0 ou plus</td>
+						<td>Règles de style <abbr title="Cascading Style Sheets">CSS</abbr>
+							directement écrites le document
+						</td>
+					</tr>
+					<tr>
+						<td><a
+							onClick="top.FP.Voir.showPageTech('elements', 'script')">script</a></td>
+						<td nowrap>0 ou plus</td>
+						<td>Instructions de script (JavaScript, VBScript) directement
+							écrites le document</td>
+					</tr>
+					<tr>
+						<td><a onClick="top.FP.Voir.showPageTech('elements', 'base')">base</a></td>
+						<td nowrap>0 ou 1</td>
+						<td><abbr title="Uniform Resource Locator">URL</abbr> de base par défaut pour tous les liens du document</td>
+					</tr>
+				</table>
+			</div>
+
+			<p>Les éléments permettant de définir ses métadonnées ne peuvent
+				pas contenir d'autres éléments.</p>
+
+			<p>Le contenu de l'en-tête n'est jamais affiché par le
+				navigateur.</p>
+
+
+			<p class="fp-p-raz">
+				Remarque : on peut toutefois forcer l'affichage de ces éléments en
+				utilisant des propriétés de style <abbr
+					title="Cascading Style Sheets">CSS</abbr>. C'est utile uniquement
+				comme ici dans un but pédagogique et ça ne doit surtout pas être
+				fait dans un site réel.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : affichage de tous les éléments
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;A ne pas faire&lt;/title&gt;
+		&lt;style&gt;
+			* {
+				display: block; 
+				border: 1px solid red; 
+				padding: 5px;
+				margin: 5px;
+			}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		Tous les éléments sont affichés car leur mode d'affichage est
+		forcé en bloc. De plus une bordure rouge permet
+		de se rendre compte visuellement des imbrications. 
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				Le corps d'un document <abbr title="HyperText Markup Language">HTML</abbr> est défini avec la balise <a
+					onclick="top.FP.Voir.showPageTech('elements', 'body')">body</a> et
+				<strong>contient tout ce qui sera traité et rendu par le
+					navigateur</strong> dans la partie de sa fenêtre réservée à l'affichage
+				(appelée la zone client). Les chapitres suivants sont tous consacrés
+				à la façon de remplir cet élément.
+			</p>
+
+			<p class="fp-p-raz">Pour le moment, nous allons finir ce chapitre
+				en examinant les principaux éléments que l'on trouve dans l'en-tête
+				du document.</p>
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Les entiers</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.types.boolean.html">Bool&eacute;en</a>
+		</div>
+		<div class="next">
+			<a href="language.types.float.html">Nombres d&eacute;cimaux</a>
+		</div>
+		<div class="up">
+			<a href="language.types.html">Les types</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.types.integer" class="sect1">
+		<h2 class="title">Les entiers</h2>
+
+		<p class="simpara">
+			Un <a href="language.types.integer.html" class="link">entier</a> est
+			un nombre appartenant à la classe ℤ = {..., -2, -1, 0, 1, 2, ...}.
+		</p>
+
+		<p class="para">Voir aussi :</p>
+
+		<ul class="itemizedlist">
+			<li class="listitem"><span class="simpara"> <a
+					href="ref.gmp.html" class="link">Les entiers de longueur
+						arbitraire / GMP</a>
+			</span></li>
+			<li class="listitem"><span class="simpara"> <a
+					href="language.types.float.html" class="link">Les nombres à
+						virgule flottante</a>
+			</span></li>
+			<li class="listitem"><span class="simpara"> <a
+					href="ref.bc.html" class="link">Les précisions arbitraires /
+						BCMath</a>
+			</span></li>
+		</ul>
+
+		<div class="sect2" id="language.types.integer.syntax">
+			<h3 class="title">Syntaxe</h3>
+
+			<p class="simpara">Les entiers peuvent être spécifiés en notation
+				décimale (base 10), hexadécimale (base 16), octale (base 8), ou
+				binaire (base 2) optionnellement précédée d&#039;un signe (- ou +).
+			</p>
+
+			<p class="para">Les entiers littéraux binaires sont disponibles
+				depuis PHP 5.4.0.</p>
+
+			<p class="para">
+				Pour utiliser la notation octale, précédez le nombre d&#039;un <em>0</em>
+				(zéro). Pour utiliser la notation hexadécimale, précédez le nombre
+				d&#039;un <em>0x</em>. Pour utiliser la notation binaire, précédez
+				le nombre d&#039;un <em>0b</em>.
+			</p>
+
+			<div class="example" id="example-71">
+				<p>
+					<strong>Exemple #1 Les entiers littéraux</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$a&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">1234</span><span style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;un&nbsp;nombre&nbsp;décimal<br /></span><span
+								style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;-</span><span
+								style="color: #0000BB">123</span><span style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;un&nbsp;nombre&nbsp;négatif<br /></span><span
+								style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">0123</span><span style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;un&nbsp;nombre&nbsp;octal&nbsp;(équivalent&nbsp;à&nbsp;83&nbsp;décimales)<br /></span><span
+								style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">0x1A</span><span style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;un&nbsp;nombre&nbsp;héxadecimal&nbsp;(équivalent&nbsp;à&nbsp;26&nbsp;décimales)<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+
+			<p class="para">Formellement, la structure d&#039;un entier
+				littéral est :</p>
+
+			<div class="informalexample">
+				<div class="example-contents">
+					<div class="cdata">
+						<pre>
+decimal     : [1-9][0-9]*
+            | 0
+
+hexadecimal : 0[xX][0-9a-fA-F]+
+
+octal       : 0[0-7]+
+
+integer     : [+-]?decimal
+            | [+-]?hexadecimal
+            | [+-]?octal
+            | [+-]?binary
+</pre>
+					</div>
+				</div>
+
+			</div>
+
+			<p class="para">
+				La taille d&#039;un entier est dépendant de la plate-forme,
+				cependant, une valeur maximale d&#039;environ 2 milliards est
+				habituelle (cela correspond à 32 bits signés). Les plateformes
+				64-bit ont habituellement une valeur maximale d&#039;environ 9E18.
+				PHP ne supporte pas les entiers non-signés. La taille d&#039;un
+				entier peut être déterminée en utilisant la constante <strong><code>PHP_INT_SIZE</code></strong>,
+				et la valeur maximale, en utilisant la constante <strong><code>PHP_INT_MAX</code></strong>
+				depuis PHP 4.4.0 et PHP 5.0.5.
+			</p>
+
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">Si un nombre invalide est fourni dans un entier
+					octal (i.e. 8 ou 9), le reste du nombre est ignoré.</p>
+
+				<div class="example" id="example-72">
+					<p>
+						<strong>Exemple #2 Bizarrerie avec les valeurs octales</strong>
+					</p>
+					<div class="example-contents">
+						<div class="phpcode">
+							<code>
+								<span style="color: #000000"> <span
+									style="color: #0000BB">&lt;?php<br />var_dump
+								</span><span style="color: #007700">(</span><span
+									style="color: #0000BB">01090</span><span style="color: #007700">);&nbsp;</span><span
+									style="color: #FF8000">//&nbsp;010&nbsp;octal&nbsp;=&nbsp;8&nbsp;décimales<br /></span><span
+									style="color: #0000BB">?&gt;</span>
+								</span>
+							</code>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="sect2" id="language.types.integer.overflow">
+			<h3 class="title">Débordement d&#039;entier</h3>
+
+			<p class="para">
+				Si PHP rencontre un nombre supérieur au maximal d&#039;un entier, il
+				sera interprété comme un <a href="language.types.float.html"
+					class="link">nombre décimal</a>. De la même façon, une opération
+				qui résulte en un nombre supérieur au nombre maximal d&#039;un
+				entier, retournera un <a href="language.types.float.html"
+					class="link">nombre décimal</a>.
+			</p>
+
+			<div class="example" id="example-73">
+				<p>
+					<strong>Exemple #3 Dépassement d&#039;entier sur un
+						système 32-bit</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$large_number&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">2147483647</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$large_number</span><span
+								style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;int(2147483647)<br />
+								<br /></span><span style="color: #0000BB">$large_number&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">2147483648</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$large_number</span><span
+								style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;float(2147483648)<br />
+								<br /></span><span style="color: #0000BB">$million&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">1000000</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$large_number&nbsp;</span><span
+								style="color: #007700">=&nbsp;&nbsp;</span><span
+								style="color: #0000BB">50000&nbsp;</span><span
+								style="color: #007700">*&nbsp;</span><span
+								style="color: #0000BB">$million</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$large_number</span><span
+								style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;float(50000000000)<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="example" id="example-74">
+				<p>
+					<strong>Exemple #4 Dépassement d&#039;entier sur un
+						système 64-bit</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$large_number&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">9223372036854775807</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$large_number</span><span
+								style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;int(9223372036854775807)<br />
+								<br /></span><span style="color: #0000BB">$large_number&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">9223372036854775808</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$large_number</span><span
+								style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;float(9.2233720368548E+18)<br />
+								<br /></span><span style="color: #0000BB">$million&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">1000000</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$large_number&nbsp;</span><span
+								style="color: #007700">=&nbsp;&nbsp;</span><span
+								style="color: #0000BB">50000000000000&nbsp;</span><span
+								style="color: #007700">*&nbsp;</span><span
+								style="color: #0000BB">$million</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$large_number</span><span
+								style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;float(5.0E+19)<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+
+			<p class="para">
+				Il n&#039;y a pas d&#039;opérateur de division entière en PHP. <em>1/2</em>
+				contient en fait, <span class="type"><a
+					href="language.types.float.html" class="type float">float</a></span>(<em>0.5</em>).
+				La valeur peut être convertie en un entier en l&#039;arrondissant,
+				en utilisant la fonction <span class="function"><a
+					href="function.round.html" class="function">round()</a></span>.
+			</p>
+
+			<div class="informalexample">
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />var_dump
+							</span><span style="color: #007700">(</span><span style="color: #0000BB">25</span><span
+								style="color: #007700">/</span><span style="color: #0000BB">7</span><span
+								style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;float(3.5714285714286)&nbsp;<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">((int)&nbsp;(</span><span
+								style="color: #0000BB">25</span><span style="color: #007700">/</span><span
+								style="color: #0000BB">7</span><span style="color: #007700">));&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;int(3)<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">round</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">25</span><span
+								style="color: #007700">/</span><span style="color: #0000BB">7</span><span
+								style="color: #007700">));&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;float(4)&nbsp;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="sect2" id="language.types.integer.casting">
+			<h3 class="title">Conversion en entier</h3>
+
+			<p class="simpara">
+				Pour convertir explicitement une valeur en un entier, utilisez soit
+				le mot-clé <em>(int)</em>, soit <em>(integer)</em>. Cependant, dans
+				la plupart des cas, ce mot-clé n&#039;est pas nécessaire vu
+				qu&#039;une valeur sera automatiquement convertie si un opérateur,
+				une fonction ou une structure de contrôle demande un entier en guise
+				d&#039;argument. Une valeur peut également être convertie en un
+				entier en utilisant la fonction <span class="function"><a
+					href="function.intval.html" class="function">intval()</a></span>.
+			</p>
+
+			<p class="simpara">
+				Voir aussi : <a href="language.types.type-juggling.html"
+					class="link">le transtypage</a>.
+			</p>
+
+			<div class="sect3" id="language.types.integer.casting.from-boolean">
+				<h4 class="title">
+					Depuis un <a href="language.types.boolean.html" class="link">booléen</a>
+				</h4>
+
+				<p class="simpara">
+					<strong><code>FALSE</code></strong> correspond à <em>0</em> (zéro),
+					et <strong><code>TRUE</code></strong> correspond à <em>1</em> (un).
+				</p>
+			</div>
+
+			<div class="sect3" id="language.types.integer.casting.from-float">
+				<h4 class="title">
+					Depuis <a href="language.types.float.html" class="link">un
+						nombre à virgule flottante</a>
+				</h4>
+
+				<p class="simpara">
+					Lorsque l&#039;on convertit un <a href="language.types.float.html"
+						class="link">nombre décimal</a> en un <a
+						href="language.types.integer.html" class="link">entier</a>, le
+					nombre sera arrondi <em class="emphasis">vers zéro</em>.
+				</p>
+
+				<p class="para">
+					Si le nombre à virgule flottante est au delà des limites des
+					entiers (habituellement, <em>+/- 2.15e+9 = 2^31</em> sur les
+					plate-formes 32-bit et <em>+/- 9.22e+18 = 2^63</em> sur les
+					plate-formes 64-bit), le résultat sera indéfini, sachant que le
+					nombre à virgule flottante n&#039;a pas une précision suffisante
+					pour donner un résultat entier exact. Aucune alerte n&#039;est
+					émise lorsque ce comportement survient !
+				</p>
+
+				<div class="warning">
+					<strong class="warning">Avertissement</strong>
+					<p class="para">Ne convertissez jamais une fraction inconnue en
+						un entier, ceci peut engendrer un résultat inattendu.</p>
+
+					<div class="informalexample">
+						<div class="example-contents">
+							<div class="phpcode">
+								<code>
+									<span style="color: #000000"> <span
+										style="color: #0000BB">&lt;?php<br /></span><span
+										style="color: #007700">echo&nbsp;(int)&nbsp;(&nbsp;(</span><span
+										style="color: #0000BB">0.1</span><span style="color: #007700">+</span><span
+										style="color: #0000BB">0.7</span><span style="color: #007700">)&nbsp;*&nbsp;</span><span
+										style="color: #0000BB">10&nbsp;</span><span
+										style="color: #007700">);&nbsp;</span><span
+										style="color: #FF8000">//&nbsp;Affiche&nbsp;7&nbsp;!<br /></span><span
+										style="color: #0000BB">?&gt;</span>
+									</span>
+								</code>
+							</div>
+						</div>
+
+					</div>
+
+					<p class="para">
+						Voir aussi la section sur <a
+							href="language.types.float.html#warn.float-precision"
+							class="link">les alertes concernant la précision des nombres
+							à virgule flottante</a>.
+					</p>
+				</div>
+			</div>
+
+			<div class="sect3" id="language.types.integer.casting.from-string">
+				<h4 class="title">Depuis des chaînes de caractères</h4>
+
+				<p class="simpara">
+					Voir la section sur la <a
+						href="language.types.string.html#language.types.string.conversion"
+						class="link">conversion des chaînes en nombres</a>
+				</p>
+			</div>
+
+			<div class="sect3" id="language.types.integer.casting.from-other">
+				<h4 class="title">Depuis d&#039;autres types</h4>
+
+				<div class="caution">
+					<strong class="caution">Attention</strong>
+					<p class="simpara">
+						Le comportement de la conversion en un entier est indéfini depuis
+						les autres types. Ne rapporter <em class="emphasis">aucun</em>
+						comportement observé, sachant qu&#039;ils peuvent changer sans
+						avertissement.
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.types.boolean.html">Bool&eacute;en</a>
+		</div>
+		<div class="next">
+			<a href="language.types.float.html">Nombres d&eacute;cimaux</a>
+		</div>
+		<div class="up">
+			<a href="language.types.html">Les types</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

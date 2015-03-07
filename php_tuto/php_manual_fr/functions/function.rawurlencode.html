@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Encode une cha&icirc;ne en URL, selon la RFC 3986</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.rawurldecode.html">rawurldecode</a>
+		</div>
+		<div class="next">
+			<a href="function.urldecode.html">urldecode</a>
+		</div>
+		<div class="up">
+			<a href="ref.url.html">Fonctions URL</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.rawurlencode" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">rawurlencode</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">rawurlencode</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Encode une chaîne en URL, selon la RFC
+					3986</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.rawurlencode-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>rawurlencode</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$str</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				Encode la chaîne fournie, en accord avec la <a
+					href="http://www.faqs.org/rfcs/rfc3986" class="link external">&raquo;&nbsp;RFC
+					3986</a>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.rawurlencode-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">str</code></em></span>
+				<dd>
+
+					<p class="para">L&#039;URL à encoder.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.rawurlencode-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Retourne une chaîne dont tous les caractères non
+				alphanumériques (hormis
+			<div class="example-contents screen">-_.~</div>
+			) auront été remplacés par des séquences <em>%xy</em> (<em>%</em>),
+			avec xy, deux valeurs hexadécimales. Ce codage est conforme à la <a
+				href="http://www.faqs.org/rfcs/rfc3986" class="link external">&raquo;&nbsp;RFC
+				3986</a> qui évite que les caractères spéciaux soient interprétés comme
+			des délimiteurs, et pour protéger les URL lors du transfert
+			(contrairement à certains systèmes email).
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Avant PHP 5.3.0, rawurlencode encodait les tildes (<em>~</em>)
+					suivant la <a href="http://www.faqs.org/rfcs/rfc1738"
+						class="link external">&raquo;&nbsp;RFC 1738</a>.
+			</blockquote>
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.rawurlencode-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.3.4</td>
+						<td>Les caractères tildes (~) ne sont plus encodés lorsque la
+							fonction <span class="function"><strong>rawurlencode()</strong></span>
+							est utilisée avec les chaînes EBCDIC.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.3.0</td>
+						<td>Conformité avec la <a
+							href="http://www.faqs.org/rfcs/rfc3986" class="link external">&raquo;&nbsp;RFC
+								3986</a>.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.rawurlencode-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-3819">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>rawurlencode()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">'&lt;a&nbsp;href="ftp://user:'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">rawurlencode</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'foo&nbsp;@+%/'</span><span
+								style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #DD0000">'@ftp.example.com/x.txt"&gt;'</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+&lt;a href=&quot;ftp://user:foo%20%40%2B%25%2F@ftp.example.com/x.txt&quot;&gt;
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+			<p class="para">Ou, si vous transmettez un composant PATH_INFO
+				d&#039;une URL :</p>
+			<p class="para">
+			<div class="example" id="example-3820">
+				<p>
+					<strong>Exemple #2 Exemple avec <span class="function"><strong>rawurlencode()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">'&lt;a&nbsp;href="http://example.com/department_list_script/'</span><span
+								style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">rawurlencode</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'sales&nbsp;and&nbsp;marketing/Miami'</span><span
+								style="color: #007700">),&nbsp;</span><span
+								style="color: #DD0000">'"&gt;'</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+&lt;a href=&quot;http://example.com/department_list_script/sales%20and%20marketing%2FMiami&quot;&gt;
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.rawurlencode-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.rawurldecode.html" class="function"
+						rel="rdfs-seeAlso">rawurldecode()</a> - D&eacute;code une
+						cha&icirc;ne URL</span></li>
+				<li class="member"><span class="function"><a
+						href="function.urldecode.html" class="function" rel="rdfs-seeAlso">urldecode()</a>
+						- D&eacute;code une cha&icirc;ne encod&eacute;e URL</span></li>
+				<li class="member"><span class="function"><a
+						href="function.urlencode.html" class="function" rel="rdfs-seeAlso">urlencode()</a>
+						- Encode une cha&icirc;ne en URL</span></li>
+				<li class="member"><a href="http://www.faqs.org/rfcs/rfc3986"
+					class="link external">&raquo;&nbsp;RFC 3986</a></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.rawurldecode.html">rawurldecode</a>
+		</div>
+		<div class="next">
+			<a href="function.urldecode.html">urldecode</a>
+		</div>
+		<div class="up">
+			<a href="ref.url.html">Fonctions URL</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

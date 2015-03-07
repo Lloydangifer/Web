@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Couleurs</title>
+
+<link rel="stylesheet" href="tech.css">
+
+<style>
+/*==================================================
+	BLOCS POUR TEST RGB		
+==================================================*/
+html,
+body {
+	margin: 0;
+	padding: 0;
+	background: #eee;
+	}
+.bcTest {
+	font-size: 13px;
+	text-align: center;
+	margin: 0;
+	border: 1px solid #000;
+	width: 95%;
+	border-radius: 8px;
+}
+
+.bcTest input[type="range"] {
+	width: 180px;
+	margin: 0 auto;
+}
+
+.bcTest label {
+	display: inline-block;
+	margin: 5px 5px 5px 0;
+	text-align: right;
+	width: 70px;
+}
+
+.bcTest-couleur {
+	height: 20px;
+	width: 210px;
+	display: inline-block;
+	line-height: 20px;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	/* fond en dégradé ou couleur généré par JavaScript */
+}
+
+.val-min-max {
+	display: inline-block;
+	/*padding: 0 5px;*/
+	width: 20px;
+	font-size: 10px;
+}
+
+/*==================================================
+	Autres		
+==================================================*/
+.texte-noir {
+	color: #000;
+}
+
+.texte-blanc {
+	color: #fff;
+}
+</style>
+
+<!--  Polyfill pour gestion type=interval dans firefox -->
+<script src="../_local/html5slider.js"></script>
+
+</head>
+<body>
+	<div id="bcRGBTest" class="bcTest">
+		<div id="bcRGB1"></div>
+		<div id="bcRGB2"></div>
+		<div id="bcRGB3"></div>
+		<div id="bcRGB" class="bcTest-resultat"></div>
+	</div>
+	
+	<script>
+		"use strict";
+		var FPL = {
+			// initialisés dans IIF
+			prefixeCSS : '',
+
+			rngRGB1 : null,
+			rngRGB2 : null,
+			rngRGB3 : null,
+			bcRGBTest : null,
+			bcRGB : null,
+			RGB1 : null,
+			RGB2 : null,
+			RGB3 : null,
+
+			//---------------------------------------------------------------------
+			// Changement des curseurs RGB
+			RGBChange : function(i) {
+				var RVB = [ '', 'Rouge', 'Vert', 'Bleu' ], 
+				red = 0, green = 0, blue = 0, 
+				Bloc, couleur, rgb;
+
+				if (i == 1)
+					red = couleur = Number(this.rngRGB1.value);
+				else if (i == 2)
+					green = couleur = Number(this.rngRGB2.value);
+				else
+					blue = couleur = Number(this.rngRGB3.value);
+
+				rgb = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
+
+				Bloc = document.getElementById('labRGB' + i);
+				Bloc.innerHTML = RVB[i] + ' ' + couleur;
+				document.getElementById('RGB' + i).style.backgroundColor = rgb;
+
+				red = Number(this.rngRGB1.value);
+				green = Number(this.rngRGB2.value);
+				blue = Number(this.rngRGB3.value);
+
+				rgb = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
+
+				this.bcRGBTest.style.backgroundColor = rgb;
+				this.bcRGBTest.style.color = this.texteNoirOuBlanc(red, green,
+						blue);
+
+				rgb += '<br>rgb(' + parseInt((red / 255) * 100, 10) + '%, '
+						+ parseInt((green / 255) * 100, 10) + '%, '
+						+ parseInt((blue / 255) * 100, 10) + '%)';
+
+				this.bcRGB.innerHTML = rgb;
+			},
+
+			//---------------------------------------------------------------------
+			// Définit la couleur du texte suivant la couleur de fond
+			texteNoirOuBlanc : function(red, green, blue) {
+				var luminosite = (red * 299) + (green * 587) + (blue * 114);
+				luminosite = luminosite / 255000;
+
+				// valeur de 0 à 1
+				return (luminosite >= 0.5) ? '#000' : '#fff';
+			},
+
+			//---------------------------------------------------------------------
+			// Transformation décimal en hexadécimal
+			decToHexa : function(n) {
+				var s = n.toString(16).toUpperCase();
+				return ((s.length == 1) ? '0' : '') + s;
+			}
+		}; // FIN OBJET FPL
+
+		(function() {
+			var i, H, aMax, aVal, aStep, sBackground = '';
+
+			if (navigator.userAgent.indexOf("Chrome") > -1) {
+				FPL.prefixeCSS = '-webkit-';
+			} else if (navigator.userAgent.indexOf("Safari") > -1) {
+				FPL.prefixeCSS = '-webkit-';
+			} else if (navigator.userAgent.indexOf("Opera") > -1) {
+				FPL.prefixeCSS = '-o-';
+			} else if (navigator.userAgent.indexOf("Firefox") > -1) {
+				FPL.prefixeCSS = '-moz-';
+			} else if (navigator.userAgent.indexOf("MSIE") > -1) {
+				FPL.prefixeCSS = '-ms-';
+			}
+
+			// Génération des blocs pour test RGB
+			// les oninput sont pour html5slider.js, le polyfill Firefox 
+
+			aVal = [ -1, 255, 239, 128 ];
+
+			for (i = 1; i < 4; i++) {
+				H = '<label id="labRGB' + i + '"></label>'						
+						+ '<div id="RGB' + i + '" class="bcTest-couleur">'
+						+ '<input type="range" id="rngRGB' + i
+						+ '" min="0" max="255" ' + 'step="1" value="' + aVal[i]
+						+ '" onchange="FPL.RGBChange(' + i
+						+ ')" oninput="FPL.RGBChange(' + i + ')">' + '</div>';
+
+				document.getElementById('bcRGB' + i).innerHTML = H;
+			}
+
+			// Init ref blocs
+			FPL.rngRGB1 = document.getElementById('rngRGB1');
+			FPL.rngRGB2 = document.getElementById('rngRGB2');
+			FPL.rngRGB3 = document.getElementById('rngRGB3');
+			FPL.bcRGBTest = document.getElementById('bcRGBTest');
+			FPL.bcRGB = document.getElementById('bcRGB');
+			FPL.RGB1 = document.getElementById('RGB1');
+			FPL.RGB2 = document.getElementById('RGB2');
+			FPL.RGB3 = document.getElementById('RGB3');
+
+			// Affichage des blocs
+			for (i = 1; i < 4; i++) {
+				FPL.RGBChange(i);
+			}
+
+			FPL.bcRGBTest.style.visibility = 'visible';
+		})();
+	</script>
+</body>
+</html>

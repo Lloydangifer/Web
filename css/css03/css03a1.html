@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Boîtes</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function(){top.FP.initPage();}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			Pour leur affichage, les éléments <abbr
+				title="HyperText Markup Language">HTML</abbr> générent des boîtes
+			rectangulaires qui s'empilent verticalement ou s'alignent
+			horizontalement.
+		</p>
+
+		<!-- ################################################################################################## -->
+		<h3>Des boîtes dans des boîtes dans ...</h3>
+		<section>
+			<p>
+				Un élément <abbr title="HyperText Markup Language">HTML</abbr> est <strong>toujours</strong>
+				affiché <strong>dans une boîte</strong>.
+			</p>
+
+			<p>
+				Une boîte est construite avec <strong>différents composants</strong>,
+				représentés par des propriétés <abbr title="Cascading Style Sheets">CSS</abbr>.
+			</p>
+
+			<p class="fp-bot0">
+				Nous allons pouvoir donner des valeurs à ces propriérés pour
+				modifier et individualiser la représentation graphique de la boîte.
+				<br>
+				Les composants peuvent être regroupés en 4 familles :
+			</p>
+			<ul>
+				<li>agencement (marges externes <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'margin')">margin</a>,
+					bordures <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'border')">border</a>,
+					marges internes <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'padding')">padding</a>)
+				</li>
+				<li>dimensions (en particulier hauteur <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'height')">height</a>
+					et largeur <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'width')">width</a>)
+				</li>
+				<li>position (en particulier <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'position')">position</a>,
+					<a onClick="top.FP.Voir.showPageTech('css_proprietes', 'left')">left</a>,
+					<a onClick="top.FP.Voir.showPageTech('css_proprietes', 'right')">right</a>,
+					<a onClick="top.FP.Voir.showPageTech('css_proprietes', 'top')">top</a>,
+					<a onClick="top.FP.Voir.showPageTech('css_proprietes', 'bottom')">bottom</a>,
+					)
+				</li>
+				<li>visuel (en particulier arrière plan <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background')">background</a>,
+					police de caractères <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'font')">font</a>,
+					couleur de texte <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'color')">color</a>).
+				</li>
+			</ul>
+
+			<figure>
+				<img src="../cssimg/boite_bleue.png" width="361" height="297">
+				<figcaption>le modéle de boîte (box-model)</figcaption>
+			</figure>
+
+			<p class="fp-bot0">Quelques précisions.</p>
+			<ul>
+				<li>Les marges internes (<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'padding')">padding</a>),
+					situées entre le contenu et la bordure, prennent la couleur de fond
+					du contenu,
+				</li>
+				<li>Marges internes (<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'padding')">padding</a>)
+					et bordures (<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'border')">border</a>)
+					sont facultatives. Si elles sont omises, elles ont par défaut la
+					valeur 0.
+				</li>
+				<li>Les marges externes (<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'margin')">margin</a>)
+					sont toujours transparentes et il n'est pas possible de leur donner
+					une couleur ou une image de fond.
+				</li>
+				<li>Certains éléments ont des marges externes (<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'margin')">margin</a>)
+					prédéfinies par les navigateurs (par exemple <a
+					onclick="top.FP.Voir.showPageTech('elements', 'body')">body</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'p')">p</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'ul')">ul</a>, etc).
+					Si les marges externes ne sont pas prédéfinies ou omises, elles ont
+					par défaut la valeur 0.
+				</li>
+				<li>Les marges externes (<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'margin')">margin</a>)
+					peuvent avoir une valeur négative.
+				</li>
+			</ul>
+
+			<div class="fp-puce">
+				<img src="../cssimg/poupee_russe.jpg" width="200" height="129"
+					style="float: right; margin: 0 0 0.5em 0.5em">
+
+				<p>
+					Une page <abbr title="HyperText Markup Language">HTML</abbr> est
+					composée d'<strong>un ensemble de boîtes imbriquées</strong> les
+					unes dans les autres, suivant le principe des poupées russes.
+				</p>
+
+				<p>
+					L'exemple suivant met en valeur les boîtes utilisées dans la page <abbr
+						title="HyperText Markup Language">HTML</abbr>. Les marges sont
+					volontairement grossies pour que les boîtes entourées en rouge
+					soient bien visibles.
+				</p>
+			</div>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : boîtes bloc ou en ligne
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les feuilles de style&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;L'Arrière Des Etoiles&lt;/h3&gt;
+		
+		&lt;p&gt;Les CSS sont &lt;strong&gt;l'arme &lt;em&gt;secrète&lt;/em&gt; de la
+			Force !&lt;/strong&gt;&lt;/p&gt;
+		
+		&lt;p&gt;&lt;img src="../exemples/img/yoda1.png"&gt;
+			Télécharger &lt;a href="#"&gt;ce tutoriel&lt;/a&gt; tu
+			dois.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+* {
+	border: 1px solid red; 
+	margin: 10px; 
+	padding: 10px;
+}</textarea>
+			</form>
+		</section>
+
+		<!-- ################################################################################################## -->
+		<a id="bloc_en_ligne"></a>
+		<h3>Bloc ou en ligne ?</h3>
+		<section>
+			<p class="fp-bot0">L'affichage de l'exemple montre en particulier
+				3 choses :</p>
+			<ul>
+				<li>les 2 premières boîtes sont celles faites par les éléments
+					<a onclick="top.FP.Voir.showPageTech('elements', 'html')">html</a>
+					et <a onclick="top.FP.Voir.showPageTech('elements', 'body')">body</a>,
+				</li>
+				<li>certaines boîtes sont affichées les unes en dessous des
+					autres,</li>
+				<li>certaines boîtes sont affichées les unes à côté des autres.</li>
+			</ul>
+
+			<p>
+				Suivant le mode d'affichage par défaut des éléments <abbr
+					title="HyperText Markup Language">HTML</abbr>, le comportement des
+				boîtes gérées par <abbr title="Cascading Style Sheets">CSS</abbr> va
+				être différent pour le positionnement, les alignements, les marges,
+				les imbrications, etc.
+			</p>
+
+			<figure>
+				<img src="../cssimg/block_inline.png" width="480" height="254">
+				<figcaption>block et inline</figcaption>
+			</figure>
+
+			<div class="fp-puce">
+				<p>
+					Les boîtes affichées les unes en dessous des autres sont appelées
+					des <strong>boîtes de bloc</strong> (block). Elles sont générées
+					ainsi par défaut pour les éléments <abbr
+						title="HyperText Markup Language">HTML</abbr> de structure et de
+					groupement (ainsi que quelques éléments de table et de formulaire).
+				</p>
+				<p>Les boîtes de type bloc sont disposées les unes sous les
+					autres, alignées sur leur bord gauche (disposition verticale). Par
+					défaut, une boîte de type bloc ne peut pas être à côté d'une autre
+					boîte à droite ou à gauche. Elle est précédée et suivie d'une sorte
+					de saut de ligne.</p>
+			</div>
+
+			<div class="fp-puce">
+				<p>
+					Les boîtes affichées les unes à côté des autres sont appelées des <strong>boîtes
+						en ligne</strong> (inline). Elles sont générées ainsi par défaut pour les
+					éléments <abbr title="HyperText Markup Language">HTML</abbr> de
+					texte, de formulaire et embarqués.
+				</p>
+
+				<p>Les boîtes de type en ligne sont disposées les unes à côté
+					des autres, alignées sur leur bord inférieur (disposition
+					horizontale). Par défaut, une boîte en ligne n'est ni précédée, ni
+					suivie d'un saut de ligne.</p>
+			</div>
+
+			<p class="fp-remarque" style="margin-bottom: 4em; min-height: 0;">
+				Le détail des boîtes de type bloc ou en ligne se trouve dans <a
+					onclick="top.FP.Voir.showPageTech('elements', '')">les
+					spécifications techiques -&gt; éléments HTML</a>
+			</p>
+
+			<p class="fp-p-raz">L'exemple suivant entoure en rouge les boîtes
+				bloc et en vert les boîtes en ligne. Les marges sont volontairement
+				grossies pour que les boîtes soient bien visibles.</p>
+
+
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : boîtes bloc ou en ligne
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les feuilles de style&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h3&gt;L'Arrière Des Etoiles&lt;/h3&gt;
+		
+		&lt;p&gt;Les CSS sont &lt;strong&gt;l'arme &lt;em&gt;secrète&lt;/em&gt; de la
+			Force !&lt;/strong&gt;&lt;/p&gt;
+		
+		&lt;p&gt;&lt;img src="../exemples/img/yoda1.png"&gt;
+			Télécharger &lt;a href="#"&gt;ce tutoriel&lt;/a&gt; tu
+			dois.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer" onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+html, body, h3, p {
+	border: 1px solid red; 
+	margin: 10px; 
+	padding: 10px;
+}
+em, strong, img, a {
+	border: 1px solid green;
+	padding: 3px;
+}</textarea>
+			</form>
+
+
+			<p>
+				Dans l'exemple précédent, on peut remarquer que certaines parties de
+				texte ne sont pas dans une boîte visible comme par exemple "Les CSS
+				sont" , "Télécharger" et "tu dois.". Ces parties de texte n'étant
+				pas entourées par des balises en ligne (à la différence des parties
+				entourées par <a
+					onclick="top.FP.Voir.showPageTech('elements', 'em')">em</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'strong')">strong</a>
+				ou <a onclick="top.FP.Voir.showPageTech('elements', 'a')">a</a>),
+				elles sont néanmoins affichée dans des boîtes, définies dans les
+				specifications <abbr title="Cascading Style Sheets">CSS</abbr> comme
+				des boîtes en ligne anonymes (<a
+					href="http://www.w3.org/TR/CSS2/visuren.html#anonymous"
+					target="_blank">"anonymous inline boxes"</a>).
+			</p>
+
+			<p>Il existe également d'autres boîtes invisibles pour contenir
+				une ligne entière de texte : ce sont des boîtes de ligne.</p>
+
+			<p>Par exemple avec le code HTML suivant :</p>
+			<pre data-code="HTML">
+&lt;p&gt;Les CSS sont &lt;strong&gt;l'arme &lt;em&gt;secrète&lt;/em&gt; de la Force&lt;/strong&gt;
+et vous devez &lt;a href="#"&gt;télécharger&lt;/a&gt; ce tutoriel.&lt;/p&gt;
+</pre>
+			<p>Les boîtes générées seront les suivantes si le texte du
+				paragraphe est sur 2 lignes :</p>
+
+			<figure>
+				<img src="../cssimg/toutes_boites.png" width="480" height="186">
+				<figcaption>tous les types de boîtes</figcaption>
+			</figure>
+
+			<p>Nous ne pouvons pas agir sur les boîtes de ligne et sur les
+				boîtes anonymes. C'est le navigateur et lui seul qui les prend en
+				charge pour réaliser l'affichage.</p>
+
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Différences</h3>
+		<section>
+			<p>La différence entre les boîtes bloc et les boîtes en ligne est
+				importante car elles ne se comportent pas de la même façon et
+				n'offrent pas les mêmes possibilités de positionnement ou de
+				dimensionnement.</p>
+
+			<p>
+				Ls <strong>boîtes de type bloc</strong> peuvent contenir d'autres
+				boîtes de type bloc et/ou en ligne. Elles peuvent avoir des
+				dimensions définies (<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'height')">height</a>,
+				<a onClick="top.FP.Voir.showPageTech('css_proprietes', 'width')">width</a>),
+				posséder des marges externes (<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'margin')">margin</a>)
+				et internes (<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'padding')">padding</a>),
+				des bords (<a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'border')">border</a>)
+				et être positionnées pour définir la mise en page du document. Par
+				défaut, la plupart des éléments bloc possèdent des marges internes
+				et externes non nulles, parfois différentes selon les navigateurs.
+			</p>
+
+			<p>
+				Les <strong>boîtes de type en ligne</strong> ne peuvent contenir que
+				d'autres boites de type en ligne. Seules les boîtes des éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'img')">img</a>, <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>,
+				<a onClick="top.FP.Voir.showPageTech('elements', 'textarea')">textarea</a>
+				et <a onClick="top.FP.Voir.showPageTech('elements', 'select')">select</a>
+				peuvent avoir des dimensions définies. Les boîtes des autres
+				éléments en ligne occupent la place minimum nécessaire à leur
+				contenu. Les boîtes en ligne ont des marges internes et externes
+				nulles par défaut. Bien que l'on puisse les positionner, on ne
+				devrait pas utiliser cette possibilité puisque ces boîtes affichent
+				généralement des éléments de catégorie textuelle qui devraient
+				rester dans le flot normal du texte.
+			</p>
+
+
+			<table class="TAB-zebre">
+				<tr>
+					<td>Fonctionnalité</td>
+					<td>Boîtes de blocs (block)</td>
+					<td>Boîtes en ligne (inline)</td>
+				</tr>
+				<tr>
+					<td>Placement par défaut</td>
+					<td>Les unes en dessous des autres. Le comportement peut être
+						changé avec la propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'display')">display</a>
+					</td>
+					<td>Les unes à côté des autres. Le comportement peut être
+						changé avec la propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'display')">display</a>
+					</td>
+				</tr>
+				<tr>
+					<td>Occupation</td>
+					<td>Toute la largeur de leur conteneur. Hauteur nécessaire
+						pour afficher le contenu.</td>
+					<td>L'espace minimum en largeur et en hauteur pour afficher le
+						contenu.</td>
+				</tr>
+				<tr>
+					<td>Contiennent
+					<td>Des boîtes de blocs, des boîtes en ligne</td>
+					<td>Des boîtes en ligne</td>
+				</tr>
+				<tr>
+					<td>Positionnement</td>
+					<td>Oui <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'left')">left</a>,
+						<a onClick="top.FP.Voir.showPageTech('css_proprietes', 'top')">top</a>,
+						<a onClick="top.FP.Voir.showPageTech('css_proprietes', 'right')">right</a>,
+						<a onClick="top.FP.Voir.showPageTech('css_proprietes', 'bottom')">bottom</a>,
+						<a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'position')">position</a>,
+						<a onClick="top.FP.Voir.showPageTech('css_proprietes', 'float')">float</a></td>
+					<td>Possible en changeant le comportement normal de la boîte.
+						A éviter.</td>
+				</tr>
+				<tr>
+					<td>Dimensionnement</td>
+					<td>Largeur et hauteur avec <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'height')">height</a>,
+						<a onClick="top.FP.Voir.showPageTech('css_proprietes', 'width')">width</a>.
+					</td>
+					<td>Uniquement possible pour les zones de saisie des
+						formulaires.</td>
+				</tr>
+				<tr>
+					<td>Marges intérieures</td>
+					<td>Haute et basse, droite et gauche avec <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'padding')">padding</a></td>
+					<td>Haute et basse, droite et gauche avec <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'padding')">padding</a>.
+						Marges haute et basse inutilisables en réalité car elle débordent
+						sous les lignes suivantes ou précédentes.
+					</td>
+				</tr>
+				<tr>
+					<td>Marges extérieures</td>
+					<td>Haute et basse, droite et gauche avec <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'margin')">margin</a></td>
+					<td>Droite et gauche avec <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'margin-right')">margin-right</a>
+						et <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'margin-left')">margin-left</a></td>
+				</tr>
+			</table>
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>continue</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="control-structures.break.html">break</a>
+		</div>
+		<div class="next">
+			<a href="control-structures.switch.html">switch</a>
+		</div>
+		<div class="up">
+			<a href="language.control-structures.html">Les structures de
+				contr&ocirc;le</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="control-structures.continue" class="sect1">
+		<h2 class="title">
+			<em>continue</em>
+		</h2>
+		<p class="verinfo">(PHP 4, PHP 5)</p>
+		<p class="simpara">
+			L&#039;instruction <em>continue</em> est utilisée dans une boucle
+			afin d&#039;éluder les instructions de l&#039;itération courante et
+			de continuer l&#039;exécution à la condition de l&#039;évaluation et
+			donc, de commencer la prochaine itération.
+		</p>
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>: <span class="simpara">
+					Notez qu&#039;en PHP, la structure <a
+					href="control-structures.switch.html" class="link"><em>switch</em></a>
+					est considérée comme une boucle par <em>continue</em>.
+				</span>
+			</p>
+		</blockquote>
+		<p class="simpara">
+			<em>continue</em> accepte un argument numérique optionnel qui vous
+			indiquera combien de structures emboîtées doivent être éludées. La
+			valeur par défaut est <em>1</em>, ce qui revient à aller directement
+			à la fin de la boucle courante.
+		</p>
+		<p class="para">
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">while&nbsp;(list(</span><span
+							style="color: #0000BB">$key</span><span style="color: #007700">,&nbsp;</span><span
+							style="color: #0000BB">$value</span><span style="color: #007700">)&nbsp;=&nbsp;</span><span
+							style="color: #0000BB">each</span><span style="color: #007700">(</span><span
+							style="color: #0000BB">$arr</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!(
+						</span><span style="color: #0000BB">$key&nbsp;</span><span
+							style="color: #007700">%&nbsp;</span><span style="color: #0000BB">2</span><span
+							style="color: #007700">))&nbsp;{&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;évite&nbsp;les&nbsp;membres&nbsp;impairs<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">continue;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #0000BB">do_something_odd</span><span
+							style="color: #007700">(</span><span style="color: #0000BB">$value</span><span
+							style="color: #007700">);<br />}<br />
+							<br /></span><span style="color: #0000BB">$i&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span
+							style="color: #007700">;<br />while&nbsp;(
+						</span><span style="color: #0000BB">$i</span><span style="color: #007700">++&nbsp;&lt;&nbsp;</span><span
+							style="color: #0000BB">5</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"Dehors&lt;br&nbsp;/&gt;\n"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(
+						</span><span style="color: #0000BB">1</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"Milieu&lt;br&nbsp;/&gt;\n"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(
+						</span><span style="color: #0000BB">1</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"Intérieur&lt;br&nbsp;/&gt;\n"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue&nbsp;
+						</span><span style="color: #0000BB">3</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"Ceci&nbsp;n'est&nbsp;jamais&nbsp;atteint.&lt;br&nbsp;/&gt;\n"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"Ceci&nbsp;non&nbsp;plus.&lt;br&nbsp;/&gt;\n"</span><span
+							style="color: #007700">;<br />}<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<p class="para">
+			Oublier le point virgule après <em>continue</em> peut porter à
+			confusion. Voici un exemple de ce que vous ne devez pas faire :
+		</p>
+		<p class="para">
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">for&nbsp;(</span><span
+							style="color: #0000BB">$i&nbsp;</span><span
+							style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span><span
+							style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span
+							style="color: #007700">&lt;&nbsp;</span><span
+							style="color: #0000BB">5</span><span style="color: #007700">;&nbsp;++</span><span
+							style="color: #0000BB">$i</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(
+						</span><span style="color: #0000BB">$i&nbsp;</span><span
+							style="color: #007700">==&nbsp;</span><span
+							style="color: #0000BB">2</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue<br />&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;
+						</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$i</span><span
+							style="color: #DD0000">\n"</span><span style="color: #007700">;<br />}<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+			<p class="para">On peut s&#039;attendre à ce que le résultat soit
+				:</p>
+			<div class="example-contents screen">
+				<div class="cdata">
+					<pre>
+0
+1
+3
+4
+</pre>
+				</div>
+			</div>
+			<p class="para">mais ce script affichera :</p>
+			<div class="example-contents screen">
+				<div class="cdata">
+					<pre>
+2
+</pre>
+				</div>
+			</div>
+			<p class="para">
+				car le commande complète <em>continue print &quot;$i\n&quot;;</em>
+				est évaluée comme une seule expression, et ainsi, la fonction <span
+					class="function"><a href="function.print.html"
+					class="function">print</a></span> est appelée uniquement lorsque <em>$i
+					== 2</em> est vrai. (La valeur retournée de <em>print</em> est passée à
+				<em>continue</em> comme argument numérique.)
+			</p>
+		</div>
+		</p>
+		<p class="para">
+		<table class="doctable table">
+			<caption>
+				<strong>Historique pour <em>continue</em></strong>
+			</caption>
+
+			<thead>
+				<tr>
+					<th>Version</th>
+					<th>Description</th>
+				</tr>
+
+			</thead>
+
+			<tbody class="tbody">
+				<tr>
+					<td>5.4.0</td>
+					<td><em>continue 0;</em> n&#039;est plus valide. Dans les
+						précédentes versions, il était interprété de la même façon que <em>continue
+							1;</em>.</td>
+				</tr>
+
+				<tr>
+					<td>5.4.0</td>
+					<td>Supprime la possibilité de passer des variables (i.e., <em>$num
+							= 2; continue $num;</em>) comme argument numérique.
+					</td>
+				</tr>
+
+			</tbody>
+
+		</table>
+
+		</p>
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="control-structures.break.html">break</a>
+		</div>
+		<div class="next">
+			<a href="control-structures.switch.html">switch</a>
+		</div>
+		<div class="up">
+			<a href="language.control-structures.html">Les structures de
+				contr&ocirc;le</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Cr&eacute;e une cha&icirc;ne compress&eacute;e gzip</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.gzdeflate.html">gzdeflate</a>
+		</div>
+		<div class="next">
+			<a href="function.gzeof.html">gzeof</a>
+		</div>
+		<div class="up">
+			<a href="ref.zlib.html">Fonctions Zlib</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.gzencode" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">gzencode</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.0.4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">gzencode</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Crée une chaîne compressée gzip</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.gzencode-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>gzencode</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$data</code></span> [, <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$level</code><span
+					class="initializer"> = -1</span></span> [, <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$encoding_mode</code><span
+					class="initializer"> = FORCE_GZIP</span></span> ]] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>gzencode()</strong></span> retourne
+				la version compressée de la chaîne <em><code class="parameter">data</code></em>
+				compatible avec la sortie du programme <strong class="command">gzip</strong>.
+			</p>
+			<p class="para">
+				Pour plus de détails sur l&#039;algorithme, lisez le document <a
+					href="http://www.faqs.org/rfcs/rfc1952" class="link external">&raquo;&nbsp;<em>&quot;ZLIB
+						Compressed Data Format Specification version 4.3&quot;</em></a> (RFC 1952).
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.gzencode-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">data</code></em></span>
+				<dd>
+
+					<p class="para">Les données à encoder.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">level</code></em></span>
+				<dd>
+
+					<p class="para">Le degré de compression. 0 signifie aucune
+						compression, jusqu&#039;à 9 pour une compression maximale. Si
+						omis, le degré de compression par défaut sera celui de la
+						bibliothèque zlib.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">encoding_mode</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le mode d&#039;encodage. Peut être <strong><code>FORCE_GZIP</code></strong>
+						(par défaut) ou <strong><code>FORCE_DEFLATE</code></strong>.
+					</p>
+					<p class="para">
+						Si vous utilisez <strong><code>FORCE_DEFLATE</code></strong>, vous
+						récupérez une chaîne standard zlib (incluant les en-têtes zlib)
+						après l&#039;en-tête de fichier gzip mais sans la somme de
+						vérification (<em>checksum</em>) crc32 finale.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.gzencode-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				La chaîne encodée ou <strong><code>FALSE</code></strong> si une
+				erreur survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.gzencode-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.2</td>
+						<td><em><code class="parameter">level</code></em> a été
+							ajouté. <span class="function"><strong>gzencode()</strong></span>
+							n&#039;avait que les paramètres <em><code class="parameter">data</code></em>
+							et <em><code class="parameter">encoding_mode</code></em>
+							(optionnel) avant.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.gzencode-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">Les données résultantes contiennent les en-têtes
+				appropriés ainsi que la structure de données pour faire un fichier
+				.gz standard, e.g. :
+			<div class="example" id="example-888">
+				<p>
+					<strong>Exemple #1 Création d&#039;un fichier gzip</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$data&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">implode</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">""</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">file</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"bigfile.txt"</span><span
+								style="color: #007700">));<br /></span><span
+								style="color: #0000BB">$gzdata&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">gzencode</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$data</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">9</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$fp&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"bigfile.txt.gz"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"w"</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$gzdata</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$fp</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.gzencode-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.gzdecode.html" class="function" rel="rdfs-seeAlso">gzdecode()</a>
+						- D&eacute;code une cha&icirc;ne de caract&egrave;res
+						compress&eacute;e gzip</span></li>
+				<li class="member"><span class="function"><a
+						href="function.gzdeflate.html" class="function" rel="rdfs-seeAlso">gzdeflate()</a>
+						- Compresse une cha&icirc;ne</span></li>
+				<li class="member"><span class="function"><a
+						href="function.gzinflate.html" class="function" rel="rdfs-seeAlso">gzinflate()</a>
+						- D&eacute;compresse une cha&icirc;ne</span></li>
+				<li class="member"><span class="function"><a
+						href="function.gzuncompress.html" class="function"
+						rel="rdfs-seeAlso">gzuncompress()</a> - D&eacute;compresse une
+						cha&icirc;ne compress&eacute;e</span></li>
+				<li class="member"><span class="function"><a
+						href="function.gzcompress.html" class="function"
+						rel="rdfs-seeAlso">gzcompress()</a> - Compresse une cha&icirc;ne</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.gzdeflate.html">gzdeflate</a>
+		</div>
+		<div class="next">
+			<a href="function.gzeof.html">gzeof</a>
+		</div>
+		<div class="up">
+			<a href="ref.zlib.html">Fonctions Zlib</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

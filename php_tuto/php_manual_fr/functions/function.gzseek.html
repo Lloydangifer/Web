@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>D&eacute;place le pointeur de lecture</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.gzrewind.html">gzrewind</a>
+		</div>
+		<div class="next">
+			<a href="function.gztell.html">gztell</a>
+		</div>
+		<div class="up">
+			<a href="ref.zlib.html">Fonctions Zlib</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.gzseek" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">gzseek</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">gzseek</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Déplace le pointeur de lecture</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.gzseek-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">int</span> <span class="methodname"><strong>gzseek</strong></span>
+				( <span class="methodparam"><span class="type">resource</span>
+					<code class="parameter">$zp</code></span> , <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$offset</code></span> [, <span
+					class="methodparam"><span class="type">int</span> <code
+						class="parameter">$whence</code><span class="initializer">
+						= SEEK_SET</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>gzseek()</strong></span> place le
+				pointeur de lecture du fichier <em><code class="parameter">zp</code></em>
+				à la position <em><code class="parameter">offset</code></em>,
+				comptée en octets depuis le début du fichier. C&#039;est
+				l&#039;équivalent de la fonction <em>gzseek(zp, offset,
+					SEEK_SET)</em>, du langage C.
+			</p>
+			<p class="para">
+				Si le fichier est ouvert en lecture, cette fonction est alors
+				émulée, et se révèle extrêmement lente. Si le fichier est ouvert en
+				écriture, seuls les déplacements vers l&#039;avant sont supportés :
+				<span class="function"><strong>gzseek()</strong></span> compresse
+				alors une série de zéros jusqu&#039;à la nouvelle position.
+			</p>
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.gzseek-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">zp</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le pointeur de fichier gz. Il doit être valide et doit pointer
+						vers un fichier ouvert avec succès grâce à la fonction <span
+							class="function"><a href="function.gzopen.html"
+							class="function">gzopen()</a></span>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">offset</code></em></span>
+				<dd>
+
+					<p class="para">La position désirée.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">whence</code></em></span>
+				<dd>
+
+					<p class="para">
+						Les valeurs de <em><code class="parameter">whence</code></em> sont
+						:
+					<ul class="simplelist">
+						<li class="member"><strong><code>SEEK_SET</code></strong> :
+							ramène la position à l&#039;<em><code class="parameter">offset</code></em>.</li>
+						<li class="member"><strong><code>SEEK_CUR</code></strong> :
+							ramène la position à la position actuelle plus <em><code
+									class="parameter">offset</code></em>.</li>
+					</ul>
+					</p>
+					<p class="para">
+						Si <em><code class="parameter">whence</code></em> n&#039;est pas
+						spécifié, il vaut par défaut <strong><code>SEEK_SET</code></strong>.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.gzseek-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">0 en cas de réussite, -1 sinon. Notez que placer
+				le pointeur au delà de la fin du fichier n&#039;est pas considéré
+				comme une erreur.</p>
+		</div>
+
+		<div class="refsect1 examples" id="refsect1-function.gzseek-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-898">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>gzseek()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$gz&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">gzopen</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'somefile.gz'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'r'</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">gzseek</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$gz</span><span style="color: #007700">,</span><span
+								style="color: #0000BB">2</span><span style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #0000BB">gzgetc</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$gz</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">gzclose</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$gz</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+		<div class="refsect1 seealso" id="refsect1-function.gzseek-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.gztell.html" class="function" rel="rdfs-seeAlso">gztell()</a>
+						- Lit la position courante du pointeur de lecture</span></li>
+				<li class="member"><span class="function"><a
+						href="function.gzrewind.html" class="function" rel="rdfs-seeAlso">gzrewind()</a>
+						- Replace le pointeur au d&eacute;but du fichier</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.gzrewind.html">gzrewind</a>
+		</div>
+		<div class="next">
+			<a href="function.gztell.html">gztell</a>
+		</div>
+		<div class="up">
+			<a href="ref.zlib.html">Fonctions Zlib</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

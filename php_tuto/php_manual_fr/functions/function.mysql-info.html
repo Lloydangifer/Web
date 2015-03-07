@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Lit des informations &agrave; propos de la derni&egrave;re requ&ecirc;te MySQL</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="function.mysql-get-server-info.html">mysql_get_server_info</a></div>
+ <div class="next"><a href="function.mysql-insert-id.html">mysql_insert_id</a></div>
+ <div class="up"><a href="ref.mysql.html">Fonctions MySQL</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="function.mysql-info" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">mysql_info</h1>
+  <p class="verinfo">(PHP 4 &gt;= 4.3.0, PHP 5)</p><p class="refpurpose"><span class="refname">mysql_info</span> <span class="mdash">&mdash;</span> <span class="dc-title">Lit des informations à propos de la dernière requête MySQL</span></p>
+
+ </div>
+
+ <div id="function.mysql-info-soft-deprecation-notice" class="soft-deprecation-notice">
+  <blockquote class="sidebar">
+   <h1 class="title">Alternatives suggérées</h1>
+<p class="para">L&#039;utilisation de cette extension est déconseillée. A la place,
+ l&#039;extension <a href="book.mysqli.html" class="link">MySQLi</a> ou <a href="ref.pdo-mysql.html" class="link">PDO_MySQL</a>
+ devrait être utilisée. Voir aussi le guide <a href="mysqlinfo.api.choosing.html" class="link">MySQL : choisir une API</a>
+ ainsi que la <a href="faq.databases.html#faq.databases.mysql.deprecated" class="link">FAQ associée</a> pour plus d&#039;informations.
+ Les alternatives à cette fonction incluent :</p>
+   <ul class="simplelist">
+    <li class="member"> <span class="function"><a href="mysqli.info.html" class="function">mysqli_info()</a></span></li>
+   </ul>
+  </blockquote>
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.mysql-info-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">string</span> <span class="methodname"><strong>mysql_info</strong></span>
+    ([ <span class="methodparam"><span class="type">resource</span> <code class="parameter">$link_identifier</code><span class="initializer"> = NULL</span></span>
+  ] )</div>
+
+  <p class="para rdfs-comment">
+   Lit des informations à propos de la dernière requête MySQL.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.mysql-info-parameters">
+  <h3 class="title">Liste de paramètres</h3>
+  <p class="para">
+   <dl>
+
+    <dt>
+<span class="term"><em><code class="parameter">
+link_identifier</code></em></span><dd>
+<p class="para">La connexion MySQL.
+S&#039;il n&#039;est pas spécifié, la dernière connexion ouverte avec la fonction
+ <span class="function"><a href="function.mysql-connect.html" class="function">mysql_connect()</a></span> sera utilisée. Si une telle connexion
+n&#039;est pas trouvée, la fonction tentera d&#039;ouvrir une connexion, comme si
+la fonction  <span class="function"><a href="function.mysql-connect.html" class="function">mysql_connect()</a></span> avait été appelée sans argument.
+Si aucune connexion n&#039;est trouvée ou établie, une alerte
+<strong><code>E_WARNING</code></strong> est générée.</p></dd>
+</dt>
+
+   </dl>
+
+  </p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.mysql-info-returnvalues">
+  <h3 class="title">Valeurs de retour</h3>
+  <p class="para">
+   Retourne des informations sur une requête en cas de succès, ou <strong><code>FALSE</code></strong>
+   si une erreur survient. Regardez l&#039;exemple ci-dessous pour savoir
+   quelles sortes de requêtes fournissent des informations
+   et avoir un aperçu des informations retournées. Les sortes de requêtes
+   qui ne sont pas listées retournent <strong><code>FALSE</code></strong>.
+  </p>
+ </div>
+
+
+ <div class="refsect1 examples" id="refsect1-function.mysql-info-examples">
+  <h3 class="title">Exemples</h3>
+  <p class="para">
+   <div class="example" id="example-1586">
+    <p><strong>Exemple #1 Requêtes MySQL</strong></p>
+    <div class="example-contents"><p>
+     Requêtes qui retournent des valeurs. Les nombres ne sont là
+     que pour illustrer l&#039;exemple ; ces valeurs correspondent à la requête.
+    </p></div>
+    <div class="example-contents">
+<div class="mysqlcode"><pre class="mysqlcode">INSERT INTO ... SELECT ...
+String format: Records: 23 Duplicates: 0 Warnings: 0
+INSERT INTO ... VALUES (...),(...),(...)...
+String format: Records: 37 Duplicates: 0 Warnings: 0
+LOAD DATA INFILE ...
+String format: Records: 42 Deleted: 0 Skipped: 0 Warnings: 0
+ALTER TABLE
+String format: Records: 60 Duplicates: 0 Warnings: 0
+UPDATE
+String format: Rows matched: 65 Changed: 65 Warnings: 0</pre>
+</div>
+    </div>
+
+   </div>
+  </p>
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.mysql-info-notes">
+  <h3 class="title">Notes</h3>
+  <blockquote class="note"><p><strong class="note">Note</strong>: 
+   <p class="para">
+     <span class="function"><strong>mysql_info()</strong></span> retourne une valeur différente de <strong><code>FALSE</code></strong>
+    pour les commandes INSERT ... VALUES uniquement si plusieurs jeux de valeurs
+    à insérer ont été spécifiés dans la commande.
+   </p>
+  </p></blockquote>
+ </div>
+
+
+ <div class="refsect1 seealso" id="refsect1-function.mysql-info-seealso">
+  <h3 class="title">Voir aussi</h3>
+  <p class="para">
+   <ul class="simplelist">
+    <li class="member"> <span class="function"><a href="function.mysql-affected-rows.html" class="function" rel="rdfs-seeAlso">mysql_affected_rows()</a> - Retourne le nombre de lignes affect&eacute;es lors de la derni&egrave;re op&eacute;ration MySQL</span></li>
+    <li class="member"> <span class="function"><a href="function.mysql-insert-id.html" class="function" rel="rdfs-seeAlso">mysql_insert_id()</a> - Retourne l'identifiant g&eacute;n&eacute;r&eacute; par la derni&egrave;re requ&ecirc;te</span></li>
+    <li class="member"> <span class="function"><a href="function.mysql-stat.html" class="function" rel="rdfs-seeAlso">mysql_stat()</a> - Retourne le statut courant du serveur MySQL</span></li>
+   </ul>
+  </p>
+ </div>
+
+</div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="function.mysql-get-server-info.html">mysql_get_server_info</a></div>
+ <div class="next"><a href="function.mysql-insert-id.html">mysql_insert_id</a></div>
+ <div class="up"><a href="ref.mysql.html">Fonctions MySQL</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Compte tous les &eacute;l&eacute;ments d'un tableau ou
+	quelque chose d'un objet</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.compact.html">compact</a>
+		</div>
+		<div class="next">
+			<a href="function.current.html">current</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.count" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">count</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">count</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Compte tous les éléments d&#039;un
+					tableau ou quelque chose d&#039;un objet</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.count-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">int</span> <span class="methodname"><strong>count</strong></span>
+				( <span class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$var</code></span>
+				[, <span class="methodparam"><span class="type">int</span> <code
+						class="parameter">$mode</code><span class="initializer"> =
+						COUNT_NORMAL</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">Compte tous les éléments d&#039;un
+				tableau ou quelque chose d&#039;un objet.</p>
+			<p class="para">
+				Pour les objets, <span class="function"><strong>count()</strong></span>
+				retourne le nombre de propriétés non-statiques, sans tenir compte de
+				la visibilité. Si <a href="ref.spl.html" class="link">SPL</a> est
+				disponible, vous pouvez utiliser la fonction <span class="function"><strong>count()</strong></span>
+				en implémentant l&#039;interface <a href="class.countable.html"
+					class="classname">Countable</a>. Cette interface a exactement une
+				méthode, <span class="methodname"><a
+					href="countable.count.html" class="methodname">Countable::count()</a></span>,
+				qui retourne la valeur retournée par la fonction <span
+					class="function"><strong>count()</strong></span>.
+			</p>
+			<p class="para">
+				Reportez-vous à la section sur les <a
+					href="language.types.array.html" class="link">Tableaux</a> du
+				manuel, pour plus de détails sur le fonctionnement des tableaux en
+				PHP.
+			</p>
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.count-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">var</code></em></span>
+				<dd>
+
+					<p class="para">Le tableau ou l&#039;objet</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">mode</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si le paramètre optionnel <em><code class="parameter">mode</code></em>
+						vaut <strong><code>COUNT_RECURSIVE</code></strong> (ou 1), <span
+							class="function"><strong>count()</strong></span> va compter
+						récursivement les tableaux. C&#039;est particulièrement pratique
+						pour compter le nombre d&#039;éléments d&#039;un tableau. <span
+							class="function"><strong>count()</strong></span> ne détecte pas
+						la récursivité infinie.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.count-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne le nombre d&#039;éléments dans <em><code
+						class="parameter">var</code></em>. Si le paramètre <em><code
+						class="parameter">var</code></em> n&#039;est ni un objet, ni un
+				tableau, <em>1</em> sera retourné. Il y a néanmoins une exception :
+				si le paramètre <em><code class="parameter">var</code></em> vaut <strong><code>NULL</code></strong>,
+				<em>0</em> sera retourné.
+			</p>
+			<div class="caution">
+				<strong class="caution">Attention</strong>
+				<p class="para">
+					<span class="function"><strong>count()</strong></span> peut
+					retourner 0 pour une variable qui n&#039;a pas été affectée, ou
+					pour un tableau vide. Utilisez plutôt <span class="function"><a
+						href="function.isset.html" class="function">isset()</a></span> pour
+					tester si la variable existe.
+				</p>
+			</div>
+		</div>
+
+		<div class="refsect1 changelog" id="refsect1-function.count-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.2.0</td>
+						<td>Le paramètre optionnel <em><code class="parameter">mode</code></em>
+							a été ajouté.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+		<div class="refsect1 examples" id="refsect1-function.count-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4661">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>count()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$a
+							</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span
+								style="color: #007700">]&nbsp;=&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$a</span><span style="color: #007700">[</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span
+								style="color: #0000BB">3</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$a</span><span style="color: #007700">[</span><span
+								style="color: #0000BB">2</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span
+								style="color: #0000BB">5</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$result&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">count</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$a</span><span style="color: #007700">);<br /></span><span
+								style="color: #FF8000">//&nbsp;$result&nbsp;==&nbsp;3<br />
+								<br /></span><span style="color: #0000BB">$b</span><span
+								style="color: #007700">[</span><span style="color: #0000BB">0</span><span
+								style="color: #007700">]&nbsp;&nbsp;=&nbsp;</span><span
+								style="color: #0000BB">7</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$b</span><span style="color: #007700">[</span><span
+								style="color: #0000BB">5</span><span style="color: #007700">]&nbsp;&nbsp;=&nbsp;</span><span
+								style="color: #0000BB">9</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$b</span><span style="color: #007700">[</span><span
+								style="color: #0000BB">10</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span
+								style="color: #0000BB">11</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$result&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">count</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$b</span><span style="color: #007700">);<br /></span><span
+								style="color: #FF8000">//&nbsp;$result&nbsp;==&nbsp;3<br />
+								<br /></span><span style="color: #0000BB">$result&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">count</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">null</span><span style="color: #007700">);<br /></span><span
+								style="color: #FF8000">//&nbsp;$result&nbsp;==&nbsp;0<br />
+								<br /></span><span style="color: #0000BB">$result&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">count</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">false</span><span style="color: #007700">);<br /></span><span
+								style="color: #FF8000">//&nbsp;$result&nbsp;==&nbsp;1<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="example-4662">
+				<p>
+					<strong>Exemple #2 Exemple de récursivité avec <span
+						class="function"><strong>count()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$food&nbsp;
+							</span><span style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">'fruits'&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;array(</span><span
+								style="color: #DD0000">'orange'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'banana'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'apple'</span><span
+								style="color: #007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #DD0000">'veggie'&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;array(</span><span
+								style="color: #DD0000">'carrot'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'collard'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'pea'</span><span style="color: #007700">));<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;count&nbsp;récursif<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">count</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$food</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">COUNT_RECURSIVE</span><span
+								style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;affiche&nbsp;8<br />
+								<br />//&nbsp;count&nbsp;normal<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">count</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$food</span><span style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;affiche&nbsp;2<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+		<div class="refsect1 seealso" id="refsect1-function.count-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.is-array.html" class="function" rel="rdfs-seeAlso">is_array()</a>
+						- D&eacute;termine si une variable est un tableau</span></li>
+				<li class="member"><span class="function"><a
+						href="function.isset.html" class="function" rel="rdfs-seeAlso">isset()</a>
+						- D&eacute;termine si une variable est d&eacute;finie et est
+						diff&eacute;rente de NULL</span></li>
+				<li class="member"><span class="function"><a
+						href="function.strlen.html" class="function" rel="rdfs-seeAlso">strlen()</a>
+						- Calcule la taille d'une cha&icirc;ne</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.compact.html">compact</a>
+		</div>
+		<div class="next">
+			<a href="function.current.html">current</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

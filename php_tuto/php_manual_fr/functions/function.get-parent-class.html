@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Retourne le nom de la classe parente d'un objet</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.get-object-vars.html">get_object_vars</a>
+		</div>
+		<div class="next">
+			<a href="function.interface-exists.html">interface_exists</a>
+		</div>
+		<div class="up">
+			<a href="ref.classobj.html">Fonctions Classes/Objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.get-parent-class" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">get_parent_class</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">get_parent_class</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Retourne le nom de la classe parente
+					d&#039;un objet</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.get-parent-class-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>get_parent_class</strong></span>
+				([ <span class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$object</code></span>
+				] )
+			</div>
+
+			<p class="para rdfs-comment">Récupère le nom de classe parent
+				pour un objet ou une classe.</p>
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.get-parent-class-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">object</code></em></span>
+				<dd>
+
+					<p class="para">L&#039;objet ou le nom de la classe testé</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.get-parent-class-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne le nom de la classe parent dont <em><code
+						class="parameter">object</code></em> est une instance ou le nom.
+			</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Si l&#039;objet n&#039;a pas de parent ou si la classe fournie
+					n&#039;existe pas, <strong><code>FALSE</code></strong> sera
+					retourné.
+			</blockquote>
+			<p class="para">
+				Si appelée sans paramètre en dehors de l&#039;objet, cette fonction
+				retourne <strong><code>FALSE</code></strong>.
+			</p>
+		</div>
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.get-parent-class-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>Avant 5.1.0</td>
+						<td>Si appelée sans paramètre en dehors de l&#039;objet,
+							cette fonction retourne <strong><code>NULL</code></strong> avec
+							une alerte.
+						</td>
+					</tr>
+
+					<tr>
+						<td>5.0.0</td>
+						<td>Le paramètre <em><code class="parameter">object</code></em>
+							est optionnel si appelé depuis la méthode de l&#039;objet.
+						</td>
+					</tr>
+
+					<tr>
+						<td>4.0.5</td>
+						<td>Si le paramètre <em><code class="parameter">obj</code></em>
+							est une chaîne, <span class="function"><strong>get_parent_class()</strong></span>
+							retourne le nom de la classe parente.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+		<div class="refsect1 examples"
+			id="refsect1-function.get-parent-class-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4711">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>get_parent_class()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br /></span><span style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">papa&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">papa</span><span
+								style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #FF8000">//&nbsp;un&nbsp;peu&nbsp;de&nbsp;code<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #007700">}<br />}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">enfant&nbsp;</span><span
+								style="color: #007700">extends&nbsp;</span><span
+								style="color: #0000BB">papa&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">enfant</span><span
+								style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"je&nbsp;suis&nbsp;le&nbsp;fils&nbsp;de&nbsp;"&nbsp;</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">get_parent_class</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$this</span><span
+								style="color: #007700">)&nbsp;,&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">enfant2&nbsp;</span><span
+								style="color: #007700">extends&nbsp;</span><span
+								style="color: #0000BB">papa&nbsp;</span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">enfant2</span><span
+								style="color: #007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Je&nbsp;suis&nbsp;aussi&nbsp;le&nbsp;fils&nbsp;de&nbsp;"&nbsp;</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">get_parent_class</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'enfant2'</span><span
+								style="color: #007700">)&nbsp;,&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #0000BB">$foo&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">enfant</span><span style="color: #007700">();<br /></span><span
+								style="color: #0000BB">$bar&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">enfant2</span><span
+								style="color: #007700">();<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+je suis le fils de papa
+Je suis aussi le fils de papa
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.get-parent-class-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.get-class.html" class="function" rel="rdfs-seeAlso">get_class()</a>
+						- Retourne la classe d'un objet</span></li>
+				<li class="member"><span class="function"><a
+						href="function.is-subclass-of.html" class="function"
+						rel="rdfs-seeAlso">is_subclass_of()</a> - D&eacute;termine si un
+						objet est une sous-classe</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.get-object-vars.html">get_object_vars</a>
+		</div>
+		<div class="next">
+			<a href="function.interface-exists.html">interface_exists</a>
+		</div>
+		<div class="up">
+			<a href="ref.classobj.html">Fonctions Classes/Objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

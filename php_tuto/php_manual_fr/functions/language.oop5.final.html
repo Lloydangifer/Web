@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Mot-cl&eacute; &quot;final&quot;</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.oop5.magic.html">M&eacute;thodes magiques</a>
+		</div>
+		<div class="next">
+			<a href="language.oop5.cloning.html">Cl&ocirc;nage d'objets</a>
+		</div>
+		<div class="up">
+			<a href="language.oop5.html">Les classes et les objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.oop5.final" class="sect1">
+		<h2 class="title">Mot-clé &quot;final&quot;</h2>
+		<p class="para">
+			PHP 5 dispose du mot-clé &quot;<em>final</em>&quot;, qui empêche les
+			classes filles de surcharger une méthode, lorsque la définition de
+			cette dernière est préfixée par le mot-clé &quot;<em>final</em>&quot;.
+			Si la classe elle-même est définie comme finale, elle ne pourra pas
+			être étendue.
+		</p>
+
+		<p class="para">
+		<div class="example" id="example-226">
+			<p>
+				<strong>Exemple #1 Exemple de méthode finale</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">class&nbsp;</span><span
+							style="color: #0000BB">BaseClass&nbsp;</span><span
+							style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+						</span><span style="color: #0000BB">test</span><span
+							style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"BaseClass::test()&nbsp;appelée\n"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;final&nbsp;public&nbsp;function&nbsp;
+						</span><span style="color: #0000BB">moreTesting</span><span
+							style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"BaseClass::moreTesting()&nbsp;appelée\n"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;}<br />}<br />
+							<br />class&nbsp;
+						</span><span style="color: #0000BB">ChildClass&nbsp;</span><span
+							style="color: #007700">extends&nbsp;</span><span
+							style="color: #0000BB">BaseClass&nbsp;</span><span
+							style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+						</span><span style="color: #0000BB">moreTesting</span><span
+							style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"ChildClass::moreTesting()&nbsp;appelée\n"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;}<br />}<br /></span><span
+							style="color: #FF8000">//&nbsp;Résultat&nbsp;:&nbsp;Fatal&nbsp;error:&nbsp;Cannot&nbsp;override&nbsp;final&nbsp;method&nbsp;BaseClass::moreTesting()<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+
+		<p class="para">
+		<div class="example" id="example-227">
+			<p>
+				<strong>Exemple #2 Exemple de classe finale</strong>
+			</p>
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+							style="color: #007700">final&nbsp;class&nbsp;</span><span
+							style="color: #0000BB">BaseClass&nbsp;</span><span
+							style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;
+						</span><span style="color: #0000BB">test</span><span
+							style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"BaseClass::test()&nbsp;appelée\n"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;}<br />
+							<br />&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #FF8000">//&nbsp;Ici,&nbsp;peu&nbsp;importe&nbsp;si&nbsp;vous&nbsp;spécifiez&nbsp;la&nbsp;fonction&nbsp;en&nbsp;finale&nbsp;ou&nbsp;pas<br />&nbsp;&nbsp;&nbsp;
+						</span><span style="color: #007700">final&nbsp;public&nbsp;function&nbsp;</span><span
+							style="color: #0000BB">moreTesting</span><span
+							style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+						</span><span style="color: #DD0000">"BaseClass::moreTesting()&nbsp;appelée\n"</span><span
+							style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;}<br />}<br />
+							<br />class&nbsp;
+						</span><span style="color: #0000BB">ChildClass&nbsp;</span><span
+							style="color: #007700">extends&nbsp;</span><span
+							style="color: #0000BB">BaseClass&nbsp;</span><span
+							style="color: #007700">{<br />}<br /></span><span
+							style="color: #FF8000">//&nbsp;Résultat&nbsp;:&nbsp;Fatal&nbsp;error:&nbsp;Class&nbsp;ChildClass&nbsp;may&nbsp;not&nbsp;inherit&nbsp;from&nbsp;final&nbsp;class&nbsp;(BaseClass)<br /></span><span
+							style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+
+		<blockquote class="note">
+			<p>
+				<strong class="note">Note</strong>: <span class="simpara">
+					Les propriétés ne peuvent être déclarées comme finales : seules les
+					méthodes ou les classes peuvent l&#039;être. </span>
+			</p>
+		</blockquote>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.oop5.magic.html">M&eacute;thodes magiques</a>
+		</div>
+		<div class="next">
+			<a href="language.oop5.cloning.html">Cl&ocirc;nage d'objets</a>
+		</div>
+		<div class="up">
+			<a href="language.oop5.html">Les classes et les objets</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

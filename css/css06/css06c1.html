@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Dégradés</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function() {
+			top.FP.initPage();
+		}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+	
+	<!-- exercice ? dégradé pour faire une icone menu
+.menu-bouton {
+	height: 50px;
+	width: 50px;
+	padding: 10px;
+	border: 1px solid;
+	border-radius: 5px;
+}
+.menu-icon {
+	width: 100%;
+	height: 100%;
+    background:linear-gradient(to bottom, #000 0%, #000 20%, transparent 20%, transparent 40%, #000 40%, #000 60%, transparent 60%, transparent 80%, #000 80%, #000 100%);
+}
+ -->
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			N'importe quelle propriété <abbr title="Cascading Style Sheets">CSS</abbr>
+			qui accepte comme valeur une image peut utiliser une fonction
+			générant des dégradés de couleurs ( <a
+				href="http://www.w3.org/TR/css3-images/" target="_blank">CSS
+				Image Values and Replaced Content Module</a>).
+			<br>
+			La propriété <a
+				onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-image')">background-image</a>
+			peut donc servir à remplir un fond avec un dégradé.
+			<br>
+			Un dégradé peut être linéaire, radial ou répétitif. Il est composé
+			d'au moins 2 couleurs avec leur point d'arrêt. Le point d'arrêt d'une
+			couleur est la coordonnée où la couleur pure s'arrête et où commence
+			la transition continue vers le point d'arrêt d'une autre couleur.
+		</p>
+
+		<figure>
+			<img src="../cssimg/degrade_2_coul.png" width="436" height="265">
+			<figcaption>exemple de dégradé linéaire de 2 couleurs</figcaption>
+		</figure>
+		<figure>
+			<img src="../cssimg/degrade_3_coul.png" width="436" height="265">
+			<figcaption>exemple de dégradé linéaire de 3 couleurs</figcaption>
+		</figure>
+
+		<!-- ################################################################################################## -->
+		<a id="linear-gradient"></a>
+		<h3>Dégradés linéaires</h3>
+		<section>
+			<p>
+				Un dégradé linéaire s'étend le long d'une ligne droite orientée et se fait
+				avec la fonction <code>linear-gradient()</code> dont la signature
+				est la suivante :
+				<br>
+				<code>linear-gradient([[&lt;angle&gt; | to
+					&lt;côté-ou-coin&gt; ],]? &lt;point-arrêt&gt; [,
+					&lt;point-arrêt&gt;]+)</code>
+			</p>
+
+			<p>
+				<strong>&lt;angle&gt;</strong> Facultatif. Le degradé sera orienté
+				suivant cet angle exprimé sous la forme d'un nombre suivi d'une
+				unité d'angle (<code>deg</code>, <code>grad</code>, <code>rad</code>,
+				<code>turn</code> - <a
+					href="http://www.w3.org/TR/css3-values/#angles" target="_blank">spécifications</a>).
+				<br>
+				<code>0deg</code> pointe vers le haut et les angles positifs
+				augmentent dans le sens des aiguilles d’une montre : <code>90deg</code>
+				pointe vers la droite, <code>180deg</code> pointe vers le bas, etc.
+				Si aucun &lt;angle&gt; n'est fourni ou aucun &lt;côté-ou-coin&gt;,
+				le dégradé commence en haut et va vers le bas.
+			</p>
+
+			<p class="fp-bot0">
+				<strong>&lt;côté-ou-coin&gt;</strong> Facultatif. Définit le côté ou
+				le coin où finit le dégradé (facultatif). La valeur doit commencer
+				par <code>to</code>, suivi d'un ou deux mots-clés. Un seul mot-clé
+				définit le côté de fin. Deux mots-clés définissent un angle de fin.
+				Les valeurs suivantes peuvent être utilisées :
+			</p>
+			<ul>
+				<li><code>left</code> (le dégradé finit à gauche) et <code>right</code>
+					(le dégradé finit à droite),</li>
+				<li><code>top</code> (le dégradé finit en haut) et <code>bottom</code>
+					(le dégradé finit en bas).</li>
+			</ul>
+
+			<p>
+				<strong>&lt;point-arrêt&gt;</strong> Il doit y avoir au moins deux
+				points d'arrêt de couleurs. Chaque point d'arrêt de couleur comporte
+				une ou deux valeurs : une couleur et une position (falcultative).
+				<br>
+				N'importe quelle façon de <a
+					onclick="top.FP.Voir.showPageTech('couleur', '')">spécifier une
+					couleur</a> peut être utilisée.
+				<br>
+				Chaque point d'arrêt peut avoir un pourcentage ou <a
+					onclick="top.FP.Voir.showPageTech('longueur', '')">une valeur
+					de longueur</a> qui definit où s'arrête la couleur avant de commencer
+				sa transition vers la couleur du point d'arrêt suivant. Les valeurs
+				peuvent être supérieures ou inférieures aux limites du dégradé.
+				L'affichage résultant sera dans ce cas une "partie" seulement des
+				transitions entre les 2 couleurs.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : dégradés linéaires
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div&gt;De haut en bas&lt;/div&gt;
+		&lt;div&gt;De bas en haut&lt;/div&gt;
+		&lt;div&gt;De gauche à droite&lt;/div&gt;
+		&lt;div&gt;De droite à gauche&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+div {
+	width: 400px;
+	height: 150px;
+	margin: 10px auto;
+	border: 1px solid;
+	line-height: 150px;
+	text-align: center;
+}
+/* de haut en bas */
+div:nth-of-type(1) {
+	background-image: linear-gradient(brown 10%, orange 90%);
+}
+/* de bas en haut */
+div:nth-of-type(2) {
+	background-image: linear-gradient(0deg, brown 10%, orange 90%);
+}
+/* de gauche à droite */
+div:nth-of-type(3) {
+	background-image: linear-gradient(90deg, brown 10%, orange 90%);
+}
+/* de droite à gauche */
+div:nth-of-type(4) {
+	background-image: linear-gradient(270deg, brown 10%, orange 90%);
+}</textarea>
+			</form>
+
+			<p class="fp-p-raz">Vous pouvez tester le rendu avec n'importe
+				quel autre angle (pas forcément des multiples de 90).</p>
+
+			<a id="exo_degrade_lineaire"></a>
+			<h4 class="fp-exo">Dégradé linéaire</h4>
+			<section>
+				<p>Reprenez l'exemple précédent en modifiant l'angle des dégradé
+					pour utiliser la forme &lt;côté-ou-coin&gt;.</p>
+
+				<p class="fp-solution">
+					<a
+						onclick="top.FP.Voir.showSolution('exo_degrade_lineaire_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_degrade_lineaire_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : dégradés linéaires
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div&gt;De haut en bas&lt;/div&gt;
+		&lt;div&gt;De bas en haut&lt;/div&gt;
+		&lt;div&gt;De gauche à droite&lt;/div&gt;
+		&lt;div&gt;De droite à gauche&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+div {
+	width: 400px;
+	height: 150px;
+	margin: 10px auto;
+	border: 1px solid;
+	line-height: 150px;
+	text-align: center;
+}
+/* de haut en bas */
+div:nth-of-type(1) {
+	background-image: linear-gradient(to bottom, brown 10%, orange 90%);
+}
+/* de bas en haut */
+div:nth-of-type(2) {
+	background-image: linear-gradient(to top, brown 10%, orange 90%);
+}
+/* de gauche à droite */
+div:nth-of-type(3) {
+	background-image: linear-gradient(to right, brown 10%, orange 90%);
+}
+/* de droite à gauche */
+div:nth-of-type(4) {
+	background-image: linear-gradient(to left, brown 10%, orange 90%);
+}</textarea>
+					</form>
+				</div>
+			</section>
+
+			<h4>Dégradés subtiles</h4>
+			<section>
+				<p>Des dégradés entres couleurs proches sont souvent utilisés
+					par exemple comme fond pour des boutons.</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : dégradés subtiles
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;input type="submit" class="btn1" value="Bouton 1"&gt;
+		&lt;input type="submit" class="btn2" value="Bouton 2"&gt;
+		&lt;input type="submit" class="btn3" value="Bouton 3"&gt;
+		&lt;input type="submit" class="btn4" value="Bouton 4"&gt;
+		&lt;input type="submit" class="btn5" value="Bouton 5"&gt;
+		&lt;input type="submit" class="btn6" value="Bouton 6"&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+input[type="submit"] {
+	width: 100px;
+	height: 2em;
+	margin: 10px;
+	border: none;
+	border-radius: 0.4em;
+	cursor: pointer;
+}
+
+.btn1 { background: linear-gradient(#c24947, #e74c3c); }
+.btn2 { background: linear-gradient(#fedd45, #eebb0a); }
+.btn3 { background: linear-gradient(#808080, #b0b0b0); }
+.btn4 { background: linear-gradient(#6b6b6b, #030207); }
+.btn5 { background: linear-gradient(#878f92, #002431); }
+.btn6 { background: linear-gradient(#40c081, #1b4c34); }
+.btn4, .btn5, .btn6 { color: #fff; }</textarea>
+				</form>
+
+			</section>
+
+
+			<h4>Dégradés avec plus de 2 couleurs</h4>
+			<section>
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : dégradés linéaires
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div&gt;&lt;/div&gt;
+		&lt;div&gt;&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+body {
+	background-image: linear-gradient(270deg, black, white);
+}
+div {
+	width: 400px;
+	height: 200px;
+	margin: 10px auto;
+	border: 1px solid;
+}
+div:nth-of-type(1) {
+	background: linear-gradient(360deg, rgba(255, 0, 0, 0.2) 0, black 50%, rgba(0, 255, 0, 0.2) 100%);
+}
+div:nth-of-type(2) {
+	background-image: linear-gradient(155deg, rgb(255, 0, 0), rgb(255, 42, 0), rgb(255, 85, 0), rgb(255, 127, 0), rgb(255, 170, 0), rgb(255, 212, 0), rgb(255, 255, 0), rgb(212, 255, 0), rgb(169, 255, 0), rgb(127, 255, 0), rgb(84, 255, 0), rgb(42, 255, 0), rgb(0, 255, 0), rgb(0, 255, 42), rgb(0, 255, 84), rgb(0, 255, 127), rgb(0, 255, 169), rgb(0, 255, 212), rgb(0, 255, 254), rgb(0, 212, 255), rgb(0, 169, 255), rgb(0, 127, 255), rgb(0, 85, 255), rgb(0, 42, 255), rgb(0, 0, 255), rgb(42, 0, 255), rgb(85, 0, 255), rgb(127, 0, 255), rgb(170, 0, 255), rgb(212, 0, 255), rgb(254, 0, 255), rgb(255, 0, 212), rgb(255, 0, 169), rgb(255, 0, 127), rgb(255, 0, 85), rgb(255, 0, 42), rgb(255, 0, 0));
+}</textarea>
+				</form>
+
+			</section>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Dégradés radiaux</h3>
+		<section>
+			<p>
+				Les dégradés radiaux partent d'un centre et s'étendent vers
+				l'extérieur en formant un cercle ou une ellipse. On utilise la
+				fonction <code>radial-gradient</code> pour les définir :
+				<br>
+				<code>radial-gradient([[ &lt;forme&gt; || &lt;taille&gt; ] [
+					at &lt;position&gt; ]? , | at &lt;position&gt; , ]?
+					&lt;point-arrêt&gt; [ , &lt;point-arrêt&gt; ]+) </code>
+			</p>
+
+			<div class="fp-puce">
+				<p class="fp-bot0">
+					<strong>&lt;forme&gt;</strong> Facultative. Indique la forme finale
+					du dégradé :
+				</p>
+				<ul>
+					<li><code>ellipse</code> : le dégradé a la forme d'une
+						ellipse.</li>
+					<li><code>circle</code> : le dégradé a la forme d'un cercle.</li>
+				</ul>
+				<p>Si &lt;forme&gt; est omise, la forme finale est un cercle si
+					&lt;taille&gt; n'a qu'une seule longueur ou une ellipse si
+					&lt;taille&gt; a deux longueurs.</p>
+			</div>
+
+			<div class="fp-puce">
+				<p>
+					<strong>&lt;taille&gt;</strong> Facultative. Définit la taille
+					finale du dégradé. Valeur par défaut : <code>farthest-corner</code>.
+					Les valeurs peuvent êtres des <a
+						onclick="top.FP.Voir.showPageTech('longueur', '')">longueurs</a>
+					ou des mots-clés.
+				</p>
+
+				<p class="fp-bot0">
+					Si &lt;taille&gt; est une <a
+						onclick="top.FP.Voir.showPageTech('longueur', '')">longueur</a>
+				<ul>
+					<li>il peut y avoir ou deux valeurs de longueur séparées par
+						des espaces,</li>
+					<li>si il y a une seule valeur de longueur elle indique le
+						rayon d'un dégradé qui aura la forme d'un cercle,</li>
+					<li>si il y a deux valeurs, la première valeur représente le
+						rayon horizontal et la seconde le rayon vertical d'un dégradé en
+						forme d'ellipse,</li>
+					<li>les pourcentages ne peuvent être utilisés que pour la
+						taille d'un dégradé elliptique</li>
+				</ul>
+
+				<p class="fp-bot0">
+					Les mots-clés utilisables sont : <code>closest-side</code>, <code>closest-corner</code>,
+					<code>farthest-side</code> et <code>farthest-corner</code>.
+				</p>
+
+				<figure>
+					<img src="../cssimg/degrade_radial_cote.png" width="524"
+						height="324">
+					<figcaption>longueur du dégradé par rapport aux côtés</figcaption>
+				</figure>
+
+				<figure>
+					<img src="../cssimg/degrade_radial_coin.png" width="524"
+						height="324">
+					<figcaption>longueur du dégradé par rapport aux coins</figcaption>
+				</figure>
+
+
+				<p class="fp-p-raz">
+					Pour les dégradés elliptiques avec <code>closest-corner</code>, la
+					forme du dégradé a le même rapport largeur-hauteur que si le mot
+					clé <code>closest-side</code>.
+					<br>
+					Pour les dégradés elliptiques avec <code>farthest-corner</code>, la
+					forme du dégradé a le même rapport largeur-hauteur que si le mot
+					clé <code>farthest-side</code>
+				</p>
+
+				<p>
+					<strong>&lt;position&gt;</strong> Facultative. Indique le centre du
+					dégradé et peut prendre les mêmes valeurs que la propriété <a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-position')">background-position</a>.
+					La valeur par défaut est <code>center</code>.
+				</p>
+
+				<p>
+					<strong>&lt;point-arrêt&gt;</strong> Il doit y avoir au moins deux
+					points d'arrêt de couleurs. Chaque point d'arrêt de couleur
+					comporte une ou deux valeurs : une couleur et une position
+					(falcultative).
+					<br>
+					N'importe quelle façon de <a
+						onclick="top.FP.Voir.showPageTech('couleur', '')">spécifier
+						une couleur</a> peut être utilisée.
+					<br>
+					Chaque point d'arrêt peut avoir un pourcentage ou <a
+						onclick="top.FP.Voir.showPageTech('longueur', '')">une valeur
+						de longueur</a> qui definit où s'arrête la couleur avant de commencer
+					sa transition vers la couleur du point d'arrêt suivant. 0
+					correspond au centre du dégradé et 100% désigne l'endroit ou
+					s'arrête la forme finale. Les valeurs peuvent être supérieures ou
+					inférieures aux limites du dégradé. L'affichage résultant sera dans
+					ce cas une "partie" seulement des transtions entre les 2 couleurs.
+				</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exercice</strong> : dégradés radiaux
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;section&gt;
+			&lt;h2&gt;La Guerre des Etoiles du Milieu&lt;/h2&gt;
+			&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron.&lt;/p&gt;
+			&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;		
+			&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+		&lt;/section&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+html { height: 100%;} 	/* force la hauteur de page pour que le dégradé aille bien en bas de la page */
+
+body {
+	background: radial-gradient(ellipse at top center, cyan, black);
+}
+section {
+	width: 400px;
+	margin: 1em auto;
+}
+p {
+	margin: 1em 0;
+	padding: 1em;
+	border-radius: 1em;
+}
+p:nth-of-type(1) {
+	background-image: radial-gradient(closest-side at 20px 25px, white, rgba(0, 255, 255, 0.2));
+}
+p:nth-of-type(2) {
+	background-image: radial-gradient(ellipse at bottom center, black, rgba(0, 255, 255, 0.2));
+}
+p:nth-of-type(3) {
+	background-image: radial-gradient(ellipse at 30% 35%, white, rgba(0, 255, 255, 0.2));
+}</textarea>
+				</form>
+			</div>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Dégradés répétitifs</h3>
+		<section>
+			<h4>Dégradés linéraires répétitifs</h4>
+			<section>
+				<p>
+					La fonction <code>repeating-linear-gradient()</code> permet de
+					créer des dégradés linéraires répétitifs. Les paramètres sont les
+					mêmes que ceux de la fonction <a class="fp-lientuto"
+						onclick="top.FP.Voir.showPageTuto('css06c1', 'linear-gradient')">
+						linear-gradient()</a>.
+					<br>
+					<code>repeating-linear-gradient([[&lt;angle&gt; | to
+						&lt;côté-ou-coin&gt; ],]? &lt;point-arrêt&gt; [,
+						&lt;point-arrêt&gt;]+)</code>
+				</p>
+
+				<p>Quand le dernier point d'arrêt de couleur est atteint, le
+					dégradé recommence au premier point d'arrêt de couleur et se
+					répète. Pour ne pas avoir de changement brusque de couleur, il faut
+					spécifier les mêmes couleurs pour le premier et le dernier point
+					d'arrêt.</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : dégradés linéaires répétitifs
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div&gt;De haut en bas&lt;/div&gt;
+		&lt;div&gt;De bas en haut&lt;/div&gt;
+		&lt;div&gt;De gauche à droite&lt;/div&gt;
+		&lt;div&gt;De droite à gauche&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+div {
+	width: 400px;
+	height: 150px;
+	margin: 10px auto;
+	border: 1px solid;
+	line-height: 150px;
+	text-align: center;
+}
+/* de haut en bas avec 3 couleurs */
+div:nth-of-type(1) {
+	background-image: repeating-linear-gradient(brown, orange 20px, brown 40px);
+}
+/* de bas en haut avec 3 couleurs */
+div:nth-of-type(2) {
+	background-image: repeating-linear-gradient(0deg, brown, orange 20%, brown 40%);
+}
+
+/* de gauche à droite avec 2 couleurs */
+div:nth-of-type(3) {
+	background-image: repeating-linear-gradient(90deg, brown 10%, orange 20%);
+}
+/* de droite à gauche avec 2 couleurs */
+div:nth-of-type(4) {
+	background-image: repeating-linear-gradient(270deg, brown 20px, orange 40px);
+}</textarea>
+				</form>
+			</section>
+
+			<h4>Dégradés radiaux répétitifs</h4>
+			<section>
+				<p>
+					La fonction <code>repeating-radial-gradient()</code> permet de
+					créer des dégradés radiaux répétitifs. Les paramètres sont les
+					mêmes que ceux de la fonction <a class="fp-lientuto"
+						onclick="top.FP.Voir.showPageTuto('css06c1', 'radial-gradient')">
+						radial-gradient()</a>.
+					<br>
+					<code>repeating-radial-gradient([[&lt;angle&gt; | to
+						&lt;côté-ou-coin&gt; ],]? &lt;point-arrêt&gt; [,
+						&lt;point-arrêt&gt;]+)</code>
+				</p>
+
+				<p>Quand le dernier point d'arrêt de couleur est atteint, le
+					dégradé recommence au premier point d'arrêt de couleur et se
+					répète. Pour ne pas avoir de changement brusque de couleur, il faut
+					spécifier les mêmes couleurs pour le premier et le dernier point
+					d'arrêt.</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : dégradés radiaux répétitifs
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div&gt;Ellipse centrée 3 couleurs&lt;/div&gt;
+		&lt;div&gt;Cercle 3 couleurs&lt;/div&gt;
+		&lt;div&gt;Closest-side 2 couleurs&lt;/div&gt;
+		&lt;div&gt;Farthest-side 2 couleurs&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+div {
+	width: 400px;
+	height: 150px;
+	margin: 10px auto;
+	border: 1px solid;
+	line-height: 150px;
+	text-align: center;
+}
+/* ellipse centrée avec 3 couleurs */
+div:nth-of-type(1) {
+	background-image: repeating-radial-gradient(brown, orange 20px, brown 40px);
+}
+/* cercle 3 couleurs */
+div:nth-of-type(2) {
+	background-image: repeating-radial-gradient(circle at 50px 50px, brown, orange 20%, brown 40%);
+}
+
+/* cercle 2 couleurs */
+div:nth-of-type(3) {
+	background-image: repeating-radial-gradient(closest-side circle, brown 10%, orange 20%);
+}
+/* cercle 2 couleurs */
+div:nth-of-type(4) {
+	background-image: repeating-radial-gradient(farthest-side circle, brown 10%, orange 20%);
+}</textarea>
+				</form>
+			</section>
+
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

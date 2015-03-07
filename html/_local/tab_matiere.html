@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Table des matière tutoriel HTML</title>
+
+<style>
+html {
+	height: auto !important;
+	min-height: 100%;
+	font-size: 15px;
+	}
+
+body {
+	background: #FFF;
+	color: #000;
+	font: 15px/1.5 verdana, geneva, sans-serif;
+	height: auto !important;
+	margin: 0 0 1em 1em;
+	min-height: 100%;
+	padding: 0;
+	-webkit-text-size-adjust: 15px;
+	-ms-text-size-adjust: 15px;
+	counter-reset: numFigure;
+	}
+
+h2:hover,
+h3:hover,
+h4:hover {
+	background-color: #ebebeb;
+}
+/* Titre chapitre */
+h1 {
+	background: url("../_core/images/_folder19x19.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+	font-size: 15px;
+	margin: 0.5em 0 0 0;
+	padding: 0 0 0 21px;
+}
+/* Titre page */
+h2 {
+	background: url("../_core/images/_document15x17.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+	cursor: pointer;
+	font-size: 13px;
+	line-height: 18px;
+	margin: 0 0 0 32px;
+	padding: 0 0 0 17px;
+}
+/* Titre partie */
+h3 {
+	background: url("../_core/images/_checkbox15x15.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+	cursor: pointer;
+	font-size: 11px;
+	font-weight: normal;
+	line-height: 17px;
+	margin: 0.1em 0 0 64px;
+	padding: 0 0 0 18px;		
+}
+/* Titre sous partie */
+h4 {
+	background: url("../_core/images/_check15x13.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+	cursor: pointer;
+	font-size: 9px;
+	font-weight: normal;
+	line-height: 14px;
+	margin: 0.1em 0 0 100px;
+	padding: 0 0 0 16px;
+}
+</style>
+
+</head>
+<body>
+	<div id="TDM"></div>
+	
+
+<script>
+if (!opener.top.FP) {
+	location.replace('../index.html?x=' + encodeURI(location.href));
+}
+
+var FP = opener.top.FP;
+
+document.getElementById('TDM').innerHTML = fpl_getContenu();
+
+// Boucle de traitement des chapitres du tuto
+function fpl_getContenu() {
+	var H = '', 
+		i;
+	
+	// La boucle commence à 1 car l'indice 0 est le chapitre page d'accueil du tuto			
+	for (i = 1; i < FP.TChap.length; i++) {	
+		// Nom du chapitre
+		H += '<h1>' + i + ' ' + FP.TChap[i].titre + '</h1>';	
+		// Pages du chapitre
+		H += fpl_getPages(i);
+	}
+	return H;
+}
+
+// Boucle de traitement des pages d'un chapitre
+function fpl_getPages(NumChap) {
+	var TPagesDuChap = FP.TChap[NumChap].TPage,
+		H = '',
+		i, Page;
+	
+	for (i = 0; i < TPagesDuChap.length; i++) {
+		Page = FP.TPage[TPagesDuChap[i]];
+		
+		if (Page.type == FP.PAGE_EXO) {
+			continue;
+		}
+		
+		H += '<h2 onclick="opener.top.FP.Voir.showPageTuto(\'' + Page.fic + '\')">' +
+				NumChap + '.' + (i + 1) + ' ' + Page.titre + '</h2>';
+				
+		if (Page.parts) {
+			H += fpl_getParties(Page);
+		}
+	}
+	return H;
+}
+
+//Boucle de traitement des parties d'une page d'un chapitre
+function fpl_getParties(Page) {
+	var H = '',
+		Parties = Page.parts,
+		i, j,
+		lettres = ['A','B','C','D','E','F','G','H','I','J','K','L','M'];
+	
+	for (i = 0; i < Parties.length; i++) {		
+		H += '<h3 onclick="opener.top.FP.Voir.showPageTuto(\'' + Page.fic + '\', \'' + lettres[i] + '\')">' +
+				Parties[i][0] + '</h3>';
+		
+		if (Parties[i].length == 1) {
+			continue;// Pas de sous-parties
+		}
+		
+		// Des sous-parties
+		for (j = 0; j < Parties[i][1].length; j++) {
+			H += '<h4 onclick="opener.top.FP.Voir.showPageTuto(\'' + Page.fic + '\', \'' + lettres[i] + j + '\')">' +
+					Parties[i][1][j] + '</h4>';
+		}
+	}
+	return H;
+}
+</script>
+	
+</body>
+</html>

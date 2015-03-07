@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Appelle une m&eacute;thode statique et passe les
+	arguments en tableau</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.create-function.html">create_function</a>
+		</div>
+		<div class="next">
+			<a href="function.forward-static-call.html">forward_static_call</a>
+		</div>
+		<div class="up">
+			<a href="ref.funchand.html">Fonctions sur la gestion des
+				fonctions</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.forward-static-call-array" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">forward_static_call_array</h1>
+			<p class="verinfo">(PHP 5 &gt;= 5.3.0)</p>
+			<p class="refpurpose">
+				<span class="refname">forward_static_call_array</span> <span
+					class="mdash">&mdash;</span> <span class="dc-title">Appelle
+					une méthode statique et passe les arguments en tableau</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.forward-static-call-array-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><a
+					href="language.pseudo-types.html#language.types.mixed"
+					class="type mixed">mixed</a></span> <span class="methodname"><strong>forward_static_call_array</strong></span>
+				( <span class="methodparam"><span class="type"><a
+						href="language.types.callable.html" class="type callable">callable</a></span>
+					<code class="parameter">$function</code></span> , <span
+					class="methodparam"><span class="type">array</span> <code
+						class="parameter">$parameters</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				Appelle une fonction ou une méthode utilisateur, nommée <em><code
+						class="parameter">function</code></em>, avec les arguments rassemblés
+				dans un tableau. Cette fonction doit être appelée depuis une
+				méthode, et ne peut pas être utilisée hors d&#039;une classe. Elle
+				utilise le <a href="language.oop5.late-static-bindings.html"
+					class="link">liage statique</a>. Tous les arguments transmis sont
+				passés par valeur dans un tableau, similairement à <span
+					class="function"><a
+					href="function.call-user-func-array.html" class="function">call_user_func_array()</a></span>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.forward-static-call-array-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">function</code></em></span>
+				<dd>
+
+					<p class="para">La fonction ou la méthode appelée. Ce paramètre
+						peut être un tableau, avec le nom de la classe et de la méthode,
+						ou une chaîne, avec le nom de la fonction.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">parameter</code></em></span>
+				<dd>
+
+					<p class="para">Un paramètre, rassemblant tous les paramètres
+						dans un tableau.</p>
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>:
+						<p class="para">
+							Notez que les paramètres sont passés par valeur par <span
+								class="function"><strong>forward_static_call_array()</strong></span>.
+					</blockquote>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.forward-static-call-array-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne le résultat de la fonction, et <strong><code>FALSE</code></strong>
+				en cas d&#039;erreur.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.forward-static-call-array-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4760">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>forward_static_call_array()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br /></span><span style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">A<br /></span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;
+							</span><span style="color: #0000BB">NAME&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'A'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">test</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$args&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">func_get_args</span><span
+								style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;static::
+							</span><span style="color: #0000BB">NAME</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"&nbsp;"</span><span
+								style="color: #007700">.</span><span style="color: #0000BB">join</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">','</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$args</span><span style="color: #007700">).</span><span
+								style="color: #DD0000">"&nbsp;\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br />class&nbsp;
+							</span><span style="color: #0000BB">B&nbsp;</span><span
+								style="color: #007700">extends&nbsp;</span><span
+								style="color: #0000BB">A<br /></span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;
+							</span><span style="color: #0000BB">NAME&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'B'</span><span style="color: #007700">;<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">test</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #0000BB">self</span><span
+								style="color: #007700">::</span><span style="color: #0000BB">NAME</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">forward_static_call_array</span><span
+								style="color: #007700">(array(</span><span
+								style="color: #DD0000">'A'</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'test'</span><span style="color: #007700">),&nbsp;array(</span><span
+								style="color: #DD0000">'encore'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'args'</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">forward_static_call_array</span><span
+								style="color: #007700">(&nbsp;</span><span
+								style="color: #DD0000">'test'</span><span style="color: #007700">,&nbsp;array(</span><span
+								style="color: #DD0000">'autres'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'args'</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #0000BB">B</span><span
+								style="color: #007700">::</span><span style="color: #0000BB">test</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'foo'</span><span
+								style="color: #007700">);<br />
+								<br />function&nbsp;
+							</span><span style="color: #0000BB">test</span><span
+								style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$args&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">func_get_args</span><span
+								style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"C&nbsp;"</span><span
+								style="color: #007700">.</span><span style="color: #0000BB">join</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">','</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$args</span><span style="color: #007700">).</span><span
+								style="color: #DD0000">"&nbsp;\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+B
+B encore,args 
+C autres,args 
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.forward-static-call-array-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.forward-static-call.html" class="function"
+						rel="rdfs-seeAlso">forward_static_call()</a> - Appelle une
+						m&eacute;thode statique</span></li>
+				<li class="member"><span class="function"><a
+						href="function.call-user-func.html" class="function"
+						rel="rdfs-seeAlso">call_user_func()</a> - Appelle une fonction de
+						rappel fournie par le premier argument</span></li>
+				<li class="member"><span class="function"><a
+						href="function.call-user-func-array.html" class="function"
+						rel="rdfs-seeAlso">call_user_func_array()</a> - Appelle une
+						fonction de rappel avec les param&egrave;tres rassembl&eacute;s en
+						tableau</span></li>
+				<li class="member"><span class="function"><a
+						href="function.is-callable.html" class="function"
+						rel="rdfs-seeAlso">is_callable()</a> - D&eacute;termine si
+						l'argument peut &ecirc;tre appel&eacute; comme fonction</span></li>
+				<li class="member">Informations sur le type <a
+					href="language.pseudo-types.html#language.types.callback"
+					class="link">callback</a></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.create-function.html">create_function</a>
+		</div>
+		<div class="next">
+			<a href="function.forward-static-call.html">forward_static_call</a>
+		</div>
+		<div class="up">
+			<a href="ref.funchand.html">Fonctions sur la gestion des
+				fonctions</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

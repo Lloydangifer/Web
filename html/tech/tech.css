@@ -1,0 +1,523 @@
+/*==================================================
+	INIT			
+==================================================*/
+html {
+	height: auto !important;
+	min-height: 100%;
+	font-size: 15px
+	}
+
+body {
+	background: #FFF;	/*none repeat scroll 0 0 #F6F6F6;*/
+	color: #000;
+	font: 15px/1.5 verdana, arial, sans-serif;
+	height: auto !important;
+	margin: 0 0 1em 0;
+	min-height: 100%;
+	padding: 0;
+	-webkit-text-size-adjust: 15px;
+	-ms-text-size-adjust: 15px;
+	counter-reset: numFigure;
+	}
+
+code {
+	font-family: Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console', Monaco, 'Courier New', Courier, monospace;
+	font-size: 1.15385em; /* 15px : 0.866667em du dl * 1.15285 */
+	}
+
+/*====== LIENS ===================================================*/
+a {
+	color: #0000EE;
+	cursor: pointer;
+	}
+
+a:active,
+a:focus {outline: 0}
+
+a:hover {
+	color: #AA0026;
+	outline: 0;
+	}
+
+a:visited {color: #0000EE}
+
+.LIEN-img {
+	border: 0;
+	cursor: pointer;
+	}
+
+a[href^="http"] {	/* Liens externes au tutoriel */
+	background: url(../_core/images/lien_www.png) no-repeat right center;
+	padding-right: 20px;
+	}
+a[href^="http"]:hover:after {
+  content: "(" attr(href) ")";
+  margin: 0 5px;
+  text-decoration: underline;
+}
+
+a[href^="http://www.w3.org"] {	/* Liens vers le w3c */
+	background: url(../_core/images/lien_w3c_02.png) no-repeat right center;
+	padding-right: 24px; /*20px;*/
+	}
+
+a[href*="wikipedia.org"] {	/* Liens vers wikipedia */
+	background: url(../_core/images/lien_wiki_02.png) no-repeat right center;
+	padding-right: 24px; /*20px;*/
+	}
+
+a[onclick ^="top.FP.Voir.showPageTech"] {	/* Liens vers les spécifications techniques */
+	background: url(../_core/images/lien_tech.png) no-repeat right center #FDFFED;
+	box-shadow: 0 0 4px 2px #FFF3EA;
+	font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", Monaco, "Courier New", Courier, monospace;
+	font-size: 1.066667em;
+	padding: 0 20px 0 3px;
+	text-decoration: none;
+	}
+
+a.fp-lientuto {		/* Liens vers le tuto */
+	background: url(../_core/images/lien_tuto.png) no-repeat right center;
+	padding: 0 20px 0 3px;
+	text-decoration: none;
+	}
+
+/*====== FORMULAIRES =============================================*/
+form {
+	margin: 0 0 1em 0
+	padding: 0
+	}
+
+input,
+textarea,
+select,
+button {
+	font-size: 100%;
+	font-family: inherit;
+	font-weight: normal;
+	margin: 0 0 1em 0
+	padding: 0;
+	vertical-align: baseline;
+	*font-size: 100%; /* Permette le redimesionnement dans IE */
+	*vertical-align: middle
+	}
+
+textarea {
+	resize: none;
+	height: auto;
+	overflow: auto; /* Removes default vertical scrollbar in IE6/7/8/9 */
+	vertical-align: top
+	}
+
+button,
+input[type=button],
+input[type=reset],
+input[type=submit] {
+	cursor: pointer;
+	-webkit-appearance: button;
+	*overflow: visible
+	}
+
+button[disabled],
+input[disabled] {
+	cursor: default
+	}
+
+input[type=checkbox],
+input[type=radio] {
+	box-sizing: border-box;
+	padding: 0;
+	*height: 13px;
+	*width: 13px
+	}
+
+/*====== TABLES ==================================================*/
+table {
+	border: 1px solid #bbb;
+	border-collapse: collapse;
+	border-spacing: 0;
+	empty-cells: show;
+	font-size: inherit;
+	font: 100%;
+	margin: 1em auto;
+	width: 100%
+	}
+
+td {
+	border: 1px solid #bbb;
+	margin: 0;
+	padding: 2px 4px;
+	vertical-align: top
+	}
+
+td p,
+td pre {margin: 0 0 1em 0}
+
+/*====== LISTES ==================================================*/
+dl,
+dt,
+dd,
+ul,
+ol {
+	margin: 0;
+	padding: 0
+	}
+
+li {
+	margin: 0;
+	padding: 0;
+	list-style: none
+	}
+
+li p {margin: 1em 0}
+
+/*====== DIVERS ==================================================*/
+b,
+strong,
+.FP-bold {font-weight: bold}
+
+img {border: 0}
+
+video {box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2)}
+
+footer {
+	background: none repeat scroll 0 0 #B60A36;
+	border: 1px solid #999999;
+	border-radius: 35px 35px 35px 35px;
+	bottom: 0;
+	box-shadow: 0 0 6px -2px #000;
+	color: #FFFFFF;
+	clear: both;
+	height: 50px;
+	left: 50%;
+	line-height: 50px;
+	margin-left: -360px;
+	padding-left: 12px;
+	position: relative;
+	width: 708px
+	}
+
+footer a {color: #FFF}
+
+footer a:hover {color: #FFEF76}
+
+figure {
+	display: block;
+	margin: 1em 0;
+	text-align: center
+	}
+
+figure img {
+	border: 1px solid #DDDDDD;
+	border-radius: 4px 4px 4px 4px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+	padding: 4px
+	}
+
+figcaption {
+	display: block;
+	font-size: 80%;
+	font-style: italic
+	}
+
+figcaption::before {
+	counter-increment: numFigure;
+	content: "Fig. " counter(numFigure) " : ";
+	}
+	
+/*====== TITRES ==================================================*/
+h1,
+h2,
+h3,
+h4 {
+	border-radius: 12px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+	clear: both;
+	color: #111111;
+	font-weight: bold;
+	left: -20px;
+	margin: 1em auto 0;
+	padding: 0.2em 0 0.2em 20px;
+	position: relative;
+	width: 500px
+	}
+
+
+h2 { /* Titres dune page */
+	background: #CCC;
+	font-size: 1.13333em; /*17*/
+	margin-top: 0.5em;
+	}
+
+h3 { /* Titre dune partie dans une page */
+	background: #DDD;
+	cursor: pointer;
+	font-size: 1em; /*15px;*/
+	margin-top: 2em auto 1em auto
+	}
+
+h4 { /* Titre dune sous-partie dans une page */
+	cursor: pointer;
+	font-size: 1em;
+	font-weight: normal;
+	margin-top: 1.733333em auto 0.86666667em auto;
+	}
+
+/*==================================================
+	BLOCS DIVERS		
+==================================================*/
+#PAGE-tech {
+	margin: 0 auto 10px auto;
+	width: 480px
+	}
+	
+.fp-remarque {
+	background: url(../_core/images/lightpaperfibers.png);
+	border: 1px solid #DDDDDD;
+	border-radius: 5px 5px 5px 5px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+	font-size: 0.866667em;
+	margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 90px;
+	padding: 6px 12px;
+	position: relative
+	}
+
+.fp-remarque::before {
+	content: url(../_core/images/_info.png);
+	display: block;
+	height: 28px;
+	left: -13px;
+	position: absolute;
+	top: -10px;
+	width: 28px
+	}
+
+.fp-rappel {
+	background: url(../_core/images/lightpaperfibers.png) repeat;
+	border: 1px solid #DDDDDD;
+	border-radius: 5px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+	float: right;
+	font-size: 0.866667em;
+	margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 8px;
+	padding: 2px 4px;
+	width: 190px
+	}
+
+.fp-video {
+	background: url(../_core/images/_tv.png) no-repeat scroll center center transparent;
+	border: 1px solid;
+	display: block;
+	height: 32px;
+	padding: 4px
+	}
+
+/*==================================================
+	MENU contenu d'une page	
+==================================================*/
+#MENU-page {
+	border-radius: 4px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+	float: right;
+	margin: 0.66667em 0 0.66667em 0.66667em;
+	padding: 0 0 5px;
+	position: relative;
+	text-align: left;
+	width: 240px
+	}
+
+#MENU-page a {
+	color: #0000CC;
+	display: block;
+	padding: 2px 0 0 6px;
+	text-decoration: none
+	}
+#MENU-page a:visited {color: #00C}
+
+#MENU-page a:hover {
+	background-color: #DDDDDD; /*#ffea56;*/
+	color: #AA0026;
+	box-shadow: 2px 2px 6px -4px #000
+	}
+
+#MENU-page ol {margin: 0 0.333333em 0 1em}
+
+#MENU-page ol a {
+	font-size: 0.866667em; /* 13px */
+	padding: 0 5px 2px 15px
+	}
+
+/*==================================================
+	CODE
+==================================================*/
+pre,
+code,
+.fp-code,
+.fp-dl-code dt {
+	background-color: #FDFFED; /*#FFF0EF;*/
+	box-shadow: 0 0 4px 2px #FFF3EA;
+	font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console",	Monaco, "Courier New", Courier, monospace;
+	font-size: 1.06667em;
+	line-height: 1.3;
+	padding: 0 3px
+	}
+
+pre {
+	margin: 1em 0;
+	padding: 5px
+	}
+
+/*==================================================
+	DIVERS
+==================================================*/
+.fp-rouge {	color: #CC0000;	}
+.fp-petit {	font-size: 0.866667em; /*13px;*/	}
+.fp-t-center {	text-align: center;	}
+.fp-f-right {float: right;	}
+.fp-f-left {float: left;	}
+.fp-w40pc {width: 40%;	}
+.fp-clear {clear: both;	}
+.fp-bot0 {margin-bottom: 0 !important;	}
+.fp-top0 {margin-top: 0 !important;	}
+.fp-top2 {margin-top: 2em !important;	}
+.fp-gras {font-weight: bold;	}
+
+.fp-img {
+	border: 1px solid #DDDDDD;
+	border-radius: 4px 4px 4px 4px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+	padding: 4px
+	}
+
+.fp-exo {background-image: url(../_core/images/_pencil24x24.png)}
+
+.fp-rond {
+	background-color: #BC2341;
+	border-radius: 12px;
+	color: #FFFFFF;
+	font-size: 16px;
+	font-weight: bold;
+	height: 24px;
+	line-height: 22px;
+	text-align: center;
+	width: 24px
+	}
+
+.fp-no-support {
+	background: url(../htmlimg/interdit.png) no-repeat;
+	float: right;
+	height: 16px;
+	width: 16px;
+	}	
+
+/*==================================================
+	TABLES
+==================================================*/
+.TAB-sans-bord,
+.TAB-sans-bord td {border: none}
+
+.TAB-def tr td:first-child {
+	text-align: right;
+	padding-right: 6px
+	}
+
+.TAB-zebre tr:first-child {text-align: center; font-weight: bold}
+.TAB-zebre tr:nth-child(odd) {background: #eee}
+.TAB-zebre tr:nth-child(2n) {background: #fff}
+
+/*==================================================
+	LISTES
+==================================================*/
+.fp-ul,
+.fp-ul-1em,
+.fp-ul-puce {margin: 0 0 1em 0}
+
+section > p,		/* par défaut les paragraphes des sections ont une puce */
+.fp-puce,
+.fp-ul > li,
+.fp-ul-1em > li {
+	background: url(../_core/images/_puce12x14.png) no-repeat 0 5px transparent;
+	padding-left: 20px
+	}
+	
+.fp-p-raz {	/* Pour avoir des paragraphes normaux dans les sections */
+	background: none;
+	padding-left: 0
+	}
+
+.fp-ul-1em > li {margin-bottom: 1em}
+
+p.fp-bot0 + ul {	/* par défaut, une liste qui suit un paragraphe sans
+						marge inférieur est une liste type fp-ul-puce */
+	margin: 0 0 1em 0	
+	}
+	
+.fp-ul-puce > li,
+p.fp-bot0 + ul > li {
+	list-style: square outside none;
+	margin-left: 3em
+	}
+
+/*==================================================
+	IMPRESSION
+==================================================*/
+@media print {
+	@page {margin: 0.5cm}
+	* {
+		background: transparent !important;
+		color: #000 !important; /* Black prints faster: h5bp.com/s */
+		box-shadow: none !important;
+		text-shadow: none !important
+		}
+	html {
+		font-size: 8pt}
+	body {
+		font-size: 8pt}
+	h1,
+	h2,
+	h3,
+	h4 {
+			border: 1px solid #666;
+			margin-left: 0;
+			padding: 0.1cm 0.1cm 0.1cm 0.3cm;
+			width: 18cm;
+			left: -0.5cm;
+			page-break-after: avoid;
+			orphans: 3;
+			widows: 3
+		}
+	a,
+	a:visited {text-decoration: underline}
+	a[href]:after {content:  ( attr(href) )}
+	a:after,
+	a[href ^=javascript:]:after,
+	a[onclick]:after,
+	a[href ^=#]:after {content: ;}
+	thead {display: table-header-group}
+	tr,
+	img {page-break-inside: avoid}
+	img {max-width: 100% !important}
+	p {
+		orphans: 3;
+		widows: 3
+		}
+	#PAGE-spec {
+		width: 18cm;
+		margin: -2cm auto 0 auto;
+		border: 0;
+		left: 0
+		}
+	footer {
+		position: static;
+		margin: 0 auto
+		}
+	.fp-puce,
+	.fp-ul > li,
+	.fp-ul-1em > li {
+		background: url(../_core/images/_puce12x14.png) no-repeat 0 5px transparent !important}
+}

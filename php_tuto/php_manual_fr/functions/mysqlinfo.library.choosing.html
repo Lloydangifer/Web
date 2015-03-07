@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Choisir une biblioth&egrave;que</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="mysqlinfo.api.choosing.html">Choisir une API</a></div>
+ <div class="next"><a href="mysqlinfo.concepts.html">Concepts</a></div>
+ <div class="up"><a href="mysql.html">Aper&ccedil;u des drivers PHP MySQL</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="mysqlinfo.library.choosing" class="chapter">
+   <h1>Choisir une bibliothèque</h1>
+
+   <p class="para">
+    Les extensions mysqli, PDO_MySQL et mysql sont des wrappers légers d&#039;une
+    bibliothèque cliente C. Les extensions peuvent soit utiliser la bibliothèque
+    <a href="book.mysqlnd.html" class="link">mysqlnd</a>, soit la bibliothèque <em>libmysql</em>.
+    Le choix de la bibliothèque se fait au moment de la compilation.
+   </p>
+   <p class="para">
+    La bibliothèque mysqlnd fait partie de la distribution de PHP depuis la version
+    5.3.0. Elle offre des fonctionnalités comme les connexions paraisseuses,
+    la mise en cache de requetes, qui ne sont pas disponibles avec libmysql,
+    aussi, nous vous recommandons d&#039;utiliser la bibliothèque interne mysqlnd.
+    Voir la <a href="book.mysqlnd.html" class="link">documentation de mysqlnd</a>
+    pour plus d&#039;informations,ainsi qu&#039;une liste des fonctionnalités qu&#039;elle offre.
+   </p>
+   <p class="para">
+    <div class="example" id="example-1542">
+     <p><strong>Exemple #1 Commande de configuration pour l&#039;utilisation de mysqlnd ou de libmysql</strong></p>
+     <div class="example-contents">
+<div class="shellcode"><pre class="shellcode">// Recommandé, compilation avec mysqlnd
+$ ./configure --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-mysql=mysqlnd
+
+// Non recommandé, compilation avec libmysql
+$ ./configure --with-mysqli=/path/to/mysql_config --with-pdo-mysql=/path/to/mysql_config --with-mysql=/path/to/mysql_config</pre>
+</div>
+     </div>
+
+    </div>
+   </p>
+   <p class="para">
+    <em class="emphasis">Comparaison des fonctionnalités des bibliothèques</em>
+   </p>
+   <p class="para">
+    Il est recommandé d&#039;utiliser la bibliothèque <a href="book.mysqlnd.html" class="link">mysqlnd</a>
+    au lieu de la bibliothèque client serveur MySQL (libmysql). Les deux bibliothèques
+    sont supportées et améliorées en permanence.
+   </p>
+   <table class="doctable informaltable">
+    
+     <thead>
+      <tr>
+       <th class="empty">&nbsp;</th>
+       <th>Driver natif MySQL (<a href="book.mysqlnd.html" class="link">mysqlnd</a>)</th>
+       <th>Bibliothèque client serveur MySQL (<em>libmysql</em>)</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td>Fait parti de la distribution de PHP</td>
+       <td>Oui</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Introduit en version de PHP</td>
+       <td>5.3.0</td>
+       <td>N/A</td>
+      </tr>
+
+      <tr>
+       <td>Licence</td>
+       <td>PHP Licence 3.01</td>
+       <td>Double-licence</td>
+      </tr>
+
+      <tr>
+       <td>Statut de développement</td>
+       <td>Actif</td>
+       <td>Actif</td>
+      </tr>
+
+      <tr>
+       <td>Cycle de vie</td>
+       <td>Pas de fin d&#039;annoncé</td>
+       <td>Pas de fin d&#039;annoncé</td>
+      </tr>
+
+      <tr>
+       <td>Compilé par défaut en PHP 5.4 (pour toutes les extensions MySQL)</td>
+       <td>Oui</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Compilé par défaut en PHP 5.3 (pour toutes les extensions MySQL)</td>
+       <td>Non</td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>Support du protocole de compression</td>
+       <td>Oui (5.3.1+)</td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>Support de SSL</td>
+       <td>Oui (5.3.3+)</td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>Support des pipes nommés</td>
+       <td>Oui (5.3.4+)</td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>Requêtes non bloquantes, asynchrones</td>
+       <td>Oui</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Statistiques sur les performances</td>
+       <td>Oui</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>LOAD LOCAL INFILE respecte la <a href="ini.core.html#ini.open-basedir" class="link">directive open_basedir</a></td>
+       <td>Oui</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Utilisation du système de gestion de la mémoire native de PHP
+        (i.e., suit les limites mémoires de PHP)</td>
+       <td>Oui</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Retourne les colonnes numériques sous la forme de double (COM_QUERY)</td>
+       <td>Oui</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Retourne les colonnes numériques sous la forme de chaînes de caractères (COM_QUERY)</td>
+       <td>Oui</td>
+       <td>Oui</td>
+      </tr>
+
+      <tr>
+       <td>API du plugin</td>
+       <td>Oui</td>
+       <td>Limité</td>
+      </tr>
+
+      <tr>
+       <td>Séparation des lectures et des écritues pour la réplication MySQL</td>
+       <td>Oui, avec un plugin</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Balance de charge</td>
+       <td>Oui, avec un plugin</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Fail over</td>
+       <td>Oui, avec un plugin</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Connexions paraisseuses</td>
+       <td>Oui, avec un plugin</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Mise en cache des requêtes</td>
+       <td>Oui, avec un plugin</td>
+       <td>Non</td>
+      </tr>
+
+      <tr>
+       <td>Manipulations transparentes des requêtes (i.e., auto-EXPLAIN ou monitorage)</td>
+       <td>Oui, with plugin</td>
+       <td>Non</td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </div>
+<hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="mysqlinfo.api.choosing.html">Choisir une API</a></div>
+ <div class="next"><a href="mysqlinfo.concepts.html">Concepts</a></div>
+ <div class="up"><a href="mysql.html">Aper&ccedil;u des drivers PHP MySQL</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

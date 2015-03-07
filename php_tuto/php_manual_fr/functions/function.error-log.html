@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Stocke un message d'erreur</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.error-get-last.html">error_get_last</a>
+		</div>
+		<div class="next">
+			<a href="function.error-reporting.html">error_reporting</a>
+		</div>
+		<div class="up">
+			<a href="ref.errorfunc.html">Fonctions sur la gestion des erreurs</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.error-log" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">error_log</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">error_log</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Stocke un message d&#039;erreur</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.error-log-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>error_log</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$message</code></span> [, <span
+					class="methodparam"><span class="type">int</span> <code
+						class="parameter">$message_type</code><span class="initializer">
+						= 0</span></span> [, <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$destination</code></span> [, <span
+					class="methodparam"><span class="type">string</span> <code
+						class="parameter">$extra_headers</code></span> ]]] )
+			</div>
+
+			<p class="para rdfs-comment">Envoie un message d&#039;erreur à
+				l&#039;historique d&#039;erreur du serveur web ou à un fichier.</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.error-log-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">message</code></em></span>
+				<dd>
+
+					<p class="para">Le message d&#039;erreur qui doit être stocké.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">message_type</code></em></span>
+				<dd>
+
+					<p class="para">Spécifie la destination du message
+						d&#039;erreur. Les types possibles de messages sont :</p>
+					<p class="para">
+					<table class="doctable table">
+						<caption>
+							<strong> <span class="function"><strong>error_log()</strong></span>
+								log types
+							</strong>
+						</caption>
+
+						<tbody class="tbody">
+							<tr>
+								<td>0</td>
+								<td><em><code class="parameter">message</code></em> est
+									envoyé à l&#039;historique PHP, qui est basé sur
+									l&#039;historique système ou un fichier, en fonction de la
+									configuration de <a
+									href="errorfunc.configuration.html#ini.error-log" class="link">error_log</a>.
+									C&#039;est l&#039;option par défaut.</td>
+							</tr>
+
+							<tr>
+								<td>1</td>
+								<td><em><code class="parameter">message</code></em> est
+									envoyé par email à l&#039;adresse <em><code
+											class="parameter">destination</code></em>. C&#039;est le seul type
+									qui utilise le quatrième paramètre <em><code
+											class="parameter">extra_headers</code></em>.</td>
+							</tr>
+
+							<tr>
+								<td>2</td>
+								<td>N&#039;est plus une option.</td>
+							</tr>
+
+							<tr>
+								<td>3</td>
+								<td><em><code class="parameter">message</code></em> est
+									ajouté au fichier <em><code class="parameter">destination</code></em>.
+									Aucune nouvelle ligne (retour chariot) n&#039;est
+									automatiquement ajoutée à la fin de la chaîne <em><code
+											class="parameter">message</code></em>.</td>
+							</tr>
+
+							<tr>
+								<td>4</td>
+								<td><em><code class="parameter">message</code></em> est
+									envoyé directement au gestionnaire d&#039;identification SAPI.
+								</td>
+							</tr>
+
+						</tbody>
+
+					</table>
+
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">destination</code></em></span>
+				<dd>
+
+					<p class="para">
+						La destination. Cela dépend du paramètre <em><code
+								class="parameter">message_type</code></em> décrit ci-dessus.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">extra_headers</code></em></span>
+				<dd>
+
+					<p class="para">
+						Les en-têtes supplémentaires. Ils sont utilisés lorsque le
+						paramètre <em><code class="parameter">message_type</code></em> est
+						défini à <em>1</em>. Ce type de message utilise la même fonction
+						interne que la fonction <span class="function"><a
+							href="function.mail.html" class="function">mail()</a></span>.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.error-log-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.error-log-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.2.7</td>
+						<td>La valeur possible pour 4 a été ajoutée à <em><code
+									class="parameter">message_type</code></em>.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.error-log-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-451">
+				<p>
+					<strong>Exemple #1 Exemples avec <span class="function"><strong>error_log()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Envoie&nbsp;une&nbsp;notification&nbsp;par&nbsp;l'historique&nbsp;du&nbsp;serveur&nbsp;web,<br />//&nbsp;si&nbsp;la&nbsp;connexion&nbsp;à&nbsp;la&nbsp;base&nbsp;de&nbsp;données&nbsp;est&nbsp;impossible.<br /></span><span
+								style="color: #007700">if&nbsp;(!</span><span
+								style="color: #0000BB">Ora_Logon</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$username</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$password</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;
+							</span><span style="color: #0000BB">error_log</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"Base&nbsp;Oracle&nbsp;indisponible&nbsp;!"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">);<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Indiquer&nbsp;à&nbsp;l'administrateur,&nbsp;par&nbsp;email,&nbsp;qu'il&nbsp;n'y&nbsp;a&nbsp;plus&nbsp;de&nbsp;FOO<br /></span><span
+								style="color: #007700">if&nbsp;(!(</span><span
+								style="color: #0000BB">$foo&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">allocate_new_foo</span><span
+								style="color: #007700">()))&nbsp;{<br />&nbsp;&nbsp;
+							</span><span style="color: #0000BB">error_log</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"Aya!,&nbsp;Il&nbsp;ne&nbsp;reste&nbsp;plus&nbsp;de&nbsp;FOO&nbsp;disponibles&nbsp;!"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,<br />&nbsp;&nbsp;
+							</span><span style="color: #DD0000">"operateur@example.com"</span><span
+								style="color: #007700">);<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;D'autres&nbsp;manières&nbsp;d'appeler&nbsp;error_log():<br /></span><span
+								style="color: #0000BB">error_log</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"Grosse&nbsp;bourde&nbsp;!"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"/var/tmp/mes-erreurs.log"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.error-get-last.html">error_get_last</a>
+		</div>
+		<div class="next">
+			<a href="function.error-reporting.html">error_reporting</a>
+		</div>
+		<div class="up">
+			<a href="ref.errorfunc.html">Fonctions sur la gestion des erreurs</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

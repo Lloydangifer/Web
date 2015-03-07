@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Fixe le temps maximum d'ex&eacute;cution d'un script</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.set-magic-quotes-runtime.html">set_magic_quotes_runtime</a>
+		</div>
+		<div class="next">
+			<a href="function.sys-get-temp-dir.html">sys_get_temp_dir</a>
+		</div>
+		<div class="up">
+			<a href="ref.info.html">Fonctions sur les options et les
+				informations de PHP</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.set-time-limit" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">set_time_limit</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">set_time_limit</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Fixe le temps maximum d&#039;exécution
+					d&#039;un script</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.set-time-limit-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><span class="type void">void</span></span> <span
+					class="methodname"><strong>set_time_limit</strong></span> ( <span
+					class="methodparam"><span class="type">int</span> <code
+						class="parameter">$seconds</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				Fixe le délai d&#039;expiration d&#039;un script, en secondes. Si
+				cette limite est atteinte, le script s&#039;interrompt, et renvoie
+				une erreur fatale. La valeur par défaut est 30 secondes ou, si
+				c&#039;est le cas, la valeur de la directive <em>max_execution_time</em>
+				définie dans le
+				<var class="filename">php.ini</var>
+				.
+			</p>
+			<p class="para">
+				Lorsqu&#039;elle est appelée, <span class="function"><strong>set_time_limit()</strong></span>
+				remet le compteur à zéro. En d&#039;autres termes, si la limite par
+				défaut est à 30 secondes, et qu&#039;après 25 secondes
+				d&#039;exécution du script l&#039;appel <em>set_time_limit(20)</em>
+				est fait, alors le script tournera pendant un total de 45 secondes
+				avant de finir.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.set-time-limit-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">seconds</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le temps maximal d&#039;exécution, en secondes. S&#039;il vaut <em>0</em>,
+						aucune limite n&#039;est imposée.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.set-time-limit-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Aucune valeur n&#039;est retournée.</p>
+		</div>
+
+
+		<div class="refsect1 notes"
+			id="refsect1-function.set-time-limit-notes">
+			<h3 class="title">Notes</h3>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">
+					Notez que <span class="function"><strong>set_time_limit()</strong></span>
+					n&#039;a pas d&#039;effet lorsque PHP fonctionne en mode <a
+						href="ini.sect.safe-mode.html#ini.safe-mode" class="link">safe
+						mode</a>. Il n&#039;y a pas d&#039;autre solution que de changer de
+					mode, ou de modifier la durée maximale d&#039;exécution dans le
+					<var class="filename">php.ini</var>
+					.
+				</p>
+			</div>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					La fonction <span class="function"><strong>set_time_limit()</strong></span>
+					et la directive de configuration <a
+						href="info.configuration.html#ini.max-execution-time" class="link">max_execution_time</a>
+					n&#039;affectent que le temps d&#039;exécution du script lui-même.
+					Tout temps passé en dehors du script, comme un appel système
+					utilisant <span class="function"><a
+						href="function.system.html" class="function">system()</a></span>, des
+					opérations sur les flux, les requêtes sur base de données, etc.
+					n&#039;est pas pris en compte lors du calcul de la durée maximale
+					d&#039;exécution du script. Ceci est faux sous Windows où le temps
+					mesuré est le temps réel.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.set-time-limit-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><a
+					href="info.configuration.html#ini.max-execution-time" class="link">max_execution_time</a></li>
+				<li class="member"><a
+					href="info.configuration.html#ini.max-input-time" class="link">max_input_time</a></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.set-magic-quotes-runtime.html">set_magic_quotes_runtime</a>
+		</div>
+		<div class="next">
+			<a href="function.sys-get-temp-dir.html">sys_get_temp_dir</a>
+		</div>
+		<div class="up">
+			<a href="ref.info.html">Fonctions sur les options et les
+				informations de PHP</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

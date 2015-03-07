@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Fonctions d&eacute;sactiv&eacute;es par le Safe Mode</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="ini.sect.safe-mode.html">S&eacute;curit&eacute; et &quot;Safe Mode&quot;</a></div>
+ <div class="next"><a href="features.commandline.html">Utilisation des lignes de commande</a></div>
+ <div class="up"><a href="features.safe-mode.html">Safe mode</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="features.safe-mode.functions" class="sect1">
+  <h2 class="title">Fonctions désactivées par le Safe Mode</h2>
+  <p class="para">
+   Voici une liste non-exhaustive des fonctions désactivées par
+   le <a href="features.safe-mode.html" class="link">Safe Mode</a>.
+   <table class="doctable table">
+    <caption><strong>Fonctions désactivées par le Safe Mode</strong></caption>
+    
+     <thead>
+      <tr>
+       <th>Fonction</th>
+       <th>Limitations</th>
+      </tr>
+
+     </thead>
+
+     <tbody class="tbody">
+      <tr>
+       <td> <span class="function"><strong>dbmopen()</strong></span></td>
+       <td>Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté.</td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.dbase-open.html" class="function">dbase_open()</a></span></td>
+       <td>Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté.</td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.filepro.html" class="function">filepro()</a></span></td>
+       <td>Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté.</td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.filepro-rowcount.html" class="function">filepro_rowcount()</a></span></td>
+       <td>Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté.</td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.filepro-retrieve.html" class="function">filepro_retrieve()</a></span></td>
+       <td>Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté.</td>
+      </tr>
+
+      <tr>
+       <td>Fonctions ifx_*</td>
+       <td>restrictions sql_safe_mode, (!= Safe Mode)</td>
+      </tr>
+
+      <tr>
+       <td>Fonctions ingres_*</td>
+       <td>restrictions sql_safe_mode, (!= Safe Mode)</td>
+      </tr>
+
+      <tr>
+       <td>Fonctions mysql_*</td>
+       <td>restrictions sql_safe_mode, (!= Safe Mode)</td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.pg-lo-import.html" class="function">pg_lo_import()</a></span></td>
+       <td>Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté.</td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.posix-mkfifo.html" class="function">posix_mkfifo()</a></span></td>
+       <td>Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté.</td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.putenv.html" class="function">putenv()</a></span></td>
+       <td>Obéit aux directives safe_mode_protected_env_vars et
+        safe_mode_allowed_env_vars. Voir aussi la documentation de
+         <span class="function"><a href="function.putenv.html" class="function">putenv()</a></span></td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.move-uploaded-file.html" class="function">move_uploaded_file()</a></span></td>
+       <td>Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté.</td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.chdir.html" class="function">chdir()</a></span></td>
+       <td>Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté.</td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.dl.html" class="function">dl()</a></span></td>
+       <td>Cette fonction est désactivée par le <a href="features.safe-mode.html" class="link">safe-mode</a></td>
+      </tr>
+
+      <tr>
+       <td><a href="language.operators.execution.html" class="link">opérateur guillemets obliques</a></td>
+       <td>Cette fonction est désactivée par le <a href="features.safe-mode.html" class="link">safe-mode</a></td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.shell-exec.html" class="function">shell_exec()</a></span> (équivalent fonctionnel
+        des guillemets obliques)</td>
+       <td>Cette fonction est désactivée par le <a href="features.safe-mode.html" class="link">safe-mode</a></td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.exec.html" class="function">exec()</a></span></td>
+       <td>
+        Vous ne pouvez exécuter que les programmes qui
+        sont dans le dossier <a href="ini.sect.safe-mode.html#ini.safe-mode-exec-dir" class="link">safe_mode_exec_dir</a>.
+        Pour des raisons pratiques, il n&#039;est pas possible d&#039;utiliser des
+        jokers comme <em>..</em> dans le chemin de ce dossier.
+         <span class="function"><a href="function.escapeshellcmd.html" class="function">escapeshellcmd()</a></span> est exécuté sur les arguments de cette fonction.
+       </td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.system.html" class="function">system()</a></span></td>
+       <td>
+        Vous ne pouvez exécuter que les programmes qui
+        sont dans le dossier <a href="ini.sect.safe-mode.html#ini.safe-mode-exec-dir" class="link">safe_mode_exec_dir</a>.
+        Pour des raisons pratiques, il n&#039;est pas possible d&#039;utiliser des
+        jokers comme <em>..</em> dans le chemin de ce dossier.
+         <span class="function"><a href="function.escapeshellcmd.html" class="function">escapeshellcmd()</a></span> est exécuté sur les arguments de cette fonction.
+       </td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.passthru.html" class="function">passthru()</a></span></td>
+       <td>
+        Vous ne pouvez exécuter que les programmes qui
+        sont dans le dossier <a href="ini.sect.safe-mode.html#ini.safe-mode-exec-dir" class="link">safe_mode_exec_dir</a>.
+        Pour des raisons pratiques, il n&#039;est pas possible d&#039;utiliser des
+        jokers comme <em>..</em> dans le chemin de ce dossier.
+         <span class="function"><a href="function.escapeshellcmd.html" class="function">escapeshellcmd()</a></span> est exécuté sur les arguments de cette fonction.
+       </td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.popen.html" class="function">popen()</a></span></td>
+       <td>
+        Vous ne pouvez exécuter que les programmes qui
+        sont dans le dossier <a href="ini.sect.safe-mode.html#ini.safe-mode-exec-dir" class="link">safe_mode_exec_dir</a>.
+        Pour des raisons pratiques, il n&#039;est pas possible d&#039;utiliser des
+        jokers comme <em>..</em> dans le chemin de ce dossier.
+         <span class="function"><a href="function.escapeshellcmd.html" class="function">escapeshellcmd()</a></span> est exécuté sur les arguments de cette fonction.
+       </td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.fopen.html" class="function">fopen()</a></span></td>
+       <td>Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté.</td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.mkdir.html" class="function">mkdir()</a></span></td>
+       <td>Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté.</td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.rmdir.html" class="function">rmdir()</a></span></td>
+       <td>Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté.</td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.rename.html" class="function">rename()</a></span></td>
+       <td>Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté. Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté.</td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.unlink.html" class="function">unlink()</a></span></td>
+       <td>Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté. Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté.</td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.copy.html" class="function">copy()</a></span></td>
+       <td>Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté. Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté. (sur
+        <em><code class="parameter">source</code></em> et
+        <em><code class="parameter">target</code></em>)</td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.chgrp.html" class="function">chgrp()</a></span></td>
+       <td>Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté.</td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.chown.html" class="function">chown()</a></span></td>
+       <td>Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté.</td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.chmod.html" class="function">chmod()</a></span></td>
+       <td>Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté. De plus, vous ne pouvez pas modifier les
+        SUID, SGID et le bit sticky</td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.touch.html" class="function">touch()</a></span></td>
+       <td>Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté. Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté.</td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.symlink.html" class="function">symlink()</a></span></td>
+       <td>Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté. Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté. (note :
+        seule l&#039;hôte cible est vérifié)</td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.link.html" class="function">link()</a></span></td>
+       <td>
+        Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté. Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté. (note : seul le fichier
+        de destination est vérifié.)
+       </td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.apache-request-headers.html" class="function">apache_request_headers()</a></span></td>
+       <td>
+        En Safe Mode, les en-têtes commençant par <em>authorization</em>
+        (sensible à la casse) ne seront pas retournés.
+       </td>
+      </tr>
+
+      <tr>
+       <td> <span class="function"><a href="function.header.html" class="function">header()</a></span></td>
+       <td>Avec le safe mode, le uid du script est ajouté à la partie
+        <em>realm</em> de l&#039;en-tête
+        <em>WWW-Authenticate</em> si vous utilisez cet en-tête
+        pour l&#039;identification.</td>
+      </tr>
+
+      <tr>
+       <td><a href="features.http-auth.html" class="link">variables PHP_AUTH</a></td>
+       <td>
+        Avec le safe mode, les variables <var class="varname"><var class="varname">PHP_AUTH_USER</var></var>,
+        <var class="varname"><var class="varname">PHP_AUTH_PW</var></var> et <var class="varname"><var class="varname">PHP_AUTH_TYPE</var></var>
+        ne sont pas disponibles dans la variable <var class="varname"><var class="varname"><a href="reserved.variables.server.html" class="classname">$_SERVER</a></var></var>.
+        Indépendamment, vous pouvez utiliser la variable
+        <var class="varname"><var class="varname">REMOTE_USER</var></var> pour connaître l&#039;utilisateur.
+        (note : affectée uniquement depuis PHP 4.3.0)
+       </td>
+      </tr>
+
+      <tr>
+       <td>
+         <span class="function"><a href="function.highlight-file.html" class="function">highlight_file()</a></span>,
+         <span class="function"><a href="function.show-source.html" class="function">show_source()</a></span>
+       </td>
+       <td>
+        Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté. Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté.
+        (note : affectée uniquement depuis PHP 4.2.1)
+       </td>
+      </tr>
+
+      <tr>
+       <td>
+         <span class="function"><a href="function.parse-ini-file.html" class="function">parse_ini_file()</a></span>
+       </td>
+       <td>
+        Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté. Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté.
+        (note : affectée uniquement depuis PHP 4.2.1)
+       </td>
+      </tr>
+
+      <tr>
+       <td>
+         <span class="function"><a href="function.set-time-limit.html" class="function">set_time_limit()</a></span>
+       </td>
+       <td>
+        N&#039;a aucun effet lorsque PHP fonctionne avec le <a href="ini.sect.safe-mode.html#ini.safe-mode" class="link">safe mode</a>.
+       </td>
+      </tr>
+
+      <tr>
+       <td>
+        <a href="info.configuration.html#ini.max-execution-time" class="link">max_execution_time</a>
+       </td>
+       <td>
+        N&#039;a aucun effet lorsque PHP fonctionne avec le <a href="ini.sect.safe-mode.html#ini.safe-mode" class="link">safe mode</a>.
+       </td>
+      </tr>
+
+      <tr>
+       <td>
+         <span class="function"><a href="function.mail.html" class="function">mail()</a></span>
+       </td>
+       <td>
+        Si le Safe Mode est actif, le
+        5ème paramètre est désactivé (note : uniquement
+        affecté depuis PHP 4.2.3)
+       </td>
+      </tr>
+
+      <tr>
+       <td>
+         <span class="function"><a href="function.session-start.html" class="function">session_start()</a></span> 
+       </td>
+       <td>
+        Le propriétaire d&#039;un script doit être le même que celui que celui du répertoire <a href="session.configuration.html#ini.session.save-path" class="link">session.save_path</a> si
+        le <em>répertoire</em> par défaut <a href="session.configuration.html#ini.session.save-handler" class="link">session.save_handler</a> est
+        utilisé.
+       </td>
+      </tr>
+
+      <tr>
+       <td>
+        Toutes les fonctions sur les flux et sur le système de fichiers.
+       </td>
+       <td>
+        Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté. Vérifie que le fichier/dossier que vous
+allez utiliser a le même UID que le script qui est actuellement exécuté. (Voir l&#039;option <a href="ini.sect.safe-mode.html#ini.safe-mode-include-dir" class="link">safe_mode_include_dir</a>
+        du <var class="filename">php.ini</var>.
+       </td>
+      </tr>
+
+     </tbody>
+    
+   </table>
+
+  </p>
+ </div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="ini.sect.safe-mode.html">S&eacute;curit&eacute; et &quot;Safe Mode&quot;</a></div>
+ <div class="next"><a href="features.commandline.html">Utilisation des lignes de commande</a></div>
+ <div class="up"><a href="features.safe-mode.html">Safe mode</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

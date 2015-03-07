@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Formate une date/heure locale</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.date-timezone-set.html">date_timezone_set</a>
+		</div>
+		<div class="next">
+			<a href="function.getdate.html">getdate</a>
+		</div>
+		<div class="up">
+			<a href="ref.datetime.html">Fonctions Date/Heure</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.date" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">date</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">date</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Formate une date/heure locale</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.date-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>date</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$format</code></span> [, <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$timestamp</code><span
+					class="initializer"> = time()</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				Retourne une date sous forme d&#039;une chaîne, au format donné par
+				le paramètre <em><code class="parameter">format</code></em>, fournie
+				par le paramètre <em><code class="parameter">timestamp</code></em>
+				ou la date et l&#039;heure courantes si aucun timestamp n&#039;est
+				fourni. En d&#039;autres termes, le paramètre <em><code
+						class="parameter">timestamp</code></em> est optionnel et vaut par
+				défaut la valeur de la fonction <span class="function"><a
+					href="function.time.html" class="function">time()</a></span>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.date-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">format</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le format de la date désirée. Voir les options de formatage
+						ci-dessous. Il existe aussi de nombreuses <a
+							href="class.datetime.html#datetime.constants.types" class="link">constantes
+							de dates</a> qui peuvent être utilisées, ce qui fait que <strong><code>DATE_RSS</code></strong>
+						va remplacer le format <em>&quot;D, d M Y H:i:s&quot;</em>.
+
+					</p>
+					<p class="para">
+					<table class="doctable table">
+						<caption>
+							<strong> Les caractères suivants sont reconnus dans le
+								paramètre <em><code class="parameter">format</code></em>
+							</strong>
+						</caption>
+
+						<thead>
+							<tr>
+								<th>Caractères pour le paramètre <em><code
+											class="parameter">format</code></em></th>
+								<th>Description</th>
+								<th>Exemple de valeurs retournées</th>
+							</tr>
+
+						</thead>
+
+						<tbody class="tbody">
+							<tr>
+								<td style="text-align: center;"><em class="emphasis">Jour</em></td>
+								<td>---</td>
+								<td>---</td>
+							</tr>
+
+							<tr>
+								<td><em>d</em></td>
+								<td>Jour du mois, sur deux chiffres (avec un zéro initial)</td>
+								<td><em>01</em> à <em>31</em></td>
+							</tr>
+
+							<tr>
+								<td><em>D</em></td>
+								<td>Jour de la semaine, en trois lettres (et en anglais)</td>
+								<td><em>Mon</em> à <em>Sun</em></td>
+							</tr>
+
+							<tr>
+								<td><em>j</em></td>
+								<td>Jour du mois sans les zéros initiaux</td>
+								<td><em>1</em> à <em>31</em></td>
+							</tr>
+
+							<tr>
+								<td><em>l</em> (&#039;L&#039; minuscule)</td>
+								<td>Jour de la semaine, textuel, version longue, en anglais</td>
+								<td><em>Sunday</em> à <em>Saturday</em></td>
+							</tr>
+
+							<tr>
+								<td><em>N</em></td>
+								<td>Représentation numérique ISO-8601 du jour de la semaine
+									(ajouté en PHP 5.1.0)</td>
+								<td><em>1</em> (pour Lundi) à <em>7</em> (pour Dimanche)</td>
+							</tr>
+
+							<tr>
+								<td><em>S</em></td>
+								<td>Suffixe ordinal d&#039;un nombre pour le jour du mois,
+									en anglais, sur deux lettres</td>
+								<td><em>st</em>, <em>nd</em>, <em>rd</em> ou <em>th</em>.
+									Fonctionne bien avec <em>j</em></td>
+							</tr>
+
+							<tr>
+								<td><em>w</em></td>
+								<td>Jour de la semaine au format numérique</td>
+								<td><em>0</em> (pour dimanche) à <em>6</em> (pour samedi)</td>
+							</tr>
+
+							<tr>
+								<td><em>z</em></td>
+								<td>Jour de l&#039;année</td>
+								<td><em>0</em> à <em>365</em></td>
+							</tr>
+
+							<tr>
+								<td style="text-align: center;"><em class="emphasis">Semaine</em></td>
+								<td>---</td>
+								<td>---</td>
+							</tr>
+
+							<tr>
+								<td><em>W</em></td>
+								<td>Numéro de semaine dans l&#039;année ISO-8601, les
+									semaines commencent le lundi (ajouté en PHP 4.1.0)</td>
+								<td>Exemple : <em>42</em> (la 42ème semaine de
+									l&#039;année)
+								</td>
+							</tr>
+
+							<tr>
+								<td style="text-align: center;"><em class="emphasis">Mois</em></td>
+								<td>---</td>
+								<td>---</td>
+							</tr>
+
+							<tr>
+								<td><em>F</em></td>
+								<td>Mois, textuel, version longue; en anglais, comme <em>January</em>
+									ou <em>December</em></td>
+								<td><em>January</em> à <em>December</em></td>
+							</tr>
+
+							<tr>
+								<td><em>m</em></td>
+								<td>Mois au format numérique, avec zéros initiaux</td>
+								<td><em>01</em> à <em>12</em></td>
+							</tr>
+
+							<tr>
+								<td><em>M</em></td>
+								<td>Mois, en trois lettres, en anglais</td>
+								<td><em>Jan</em> à <em>Dec</em></td>
+							</tr>
+
+							<tr>
+								<td><em>n</em></td>
+								<td>Mois sans les zéros initiaux</td>
+								<td><em>1</em> à <em>12</em></td>
+							</tr>
+
+							<tr>
+								<td><em>t</em></td>
+								<td>Nombre de jours dans le mois</td>
+								<td><em>28</em> à <em>31</em></td>
+							</tr>
+
+							<tr>
+								<td style="text-align: center;"><em class="emphasis">Année</em></td>
+								<td>---</td>
+								<td>---</td>
+							</tr>
+
+							<tr>
+								<td><em>L</em></td>
+								<td>Est ce que l&#039;année est bissextile</td>
+								<td><em>1</em> si bissextile, <em>0</em> sinon.</td>
+							</tr>
+
+							<tr>
+								<td><em>o</em></td>
+								<td>L&#039;année ISO-8601. C&#039;est la même valeur que <em>Y</em>,
+									excepté que si le numéro de la semaine ISO (<em>W</em>)
+									appartient à l&#039;année précédente ou suivante, cette année
+									sera utilisé à la place. (ajouté en PHP 5.1.0)
+								</td>
+								<td>Exemples : <em>1999</em> ou <em>2003</em></td>
+							</tr>
+
+							<tr>
+								<td><em>Y</em></td>
+								<td>Année sur 4 chiffres</td>
+								<td>Exemples : <em>1999</em> ou <em>2003</em></td>
+							</tr>
+
+							<tr>
+								<td><em>y</em></td>
+								<td>Année sur 2 chiffres</td>
+								<td>Exemples : <em>99</em> ou <em>03</em></td>
+							</tr>
+
+							<tr>
+								<td style="text-align: center;"><em class="emphasis">Heure</em></td>
+								<td>---</td>
+								<td>---</td>
+							</tr>
+
+							<tr>
+								<td><em>a</em></td>
+								<td>Ante meridiem et Post meridiem en minuscules</td>
+								<td><em>am</em> ou <em>pm</em></td>
+							</tr>
+
+							<tr>
+								<td><em>A</em></td>
+								<td>Ante meridiem et Post meridiem en majuscules</td>
+								<td><em>AM</em> ou <em>PM</em></td>
+							</tr>
+
+							<tr>
+								<td><em>B</em></td>
+								<td>Heure Internet Swatch</td>
+								<td><em>000</em> à <em>999</em></td>
+							</tr>
+
+							<tr>
+								<td><em>g</em></td>
+								<td>Heure, au format 12h, sans les zéros initiaux</td>
+								<td><em>1</em> à <em>12</em></td>
+							</tr>
+
+							<tr>
+								<td><em>G</em></td>
+								<td>Heure, au format 24h, sans les zéros initiaux</td>
+								<td><em>0</em> à <em>23</em></td>
+							</tr>
+
+							<tr>
+								<td><em>h</em></td>
+								<td>Heure, au format 12h, avec les zéros initiaux</td>
+								<td><em>01</em> à <em>12</em></td>
+							</tr>
+
+							<tr>
+								<td><em>H</em></td>
+								<td>Heure, au format 24h, avec les zéros initiaux</td>
+								<td><em>00</em> à <em>23</em></td>
+							</tr>
+
+							<tr>
+								<td><em>i</em></td>
+								<td>Minutes avec les zéros initiaux</td>
+								<td><em>00</em> à <em>59</em></td>
+							</tr>
+
+							<tr>
+								<td><em>s</em></td>
+								<td>Secondes, avec zéros initiaux</td>
+								<td><em>00</em> à <em>59</em></td>
+							</tr>
+
+							<tr>
+								<td><em>u</em></td>
+								<td>Microsecondes (ajouté en PHP 5.2.2)</td>
+								<td>Exemple : <em>654321</em></td>
+							</tr>
+
+							<tr>
+								<td style="text-align: center;"><em class="emphasis">Fuseau
+										horaire</em></td>
+								<td>---</td>
+								<td>---</td>
+							</tr>
+
+							<tr>
+								<td><em>e</em></td>
+								<td>L&#039;identifiant du fuseau horaire (ajouté en PHP
+									5.1.0)</td>
+								<td>Exemples : <em>UTC</em>, <em>GMT</em>, <em>Atlantic/Azores</em></td>
+							</tr>
+
+							<tr>
+								<td><em>I</em> (i majuscule)</td>
+								<td>L&#039;heure d&#039;été est activée ou pas</td>
+								<td><em>1</em> si oui, <em>0</em> sinon.</td>
+							</tr>
+
+							<tr>
+								<td><em>O</em></td>
+								<td>Différence d&#039;heures avec l&#039;heure de Greenwich
+									(GMT), exprimée en heures</td>
+								<td>Exemple : <em>+0200</em></td>
+							</tr>
+
+							<tr>
+								<td><em>P</em></td>
+								<td>Différence avec l&#039;heure Greenwich (GMT) avec un
+									deux-points entre les heures et les minutes (ajouté dans PHP
+									5.1.3)</td>
+								<td>Exemple : <em>+02:00</em></td>
+							</tr>
+
+							<tr>
+								<td><em>T</em></td>
+								<td>Abréviation du fuseau horaire</td>
+								<td>Exemples : <em>EST</em>, <em>MDT</em> ...
+								</td>
+							</tr>
+
+							<tr>
+								<td><em>Z</em></td>
+								<td>Décalage horaire en secondes. Le décalage des zones à
+									l&#039;ouest de la zone UTC est négative, et à l&#039;est, il
+									est positif.</td>
+								<td><em>-43200</em> à <em>50400</em></td>
+							</tr>
+
+							<tr>
+								<td style="text-align: center;"><em class="emphasis">Date
+										et Heure complète</em></td>
+								<td>---</td>
+								<td>---</td>
+							</tr>
+
+							<tr>
+								<td><em>c</em></td>
+								<td>Date au format ISO 8601 (ajouté en PHP 5)</td>
+								<td>2004-02-12T15:19:21+00:00</td>
+							</tr>
+
+							<tr>
+								<td><em>r</em></td>
+								<td>Format de date <a
+									href="http://www.faqs.org/rfcs/rfc2822" class="link external">&raquo;&nbsp;RFC
+										2822</a></td>
+								<td>Exemple : <em>Thu, 21 Dec 2000 16:01:07 +0200</em></td>
+							</tr>
+
+							<tr>
+								<td><em>U</em></td>
+								<td>Secondes depuis l&#039;époque Unix (1er Janvier 1970,
+									0h00 00s GMT)</td>
+								<td>Voir aussi <span class="function"><a
+										href="function.time.html" class="function">time()</a></span></td>
+							</tr>
+
+						</tbody>
+
+					</table>
+
+					</p>
+					<p class="para">
+						Les caractères non reconnus seront imprimés tels quel. &quot;<em>Z</em>&quot;
+						retournera toujours <em>0</em> lorsqu&#039;il est utilisé avec <span
+							class="function"><a href="function.gmdate.html"
+							class="function">gmdate()</a></span>.
+					</p>
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>:
+						<p class="para">
+							Sachant que cette fonction n&#039;accepte que des entiers sous la
+							forme de timestamp, le caractère <em>u</em> n&#039;est utile que
+							lors de l&#039;utilisation de la fonction <span class="function"><a
+								href="function.date-format.html" class="function">date_format()</a></span>
+							avec un timestamp utilisateur créé avec la fonction <span
+								class="function"><a href="function.date-create.html"
+								class="function">date_create()</a></span>.
+					</blockquote>
+				</dd>
+
+				</dt>
+
+
+
+				<dt>
+					<span class="term"><em><code class="parameter">timestamp</code></em></span>
+				<dd>
+					<p class="para">
+						Le paramètre optionnel <em><code class="parameter">timestamp</code></em>
+						est un timestamp Unix de type <span class="type"><span
+							class="type entier">entier</span></span> qui vaut par défaut
+						l&#039;heure courante locale si le paramètre <em><code
+								class="parameter">timestamp</code></em> n&#039;est pas fourni. En
+						d&#039;autres termes, il vaut par défaut la valeur de la fonction
+						<span class="function"><a href="function.time.html"
+							class="function">time()</a></span>.
+					</p>
+				</dd>
+				</dt>
+
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.date-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne une date formatée. Si une valeur non-numérique est utilisée
+				dans le paramètre <em><code class="parameter">timestamp</code></em>,
+				<strong><code>FALSE</code></strong> sera retourné et une erreur de
+				niveau <strong><code>E_WARNING</code></strong> est émise.
+			</p>
+		</div>
+
+
+		<div class="refsect1 errors" id="refsect1-function.date-errors">
+			<h3 class="title">Erreurs / Exceptions</h3>
+			<p class="para">
+				Chaque appel à une fonction date/heure générera un message de type <strong><code>E_NOTICE</code></strong>
+				si le fuseau horaire n&#039;est pas valide, et/ou un message de type
+				<strong><code>E_STRICT</code></strong> ou <strong><code>E_WARNING</code></strong>
+				si vous utilisez la configuration du système ou la variable
+				d&#039;environnement
+				<var class="varname">
+					<var class="varname">TZ</var>
+				</var>
+				. Voir aussi <span class="function"><a
+					href="function.date-default-timezone-set.html" class="function">date_default_timezone_set()</a></span>
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog" id="refsect1-function.date-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.1.0</td>
+						<td>L&#039;intervalle de validité d&#039;un timestamp va
+							généralement du Vendredi 13 Décembre 1901 20:45:54 GMT au Mardi
+							19 Janvier 2038 03:14:07 GMT. (Ces dates correspondent aux
+							valeurs minimales et maximales des entiers 32 bits non-signés).
+							Cependant, avant PHP 5.1.0, cette intervalle va du 01-01-1970 au
+							19-01-2038 sur quelques systèmes (e.g. Windows).</td>
+					</tr>
+
+					<tr>
+						<td>5.1.0</td>
+						<td><p class="para">
+								Émet un message de type <strong><code>E_STRICT</code></strong>
+								et <strong><code>E_NOTICE</code></strong> lors d&#039;erreurs de
+								fuseaux horaires.
+							</p></td>
+					</tr>
+
+					<tr>
+						<td>5.1.1</td>
+						<td>Il y a plusieurs <a href="datetime.constants.html"
+							class="link">constantes</a> utiles de formats date/heure
+							standards qui peuvent être utilisées pour spécifier le paramètre
+							<em><code class="parameter">format</code></em>.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.date-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-678">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>date()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Définit&nbsp;le&nbsp;fuseau&nbsp;horaire&nbsp;par&nbsp;défaut&nbsp;à&nbsp;utiliser.&nbsp;Disponible&nbsp;depuis&nbsp;PHP&nbsp;5.1<br /></span><span
+								style="color: #0000BB">date_default_timezone_set</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'UTC'</span><span
+								style="color: #007700">);<br />
+								<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Affichage&nbsp;de&nbsp;quelque&nbsp;chose&nbsp;comme&nbsp;:&nbsp;Monday<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"l"</span><span style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Affichage&nbsp;de&nbsp;quelque&nbsp;chose&nbsp;comme&nbsp;:&nbsp;Monday&nbsp;8th&nbsp;of&nbsp;August&nbsp;2005&nbsp;03:12:46&nbsp;PM<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'l&nbsp;jS&nbsp;\of&nbsp;F&nbsp;Y&nbsp;h:i:s&nbsp;A'</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Affiche&nbsp;:&nbsp;July&nbsp;1,&nbsp;2000&nbsp;is&nbsp;on&nbsp;a&nbsp;Saturday<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">"July&nbsp;1,&nbsp;2000&nbsp;is&nbsp;on&nbsp;a&nbsp;"&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"l"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">mktime</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">7</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">2000</span><span style="color: #007700">));<br />
+								<br /></span><span style="color: #FF8000">/*&nbsp;utilise&nbsp;les&nbsp;constantes&nbsp;dans&nbsp;le&nbsp;paramètre&nbsp;format&nbsp;*/<br />//&nbsp;Affichage&nbsp;de&nbsp;quelque&nbsp;chose&nbsp;comme&nbsp;:&nbsp;Mon,&nbsp;15&nbsp;Aug&nbsp;2005&nbsp;15:12:46&nbsp;UTC<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">DATE_RFC822</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Affichage&nbsp;de&nbsp;quelque&nbsp;chose&nbsp;comme&nbsp;:&nbsp;2000-07-01T00:00:00+00:00<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">DATE_ATOM</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">mktime</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">7</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">2000</span><span style="color: #007700">));<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">Vous pouvez faire afficher un caractère spécial
+				dans la chaîne de format en le protégeant par un antislash. Si le
+				caractère est lui-même une séquence incluant un antislash, vous
+				devrez protéger aussi l&#039;antislash.
+			<div class="example" id="example-679">
+				<p>
+					<strong>Exemple #2 Protection des caractères dans la
+						fonction <span class="function"><strong>date()</strong></span>
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Affichage&nbsp;de&nbsp;quelque&nbsp;chose&nbsp;comme&nbsp;:&nbsp;Wednesday&nbsp;the&nbsp;15th<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'l&nbsp;\t\h\e&nbsp;jS'</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">
+				Il est possible d&#039;utiliser <span class="function"><strong>date()</strong></span>
+				et <span class="function"><a href="function.mktime.html"
+					class="function">mktime()</a></span> ensemble pour générer des dates dans
+				le futur ou dans le passé.
+			<div class="example" id="example-680">
+				<p>
+					<strong>Exemple #3 Exemple avec <span class="function"><strong>date()</strong></span>
+						et <span class="function"><a href="function.mktime.html"
+							class="function">mktime()</a></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$tomorrow&nbsp;&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">mktime</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"m"</span><span style="color: #007700">)&nbsp;&nbsp;,&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"d"</span><span style="color: #007700">)+</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"Y"</span><span style="color: #007700">));<br /></span><span
+								style="color: #0000BB">$lastmonth&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">mktime</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"m"</span><span style="color: #007700">)-</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"d"</span><span style="color: #007700">),&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"Y"</span><span style="color: #007700">));<br /></span><span
+								style="color: #0000BB">$nextyear&nbsp;&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">mktime</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"m"</span><span style="color: #007700">),&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"d"</span><span style="color: #007700">),&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"Y"</span><span style="color: #007700">)+</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Cette méthode est plus sûre que simplement
+					ajouter ou retrancher le nombre de secondes dans une journée ou un
+					mois à un timestamp, à cause des heures d&#039;hiver et d&#039;été.
+			</blockquote>
+			</p>
+			<p class="para">
+				Voici maintenant quelques exemples de formatage avec <span
+					class="function"><strong>date()</strong></span>. Notez que vous
+				devriez échapper tous les autres caractères, car s&#039;ils ont une
+				signification spéciale, ils risquent de produire des effets
+				secondaires indésirables. Notez aussi que les versions futures de
+				PHP peuvent attribuer une signification à des lettres qui sont
+				actuellement inertes. Lorsque vous échappez les caractères, pensez à
+				utiliser des guillemets simples, pour que les séquences <em>\n</em>
+				ne deviennent pas des nouvelles lignes.
+			<div class="example" id="example-681">
+				<p>
+					<strong>Exemple #4 Exemple avec <span class="function"><strong>date()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Aujourd'hui,&nbsp;le&nbsp;12&nbsp;Mars&nbsp;2001,&nbsp;5:16:18&nbsp;pm,&nbsp;Fuseau&nbsp;horaire&nbsp;<br />//&nbsp;Mountain&nbsp;Standard&nbsp;Time&nbsp;(MST)<br />&nbsp;<br /></span><span
+								style="color: #0000BB">$today&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"F&nbsp;j,&nbsp;Y,&nbsp;g:i&nbsp;a"</span><span
+								style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;March&nbsp;10,&nbsp;2001,&nbsp;5:16&nbsp;pm<br /></span><span
+								style="color: #0000BB">$today&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"m.d.y"</span><span
+								style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;03.10.01<br /></span><span
+								style="color: #0000BB">$today&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"j,&nbsp;n,&nbsp;Y"</span><span
+								style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;10,&nbsp;3,&nbsp;2001<br /></span><span
+								style="color: #0000BB">$today&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"Ymd"</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;20010310<br /></span><span
+								style="color: #0000BB">$today&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'h-i-s,&nbsp;j-m-y,&nbsp;it&nbsp;is&nbsp;w&nbsp;Day'</span><span
+								style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;05-16-18,&nbsp;10-03-01,&nbsp;1631&nbsp;1618&nbsp;6&nbsp;Satpm01<br /></span><span
+								style="color: #0000BB">$today&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'\i\t&nbsp;\i\s&nbsp;\t\h\e&nbsp;jS&nbsp;\d\a\y.'</span><span
+								style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;It&nbsp;is&nbsp;the&nbsp;10th&nbsp;day&nbsp;(10ème&nbsp;jour&nbsp;du&nbsp;mois).<br /></span><span
+								style="color: #0000BB">$today&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"D&nbsp;M&nbsp;j&nbsp;G:i:s&nbsp;T&nbsp;Y"</span><span
+								style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;Sat&nbsp;Mar&nbsp;10&nbsp;17:16:18&nbsp;MST&nbsp;2001<br /></span><span
+								style="color: #0000BB">$today&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'H:m:s&nbsp;\m&nbsp;\e\s\t\&nbsp;\l\e\&nbsp;\m\o\i\s'</span><span
+								style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;17:03:18&nbsp;m&nbsp;est&nbsp;le&nbsp;mois<br /></span><span
+								style="color: #0000BB">$today&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"H:i:s"</span><span
+								style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;17:16:18<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">
+				Pour formater des dates dans d&#039;autres langues, utilisez les
+				fonctions <span class="function"><a
+					href="function.setlocale.html" class="function">setlocale()</a></span> et
+				<span class="function"><a href="function.strftime.html"
+					class="function">strftime()</a></span> au lieu de la fonction <span
+					class="function"><strong>date()</strong></span>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.date-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Pour générer un timestamp à partir d&#039;une représentation de
+					date, vous pouvez utiliser la fonction <span class="function"><a
+						href="function.strtotime.html" class="function">strtotime()</a></span>.
+					De plus, certaines bases de données disposent de fonctions pour
+					convertir leurs propres formats de date en timestamp (par exemple,
+					MySQL et sa fonction <a
+						href="http://dev.mysql.com/doc/mysql/en/date-and-time-functions.html"
+						class="link external">&raquo;&nbsp;UNIX_TIMESTAMP()</a>).
+			</blockquote>
+			<div class="tip">
+				<strong class="tip">Astuce</strong>
+				<p class="para">
+					Un timestamp représentant le début de la requête est disponible
+					dans la variable
+					<var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.server.html" class="classname">$_SERVER['REQUEST_TIME']</a>
+						</var>
+					</var>
+					depuis PHP 5.1.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.date-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.gmdate.html" class="function" rel="rdfs-seeAlso">gmdate()</a>
+						- Formate une date/heure GMT/CUT</span></li>
+				<li class="member"><span class="function"><a
+						href="function.idate.html" class="function" rel="rdfs-seeAlso">idate()</a>
+						- Formate une date/heure locale en tant qu'entier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.getdate.html" class="function" rel="rdfs-seeAlso">getdate()</a>
+						- Retourne la date/heure</span></li>
+				<li class="member"><span class="function"><a
+						href="function.getlastmod.html" class="function"
+						rel="rdfs-seeAlso">getlastmod()</a> - Retourne la date de
+						derni&egrave;re modification de la page</span></li>
+				<li class="member"><span class="function"><a
+						href="function.mktime.html" class="function" rel="rdfs-seeAlso">mktime()</a>
+						- Retourne le timestamp UNIX d'une date</span></li>
+				<li class="member"><span class="function"><a
+						href="function.strftime.html" class="function" rel="rdfs-seeAlso">strftime()</a>
+						- Formate une date/heure locale avec la configuration locale</span></li>
+				<li class="member"><span class="function"><a
+						href="function.time.html" class="function" rel="rdfs-seeAlso">time()</a>
+						- Retourne le timestamp UNIX actuel</span></li>
+				<li class="member"><span class="function"><a
+						href="function.strtotime.html" class="function" rel="rdfs-seeAlso">strtotime()</a>
+						- Transforme un texte anglais en timestamp</span></li>
+				<li class="member"><a
+					href="class.datetime.html#datetime.constants.types" class="link">constantes
+						de date</a></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.date-timezone-set.html">date_timezone_set</a>
+		</div>
+		<div class="next">
+			<a href="function.getdate.html">getdate</a>
+		</div>
+		<div class="up">
+			<a href="ref.datetime.html">Fonctions Date/Heure</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

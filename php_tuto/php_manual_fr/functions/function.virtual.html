@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Effectue une sous-requ&ecirc;te Apache</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.getallheaders.html">getallheaders</a>
+		</div>
+		<div class="next">
+			<a href="book.iisfunc.html">IIS</a>
+		</div>
+		<div class="up">
+			<a href="ref.apache.html">Fonctions Apache</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.virtual" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">virtual</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">virtual</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Effectue une sous-requête Apache</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.virtual-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>virtual</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$filename</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>virtual()</strong></span> est une
+				fonction spécifique au serveur Apache. Elle est similaire à la
+				directive &quot;<em>&lt;!--#include virtual...--&gt;</em>&quot;
+				lorsque vous utilisez le module <em>mod_include</em> d&#039;Apache.
+				Cette fonction effectue une sous-requête Apache. C&#039;est très
+				utile lorsque vous voulez analyser des scripts CGI, des fichiers
+				<var class="filename">.shtml</var>
+				ou n&#039;importe quel autre type de fichier à travers le serveur
+				Apache. Il est à noter que lors de l&#039;utilisation avec des
+				scripts CGI, ces derniers doivent générer un en-tête valide,
+				c&#039;est-à-dire, au minimum un en-tête <em>Content-Type</em>.
+			</p>
+			<p class="para">Pour exécuter une sous-requête, tous les tampons
+				sont arrêtés et vidés vers le navigateur, les en-têtes restants le
+				sont aussi.</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.virtual-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">filename</code></em></span>
+				<dd>
+
+					<p class="para">Le fichier sur lequel la commande virtuelle
+						sera effectuée.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.virtual-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Exécute une commande virtuelle en cas de succès ou retourne <strong><code>FALSE</code></strong>
+				en cas d&#039;échec.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.virtual-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.3.3</td>
+						<td>
+							<p class="para">
+								Depuis PHP 4.3.3, vous pouvez utiliser cette fonction avec le <a
+									href="book.nsapi.html" class="link">module NSAPI</a> des
+								serveurs Netscape/iPlanet/SunONE.
+							</p>
+						</td>
+					</tr>
+
+					<tr>
+						<td>4.0.6</td>
+						<td>Cette fonction peut être utilisée sur des fichiers PHP.
+							Toutefois, il est conseillé d&#039;utiliser les fonctions <span
+							class="function"><a href="function.include.html"
+								class="function">include</a></span> ou <span class="function"><a
+								href="function.require.html" class="function">require</a></span> pour
+							les fichiers PHP.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.virtual-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+				Voir la fonction <span class="function"><a
+					href="function.apache-note.html" class="function">apache_note()</a></span>
+				pour un exemple.
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.virtual-notes">
+			<h3 class="title">Notes</h3>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">
+					La chaîne requise peut être passée au fichier inclus, mais
+					<var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.get.html" class="classname">$_GET</a>
+						</var>
+					</var>
+					est copié depuis le script parent et seule la variable
+					<var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.server.html" class="classname">$_SERVER['QUERY_STRING']</a>
+						</var>
+					</var>
+					est transmise en passant la chaîne requise. La chaîne requise
+					passée fonctionne uniquement sous Apache 2. Les fichiers demandés
+					ne sont pas listés dans les logs d&#039;accès Apache.
+				</p>
+			</div>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Les variables d&#039;environnement fixées dans
+					le fichier demandé ne sont pas visibles dans le fichier appelant.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.virtual-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.apache-note.html" class="function"
+						rel="rdfs-seeAlso">apache_note()</a> - Affiche ou affecte le
+						param&egrave;tre &quot;apache request notes&quot;</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.getallheaders.html">getallheaders</a>
+		</div>
+		<div class="next">
+			<a href="book.iisfunc.html">IIS</a>
+		</div>
+		<div class="up">
+			<a href="ref.apache.html">Fonctions Apache</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

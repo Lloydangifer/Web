@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Les listes non ordonnées</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			La très forte présence des listes dans les pages Web est dûe à la
+			volonté des auteurs d'apporter toujours plus de sens à la
+			structuration faite avec <abbr title="HyperText Markup Language">HTML</abbr>.
+			<br>
+			Beaucoup de regroupements sont désormais considérés comme des listes,
+			en particulier les regroupements de liens (barre de navigation, liens
+			dans les hors-textes latéreaux ou les pieds de page). On voit même
+			parfois des formulaires de saisie considérés comme des listes de
+			zones de saisie.
+		</p>
+
+		<h3>ul : liste non ordonnée</h3>
+		<section>
+			<p class="fp-p-raz">Les listes non ordonnées sont de très loin le
+				type de listes le plus souvent utilisé.</p>
+
+			<p class="fp-bot0">
+				Une liste non ordonnée se fait avec 2 élements <abbr
+					title="HyperText Markup Language">HTML</abbr> :
+			</p>
+			<ul>
+				<li>l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'ul')">ul</a> marque
+					les limites de la liste,
+				</li>
+				<li>l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'li')">li</a> définit
+					une ligne à l'intérieur de la liste.
+				</li>
+			</ul>
+
+			<p>
+				L'imbrication des <a
+					onclick="top.FP.Voir.showPageTech('elements', 'li')">li</a> à
+				l'intérieur d'un élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'ul')">ul</a> est
+				obligatoire.
+			</p>
+
+			<figure>
+				<img src="../htmlimg/liste01.png" width="580" height="181">
+				<figcaption>liste non ordonnée</figcaption>
+			</figure>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : liste non ordonnée
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Liste non ordonnée&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Pour mon anniversaire, je veux :&lt;/p&gt;
+		&lt;ul&gt;
+			&lt;li&gt;un X-Wing rouge&lt;/li&gt;
+			&lt;li&gt;un sabre-laser&lt;/li&gt;
+			&lt;li&gt;un chapeau de Gandalf&lt;/li&gt;
+			&lt;li&gt;de l'herbe à pipe de la Comté.&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p class="fp-bot0">Par défaut le navigateur représente les listes
+				non ordonnées de la façon suivante :</p>
+			<ul>
+				<li>il y a une marge avant et une marge après le contenu de la
+					liste. Cette marge est égale à la hauteur d'une ligne de texte.</li>
+				<li>les lignes de la liste sont mises en retrait par une marge
+					à l'intérieur gauche de la liste,</li>
+				<li>les lignes sont précédées d'un signe indiquant la
+					profondeur de la liste (un rond plein, un rond vide, un rectangle
+					plein),</li>
+				<li>les lignes sont affichées les unes en dessous des autres,
+					sans marge pour les séparer.</li>
+			</ul>
+
+			<p class="fp-remarque">
+				Comme d'habitude des règles de style <abbr
+					title="Cascading Style Sheets">CSS</abbr> peuvent modifier cet
+				affichage par défaut. Voir dans le tutoriel <abbr
+					title="Cascading Style Sheets">CSS</abbr> la partie consacrée aux
+				listes.
+			</p>
+
+			<div class="fp-puce">
+				<p>
+					Une liste <a onClick="top.FP.Voir.showPageTech('elements', 'ul')">ul</a>
+					ne peut pas être contenue dans un paragraphe <a
+						onclick="top.FP.Voir.showPageTech('elements', 'p')">p</a>. La
+					construction
+				</p>
+				<pre data-code="HTML">
+&lt;p&gt;Pour mon anniversaire, je veux :
+&lt;ul&gt;
+	&lt;li&gt;un X-Wing rouge&lt;/li&gt;
+	&lt;li&gt;un sabre-laser&lt;/li&gt;
+	&lt;li&gt;un chapeau de Gandalf&lt;/li&gt;
+	&lt;li&gt;de l'herbe à pipe de la Comté.&lt;/li&gt;
+&lt;/ul&gt;			
+&lt;/p&gt;</pre>
+
+				<p>sera traduite par le navigateur comme :</p>
+				<pre data-code="HTML">
+&lt;p&gt;Pour mon anniversaire, je veux :&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;un X-Wing rouge&lt;/li&gt;
+	&lt;li&gt;un sabre-laser&lt;/li&gt;
+	&lt;li&gt;un chapeau de Gandalf&lt;/li&gt;
+	&lt;li&gt;de l'herbe à pipe de la Comté.&lt;/li&gt;
+&lt;/ul&gt;		
+&lt;p&gt;&lt;/p&gt;</pre>
+
+				<p>
+					Le 1er paragraphe sera fermé avant la liste et le <code>&lt;/p&gt;</code>
+					générera un paragraphe vide.
+				</p>
+
+			</div>
+		</section>
+
+		<a id="exo_liste_non_ordonnee"></a>
+		<h3 class="fp-exo">Liste du contenu du tutoriel HTML</h3>
+		<section>
+			<p class="fp-p-raz">Réalisez la liste non ordonnée permettant d'obtenir la
+				page ci-dessous.</p>
+
+			<figure>
+				<img src="../exercices/exo_liste_non_ordonnee.png" width="377"
+					height="276">
+				<figcaption>liste du contenu du tutoriel HTML</figcaption>
+			</figure>
+
+			<p class="fp-completez">
+				<a
+					onclick="top.FP.Voir.showCompletez('exo_liste_non_ordonnee_comp')">Code à compléter</a>
+			</p>
+
+			<div id="exo_liste_non_ordonnee_comp" class="BLOC-completez">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : liste du contenu du tutoriel HTML
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+
+			<p class="fp-solution">
+				<a
+					onclick="top.FP.Voir.showSolution('exo_liste_non_ordonnee_solu', 1)">Une
+					solution possible</a>
+			</p>
+			<div id="exo_liste_non_ordonnee_solu" class="BLOC-solution">
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : liste du contenu du tutoriel HTML
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Liste contenu tutoriel HTML&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;p&gt;Tutoriel HTML&lt;/p&gt;
+		&lt;ul&gt;
+			&lt;li&gt;Principes généraux&lt;/li&gt;
+			&lt;li&gt;Les liens&lt;/li&gt;
+			&lt;li&gt;Document et en-tête&lt;/li&gt;
+			&lt;li&gt;Structure&lt;/li&gt;
+			&lt;li&gt;Groupement&lt;/li&gt;
+			&lt;li&gt;Embarqués&lt;/li&gt;
+			&lt;li&gt;Texte&lt;/li&gt;
+			&lt;li&gt;Formulaire&lt;/li&gt;							
+		&lt;/ul&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

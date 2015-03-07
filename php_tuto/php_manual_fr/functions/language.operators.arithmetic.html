@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Les op&eacute;rateurs arithm&eacute;tiques</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="language.operators.precedence.html">La
+				pr&eacute;c&eacute;dence des op&eacute;rateurs</a>
+		</div>
+		<div class="next">
+			<a href="language.operators.assignment.html">Les
+				op&eacute;rateurs d'assignation</a>
+		</div>
+		<div class="up">
+			<a href="language.operators.html">Les op&eacute;rateurs</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="language.operators.arithmetic" class="sect1">
+		<h2 class="title">Les opérateurs arithmétiques</h2>
+		<p class="simpara">Vous rappelez-vous des opérations élémentaires
+			apprises à l&#039;école ? Les opérateurs arithmétiques fonctionnent
+			comme elles.</p>
+		<table class="doctable table">
+			<caption>
+				<strong>Opérations élémentaires</strong>
+			</caption>
+
+			<thead>
+				<tr>
+					<th>Exemple</th>
+					<th>Nom</th>
+					<th>Résultat</th>
+				</tr>
+
+			</thead>
+
+			<tbody class="tbody">
+				<tr>
+					<td>-$a</td>
+					<td>Négation</td>
+					<td>Opposé de <var class="varname">
+							<var class="varname">$a</var>
+						</var>.
+					</td>
+				</tr>
+
+				<tr>
+					<td>$a + $b</td>
+					<td>Addition</td>
+					<td>Somme de <var class="varname">
+							<var class="varname">$a</var>
+						</var> et <var class="varname">
+							<var class="varname">$b</var>
+						</var>.
+					</td>
+				</tr>
+
+				<tr>
+					<td>$a - $b</td>
+					<td>Soustraction</td>
+					<td>Différence de <var class="varname">
+							<var class="varname">$a</var>
+						</var> et <var class="varname">
+							<var class="varname">$b</var>
+						</var>.
+					</td>
+				</tr>
+
+				<tr>
+					<td>$a * $b</td>
+					<td>Multiplication</td>
+					<td>Produit de <var class="varname">
+							<var class="varname">$a</var>
+						</var> et <var class="varname">
+							<var class="varname">$b</var>
+						</var>.
+					</td>
+				</tr>
+
+				<tr>
+					<td>$a / $b</td>
+					<td>Division</td>
+					<td>Quotient de <var class="varname">
+							<var class="varname">$a</var>
+						</var> et <var class="varname">
+							<var class="varname">$b</var>
+						</var>.
+					</td>
+				</tr>
+
+				<tr>
+					<td>$a % $b</td>
+					<td>Modulo</td>
+					<td>Reste de <var class="varname">
+							<var class="varname">$a</var>
+						</var> divisé par <var class="varname">
+							<var class="varname">$b</var>
+						</var>.
+					</td>
+				</tr>
+
+			</tbody>
+
+		</table>
+
+		<p class="simpara">
+			L&#039;opérateur de division (&quot;/&quot;) retourne une valeur à
+			virgule flottante sauf si les 2 opérandes sont des entiers (ou une <a
+				href="language.types.string.html" class="link">chaîne de
+				caractères</a> qui a été convertie en entiers) et cette valeur est
+			toujours divisible, auquel cas une valeur entière sera retournée.
+		</p>
+		<p class="simpara">Les opérandes du modulo sont converties en
+			entiers (en supprimant la partie décimale) avant exécution.</p>
+		<p class="para">
+			Le résultat de l&#039;opération modulo <em>%</em> a le même signe que
+			le premier opérande, ansi le résultat de <em>$a % $b</em> aura le
+			signe de
+			<var class="varname">
+				<var class="varname">$a</var>
+			</var>
+			. Par exemple:
+		<div class="informalexample">
+			<div class="example-contents">
+				<div class="phpcode">
+					<code>
+						<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+							<br /></span><span style="color: #007700">echo&nbsp;(</span><span
+							style="color: #0000BB">5&nbsp;</span><span style="color: #007700">%&nbsp;</span><span
+							style="color: #0000BB">3</span><span style="color: #007700">).</span><span
+							style="color: #DD0000">"\n"</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;affiche&nbsp;2<br /></span><span
+							style="color: #007700">echo&nbsp;(</span><span
+							style="color: #0000BB">5&nbsp;</span><span style="color: #007700">%&nbsp;-</span><span
+							style="color: #0000BB">3</span><span style="color: #007700">).</span><span
+							style="color: #DD0000">"\n"</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;affiche&nbsp;2<br /></span><span
+							style="color: #007700">echo&nbsp;(-</span><span
+							style="color: #0000BB">5&nbsp;</span><span style="color: #007700">%&nbsp;</span><span
+							style="color: #0000BB">3</span><span style="color: #007700">).</span><span
+							style="color: #DD0000">"\n"</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;affiche&nbsp;-2<br /></span><span
+							style="color: #007700">echo&nbsp;(-</span><span
+							style="color: #0000BB">5&nbsp;</span><span style="color: #007700">%&nbsp;-</span><span
+							style="color: #0000BB">3</span><span style="color: #007700">).</span><span
+							style="color: #DD0000">"\n"</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+							style="color: #FF8000">//&nbsp;affiche&nbsp;-2<br />
+							<br /></span><span style="color: #0000BB">?&gt;</span>
+						</span>
+					</code>
+				</div>
+			</div>
+
+		</div>
+		</p>
+		<p class="simpara">
+			Voir aussi le manuel sur les <a href="ref.math.html" class="link">fonctions
+				mathématiques</a>.
+		</p>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="language.operators.precedence.html">La
+				pr&eacute;c&eacute;dence des op&eacute;rateurs</a>
+		</div>
+		<div class="next">
+			<a href="language.operators.assignment.html">Les
+				op&eacute;rateurs d'assignation</a>
+		</div>
+		<div class="up">
+			<a href="language.operators.html">Les op&eacute;rateurs</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

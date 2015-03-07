@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+  <title>Chargement par m&eacute;thode PUT</title>
+
+ </head>
+ <body><div class="manualnavbar">
+ <div class="prev"><a href="features.file-upload.multiple.html">T&eacute;l&eacute;charger plusieurs fichiers simultan&eacute;ment</a></div>
+ <div class="next"><a href="features.remote-files.html">Utilisation des fichiers &agrave; distance</a></div>
+ <div class="up"><a href="features.file-upload.html">Gestion des chargements de fichiers</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div><hr /><div id="features.file-upload.put-method" class="sect1">
+  <h2 class="title">Chargement par méthode PUT </h2>
+  <p class="para">
+   PHP supporte la méthode HTTP PUT utilisée par
+   les navigateurs pour y stocker des fichiers sur un serveur.
+   Les requêtes de type PUT sont beaucoup plus simples que
+   les chargements de fichiers en utilisant le type POST, et elles
+   ressemblent à :
+   <div class="example" id="example-360">
+    <p><strong>Exemple #1 Méthode PUT pour les chargements de fichiers</strong></p>
+    <div class="example-contents">
+<div class="HTTPcode"><pre class="HTTPcode">PUT /path/filename.html HTTP/1.1</pre>
+</div>
+    </div>
+
+   </div>
+  </p>
+  <p class="para">
+   Normalement, cela signifie que le serveur distant va sauver
+   les données qui suivent dans le fichier : <var class="filename">/path/filename.html</var>
+   de son disque. Ce n&#039;est évidemment pas très
+   sécurisé de laisser Apache ou PHP écraser n&#039;importe
+   quel fichier de l&#039;arborescence. Pour éviter ceci, il faut d&#039;abord
+   dire au serveur que vous voulez qu&#039;un script PHP donné gère
+   la requête. Avec Apache, il y a une directive pour cela :
+   <em class="emphasis">Script</em>. Elle peut être placée
+   n&#039;importe où dans le fichier de configuration d&#039;Apache.
+   En général, les webmestres la placent dans le bloc
+   <em>&lt;Directory&gt;</em>, ou peut-être dans le bloc
+   <em>&lt;VirtualHost&gt;</em>.
+   La ligne suivante fera très bien l&#039;affaire :
+   <div class="example" id="example-361">
+    <p><strong>Exemple #2 Directive Apache pour le chargement par méthode PUT</strong></p>
+    <div class="example-contents">
+<div class="cdata"><pre>
+Script PUT /put.php
+</pre></div>
+    </div>
+
+   </div>
+  </p>
+  <p class="simpara">
+   Elle indique à Apache qu&#039;il doit envoyer les requêtes
+   de chargement par méthode PUT au script
+   <var class="filename">put.php</var>. Bien entendu,
+   cela présuppose que vous avez activé PHP pour qu&#039;il
+   prenne en charge les fichiers de type <var class="filename">.php</var>,
+   et que PHP est actif. La ressource de destination pour toutes les
+   requêtes PUT de ce script doit être le script lui-même, et non le
+   nom du fichier que le fichier téléchargé doit avoir.
+  </p>
+  <p class="simpara">
+   Avec PHP, vous voudriez faire quelque chose comme ce qui suit
+   dans votre put.php. Ceci va copier le contenu
+   du fichier téléchargé dans le fichier 
+   <var class="filename">myputfile.ext</var> sur le serveur.
+   Vous devez probablement vouloir effectuer quelques vérifications et/ou
+   identifier l&#039;utilisateur avant d&#039;effectuer cette copie de fichier.
+  </p>
+  <p class="para">
+   <div class="example" id="example-362">
+    <p><strong>Exemple #3 Sauvegarde de fichiers HTTP PUT</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #FF8000">/*&nbsp;Les&nbsp;données&nbsp;PUT&nbsp;arrivent&nbsp;du&nbsp;flux&nbsp;*/<br /></span><span style="color: #0000BB">$putdata&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">"php://input"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"r"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Ouvre&nbsp;un&nbsp;fichier&nbsp;pour&nbsp;écriture&nbsp;*/<br /></span><span style="color: #0000BB">$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span style="color: #DD0000">"myputfile.ext"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"w"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Lecture&nbsp;des&nbsp;données,&nbsp;1&nbsp;Ko&nbsp;à&nbsp;la&nbsp;fois&nbsp;et&nbsp;écriture&nbsp;dans&nbsp;le&nbsp;fichier&nbsp;*/<br /></span><span style="color: #007700">while&nbsp;(</span><span style="color: #0000BB">$data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fread</span><span style="color: #007700">(</span><span style="color: #0000BB">$putdata</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1024</span><span style="color: #007700">))<br /></span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">/*&nbsp;Fermeture&nbsp;du&nbsp;flux&nbsp;*/<br /></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$putdata</span><span style="color: #007700">);<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  </p>
+ </div><hr /><div class="manualnavbarbas">
+ <div class="prev"><a href="features.file-upload.multiple.html">T&eacute;l&eacute;charger plusieurs fichiers simultan&eacute;ment</a></div>
+ <div class="next"><a href="features.remote-files.html">Utilisation des fichiers &agrave; distance</a></div>
+ <div class="up"><a href="features.file-upload.html">Gestion des chargements de fichiers</a></div>
+ <div class="home" onclick="location.href='../accueil.html'"></div>
+</div></body></html>

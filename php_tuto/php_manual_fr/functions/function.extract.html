@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Importe les variables dans la table des symboles</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.end.html">end</a>
+		</div>
+		<div class="next">
+			<a href="function.in-array.html">in_array</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.extract" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">extract</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">extract</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Importe les variables dans la table
+					des symboles</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.extract-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">int</span> <span class="methodname"><strong>extract</strong></span>
+				( <span class="methodparam"><span class="type">array</span> <code
+						class="parameter reference">&$var_array</code></span> [, <span
+					class="methodparam"><span class="type">int</span> <code
+						class="parameter">$extract_type</code><span class="initializer">
+						= EXTR_OVERWRITE</span></span> [, <span class="methodparam"><span
+					class="type">string</span> <code class="parameter">$prefix</code><span
+					class="initializer"> = <strong><code>NULL</code></strong></span></span> ]]
+				)
+			</div>
+
+			<p class="para rdfs-comment">Importe les variables dans la table
+				des symboles.</p>
+			<p class="para">
+				<span class="function"><strong>extract()</strong></span> vérifie
+				chaque clé afin de contrôler si elle a un nom de variable valide.
+				Elle vérifie également les collisions avec des variables existantes
+				dans la table des symboles.
+			</p>
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.extract-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">var_array</code></em></span>
+				<dd>
+
+					<p class="para">
+						Un tableau associatif. Cette fonction crée les variables dont les
+						noms sont les index de ce tableau, et leur affecte la valeur
+						associée. Pour chaque paire clé/valeur, <span class="function"><strong>extract()</strong></span>
+						crée une variable, avec les paramètres <em><code
+								class="parameter">extract_type</code></em> et <em><code
+								class="parameter">prefix</code></em>.
+					</p>
+					<p class="para">
+						Vous devez utiliser un tableau associatif. Un tableau indexé
+						numériquement ne produira aucun résultat, à moins que vous
+						n&#039;utilisiez l&#039;option <strong><code>EXTR_PREFIX_ALL</code></strong>
+						ou <strong><code>EXTR_PREFIX_INVALID</code></strong>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">extract_type</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le traitement des collisions est déterminé par <em><code
+								class="parameter">extract_type</code></em>. Ce paramètre peut prendre
+						une des valeurs suivantes :
+					<dl>
+
+						<dt>
+
+							<span class="term"><strong><code>EXTR_OVERWRITE</code></strong></span>
+						<dd>
+
+							<span class="simpara"> Lors d&#039;une collision, réécrire
+								la variable existante. </span>
+						</dd>
+
+						</dt>
+
+						<dt>
+
+							<span class="term"><strong><code>EXTR_SKIP</code></strong></span>
+						<dd>
+
+							<span class="simpara"> Lors d&#039;une collision, ne pas
+								réécrire la variable existante. </span>
+						</dd>
+
+						</dt>
+
+						<dt>
+
+							<span class="term"><strong><code>EXTR_PREFIX_SAME</code></strong></span>
+						<dd>
+
+							<span class="simpara"> Lors d&#039;une collision, ajouter
+								le préfixe <em><code class="parameter">prefix</code></em>, et
+								créer une nouvelle variable.
+							</span>
+						</dd>
+
+						</dt>
+
+						<dt>
+
+							<span class="term"><strong><code>EXTR_PREFIX_ALL</code></strong></span>
+						<dd>
+
+							<span class="simpara"> Ajouter le préfixe <em><code
+										class="parameter">prefix</code></em> pour toutes les variables.
+							</span>
+						</dd>
+
+						</dt>
+
+						<dt>
+
+							<span class="term"><strong><code>EXTR_PREFIX_INVALID</code></strong></span>
+						<dd>
+
+							<span class="simpara"> Préfixer uniquement les variables
+								aux noms invalides ou numériques avec le préfixe <em><code
+										class="parameter">prefix</code></em>.
+							</span>
+						</dd>
+
+						</dt>
+
+						<dt>
+
+							<span class="term"><strong><code>EXTR_IF_EXISTS</code></strong></span>
+						<dd>
+
+							<span class="simpara"> Écrase la variable uniquement si
+								elle existe déjà dans la table des symboles, et, sinon, ne rien
+								faire. Ceci est pratique pour définir une liste de variables
+								valides, puis extraire du tableau les valeurs que vous avez déjà
+								définies grâce à <var class="varname">
+									<var class="varname">
+										<a href="reserved.variables.request.html" class="classname">$_REQUEST</a>
+									</var>
+								</var>, par exemple.
+							</span>
+						</dd>
+
+						</dt>
+
+						<dt>
+
+							<span class="term"><strong><code>EXTR_PREFIX_IF_EXISTS</code></strong></span>
+						<dd>
+
+							<span class="simpara"> Ne crée que des variables
+								préfixées, si la version non préfixée de la même variable existe
+								dans la table des symboles courante. </span>
+						</dd>
+
+						</dt>
+
+						<dt>
+
+							<span class="term"><strong><code>EXTR_REFS</code></strong></span>
+						<dd>
+
+							<span class="simpara"> Extrait les variables sous forme de
+								références. Cela signifie que les valeurs des variables
+								importées font toujours référence aux valeurs des variables
+								d&#039;origine dans le paramètre <em><code
+										class="parameter">var_array</code></em>. Vous pouvez utiliser cette
+								option seule, ou bien la combiner avec d&#039;autres options
+								avec l&#039;opérateur OR, dans le paramètre <em><code
+										class="parameter">extract_type</code></em>.
+							</span>
+						</dd>
+
+						</dt>
+
+					</dl>
+
+					</p>
+					<p class="para">
+						Si <em><code class="parameter">extract_type</code></em> est omis,
+						<span class="function"><strong>extract()</strong></span> utilise <strong><code>EXTR_OVERWRITE</code></strong>
+						par défaut.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">prefix</code></em></span>
+				<dd>
+
+					<p class="para">
+						Notez que <em><code class="parameter">prefix</code></em>
+						n&#039;est nécessaire que pour les valeurs de <em><code
+								class="parameter">extract_type</code></em> suivantes : <strong><code>EXTR_PREFIX_SAME</code></strong>,
+						<strong><code>EXTR_PREFIX_ALL</code></strong>, <strong><code>EXTR_PREFIX_INVALID</code></strong>
+						ou <strong><code>EXTR_PREFIX_IF_EXISTS</code></strong>. Si le
+						résultat préfixé n&#039;est pas un nom de variable valide, il ne
+						sera pas importé dans la table des symboles. Les préfixes sont
+						automatiquement séparés de l&#039;index du tableau par un
+						caractère de soulignement.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.extract-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Retourne le nombre de variables importées avec
+				succès dans la table des symboles.</p>
+		</div>
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.extract-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.3.0</td>
+						<td><strong><code>EXTR_REFS</code></strong> a été ajouté.</td>
+					</tr>
+
+					<tr>
+						<td>4.2.0</td>
+						<td><strong><code>EXTR_IF_EXISTS</code></strong> et <strong><code>EXTR_PREFIX_IF_EXISTS</code></strong>
+							ont été ajoutés.</td>
+					</tr>
+
+					<tr>
+						<td>4.0.5</td>
+						<td>Cette fonction retourne maintenant le nombre de variables
+							extraites. <strong><code>EXTR_PREFIX_INVALID</code></strong> a
+							été ajouté. <strong><code>EXTR_PREFIX_ALL</code></strong> inclut
+							également les variables numériques.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+		<div class="refsect1 examples" id="refsect1-function.extract-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4667">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>extract()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<p>
+						Une utilisation possible de la fonction <span class="function"><strong>extract()</strong></span>
+						est l&#039;exportation vers la table des symboles de tableaux de
+						variables retournés par <span class="function"><a
+							href="function.wddx-deserialize.html" class="function">wddx_deserialize()</a></span>.
+					</p>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br /></span><span style="color: #FF8000">/*&nbsp;Supposons&nbsp;que&nbsp;$var_array&nbsp;est&nbsp;un&nbsp;tableau&nbsp;retourné&nbsp;par<br />&nbsp;&nbsp;&nbsp;wddx_deserialize&nbsp;*/<br />
+								<br /></span><span style="color: #0000BB">$size&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"large"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$var_array&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">"color"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">"blue"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #DD0000">"size"&nbsp;&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">"medium"</span><span
+								style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #DD0000">"shape"&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">"sphere"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">extract</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$var_array</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">EXTR_PREFIX_SAME</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"wddx"</span><span style="color: #007700">);<br />
+								<br />echo&nbsp;
+							</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$color</span><span
+								style="color: #DD0000">,&nbsp;</span><span
+								style="color: #0000BB">$size</span><span style="color: #DD0000">,&nbsp;</span><span
+								style="color: #0000BB">$shape</span><span style="color: #DD0000">,&nbsp;</span><span
+								style="color: #0000BB">$wddx_size</span><span
+								style="color: #DD0000">\n"</span><span style="color: #007700">;<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+blue, large, sphere, medium
+</pre>
+					</div>
+				</div>
+				<div class="example-contents">
+					<p>
+						La variable
+						<var class="varname">
+							<var class="varname">$taille</var>
+						</var>
+						n&#039;a pas été réécrite, car on avait spécifié le paramètre <strong><code>EXTR_PREFIX_SAME</code></strong>,
+						qui a permis la création de
+						<var class="varname">
+							<var class="varname">$wddx_taille</var>
+						</var>
+						. Si <strong><code>EXTR_SKIP</code></strong> avait été utilisée,
+						alors
+						<var class="varname">
+							<var class="varname">$wddx_taille</var>
+						</var>
+						n&#039;aurait pas été créé. Avec <strong><code>EXTR_OVERWRITE</code></strong>,
+						<var class="varname">
+							<var class="varname">$taille</var>
+						</var>
+						aurait pris la valeur &quot;moyen&quot;, et avec <strong><code>EXTR_PREFIX_ALL</code></strong>,
+						les variables créées seraient
+						<var class="varname">
+							<var class="varname">$wddx_couleur</var>
+						</var>
+						,
+						<var class="varname">
+							<var class="varname">$wddx_taille</var>
+						</var>
+						et
+						<var class="varname">
+							<var class="varname">$wddx_forme</var>
+						</var>
+						.
+					</p>
+				</div>
+			</div>
+			</p>
+		</div>
+
+		<div class="refsect1 notes" id="refsect1-function.extract-notes">
+			<h3 class="title">Notes</h3>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">
+					N&#039;utilisez pas <span class="function"><strong>extract()</strong></span>
+					sur des données inconnues, comme les données utilisateurs (i.e.
+					<var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.get.html" class="classname">$_GET</a>
+						</var>
+					</var>
+					,
+					<var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.files.html" class="classname">$_FILES</a>
+						</var>
+					</var>
+					, etc.). Si vous le faites, par exemple, pour rendre compatible un
+					vieux code avec <a href="security.globals.html" class="link">register_globals</a>
+					à Off de façon temporaire, assurez-vous d&#039;utiliser l&#039;une
+					des constantes <em><code class="parameter">extract_type</code></em>
+					qui n&#039;écrasent pas les valeurs, comme <strong><code>EXTR_SKIP</code></strong>.
+					Sachez aussi que vous devez maintenant extraire dans le même ordre
+					que celui défini dans <a href="ini.core.html#ini.variables-order"
+						class="link">variables_order</a> du <a href="ini.html"
+						class="link"><var class="filename">php.ini</var></a>.
+				</p>
+			</div>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Si vous avez la directive <a href="security.globals.html"
+						class="link">register_globals</a> d&#039;activée et que vous
+					utilisez la fonction <span class="function"><strong>extract()</strong></span>
+					sur les variables
+					<var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.files.html" class="classname">$_FILES</a>
+						</var>
+					</var>
+					et que vous spécifiez la constante <strong><code>EXTR_SKIP</code></strong>,
+					vous pourriez être surpris du résultat.
+				</p>
+				<div class="warning">
+					<strong class="warning">Avertissement</strong>
+					<p class="para">
+						Cette façon de faire n&#039;est pas recommandée et est uniquement
+						documentée ici pour bien comprendre le comportement.
+						L&#039;utilisation de la directive <a href="security.globals.html"
+							class="link">register_globals</a> est obsolète et appeler la
+						fonction <span class="function"><strong>extract()</strong></span>
+						sur des données partagées comme les variables
+						<var class="varname">
+							<var class="varname">
+								<a href="reserved.variables.files.html" class="classname">$_FILES</a>
+							</var>
+						</var>
+						est, comme mentionné ci-dessus, un risque potentiel pour la
+						sécurité. Si vous rencontrez ce problème, cela signifie que vous
+						avez écrit votre code de la mauvaise manière pour au moins 2
+						raisons.
+					</p>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br /></span><span style="color: #FF8000">/*&nbsp;Supposez&nbsp;que&nbsp;$testfile&nbsp;est&nbsp;le&nbsp;nom&nbsp;d'un&nbsp;champ&nbsp;de&nbsp;téléchargement&nbsp;de&nbsp;fichier<br />&nbsp;&nbsp;&nbsp;et&nbsp;que&nbsp;register_globals&nbsp;est&nbsp;actif.&nbsp;*/<br />
+								<br /></span><span style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$testfile</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">extract</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$_FILES</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">EXTR_SKIP</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$testfile</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$testfile</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">'tmp_name'</span><span
+								style="color: #007700">]);<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<span class="simpara"> Vous vous attendez à voir quelque
+					chose comme : </span>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+string(14) &quot;/tmp/phpgCCPX8&quot;
+array(5) {
+  [&quot;name&quot;]=&gt;
+  string(10) &quot;somefile.txt&quot;
+  [&quot;type&quot;]=&gt;
+  string(24) &quot;application/octet-stream&quot;
+  [&quot;tmp_name&quot;]=&gt;
+  string(14) &quot;/tmp/phpgCCPX8&quot;
+  [&quot;error&quot;]=&gt;
+  int(0)
+  [&quot;size&quot;]=&gt;
+  int(4208)
+}
+string(14) &quot;/tmp/phpgCCPX8&quot;
+</pre>
+					</div>
+				</div>
+				<span class="simpara"> Cependant, vous devriez plutôt voir
+					quelque comme : </span>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+string(14) &quot;/tmp/phpgCCPX8&quot;
+string(14) &quot;/tmp/phpgCCPX8&quot;
+string(1) &quot;/&quot;
+</pre>
+					</div>
+				</div>
+				<p class="para">
+					Ceci est dû au fait que, depuis que la directive <a
+						href="security.globals.html" class="link">register_globals</a> est
+					active, la variable
+					<var class="varname">
+						<var class="varname">$testfile</var>
+					</var>
+					existe déjà dans le scope global lorsque la fonction <span
+						class="function"><strong>extract()</strong></span> est appelée. Et
+					vû que la constante <strong><code>EXTR_SKIP</code></strong> est
+					spécifiée, la variable
+					<var class="varname">
+						<var class="varname">$testfile</var>
+					</var>
+					n&#039;est pas écrasée avec le contenu du tableau <strong><code>$_FILES</code></strong>,
+					aussi, la variable
+					<var class="varname">
+						<var class="varname">$testfile</var>
+					</var>
+					reste une <a href="language.types.string.html" class="link">chaîne
+						de caractères</a>. Parceque les <a
+						href="language.types.string.html#language.types.string.substr"
+						class="link">chaînes de caractères peuvent être accédées en
+						utilisant la syntaxe des tableaux</a> et que la <a
+						href="language.types.string.html" class="link">chaîne de
+						caractères</a> non-numérique <em>tmp_name</em> est interprétée comme <em>0</em>,
+					PHP voit
+					<var class="varname">
+						<var class="varname">$testfile['tmp_name']</var>
+					</var>
+					comme
+					<var class="varname">
+						<var class="varname">$testfile[0]</var>
+					</var>
+					.
+			</blockquote>
+		</div>
+
+		<div class="refsect1 seealso" id="refsect1-function.extract-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.compact.html" class="function" rel="rdfs-seeAlso">compact()</a>
+						- Cr&eacute;e un tableau &agrave; partir de variables et de leur
+						valeur</span></li>
+				<li class="member"><span class="function"><a
+						href="function.list.html" class="function" rel="rdfs-seeAlso">list()</a>
+						- Assigne des variables comme si elles &eacute;taient un tableau</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.end.html">end</a>
+		</div>
+		<div class="next">
+			<a href="function.in-array.html">in_array</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

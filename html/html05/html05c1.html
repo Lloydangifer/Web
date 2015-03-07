@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Les tableaux</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			Les tableaux (ou tables) dans <abbr title="HyperText Markup Language">HTML</abbr>
+			ressemblent aux tableaux de données que permettent de créer les
+			tableurs (et n'ont rien à voir avec les tables d'une base de données
+			relationnelles).
+		</p>
+
+
+		<p>Si au moment de leur invention par Netscape, les tableaux
+			étaient effectivement prévus pour représenter des données tabulaires,
+			cette utilisation initiale à été rapidement détournée par les
+			concepteurs de site pour effectuer la mise en page des documents.</p>
+
+		<figure style="float: right; margin: 0 0 0.5em 1em;">
+			<img src="../htmlimg/amazon.jpg" width="280" height="700">
+			<figcaption>grille de mise en page</figcaption>
+		</figure>
+
+		<p>
+			Cette technique est héritée de la mise en page papier qui se fait à
+			partir d'une grille : une série de lignes horizontales et de colonnes
+			verticales, qui partagent la page de manière harmonieuse. On peut
+			ainsi donner de l'importance à certaines zones (ligne, colonne ou
+			jonction des deux) et guider le chemin d'exploration et de lecture.
+			La grille et ses éléments peuvent être directement visibles et
+			clairement marqués par des cadres, filets ou colonnages, mais ils
+			peuvent aussi être agencés d'une façon plus subtile qui ne se
+			remarque que si l'on recherche l'architecture sous-jacente de la mise
+			en page.
+			<br>
+			Dans les années 1995-2000, les tableaux permettaient d'agencer les
+			blocs d'informations et les images des pages car les feuilles de
+			style <abbr title="Cascading Style Sheets">CSS</abbr> en étaient à
+			leur début et n'étaient pas implémentées de façon satisfaisante par
+			les navigateurs. Les tableaux étaient alors les seules constructions
+			HTML qui permettaient d'avoir des couleurs de fond et/ou des images
+			de fond différentes suivant les blocs et d'avoir des élements
+			positionnés en vis à vis les uns à côté des autres.
+			<br>
+			Jusque vers 2007, 2008, les tableaux dans HTML étaient donc
+			essentiellement utilisés pour mettre au point des grilles d'affichage
+			et de mise en page. Le formatage qu'ils permettent est extrêmement
+			puissant et toutes les pages HTML professionnelles étaient
+			construites avec des tableaux imbriqués.
+		</p>
+		<p>
+			Aujourd'hui, cette utilisation des tableaux est totalement abandonnée
+			au profit des feuilles de style <abbr title="Cascading Style Sheets">CSS</abbr>
+			qui offrent des possibilités démultipliées dans le positionnement et
+			la mise en forme des éléments, et qui sont bien prises en compte et
+			implémentées par les navigateurs.
+			<br>
+			On est donc revenu à l'utilisation qui était prévue originellement
+			pour les tableaux : la présentation de données tabulaires.
+		</p>
+
+
+		<!-- ************************************************************************************* -->
+		<h3>Structure minimum</h3>
+		<section>
+			<p class="fp-bot0">Un tableau est constitué de lignes qui
+				contiennent des cellules. La structure est composée au minimum avec
+				trois éléments :</p>
+			<ul>
+				<li><a onClick="top.FP.Voir.showPageTech('elements', 'table')">table</a>
+					est l'élément principal qui marque le début et la fin du tableau.
+					Par défaut une table prend la place maximum pour afficher son
+					contenu.</li>
+				<li><a onClick="top.FP.Voir.showPageTech('elements', 'tr')">tr</a>
+					définit une ligne de cellules (row),</li>
+				<li><a onClick="top.FP.Voir.showPageTech('elements', 'td')">td</a>
+					définit une cellule (cell) dans une ligne. Par défaut, le contenu
+					d'une cellule est centré verticalement.</li>
+			</ul>
+
+			<figure>
+				<img src="../htmlimg/table_mini.png" width="403" height="145">
+				<figcaption>structure minimum d'un tableau</figcaption>
+			</figure>
+
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : tableau avec structure minimum
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Tableau&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+			&lt;tr&gt;	&lt;!-- ligne 1 --&gt;
+				&lt;td&gt;Film&lt;/td&gt;
+				&lt;td&gt;France&lt;/td&gt;
+				&lt;td&gt;Belgique&lt;/td&gt;
+				&lt;td&gt;Suisse&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;	&lt;!-- ligne 2 --&gt;
+				&lt;td&gt;La communauté de l'anneau&lt;/td&gt;
+				&lt;td&gt;6 822 407&lt;/td&gt;
+				&lt;td&gt;541 274&lt;/td&gt;
+				&lt;td&gt;903 015&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;	&lt;!-- ligne 3 --&gt;
+				&lt;td&gt;Les deux tours&lt;/td&gt;
+				&lt;td&gt;7 063 746&lt;/td&gt;
+				&lt;td&gt;664 070&lt;/td&gt;
+				&lt;td&gt;901 053&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;	&lt;!-- ligne 4 --&gt;
+				&lt;td&gt;Le retour du roi&lt;/td&gt;
+				&lt;td&gt;6 930 000&lt;/td&gt;
+				&lt;td&gt;761 891&lt;/td&gt;
+				&lt;td&gt;915 689&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				Comme on peut le constater à l'affichage de l'exemple, la mise en
+				forme par défaut est pratiquement inexistante. Il faut donc utiliser
+				des règles de style <abbr title="Cascading Style Sheets">CSS</abbr>
+				pour rendre un tableau "présentable".
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : tableau avec structure minimum
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Tableau&lt;/title&gt;
+		&lt;style&gt;
+			table {
+				/* une seule bordure autour des cellules */
+				border-collapse: collapse;
+			}
+			td {
+				/* pour entourer les cellules */
+				border: 1px solid;
+				padding: 4px 10px;
+			}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+			&lt;tr&gt;	&lt;!-- ligne 1 --&gt;
+				&lt;td&gt;Film&lt;/td&gt;
+				&lt;td&gt;France&lt;/td&gt;
+				&lt;td&gt;Belgique&lt;/td&gt;
+				&lt;td&gt;Suisse&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;	&lt;!-- ligne 2 --&gt;
+				&lt;td&gt;La communauté de l'anneau&lt;/td&gt;
+				&lt;td&gt;6 822 407&lt;/td&gt;
+				&lt;td&gt;541 274&lt;/td&gt;
+				&lt;td&gt;903 015&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;	&lt;!-- ligne 3 --&gt;
+				&lt;td&gt;Les deux tours&lt;/td&gt;
+				&lt;td&gt;7 063 746&lt;/td&gt;
+				&lt;td&gt;664 070&lt;/td&gt;
+				&lt;td&gt;901 053&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;	&lt;!-- ligne 4 --&gt;
+				&lt;td&gt;Le retour du roi&lt;/td&gt;
+				&lt;td&gt;6 930 000&lt;/td&gt;
+				&lt;td&gt;761 891&lt;/td&gt;
+				&lt;td&gt;915 689&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p class="fp-remarque" style="width: 248px; margin: 1em 0 1em 256px">
+				On a ici un exemple minimum de mise en forme. Voir dans le tutoriel
+				<abbr title="Cascading Style Sheets">CSS</abbr> la partie consacrée
+				aux tableaux.
+			</p>
+
+
+		</section>
+
+		<!-- ************************************************************************************* -->
+		<h3>Structure avec sémantique</h3>
+		<section>
+
+			<p class="fp-bot0">Aux 3 éléments de base on peut en ajouter
+				d'autres si on veut que la définition du tableau soit sémantiquement
+				correcte :</p>
+			<ul>
+				<li><a
+					onclick="top.FP.Voir.showPageTech('elements', 'caption')">caption</a>
+					ajoute un titre au tableau,</li>
+				<li><a onClick="top.FP.Voir.showPageTech('elements', 'thead')">thead</a>
+					groupe une ou plusieurs lignes servant d'en-tête au tableau,</li>
+				<li><a onClick="top.FP.Voir.showPageTech('elements', 'th')">th</a>
+					définit une cellule servant de titre pour une colonne ou une ligne,</li>
+				<li><a onClick="top.FP.Voir.showPageTech('elements', 'tbody')">tbody</a>
+					groupe une ou plusieurs lignes représentant le corps au tableau (de
+					données qui ne sont ni dans l'en-tête ni dans le pied),</li>
+				<li><a onClick="top.FP.Voir.showPageTech('elements', 'tfoot')">tfoot</a>
+					groupe une ou plusieurs lignes servant de pied au tableau.</li>
+			</ul>
+
+
+			<figure>
+				<img src="../htmlimg/table_semantique.png" width="499" height="225">
+				<figcaption>structure avec sémantique d'un tableau</figcaption>
+			</figure>
+
+
+			<figure>
+				<img src="../htmlimg/table_3d.jpg" width="500" height="422">
+				<figcaption>structure vue en 3D</figcaption>
+			</figure>
+
+			<p>
+				Si il y a un pied au tableau, cet élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'tfoot')">tfoot</a>
+				doit être placé dans le code <abbr title="HyperText Markup Language">HTML</abbr>
+				directement après l'élément d'en-tête <a
+					onclick="top.FP.Voir.showPageTech('elements', 'thead')">thead</a>
+				et avant l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'tbody')">tbody</a>.
+				Le navigateur le placera visuellement en bonne position à la fin du
+				tableau. Cette particularité existe pour des raisons d'accessibilité
+				: les outils de lecture de page peuvent donner immédiatement les
+				informations pertinentes (comme les totaux par exemple) sans que la
+				totalité du tableau doivent être parcourue.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : tableau avec sémantique
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Tableau&lt;/title&gt;
+		&lt;style&gt;
+			table { border-collapse: collapse; }
+			td, th { border: 1px solid; padding: 4px 10px; }
+			td { text-align: right; }
+			th, tfoot { background: lightgrey; }
+			caption { margin: 0.5em 0; font-style: italic; }
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+			&lt;caption&gt;Nombre d'entrées pour les films de la trilogie du Seigneur des Anneaux&lt;/caption&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Film&lt;/th&gt;
+					&lt;th&gt;France&lt;/th&gt;
+					&lt;th&gt;Belgique&lt;/th&gt;
+					&lt;th&gt;Suisse&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tfoot&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Totaux&lt;/th&gt;
+					&lt;td&gt;20 815 883&lt;/td&gt;
+					&lt;td&gt;1 967 235&lt;/td&gt;
+					&lt;td&gt;2 722 757&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tfoot&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td&gt;La communauté de l'anneau&lt;/td&gt;
+					&lt;td&gt;6 822 407&lt;/td&gt;
+					&lt;td&gt;541 274&lt;/td&gt;
+					&lt;td&gt;903 015&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Les deux tours&lt;/td&gt;
+					&lt;td&gt;7 063 746&lt;/td&gt;
+					&lt;td&gt;664 070&lt;/td&gt;
+					&lt;td&gt;901 053&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Le retour du roi&lt;/td&gt;
+					&lt;td&gt;6 930 000&lt;/td&gt;
+					&lt;td&gt;761 891&lt;/td&gt;
+					&lt;td&gt;915 689&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+
+			<a id="exo_table_01"></a>
+			<h4 class="fp-exo">Catalogue Lego Junior</h4>
+			<section>
+				<p class="fp-p-raz">
+					Ecrivez le code <abbr title="HyperText Markup Language">HTML</abbr>
+					du tableau permettant d'obtenir le résultat ci-dessous.
+				</p>
+
+				<figure>
+					<img src="../exercices/exo_table_01.png" width="473" height="336">
+					<figcaption>catalogue Lego Junior - tableau à réaliser</figcaption>
+				</figure>
+
+
+				<p class="fp-completez">
+					<a onClick="top.FP.Voir.showCompletez('exo_table_01_comp')">Code à compléter</a>
+				</p>
+
+				<div id="exo_table_01_comp" class="BLOC-completez">
+					<form action="" method="post" class="TEST-form">
+						<div class="TEST-titre">
+							<strong>Exercice</strong> : catalogue Lego Junior
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Catalogue Lego Junior&lt;/title&gt;
+		&lt;style&gt;
+			table { border-collapse: collapse; }
+			td, th { border: 1px solid; padding: 4px 10px; }
+			td:nth-of-type(3),
+			td:nth-of-type(4) { text-align: right; }
+			th, tfoot { background: lightgrey; }
+			caption { margin: 0.5em 0; font-style: italic; }
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+				</div>
+
+				<p class="fp-solution">
+					<a onClick="top.FP.Voir.showSolution('exo_table_01_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_table_01_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form">
+						<div class="TEST-titre">
+							<strong>Exercice</strong> : catalogue Lego Junior
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Catalogue Lego Junior&lt;/title&gt;
+		&lt;style&gt;
+			table { border-collapse: collapse; }
+			td, th { border: 1px solid; padding: 4px 10px; }
+			td:nth-of-type(3),
+			td:nth-of-type(4) { text-align: right; }
+			th, tfoot { background: lightgrey; }
+			caption { margin: 0.5em 0; font-style: italic; }
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;			
+			&lt;caption&gt;Catalogue LEGO&reg; Juniors (extrait)&lt;/caption&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Réf.&lt;/th&gt;
+					&lt;th&gt;Nom&lt;/th&gt;
+					&lt;th&gt;Prix&lt;/th&gt;
+					&lt;th&gt;Pièces&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tfoot&gt;
+				&lt;td&gt;&lt;/td&gt;
+				&lt;td&gt;6 références&lt;/td&gt;
+				&lt;td&gt;&lt;/td&gt;
+				&lt;td&gt;1263&lt;/td&gt;
+			&lt;/tfoot&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td&gt;10667&lt;/td&gt;
+					&lt;td&gt;Boîte de construction du chantier&lt;/td&gt;
+					&lt;td&gt;17.99 &euro;&lt;/td&gt;
+					&lt;td&gt;160&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;10668&lt;/td&gt;
+					&lt;td&gt;Boîte de construction du château&lt;/td&gt;
+					&lt;td&gt;17.99 &euro;&lt;/td&gt;
+					&lt;td&gt;150&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;10673&lt;/td&gt;
+					&lt;td&gt;Grande boîte du rallye automobile&lt;/td&gt;
+					&lt;td&gt;29.99 &euro;&lt;/td&gt;
+					&lt;td&gt;350&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;10674&lt;/td&gt;
+					&lt;td&gt;Grande boîte du centre équestre&lt;/td&gt;
+					&lt;td&gt;29.99 &euro;&lt;/td&gt;
+					&lt;td&gt;306&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;10659&lt;/td&gt;
+					&lt;td&gt;La valise de construction garçon&lt;/td&gt;
+					&lt;td&gt;24.99 &euro;&lt;/td&gt;
+					&lt;td&gt;146&lt;/td&gt;
+				&lt;/tr&gt;	
+				&lt;tr&gt;
+					&lt;td&gt;10660&lt;/td&gt;
+					&lt;td&gt;La valise de construction fille&lt;/td&gt;
+					&lt;td&gt;24.99 &euro;&lt;/td&gt;
+					&lt;td&gt;151&lt;/td&gt;
+				&lt;/tr&gt;				
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+				</div>
+			</section>
+		</section>
+
+		<!-- ************************************************************************************* -->
+		<h3>Contenu des cellules</h3>
+		<section>
+			<p>
+				Le contenu d'une cellule peut être bien sûr du texte, mais également
+				n'importe quel autre élément <abbr title="HyperText Markup Language">HTML</abbr>,
+				en particulier des éléments embarqués comme des images.
+			</p>
+
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : images comme contenu de cellule
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Tableau&lt;/title&gt;
+		&lt;style&gt;
+			table { border-collapse: collapse; }
+			td, th { border: 1px solid; padding: 4px 10px; }
+			td { text-align: right; }
+			th, tfoot { background: lightgrey; }
+			caption { margin: 0.5em 0; font-style: italic; }
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+			&lt;caption&gt;Nombre d'entrées pour les films de la trilogie du Seigneur des Anneaux&lt;/caption&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Film&lt;/th&gt;
+					&lt;th&gt;&lt;img src="../exemples/images/france.png"&gt;&lt;/th&gt;
+					&lt;th&gt;&lt;img src="../exemples/images/belgique.png"&gt;&lt;/th&gt;
+					&lt;th&gt;&lt;img src="../exemples/images/suisse.png"&gt;&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tfoot&gt;
+				&lt;tr&gt;
+					&lt;th&gt;&lt;img src="../exemples/images/logo_sda.png"&gt;&lt;/th&gt;
+					&lt;td&gt;20 815 883&lt;/td&gt;
+					&lt;td&gt;1 967 235&lt;/td&gt;
+					&lt;td&gt;2 722 757&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tfoot&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;th&gt;La communauté de l'anneau&lt;/th&gt;
+					&lt;td&gt;6 822 407&lt;/td&gt;
+					&lt;td&gt;541 274&lt;/td&gt;
+					&lt;td&gt;903 015&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Les deux tours&lt;/th&gt;
+					&lt;td&gt;7 063 746&lt;/td&gt;
+					&lt;td&gt;664 070&lt;/td&gt;
+					&lt;td&gt;901 053&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Le retour du roi&lt;/th&gt;
+					&lt;td&gt;6 930 000&lt;/td&gt;
+					&lt;td&gt;761 891&lt;/td&gt;
+					&lt;td&gt;915 689&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>Le positionnement de zones de formulaire peut également être
+				facilement réalisée avec un tableau.</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : éléments de formulaire comme contenu de
+					cellule
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire - structure simple&lt;/title&gt;
+		&lt;style&gt;
+			table { border: 1px solid; padding: 0.5em; } 
+			caption { margin: 0.3em 0; border: 1px solid; }
+			td:first-of-type { text-align: right }
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form&gt;
+			&lt;table&gt;
+				&lt;caption&gt;Authentification&lt;/caption&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Identifiant&lt;/td&gt;
+					&lt;td&gt;&lt;input type="text"&gt;&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Mot de passe&lt;/td&gt;
+					&lt;td&gt;&lt;input type="password"&gt;&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Enregistrer&lt;/td&gt;
+					&lt;td&gt;&lt;input type="checkbox"&gt;&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td colspan="2"&gt;&lt;input type="submit" value="S'authentifier"&gt;&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/table&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<a id="exo_table_02"></a>
+			<h4 class="fp-exo">Catalogue avec images et liens</h4>
+			<section>
+				<figure style="float: right; width: 300px">
+					<img src="../exercices/exo_table_02.png" width="300" height="476">
+					<figcaption>catalogue avec images et liens</figcaption>
+				</figure>
+
+				<p class="fp-p-raz">
+					Ecrivez le code <abbr
+						title="HyperText Markup Language">HTML</abbr> du tableau permettant d'obtenir le résultat ci-contre.
+				</p>
+
+				<p class="fp-p-raz fp-bot0">Les noms des boîtes sont des liens
+					qui doivent s'ouvrir dans un nouvel onglet. Les liens pointent
+					respectivement sur :</p>
+				<ul>
+					<li>http://shop.lego.com/fr-FR/Bo%C3%AEte-de-construction-du-chantier-10667</li>
+					<li>http://shop.lego.com/fr-FR/Bo%C3%AEte-de-construction-du-ch%C3%A2teau-de-la-princesse-10668</li>
+					<li>http://shop.lego.com/fr-FR/Grande-bo%C3%AEte-du-rallye-automobile-10673</li>
+					<li>http://shop.lego.com/fr-FR/Grande-bo%C3%AEte-du-centre-%C3%A9questre-10674</li>
+					<li>http://shop.lego.com/fr-FR/Valise-de-construction-gar%C3%A7on-LEGO-10659</li>
+					<li>http://shop.lego.com/fr-FR/La-valise-de-construction-fille-10660</li>
+				</ul>
+
+				<p class="fp-p-raz">
+					Les image se trouvent dans le dossier <code>../exemples/lego</code>.
+					Leur nom est la référence de la boîte et elles sont au format <code>jpg</code>.
+					Par exemple l'image pour la référence 12345 aura comme nom <code>12345.jpg</code>.
+				</p>
+
+				<p class="fp-completez">
+					<a onClick="top.FP.Voir.showCompletez('exo_table_02_comp')">Code à compléter</a>
+				</p>
+
+				<div id="exo_table_02_comp" class="BLOC-completez">
+					<form action="" method="post" class="TEST-form">
+						<div class="TEST-titre">
+							<strong>Exercice</strong> : catalogue avec images et liens
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Catalogue avec images et liens&lt;/title&gt;
+		&lt;style&gt;
+			table { border-collapse: collapse; }
+			td, th { border: 1px solid; padding: 4px 10px; }
+			td:nth-of-type(3) { text-align: right; }
+			th, tfoot { background: lightgrey; }
+			caption { margin: 0.5em 0; font-style: italic; }
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+				</div>
+
+				<p class="fp-solution">
+					<a onClick="top.FP.Voir.showSolution('exo_table_02_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_table_02_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form">
+						<div class="TEST-titre">
+							<strong>Exercice</strong> : catalogue avec images et liens
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Catalogue avec images et liens&lt;/title&gt;
+		&lt;style&gt;
+			table { border-collapse: collapse; }
+			td, th { border: 1px solid; padding: 4px 10px; }
+			td:nth-of-type(3){ text-align: right; }
+			th, tfoot { background: lightgrey; }
+			caption { margin: 0.5em 0; font-style: italic; }
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;			
+			&lt;caption&gt;Catalogue LEGO® Juniors (extrait)&lt;/caption&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Réf.&lt;/th&gt;
+					&lt;th&gt;Nom&lt;/th&gt;
+					&lt;th&gt;Prix&lt;/th&gt;
+					&lt;th&gt;&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td&gt;10667&lt;/td&gt;
+					&lt;td&gt;&lt;a href="http://shop.lego.com/fr-FR/Bo%C3%AEte-de-construction-du-chantier-10667" target="_blank"&gt;Boîte de construction du chantier&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;17.99 €&lt;/td&gt;
+					&lt;td&gt;&lt;img src="../exemples/lego/10667.jpg"&gt;&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;10668&lt;/td&gt;					
+					&lt;td&gt;&lt;a href="http://shop.lego.com/fr-FR/Bo%C3%AEte-de-construction-du-ch%C3%A2teau-de-la-princesse-10668" target="_blank"&gt;Boîte de construction du château&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;17.99 €&lt;/td&gt;
+					&lt;td&gt;&lt;img src="../exemples/lego/10668.jpg"&gt;&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;10673&lt;/td&gt;
+					&lt;td&gt;&lt;a href="http://shop.lego.com/fr-FR/Grande-bo%C3%AEte-du-rallye-automobile-10673" target="_blank"&gt;Grande boîte du rallye automobile&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;29.99 €&lt;/td&gt;
+					&lt;td&gt;&lt;img src="../exemples/lego/10673.jpg"&gt;&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;10674&lt;/td&gt;
+					&lt;td&gt;&lt;a href="http://shop.lego.com/fr-FR/Grande-bo%C3%AEte-du-centre-%C3%A9questre-10674" target="_blank"&gt;Grande boîte du centre équestre&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;29.99 €&lt;/td&gt;
+					&lt;td&gt;&lt;img src="../exemples/lego/10674.jpg"&gt;&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;10659&lt;/td&gt;
+					&lt;td&gt;&lt;a href="http://shop.lego.com/fr-FR/Valise-de-construction-gar%C3%A7on-LEGO-10659" target="_blank"&gt;La valise de construction garçon&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;24.99 €&lt;/td&gt;
+					&lt;td&gt;&lt;img src="../exemples/lego/10659.jpg"&gt;&lt;/td&gt;
+				&lt;/tr&gt;	
+				&lt;tr&gt;
+					&lt;td&gt;10660&lt;/td&gt;
+					&lt;td&gt;&lt;a href="http://shop.lego.com/fr-FR/La-valise-de-construction-fille-10660" target="_blank"&gt;La valise de construction fille&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;24.99 €&lt;/td&gt;
+					&lt;td&gt;&lt;img src="../exemples/lego/10660.jpg"&gt;&lt;/td&gt;
+				&lt;/tr&gt;				
+			&lt;/tbody&gt;
+		&lt;/table&gt;		
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+				</div>
+			</section>
+		</section>
+
+		<!-- ************************************************************************************* -->
+		<h3>Fusion de cellules</h3>
+		<section>
+			<h4>Fusion horizontale avec colspan</h4>
+			<section>
+				<p>
+					Il est possible de fusionner des cellules horizontales contigües (<a
+						onclick="top.FP.Voir.showPageTech('elements', 'td')">td</a> ou <a
+						onclick="top.FP.Voir.showPageTech('elements', 'th')">th</a>) avec
+					l'attribut <code>colspan</code>. La valeur de l'attribut est le
+					nombre de cellules qui sont fusionnées sur la ligne.
+				</p>
+
+				<figure>
+					<img src="../htmlimg/table_colspan.png" width="499" height="145">
+					<figcaption>fusion horizontale avec colspan</figcaption>
+				</figure>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : fusion horizontale avec colspan
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Tableau&lt;/title&gt;
+		&lt;style&gt;
+			table { border-collapse: collapse; }
+			td, th { border: 1px solid; padding: 4px 10px; }
+			td { text-align: right; }
+			td[colspan] {text-align: center;}
+			th, tfoot { background: lightgrey; }
+			caption { margin: 0.5em 0; font-style: italic; }
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+			&lt;caption&gt;Nombre d'entrées pour les films de la Guerre des Etoiles&lt;/caption&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Epoque&lt;/th&gt;
+					&lt;!-- la cellule s'étend sur 3 colonnes --&gt;
+					&lt;th colspan="3"&gt;Prélogie&lt;/th&gt;
+					&lt;!-- la cellule s'étend sur 3 colonnes --&gt;
+					&lt;th colspan="3"&gt;Trilogie&lt;/th&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Episode&lt;/th&gt;
+					&lt;th&gt;I&lt;/th&gt;
+					&lt;th&gt;II&lt;/th&gt;
+					&lt;th&gt;III&lt;/th&gt;
+					&lt;th&gt;IV&lt;/th&gt;
+					&lt;th&gt;V&lt;/th&gt;
+					&lt;th&gt;VI&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;th&gt;France&lt;/th&gt;
+					&lt;td&gt;7 830 052&lt;/td&gt;
+					&lt;td&gt;5 609 538&lt;/td&gt;
+					&lt;td&gt;7 230 417&lt;/td&gt;
+					&lt;td&gt;6 459 530&lt;/td&gt;
+					&lt;td&gt;4 051 599&lt;/td&gt;
+					&lt;td&gt;4 243 984&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Monde&lt;/th&gt;
+					&lt;td&gt;162 827 328&lt;/td&gt;
+					&lt;td&gt;95 078 587&lt;/td&gt;
+					&lt;td&gt;92 994 057&lt;/td&gt;
+					&lt;td&gt;85 187 512&lt;/td&gt;
+					&lt;!-- la cellule s'étend sur 2 colonnes --&gt;
+					&lt;td colspan="2"&gt;112 530 533&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</section>
+
+			<h4>Fusion verticale avec rowspan</h4>
+			<section>
+				<p>
+					La fusion de cellules verticales (<a
+						onclick="top.FP.Voir.showPageTech('elements', 'td')">td</a> ou <a
+						onclick="top.FP.Voir.showPageTech('elements', 'th')">th</a>) est
+					possible avec l'attribut <code>rowspan</code>. La valeur de
+					l'attribut est le nombre de cellules qui sont fusionnées dans la
+					colonne.
+				</p>
+
+				<figure>
+					<img src="../htmlimg/table_rowspan.png" width="499" height="145">
+					<figcaption>fusion verticale avec rowspan</figcaption>
+				</figure>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : fusion verticale avec rowspan
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Tableau&lt;/title&gt;
+		&lt;style&gt;
+			table { border-collapse: collapse; }
+			td, th { border: 1px solid; padding: 4px 10px; }
+			td { text-align: right; }
+			caption { margin: 0.5em 0; font-style: italic; }
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+			&lt;caption&gt;Nombre d'entrées pour les films de la trilogie du Seigneur des Anneaux&lt;/caption&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;th rowspan="4"&gt;&lt;img src="../exemples/images/logo_sda.png"&gt;&lt;/th&gt;
+					&lt;th&gt;Film&lt;/th&gt;
+					&lt;th&gt;&lt;img src="../exemples/images/france.png"&gt;&lt;/th&gt;
+					&lt;th&gt;&lt;img src="../exemples/images/belgique.png"&gt;&lt;/th&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;th&gt;La communauté de l'anneau&lt;/th&gt;
+					&lt;td&gt;6 822 407&lt;/td&gt;
+					&lt;td&gt;541 274&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Les deux tours&lt;/th&gt;
+					&lt;td&gt;7 063 746&lt;/td&gt;
+					&lt;td&gt;664 070&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Le retour du roi&lt;/th&gt;
+					&lt;td&gt;6 930 000&lt;/td&gt;
+					&lt;td&gt;761 891&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</section>
+
+			<a id="exo_table_03"></a>
+			<h4 class="fp-exo">Fusion lignes et colonnes</h4>
+			<section>
+
+				<p class="fp-p-raz">
+					Ecrivez le code <abbr
+						title="HyperText Markup Language">HTML</abbr> du tableau permettant d'obtenir le résultat ci-dessous.
+				</p>
+
+				<figure>
+					<img src="../exercices/exo_table_03.png" width="285" height="211">
+					<figcaption>fusion lignes et colonnes</figcaption>
+				</figure>
+
+				<p class="fp-completez">
+					<a onClick="top.FP.Voir.showCompletez('exo_table_03_comp')">Code à compléter</a>
+				</p>
+
+				<div id="exo_table_03_comp" class="BLOC-completez">
+					<form action="" method="post" class="TEST-form">
+						<div class="TEST-titre">
+							<strong>Exercice</strong> : fusion lignes et colonnes
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Tableau&lt;/title&gt;
+		&lt;style&gt;
+			table { border-collapse: collapse; }
+			td { border: 1px solid; 
+				 padding: 10px 20px; 
+				 text-align: center; }
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+				</div>
+
+				<p class="fp-solution">
+					<a onClick="top.FP.Voir.showSolution('exo_table_03_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_table_03_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form">
+						<div class="TEST-titre">
+							<strong>Exercice</strong> : fusion lignes et colonnes
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Tableau&lt;/title&gt;
+		&lt;style&gt;
+			table { border-collapse: collapse; }
+			td { border: 1px solid; 
+				 padding: 10px 20px; 
+				 text-align: center; }
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;table&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td colspan="2"&gt;1&lt;/td&gt;
+					&lt;td rowspan="2"&gt;2&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td rowspan="2"&gt;3&lt;/td&gt;
+					&lt;td&gt;4&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td colspan="2"&gt;5&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+				</div>
+			</section>
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

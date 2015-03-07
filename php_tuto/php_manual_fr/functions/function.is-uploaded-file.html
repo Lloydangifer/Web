@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Indique si le fichier a &eacute;t&eacute;
+	t&eacute;l&eacute;charg&eacute; par HTTP POST</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.is-readable.html">is_readable</a>
+		</div>
+		<div class="next">
+			<a href="function.is-writable.html">is_writable</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.is-uploaded-file" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">is_uploaded_file</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.0.3, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">is_uploaded_file</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Indique si le fichier a été téléchargé
+					par HTTP POST</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.is-uploaded-file-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>is_uploaded_file</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$filename</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				Retourne <strong><code>TRUE</code></strong> si le fichier <em><code
+						class="parameter">filename</code></em> a été téléchargé par HTTP POST.
+				Cela est très utile pour vous assurer qu&#039;un utilisateur
+				n&#039;essaie pas d&#039;accéder intentionnellement à un fichier
+				auquel il n&#039;a pas droit (comme
+				<var class="filename">/etc/passwd</var>
+				).
+			</p>
+			<p class="para">Ce type de vérification est spécialement
+				important s&#039;il est possible que les fichiers téléchargés
+				révèlent leur contenu à l&#039;utilisateur, ou même aux utilisateurs
+				du même système.</p>
+			<p class="para">
+				Pour un fonctionnement correct, la fonction <span class="function"><strong>is_uploaded_file()</strong></span>
+				nécessite un argument comme
+				<var class="varname">
+					<var class="varname">
+						<a href="reserved.variables.files.html" class="classname">$_FILES['userfile']['tmp_name']</a>
+					</var>
+				</var>
+				, - le nom du fichier téléchargé sur la machine cliente
+				<var class="varname">
+					<var class="varname">
+						<a href="reserved.variables.files.html" class="classname">$_FILES['userfile']['name']</a>
+					</var>
+				</var>
+				ne fonctionne pas.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.is-uploaded-file-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">filename</code></em></span>
+				<dd>
+
+					<p class="para">Le nom de fichier à vérifier.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.is-uploaded-file-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.is-uploaded-file-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2271">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>is_uploaded_file()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br /></span><span style="color: #007700">if&nbsp;(</span><span
+								style="color: #0000BB">is_uploaded_file</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$_FILES</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">'userfile'</span><span
+								style="color: #007700">][</span><span style="color: #DD0000">'tmp_name'</span><span
+								style="color: #007700">]))&nbsp;{<br />&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"File&nbsp;"</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">$_FILES</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">'userfile'</span><span
+								style="color: #007700">][</span><span style="color: #DD0000">'name'</span><span
+								style="color: #007700">]&nbsp;.</span><span
+								style="color: #DD0000">"&nbsp;téléchargé&nbsp;avec&nbsp;succès.\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Affichage&nbsp;du&nbsp;contenu\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">readfile</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$_FILES</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">'userfile'</span><span
+								style="color: #007700">][</span><span style="color: #DD0000">'tmp_name'</span><span
+								style="color: #007700">]);<br />}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Attaque&nbsp;possible&nbsp;par&nbsp;téléchargement&nbsp;de&nbsp;fichier&nbsp;:&nbsp;"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Nom&nbsp;du&nbsp;fichier&nbsp;:&nbsp;'"</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">$_FILES</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">'userfile'</span><span
+								style="color: #007700">][</span><span style="color: #DD0000">'tmp_name'</span><span
+								style="color: #007700">]&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"'."</span><span style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.is-uploaded-file-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.move-uploaded-file.html" class="function"
+						rel="rdfs-seeAlso">move_uploaded_file()</a> - D&eacute;place un
+						fichier t&eacute;l&eacute;charg&eacute;</span></li>
+				<li class="member"><var class="varname">
+						<var class="varname">
+							<a href="reserved.variables.files.html" class="classname">$_FILES</a>
+						</var>
+					</var></li>
+				<li class="member">Voir la section sur <a
+					href="features.file-upload.html" class="link">la gestion des
+						téléchargements</a> pour un exemple d&#039;utilisation simple.
+				</li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.is-readable.html">is_readable</a>
+		</div>
+		<div class="next">
+			<a href="function.is-writable.html">is_writable</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

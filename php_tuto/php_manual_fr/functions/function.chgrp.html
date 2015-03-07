@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Change le groupe d'un fichier</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.basename.html">basename</a>
+		</div>
+		<div class="next">
+			<a href="function.chmod.html">chmod</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.chgrp" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">chgrp</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">chgrp</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Change le groupe d&#039;un fichier</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.chgrp-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>chgrp</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$filename</code></span> , <span
+					class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$group</code></span>
+				)
+			</div>
+
+			<p class="para rdfs-comment">
+				Essaie de remplacer le groupe propriétaire courant du fichier <em><code
+						class="parameter">filename</code></em> par <em><code
+						class="parameter">group</code></em>.
+			</p>
+			<p class="para">Seul le super-utilisateur (root) peut changer le
+				groupe propriétaire d&#039;un fichier arbitrairement; les
+				utilisateurs classiques ne peuvent changer le groupe propriétaire
+				d&#039;un fichier que si l&#039;utilisateur propriétaire du fichier
+				est membre du groupe.</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.chgrp-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">filename</code></em></span>
+				<dd>
+
+					<p class="para">Chemin vers le fichier.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">group</code></em></span>
+				<dd>
+
+					<p class="para">Un nom ou un numéro de groupe.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.chgrp-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.chgrp-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2216">
+				<p>
+					<strong>Exemple #1 Modification de groupe d&#039;un
+						fichier</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$filename&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'shared_file.txt'</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$format&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"%s's&nbsp;Group&nbsp;ID&nbsp;@&nbsp;%s:&nbsp;%d\n"</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">printf</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$format</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$filename</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'r'</span><span style="color: #007700">),&nbsp;</span><span
+								style="color: #0000BB">filegroup</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span
+								style="color: #007700">));<br /></span><span
+								style="color: #0000BB">chgrp</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$filename</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">8</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">clearstatcache</span><span
+								style="color: #007700">();&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;ne&nbsp;pas&nbsp;mettre&nbsp;en&nbsp;cache&nbsp;le&nbsp;résultat&nbsp;de&nbsp;filegroup()<br /></span><span
+								style="color: #0000BB">printf</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$format</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$filename</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">date</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'r'</span><span style="color: #007700">),&nbsp;</span><span
+								style="color: #0000BB">filegroup</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span
+								style="color: #007700">));<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.chgrp-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Cette
+						fonction ne fonctionne pas avec les <a
+						href="features.remote-files.html" class="link">fichiers
+							distants</a>, car le fichier utilisé doit être accessible sur le
+						système de fichiers local.
+					</span>
+				</p>
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Lorsque
+						le <a href="features.safe-mode.html" class="link">safe-mode</a>
+						est activé, PHP vérifie si le fichier/dossier que vous allez
+						utiliser a le même UID que le script qui est actuellement exécuté.
+					</span>
+				</p>
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.chgrp-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.chown.html" class="function" rel="rdfs-seeAlso">chown()</a>
+						- Change le propri&eacute;taire du fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.chmod.html" class="function" rel="rdfs-seeAlso">chmod()</a>
+						- Change le mode du fichier</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.basename.html">basename</a>
+		</div>
+		<div class="next">
+			<a href="function.chmod.html">chmod</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Fixe et lit diff&eacute;rentes options d'assertions</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="ref.info.html">Fonctions sur les options et les
+				informations de PHP</a>
+		</div>
+		<div class="next">
+			<a href="function.assert.html">assert</a>
+		</div>
+		<div class="up">
+			<a href="ref.info.html">Fonctions sur les options et les
+				informations de PHP</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.assert-options" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">assert_options</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">assert_options</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Fixe et lit différentes options
+					d&#039;assertions</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.assert-options-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><a
+					href="language.pseudo-types.html#language.types.mixed"
+					class="type mixed">mixed</a></span> <span class="methodname"><strong>assert_options</strong></span>
+				( <span class="methodparam"><span class="type">int</span> <code
+						class="parameter">$what</code></span> [, <span class="methodparam"><span
+					class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$value</code></span>
+				] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>assert_options()</strong></span>
+				permet de modifier les diverses options de la fonction <span
+					class="function"><a href="function.assert.html"
+					class="function">assert()</a></span>, ou simplement connaître la
+				configuration actuelle.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.assert-options-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">what</code></em></span>
+				<dd>
+
+					<p class="para">
+					<table class="doctable table">
+						<caption>
+							<strong>Options d&#039;assertions</strong>
+						</caption>
+
+						<thead>
+							<tr>
+								<th>Option</th>
+								<th>Directive</th>
+								<th>Valeur par défaut</th>
+								<th>Description</th>
+							</tr>
+
+						</thead>
+
+						<tbody class="tbody">
+							<tr>
+								<td>ASSERT_ACTIVE</td>
+								<td>assert.active</td>
+								<td>1</td>
+								<td>Active l&#039;évaluation de la fonction <span
+									class="function"><a href="function.assert.html"
+										class="function">assert()</a></span>
+								</td>
+							</tr>
+
+							<tr>
+								<td>ASSERT_WARNING</td>
+								<td>assert.warning</td>
+								<td>1</td>
+								<td>Génère une alerte PHP pour chaque assertion fausse</td>
+							</tr>
+
+							<tr>
+								<td>ASSERT_BAIL</td>
+								<td>assert.bail</td>
+								<td>0</td>
+								<td>Termine l&#039;exécution en cas d&#039;assertion fausse</td>
+							</tr>
+
+							<tr>
+								<td>ASSERT_QUIET_EVAL</td>
+								<td>assert.quiet_eval</td>
+								<td>0</td>
+								<td>Désactive le rapport d&#039;erreur durant
+									l&#039;évaluation d&#039;une assertion</td>
+							</tr>
+
+							<tr>
+								<td>ASSERT_CALLBACK</td>
+								<td>assert.callback</td>
+								<td>(<strong><code>NULL</code></strong>)
+								</td>
+								<td>Fonction de rappel utilisateur, pour le traitement des
+									assertions fausses</td>
+							</tr>
+
+						</tbody>
+
+					</table>
+
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">value</code></em></span>
+				<dd>
+
+					<p class="para">Une nouvelle valeur, optionnelle, pour
+						l&#039;option.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.assert-options-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne la valeur originale de l&#039;option, ou bien <strong><code>FALSE</code></strong>
+				en cas d&#039;erreur.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.assert-options-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-475">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>assert_options()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #FF8000">//&nbsp;Ceci&nbsp;est&nbsp;notre&nbsp;fonction&nbsp;pour&nbsp;gérer&nbsp;les<br />//&nbsp;erreurs&nbsp;d'assertion<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">assert_failure</span><span
+								style="color: #007700">()<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'Échec&nbsp;de&nbsp;l\'assertion'</span><span
+								style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Ceci&nbsp;est&nbsp;notre&nbsp;fonction&nbsp;de&nbsp;test<br /></span><span
+								style="color: #007700">function&nbsp;</span><span
+								style="color: #0000BB">test_assert</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$parameter</span><span
+								style="color: #007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">assert</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">is_bool</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$parameter</span><span
+								style="color: #007700">));<br />}<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Définit&nbsp;nos&nbsp;options&nbsp;d'assertion<br /></span><span
+								style="color: #0000BB">assert_options</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">ASSERT_ACTIVE</span><span
+								style="color: #007700">,&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">assert_options</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">ASSERT_BAIL</span><span
+								style="color: #007700">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">assert_options</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">ASSERT_WARNING</span><span
+								style="color: #007700">,&nbsp;&nbsp;</span><span
+								style="color: #0000BB">false</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">assert_options</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">ASSERT_CALLBACK</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'assert_failure'</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Une&nbsp;assertion&nbsp;qui&nbsp;doit&nbsp;échouée<br /></span><span
+								style="color: #0000BB">test_assert</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">1</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">//&nbsp;Ceci&nbsp;n'est&nbsp;jamais&nbsp;atteint,&nbsp;car&nbsp;ASSERT_BAIL<br />//&nbsp;vaut&nbsp;true<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #DD0000">'Jamais&nbsp;atteint'</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.assert-options-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.assert.html" class="function" rel="rdfs-seeAlso">assert()</a>
+						- V&eacute;rifie si une assertion est fausse</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="ref.info.html">Fonctions sur les options et les
+				informations de PHP</a>
+		</div>
+		<div class="next">
+			<a href="function.assert.html">assert</a>
+		</div>
+		<div class="up">
+			<a href="ref.info.html">Fonctions sur les options et les
+				informations de PHP</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

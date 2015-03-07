@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Structure d'un formulaire</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<h3>Structure de base</h3>
+		<section>
+			<p class="fp-bot0">
+				Un formulaire est <strong>toujours</strong> composé avec <strong>un
+					élément <a onclick="top.FP.Voir.showPageTech('elements', 'form')">form</a>
+				</strong> qui contient :
+			</p>
+			<ul>
+				<li><strong>toutes les zones de saisie</strong> (éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>,
+					<a onclick="top.FP.Voir.showPageTech('elements', 'select')">select</a>
+					et <a onclick="top.FP.Voir.showPageTech('elements', 'textarea')">textarea</a>),
+				</li>
+				<li><strong>un ou plusieurs boutons de soumission</strong> qui
+					vont permettre d'envoyer les informations saisies au serveur
+					(élément <a onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+					avec attribut <code>type="submit"</code>),</li>
+				<li><strong>tous les éléments de groupement et de
+						présentation</strong> propres aux formulaires (<a
+					onclick="top.FP.Voir.showPageTech('elements', 'fieldset')">fieldset</a>,
+					<a onclick="top.FP.Voir.showPageTech('elements', 'legend')">legend</a>
+				</li>
+			</ul>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : formulaire - structure simple
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire - structure simple&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Authentification&lt;/legend&gt;
+				&lt;label&gt;Nom&lt;/label&gt;
+				&lt;input type="text"&gt;
+				&lt;label&gt;Mot de passe&lt;/label&gt;
+				&lt;input type="password"&gt;
+				&lt;label&gt;Restez connecté&lt;/label&gt;
+				&lt;input type="checkbox"&gt; 					
+			&lt;/fieldset&gt;	
+			&lt;fieldset&gt;
+				&lt;input type="reset" value="Effacer"&gt;
+				&lt;input type="submit" value="S'authentifier"&gt;
+			&lt;/fieldset&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				Comme on peut le voir en testant l'exemple précédent, par défaut les
+				zones de saisie et les étiquettes de zones sont toutes <strong>des
+					éléments de type en ligne</strong> qui s'affiche les uns à côté des autres.
+				<br>
+				Seul l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'fieldset')">fieldset</a>
+				génére un conteneur bloc, avec par défaut un cadre grisé et un
+				simili effet 3D
+			</p>
+
+			<h4>Créer des lignes</h4>
+			<section>
+				<p>
+					Parmi toutes les solutions possibles pour créer des lignes dans le
+					formulaire, on peut utiliser des éléments <a
+						onclick="top.FP.Voir.showPageTech('elements', 'div')">div</a>,
+					neutres au niveau sémantique et simples au niveau structurel.
+				<p>
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : formulaire - structure simple
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire - structure simple&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Authentification&lt;/legend&gt;
+				&lt;div&gt;
+					&lt;label&gt;Nom&lt;/label&gt;
+					&lt;input type="text"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label&gt;Mot de passe&lt;/label&gt;
+					&lt;input type="password"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label&gt;Restez connecté&lt;/label&gt;
+					&lt;input type="checkbox"&gt;
+				&lt;/div&gt;
+			&lt;/fieldset&gt;	
+			&lt;fieldset&gt;
+				&lt;input type="reset" value="Effacer"&gt;
+				&lt;input type="submit" value="S'authentifier"&gt;
+			&lt;/fieldset&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</section>
+
+			<h4>Mise en forme rapide</h4>
+			<section>
+				<p>
+					On peut faire une mise en forme rapide avec des <strong>règles
+						de style <abbr title="Cascading Style Sheets">CSS</abbr>
+					</strong>.
+				</p>
+
+				<form action="" method="post" class="TEST-form">
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : formulaire - structure simple
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire - structure simple&lt;/title&gt;
+		&lt;style&gt;
+			fieldset {
+				border: 1px solid #AAA;
+				margin: 0 auto 10px;
+				padding: 6px;
+				width: 280px;
+			}
+			fieldset:last-of-type {text-align: center}
+			fieldset div { margin: 5px 0; }
+			label {
+				display: inline-block;
+				text-align: right;
+				width: 115px;
+			}
+			input[type="reset"],
+			input[type="submit"] {
+				padding: 2px;
+				width: 90px
+				}
+		&lt;/style&gt;		
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Authentification&lt;/legend&gt;
+				&lt;div&gt;
+					&lt;label&gt;Nom&lt;/label&gt;
+					&lt;input type="text"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label&gt;Mot de passe&lt;/label&gt;
+					&lt;input type="password"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label&gt;Restez connecté&lt;/label&gt;
+					&lt;input type="checkbox"&gt;
+				&lt;/div&gt;
+			&lt;/fieldset&gt;	
+			&lt;fieldset&gt;
+				&lt;input type="reset" value="Effacer"&gt;
+				&lt;input type="submit" value="S'authentifier"&gt;
+			&lt;/fieldset&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</section>
+		</section>
+
+
+		<h3>L'indispensable bouton de soumission</h3>
+		<section>
+			<p>
+				Un élément particulier, le bouton de soumission (<a
+					onclick="top.FP.Voir.showPageTech('elements', 'input')">input</a>
+				avec l'attribut <code>type="submit"</code>), permet d'envoyer au
+				serveur Web les informations saisies par l'utilisateur.
+			</p>
+
+			<p>Quand on clique sur cet élément représenté par défaut sous la
+				forme d'un bouton, on déclenche l'envoi du contenu du formulaire au
+				serveur (on parle aussi de "soumission de formulaire"). C'est le
+				navigateur qui prend automatiquement en charge la collecte des
+				informations saisies, leur mise en forme pour échange avec le
+				serveur et leur transfert sur le réseau.</p>
+
+			<p>La présence d'au moins un bouton de soumission dans un
+				formulaire est indispensable pour que les informations saisies
+				puissent être envoyées au serveur.</p>
+
+			<form action="" method="post" class="TEST-form">
+				<a class="TEST-lien-css" title="Afficher le fichier CSS"
+					onclick="top.FP.Voir.showPLUS('html08/styles/form00.css.html')"></a>
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : bouton de soumission
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form_01.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Bouton de soumission&lt;/title&gt;
+		&lt;link rel="stylesheet" href="styles/form00.css"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Authentification&lt;/legend&gt;
+				&lt;div&gt;
+					&lt;label&gt;Nom&lt;/label&gt;
+					&lt;input type="text"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label&gt;Mot de passe&lt;/label&gt;
+					&lt;input type="password"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label&gt;Restez connecté&lt;/label&gt;
+					&lt;input type="checkbox"&gt;
+				&lt;/div&gt;
+			&lt;/fieldset&gt;	
+			&lt;fieldset&gt;
+				&lt;input type="reset" value="Effacer"&gt;
+				&lt;input type="submit" value="S'authentifier"&gt;
+			&lt;/fieldset&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				Dans certaines pages (ou applications), on peut avoir plusieurs
+				boutons de soumission qui enverront tous vers le même "programme"
+				sur le serveur, mais qui en fonction de leur nom déclencheront des
+				traitement différents. Le cas typique est une gestion de fiche dans
+				une base de données ou aura par exemple un bouton de soumission qui
+				va déclencher un traitement de mise à jour de la fiche (ie une
+				requête <abbr title="Structured Query Language">SQL</abbr> UPDATE),
+				et un autre bouton de soumission qui lui va déclencher un
+				traitement de suppression de la fiche (ie une requête <abbr
+					title="Structured Query Language">SQL</abbr> DELETE).
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<a class="TEST-lien-css" title="Afficher le fichier CSS"
+					onclick="top.FP.Voir.showPLUS('html08/styles/form00.css.html')"></a>
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : plusieurs boutons de soumission
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form_02.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Plusieurs boutons de soumission&lt;/title&gt;
+		&lt;link rel="stylesheet" href="styles/form00.css"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Mise à jour utilisateur&lt;/legend&gt;
+				&lt;div&gt;
+					&lt;label&gt;Nom&lt;/label&gt;
+					&lt;input type="text" value="Vador"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label&gt;Prénom&lt;/label&gt;
+					&lt;input type="text" value="Dark"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label&gt;E-mail&lt;/label&gt;
+					&lt;input type="text" value="dv@mechant.com"&gt;
+				&lt;/div&gt;
+			&lt;/fieldset&gt;	
+			&lt;fieldset&gt;
+				&lt;input type="submit" value="Abandon"&gt;
+				&lt;input type="submit" value="Supprimer"&gt;
+				&lt;input type="submit" value="Modifier"&gt;
+			&lt;/fieldset&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+		</section>
+
+
+		<h3>&lt;fieldset&gt; et &lt;legend&gt;</h3>
+		<section>
+			<p>
+				L'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'fieldset')">fieldset</a>
+				est un conteneur pour des zones de saisies pouvant être <strong>regroupées
+					autour d'un thème commun</strong>. Cet élément peut être très utile, surtout
+				dans le cas où le formulaire comporte un grand nombre de zones.
+			</p>
+
+			<p>
+				<a onclick="top.FP.Voir.showPageTech('elements', 'fieldset')">fieldset</a>
+				est un élément <strong>bloc</strong>. Il est visuellement repérable
+				car les navigateurs l'entoure d'une <strong>bordure</strong>. Pour
+				être sûr que les caractéristiques d'affichage sont les mêmes quelque
+				soit le navigateur utilisé, je vous conseille de les fixer avec les
+				propriétés de style <abbr title="Cascading Style Sheets">CSS</abbr>
+				<code>border</code> pour le cadre, <code>margin</code> pour la marge
+				extérieure et <code>padding</code> pour la marge intérieure. Voir
+				l'exemple précédent.
+			</p>
+
+			<p>
+				<a onclick="top.FP.Voir.showPageTech('elements', 'fieldset')">fieldset</a>
+				peut être <strong>utilisé seul</strong> (cf le 2eme <code>fieldset</code>
+				dans l'exemple précédent) ou <strong>utilisé avec un
+					élément <a onclick="top.FP.Voir.showPageTech('elements', 'legend')">legend</a>
+				</strong> qui va venir s'afficher en haut à gauche du cadre (cf le 1er <code>fieldset</code>
+				dans l'exemple précédent).
+			</p>
+
+			<p>
+				Le positionnement et les caractéristiques d'affichage de <a
+					onclick="top.FP.Voir.showPageTech('elements', 'legend')">legend</a>
+				peuvent être modifiée avec des propriétés de style <abbr
+					title="Cascading Style Sheets">CSS</abbr>.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : formulaire - structure simple
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap
+					data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Formulaire - structure simple&lt;/title&gt;
+		&lt;style&gt;
+			legend {
+				background: #EEE;
+				border: 1px solid #AAA;
+				font-weight: bold;
+				margin-left: -20px;
+				padding: 3px;
+			}
+			fieldset {
+				border: 1px solid #AAA;
+				margin: 0 auto 10px;
+				padding: 6px;
+				width: 280px;
+			}
+			fieldset:last-of-type {text-align: center}
+			fieldset div { margin: 5px 0; }
+			label {
+				display: inline-block;
+				text-align: right;
+				width: 115px;
+			}
+			input[type="reset"],
+			input[type="submit"] {
+				padding: 2px;
+				width: 90px
+				}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Authentification&lt;/legend&gt;
+				&lt;div&gt;
+					&lt;label&gt;Nom&lt;/label&gt;
+					&lt;input type="text"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label&gt;Mot de passe&lt;/label&gt;
+					&lt;input type="password"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label&gt;Restez connecté&lt;/label&gt;
+					&lt;input type="checkbox"&gt;
+				&lt;/div&gt;
+			&lt;/fieldset&gt;	
+			&lt;fieldset&gt;
+				&lt;input type="reset" value="Effacer"&gt;
+				&lt;input type="submit" value="S'authentifier"&gt;
+			&lt;/fieldset&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+		</section>
+
+
+		<h3>&lt;label&gt;</h3>
+		<section>
+			<p>
+				L'élément <a onclick="top.FP.Voir.showPageTech('elements', 'label')">label</a>
+				permet de <strong>définir une étiquette</strong> (ou libellé) pour
+				une zone de saisie.
+				<br>
+				Cet élément est <strong>facultatif</strong>, mais son utilisation
+				permet d'apporter de la sémantique à la structure du formulaire et
+				de faciliter la mise en forme en particulier avec <abbr
+					title="Cascading Style Sheets">CSS</abbr>.
+			</p>
+
+			<p>
+				L'élément <a onclick="top.FP.Voir.showPageTech('elements', 'label')">label</a>
+				présente la <strong>particularité</strong> suivante : quand on
+				clique dessus le curseur de la souris se positionne directement dans
+				la zone de saisie associée. Dans le cas ou la zone associée est une
+				case à cocher ou un bouton radio, l'élément associé est
+				automatiquement sélectionné ou déselectionné.
+			</p>
+
+			<h4>Associer un label à une zone</h4>
+			<section>
+				<p class="fp-bot0">
+					Il y a <strong>2 solutions</strong> pour associer un label à une
+					zone de saisie :
+				</p>
+				<ul>
+					<li><strong>imbriquer</strong> l'élément associé dans le
+						label,</li>
+					<li>utiliser un <strong>attribut <code>for</code></strong>
+						dans le <a onclick="top.FP.Voir.showPageTech('elements', 'label')">label</a>.
+					</li>
+
+				</ul>
+
+				<p>
+					<strong>L'imbrication de l'élément associé</strong> dans le <a
+						onclick="top.FP.Voir.showPageTech('elements', 'label')">label</a>
+					est <strong>le plus simple</strong> à faire comme le montre
+					l'exemple suivant. Cliquez sur les labels pour voir le
+					positionnement automatique.
+				</p>
+
+				<form action="" method="post" class="TEST-form">
+					<a class="TEST-lien-css" title="Afficher le fichier CSS"
+						onclick="top.FP.Voir.showPLUS('html08/styles/form01.css.html')"></a>
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : zone et label imbriqués
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Zone et label imbriqués&lt;/title&gt;
+		&lt;link rel="stylesheet" href="styles/form01.css"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Authentification&lt;/legend&gt;
+				&lt;div&gt;
+					&lt;label&gt;Nom 
+						&lt;input type="text"&gt;
+					&lt;/label&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label&gt;Mot de passe 
+						&lt;input type="password"&gt;
+					&lt;/label&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label&gt;Restez connecté
+						&lt;input type="checkbox"&gt;
+					&lt;/label&gt;
+				&lt;/div&gt;
+			&lt;/fieldset&gt;	
+			&lt;fieldset&gt;
+				&lt;input type="reset" value="Effacer"&gt;
+				&lt;input type="submit" value="S'authentifier"&gt;
+			&lt;/fieldset&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<p class="fp-p-raz">
+					Avec l'imbrication de l'élément associé dans le <a
+						onclick="top.FP.Voir.showPageTech('elements', 'label')">label</a>
+					<strong>on perd l'aspect sémantique</strong> de la structure
+					puisque le label contient aussi la zone. De plus la mise en forme
+					pour l'alignement des zones demanderait l'ajout d'éléments
+					supplémentaires comme <a
+						onclick="top.FP.Voir.showPageTech('elements', 'span')">span</a>.
+				</p>
+
+				<p>
+					<strong>Utiliser un attribut <code>for</code></strong> dans le <a
+						onclick="top.FP.Voir.showPageTech('elements', 'label')">label</a>
+					nécessite <strong>d'identifier</strong> la zone de saisie associée
+					avec un <strong>attribut <code>id</code></strong>. La valeur donnée
+					à cet attribut <code>id</code> est également celle de l'attribut <code>for</code>
+					du label.
+					<br>
+					Remarque : l'attribut <code>id</code> sert à identifier sans
+					équivoque un élement quelconque de la page <abbr
+						title="HyperText Markup Language">HTML</abbr>. Cette valeur doit
+					donc être <strong>unique</strong> dans toute la page.
+				</p>
+
+				<div class="fp-ordre">
+					<div class="fp-ordre-t">
+						Unique dans une page doit être la valeur de <code>id</code>.
+					</div>
+				</div>
+
+
+				<form action="" method="post" class="TEST-form">
+					<a class="TEST-lien-css" title="Afficher le fichier CSS"
+						onclick="top.FP.Voir.showPLUS('html08/styles/form02.css.html')"></a>
+					<div class="TEST-titre">
+						<strong>Exemple</strong> : attributs for et id
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Attributs for et id&lt;/title&gt;
+		&lt;link rel="stylesheet" href="styles/form02.css"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Authentification&lt;/legend&gt;
+				&lt;div&gt;
+					&lt;label for="zNom"&gt;Nom&lt;/label&gt;
+					&lt;input type="text" id="zNom"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label for="zPasse"&gt;Mot de passe&lt;/label&gt;
+					&lt;input type="password" id="zPasse"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label for="zCon"&gt;Restez connecté&lt;/label&gt;
+					&lt;input type="checkbox" id="zCon"&gt;
+				&lt;/div&gt;
+			&lt;/fieldset&gt;	
+			&lt;fieldset&gt;
+				&lt;input type="reset" value="Effacer"&gt;
+				&lt;input type="submit" value="S'authentifier"&gt;
+			&lt;/fieldset&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+
+			</section>
+		</section>
+
+		<a id="exo_form_01"></a>
+		<h3 class="fp-exo">Structurer un formulaire</h3>
+		<section>
+			<figure style="float: right; width:280px;">
+				<img src="../exercices/exo_form_01.png" width="280" height="275">
+				<figcaption>structurer un formulaire</figcaption>
+			</figure>
+
+			<p class="fp-p-raz">Complétez le code <abbr title="HyperText Markup Language">HTML</abbr>
+				pour obtenir le résultat ci-contre.</p>
+
+			<p class="fp-p-raz">
+				Utilisez les éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'fieldset')">fieldset</a>,
+				<a onclick="top.FP.Voir.showPageTech('elements', 'legend')">legend</a>
+				et <a onclick="top.FP.Voir.showPageTech('elements', 'label')">label</a>
+				vus précédemment pour faire la structure.
+			</p>
+
+			<p class="fp-p-raz">
+				Les zones de saisies et les boutons sont des éléments <code>input</code>
+				comme ceux des exemples précédents.
+			</p>
+
+			<p class="fp-p-raz">
+				La feuille de style liée à l'exercice (<code>form03.css</code>) fera
+				automatiquement la mise en forme des éléments.
+			</p>
+
+			<p class="fp-completez">
+				<a onClick="top.FP.Voir.showCompletez('exo_form_01_comp')">Code
+					à compléter</a>
+			</p>
+
+			<div id="exo_form_01_comp" class="BLOC-completez">
+				<form action="" method="post" class="TEST-form">
+					<a class="TEST-lien-css" title="Afficher le fichier CSS"
+						onclick="top.FP.Voir.showPLUS('html08/styles/form03.css.html')"></a>
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : structurer un formulaire
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Structurer un formulaire&lt;/title&gt;
+		&lt;link rel="stylesheet" href="../html08/styles/form03.css"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form&gt;
+
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+
+			<p class="fp-solution">
+				<a onClick="top.FP.Voir.showSolution('exo_form_01_solu', 1)">Une
+					solution possible</a>
+			</p>
+			<div id="exo_form_01_solu" class="BLOC-solution">
+				<form action="" method="post" class="TEST-form">
+					<a class="TEST-lien-css" title="Afficher le fichier CSS"
+						onclick="top.FP.Voir.showPLUS('html08/styles/form03.css.html')"></a>
+					<div class="TEST-titre">
+						<strong>Exercice</strong> : structurer un formulaire
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-wrap
+						data-script="test_form.js">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Structurer un formulaire&lt;/title&gt;
+		&lt;link rel="stylesheet" href="../html08/styles/form03.css"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;form&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Etat-civil&lt;/legend&gt;
+				&lt;div&gt;
+					&lt;label for="zNom"&gt;Nom&lt;/label&gt;
+					&lt;input type="text" id="zNom"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label for="zPrenom"&gt;Prénom&lt;/label&gt;
+					&lt;input type="text" id="zPrenom"&gt;
+				&lt;/div&gt;
+			&lt;/fieldset&gt;
+			&lt;fieldset&gt;
+				&lt;legend&gt;Adresse&lt;/legend&gt;
+				&lt;div&gt;
+					&lt;label for="zRue"&gt;Rue&lt;/label&gt;
+					&lt;input type="text" id="zRue"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label for="zCode"&gt;Code postal&lt;/label&gt;
+					&lt;input type="text" id="zCode"&gt;
+				&lt;/div&gt;
+				&lt;div&gt;
+					&lt;label for="zVille"&gt;Ville&lt;/label&gt;
+					&lt;input type="text" id="zVille"&gt;
+				&lt;/div&gt;
+			&lt;/fieldset&gt;	
+			&lt;fieldset&gt;
+				&lt;input type="reset" value="J'efface"&gt;
+				&lt;input type="submit" value="Je m'inscris"&gt;
+			&lt;/fieldset&gt;
+		&lt;/form&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+			</div>
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

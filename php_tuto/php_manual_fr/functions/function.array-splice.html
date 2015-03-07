@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Efface et remplace une portion de tableau</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.array-slice.html">array_slice</a>
+		</div>
+		<div class="next">
+			<a href="function.array-sum.html">array_sum</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.array-splice" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">array_splice</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">array_splice</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Efface et remplace une portion de
+					tableau</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.array-splice-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>array_splice</strong></span>
+				( <span class="methodparam"><span class="type">array</span> <code
+						class="parameter reference">&$input</code></span> , <span
+					class="methodparam"><span class="type">int</span> <code
+						class="parameter">$offset</code></span> [, <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$length</code><span
+					class="initializer"> = 0</span></span> [, <span class="methodparam"><span
+					class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$replacement</code></span>
+				]] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>array_splice()</strong></span>
+				supprime les éléments désignés par <em><code class="parameter">offset</code></em>
+				et <em><code class="parameter">length</code></em> du tableau <em><code
+						class="parameter">input</code></em> et les remplace par les éléments du
+				tableau <em><code class="parameter">replacement</code></em>, si ce
+				dernier est présent.
+			</p>
+			<p class="para">
+				Notez que les clés numériques de <em><code class="parameter">input</code></em>
+				ne sont pas préservées.
+			</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">
+						Si <em><code class="parameter">replacement</code></em> n&#039;est
+						pas un tableau, il sera <a
+						href="language.types.array.html#language.types.array.casting"
+						class="link">transtypé</a> en 1 (i.e. <code class="code">(array)
+							$parameter</code>). Cela peut conduire en un résultat non prévu lors de
+						l&#039;utilisation d&#039;un objet ou <strong><code>NULL</code></strong>
+						comme paramètre <em><code class="parameter">replacement</code></em>.
+					</span>
+				</p>
+			</blockquote>
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.array-splice-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">input</code></em></span>
+				<dd>
+
+					<p class="para">Le tableau d&#039;entrée.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">offset</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si <em><code class="parameter">offset</code></em> est positif, la
+						série commencera à cet offset dans le tableau <em><code
+								class="parameter">input</code></em>. Si <em><code
+								class="parameter">offset</code></em> est négatif, cette série
+						commencera à l&#039;offset <em><code class="parameter">offset</code></em>,
+						mais en commençant à la fin du tableau <em><code
+								class="parameter">input</code></em>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">length</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si <em><code class="parameter">length</code></em> est donné et
+						positif, alors la série aura autant d&#039;éléments. Si <em><code
+								class="parameter">length</code></em> est donné et négatif, les
+						éléments seront pris dans l&#039;ordre inverse. Si <em><code
+								class="parameter">length</code></em> est omis, la séquence lira tous
+						les éléments du tableau, depuis l&#039;offset <em><code
+								class="parameter">offset</code></em> jusqu&#039;à la fin du tableau.
+						Conseil : pour supprimer tous les éléments du tableau depuis <em><code
+								class="parameter">offset</code></em> jusqu&#039;à la fin, même si un
+						tableau de remplacement <em><code class="parameter">replacement</code></em>
+						est spécifié, utilisez <em>count($input)</em> à la place de <em><code
+								class="parameter">length</code></em>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">replacement</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si <em><code class="parameter">replacement</code></em> est
+						précisé, alors les éléments supprimés sont remplacés par les
+						éléments de ce tableau.
+					</p>
+					<p class="para">
+						Si l&#039;<em><code class="parameter">offset</code></em> et <em><code
+								class="parameter">length</code></em> sont tels que la taille du
+						tableau ne change pas, alors les éléments du tableau de
+						remplacement <em><code class="parameter">replacement</code></em>
+						sont insérés à partir de l&#039;offset <em><code
+								class="parameter">offset</code></em>. Notez que les clés numériques
+						de <em><code class="parameter">input</code></em> ne sont pas
+						préservées.
+					</p>
+					<p class="para">
+						Si le tableau de remplacement <em><code class="parameter">replacement</code></em>
+						ne contient qu&#039;un seul élément, il n&#039;est pas obligatoire
+						de forcer le type en tableau avec <em>array()</em>, à moins que
+						cette variable ne soit elle-même un tableau, un objet ou <strong><code>NULL</code></strong>.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.array-splice-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Retourne le tableau contenant les éléments
+				supprimés.</p>
+		</div>
+
+		<div class="refsect1 examples"
+			id="refsect1-function.array-splice-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4639">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>array_splice()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$input&nbsp;
+							</span><span style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">"red"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"green"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"blue"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"yellow"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">array_splice</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$input</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">2</span><span style="color: #007700">);<br /></span><span
+								style="color: #FF8000">//&nbsp;$input&nbsp;is&nbsp;now&nbsp;array("red",&nbsp;"green")<br />
+								<br /></span><span style="color: #0000BB">$input&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">"red"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"green"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"blue"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"yellow"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">array_splice</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$input</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;-</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">);<br /></span><span
+								style="color: #FF8000">//&nbsp;$input&nbsp;is&nbsp;now&nbsp;array("red",&nbsp;"yellow")<br />
+								<br /></span><span style="color: #0000BB">$input&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">"red"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"green"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"blue"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"yellow"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">array_splice</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$input</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">count</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$input</span><span style="color: #007700">),&nbsp;</span><span
+								style="color: #DD0000">"orange"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #FF8000">//&nbsp;$input&nbsp;is&nbsp;now&nbsp;array("red",&nbsp;"orange")<br />
+								<br /></span><span style="color: #0000BB">$input&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">"red"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"green"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"blue"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"yellow"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">array_splice</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$input</span><span
+								style="color: #007700">,&nbsp;-</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;array(</span><span
+								style="color: #DD0000">"black"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"maroon"</span><span
+								style="color: #007700">));<br /></span><span
+								style="color: #FF8000">//&nbsp;$input&nbsp;is&nbsp;now&nbsp;array("red",&nbsp;"green",<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"blue",&nbsp;"black",&nbsp;"maroon")<br />
+								<br /></span><span style="color: #0000BB">$input&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">"red"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"green"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"blue"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"yellow"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">array_splice</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$input</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">3</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"purple"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #FF8000">//&nbsp;$input&nbsp;is&nbsp;now&nbsp;array("red",&nbsp;"green",<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"blue",&nbsp;"purple",&nbsp;"yellow");<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="example-4640">
+				<p>
+					<strong>Exemple #2 Exemple avec <span class="function"><strong>array_splice()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<p>
+						L&#039;exemple suivant modifie les valeurs de
+						<var class="varname">
+							<var class="varname">$input</var>
+						</var>
+						de la même façon :
+					</p>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />array_push
+							</span><span style="color: #007700">(</span><span style="color: #0000BB">$input</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$x</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$y</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">array_splice</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$input</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">count</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$input</span><span style="color: #007700">),&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;array(</span><span
+								style="color: #0000BB">$x</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$y</span><span style="color: #007700">));<br /></span><span
+								style="color: #0000BB">array_pop</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$input</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">array_splice</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$input</span><span
+								style="color: #007700">,&nbsp;-</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">array_shift</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$input</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">array_splice</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$input</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">array_unshift</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$input</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$x</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$y</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">array_splice</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$input</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">,&nbsp;array(</span><span
+								style="color: #0000BB">$x</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$y</span><span style="color: #007700">));<br /></span><span
+								style="color: #0000BB">$input</span><span style="color: #007700">[</span><span
+								style="color: #0000BB">$x</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span
+								style="color: #0000BB">$y</span><span style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;pour&nbsp;les&nbsp;tableaux&nbsp;dont&nbsp;les&nbsp;clés&nbsp;sont&nbsp;égales&nbsp;à&nbsp;l'offset<br /></span><span
+								style="color: #0000BB">array_splice</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$input</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$x</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$y</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.array-splice-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.array-slice.html" class="function"
+						rel="rdfs-seeAlso">array_slice()</a> - Extrait une portion de
+						tableau</span></li>
+				<li class="member"><span class="function"><a
+						href="function.unset.html" class="function" rel="rdfs-seeAlso">unset()</a>
+						- D&eacute;truit une variable</span></li>
+				<li class="member"><span class="function"><a
+						href="function.array-merge.html" class="function"
+						rel="rdfs-seeAlso">array_merge()</a> - Fusionne plusieurs tableaux
+						en un seul</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.array-slice.html">array_slice</a>
+		</div>
+		<div class="next">
+			<a href="function.array-sum.html">array_sum</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

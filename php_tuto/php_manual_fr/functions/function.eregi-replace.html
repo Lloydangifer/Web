@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Remplacement par expression rationnelle insensible
+	&agrave; la casse</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.ereg.html">ereg</a>
+		</div>
+		<div class="next">
+			<a href="function.eregi.html">eregi</a>
+		</div>
+		<div class="up">
+			<a href="ref.regex.html">Fonctions POSIX Regex</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.eregi-replace" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">eregi_replace</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">eregi_replace</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Remplacement par expression
+					rationnelle insensible à la casse</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.eregi-replace-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>eregi_replace</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$pattern</code></span> , <span class="methodparam"><span
+					class="type">string</span> <code class="parameter">$replacement</code></span>
+				, <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$string</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">
+				Cette fonction est identique à <span class="function"><a
+					href="function.ereg-replace.html" class="function">ereg_replace()</a></span>,
+				hormis le fait qu&#039;elle ne tient pas compte de la casse des
+				caractères alphabétiques.
+			</p>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="simpara">
+					Cette fonction est <em class="emphasis">OBSOLETE</em> depuis PHP
+					5.3.0. Nous vous encourageons vivement à ne plus l&#039;utiliser.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.eregi-replace-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">pattern</code></em></span>
+				<dd>
+
+					<p class="para">Une expression rationnelle POSIX.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">replacement</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si <em><code class="parameter">pattern</code></em> contient des
+						sous-masques mis entre parenthèses, <em><code
+								class="parameter">replacement</code></em> contiendra des
+						sous-chaînes, sous la forme <em>\<span class="replaceable">digit</span></em>,
+						qui seront remplacées par le texte correspondant au sous-masque
+						mis entre parenthèses ; <em>\0</em> correspondra au contenu
+						complet de la chaîne. Il est possible d&#039;utiliser jusqu&#039;à
+						9 sous-chaînes. Les parenthèses peuvent être imbriquées et seront
+						comptées à partir de la parenthèse ouvrante.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">string</code></em></span>
+				<dd>
+
+					<p class="para">La chaîne d&#039;entrée.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.eregi-replace-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				La chaîne modifiée est retournée. Si aucune correspondance
+				n&#039;est trouvée dans <em><code class="parameter">string</code></em>,
+				alors elle sera retournée sans aucune modification.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.eregi-replace-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4468">
+				<p>
+					<strong>Exemple #1 Mise en évidence des résultats de la
+						recherche</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$pattern&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'(&gt;[^&lt;]*)('</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">quotemeta</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$_GET</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">'search'</span><span
+								style="color: #007700">])&nbsp;.</span><span
+								style="color: #DD0000">')'</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$replacement&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'\\1&lt;span&nbsp;class="search"&gt;\\2&lt;/span&gt;'</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$body&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">eregi_replace</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$pattern</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$replacement</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$body</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.eregi-replace-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					À partir de PHP 5.3.0, l&#039;extension regex est obsolète et vous
+					devez utiliser l&#039;extension <a href="book.pcre.html"
+						class="link">PCRE</a> à la place. Appeler des fonctions de
+					l&#039;extension regex émettra des alertes de type <strong><code>E_DEPRECATED</code></strong>.
+					Voir <a href="reference.pcre.pattern.posix.html" class="link">la
+						liste des différences</a> pour vous aider dans la conversion en PCRE.
+				</p>
+				</p>
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.eregi-replace-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.ereg.html" class="function" rel="rdfs-seeAlso">ereg()</a>
+						- Recherche par expression rationnelle standard</span></li>
+				<li class="member"><span class="function"><a
+						href="function.eregi.html" class="function" rel="rdfs-seeAlso">eregi()</a>
+						- Recherche par expression rationnelle insensible &agrave; la
+						casse</span></li>
+				<li class="member"><span class="function"><a
+						href="function.ereg-replace.html" class="function"
+						rel="rdfs-seeAlso">ereg_replace()</a> - &gt;Remplacement par
+						expression rationnelle</span></li>
+				<li class="member"><span class="function"><a
+						href="function.preg-replace.html" class="function"
+						rel="rdfs-seeAlso">preg_replace()</a> - Rechercher et remplacer
+						par expression rationnelle standard</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.ereg.html">ereg</a>
+		</div>
+		<div class="next">
+			<a href="function.eregi.html">eregi</a>
+		</div>
+		<div class="up">
+			<a href="ref.regex.html">Fonctions POSIX Regex</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

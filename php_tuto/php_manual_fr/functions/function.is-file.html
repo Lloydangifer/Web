@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Indique si le fichier est un v&eacute;ritable fichier</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.is-executable.html">is_executable</a>
+		</div>
+		<div class="next">
+			<a href="function.is-link.html">is_link</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.is-file" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">is_file</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">is_file</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Indique si le fichier est un véritable
+					fichier</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.is-file-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>is_file</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$filename</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">Indique si le fichier est un
+				véritable fichier.</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.is-file-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">filename</code></em></span>
+				<dd>
+
+					<p class="para">Chemin vers le fichier.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.is-file-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne <strong><code>TRUE</code></strong> si le nom de fichier
+				existe et que c&#039;est un fichier régulier, <strong><code>FALSE</code></strong>
+				sinon.
+			</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">
+						Comme le type entier de PHP est signé et que de nombreuses
+						plates-formes utilisent des entiers de 32 bits, certaines
+						fonctions relatives au système de fichiers peuvent retourner des
+						résultats étranges pour les fichiers de taille supérieure à 2 Go.
+					</span>
+				</p>
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.is-file-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2268">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>is_file()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />var_dump
+							</span><span style="color: #007700">(</span><span style="color: #0000BB">is_file</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'a_file.txt'</span><span
+								style="color: #007700">))&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">is_file</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'/usr/bin/'</span><span
+								style="color: #007700">))&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+bool(true)
+bool(false)
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 errors" id="refsect1-function.is-file-errors">
+			<h3 class="title">Erreurs / Exceptions</h3>
+			<p class="para">
+				En cas d&#039;échec, une alerte de type <strong><code>E_WARNING</code></strong>
+				sera émise.
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.is-file-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Les
+						résultats de cette fonction sont mis en cache. Voyez la fonction <span
+						class="function"><a href="function.clearstatcache.html"
+							class="function">clearstatcache()</a></span> pour plus de détails.
+					</span>
+				</p>
+			</blockquote>
+			<div class="tip">
+				<strong class="tip">Astuce</strong>
+				<p class="simpara">
+					Depuis PHP 5.0.0, cette fonction peut aussi être utilisée avec <em
+						class="emphasis">quelques</em> protocoles url. Lisez <a
+						href="wrappers.html" class="xref">Liste des protocoles et des
+						gestionnaires support&eacute;s</a> pour connaître les protocoles
+					supportant la famille de fonctionnalités de <span class="function"><a
+						href="function.stat.html" class="function">stat()</a></span>.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.is-file-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.is-dir.html" class="function" rel="rdfs-seeAlso">is_dir()</a>
+						- Indique si le fichier est un dossier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.is-link.html" class="function" rel="rdfs-seeAlso">is_link()</a>
+						- Indique si le fichier est un lien symbolique</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.is-executable.html">is_executable</a>
+		</div>
+		<div class="next">
+			<a href="function.is-link.html">is_link</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

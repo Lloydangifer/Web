@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>R&eacute;cup&egrave;re un objet SNMP qui suit
+	imm&eacute;diatement l'objet fourni</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.snmpget.html">snmpget</a>
+		</div>
+		<div class="next">
+			<a href="function.snmprealwalk.html">snmprealwalk</a>
+		</div>
+		<div class="up">
+			<a href="ref.snmp.html">Fonctions SNMP</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.snmpgetnext" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">snmpgetnext</h1>
+			<p class="verinfo">(PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">snmpgetnext</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Récupère un objet <acronym
+					title="Simple Network Management Protocol">SNMP</acronym> qui suit
+					immédiatement l&#039;objet fourni
+				</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.snmpgetnext-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>snmpgetnext</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$host</code></span> , <span class="methodparam"><span
+					class="type">string</span> <code class="parameter">$community</code></span>
+				, <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$object_id</code></span> [, <span
+					class="methodparam"><span class="type">int</span> <code
+						class="parameter">$timeout</code><span class="initializer">
+						= 1000000</span></span> [, <span class="methodparam"><span class="type">int</span>
+					<code class="parameter">$retries</code><span class="initializer">
+						= 5</span></span> ]] )
+			</div>
+
+
+			<p class="para rdfs-comment">
+				La fonction <span class="function"><strong>snmpgetnext()</strong></span>
+				est utilisée pour lire la valeur d&#039;un objet <acronym
+					title="Simple Network Management Protocol">SNMP</acronym> qui suit
+				immédiatement l&#039;objet dont l&#039;identifiant est spécifié par
+				le paramètre <em><code class="parameter">object_id</code></em>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.snmpgetnext-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">host</code></em></span>
+				<dd>
+					<p class="para">
+						Le nom d&#039;hôte de l&#039;agent <acronym
+							title="Simple Network Management Protocol">SNMP</acronym>
+						(serveur).
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">community</code></em></span>
+				<dd>
+					<p class="para">La communauté de lecture.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">object_id</code></em></span>
+				<dd>
+					<p class="para">
+						The <acronym title="Simple Network Management Protocol">SNMP</acronym>
+						object id which precedes the wanted one.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">timeout</code></em></span>
+				<dd>
+					<p class="para">Le nombre de microsecondes avant le premier
+						délai d&#039;expiration.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">retries</code></em></span>
+				<dd>
+					<p class="para">Le nombre de tentative dans le cas où le délai
+						d&#039;expiration survient.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.snmpgetnext-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne la valeur de l&#039;objet <acronym
+					title="Simple Network Management Protocol">SNMP</acronym> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient. Dans le cas où une erreur survient, une alerte de type
+				E_WARNING sera émise.
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.snmpgetnext-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4233">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>snmpgetnext()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$nameOfSecondInterface&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">snmpgetnetxt</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">'localhost'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'public'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'IF-MIB::ifName.1'</span><span
+								style="color: #007700">;<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.snmpgetnext-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.snmpget.html" class="function" rel="rdfs-seeAlso">snmpget()</a>
+						- Re&ccedil;oit un objet SNMP</span></li>
+				<li class="member"><span class="function"><a
+						href="function.snmpwalk.html" class="function" rel="rdfs-seeAlso">snmpwalk()</a>
+						- Re&ccedil;oit tous les objets SNMP d'un agent</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.snmpget.html">snmpget</a>
+		</div>
+		<div class="next">
+			<a href="function.snmprealwalk.html">snmprealwalk</a>
+		</div>
+		<div class="up">
+			<a href="ref.snmp.html">Fonctions SNMP</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

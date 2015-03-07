@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Teste la fin du fichier</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.fclose.html">fclose</a>
+		</div>
+		<div class="next">
+			<a href="function.fflush.html">fflush</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.feof" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">feof</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">feof</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Teste la fin du fichier</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.feof-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>feof</strong></span>
+				( <span class="methodparam"><span class="type">resource</span>
+					<code class="parameter">$handle</code></span> )
+			</div>
+
+			<p class="para rdfs-comment">Teste la fin du fichier.</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.feof-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">handle</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le pointeur de fichier doit être valide et pointer sur un fichier
+						ouvert avec succès par <span class="function"><a
+							href="function.fopen.html" class="function">fopen()</a></span> ou <span
+							class="function"><a href="function.fsockopen.html"
+							class="function">fsockopen()</a></span> (et pas encore fermé par <span
+							class="function"><a href="function.fclose.html"
+							class="function">fclose()</a></span>).
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.feof-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne <strong><code>TRUE</code></strong> si le pointeur <em><code
+						class="parameter">handle</code></em> est à la fin du fichier ou si une
+				erreur survient, sinon, retourne <strong><code>FALSE</code></strong>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.feof-notes">
+			<h3 class="title">Notes</h3>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">
+					Si une connexion ouverte avec <span class="function"><a
+						href="function.fsockopen.html" class="function">fsockopen()</a></span>
+					n&#039;est pas fermée par le serveur, <span class="function"><strong>feof()</strong></span>
+					se bloquera. Pour contourner ce comportement, reportez-vous à
+					l&#039;exemple ci-dessous :
+				<div class="example" id="example-2224">
+					<p>
+						<strong>Exemple #1 Gestion des délais d&#039;attente
+							dépassés <span class="function"><strong>feof()</strong></span>
+						</strong>
+					</p>
+					<div class="example-contents">
+						<div class="phpcode">
+							<code>
+								<span style="color: #000000"> <span
+									style="color: #0000BB">&lt;?php<br /></span><span
+									style="color: #007700">function&nbsp;</span><span
+									style="color: #0000BB">safe_feof</span><span
+									style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+									style="color: #007700">,&nbsp;&amp;</span><span
+									style="color: #0000BB">$start&nbsp;</span><span
+									style="color: #007700">=&nbsp;</span><span
+									style="color: #0000BB">NULL</span><span style="color: #007700">)&nbsp;{<br />&nbsp;
+								</span><span style="color: #0000BB">$start&nbsp;</span><span
+									style="color: #007700">=&nbsp;</span><span
+									style="color: #0000BB">microtime</span><span
+									style="color: #007700">(</span><span style="color: #0000BB">true</span><span
+									style="color: #007700">);<br />
+									<br />&nbsp;return&nbsp;
+								</span><span style="color: #0000BB">feof</span><span
+									style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+									style="color: #007700">);<br />}<br />
+									<br /></span><span style="color: #FF8000">/*&nbsp;Assumons&nbsp;que&nbsp;$fp&nbsp;a&nbsp;été&nbsp;précédemment&nbsp;ouvert&nbsp;par&nbsp;fsockopen()&nbsp;*/<br />
+									<br /></span><span style="color: #0000BB">$start&nbsp;</span><span
+									style="color: #007700">=&nbsp;</span><span
+									style="color: #0000BB">NULL</span><span style="color: #007700">;<br /></span><span
+									style="color: #0000BB">$timeout&nbsp;</span><span
+									style="color: #007700">=&nbsp;</span><span
+									style="color: #0000BB">ini_get</span><span
+									style="color: #007700">(</span><span style="color: #DD0000">'default_socket_timeout'</span><span
+									style="color: #007700">);<br />
+									<br />while(!
+								</span><span style="color: #0000BB">safe_feof</span><span
+									style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+									style="color: #007700">,&nbsp;</span><span
+									style="color: #0000BB">$start</span><span
+									style="color: #007700">)&nbsp;&amp;&amp;&nbsp;(</span><span
+									style="color: #0000BB">microtime</span><span
+									style="color: #007700">(</span><span style="color: #0000BB">true</span><span
+									style="color: #007700">)&nbsp;-&nbsp;</span><span
+									style="color: #0000BB">$start</span><span
+									style="color: #007700">)&nbsp;&lt;&nbsp;</span><span
+									style="color: #0000BB">$timeout</span><span
+									style="color: #007700">)<br />{<br />&nbsp;
+								</span><span style="color: #FF8000">/*&nbsp;Gestion&nbsp;*/<br /></span><span
+									style="color: #007700">}<br /></span><span
+									style="color: #0000BB">?&gt;</span>
+								</span>
+							</code>
+						</div>
+					</div>
+
+				</div>
+				</p>
+			</div>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">
+					Si le pointeur de fichier passé n&#039;est pas valide, vous
+					obtiendrez une boucle infinie car <span class="function"><strong>feof()</strong></span>
+					échouera à retourner <strong><code>TRUE</code></strong>.
+				<div class="example" id="example-2225">
+					<p>
+						<strong>Exemple #2 Exemple avec <span class="function"><strong>feof()</strong></span>
+							et un pointeur de fichier invalide
+						</strong>
+					</p>
+					<div class="example-contents">
+						<div class="phpcode">
+							<code>
+								<span style="color: #000000"> <span
+									style="color: #0000BB">&lt;?php<br /></span><span
+									style="color: #FF8000">//&nbsp;Si&nbsp;le&nbsp;fichier&nbsp;ne&nbsp;peut&nbsp;être&nbsp;lu&nbsp;ou&nbsp;n'existe&nbsp;pas,&nbsp;la&nbsp;fonction&nbsp;fopen&nbsp;retourne&nbsp;FALSE<br /></span><span
+									style="color: #0000BB">$file&nbsp;</span><span
+									style="color: #007700">=&nbsp;@</span><span
+									style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span
+									style="color: #DD0000">"no_such_file"</span><span
+									style="color: #007700">,&nbsp;</span><span
+									style="color: #DD0000">"r"</span><span style="color: #007700">);<br />
+									<br /></span><span style="color: #FF8000">//&nbsp;FALSE&nbsp;issu&nbsp;de&nbsp;fopen&nbsp;emmetra&nbsp;une&nbsp;alerte&nbsp;et&nbsp;fera&nbsp;quel'on&nbsp;aura&nbsp;une&nbsp;boucle&nbsp;infinie&nbsp;ici<br /></span><span
+									style="color: #007700">while&nbsp;(!</span><span
+									style="color: #0000BB">feof</span><span style="color: #007700">(</span><span
+									style="color: #0000BB">$file</span><span style="color: #007700">))&nbsp;{<br />}<br />
+									<br /></span><span style="color: #0000BB">fclose</span><span
+									style="color: #007700">(</span><span style="color: #0000BB">$file</span><span
+									style="color: #007700">);<br /></span><span
+									style="color: #0000BB">?&gt;</span>
+								</span>
+							</code>
+						</div>
+					</div>
+
+				</div>
+				</p>
+			</div>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.fclose.html">fclose</a>
+		</div>
+		<div class="next">
+			<a href="function.fflush.html">fflush</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

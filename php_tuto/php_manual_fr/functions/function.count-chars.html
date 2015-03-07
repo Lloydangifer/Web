@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Retourne des statistiques sur les caract&egrave;res
+	utilis&eacute;s dans une cha&icirc;ne</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.convert-uuencode.html">convert_uuencode</a>
+		</div>
+		<div class="next">
+			<a href="function.crc32.html">crc32</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.count-chars" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">count_chars</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">count_chars</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Retourne des statistiques sur les
+					caractères utilisés dans une chaîne</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.count-chars-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><a
+					href="language.pseudo-types.html#language.types.mixed"
+					class="type mixed">mixed</a></span> <span class="methodname"><strong>count_chars</strong></span>
+				( <span class="methodparam"><span class="type">string</span>
+					<code class="parameter">$string</code></span> [, <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$mode</code><span
+					class="initializer"> = 0</span></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>count_chars()</strong></span> compte
+				le nombre d&#039;occurrences de tous les octets présents dans la
+				chaîne <em><code class="parameter">string</code></em> et retourne
+				différentes statistiques.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.count-chars-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">string</code></em></span>
+				<dd>
+
+					<p class="para">La chaîne analysée.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">mode</code></em></span>
+				<dd>
+
+					<p class="para">Voir les valeurs retournées.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.count-chars-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Suivant la valeur de <em><code class="parameter">mode</code></em>, <span
+					class="function"><strong>count_chars()</strong></span> retourne les
+				informations suivantes :
+			<ul class="itemizedlist">
+				<li class="listitem"><span class="simpara"> 0 : un
+						tableau avec l&#039;octet en index, et la fréquence correspondante
+						pour chaque octet. </span></li>
+				<li class="listitem"><span class="simpara"> 1 :
+						identique à 0, mais seules les fréquences supérieures à zéro sont
+						listées. </span></li>
+				<li class="listitem"><span class="simpara"> 2 :
+						identique à 0, mais seules les fréquences nulles sont listées. </span></li>
+				<li class="listitem"><span class="simpara"> 3 : une
+						chaîne contenant tous les octets utilisés est retournée. </span></li>
+				<li class="listitem"><span class="simpara"> 4 : une
+						chaîne contenant tous les octets non utilisés est retournée. </span></li>
+			</ul>
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.count-chars-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4480">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>count_chars()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$data&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">"Deux&nbsp;D&nbsp;et&nbsp;un&nbsp;F."</span><span
+								style="color: #007700">;<br />
+								<br />foreach&nbsp;(
+							</span><span style="color: #0000BB">count_chars</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$data</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">)&nbsp;as&nbsp;</span><span
+								style="color: #0000BB">$i&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #0000BB">$val</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Il&nbsp;y&nbsp;a&nbsp;</span><span
+								style="color: #0000BB">$val</span><span style="color: #DD0000">&nbsp;occurence(s)&nbsp;de&nbsp;\""&nbsp;</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">chr</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$i</span><span style="color: #007700">)&nbsp;,&nbsp;</span><span
+								style="color: #DD0000">"\"&nbsp;dans&nbsp;la&nbsp;phrase.\n"</span><span
+								style="color: #007700">;<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Il y a 4 occurrence(s) de &quot; &quot; dans la phrase.
+Il y a 1 occurrence(s) de &quot;.&quot; dans la phrase.
+Il y a 2 occurrence(s) de &quot;D&quot; dans la phrase.
+Il y a 1 occurrence(s) de &quot;F&quot; dans la phrase.
+Il y a 2 occurrence(s) de &quot;e&quot; dans la phrase.
+Il y a 1 occurrence(s) de &quot;n&quot; dans la phrase.
+Il y a 1 occurrence(s) de &quot;t&quot; dans la phrase.
+Il y a 2 occurrence(s) de &quot;u&quot; dans la phrase.
+Il y a 1 occurrence(s) de &quot;x&quot; dans la phrase.
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.count-chars-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.strpos.html" class="function" rel="rdfs-seeAlso">strpos()</a>
+						- Cherche la position de la premi&egrave;re occurrence dans une
+						cha&icirc;ne</span></li>
+				<li class="member"><span class="function"><a
+						href="function.substr-count.html" class="function"
+						rel="rdfs-seeAlso">substr_count()</a> - Compte le nombre
+						d'occurrences de segments dans une cha&icirc;ne</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.convert-uuencode.html">convert_uuencode</a>
+		</div>
+		<div class="next">
+			<a href="function.crc32.html">crc32</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>script</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', top.FP.initPage, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<h3>&lt;script&gt;</h3>
+		<section>
+
+			<p>
+				L'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'script')">script</a>
+				est utilisé pour intégrer du code d'un langage de script comme
+				JavaScript (supporté par tous les navigateurs) ou VBScript
+				(uniquement <a
+					href="http://windows.microsoft.com/fr-fr/internet-explorer/download-ie"
+					target="_blank">Internet Explorer</a>).
+			</p>
+
+			<p class="fp-bot0">Suivant les attributs dans la
+				balise, le code du script sera :</p>
+			<ul>
+				<li>directement écrit dans le fichier <abbr title="HyperText Markup Language">HTML</abbr>,</li>
+				<li>intégré depuis un fichier externe référencé par une <abbr title="Uniform Resource Locator">URL</abbr>.</li>
+			</ul>
+
+			<div class="fp-puce">
+				<p class="fp-p-raz">
+					Comme pour les feuilles de style, il faut préférer l'intégration
+					d'un fichier des script externe qui offre le grand avantage de
+					pouvoir être partagé par toutes ou partie des pages du site. On
+					peut ainsi constituer et utiliser des bibliothéques de modules
+					comprenant objets et fonctions utilitaires. L'intégration d'un
+					fichier externe se fait avec l'attribut <code>src</code> dont la
+					valeur est l'<abbr title="Uniform Resource Locator">URL</abbr> du fichier de script à intégrer.
+				</p>
+				<p class="fp-p-raz">Mais on ne peut pas toujours mettre tout le code de script
+					dans un fichier, surtout si ce code est spécifique à une page,
+					comme par exemple l'attachement de gestionnaire d'événements à des
+					éléments particuliers. Dans ce cas, il faut préférer l'intégration
+					dans le code <abbr title="HyperText Markup Language">HTML</abbr> plutôt que le téléchargement d'un fichier de
+					quelques octets.</p>
+			</div>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : intégration de code JavaScript
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Intégration de code JavaScript&lt;/title&gt;
+		&lt;!-- Liaison d'un fichier de script externe --&gt;
+		&lt;script src="../exemples/exemple.js"&gt;&lt;/script&gt;
+		&lt;script&gt;
+window.onload = function() {
+	var B = document.getElementsByTagName('BUTTON')[0];
+	B.addEventListener('click', ajouterParagraphe, false);	
+};
+		&lt;/script&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		Saisissez du texte à ajouter à la page : &lt;br&gt;
+		&lt;textarea&gt;&lt;/textarea&gt;
+		&lt;button&gt;Ajouter&lt;/button&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				Il peut y avoir autant d'éléments <a
+					onclick="top.FP.Voir.showPageTech('elements', 'script')">script</a>
+				que l'on veut dans un document. De plus, ces éléments peuvent se
+				trouver n'importe où dans le document, dans l'en-tête aussi bien que
+				dans le corps. D'ailleurs, certaines pratiques placent les éléments
+				<a onclick="top.FP.Voir.showPageTech('elements', 'script')">script</a>
+				à la fin du document <abbr title="HyperText Markup Language">HTML</abbr>, juste avant la balise de fermeture <code>&lt;/body&gt;</code>.
+				Celà s'explique par le fait que le navigateur bloque son travail
+				d'analyse syntaxique du code <abbr title="HyperText Markup Language">HTML</abbr> tant qu'un fichier de script n'est
+				pas téléchargé car ce fichier peut contenir des instructions qui
+				vont créer du code <abbr title="HyperText Markup Language">HTML</abbr>. La pratique a adopter dépend de
+				l'utilisation qui est faite du langage de script et de ses
+				interactions éventuelles avec le code <abbr title="HyperText Markup Language">HTML</abbr> du document.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : intégration de code JavaScript
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Intégration de code JavaScript&lt;/title&gt;
+		&lt;style&gt;
+		p {display: none}
+		&lt;/style&gt;
+		&lt;!-- Liaison d'un fichier de script externe --&gt;
+		&lt;script src="../exemples/exemple.js"&gt;&lt;/script&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;script&gt;
+alert("Exemple d'affichage/masquage de paragraphes");
+		&lt;/script&gt;
+		&lt;button&gt;Plus d'infos&lt;/button&gt;&lt;br&gt;
+		&lt;p&gt;Il peut y avoir autant d'éléments script
+				que l'on veut dans un document.&lt;/p&gt;
+		&lt;button&gt;Plus d'infos&lt;/button&gt;&lt;br&gt;
+		&lt;p&gt;De plus, ces éléments peuvent se
+				trouver n'importe où dans le document.&lt;/p&gt;				
+		&lt;script&gt;
+var aB = document.getElementsByTagName('BUTTON');
+for (var i = 0; i &lt; aB.length; i++) {
+	aB[i].addEventListener('click', afficherMasquer, false);	
+}
+		&lt;/script&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<p>
+				On peut utiliser un attribut <code>type</code> pour préciser le <a
+					onclick="top.FP.Voir.showPageTech('types_mime', 'top')">type
+						MIME</a> du code intégré. Dans le cas de code JavaScript, la valeur de
+				cet attribut doit être <code>text/javascript</code>. Cette valeur
+				étant la valeur par défaut de l'élément, la présence de cet attribut
+				est totalement inutile.
+			</p>
+
+
+			<p>
+				Quelque soit le type d'intégration fait par l'élément <a
+					onclick="top.FP.Voir.showPageTech('elements', 'script')">script</a>,
+				tout ce qui suit la balise d'ouverture <code>&lt;script&gt;</code>
+				est considéré comme du code du langage de script, jusqu'à ce que le
+				navigateur rencontre une balise de fermeture <code>&lt;/script&gt;</code>.
+				Il ne faut surtout pas oublier cette balise de fermeture sinon la
+				page ne s'affichera pas correctement comme le montre l'exemple
+				suivant.
+			</p>
+
+			<form action="" method="post" class="TEST-form">
+				<div class="TEST-titre">
+					<strong>Exemple</strong> : intégration de code JavaScript
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-wrap>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8"&gt;
+		&lt;title&gt;Intégration de code JavaScript&lt;/title&gt;
+		&lt;style&gt;
+		p {display: none}
+		&lt;/style&gt;
+		&lt;!-- Liaison d'un fichier de script externe --&gt;
+		&lt;script src="../exemples/exemple.js"&gt;&lt;/script&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;!-- La balise script n'est pas fermée --&gt;
+		&lt;script&gt;
+alert("Exemple d'affichage/masquage de paragraphes");
+
+		&lt;button&gt;Plus d'infos&lt;/button&gt;&lt;br&gt;
+		&lt;p&gt;Il peut y avoir autant d'éléments script
+				que l'on veut dans un document.&lt;/p&gt;
+		&lt;button&gt;Plus d'infos&lt;/button&gt;&lt;br&gt;
+		&lt;p&gt;De plus, ces éléments peuvent se
+				trouver n'importe où dans le document.&lt;/p&gt;				
+		&lt;script&gt;
+var aB = document.getElementsByTagName('BUTTON');
+for (var i = 0; i &lt; aB.length; i++) {
+	aB[i].addEventListener('click', afficherMasquer, false);	
+}
+		&lt;/script&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

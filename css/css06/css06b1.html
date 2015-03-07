@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Couleur de fond</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function() {
+			top.FP.initPage();
+		}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>Par défaut, le fond d'une boîte (ie d'un élément) est constitué
+			par la zone d'affichage, les marges internes et les bordures. Les
+			marges externes ne font jamais partie du fond : elles sont toujours
+			transparentes et si elles sont définies, elles laissent apparaître la
+			couleur ou l'image de fond éventuelles de l'élément parent.</p>
+
+		<p>
+			Tous les éléments <abbr title="HyperText Markup Language">HTML</abbr>
+			(qu'ils soient de type bloc ou en ligne) peuvent avoir une couleur de
+			fond.
+		</p>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Définir la couleur de fond</h3>
+		<section>
+			<p>
+				La propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-color')">background-color</a>
+				permet de définir la couleur de fond d'une boîte.
+			</p>
+
+			<p>
+				N'importe quelle façon de <a
+					onclick="top.FP.Voir.showPageTech('couleur', '')">spécifier une
+					couleur</a> peut être utilisée avec cette propriété.
+			</p>
+
+			<pre data-code="CSS">
+body { background-color: #212C19; }
+h2 { background-color: rgb(77, 47, 113); }
+.classe { background-color: rgb(30%, 18%, 44%); }
+#identifiant { background-color: rgba(47, 38, 30, 0.75); }
+div p { background-color: rgba(18%, 14%, 11%, 75%); }
+li:nth-of-type(2n) { background-color: hsl(351, 26%, 23%); }
+p { background-color: hsla(104, 15%, 8%, 0.7); }
+div {background-color: darkred; }</pre>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : couleur de fond
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div id="conteneur"&gt;
+			&lt;h3&gt;La Guerre des Etoiles du Milieu&lt;/h3&gt;
+			
+			&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, &lt;span class="stabilo"&gt;les Gentils Jedis&lt;/span&gt; de la Fédération de l'Empire du Commerce de la République se battent contre &lt;span class="stabilo"&gt;les Méchants Gobelins&lt;/span&gt; de la Comté du Mordor de l'infâme Sauron.&lt;/p&gt;
+			
+			&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;
+			
+			&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien &lt;span class="stabilo"&gt;Harry Cover&lt;/span&gt; a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une &lt;span class="stabilo"&gt;armée de Glandus&lt;/span&gt; pour reconquérir le trône de ses parents.&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body { background-color: #000; }
+
+#conteneur {
+	width: 400px;
+	margin: 10px auto;
+	color: white;
+	padding: 10px 20px;
+	background-color: rgb(80, 20, 20);
+}
+p {
+	background-color: grey;
+	margin: 20px 0;
+	padding: 10px;
+	border: 10px dashed; /* le style de la bordure montre bien que la couleur de fond s'arrête après la bordure, à la marge extérieure */
+}
+.stabilo {
+	background-color: rgb(255, 239, 128);
+	color: grey;
+	padding: 0 2px;
+}</textarea>
+			</form>
+
+
+			<a id="exo_figure_rvb"></a>
+			<h4 class="fp-exo">Figure RVB</h4>
+			<section>
+				<div class="fp-puce">
+					<p>
+						Complétez le code <abbr title="HyperText Markup Language">HTML</abbr>
+						et <abbr title="Cascading Style Sheets">CSS</abbr> pour obtenir le
+						résultat suivant :
+					</p>
+
+					<figure>
+						<img src="../exercices/exo_figure_rvb.png" width="170"
+							height="165">
+						<figcaption>figure à réaliser</figcaption>
+					</figure>
+
+					<p>Les cercles ont un rayon de 50 pixels. La couleur de fond
+						est une des trois couleurs primaires (rouge, vert, bleu) avec une
+						transparence de 50%.</p>
+					<p>Une fois la figure obtenue, elle doit être placée au milieu
+						de la page (et rester au milieu quand la page est redimensionnée).</p>
+
+				</div>
+
+				<p class="fp-completez">
+					<a onclick="top.FP.Voir.showCompletez('exo_figure_rvb_comp')">Code
+						à compléter</a>
+				</p>
+
+				<div id="exo_figure_rvb_comp" class="BLOC-completez">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : figure RVB
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+
+CODE CSS A COMPLETER 
+
+</textarea>
+					</form>
+				</div>
+
+				<p class="fp-solution">
+					<a onclick="top.FP.Voir.showSolution('exo_figure_rvb_solu', 1)">Une
+						solution possible</a>
+				</p>
+				<div id="exo_figure_rvb_solu" class="BLOC-solution">
+					<form action="" method="post" class="TEST-form-groupe-top">
+						<div class="TEST-titre fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Exercice</strong> : figure RVB
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;figure&gt;
+			&lt;div id="red"&gt;&lt;/div&gt;
+			&lt;div id="green"&gt;&lt;/div&gt;
+			&lt;div id="blue"&gt;&lt;/div&gt;
+		&lt;/figure&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+					</form>
+
+					<form action="" method="post" class="TEST-form-groupe-bottom">
+						<a onclick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+							title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+						<div class="TEST-titre fp-no-radius fp-pointer"
+							onClick="top.FP.Voir.swapCodeTest(this)">
+							<strong>Fichier CSS</strong> : styles.css
+						</div>
+						<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+							data-partie="CSS">
+body { background-color: #FFF; }
+
+figure {
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;	
+}
+div {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	position: absolute;
+}
+#red {
+	top: 0;
+	left: 25px;
+	background: rgba(255, 0, 0, 0.5);
+}
+#green {
+	top: 50px;
+	left: 0;
+	background: rgba(0, 255, 0, 0.5);
+}
+#blue {
+	top: 50px;
+	left: 50px;
+	background: rgba(0, 0, 255, 0.5);
+}</textarea>
+					</form>
+				</div>
+			</section>
+
+
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Définir la zone de fond</h3>
+		<section>
+			<p class="fp-bot0">
+				Par défaut, la couleur de fond s'applique sur la zone de contenu,
+				les marges internes et sous les bordures. Toutefois, la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'background-clip')">background-clip</a>
+				permet de rédéfinir la zone ou s'applique la couleur (ou l'image) de
+				fond. Cette propriété peut avoir 3 valeurs :
+			</p>
+			<ul>
+				<li><code>content-box</code> : la couleur de fond s'applique
+					uniquement sur la zone de contenu,</li>
+				<li><code>padding-box</code> : la couleur de fond s'applique
+					sur la zone de contenu et les marges internes,</li>
+				<li><code>border-box</code> (par défaut) : la couleur de fond
+					s'applique sur la zone de contenu, les marges internes et les
+					bordures.</li>
+			</ul>
+			<table class="TAB-sans-bord fp-top0">
+				<tr>
+					<td>
+						<figure class="fp-top0">
+							<img src="../cssimg/content_box.png" width="186" height="137">
+							<figcaption>content-box</figcaption>
+						</figure>
+					</td>
+					<td>
+						<figure class="fp-top0">
+							<img src="../cssimg/padding_box.png" width="186" height="137">
+							<figcaption>padding-box</figcaption>
+						</figure>
+					</td>
+					<td>
+						<figure class="fp-top0">
+							<img src="../cssimg/border_box.png" width="186" height="137">
+							<figcaption>border-box</figcaption>
+						</figure>
+					</td>
+				</tr>
+			</table>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : zone de fond
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div id="conteneur"&gt;
+			&lt;h3&gt;La Guerre des Etoiles du Milieu&lt;/h3&gt;
+			
+			&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron.&lt;/p&gt;
+			
+			&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;
+			
+			&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+body { background-color: #000; }
+
+#conteneur {
+	width: 400px;
+	margin: 10px auto;
+	color: white;
+	padding: 10px 20px;
+	background-color: rgb(80, 20, 20);
+}
+p {
+	background-color: grey;
+	margin: 20px 0;
+	padding: 10px;
+	border: 10px dashed;
+}
+p:first-of-type { background-clip: content-box; }
+p:nth-of-type(2) { background-clip: padding-box; }
+p:last-of-type { background-clip: border-box; }</textarea>
+			</form>
+
+		</section>
+
+	</div>
+	<footer></footer>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>G&eacute;n&egrave;re une valeur al&eacute;atoire</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.rad2deg.html">rad2deg</a>
+		</div>
+		<div class="next">
+			<a href="function.round.html">round</a>
+		</div>
+		<div class="up">
+			<a href="ref.math.html">Fonctions Math</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.rand" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">rand</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">rand</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Génère une valeur aléatoire</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.rand-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">int</span> <span class="methodname"><strong>rand</strong></span>
+				( <span class="methodparam">void</span> )
+			</div>
+
+			<div class="methodsynopsis dc-description">
+				<span class="type">int</span> <span class="methodname"><strong>rand</strong></span>
+				( <span class="methodparam"><span class="type">int</span> <code
+						class="parameter">$min</code></span> , <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$max</code></span> )
+			</div>
+
+			<p class="simpara">
+				Appelée sans les options <em><code class="parameter">min</code></em>
+				et <em><code class="parameter">max</code></em>, <span
+					class="function"><strong>rand()</strong></span> retourne un nombre
+				pseudoaléatoire entre 0 et <span class="function"><a
+					href="function.getrandmax.html" class="function">getrandmax()</a></span>.
+				Si vous voulez un nombre aléatoire entre 5 et 15 (inclus), par
+				exemple, utilisez <em>rand (5, 15)</em>.
+			</p>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">
+						Sur quelques plates-formes (par exemple, Windows), <span
+						class="function"><a href="function.mt-getrandmax.html"
+							class="function">mt_getrandmax()</a></span>est limité à 32767. Si vous
+						désirez une limite supérieure à 32767, en spécifiant <em><code
+								class="parameter">min</code></em> et <em><code class="parameter">max</code></em>,
+						vous serez autorisés à utiliser un intervalle plus grand que <span
+						class="function"><a href="function.mt-getrandmax.html"
+							class="function">mt_getrandmax()</a></span>, ou bien, utilisez la
+						fonction <span class="function"><a
+							href="function.mt-rand.html" class="function">mt_rand()</a></span> à la
+						place.
+					</span>
+				</p>
+			</blockquote>
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.rand-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">min</code></em></span>
+				<dd>
+
+					<p class="para">La plus petite valeur à retourner (par défaut,
+						0)</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">max</code></em></span>
+				<dd>
+
+					<p class="para">
+						La plus grande valeur à retourner (par défaut, <span
+							class="function"><a href="function.mt-getrandmax.html"
+							class="function">mt_getrandmax()</a></span>)
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.rand-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Une valeur pseudoaléatoire, comprise entre <em><code
+						class="parameter">min</code></em> (ou 0) et <em><code
+						class="parameter">max</code></em> (ou <span class="function"><a
+					href="function.mt-getrandmax.html" class="function">mt_getrandmax()</a></span>,
+				inclusif).
+			</p>
+		</div>
+
+		<div class="refsect1 changelog" id="refsect1-function.rand-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.2.0</td>
+						<td>Le générateur de nombres aléatoires est initialisé
+							automatiquement.</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+		<div class="refsect1 examples" id="refsect1-function.rand-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-3277">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>rand()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">echo&nbsp;</span><span
+								style="color: #0000BB">rand</span><span style="color: #007700">()&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />echo&nbsp;
+							</span><span style="color: #0000BB">rand</span><span
+								style="color: #007700">()&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />
+								<br />echo&nbsp;
+							</span><span style="color: #0000BB">rand</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">5</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">15</span><span style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher quelque chose de
+						similaire à :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+7771
+22264
+11
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+		<div class="refsect1 seealso" id="refsect1-function.rand-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.srand.html" class="function" rel="rdfs-seeAlso">srand()</a>
+						- Initialise le g&eacute;n&eacute;rateur de nombres
+						al&eacute;atoires</span></li>
+				<li class="member"><span class="function"><a
+						href="function.getrandmax.html" class="function"
+						rel="rdfs-seeAlso">getrandmax()</a> - Plus grande valeur
+						al&eacute;atoire possible</span></li>
+				<li class="member"><span class="function"><a
+						href="function.mt-rand.html" class="function" rel="rdfs-seeAlso">mt_rand()</a>
+						- G&eacute;n&egrave;re une meilleure valeur al&eacute;atoire</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.rad2deg.html">rad2deg</a>
+		</div>
+		<div class="next">
+			<a href="function.round.html">round</a>
+		</div>
+		<div class="up">
+			<a href="ref.math.html">Fonctions Math</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

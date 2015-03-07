@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Multicolonnage</title>
+
+<!--  REVOIR avec http://css-tricks.com/guide-responsive-friendly-css-columns/ -->
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function() {
+			top.FP.initPage();
+		}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<p>
+			Le multicolonnage c'est la répartition automatique du contenu d'une
+			page ou d'un bloc dans plusieurs colonnes. Ce type de mise en page
+			qui est la base de tous les journaux, revues et magazines, a été <a
+				href="http://www.w3.org/TR/css3-multicol/" target="_blank">pris
+				en charge par les CSS</a> seulement à partir de la version 3 qui
+			introduit des propriétés pour gérer le nombre de colonnes, leur
+			largeur et l'espace qui les sépare (la gouttière).</p>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Définir des colonnes</h3>
+		<section>
+			<p>
+				Le positionnement multicolonne s'applique aux éléments de type bloc,
+				cellules de tableau ou bloc en-ligne.
+				<br>
+				Un élément multicolonne est défini par le <abbr
+					title="World Wide Web Consortium">W3C</abbr> comme un élément dont
+				la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'column-count')">column-count</a>
+				ou <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'column-width')">column-width</a>
+				n'a pas la valeur <code>auto</code>. Cet élément agit alors comme le
+				conteneur de la disposition multicolonne.
+			</p>
+
+			<p>
+				Si on peut théoriquement spécifier <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'column-count')">column-count</a>
+				et <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'column-width')">column-width</a>
+				en même temps, <a
+					href="http://www.w3.org/TR/css3-multicol/#pseudo-algorithm"
+					target="_blank">l'algorithme</a> utilisé pour calculer le nombre de
+				colonnes utilisera seulement l'une ou l'autre des propriétés suivant
+				les cas.
+			</p>
+
+			<div class="fp-remarque">
+				Un bloc multicolonne ne peut pas servir de <a class="fp-lientuto"
+					onclick="top.FP.Voir.showPageTuto('css03a3', '')">conteneur</a>
+				pour des éléments en positionnement fixe (<code>position:
+					fixed</code>) ou absolu (<code>position: absolute</code>).
+			</div>
+
+
+			<h4>Nombre de colonnes</h4>
+			<section>
+				<p>
+					<a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'column-count')">column-count</a>
+					définit le nombre de colonnes que contient l'élément. La largeur
+					des colonnes est automatiquement calculée par le navigateur.
+					<br>
+					Dans le cas ou la largeur de l'élément varie (suite à un
+					redimensionnement de fenêtre par exemple), la largeur des colonnes
+					est automatiquement agrandie ou rétrécie.
+				</p>
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : nombre de colonnes
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;section&gt;
+			&lt;h2&gt;La Guerre des Etoiles du Milieu&lt;/h2&gt;
+			&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron.&lt;/p&gt;
+			&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;		
+			&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+		&lt;/section&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+body {
+	column-count: 3;
+}</textarea>
+				</form>
+
+				<p class="fp-p-raz">Quand on redimensionne la fenêtre d'exemple,
+					on voit que la largeur des 3 colonnes augmente automatiquement pour
+					remplir tout l'espace du conteneur (ici le corps de la page).</p>
+			</section>
+
+			<h4>Largeur des colonnes</h4>
+			<section>
+				<p>
+					<a
+						onclick="top.FP.Voir.showPageTech('css_proprietes', 'column-width')">column-width</a>
+					définit la largeur <strong>souhaitée</strong> des colonnes. La
+					largeur peut être spécifiée avec toutes les unités <abbr
+						title="Cascading Style Sheets">CSS</abbr>, mais ne peut pas être
+					un pourcentage. Le navigateur va afficher dans le conteneur le plus
+					de colonnes possible avec la largeur souhaitée. Pour remplir
+					complétement le conteneur, la largeur pourra être plus ou moins
+					adaptée par le navigateur.
+					<br>
+					Dans le cas ou la largeur de l'élément varie (suite à un
+					redimensionnement de fenêtre par exemple), le nombre de colonnes
+					dans le conteneur est automatiquement augmenté ou diminué.
+				</p>
+
+
+				<form action="" method="post" class="TEST-form-groupe-top">
+					<div class="TEST-titre fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Exemple</strong> : largeur des colonnes
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;section&gt;
+			&lt;h2&gt;La Guerre des Etoiles du Milieu&lt;/h2&gt;
+			&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron.&lt;/p&gt;
+			&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;		
+			&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+		&lt;/section&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+				</form>
+
+				<form action="" method="post" class="TEST-form-groupe-bottom">
+					<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+						title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+					<div class="TEST-titre fp-no-radius fp-pointer"
+						onClick="top.FP.Voir.swapCodeTest(this)">
+						<strong>Fichier CSS</strong> : styles.css
+					</div>
+					<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+						data-partie="CSS">
+body {
+	column-width: 100px;
+}</textarea>
+				</form>
+
+
+				<p class="fp-p-raz">Quand on redimensionne la fenêtre d'exemple,
+					on voit que le nombre de colonnes augmente (ou diminue)
+					automatiquement pour remplir tout l'espace du conteneur (ici le
+					corps de la page). La largeur des colonnes ne change pas.</p>
+			</section>
+
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Les gouttières</h3>
+		<section>
+			<p>
+				L'espace qui sépare 2 colonnes (la gouttière) est définit avec la
+				propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'column-gap')">column-gap</a>.
+				La largeur de cet espace peut être spécifiée avec toutes les unités
+				<abbr title="Cascading Style Sheets">CSS</abbr>, mais ne peut pas
+				être un pourcentage. Toutes les gouttières dans un élément
+				multicolonne auront la même largeur (pas d'individualisation
+				possible).
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : gouttières
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;section&gt;
+			&lt;h2&gt;La Guerre des Etoiles du Milieu&lt;/h2&gt;
+			&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron.&lt;/p&gt;
+			&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;		
+			&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+		&lt;/section&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+section {
+	column-count: 3;
+	column-gap: 40px;
+	width: 500px;
+	margin: 1em auto;
+	font-size: 13px;
+}
+
+p { text-align: justify; }
+h2 { margin: 0 0 1em 0; }</textarea>
+			</form>
+
+			<p class="fp-bot0">La grouttière peut être agrémentée d'un trait
+				de séparation (ou liseré) qui est définit par 3 propriétés :</p>
+			<ul>
+				<li><a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'column-rule-width')">column-rule-width</a>
+					pour la largeur du trait,</li>
+				<li><a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'column-rule-style')">column-rule-style</a>
+					pour le style du trait,</li>
+				<li><a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'column-rule-color')">column-rule-color</a>
+					pour la couleur.</li>
+			</ul>
+
+			<p>Ces trois propriétés acceptent les même valeurs que celles
+				possible pour définir la bordure des boîtes.</p>
+
+			<p>
+				La propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'column-rule')">column-rule</a>
+				est un raccourci pour les 3 propriétés et donc à privilégier.
+			</p>
+
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : trait de séparation
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;section&gt;
+			&lt;h2&gt;La Guerre des Etoiles du Milieu&lt;/h2&gt;
+			&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron.&lt;/p&gt;
+			&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;		
+			&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+		&lt;/section&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+section {
+	column-count: 3;
+	column-gap: 40px;
+	column-rule: 2px solid crimson;
+	width: 500px;
+	margin: 1em auto;
+	font-size: 13px;
+}
+
+p { text-align: justify; }
+h2 { margin: 0 0 1em 0; }</textarea>
+			</form>
+
+			<p>
+				Si dans les colonnes des éléments comme des images sont trop larges,
+				ils sont tronqués à la moitié de la largeur de la colonne.
+				<br>
+				Dans l'exemple suivant, l'image dans la 2éme colonne est ainsi
+				tronquée.
+			</p>
+
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : contenu tronqué
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;section&gt;
+			&lt;h2&gt;La Guerre des Etoiles du Milieu&lt;/h2&gt;
+			&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron.&lt;/p&gt;
+			&lt;img src="../exemples/img/x_wing.png"&gt;
+			&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;		
+			&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+		&lt;/section&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+section {
+	column-count: 3;
+	column-gap: 40px;
+	column-rule: 2px solid crimson;
+	width: 500px;
+	margin: 1em auto;
+	font-size: 13px;
+}
+
+p { text-align: justify; }
+h2 { margin: 0 0 1em 0; }</textarea>
+			</form>
+
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Contenu sur plusieurs colonnes</h3>
+		<section>
+			<p>
+				La propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'column-span')">column-span</a>
+				permet de définir un élément qui s'étendra sur l'ensemble des
+				colonnes de l'élément multicolonne.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : contenu sur plusieurs colonnes
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;section&gt;
+			&lt;h2&gt;La Guerre des Etoiles du Milieu et le Prince d'Azkaban&lt;/h2&gt;
+			&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron.&lt;/p&gt;
+			&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;		
+			&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+		&lt;/section&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+h2 { 
+	column-span: all;
+	margin: 0 0 0.5em 0;
+}
+
+section {
+	column-count: 3;
+	column-gap: 40px;
+	column-rule: 2px solid crimson;
+	width: 500px;
+	margin: 1em auto;
+	font-size: 13px;
+}
+
+p { text-align: justify; }</textarea>
+			</form>
+
+			<p>
+				N'importe quel élément de type bloc du conteneur multicolonne peut
+				être étendu sur l'ensemble des colonnes.
+				<br>
+				A remarquer que l'on ne peut pas étendre un élément sur seulement
+				quelques colonnes : c'est toutes les colonnes (<code>all</code>) ou
+				aucune (<code>none</code> par defaut).
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : contenu sur plusieurs colonnes
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;section&gt;
+			&lt;h2&gt;La Guerre des Etoiles du Milieu et le Prince d'Azkaban&lt;/h2&gt;
+			&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron.&lt;/p&gt;
+			&lt;img src="../exemples/img/x_wing.png"&gt;
+			&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;		
+			&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+		&lt;/section&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+h2 { 
+	column-span: all;
+	margin: 0 0 0.5em 0;
+}
+img {
+	column-span: all;
+	display: block;
+	margin: 1em auto;
+}
+
+p:nth-of-type(2) {
+	column-span: all;
+}
+	
+section {
+	column-count: 3;
+	column-gap: 40px;
+	column-rule: 2px solid crimson;
+	width: 500px;
+	margin: 1em auto;
+	font-size: 13px;
+}
+
+p { text-align: justify; }</textarea>
+			</form>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+		<h3>Equilibrer les colonnes</h3>
+		<section>
+			<p>
+				Le contenu des colonnes peut être équilibré avec la propriété <a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'column-fill')">column-fill</a>.
+				Par défaut, les colonnes seront remplies de façon séquentielle et
+				auront différentes longueurs, mais la valeur <code>balance</code>
+				permet de minimiser dans la mesure du possible les variations de
+				longueur des colonnes.
+			</p>
+
+			<p class="fp-p-raz">L'exemple suivant montre 2 sections avec du
+				contenu identique. La 2eme section est "équilibrée", mais aucune
+				différence avec la 1ére section n'est notable.</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : équilibrer le contenu des colonnes
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;section&gt;
+			&lt;h2&gt;La Guerre des Etoiles du Milieu et le Prince d'Azkaban&lt;/h2&gt;
+			&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron.&lt;/p&gt;
+			&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;		
+			&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+		&lt;/section&gt;
+
+		&lt;section&gt;
+			&lt;h2&gt;La Guerre des Etoiles du Milieu et le Prince d'Azkaban&lt;/h2&gt;
+			&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron.&lt;/p&gt;
+			&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;		
+			&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+		&lt;/section&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+section {
+	column-count: 3;
+	column-gap: 40px;
+	column-rule: 2px solid crimson;
+	width: 500px;
+	margin: 1em auto;
+	font-size: 13px;
+}
+section:last-of-type {
+	column-fill: balance;
+}
+
+p { text-align: justify; }</textarea>
+			</form>
+
+		</section>
+
+		<!-- ################################################################################################## -->
+		<h3>Gérer les changements de colonnes</h3>
+		<section>
+			<p class="fp-bot0">Trois propriétés permettent de définir comment
+				sont faits les changements de colonnes des éléments d'un conteneur
+				multicolonne :
+			<ul>
+				<li><a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'break-before')">break-before</a>
+					décrit le comportement du saut de colonne avant un bloc de contenu,</li>
+				<li><a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'break-inside')">break-inside</a>
+					décrit le comportement du saut de colonne à l'intérieur d'un bloc
+					de contenu,</li>
+				<li><a
+					onclick="top.FP.Voir.showPageTech('css_proprietes', 'break-after')">break-after</a>
+					décrit le comportement du saut de colonne après un bloc de contenu.</li>
+			</ul>
+
+			<p class="fp-bot0">Parmi les valeurs possibles de ces 3
+				propriétés, celles à utiliser dans les conteneurs multicolonnes sont
+				:</p>
+			<ul>
+				<li><code>column</code> pour toutjours forcer un saut de
+					colonne,</li>
+				<li><code>avoid-column</code> pour éviter un saut de colonne.</li>
+			</ul>
+
+			<p class="fp-p-raz">
+				Dans l'exemple suivant, un saut de colonne est forcé après le 1er
+				paragraphe et un autre avant le dernier paragraphe. Remarquez que
+				pour répondre à ces demandes une quatrième colonne est ajoutée par
+				le navigateur.
+				<br>
+				Sauf cas exceptionnel, nous vous conseillons de ne pas forcer les
+				saut de colonnes et de laisser le navigateur les gérer de façon
+				naturelle.
+			</p>
+
+			<form action="" method="post" class="TEST-form-groupe-top">
+				<div class="TEST-titre fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Exemple</strong> : changement de colonne
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;title&gt;Les CSS&lt;/title&gt;
+		&lt;link href="styles.css" rel="stylesheet"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;section&gt;
+			&lt;h2&gt;La Guerre des Etoiles du Milieu et le Prince d'Azkaban&lt;/h2&gt;
+			&lt;p&gt;Il y a bien longtemps dans une lointaine galaxie, les Gentils Jedis de la Fédération de l'Empire du Commerce de la République se battent contre les Méchants Gobelins de la Comté du Mordor de l'infâme Sauron.&lt;/p&gt;
+			&lt;p&gt;Les troupes droïdes sont en difficulté sur bien des planètes de la Galaxie envahies par des hordes de trolls et d'elfes nains.&lt;/p&gt;		
+			&lt;p&gt;Tout semble perdu, mais sur la planète Coudbar le magicien Harry Cover a enfin pu épouser Laure Voldemort. Acompagné de ses fidèles Ron et Hermione il prend la tête d'une armée de Glandus pour reconquérir le trône de ses parents.&lt;/p&gt;
+		&lt;/section&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</textarea>
+			</form>
+
+			<form action="" method="post" class="TEST-form-groupe-bottom">
+				<a onClick="top.FP.Voir.showPLUS('css02/resume_selecteur.html')"
+					title="Résumé des sélecteurs" class="TEST-plus-selecteur"></a>
+				<div class="TEST-titre fp-no-radius fp-pointer"
+					onClick="top.FP.Voir.swapCodeTest(this)">
+					<strong>Fichier CSS</strong> : styles.css
+				</div>
+				<textarea name="txtCode" class="TEST-textarea" data-groupe="HC"
+					data-partie="CSS">
+p:first-of-type {
+	break-after: column;
+}
+p:last-of-type {
+	break-before: column;
+}					
+section {
+	column-count: 3;
+	column-gap: 40px;
+	column-rule: 2px solid crimson;
+	width: 500px;
+	margin: 1em auto;
+	font-size: 13px;
+}
+
+p { text-align: justify; }</textarea>
+			</form>
+
+		</section>
+	</div>
+	<footer></footer>
+	
+<script>
+(function() {
+	var FPLMsgProp = top.FP.getCSSPropPrefix('columnCount');
+
+	if (FPLMsgProp == '') {
+		return;
+	}
+	
+	if (FPLMsgProp == '--') {
+		FPLMsgProp = 'Vous ne pouvez pas tester les exemples car votre navigateur\n ne supporte pas les propriétés multicolonnes.';
+	} else if (FPLMsgProp != '') {
+		FPLMsgProp = 'Pour tester les exemples, vous devez préfixer les propriétés multicolonnes par '
+				+ FPLMsgProp;
+	}
+	
+	[].forEach.call(
+			document.getElementsByClassName('TEST-form-groupe-bottom'), 
+			function(Form) {
+				var E = document.createElement('DIV');
+				E.innerHTML = FPLMsgProp;
+				E.className = 'TEST-msg-alerte';
+				Form.appendChild(E);
+			});
+	
+})();
+</script>
+</body>
+</html>

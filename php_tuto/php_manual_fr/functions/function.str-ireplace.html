@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Version insensible &agrave; la casse de str_replace</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.str-getcsv.html">str_getcsv</a>
+		</div>
+		<div class="next">
+			<a href="function.str-pad.html">str_pad</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.str-ireplace" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">str_ireplace</h1>
+			<p class="verinfo">(PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">str_ireplace</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Version insensible à la casse de <span
+					class="function"><a href="function.str-replace.html"
+						class="function">str_replace()</a></span></span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.str-ireplace-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><a
+					href="language.pseudo-types.html#language.types.mixed"
+					class="type mixed">mixed</a></span> <span class="methodname"><strong>str_ireplace</strong></span>
+				( <span class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$search</code></span>
+				, <span class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$replace</code></span>
+				, <span class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$subject</code></span>
+				[, <span class="methodparam"><span class="type">int</span> <code
+						class="parameter reference">&$count</code></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>str_ireplace()</strong></span>
+				retourne une chaîne de caractères ou un tableau dont toutes les
+				occurrences de <em><code class="parameter">search</code></em> dans <em><code
+						class="parameter">subject</code></em> (en ignorant la casse), ont été
+				remplacées par la valeur de <em><code class="parameter">replace</code></em>.
+				Si vous n&#039;avez pas besoin de règles de recherche complexes, il
+				est recommandé d&#039;utiliser cette fonction à la place de <span
+					class="function"><a href="function.preg-replace.html"
+					class="function">preg_replace()</a></span> avec l&#039;option <em>i</em>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.str-ireplace-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+				Si les paramètres <em><code class="parameter">search</code></em> et
+				<em><code class="parameter">replace</code></em> sont des tableaux,
+				alors la fonction <span class="function"><strong>str_ireplace()</strong></span>
+				prendra une valeur de chaque tableau et les utilisera pour la
+				recherche et le remplacement sur <em><code class="parameter">subject</code></em>.
+				Si le paramètre <em><code class="parameter">replace</code></em> a
+				moins de valeurs que le paramètre <em><code class="parameter">search</code></em>,
+				alors une <a href="language.types.string.html" class="link">chaîne
+					de caractères</a> vide sera utilisée comme valeur pour le reste des
+				valeurs de remplacement. Si le paramètre <em><code
+						class="parameter">search</code></em> est un tableau et que le paramètre
+				<em><code class="parameter">replace</code></em> est une <a
+					href="language.types.string.html" class="link">chaîne de
+					caractères</a>, alors cette <a href="language.types.string.html"
+					class="link">chaîne de caractères</a> de remplacement sera
+				utililsée pour chaque valeur de <em><code class="parameter">search</code></em>.
+				L&#039;inverse n&#039;a pas de sens.
+			</p>
+			<p class="para">
+				Si le paramètre <em><code class="parameter">search</code></em> ou le
+				paramètre <em><code class="parameter">replace</code></em> sont des
+				tableaux, leurs éléments sont traités du premier au dernier.
+			</p>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">search</code></em></span>
+				<dd>
+
+					<p class="para">
+						La valeur à chercher, connue aussi sous le nom de <em
+							class="emphasis">needle</em>. Un tableau peut être utilisé pour
+						désigner plusieurs needles.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">replace</code></em></span>
+				<dd>
+
+					<p class="para">
+						La valeur de remplacement utilisée pour chaque valeur trouvée dans
+						<em><code class="parameter">search</code></em>. Un tableau peut
+						être utilisé pour désigner plusieurs remplacements.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">subject</code></em></span>
+				<dd>
+
+					<p class="para">
+						Une <a href="language.types.string.html" class="link">chaîne
+							de caractères</a> ou un <a href="language.types.array.html"
+							class="link">tableau</a> dans lequel la recherche
+						s&#039;effectue, aussi connu sous le nom de <em class="emphasis">haystack</em>.
+					</p>
+					<p class="para">
+						Si <em><code class="parameter">subject</code></em> est un tableau,
+						le remplacement est effectué sur chacun des éléments du sujet <em><code
+								class="parameter">subject</code></em>, et la valeur retournée est
+						aussi un tableau.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">count</code></em></span>
+				<dd>
+
+					<p class="para">Si fournie, cette variable contiendra le nombre
+						de remplacements effectués.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.str-ireplace-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Retourne une chaîne ou un tableau de
+				remplacement.</p>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.str-ireplace-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.0.0</td>
+						<td>Ajout du paramètre <em><code class="parameter">count</code></em>.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.str-ireplace-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4533">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>str_ireplace()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$bodytag&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">str_ireplace</span><span
+								style="color: #007700">(</span><span style="color: #DD0000">"%body%"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"black"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"&lt;body&nbsp;text=%BODY%&gt;"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.str-ireplace-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Cette
+						fonction gère les chaînes binaires.</span>
+				</p>
+			</blockquote>
+			<div class="caution">
+				<strong class="caution">Attention</strong>
+				<h1 class="title">Ordre de remplacement</h1>
+				<p class="para">
+					Vu le fait que la fonction <span class="function"><strong>str_ireplace()</strong></span>
+					effectue les remplacements de la gauche vers la droite, elle peut
+					remplacer une valeur précédemment insérée lors de remplacement
+					multpiple. L&#039;exemple #2 de la documentation de la fonction <span
+						class="function"><a href="function.str-replace.html"
+						class="function">str_replace()</a></span> sur la façon de traiter cette
+					problématique.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.str-ireplace-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.str-replace.html" class="function"
+						rel="rdfs-seeAlso">str_replace()</a> - Remplace toutes les
+						occurrences dans une cha&icirc;ne</span></li>
+				<li class="member"><span class="function"><a
+						href="function.preg-replace.html" class="function"
+						rel="rdfs-seeAlso">preg_replace()</a> - Rechercher et remplacer
+						par expression rationnelle standard</span></li>
+				<li class="member"><span class="function"><a
+						href="function.strtr.html" class="function" rel="rdfs-seeAlso">strtr()</a>
+						- Remplace des caract&egrave;res dans une cha&icirc;ne</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.str-getcsv.html">str_getcsv</a>
+		</div>
+		<div class="next">
+			<a href="function.str-pad.html">str_pad</a>
+		</div>
+		<div class="up">
+			<a href="ref.strings.html">Fonctions sur les cha&icirc;nes de
+				caract&egrave;res</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

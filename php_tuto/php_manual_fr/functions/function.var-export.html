@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Retourne le code PHP utilis&eacute; pour
+	g&eacute;n&eacute;rer une variable</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.var-dump.html">var_dump</a>
+		</div>
+		<div class="next">
+			<a href="refs.webservice.html">Services Web</a>
+		</div>
+		<div class="up">
+			<a href="ref.var.html">Fonctions de gestion des variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.var-export" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">var_export</h1>
+			<p class="verinfo">(PHP 4 &gt;= 4.2.0, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">var_export</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Retourne le code PHP utilisé pour
+					générer une variable</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.var-export-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><a
+					href="language.pseudo-types.html#language.types.mixed"
+					class="type mixed">mixed</a></span> <span class="methodname"><strong>var_export</strong></span>
+				( <span class="methodparam"><span class="type"><a
+						href="language.pseudo-types.html#language.types.mixed"
+						class="type mixed">mixed</a></span> <code class="parameter">$expression</code></span>
+				[, <span class="methodparam"><span class="type">bool</span> <code
+						class="parameter">$return</code><span class="initializer">
+						= false</span></span> ] )
+			</div>
+
+			<p class="simpara">
+				<span class="function"><strong>var_export()</strong></span> retourne
+				des données structurées sur la variable donnée. C&#039;est le même
+				principe que <span class="function"><a
+					href="function.var-dump.html" class="function">var_dump()</a></span> mais
+				avec une exception : le résultat retourné est du code PHP valide.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.var-export-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">expression</code></em></span>
+				<dd>
+
+					<p class="para">La variable que vous voulez exporter.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">return</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si utilisé et mis à <strong><code>TRUE</code></strong>, <span
+							class="function"><strong>var_export()</strong></span> retournera
+						la représentation de la variable au lieu de l&#039;afficher.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.var-export-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne la représentation de la variable lorsque le paramètre <em><code
+						class="parameter">return</code></em> est utilisé et évalué à <strong><code>TRUE</code></strong>.
+				Autrement, cette fonction retournera <strong><code>NULL</code></strong>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.var-export-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Lorsque le paramètre <em><code class="parameter">return</code></em>
+					est utilisé, cette fonction utilise en interne le buffer de sortie,
+					il ne peut donc pas être utilisé dans la fonction de rappel <span
+						class="function"><a href="function.ob-start.html"
+						class="function">ob_start()</a></span>.
+				</p>
+				</p>
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 changelog"
+			id="refsect1-function.var-export-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.1.0</td>
+						<td>Possibilité d&#039;exporter des classes et des tableaux
+							contenant des classes en utilisant la méthode magique <a
+							href="language.oop5.magic.html#object.set-state" class="link">__set_state</a>.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples"
+			id="refsect1-function.var-export-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4930">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>var_export()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br />$a&nbsp;
+							</span><span style="color: #007700">=&nbsp;array&nbsp;(</span><span
+								style="color: #0000BB">1</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">2</span><span style="color: #007700">,&nbsp;array&nbsp;(</span><span
+								style="color: #DD0000">"a"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"b"</span><span style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"c"</span><span style="color: #007700">));<br /></span><span
+								style="color: #0000BB">var_export</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+array (
+  0 =&gt; 1,
+  1 =&gt; 2,
+  2 =&gt; 
+  array (
+    0 =&gt; &#039;a&#039;,
+    1 =&gt; &#039;b&#039;,
+    2 =&gt; &#039;c&#039;,
+  ),
+)
+</pre>
+					</div>
+				</div>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br />$b&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">3.1</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$v&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">var_export</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$b</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">);<br />echo&nbsp;
+							</span><span style="color: #0000BB">$v</span><span
+								style="color: #007700">;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;3.1<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+3.1
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="example-4931">
+				<p>
+					<strong>Exemple #2 Exporter des classes depuis PHP 5.1.0</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">A&nbsp;</span><span
+								style="color: #007700">{&nbsp;public&nbsp;</span><span
+								style="color: #0000BB">$var</span><span style="color: #007700">;&nbsp;}<br /></span><span
+								style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">A</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$a</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">var&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">5</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">var_export</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+A::__set_state(array(
+   &#039;var&#039; =&gt; 5,
+))
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="example-4932">
+				<p>
+					<strong>Exemple #3 Utilisation de <a
+						href="language.oop5.magic.html#object.set-state" class="link">__set_state</a>
+						(depuis PHP 5.1.0)
+					</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br /></span><span
+								style="color: #007700">class&nbsp;</span><span
+								style="color: #0000BB">A<br /></span><span
+								style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;
+							</span><span style="color: #0000BB">$var1</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;
+							</span><span style="color: #0000BB">$var2</span><span
+								style="color: #007700">;<br />
+								<br />&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;
+							</span><span style="color: #0000BB">__set_state</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$an_array</span><span
+								style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$obj&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">A</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$obj</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">var1&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">$an_array</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">'var1'</span><span
+								style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">$obj</span><span
+								style="color: #007700">-&gt;</span><span style="color: #0000BB">var2&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">$an_array</span><span
+								style="color: #007700">[</span><span style="color: #DD0000">'var2'</span><span
+								style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;
+							</span><span style="color: #0000BB">$obj</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />
+								<br /></span><span style="color: #0000BB">$a&nbsp;</span><span
+								style="color: #007700">=&nbsp;new&nbsp;</span><span
+								style="color: #0000BB">A</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$a</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">var1&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">5</span><span style="color: #007700">;<br /></span><span
+								style="color: #0000BB">$a</span><span style="color: #007700">-&gt;</span><span
+								style="color: #0000BB">var2&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #DD0000">'foo'</span><span style="color: #007700">;<br />
+								<br />eval(
+							</span><span style="color: #DD0000">'$b&nbsp;=&nbsp;'&nbsp;</span><span
+								style="color: #007700">.&nbsp;</span><span
+								style="color: #0000BB">var_export</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$a</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">true</span><span style="color: #007700">)&nbsp;.&nbsp;</span><span
+								style="color: #DD0000">';'</span><span style="color: #007700">);&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;$b&nbsp;=&nbsp;A::__set_state(array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;&nbsp;'var1'&nbsp;=&gt;&nbsp;5,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;&nbsp;'var2'&nbsp;=&gt;&nbsp;'foo',<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;));<br /></span><span
+								style="color: #0000BB">var_dump</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$b</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+object(A)#2 (2) {
+    [&quot;var1&quot;]=&gt;
+    int(5)
+    [&quot;var2&quot;]=&gt;
+    string(3) &quot;foo&quot;
+}
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.var-export-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Les variables de type <a href="language.types.resource.html"
+						class="link">ressource</a> ne peuvent être exportées par cette
+					fonction.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					<span class="function"><strong>var_export()</strong></span> ne gère
+					pas les références circulaires car il serait impossible de générer
+					un code PHP analysable pour ce type de données. Si vous voulez
+					faire quelque chose avec la représentation complète d&#039;un
+					tableau ou d&#039;un objet, utilisez la fonction <span
+						class="function"><a href="function.serialize.html"
+						class="function">serialize()</a></span>.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.var-export-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.print-r.html" class="function" rel="rdfs-seeAlso">print_r()</a>
+						- Affiche des informations lisibles pour une variable</span></li>
+				<li class="member"><span class="function"><a
+						href="function.serialize.html" class="function" rel="rdfs-seeAlso">serialize()</a>
+						- Lin&eacute;arise une variable</span></li>
+				<li class="member"><span class="function"><a
+						href="function.var-dump.html" class="function" rel="rdfs-seeAlso">var_dump()</a>
+						- Affiche les informations d'une variable</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.var-dump.html">var_dump</a>
+		</div>
+		<div class="next">
+			<a href="refs.webservice.html">Services Web</a>
+		</div>
+		<div class="up">
+			<a href="ref.var.html">Fonctions de gestion des variables</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

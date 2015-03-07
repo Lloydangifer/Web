@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>R&eacute;cup&egrave;re la ligne courante sur laquelle se
+	trouve le pointeur du fichier</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.fgetcsv.html">fgetcsv</a>
+		</div>
+		<div class="next">
+			<a href="function.fgetss.html">fgetss</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.fgets" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">fgets</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">fgets</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Récupère la ligne courante sur
+					laquelle se trouve le pointeur du fichier</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.fgets-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">string</span> <span class="methodname"><strong>fgets</strong></span>
+				( <span class="methodparam"><span class="type">resource</span>
+					<code class="parameter">$handle</code></span> [, <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$length</code></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">Récupère la ligne courante sur
+				laquelle se trouve le pointeur du fichier.</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.fgets-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">handle</code></em></span>
+				<dd>
+
+					<p class="para">
+						Le pointeur de fichier doit être valide et pointer sur un fichier
+						ouvert avec succès par <span class="function"><a
+							href="function.fopen.html" class="function">fopen()</a></span> ou <span
+							class="function"><a href="function.fsockopen.html"
+							class="function">fsockopen()</a></span> (et pas encore fermé par <span
+							class="function"><a href="function.fclose.html"
+							class="function">fclose()</a></span>).
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">length</code></em></span>
+				<dd>
+
+					<p class="para">
+						Lit jusqu&#039;à la taille <em><code class="parameter">length</code></em>
+						- 1 octet depuis le pointeur de fichier <em><code
+								class="parameter">handle</code></em>, ou bien la fin du fichier, ou
+						une nouvelle ligne (qui est inclue dans la valeur retournée), ou
+						encore un EOF (celui qui arrive en premier). Si aucune longueur
+						n&#039;est fournie, la fonction lira le flux jusqu&#039;à la fin
+						de la ligne.
+					</p>
+					<blockquote class="note">
+						<p>
+							<strong class="note">Note</strong>:
+						<p class="para">Jusqu&#039;en PHP 4.3.0, le fait
+							d&#039;omettre ce paramètre fait que la fonction lira 1024 octets
+							de la ligne. Si la majorité des lignes du fichier dépassent les 8
+							ko, il est plus efficace pour votre script de spécifier ce
+							paramètre.
+					</blockquote>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.fgets-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne une <a href="language.types.string.html" class="link">chaîne
+					de caractères</a> contenant les <em><code class="parameter">length</code></em>
+				premiers caractères, moins 1 octet depuis le pointeur de fichier <em><code
+						class="parameter">handle</code></em>. <strong><code>FALSE</code></strong>
+				est retourné s&#039;il n&#039;y a plus de données à lire.
+			</p>
+			<p class="para">
+				Si une erreur survient, la fonction retourne <strong><code>FALSE</code></strong>.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog" id="refsect1-function.fgets-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>4.3.0</td>
+						<td><span class="function"><strong>fgets()</strong></span>
+							est compatible avec les données binaires.</td>
+					</tr>
+
+					<tr>
+						<td>4.2.0</td>
+						<td>Le paramètre <em><code class="parameter">length</code></em>
+							devient optionnel.
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.fgets-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2229">
+				<p>
+					<strong>Exemple #1 Lecture d&#039;un fichier ligne par
+						ligne</strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$handle&nbsp;
+							</span><span style="color: #007700">=&nbsp;@</span><span
+								style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"/tmp/inputfile.txt"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"r"</span><span style="color: #007700">);<br />if&nbsp;(
+							</span><span style="color: #0000BB">$handle</span><span
+								style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;((
+							</span><span style="color: #0000BB">$buffer&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">fgets</span><span style="color: #007700">(</span><span
+								style="color: #0000BB">$handle</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">4096</span><span style="color: #007700">))&nbsp;!==&nbsp;</span><span
+								style="color: #0000BB">false</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #0000BB">$buffer</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!
+							</span><span style="color: #0000BB">feof</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Erreur:&nbsp;fgets()&nbsp;a&nbsp;échoué\n"</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">fclose</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$handle</span><span
+								style="color: #007700">);<br />}<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.fgets-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Si
+						vous avez des problèmes avec PHP qui ne reconnaît pas certaines
+						lignes lors de la lecture de fichiers qui ont été créés ou lus sur
+						un MacIntosh, vous pouvez activer l&#039;option de configuration <a
+						href="filesystem.configuration.html#ini.auto-detect-line-endings"
+						class="link">auto_detect_line_endings</a>.
+					</span>
+				</p>
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Les programmeurs habitués à la programmation &#039;C&#039; noteront
+					que <span class="function"><strong>fgets()</strong></span> ne se
+					comporte pas comme son équivalent C lors de la rencontre de la fin
+					du fichier.
+			</blockquote>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.fgets-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.fgetss.html" class="function" rel="rdfs-seeAlso">fgetss()</a>
+						- Renvoie la ligne courante du fichier et &eacute;limine les
+						balises HTML</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fread.html" class="function" rel="rdfs-seeAlso">fread()</a>
+						- Lecture du fichier en mode binaire</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fgetc.html" class="function" rel="rdfs-seeAlso">fgetc()</a>
+						- Lit un caract&egrave;re dans un fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.stream-get-line.html" class="function"
+						rel="rdfs-seeAlso">stream_get_line()</a> - Lit une ligne dans un
+						flux</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fopen.html" class="function" rel="rdfs-seeAlso">fopen()</a>
+						- Ouvre un fichier ou une URL</span></li>
+				<li class="member"><span class="function"><a
+						href="function.popen.html" class="function" rel="rdfs-seeAlso">popen()</a>
+						- Cr&eacute;e un processus de pointeur de fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.fsockopen.html" class="function" rel="rdfs-seeAlso">fsockopen()</a>
+						- Ouvre un socket de connexion Internet ou Unix</span></li>
+				<li class="member"><span class="function"><a
+						href="function.stream-set-timeout.html" class="function"
+						rel="rdfs-seeAlso">stream_set_timeout()</a> - Configure la
+						dur&eacute;e d'expiration d'un flux</span></li>
+			</ul>
+			</p>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.fgetcsv.html">fgetcsv</a>
+		</div>
+		<div class="next">
+			<a href="function.fgetss.html">fgetss</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

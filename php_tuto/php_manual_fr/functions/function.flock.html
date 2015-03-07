@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Verrouille le fichier</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.filetype.html">filetype</a>
+		</div>
+		<div class="next">
+			<a href="function.fnmatch.html">fnmatch</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.flock" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">flock</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">flock</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Verrouille le fichier</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.flock-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">bool</span> <span class="methodname"><strong>flock</strong></span>
+				( <span class="methodparam"><span class="type">resource</span>
+					<code class="parameter">$handle</code></span> , <span class="methodparam"><span
+					class="type">int</span> <code class="parameter">$operation</code></span>
+				[, <span class="methodparam"><span class="type">int</span> <code
+						class="parameter reference">&$wouldblock</code></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>flock()</strong></span> permet de
+				réaliser un système simple de verrous écriture/lecture, qui peut
+				être utilisé sur n&#039;importe quelle plate-forme (Unix et Windows
+				compris).
+			</p>
+			<p class="para">
+				Avant PHP 5.3.2, le verrou est également levé avec la fonction <span
+					class="function"><a href="function.fclose.html"
+					class="function">fclose()</a></span> (qui est également automatiquement
+				appelée lors de la fin du script).
+			</p>
+			<p class="para">
+				PHP dispose d&#039;un système complet de verrouillage de fichiers.
+				Tous les programmes qui accèdent au fichier doivent utiliser la même
+				méthode de verrouillage pour qu&#039;il soit efficace. Par défaut,
+				cette fonction se bloquera tant que le verrou demandé ne sera pas
+				acquis ; ce comportement peut être contrôlé (sur les systèmes
+				différents de Windows) avec l&#039;option <strong><code>LOCK_NB</code></strong>
+				dont vous trouverez la documentation ci-dessous.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.flock-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">handle</code></em></span>
+				<dd>
+
+					<p class="para">
+						Un pointeur de système de fichiers de type <span class="type"><a
+							href="language.types.resource.html" class="type resource">resource</a></span>
+						qui est habituellement créé en utilisant la fonction <span
+							class="function"><a href="function.fopen.html"
+							class="function">fopen()</a></span>.
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">operation</code></em></span>
+				<dd>
+
+					<p class="para">
+						<em><code class="parameter">operation</code></em> peut prendre une
+						des valeurs suivantes :
+					<ul class="itemizedlist">
+						<li class="listitem"><span class="simpara"> <strong><code>LOCK_SH</code></strong>
+								pour acquérir un verrou partagé (lecture).
+						</span></li>
+						<li class="listitem"><span class="simpara"> <strong><code>LOCK_EX</code></strong>
+								pour acquérir un verrou exclusif (écriture).
+						</span></li>
+						<li class="listitem"><span class="simpara"> <strong><code>LOCK_UN</code></strong>
+								pour libérer un verrou (partagé ou exclusif).
+						</span></li>
+					</ul>
+					</p>
+					<p class="para">
+						Il est également possible d&#039;ajouter <strong><code>LOCK_NB</code></strong>
+						comme masque d&#039;une des opérations précédentes si vous ne
+						voulez pas que la fonction <span class="function"><strong>flock()</strong></span>
+						bloque durant le verrouillage. (non supporté sous Windows)
+					</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">wouldblock</code></em></span>
+				<dd>
+
+					<p class="para">
+						Ce troisième argument optionnel est défini à <strong><code>TRUE</code></strong>
+						si le verrou doit bloquer le script (condition d&#039;erreur <em>EWOULDBLOCK</em>)
+						(non supporté sous Windows).
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.flock-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Cette fonction retourne <strong><code>TRUE</code></strong> en cas de
+				succès ou <strong><code>FALSE</code></strong> si une erreur
+				survient.
+			</p>
+		</div>
+
+
+		<div class="refsect1 changelog" id="refsect1-function.flock-changelog">
+			<h3 class="title">Historique</h3>
+			<p class="para">
+			<table class="doctable informaltable">
+
+				<thead>
+					<tr>
+						<th>Version</th>
+						<th>Description</th>
+					</tr>
+
+				</thead>
+
+				<tbody class="tbody">
+					<tr>
+						<td>5.3.2</td>
+						<td>Le déverrouillage automatique lorsque la ressource de
+							fichiers est fermée a été supprimée. Le déverrouillage doit
+							maintenant être effectuée manuellement.</td>
+					</tr>
+
+					<tr>
+						<td>4.0.1</td>
+						<td>Les constantes <em>LOCK_XXX</em> ont été ajoutées. Avant,
+							vous deviez utiliser 1 pour <strong><code>LOCK_SH</code></strong>,
+							2 pour <strong><code>LOCK_EX</code></strong>, 3 pour <strong><code>LOCK_UN</code></strong>
+							et 4 pour <strong><code>LOCK_NB</code></strong>
+						</td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 examples" id="refsect1-function.flock-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-2249">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>flock()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />
+								<br />$fp&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">"/tmp/lock.txt"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"r+"</span><span style="color: #007700">);<br />
+								<br />if&nbsp;(
+							</span><span style="color: #0000BB">flock</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">LOCK_EX</span><span
+								style="color: #007700">))&nbsp;{&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;acquière&nbsp;un&nbsp;verrou&nbsp;exclusif<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">ftruncate</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">0</span><span style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;effacement&nbsp;du&nbsp;contenu<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">fwrite</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"Écrire&nbsp;dans&nbsp;un&nbsp;fichier\n"</span><span
+								style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">fflush</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;libère&nbsp;le&nbsp;contenu&nbsp;avant&nbsp;d'enlever&nbsp;le&nbsp;verrou<br />&nbsp;&nbsp;&nbsp;&nbsp;
+							</span><span style="color: #0000BB">flock</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">LOCK_UN</span><span
+								style="color: #007700">);&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+								style="color: #FF8000">//&nbsp;Enlève&nbsp;le&nbsp;verrou<br /></span><span
+								style="color: #007700">}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">"Impossible&nbsp;de&nbsp;verrouiller&nbsp;le&nbsp;fichier&nbsp;!"</span><span
+								style="color: #007700">;<br />}<br />
+								<br /></span><span style="color: #0000BB">fclose</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+			<p class="para">
+			<div class="example" id="example-2250">
+				<p>
+					<strong>Exemple #2 Exemple avec <span class="function"><strong>flock()</strong></span>
+						en utilisant l&#039;option <strong><code>LOCK_NB</code></strong></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$fp&nbsp;
+							</span><span style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">fopen</span><span style="color: #007700">(</span><span
+								style="color: #DD0000">'/tmp/lock.txt'</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">'r+'</span><span style="color: #007700">);<br />
+								<br /></span><span style="color: #FF8000">/*&nbsp;Activation&nbsp;de&nbsp;l'option&nbsp;LOCK_NB&nbsp;lors&nbsp;d'une&nbsp;opération&nbsp;LOCK_EX&nbsp;*/<br /></span><span
+								style="color: #007700">if(!</span><span style="color: #0000BB">flock</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">LOCK_EX&nbsp;</span><span
+								style="color: #007700">|&nbsp;</span><span
+								style="color: #0000BB">LOCK_NB</span><span
+								style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;
+							</span><span style="color: #DD0000">'Impossible&nbsp;d\'obtenir&nbsp;le&nbsp;verrou'</span><span
+								style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;exit(-
+							</span><span style="color: #0000BB">1</span><span style="color: #007700">);<br />}<br />
+								<br /></span><span style="color: #FF8000">/*&nbsp;...&nbsp;*/<br />
+								<br /></span><span style="color: #0000BB">fclose</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+			</div>
+			</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.flock-notes">
+			<h3 class="title">Notes</h3>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					<span class="function"><strong>flock()</strong></span> utilise les
+					verrous obligatoires sous Windows, qui sont aussi supportés sur
+					Linux et les systèmes dérivés de System V au moyen de l&#039;appel
+					système fcntl(): si le fichier en question a le bit setgid
+					positionné et le bit de groupe vide. Sur Linux, le système de
+					fichiers devra être monté avec l&#039;option mand pour que cela
+					fonctionne.
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Comme <span class="function"><strong>flock()</strong></span>
+					requiert un pointeur de fichier, vous aurez peut être à utiliser un
+					verrou spécial pour protéger l&#039;accès au fichier que vous
+					voulez tronquer en l&#039;ouvrant en mode d&#039;écriture (avec
+					&quot;w&quot; ou &quot;w+&quot; comme argument de <span
+						class="function"><a href="function.fopen.html"
+						class="function">fopen()</a></span>).
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">
+					Ne devrait être utilisé que sur des ressources issues de <span
+						class="function"><a href="function.fopen.html"
+						class="function">fopen()</a></span> pour des fichiers locaux ou via le
+					gestionnaire de flux personnalisé en définissant <span
+						class="function"><a href="streamwrapper.stream-lock.html"
+						class="function">streamWrapper::stream_lock()</a></span>.
+			</blockquote>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">
+					Assigner une autre valeur à l&#039;argument <em><code
+							class="parameter">handle</code></em> dans ce code libèrera le verrou.
+				</p>
+			</div>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">
+					Sur certains systèmes d&#039;exploitation, <span class="function"><strong>flock()</strong></span>
+					est implémenté au niveau processus. Lorsque vous utilisez une API
+					multithread comme ISAPI, vous risquez de ne pas pouvoir avoir
+					confiance en <span class="function"><strong>flock()</strong></span>
+					pour protéger vos fichiers contre d&#039;autres scripts PHP qui
+					fonctionnent en parallèle sur d&#039;autres threads du même
+					serveur.
+				</p>
+				<p class="para">
+					<span class="function"><strong>flock()</strong></span> n&#039;est
+					pas supporté sur les vieux systèmes de fichiers comme <em>FAT</em>
+					et ses dérivés, et elle retournera forcément <strong><code>FALSE</code></strong>
+					sous ces environnements (ceci est particulièrement vrai pour les
+					utilisateurs de Windows 98).
+				</p>
+			</div>
+		</div>
+
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.filetype.html">filetype</a>
+		</div>
+		<div class="next">
+			<a href="function.fnmatch.html">fnmatch</a>
+		</div>
+		<div class="up">
+			<a href="ref.filesystem.html">Fonctions sur les syst&egrave;mes
+				de fichiers</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

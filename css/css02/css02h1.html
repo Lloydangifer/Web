@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Spécificité des sélecteurs</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+
+<script src="../_local/codemirror_pour_html.js"></script>
+<script src="../_local/test.js"></script>
+<script>
+	if (top.FP) {
+		document.addEventListener('DOMContentLoaded', function() {
+			top.FP.initPage();
+		}, false);
+	} else {
+		location.replace('../index.html?x=' + encodeURI(location.href));
+	}
+</script>
+</head>
+
+<body>
+	<div id="MENU-top"></div>
+	<nav id="MENU-tuto"></nav>
+
+	<div id="PAGE-tuto">
+		<header></header>
+
+		<ul id="MENU-page"></ul>
+
+		<!-- ################################################################################################## -->
+		<h3>Spécificité des sélecteurs</h3>
+		<section>
+			<p>
+				On a vu précédemment (<a class="fp-lientuto"
+					onclick="top.FP.Voir.showPageTuto('css01g1', '')"> Principes
+					généraux -&gt; La cascade</a>) comment le navigateur retenait une
+				déclaration de style parmi 3 origines possible.
+			</p>
+
+			<p>Il peut arriver que l'étape de la cascade ne soit pas
+				suffisante car dans la même origine plusieurs déclarations vont
+				entrer en conflit ou en concurrence.</p>
+
+			<div class="fp-puce">
+				<p>On peut par exemple styler différemment les liens :</p>
+
+				<pre data-code="CSS">
+a {
+	color: black;
+	text-decoration: underline;
+}		
+#menu a {
+	color: red;
+	text-decoration: none;
+	display: block;
+}</pre>
+
+				<p>Ici, de façon naturelle on déduit que les liens dans le menu
+					auront une mise en forme différente des liens dans le reste de la
+					page parce que le sélecteur utilisé pour la règle de style est plus
+					précis, plus spécifique.</p>
+
+				<p>Mais comment faire quand le choix n'est pas aussi évident que
+					le précédent :</p>
+
+				<pre data-code="CSS">
+#menu li a:hover {
+	color: red;
+}
+ul li a:hover {
+	color: blue;
+}</pre>
+			</div>
+
+			<p>Suivant la spécificité des sélecteurs, le navigateur va
+				calculer le poids d'une déclaration de la façon suivante.</p>
+
+			<figure>
+				<img src="../cssimg/poids.jpg" width="460" height="247">
+				<figcaption>spécificité et poids</figcaption>
+			</figure>
+
+			<p>
+				Les déclarations de style qui se trouve dans le code <abbr
+					title="HyperText Markup Language">HTML</abbr> sous la forme d'un
+				attribut <code>style</code> pésent le plus lourd. On a ensuite par
+				poids décroissant : les sélecteurs d'identifiant, les sélecteurs de
+				classe et les sélecteurs de type d'élément.
+			</p>
+
+			<p>Le poids totale est obtenu par la concaténation des poids des
+				différents sélecteurs de la règle et la déclaration avec le poids le
+				plus élevé l'emporte.</p>
+
+			<p>Quelques exemples :</p>
+
+			<table class="TAB-zebre">
+				<tr>
+					<td>Sélecteurs</td>
+					<td>A</td>
+					<td>I</td>
+					<td>C</td>
+					<td>E</td>
+					<td>Poids</td>
+				</tr>
+				<tr>
+					<td><code>&lt;h2 style="color: red;&quot;&gt;</code></td>
+					<td>1</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td>1,0,0,0</td>
+				</tr>
+				<tr>
+					<td><code>#menu { border: 1px solid; }</code></td>
+					<td>0</td>
+					<td>1</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0,1,0,0</td>
+				</tr>
+				<tr>
+					<td><code>.grand { font-size: 40px; }</code></td>
+					<td>0</td>
+					<td>0</td>
+					<td>1</td>
+					<td>0</td>
+					<td>0,0,1,0</td>
+				</tr>
+				<tr>
+					<td><code>ul { margin: 20px; }</code></td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td>1</td>
+					<td>0,0,0,1</td>
+				</tr>
+				<tr>
+					<td><code>ul li { color: red }</code></td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td>2</td>
+					<td>0,0,0,2</td>
+				</tr>
+				<tr>
+					<td><code>#menu ul { margin: 10px; }</code></td>
+					<td>0</td>
+					<td>1</td>
+					<td>0</td>
+					<td>1</td>
+					<td>0,1,0,1</td>
+				</tr>
+				<tr>
+					<td><code>ul.grand { font-size: 30px; }</code></td>
+					<td>0</td>
+					<td>0</td>
+					<td>1</td>
+					<td>1</td>
+					<td>0,0,1,1</td>
+				</tr>
+				<tr>
+					<td><code>#menu ul li a:hover { color: red; }</code></td>
+					<td>0</td>
+					<td>1</td>
+					<td>1</td>
+					<td>3</td>
+					<td>0,1,1,3</td>
+				</tr>
+				<tr>
+					<td><code>input[type="text"] {display: block;}</code></td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+					<td>2</td>
+					<td>0,0,0,2</td>
+				</tr>
+			</table>
+
+			<p>
+				Si à l'issue de ce calcul, des déclarations ont un poids égale,
+				c'est la dernière déclaration dans le code <abbr
+					title="Cascading Style Sheets">CSS</abbr> qui est utilisée.
+			</p>
+
+
+			<p>
+				Il existe un moyen pour passer outre cette règle de définition de la
+				spécificité des sélecteurs. Si la déclaration se termine par le
+				mot-clé <code>!important</code> c'est elle qui sera prise en compte,
+				quelque soit par ailleurs le poids des sélecteurs de sa règle.
+			</p>
+
+			<pre data-code="CSS">
+a {
+	color: blue !important; /* sera toujours utilisé */
+}			
+#menu a {
+	color: red;	/* ne sera pas retenu */
+}</pre>
+		</section>
+
+
+		<!-- ################################################################################################## -->
+
+		<a id="exo_css_resto"></a>
+		<h3 class="fp-exo">Resto CSS</h3>
+		<section>
+			<p class="fp-p-raz">
+				Cet exercice est une adaptation de <a
+					href="http://flukeout.github.io/" target="_blank">CSS Diner</a>
+				(Made by <a href="http://www.twitter.com/flukeout">@flukeout</a>,
+				with special thanks to <a href="https://twitter.com/k88hudson">@k88hudson</a>,
+				<a href="http://www.twitter.com/antlam7">@antlam7</a> and <a
+					href="https://twitter.com/smashman2004">@smashman2004</a>.
+			</p>
+
+			<p class="fp-p-raz">
+				Dans la zone de saisie clignotante en bleu, saisissez le bon
+				sélecteur pour passer chaque niveau.
+				<br>
+				En passant la souris au dessus des choses sur la table, le code HTML correspondant est mis en bleu.
+				<br>
+				De la même façon, en passant la souris au dessus du code HTML, les choses
+				correspondantes sur la table sont entourées en bleu.
+			</p>
+			
+			<p class="fp-completez">
+					<a onclick="top.FP.Voir.showExoExterne('../exercices/resto_css/index.html')">Pratiquer l'exercice.</a>
+				</p>
+		</section>
+	</div>
+	<footer></footer>
+</body>
+</html>

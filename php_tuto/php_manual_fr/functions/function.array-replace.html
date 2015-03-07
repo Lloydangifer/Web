@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Remplace les &eacute;l&eacute;ments d'un tableau par ceux
+	d'autres tableaux</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.array-replace-recursive.html">array_replace_recursive</a>
+		</div>
+		<div class="next">
+			<a href="function.array-reverse.html">array_reverse</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.array-replace" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">array_replace</h1>
+			<p class="verinfo">(PHP 5 &gt;= 5.3.0)</p>
+			<p class="refpurpose">
+				<span class="refname">array_replace</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Remplace les éléments d&#039;un
+					tableau par ceux d&#039;autres tableaux</span>
+			</p>
+
+		</div>
+		<div class="refsect1 description"
+			id="refsect1-function.array-replace-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type">array</span> <span class="methodname"><strong>array_replace</strong></span>
+				( <span class="methodparam"><span class="type">array</span> <code
+						class="parameter">$array</code></span> , <span class="methodparam"><span
+					class="type">array</span> <code class="parameter">$array1</code></span> [,
+				<span class="methodparam"><span class="type">array</span> <code
+						class="parameter">$...</code></span> ] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>array_replace()</strong></span>
+				remplace les valeurs du premier <em><code class="parameter">array</code></em>
+				avec les valeurs des mêmes clés issues des tableaux suivants. Si une
+				clé du premier tableau existe dans un des tableaux suivants, sa
+				valeur sera remplacée. Si la clé n&#039;existe pas dans le premier
+				tableau, elle sera créée. Si la clé n&#039;existe que dans le
+				premier tableau, elle sera laissée intacte. Si plusieurs tableaux
+				sont passés comme arguments de remplacement, ils seront traités dans
+				l&#039;ordre.
+			</p>
+			<p class="para">
+				<span class="function"><strong>array_replace()</strong></span>
+				n&#039;est pas récursif : il remplace les valeurs du premier tableau
+				par la valeur des tableaux suivants, quel que soit leur type.
+			</p>
+		</div>
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.array-replace-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">array</code></em></span>
+				<dd>
+
+					<p class="para">Le tableau dans lequel les éléments sont
+						remplacés.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">array1</code></em></span>
+				<dd>
+
+					<p class="para">Les tableaux dont les valeurs finiront dans le
+						premier tableau.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">...</code></em></span>
+				<dd>
+
+					<p class="para">Plus de tableaux depuis lesquels les éléments
+						peuvent être extraits. Les valeurs des futurs tableaux écraseront
+						les valeurs précédentes.</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.array-replace-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">
+				Retourne un <a href="language.types.array.html" class="link">tableau</a>
+				ou <strong><code>NULL</code></strong> si une erreur survient.
+			</p>
+		</div>
+
+		<div class="refsect1 examples"
+			id="refsect1-function.array-replace-examples">
+			<h3 class="title">Exemples</h3>
+			<p class="para">
+			<div class="example" id="example-4634">
+				<p>
+					<strong>Exemple #1 Exemple avec <span class="function"><strong>array_replace()</strong></span></strong>
+				</p>
+				<div class="example-contents">
+					<div class="phpcode">
+						<code>
+							<span style="color: #000000"> <span style="color: #0000BB">&lt;?php<br />$base&nbsp;
+							</span><span style="color: #007700">=&nbsp;array(</span><span
+								style="color: #DD0000">"orange"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"banana"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"apple"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #DD0000">"raspberry"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$replacements&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #0000BB">0&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">"pineapple"</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">4&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">"cherry"</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">$replacements2&nbsp;</span><span
+								style="color: #007700">=&nbsp;array(</span><span
+								style="color: #0000BB">0&nbsp;</span><span
+								style="color: #007700">=&gt;&nbsp;</span><span
+								style="color: #DD0000">"grape"</span><span
+								style="color: #007700">);<br />
+								<br /></span><span style="color: #0000BB">$basket&nbsp;</span><span
+								style="color: #007700">=&nbsp;</span><span
+								style="color: #0000BB">array_replace</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$base</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$replacements</span><span
+								style="color: #007700">,&nbsp;</span><span
+								style="color: #0000BB">$replacements2</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">print_r</span><span
+								style="color: #007700">(</span><span style="color: #0000BB">$basket</span><span
+								style="color: #007700">);<br /></span><span
+								style="color: #0000BB">?&gt;</span>
+							</span>
+						</code>
+					</div>
+				</div>
+
+				<div class="example-contents">
+					<p>L&#039;exemple ci-dessus va afficher :</p>
+				</div>
+				<div class="example-contents screen">
+					<div class="cdata">
+						<pre>
+Array
+(
+    [0] =&gt; grape
+    [1] =&gt; banana
+    [2] =&gt; apple
+    [3] =&gt; raspberry
+    [4] =&gt; cherry
+)
+</pre>
+					</div>
+				</div>
+			</div>
+			</p>
+		</div>
+
+		<div class="refsect1 seealso"
+			id="refsect1-function.array-replace-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.array-replace-recursive.html" class="function"
+						rel="rdfs-seeAlso">array_replace_recursive()</a> - Replaces
+						elements from passed arrays into the first array recursively</span></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.array-replace-recursive.html">array_replace_recursive</a>
+		</div>
+		<div class="next">
+			<a href="function.array-reverse.html">array_reverse</a>
+		</div>
+		<div class="up">
+			<a href="ref.array.html">Fonctions sur les tableaux</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

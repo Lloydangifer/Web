@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="../../_local/phptech.css">
+
+<title>Ex&eacute;cute un programme externe et affiche le
+	r&eacute;sultat brut</title>
+
+</head>
+<body>
+	<div class="manualnavbar">
+		<div class="prev">
+			<a href="function.exec.html">exec</a>
+		</div>
+		<div class="next">
+			<a href="function.proc-close.html">proc_close</a>
+		</div>
+		<div class="up">
+			<a href="ref.exec.html">Fonctions sur l'ex&eacute;cution de
+				programmes externes</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+	<hr />
+	<div id="function.passthru" class="refentry">
+		<div class="refnamediv">
+			<h1 class="refname">passthru</h1>
+			<p class="verinfo">(PHP 4, PHP 5)</p>
+			<p class="refpurpose">
+				<span class="refname">passthru</span> <span class="mdash">&mdash;</span>
+				<span class="dc-title">Exécute un programme externe et
+					affiche le résultat brut</span>
+			</p>
+
+		</div>
+
+		<div class="refsect1 description"
+			id="refsect1-function.passthru-description">
+			<h3 class="title">Description</h3>
+			<div class="methodsynopsis dc-description">
+				<span class="type"><span class="type void">void</span></span> <span
+					class="methodname"><strong>passthru</strong></span> ( <span
+					class="methodparam"><span class="type">string</span> <code
+						class="parameter">$command</code></span> [, <span class="methodparam"><span
+					class="type">int</span> <code class="parameter reference">&$return_var</code></span>
+				] )
+			</div>
+
+			<p class="para rdfs-comment">
+				<span class="function"><strong>passthru()</strong></span> est
+				similaire à la fonction <span class="function"><a
+					href="function.exec.html" class="function">exec()</a></span> car les deux
+				exécutent la commande <em><code class="parameter">command</code></em>.
+				Si l&#039;argument <em><code class="parameter">return_var</code></em>
+				est présent, le code de statut de réponse UNIX y sera placé. Cette
+				fonction doit être utilisée de préférence aux commandes <span
+					class="function"><a href="function.exec.html"
+					class="function">exec()</a></span> ou <span class="function"><a
+					href="function.system.html" class="function">system()</a></span> lorsque
+				le résultat attendu est de type binaire, et doit être passé tel quel
+				à un navigateur. Une utilisation classique de cette fonction est
+				l&#039;exécution de l&#039;utilitaire pbmplus qui peut retourner une
+				image. En fixant le résultat du contenu (Content-Type) à <em>image/gif</em>
+				puis en appelant pbmplus pour obtenir une image gif, vous pouvez
+				créer des scripts PHP qui retournent des images.
+			</p>
+		</div>
+
+
+		<div class="refsect1 parameters"
+			id="refsect1-function.passthru-parameters">
+			<h3 class="title">Liste de paramètres</h3>
+			<p class="para">
+			<dl>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">command</code></em></span>
+				<dd>
+
+					<p class="para">La commande à exécuter.</p>
+				</dd>
+
+				</dt>
+
+				<dt>
+
+					<span class="term"><em><code class="parameter">return_var</code></em></span>
+				<dd>
+
+					<p class="para">
+						Si l&#039;argument <em><code class="parameter">return_var</code></em>
+						est présent, le statut retourné par la commande Unix sera placé
+						dans cette variable.
+					</p>
+				</dd>
+
+				</dt>
+
+			</dl>
+
+			</p>
+		</div>
+
+
+		<div class="refsect1 returnvalues"
+			id="refsect1-function.passthru-returnvalues">
+			<h3 class="title">Valeurs de retour</h3>
+			<p class="para">Aucune valeur n&#039;est retournée.</p>
+		</div>
+
+
+		<div class="refsect1 notes" id="refsect1-function.passthru-notes">
+			<h3 class="title">Notes</h3>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="para">
+					Si vous allez passer des données provenant de l&#039;utilisateur à
+					cette fonction, vous devez utiliser <span class="function"><a
+						href="function.escapeshellarg.html" class="function">escapeshellarg()</a></span>
+					ou <span class="function"><a
+						href="function.escapeshellcmd.html" class="function">escapeshellcmd()</a></span>
+					pour être sûr qu&#039;ils n&#039;endommagent pas le système en
+					exécutant des commandes arbitraires.
+				</p>
+			</div>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>:
+				<p class="para">Si vous démarrez un programme en utilisant cette
+					fonction et que vous voulez le laisser tourner en arrière plan,
+					vous devez vous assurer que la sortie du programme est redirigée
+					vers un fichier, ou un autre flux de sortie, sinon PHP attendra
+					jusqu&#039;à la fin de l&#039;exécution du programme.</p>
+				</p>
+			</blockquote>
+			<blockquote class="note">
+				<p>
+					<strong class="note">Note</strong>: <span class="simpara">Lorsque
+						le <a href="features.safe-mode.html" class="link">safe mode</a>
+						est activé, vous pouvez uniquement exécuter des programmes qui se
+						situent dans le dossier défini par <a
+						href="ini.sect.safe-mode.html#ini.safe-mode-exec-dir" class="link">safe_mode_exec_dir</a>.
+						Pour des raisons pratiques, il n&#039;est actuellement pas permis
+						d&#039;&#039;avoir le composant <em>..</em> dans le chemin de
+						l&#039;exécutable.
+					</span>
+				</p>
+			</blockquote>
+			<div class="warning">
+				<strong class="warning">Avertissement</strong>
+				<p class="simpara">
+					Lorsque le <a href="features.safe-mode.html" class="link">safe
+						mode</a> est activé, la chaîne de commande est échappée avec la
+					fonction <span class="function"><a
+						href="function.escapeshellcmd.html" class="function">escapeshellcmd()</a></span>.
+					Par exemple, <em>echo y | echo x</em> devient <em>echo y \|
+						echo x</em>.
+				</p>
+			</div>
+		</div>
+
+
+		<div class="refsect1 seealso" id="refsect1-function.passthru-seealso">
+			<h3 class="title">Voir aussi</h3>
+			<p class="para">
+			<ul class="simplelist">
+				<li class="member"><span class="function"><a
+						href="function.exec.html" class="function" rel="rdfs-seeAlso">exec()</a>
+						- Ex&eacute;cute un programme externe</span></li>
+				<li class="member"><span class="function"><a
+						href="function.system.html" class="function" rel="rdfs-seeAlso">system()</a>
+						- Ex&eacute;cute un programme externe et affiche le
+						r&eacute;sultat</span></li>
+				<li class="member"><span class="function"><a
+						href="function.popen.html" class="function" rel="rdfs-seeAlso">popen()</a>
+						- Cr&eacute;e un processus de pointeur de fichier</span></li>
+				<li class="member"><span class="function"><a
+						href="function.escapeshellcmd.html" class="function"
+						rel="rdfs-seeAlso">escapeshellcmd()</a> - Prot&egrave;ge les
+						caract&egrave;res sp&eacute;ciaux du Shell</span></li>
+				<li class="member"><a href="language.operators.execution.html"
+					class="link">les guillemets obliques</a></li>
+			</ul>
+			</p>
+		</div>
+
+	</div>
+	<hr /><div class="manualnavbarbas">
+		<div class="prev">
+			<a href="function.exec.html">exec</a>
+		</div>
+		<div class="next">
+			<a href="function.proc-close.html">proc_close</a>
+		</div>
+		<div class="up">
+			<a href="ref.exec.html">Fonctions sur l'ex&eacute;cution de
+				programmes externes</a>
+		</div>
+		<div class="home" onclick="location.href='../accueil.html'"></div>
+	</div>
+</body>
+</html>

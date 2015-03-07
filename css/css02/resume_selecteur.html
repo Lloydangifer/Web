@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Tous les sélecteurs</title>
+
+<link rel="stylesheet" href="../_local/codemirror.css">
+<link rel="stylesheet" href="../_core/def.css">
+
+<style>
+body {
+	font-size: 13px;
+	line-height: 15px;
+	margin: 40px 0 1em;
+	}
+a.fp-lientuto {
+	/*background: url("../_core/images/lien_tuto.png") no-repeat left center;*/
+	/*padding: 0 3px 0 20px;*/
+	color: #000;
+	text-decoration: none;
+}
+
+a.fp-lientuto:hover {
+	color: #AA0026;
+}
+
+table {
+	margin-top: 0 !important;
+	margin-bottom: 1em !important;
+}
+
+td {
+	padding: 1px !important;
+}
+
+tr td:first-of-type {
+	width: 120px;
+}
+
+/*
+table tr:last-of-type td {
+	border-bottom: 0 none;
+}
+*/
+h4 {
+	background: #ccc;
+	border-radius: 0;
+	box-shadow: none;
+	color: #111;
+	font-weight: bold;
+	left: 0;
+	padding: 2px;
+	position: relative;
+	width: auto;
+	cursor: default;
+	font-size: 1em;
+	margin: 0;
+}
+#TITRE {
+	background: #03B8CF;
+	box-shadow: 0 0 6px -2px #000000;
+	color: #FFFFFF;
+	font-size: 18px;
+	font-weight: bold;
+	height: 26px;
+	left: 0;
+	line-height: 26px;
+	overflow: hidden;
+	padding: 5px 2px;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 2;
+	}
+#TITRE-close {
+	background: url(../_core/images/__cancel24.png) no-repeat;
+	cursor: pointer;
+	height: 24px;
+	position: absolute;
+	right: 10px;
+	top: 6px;
+	width: 24px
+	}
+#TITRE-close:hover {
+	background: url(../_core/images/__cancel24_h.png) no-repeat;
+	}
+</style>
+</head>
+
+<body>
+	<div id="TITRE">
+		Résumé des sélecteurs CSS
+		<div id="TITRE-close" onClick="top.FP.Voir.hidePLUS()"></div>
+	</div>
+	<table class="TAB-zebre fp-petit">
+		<tr>
+			<td colspan="2"><h4>Sélecteurs simples</h4></td>
+		</tr>
+		<tr>
+			<td><code>*</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02c1', 'sel_universel')">tous
+					les éléments du document HTML (sélecteur universel)</a></td>
+		</tr>
+		<tr>
+			<td><code>nom_elt</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02c1', 'sel_type')"> tous
+					les éléments <code>nom_elt</code> du document HTML (sélecteur de
+					type)
+			</a></td>
+		</tr>
+		<tr>
+			<td><code>.abcd</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02c1', 'sel_classe')">tous
+					les éléments dont l'attribut <code>class</code> a la valeur <code>abcd</code>
+					(sélecteur de classe)
+			</a></td>
+		</tr>
+		<tr>
+			<td><code>#xyz</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02c1', 'sel_id')">l'élement
+					dont l'attribut <code>id</code> a la valeur <code>xyz</code>
+					(sélecteur d'identifiant)
+			</a></td>
+		</tr>
+	</table>
+
+	<!-- xxxxxxxxxxxx -->
+	<table class="TAB-zebre fp-petit">
+		<tr>
+			<td colspan="2"><h4>Sélecteurs d'attribut</h4></td>
+		</tr>
+		<tr>
+			<td><code>[att]</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02d1', 'sel_attribut')">
+					élements avec un attribut <code>att</code>, quelque soit la valeur
+					de cet attribut.
+			</a></td>
+		</tr>
+		<tr>
+			<td><code>[att="val"]</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02d1', 'sel_att_egal')">éléments
+					avec un attribut <code>att</code> dont la valeur est égale à <code>val</code>.
+			</a></td>
+		</tr>
+		<tr>
+			<td><code>[att^="val"]</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02d1', 'sel_att_commence')">éléments
+					avec un attribut <code>att</code> dont la valeur commence par <code>val</code>.
+			</a></td>
+		</tr>
+		<tr>
+			<td><code>[att$="val"]</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02d1', 'sel_att_finit')">éléments
+					avec un attribut <code>att</code> dont la valeur finit par <code>val</code>.
+			</a></td>
+		</tr>
+		<tr>
+			<td><code>[att*="val"]</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02d1', 'sel_att_contient')">éléments
+					avec un attribut <code>att</code> dont la valeur contient <code>val</code>.
+			</a></td>
+		</tr>
+		<tr>
+			<td><code>[att~="val"]</code></td>
+			<td>éléments avec un attribut <code>att</code> dont la valeur
+				est une liste de valeurs séparées par un espace, et dont l'une de
+				ces valeur est égale à <code>val</code>.
+			</td>
+		</tr>
+		<tr>
+			<td><code>[att|="val"]</code></td>
+			<td>éléments avec un attribut <code>att</code> dont la valeur
+				est une liste de valeurs séparées par une virgule, et dont l'une de
+				ces valeurs est égale à <code>val</code>.
+			</td>
+		</tr>
+
+	</table>
+
+
+	<!-- xxxxxxxxxxxx -->
+	<table class="TAB-zebre fp-petit">
+		<tr>
+			<td colspan="2"><h4>Pseudo classe</h4></td>
+		</tr>
+		<tr>
+			<td><code>:link </code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02e1', 'sel_pc_lien')">élements
+					<code>a</code> (liens) qui n'ont pas encore été visités.
+			</a></td>
+		</tr>
+		<tr>
+			<td><code>:visited </code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02e1', 'sel_pc_lien')">
+					élements <code>a</code> (liens) qui ont déjà été visités.
+			</a></td>
+		</tr>
+		<tr>
+			<td><code>:active </code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02e1', 'sel_pc_interaction')">éléments
+					quand la souris est enfoncée.</a></td>
+		</tr>
+		<tr>
+			<td><code>:hover </code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02e1', 'sel_pc_interaction')">éléments
+					survolés par la souris.</a></td>
+		</tr>
+		<tr>
+			<td><code>:focus </code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02e1', 'sel_pc_interaction')">éléments
+					qui ont deviennent la cible des interactions clavier ou
+					souris(focus).</a></td>
+		</tr>
+		<tr>
+			<td><code>:root</code></td>
+			<td>racine du document, soit l'élément <code>html</code></td>
+		</tr>
+		<tr>
+			<td><code>:first-child</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02e1', 'sel_pc_child')">
+					1er enfant </a></td>
+		</tr>
+		<tr>
+			<td><code>:nth-child(n)</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02e1', 'sel_pc_nchild')">
+					n-ième enfant</a></td>
+		</tr>
+		<tr>
+			<td><code>:last-child</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02e1', 'sel_pc_child')">
+					dernier enfant</a></td>
+		</tr>
+		<tr>
+			<td><code>:nth-last-child(n)</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02e1', 'sel_pc_nchild')">n-ième
+					enfant en partant de la fin</a></td>
+		</tr>
+		<tr>
+			<td><code>:only-child</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02e1', 'sel_pc_child')">éléments
+					qui sont les seuls enfants de leur parent.</a></td>
+		</tr>
+
+		<tr>
+			<td><code>:first-of-type</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02e1', 'sel_pc_type')">1er
+					enfant d'un certain type</a></td>
+		</tr>
+		<tr>
+			<td><code>:nth-of-type(n)</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02e1', 'sel_pc_ntype')">
+					n-ième enfant d'un certain type</a></td>
+		</tr>
+		<tr>
+			<td><code>:last-of-type</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02e1', 'sel_pc_type')">
+					dernier enfant d'un certain type</a></td>
+		</tr>
+		<tr>
+			<td><code>:nth-last-of-type(n)</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02e1', 'sel_pc_ntype')">
+					n-ième enfant d'un certain type, en partant de la fin</a></td>
+		</tr>
+		<tr>
+			<td><code>:only-of-type</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02e1', 'sel_pc_type')">éléments
+					qui sont les seuls enfants d'un certain type</a></td>
+		</tr>
+		<tr>
+			<td><code>:empty</code></td>
+			<td>éléments qui n'ont pas d'enfant, y compris de noeud texte.</td>
+		</tr>
+		<tr>
+			<td><code>:target</code></td>
+			<td>éléments qui sont les cibles d'une ancre nommée dans des
+				liens.</td>
+
+		</tr>
+		<tr>
+			<td><code>:enabled</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02e1', 'sel_pc_interface')">
+					zones de formulaire actives (ie avec saisie ou click possible).</a></td>
+		</tr>
+		<tr>
+			<td><code>:disabled</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02e1', 'sel_pc_interface')">zones
+					de formulaire désactivés (ie sans saisie ou click possible).</a></td>
+		</tr>
+		<tr>
+			<td><code>:checked</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02e1', 'sel_pc_interface')">
+					case à cocher ou bouton radio cochés.</a></td>
+		</tr>
+		<tr>
+			<td><code>:not(S)</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02e1', 'sel_not')">éléments
+					qui ne seraient pas sélectionnés par le sélecteur simple <code>S</code>
+			</a></td>
+		</tr>
+	</table>
+
+	<!-- xxxxxxxxxxxx -->
+	<table class="TAB-zebre fp-petit">
+		<tr>
+			<td colspan="2"><h4>Pseudo éléments</h4></td>
+		</tr>
+		<tr>
+			<td><code>::first-line</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02f1', 'sel_first_line')">1ère
+					ligne du texte d'un élément</a></td>
+		</tr>
+		<tr>
+			<td><code>::first-letter</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02f1', 'sel_first_letter')">1ère
+					lettre du texte d'un élément</a></td>
+		</tr>
+		<tr>
+			<td><code>::before </code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02f1', 'sel_before')">insére
+					un contenu avant un élément</a></td>
+		</tr>
+		<tr>
+			<td><code>::after </code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02f1', 'sel_after')">insére
+					un contenu après un élément</a></td>
+		</tr>
+	</table>
+
+	<!-- xxxxxxxxxxxx -->
+	<table class="TAB-zebre fp-petit">
+		<tr>
+			<td colspan="2"><h4>Sélecteurs composés</h4></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td><code>S1</code> et <code>S2</code> représentent chacun un
+				sélecteur simple, d'attribut, de pseudo classe ou de pseudo élément</td>
+		</tr>
+		<tr>
+			<td><code>S1, S2</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02g1', '')">sélecteurs
+					groupés : <code>S1</code> et <code>S2</code>.
+			</a></td>
+		</tr>
+		<tr>
+			<td><code>S1 S2</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02g2', '')">sélecteur de
+					descendants : les éléments <code>S2</code> qui sont descendants de
+					<code>S1</code>.
+			</a></td>
+		</tr>
+		<tr>
+			<td><code>S1 &gt; S2</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02g3', '')">sélecteur
+					d'enfants : les éléments <code>S2</code> qui sont des enfants de <code>S1</code>.
+			</a></td>
+		</tr>
+		<tr>
+			<td><code>S1 + S2</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02g4', '')">sélecteur
+					d'adjacents direct : S1 et S2 ont le même parent, et les éléments <code>S2</code>
+					sont immédiatement précédés d'un élément <code>S1</code>.
+			</a></td>
+		</tr>
+		<tr>
+			<td><code>S1 ~ S2</code></td>
+			<td><a class="fp-lientuto"
+				onclick="top.FP.Voir.showPageTuto('css02g5', '')">sélecteur
+					d'adjacents indirect : S1 et S2 ont le même parent, et les éléments
+					<code>S2</code> sont précédés quelque part d'un élément <code>S1</code>.
+			</a></td>
+		</tr>
+	</table>
+
+</body>
+</html>
