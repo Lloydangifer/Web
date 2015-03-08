@@ -32,13 +32,15 @@ define('APP_BD_PASS', 'p_Manrique');
  * @param string	$titre		Titre de la page
  * @param string	$css		url de la feuille de styles liée
  */
-function fd_html_head($titre, $css = '../styles/style.css') {
+function vm_html_head($titre, $css = '../styles/style.css') {
 	echo '<!DOCTYPE HTML>',
 		'<html>',
 			'<head>',
 				'<meta charset="UTF-8">',
 				'<title>', $titre, '</title>',
+        if($css!=='-'){
 				'<link rel="stylesheet" href="', $css, '">',
+        }
 				'<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">',
 			'</head>',
 			'<body>',
@@ -304,14 +306,18 @@ function fd_bd_erreurExit($msg) {
 }
 //_________________________________________
 /**
- *Connexion à la base de données 24sur7
+ * Connexion à la base de données 24sur7
  *
+ * @return ressource $bd Connecteur à la base de donnée
  */
 function vm_db_connexion(){
     $bd=mysqli_connect(APP_BD_URL,APP_BD_USER,APP_BD_PASS,APP_BD_NOM);
     
-    if ($bd!==FALSE){
+    if($bd!==FALSE){
         return $bd;
+    }
+    else{
+        fd_bd_erreur("Connexion à la base de donnée echouée");
     }
 }
 

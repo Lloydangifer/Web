@@ -7,7 +7,7 @@
 
 include('bibli_24sur7_06.php');	// Inclusion de la bibliothéque
 
-fd_html_head('24sur7 | Agenda');
+vm_html_head('24sur7 | Agenda','-');
 
 fd_html_bandeau(APP_PAGE_AGENDA);
 
