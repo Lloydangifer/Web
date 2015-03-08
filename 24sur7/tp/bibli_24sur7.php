@@ -37,11 +37,11 @@ function vm_html_head($titre, $css = '../styles/style.css') {
 		'<html>',
 			'<head>',
 				'<meta charset="UTF-8">',
-				'<title>', $titre, '</title>',
+				'<title>', $titre, '</title>';
         if($css!=='-'){
-				'<link rel="stylesheet" href="', $css, '">',
+			 echo '<link rel="stylesheet" href="', $css, '">';
         }
-				'<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">',
+	echo '<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">',
 			'</head>',
 			'<body>',
 				'<main id="bcPage">';
