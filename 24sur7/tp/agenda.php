@@ -3,6 +3,7 @@
  * Page d'accueil de l'application 24sur7
  *
  * @author : Frederic Dadeau - frederic.dadeau@univ-fcomte.fr
+ * @author : Virgil Manrique - virgil.manrique@edu.univ-fcomte.fr
  */
 
 include('bibli_24sur7.php');	// Inclusion de la bibliothéque

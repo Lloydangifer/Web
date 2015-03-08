@@ -3,6 +3,7 @@
  * Bibliothèque générale de fonctions
  *
  * @author : Frederic Dadeau - frederic.dadeau@univ-fcomte.fr
+ * @author : Virgil Manrique - virgil.manrique@edu.univ-fcomte.fr
  */
 
 //____________________________________________________________________________
@@ -21,8 +22,11 @@ define('APP_PAGE_PARAMETRES', 'parametres.php');
 // Gestion des informations de connexion à la BD
 define('APP_BD_URL', 'localhost');
 define('APP_BD_NOM', '24sur7');
-define('APP_BD_USER', 'u_Manrique');
-define('APP_BD_PASS', 'p_Manrique');
+define('APP_BD_USER', 'u_24sur7');
+define('APP_BD_PASS', 'p_24sur7');
+
+// Constante pour savoir si on est en phase de développement ou pas pour la gestion des erreurs
+define('APP_TEST', 'FALSE');
 
 //____________________________________________________________________________
 
@@ -308,7 +312,7 @@ function fd_bd_erreurExit($msg) {
 /**
  * Connexion à la base de données 24sur7
  *
- * @return ressource $bd Connecteur à la base de donnée
+ * @return ressource    $bd     Connecteur à la base de donnée
  */
 function vm_db_connexion(){
     $bd=mysqli_connect(APP_BD_URL,APP_BD_USER,APP_BD_PASS,APP_BD_NOM);
@@ -319,6 +323,87 @@ function vm_db_connexion(){
     else{
         fd_bd_erreur("Connexion à la base de donnée echouée");
     }
+}
+//__________________________________________
+/**
+ * Transforme une date au format AAAAMMJJ en date au format JJ nomMois AAAA
+ *
+ * @param    $amj     date au format AAAAMMJJ
+ * @return   $date    date au format JJ nomMois AAAA
+ */
+function vm_date_claire($amj){
+    $j=substr($amj,6,7);
+    $m=substr($amj,4,2);
+    $a=substr($amj,0,4);
+    $mois=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+   $date= $j.' '.$mois[$m-1].' '.$a;
+   return $date;
+}
+//______________________________________________
+/**
+ * Convertit une heure du format HHMM au format HHhMM
+ * @param $h    string    une heure au format HHMM
+ * @return heure au format HHhMM
+ */
+function vm_heure_claire($h){
+    $heure = substr($h,0,strlen($h)/2);
+    $minute = substr($h,strlen($h)/2,strlen($h));
+    if((int)($minute)===0){
+            $minute = '';
+    } 
+    return $heure.'h'.$minute;
+}
+//___________________________________________
+/**
+ * Permet d'obtenir le nom d'un utilisateur
+ *
+ * @param $id string numero d'identification de l'utilisateur
+ * @return une chaine contenant le nom de l'utilisateur numero $id
+ */
+function vm_getname($id){
+    global $bd;
+    $S = 'SELECT utiNom FROM utilisateur WHERE utiID ='.$id;
+    $R = mysqli_query($bd,$S) or db_error($bd,$S);
+    $T = mysqli_fetch_assoc($R);
+    
+    return $T['utiNom'];
+}
+//____________________________________________
+/**
+ * @param $date                  string date du rendez vous
+ * @param $hdebut                string heure du debut du rendez vous
+ * @param $hfin                  string heure de fin du rendez vous
+ * @param $libelle               string libelle du rendez vous
+ * @return une chaine contenant un rendez vous au format jjmmaa-hhmm à hhmm-libelle 
+ */
+function vm_format_rdv($date, $hdebut, $hfin, $libelle){
+    $hours = vm_heure_claire($hdebut)." à ".vm_heure_claire($hfin); 
+    if($hdebut==$hfin&&$hdebut==-1){
+            $hours = 'journée entière';
+    }
+    return vm_date_claire($date).' - '.$hours.' - '.$libelle;
+}
+//___________________________________________
+/**
+ * Affiche les rendez vous de l'utilisateur $id
+ * @param $id numero d'identification de l'utilisateur
+ */
+function vm_rdv($id){
+    global $bd;
+    $S='SELECT * FROM utilisateur, rendezvous WHERE rdvIDUtilisateur=utiID AND utiID='.$id.' ORDER BY rdvDate ASC,rdvHeureDebut ASC';
+    $R = mysqli_query($bd,$S) or fd_bd_erreur($bd, $S);
+
+    echo '<h3>',
+        'UTILISATEUR '.$id.': ',vm_getname($id),
+        '</h3>';
+        '<ul>'; 
+    while($T=mysqli_fetch_assoc($R)){
+        echo '<li>',
+            vm_format_rdv($T['rdvDate'],$T['rdvHeureDebut'],$T['rdvHeureFin'],$T['rdvLibelle']),
+            '</li>';
+        }    
+    echo '</ul>';
+
 }
 
 ?>
