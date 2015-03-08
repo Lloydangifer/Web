@@ -18,6 +18,12 @@ define('APP_PAGE_RECHERCHE', 'recherche.php');
 define('APP_PAGE_ABONNEMENTS', 'abonnements.php');
 define('APP_PAGE_PARAMETRES', 'parametres.php');
 
+// Gestion des informations de connexion à la BD
+define('APP_BD_URL', 'localhost');
+define('APP_BD_NOM', '24sur7');
+define('APP_BD_USER', 'u_Manrique');
+define('APP_BD_PASS', 'p_Manrique');
+
 //____________________________________________________________________________
 
 /**
@@ -296,4 +302,17 @@ function fd_bd_erreurExit($msg) {
 	
     exit();
 }
+//_________________________________________
+/**
+ *Connexion à la base de données 24sur7
+ *
+ */
+function vm_db_connexion(){
+    $bd=mysqli_connect(APP_BD_URL,APP_BD_USER,APP_BD_PASS,APP_BD_NOM);
+    
+    if ($bd!==FALSE){
+        return $bd;
+    }
+}
+
 ?>
