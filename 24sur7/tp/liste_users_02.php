@@ -1,34 +1,46 @@
 <?php
 /** @file
- * Page affichant tous les utilisateurs de la bd
+ * Afficher les infos des utilisateurs de 24sur7
  *
- * @author : Virgil Manrique - virgil.manrique@edu.univ-fcomte.fr
+ * @author : Frederic Dadeau - frederic.dadeau@univ-fcomte.fr
  */
-include('bibli_24sur7.php');	// Inclusion de la bibliothèque
 
-$bd=vm_db_connexion();
-$S1='SELECT utiID FROM utilisateur';
-$R1=mysqli_query($bd, $S1) or fd_bd_erreur($S1);
-$T1=mysqli_fetch_assoc($R1);
-$i=1;
-while($T1){
-   $S2='SELECT utiNom, utiMail, utiPasse, utiDateInscription, utiJours, utiHeureMin, utiHeureMax FROM utilisateur WHERE utiID='.$i;
-    $R2=mysqli_query($bd, $S2) or fd_bd_erreur($S2);
-    $T2=mysqli_fetch_assoc($R2);
-    $nom=mysqli_real_escape_string($bd,$T2['utiNom']);
-    $mail=mysqli_real_escape_string($bd,$T2['utiMail']);
-    $incription=vm_date_claire(mysqli_real_escape_string($bd,$T2['utiDateInscription']));
-    $jour=mysqli_real_escape_string($bd,$T2['utiJours']);
-    $debut=mysqli_real_escape_string($bd,$T2['utiHeureMin']);
-    $fin=mysqli_real_escape_string($bd,$T2['utiHeureMax']);
-    echo '<h2>Utilisateur',$i,'</h2>',
-         '<ul><li>Nom: ',$nom,'</li>',
-         '<li>Mail: ',$mail,'</li>',
-         '<li>Inscription: ',$inscription,'</li>',
-         '<li>Jours à afficher: ',$jour,'</li>',
-         '<li>Heure début: ',$debut,'</li>',
-         '<li>Heure fin: ',$fin,'</li></ul>';
-    $i=$i+1;
+// Bufferisation des sorties
+ob_start();
+
+// Inclusion de la bibliothèque
+include('bibli_24sur7.php');
+
+// Début de la page
+fd_html_head('Infos utilisateur', '-');
+
+// Connexion à la base de données
+fd_bd_connexion();
+
+// Requête de sélection des utilisateurs
+$sql = 'SELECT *
+		FROM utilisateur
+		ORDER BY utiDateInscription DESC';
+
+// Exécution de la requête
+$R = mysqli_query($GLOBALS['bd'], $sql) or fd_bd_erreur($sql);
+
+// Boucle de traitement
+while ($D = mysqli_fetch_assoc($R)) {
+	echo '<h2>Utilisateur ', $D['utiID'], '</h2>',
+		'<ul>',
+			'<li>Nom : ', htmlentities($D['utiNom'], ENT_COMPAT, 'UTF-8'),
+			'<li>Mail : ', htmlentities($D['utiMail'], ENT_COMPAT, 'UTF-8'),
+			'<li>Inscription : ', fd_date_claire($D['utiDateInscription']),
+			'<li>Jours à afficher : ', $D['utiJours'],
+			'<li>Heure début : ', $D['utiHeureMin'],
+			'<li>Heure fin : ', $D['utiHeureMax'],
+		'</ul>';
 }
 
+// Déconnexion de la base de données
+mysqli_close($GLOBALS['bd']);
+
+// fin de la page
+echo '</main></body></html>';
 ?>
