@@ -14,8 +14,8 @@ define('APP_TEST', TRUE);
 
 // Gestion des infos base de données
 define('APP_BD_URL', 'localhost');
-define('APP_BD_USER', '24sur7_user');
-define('APP_BD_PASS', '24sur7_pass');
+define('APP_BD_USER', 'u_24sur7');
+define('APP_BD_PASS', 'p_24sur7');
 define('APP_BD_NOM', '24sur7');
 
 define('APP_NOM_APPLICATION','24sur7');
