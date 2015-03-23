@@ -10,13 +10,11 @@
 // Défintion des constantes de l'application
 //____________________________________________________________________________
 
-define('APP_TEST', TRUE);
-
 // Gestion des infos base de données
-define('APP_BD_URL', 'localhost');
-define('APP_BD_USER', 'u_24sur7');
-define('APP_BD_PASS', 'p_24sur7');
-define('APP_BD_NOM', '24sur7');
+define('APP_DB_URL', 'localhost');
+define('APP_DB_USER', 'u_24sur7');
+define('APP_DB_PASS', 'p_24sur7');
+define('APP_DB_NOM', '24sur7');
 
 define('APP_NOM_APPLICATION','24sur7');
 
@@ -26,37 +24,25 @@ define('APP_PAGE_RECHERCHE', 'recherche.php');
 define('APP_PAGE_ABONNEMENTS', 'abonnements.php');
 define('APP_PAGE_PARAMETRES', 'parametres.php');
 
+// Définition du nom des mois. Comme une constante
+// ne peut être que scalaire, on utilise une chaîne
+// qu'on "explodera" en tableau pour l'utiliser
+define('APP_MOIS', 	'x,Janvier,Février,Mars,Avril,Mai,Juin,Juillet,Août,Septembre,Octobre,Novembre,Décembre');
+
+// Définition des types de zones de saisies
+define('APP_Z_TEXT', 'text');
+define('APP_Z_PASS', 'password');
+define('APP_Z_SUBMIT', 'submit');
 
 //____________________________________________________________________________
 
-
 /**
- * Connexion à la base de données.
- * Le connecteur obtenu par la connexion est stocké dans une
- * variable global : $GLOBALS['bd']
- * Le connecteur sera ainsi accessible partout.
+ * Connexion à la base de données
  */
-function fd_bd_connexion() {
-	$bd = mysqli_connect(APP_BD_URL, APP_BD_USER, APP_BD_PASS, APP_BD_NOM);
+function fd_db_open() {
 
-	if ($bd !== FALSE) {
-		$GLOBALS['bd'] = $bd;
-		return;					// Sortie connexion OK
-	}
-
-	// Erreur de connexion
-	// Collecte des informations facilitant le debugage
-	$msg = '<h4>Erreur de connexion base MySQL</h4>'
-			.'<div style="margin: 20px auto; width: 350px;">'
-				.'APP_BD_URL : '.APP_BD_URL
-				.'<br>APP_BD_USER : '.APP_BD_USER
-				.'<br>APP_BD_PASS : '.APP_BD_PASS
-				.'<br>APP_BD_NOM : '.APP_BD_NOM
-				.'<p>Erreur MySQL num&eacute;ro : '.mysqli_connect_errno($bd)
-				.'<br>'.mysqli_connect_error($bd)
-			.'</div>';
-
-	fd_bd_erreurExit($msg);
+	mysql_connect(APP_DB_URL, APP_DB_USER, APP_DB_PASS) or fd_db_err('Erreur Connexion serveur');
+	mysql_select_db(APP_DB_NOM) or fd_db_err('Erreur sélection BD');
 }
 
 //____________________________________________________________________________
@@ -66,74 +52,44 @@ function fd_bd_connexion() {
  *
  * @param string		$sql	Requête SQL ou message
  */
-function fd_bd_erreur($sql) {
-	$errNum = mysqli_errno($GLOBALS['bd']);
-	$errTxt = mysqli_error($GLOBALS['bd']);
+function fd_db_err($sql) {
+	// On efface ce qui était déjà généré dans le buffer d'envoi au navigateur
+	ob_end_clean();
 
-	// Collecte des informations facilitant le debugage
-	$msg = '<h4>Erreur de requ&ecirc;te</h4>'
-			."<pre><b>Erreur mysql :</b> $errNum"
-			."<br> $errTxt"
-			."<br><br><b>Requ&ecirc;te :</b><br> $sql"
-			.'<br><br><b>Pile des appels de fonction</b>';
-
-	// Récupération de la pile des appels de fonction
-	$msg .= '<table border="1" cellspacing="0" cellpadding="2">'
-			.'<tr><td>Fonction</td><td>Appel&eacute;e ligne</td>'
-			.'<td>Fichier</td></tr>';
-
+	// On récupère la pile des appels de fonction
 	// http://www.php.net/manual/fr/function.debug-backtrace.php
 	$appels = debug_backtrace();
-	for ($i = 0, $iMax = count($appels); $i < $iMax; $i++) {
-		$msg .= '<tr align="center"><td>'
-				.$appels[$i]['function'].'</td><td>'
-				.$appels[$i]['line'].'</td><td>'
-				.$appels[$i]['file'].'</td></tr>';
+	$iMax = count($appels);
+
+	// mise en forme de la requête. Dépend de la façon dont on
+	// écrit la requête (tabulation, etc ...). La ligne suivante
+	// peut être supprimée.
+	$sql = str_replace("\t", "  ", "\t\t$sql");
+
+	// On affiche un message grossièrement mis en forme pour notre débugage
+	echo '<h2>Erreur ligne ', $appels[0]['line'],
+		' dans ', basename($appels[0]['file']), '</h2><hr>',
+		'<p><strong>Erreur mysql : </strong>', mysql_errno(), ' - ', mysql_error(),
+		'<p><strong>Requ&ecirc;te SQL</strong><pre>', $sql, '</pre>';
+
+	// Si une seule entrès dans la pile => l'erreur est
+	// directement dans le script principal. On sort ici.
+	if ($iMax == 1) {
+		exit();			// Fin du script
 	}
 
-	$msg .= '</table></pre>';
+	// Affichage de la pile des appels
+	echo '<hr><p><strong>Pile des appels de fonctions</strong><ul>';
 
-	fd_bd_erreurExit($msg);
-}
-
-//___________________________________________________________________
-/**
- * Arrêt du script si erreur base de données.
- * Affichage d'un message d'erreur si on est en phase de
- * développement, sinon stockage dans un fichier log.
- *
- * @param string	$msg	Message affiché ou stocké.
- */
-function fd_bd_erreurExit($msg) {
-	ob_end_clean();		// Supression de tout ce qui a pu être déja généré
-
-	// Si on est en phase de développement, on affiche le message
-	if (APP_TEST) {
-		echo '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>',
-				'Erreur base de données</title></head><body>',
-				$msg,
-				'</body></html>';
-		exit();
+	for ($i = $iMax - 1; $i > 0; $i--) {
+		echo '<li><strong>', $appels[$i]['function'],
+			'</strong> appel&eacute;e ligne <strong>', $appels[$i]['line'],
+			'</strong> dans <strong>', basename($appels[$i]['file']), '</strong>';
 	}
 
-	// Si on est en phase de production on stocke les
-	// informations de débuggage dans un fichier d'erreurs
-	// et on affiche un message sibyllin.
-	$buffer = date('d/m/Y H:i:s')."\n$msg\n";
-	error_log($buffer, 3, 'erreurs_bd.txt');
-
-	// Génération d'une page spéciale erreur
-	fd_html_head('24sur7');
-
-	echo '<h1>24sur7 est overbook&eacute;</h1>',
-			'<div id="bcDescription">',
-				'<h3 class="gauche">Merci de r&eacute;essayez dans un moment</h3>',
-			'</div>';
-
-	fd_html_pied();
-
-	exit();
+	exit('</ul>');		// Fin du script
 }
+
 //____________________________________________________________________________
 
 /**
@@ -143,12 +99,6 @@ function fd_bd_erreurExit($msg) {
  * @param string	$css		url de la feuille de styles liée
  */
 function fd_html_head($titre, $css = '../styles/style.css') {
-	if ($css == '-') {
-		$css = '';
-	} else {
-		$css = "<link rel='stylesheet' href='$css'>";
-	}
-
 	echo '<!DOCTYPE HTML>',
 		'<html>',
 			'<head>',
@@ -158,7 +108,7 @@ function fd_html_head($titre, $css = '../styles/style.css') {
 				'<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">',
 			'</head>',
 			'<body>',
-				'<main id="bcPage">';
+				'<div id="bcPage">';
 }
 
 //____________________________________________________________________________
@@ -169,32 +119,31 @@ function fd_html_head($titre, $css = '../styles/style.css') {
  * @param string	$page		Constante APP_PAGE_xxx
  */
 function fd_html_bandeau($page) {
-	echo '<header id="bcEntete">',
-			'<nav id="bcOnglets">',
+	echo '<div id="bcEntete">',
+			'<div id="bcOnglets">',
 				($page == APP_PAGE_AGENDA) ? '<h2>Agenda</h2>' : '<a href="'.APP_PAGE_AGENDA.'">Agenda</a>',
 				($page == APP_PAGE_RECHERCHE) ? '<h2>Recherche</h2>' : '<a href="'.APP_PAGE_RECHERCHE.'">Recherche</a>',
 				($page == APP_PAGE_ABONNEMENTS) ? '<h2>Abonnements</h2>' : '<a href="'.APP_PAGE_ABONNEMENTS.'">Abonnements</a>',
 				($page == APP_PAGE_PARAMETRES) ? '<h2>Paramètres</h2>' : '<a href="'.APP_PAGE_PARAMETRES.'">Paramètres</a>',
-			'</nav>',
+			'</div>',
 			'<div id="bcLogo"></div>',
 			'<a href="deconnexion.php" id="btnDeconnexion" title="Se déconnecter"></a>',
-		 '</header>';
+		 '</div>';
 }
-
 //____________________________________________________________________________
 
 /**
  * Génère le code HTML du pied des pages.
  */
 function fd_html_pied() {
-	echo '<footer id="bcPied">',
+	echo '<div id="bcPied">',
 			'<a id="apropos" href="#">A propos</a>',
 			'<a id="confident" href="#">Confidentialité</a>',
 			'<a id="conditions" href="#">Conditions</a>',
-			'<p id="copyright">24sur7 &amp; Partners &copy; 2012</p>',
-		'</footer>';
+			'<p id="copyright">24sur7 & Partners &copy; 2012</p>',
+		'</div>';
 
-	echo '</main>',	// fin du bloc bcPage
+	echo '</div>',	// fin du bloc bcPage
 		'</body></html>';
 }
 
@@ -218,7 +167,7 @@ function fd_html_calendrier($jour = 0, $mois = 0, $annee = 0) {
 	($mois < 1 || $mois > 12) && $mois = $MM;
 
 	$annee = (int) $annee;
-	($annee < 2014) && $annee = $AA;
+	($annee < 2011) && $annee = $AA;
 
 	if (!checkdate($mois, $jour, $annee)) {
 		$jour = $JJ;
@@ -253,7 +202,7 @@ function fd_html_calendrier($jour = 0, $mois = 0, $annee = 0) {
 	}
 
 	// Affichage du titre du calendrier
-	echo '<section id="calendrier">',
+	echo '<div id="calendrier">',
 			'<p>',
 				'<a href="#" class="flechegauche"><img src="../images/fleche_gauche.png"></a>',
 				fd_get_mois($mois), ' ', $annee,
@@ -323,7 +272,7 @@ function fd_html_calendrier($jour = 0, $mois = 0, $annee = 0) {
 		echo '</tr>';
 	}
 
-	echo '</table></section>';
+	echo '</table></div>';
 }
 
 //_______________________________________________________________
@@ -339,9 +288,7 @@ function fd_get_mois($numero) {
 	$numero = (int) $numero;
 	($numero < 1 || $numero > 12) && $numero = 0;
 
-	$mois = array('Erreur', 'Janvier', 'Février', 'Mars',
-				'Avril', 'Mai', 'Juin', 'Juillet', 'Août',
-				'Septembre', 'Octobre', 'Novembre', 'Décembre');
+	$mois = explode(',', APP_MOIS);
 
 	return $mois[$numero];
 }
@@ -391,5 +338,102 @@ function fd_heure_claire($h) {
 function fd_redirige($page) {
 	header("Location: $page");
 	exit();
+}
+
+
+//_______________________________________________________________
+/**
+ * Véfication d'une session.
+ *
+ * Redirection sur la page d'inscription si la session n'est pas ouverte.
+ */
+function fd_verifie_session() {
+	session_start();
+	if (! isset($_SESSION['utiID'])) {
+		session_destroy();
+		header('Location: inscription.php');
+		exit();
+	}
+}
+//_______________________________________________________________
+
+/**
+ * Génére le code HTML d'une ligne de tableau d'un formulaire.
+ *
+ * Les formulaires sont mis en page avec un tableau : 1 ligne par
+ * zone de saisie, avec dans la collone de gauche le lable et dans
+ * la colonne de droite la zone de saisie.
+ *
+ * @param string		$gauche		Contenu de la colonne de gauche
+ * @param string		$droite		Contenu de la colonne de droite
+ *
+ * @return string	Le code HTML de la ligne du tableau
+ */
+function fd_form_ligne($gauche, $droite) {
+	$gauche = htmlentities($gauche, ENT_COMPAT, 'UTF-8');
+	return "<tr><td>{$gauche}</td><td>{$droite}</td></tr>";
+}
+
+//_______________________________________________________________
+
+/**
+* Génére le code d'une zone input de formulaire (type text, password ou button)
+*
+* @param string		$type	le type de l'input (constante FD_Z_xxx)
+* @param string		$name	Le nom de l'input
+* @param String		$value	La valeur par défaut
+* @param integer	$size	La taille de l'input
+*
+* @return string	Le code HTML de la zone de formulaire
+*/
+function fd_form_input($type, $name, $value, $size=0) {
+	$value = htmlentities($value, ENT_COMPAT, 'UTF-8');
+	$size = ($size == 0) ? '' : "size='{$size}'";
+	return "<input type='{$type}' name='{$name}' {$size} value=\"{$value}\">";
+}
+
+//_______________________________________________________________
+
+/**
+* Génére le code pour un ensemble de trois zones de sélection
+* représentant uen date : jours, mois et années
+*
+* @param string		$nom	Préfixe pour les noms des zones
+* @param integer	$jour 	Le jour sélectionné par défaut
+* @param integer	$mois 	Le mois sélectionné par défaut
+* @param integer	$annee	l'année sélectionnée par défaut
+*
+* @return string 	Le code HTML des 3 zones de liste
+*/
+function fd_form_date($nom, $jour = 0, $mois = 0, $annee = 0) {
+	list($AA, $MM, $JJ) = explode('-', date('Y-n-j'));
+	($jour == 0) && $jour = $JJ;
+	($mois == 0) && $mois = $MM;
+	($annee == 0) && $annee = $AA;
+
+	$H = "<select name='{$nom}_j'>";
+	for ($i = 1; $i < 32; $i++) {
+		$selected = ($i == $jour) ? ' selected' : '';
+		$H .= "<option value='{$i}'{$selected}>{$i}";
+	}
+	$H .= '</select>';
+
+	$libMois = explode(',', APP_MOIS);
+
+	$H .= "<select name='{$nom}_m'>";
+	for ($i = 1; $i < 13; $i++) {
+		$selected = ($i == $mois) ? ' selected' : '';
+		$H .= "<option value='{$i}'{$selected}>{$libMois[$i]}";
+	}
+	$H .= '</select>';
+
+	$H .= "<select name='{$nom}_a'>";
+	for ($i = $AA, $iMin = $AA - 99; $i >= $iMin; $i--) {
+		$selected = ($i == $annee) ? ' selected' : '';
+		$H .= "<option value='{$i}'{$selected}>{$i}";
+	}
+	$H .= '</select>';
+
+	return $H;
 }
 ?>

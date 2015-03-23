@@ -3,12 +3,11 @@
  * Page d'accueil de l'application 24sur7
  *
  * @author : Frederic Dadeau - frederic.dadeau@univ-fcomte.fr
- * @author : Virgil Manrique - virgil.manrique@edu.univ-fcomte.fr
  */
 
-include('bibli_24sur7.php');	// Inclusion de la bibliothéque
+include('bibli_24sur7_06.php');	// Inclusion de la bibliothéque
 
-vm_html_head('24sur7 | Agenda','-');
+fd_html_head('24sur7 | Agenda');
 
 fd_html_bandeau(APP_PAGE_AGENDA);
 
